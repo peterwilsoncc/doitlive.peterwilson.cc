@@ -116,7 +116,7 @@ function register_meta_boxes( array $meta_boxes ) {
 		'pages'    => [ 'post', 'page', 'pwcc_notes' ],
 		'context'  => 'normal',
 		'priority' => 'high',
-		'fields'   => $fields
+		'fields'   => $fields,
 	];
 
 	return $meta_boxes;
