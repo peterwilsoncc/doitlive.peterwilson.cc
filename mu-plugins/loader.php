@@ -16,6 +16,7 @@ $hm_mu_plugins = [
 	'vendor/cavalcade/plugin.php',
 	'vendor/cmb2/init.php',
 	'vendor/extended-cpts/extended-cpts.php',
+	'pwcc-notes/plugin.php',
 ];
 
 foreach ( $hm_mu_plugins as $k => $file ) {
