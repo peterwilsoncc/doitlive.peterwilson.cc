@@ -14,6 +14,8 @@ if ( ( defined( 'WP_INSTALLING' ) && WP_INSTALLING ) ) {
 
 $hm_mu_plugins = [
 	'vendor/cavalcade/plugin.php',
+	'vendor/cmb2/init.php',
+	'vendor/extended-cpts/extended-cpts.php',
 ];
 
 foreach ( $hm_mu_plugins as $k => $file ) {
