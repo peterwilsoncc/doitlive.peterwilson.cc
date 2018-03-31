@@ -1,0 +1,12 @@
+hosts:
+  - peterwilsoncc.local
+  - peterwilsonme.local
+  - vagrant.local
+
+extensions:
+  - Chassis/Tester
+  - Chassis/Cavalcade
+  - Chassis/MailHog
+  - Chassis/Xdebug
+
+php: 7.1
