@@ -7,3 +7,6 @@
 [submodule "mu-plugins/vendor/hm-cmb"]
 	path = mu-plugins/vendor/hm-cmb
 	url = https://github.com/humanmade/Custom-Meta-Boxes.git
+[submodule "mu-plugins/vendor/twitteroauth"]
+	path = mu-plugins/vendor/twitteroauth
+	url = https://github.com/abraham/twitteroauth.git
