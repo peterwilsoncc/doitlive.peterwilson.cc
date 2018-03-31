@@ -9,6 +9,7 @@
  */
 
 namespace PWCC\Notes;
+
 /**
  * Bootstrap notes.
  */
