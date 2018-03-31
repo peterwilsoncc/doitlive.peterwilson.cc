@@ -1,3 +1,6 @@
 [submodule "mu-plugins/vendor/cavalcade"]
 	path = mu-plugins/vendor/cavalcade
 	url = https://github.com/humanmade/Cavalcade.git
+[submodule "mu-plugins/vendor/cmb2"]
+	path = mu-plugins/vendor/cmb2
+	url = https://github.com/CMB2/CMB2.git
