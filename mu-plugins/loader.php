@@ -14,8 +14,10 @@ if ( ( defined( 'WP_INSTALLING' ) && WP_INSTALLING ) ) {
 
 $hm_mu_plugins = [
 	'vendor/cavalcade/plugin.php',
-	'vendor/cmb2/init.php',
 	'vendor/extended-cpts/extended-cpts.php',
+	'vendor/hm-cmb/custom-meta-boxes.php',
+	'vendor/twitteroauth/autoload.php',
+	'pwcc-notes/plugin.php',
 ];
 
 foreach ( $hm_mu_plugins as $k => $file ) {
