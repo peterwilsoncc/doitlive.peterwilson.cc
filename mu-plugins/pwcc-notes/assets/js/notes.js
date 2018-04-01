@@ -1,8 +1,8 @@
 /* global jQuery */
 
-( function( window ) {
+( function ( window ) {
 	const $ = window.jQuery;
 	const $metaBox = $( '#pwccindieweb_notes_metabox' );
 	const $form = $metaBox.closest( 'form' );
 
-}( window ));
+})( window );
