@@ -42,7 +42,7 @@ function register_meta_boxes( array $meta_boxes ) {
 			'type'    => 'radio',
 			'options' => [
 				'1'  => 'Yes',
-				'no' => 'No',
+				'no' => 'No', // This uses the value 'no' as WP can't save 0.
 			],
 			'cols'    => '6',
 			'default' => '1',
@@ -54,7 +54,7 @@ function register_meta_boxes( array $meta_boxes ) {
 			'type'    => 'radio',
 			'options' => [
 				'1'  => 'Yes',
-				'no' => 'No',
+				'no' => 'No', // This uses the value 'no' as WP can't save 0.
 			],
 			'default' => 'no',
 			'cols'    => '6',
