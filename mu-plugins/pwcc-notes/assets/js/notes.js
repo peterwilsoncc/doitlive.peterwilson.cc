@@ -13,7 +13,7 @@
 
 		// Get various elements within the note form.
 		const $text = $section.find( '.pwccindieweb-note-text' );
-		const $textLabel = $section.find( 'label[for="' + $text.attr( 'id' ) + '"]');
+		const $textLabel = $section.find( 'label[for="' + $text.attr( 'id' ) + '"]' );
 		const $appendUrl = $section.find( '.pwccindieweb-note-append-url' );
 		const $images = $section.find( '.CMB_Image_Field.repeatable' );
 		let $textCount = $textLabel.find( '.pwccindieweb-note-text-counter' ).first();
@@ -45,7 +45,7 @@
 	const initSections = () => {
 		const $sections = $metaBox.find( '[data-class="CMB_Group_Field"]' );
 
-		for( let i=0, l = $sections.length; i<l; i++ ) {
+		for ( let i=0, l = $sections.length; i<l; i++ ) {
 			let $section = $( $sections[i] );
 			if ( $section.data( 'pwccNotesMB' ) === true ) {
 				continue;
@@ -56,4 +56,4 @@
 	};
 
 	initSections();
-})( window );
+} )( window );
