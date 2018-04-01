@@ -21,6 +21,7 @@ function bootstrap() {
 		exit;
 	}
 	add_action( 'init', __NAMESPACE__ . '\\register_cpt' );
+	add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\register_admin_assets' );
 
 	// Bootstrap sub components.
 	MetaBoxes\bootstrap();
@@ -46,5 +47,20 @@ function register_cpt() {
 			'plural'   => 'Notes',
 			'slug'     => '~',
 		]
+	);
+}
+
+/**
+ * Register assets for use in the admin.
+ *
+ * Runs on the `admin_enqueue_scripts` hook.
+ */
+function register_admin_assets() {
+	wp_register_script(
+		'pwcc-notes-twttr-text',
+		plugin_dir_url( __DIR__ ) . 'assets/js/twitter-text.min.js',
+		[],
+		'2.0.5',
+		true
 	);
 }
