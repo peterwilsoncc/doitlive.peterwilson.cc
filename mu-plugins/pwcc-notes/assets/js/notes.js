@@ -7,6 +7,7 @@
 	const maxTweetLength = 280;
 	const maxPermillage = 1000;
 
+	// eslint-disable-next-line arrow-parens
 	const initSection = ( $section ) => {
 		// Accepts either a DOMElement or a jQuery object.
 		$section = $( $section );
