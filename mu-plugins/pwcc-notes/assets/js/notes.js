@@ -25,7 +25,11 @@
 		}
 
 		const calculateLength = () => {
-			const status = twttr.txt.parseTweet( $text.val() );
+			let tweetVal = $text.val();
+			if ( $appendUrl.filter( ':checked' ).val() === '1' ) {
+				tweetVal += ' http://example.com/';
+			}
+			const status = twttr.txt.parseTweet( tweetVal );
 			const remaining = maxTweetLength - status.weightedLength;
 			const permillage = status.permillage/maxPermillage;
 			$textCount.text( remaining );
@@ -41,6 +45,7 @@
 
 		calculateLength();
 		$text.on( 'input', calculateLength );
+		$appendUrl.on( 'change', calculateLength );
 	};
 
 	const initSections = () => {
