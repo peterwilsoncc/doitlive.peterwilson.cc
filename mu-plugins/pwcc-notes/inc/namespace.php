@@ -21,7 +21,7 @@ function bootstrap() {
 		exit;
 	}
 	add_action( 'init', __NAMESPACE__ . '\\register_cpt' );
-	add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\register_admin_assets' );
+	add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\enqueue_admin_assets' );
 
 	// Bootstrap sub components.
 	MetaBoxes\bootstrap();
@@ -51,11 +51,11 @@ function register_cpt() {
 }
 
 /**
- * Register assets for use in the admin.
+ * Enqueue assets for use in the admin.
  *
  * Runs on the `admin_enqueue_scripts` hook.
  */
-function register_admin_assets() {
+function enqueue_admin_assets( $hook_name ) {
 	wp_register_script(
 		'pwcc-notes-twttr-text',
 		plugin_dir_url( __DIR__ ) . 'assets/js/twitter-text.min.js',
@@ -63,4 +63,19 @@ function register_admin_assets() {
 		'2.0.5',
 		true
 	);
+
+	wp_register_script(
+		'pwcc-notes',
+		plugin_dir_url( __DIR__ ) . 'assets/js/notes.js',
+		[ 'jquery', 'pwcc-notes-twttr-text' ],
+		'20180401.001',
+		true
+	);
+
+	if ( ! in_array( $hook_name, [ 'post-new.php', 'post.php' ], true ) ) {
+		// Only register scripts, do not enqueue.
+		return;
+	}
+
+	wp_enqueue_script( 'pwcc-notes' );
 }
