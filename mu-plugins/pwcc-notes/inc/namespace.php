@@ -36,15 +36,15 @@ function register_cpt() {
 	register_extended_post_type(
 		'pwcc_notes',
 		[
-			'description'     => 'Short, Twitter like, notes.',
+			'description'     => __( 'Short, Twitter like, notes.', 'pwcc' ),
 			'capability_type' => 'post',
 			'hierarchical'    => false,
 			'supports'        => [ 'comments', 'trackbacks', 'author', 'editor', 'title', 'post-formats' ],
 			'has_archive'     => true,
 		],
 		[
-			'singular' => 'Note',
-			'plural'   => 'Notes',
+			'singular' => __( 'Note', 'pwcc' ),
+			'plural'   => __( 'Notes', 'pwcc' ),
 			'slug'     => '~',
 		]
 	);

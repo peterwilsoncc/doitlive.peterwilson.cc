@@ -31,18 +31,18 @@ function register_meta_boxes( array $meta_boxes ) {
 	$twitter_fields = [
 		[
 			'id'    => 'text',
-			'name'  => 'Text',
+			'name'  => __( 'Text', 'pwcc' ),
 			'type'  => 'textarea',
 			'rows'  => '3',
 			'class' => 'pwccindieweb-note-text',
 		],
 		[
 			'id'      => 'post_on_twitter',
-			'name'    => 'Post on twitter',
+			'name'    => __( 'Post on twitter', 'pwcc' ),
 			'type'    => 'radio',
 			'options' => [
-				'1'  => 'Yes',
-				'no' => 'No', // This uses the value 'no' as WP can't save 0.
+				'1'  => __( 'Yes', 'pwcc' ),
+				'no' => __( 'No', 'pwcc' ), // This uses the value 'no' as WP can't save 0.
 			],
 			'cols'    => '6',
 			'default' => '1',
@@ -50,11 +50,11 @@ function register_meta_boxes( array $meta_boxes ) {
 		],
 		[
 			'id'      => 'append_url',
-			'name'    => 'Append URL to post',
+			'name'    => __( 'Append URL to post', 'pwcc' ),
 			'type'    => 'radio',
 			'options' => [
-				'1'  => 'Yes',
-				'no' => 'No', // This uses the value 'no' as WP can't save 0.
+				'1'  => __( 'Yes', 'pwcc' ),
+				'no' => __( 'No', 'pwcc' ), // This uses the value 'no' as WP can't save 0.
 			],
 			'default' => 'no',
 			'cols'    => '6',
@@ -62,7 +62,7 @@ function register_meta_boxes( array $meta_boxes ) {
 		],
 		[
 			'id'             => 'images',
-			'name'           => 'Images to include',
+			'name'           => __( 'Images to include', 'pwcc' ),
 			'type'           => 'image',
 			'class'          => 'pwccindieweb-note-images',
 			'repeatable'     => true,
@@ -73,8 +73,8 @@ function register_meta_boxes( array $meta_boxes ) {
 	$fields = [
 		[
 			'id'         => '_pwccindieweb-note',
-			'desc'       => 'Post to Twitter',
-			'name'       => 'Twitter',
+			'desc'       => __( 'Post to Twitter', 'pwcc' ),
+			'name'       => __( 'Twitter', 'pwcc' ),
 			'type'       => 'group',
 			'class'      => 'pwccindieweb-twitter',
 			'repeatable' => false,
@@ -84,7 +84,7 @@ function register_meta_boxes( array $meta_boxes ) {
 
 	$meta_boxes[] = [
 		'id'       => 'pwccindieweb_notes_metabox',
-		'title'    => 'Notes',
+		'title'    => __( 'Notes', 'pwcc' ),
 		'pages'    => [ 'post', 'page', 'pwcc_notes' ],
 		'context'  => 'normal',
 		'priority' => 'high',
