@@ -4,7 +4,6 @@
 	const $ = window.jQuery;
 	const twttr = window.twttr;
 	const $metaBox = $( '#pwccindieweb_notes_metabox' );
-	const $form = $metaBox.closest( 'form' );
 	const maxTweetLength = 280;
 	const maxPermillage = 1000;
 
