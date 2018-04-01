@@ -16,7 +16,6 @@
 		const $text = $section.find( '.pwccindieweb-note-text' );
 		const $textLabel = $section.find( 'label[for="' + $text.attr( 'id' ) + '"]' );
 		const $appendUrl = $section.find( '.pwccindieweb-note-append-url' );
-		const $images = $section.find( '.CMB_Image_Field.repeatable' );
 		let $textCount = $textLabel.find( '.pwccindieweb-note-text-counter' ).first();
 
 		if ( $textCount.length === 0 ) {
