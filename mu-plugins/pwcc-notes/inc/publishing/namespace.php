@@ -20,6 +20,8 @@ use PWCC\Notes;
 function bootstrap() {
 	add_filter( 'wp_insert_post_data', __NAMESPACE__ . '\\insert_post_data', 10, 2 );
 	add_action( 'wp_insert_post', __NAMESPACE__ . '\\publish_post', 10, 2 );
+
+	add_action( 'pwcc/notes/tweet/text', __NAMESPACE__ . '\\tweet_update' );
 }
 
 /**
@@ -167,11 +169,13 @@ function publish_post( $post_id, $post ) {
 	 * - Set up tweet.
 	 */
 
+	$args = [
+		'post_id' => $post_id,
+	];
+
 	$next_scheduled = wp_next_scheduled(
 		'pwcc/notes/tweet/timeout',
-		[
-			'post_id' => $post_id,
-		]
+		[ $args ]
 	);
 
 	if ( $next_scheduled ) {
@@ -188,27 +192,113 @@ function publish_post( $post_id, $post ) {
 	wp_schedule_single_event(
 		$time + 120,
 		'pwcc/notes/tweet/timeout',
-		[
-			'post_id' => $post_id,
-		]
+		[ $args ]
 	);
 
 	wp_schedule_single_event(
 		$time,
 		'pwcc/notes/tweet/text',
-		[
-			'post_id' => $post_id,
-		]
+		[ $args ]
 	);
 
 	foreach ( $images as $image_id ) {
+		$args['image_id'] = $image_id;
 		wp_schedule_single_event(
 			time(),
 			'pwcc/notes/tweet/image',
+			[ $args ]
+		);
+		unset( $args['image_id'] );
+	}
+}
+
+/**
+ * @param $args Arguments array containing post_id.
+ * @return bool Success/failure.
+ */
+function tweet_update( $args ) {
+	$post_id = $args['post_id'];
+	$status_update = [];
+
+	$tweet = get_post_meta( $post_id, '_pwccindieweb-note', true );
+
+	if ( $tweet['post_on_twitter'] !== '1' ) {
+		// Flagged do not tweet. Do nothing.
+		return true;
+	}
+
+	// Check what the post contains.
+	$has_text = (bool) trim( $tweet['text'] ) || ( $tweet['append_url'] === '1' );
+	$images =  array_filter( $tweet['images'], 'wp_attachment_is_image' );
+	$has_images = ! empty( $images );
+
+	if ( ! $has_text && ! $has_images ) {
+		// Nothing to tweet, call it done.
+		return true;
+	}
+
+	$retry = false;
+
+	if ( $has_images ) {
+		// Check the images have uploaded.
+		foreach ( $images as $key => $image ) {
+			$twitter_id = get_post_meta( $post_id, '_pwccindieweb-twimg-' . intval( $image ), true );
+			if ( $twitter_id ) {
+				$images[ $key ] = $twitter_id;
+				unset( $twitter_id );
+				continue;
+			}
+			$retry = true;
+			break;
+		}
+		$status_update['media_ids'] = join( ',', $images );
+	}
+
+	if ( $retry ) {
+		// Images have not uploaded, schedule retry.
+		$timeout_stamp = wp_next_scheduled(
+			'pwcc/notes/tweet/timeout',
 			[
-				'post_id'  => $post_id,
-				'image_id' => $image_id,
+				[
+					'post_id' => $post_id,
+				]
 			]
 		);
+
+		if ( ! $timeout_stamp ) {
+			// Time to attempt tweeting has expired.
+			return false;
+		}
+
+		// Retry in 15 seconds.
+		wp_schedule_single_event(
+			time() + 15,
+			'pwcc/notes/tweet/text',
+			[ $args ]
+		);
+
+		return true;
 	}
+
+	// Setup status update to send to Twitter.
+	$status_update['status'] = trim( $tweet['text'] );
+
+	if ( $tweet['append_url'] === '1' ) {
+		$status_update['status'] .= ' ' . get_permalink( $post_id );
+	}
+
+	$connection = Notes\twitter_connection();
+	$response = $connection->post( "statuses/update", $status_update );
+
+	if ( $connection->getLastHttpCode() === 200 ) {
+		$twitter_id = $response->id_str;
+		$twitter_user = $response->user->screen_name;
+		$twitter_url = "https://twitter.com/" . $twitter_user . "/status/" . $twitter_id;
+
+		update_post_meta( $post_id, 'twitter_id', $twitter_id );
+		update_post_meta( $post_id, 'twitter_permalink', $twitter_url );
+
+		return true;
+	}
+	return false;
 }
