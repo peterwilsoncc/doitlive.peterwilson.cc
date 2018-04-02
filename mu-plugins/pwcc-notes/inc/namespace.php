@@ -110,3 +110,15 @@ function post_empty_content( bool $is_empty, array $postarr ) {
 
 	return (bool) $is_empty;
 }
+
+/**
+ * Is it possible to tweet?
+ *
+ * @return bool Whether constants are set for tweeting.
+ */
+function can_tweet() {
+	return defined( 'PWCC_TWTTR_CONSUMER_KEY' )
+		&& defined( 'PWCC_TWTTR_CONSUMER_SECRET' )
+		&& defined( 'PWCC_TWTTR_ACCESS_TOKEN' )
+		&& defined( 'PWCC_TWTTR_ACCESS_SECRET' );
+}
