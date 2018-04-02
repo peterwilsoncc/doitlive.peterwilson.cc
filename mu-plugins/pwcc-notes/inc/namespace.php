@@ -26,6 +26,7 @@ function bootstrap() {
 
 	// Bootstrap sub components.
 	MetaBoxes\bootstrap();
+	Publishing\bootstrap();
 }
 
 /**
