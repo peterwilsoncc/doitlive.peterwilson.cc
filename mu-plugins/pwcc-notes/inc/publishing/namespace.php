@@ -178,6 +178,13 @@ function publish_post( $post_id, $post ) {
 		$time,
 		'pwcc/notes/tweet',
 		[ 'post_id' => $post_id ]
+
+	wp_schedule_single_event(
+		$time + 120,
+		'pwcc/notes/tweet/timeout',
+		[
+			'post_id' => $post_id,
+		]
 	);
 
 	foreach ( $images as $image_id ) {
