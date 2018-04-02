@@ -164,7 +164,14 @@ function publish_post( $post_id, $post ) {
 	 * - Set up tweet.
 	 */
 
-	if ( wp_next_scheduled( 'pwcc/notes/tweet', [ 'post_id' => $post_id ] ) ) {
+	$next_scheduled = wp_next_scheduled(
+		'pwcc/notes/tweet/text',
+		[
+			'post_id' => $post_id,
+		]
+	);
+
+	if ( $next_scheduled ) {
 		// Tweeting in progress
 		return;
 	}
@@ -174,10 +181,14 @@ function publish_post( $post_id, $post ) {
 		// Give images a few seconds to be uploaded.
 		$time += 10;
 	}
+
 	wp_schedule_single_event(
 		$time,
-		'pwcc/notes/tweet',
-		[ 'post_id' => $post_id ]
+		'pwcc/notes/tweet/text',
+		[
+			'post_id' => $post_id,
+		]
+	);
 
 	wp_schedule_single_event(
 		$time + 120,
