@@ -27,7 +27,7 @@ function bootstrap() {
  * @todo WP-API support: meta data is not passed to `wp_insert_post()` via WP-API updates.
  * @todo Remove nofollow added to links by `make_clickable()`.
  *
- * @global wpdb $wpdb WordPress database abstraction object.
+ * @global \wpdb $wpdb WordPress database abstraction object.
  * @param array $data    An array of slashed post data.
  * @param array $postarr An array of sanitized, but otherwise unmodified post data.
  * @return array Modified array of slashed post data.
