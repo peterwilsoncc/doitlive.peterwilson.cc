@@ -213,7 +213,7 @@ function publish_post( $post_id, $post ) {
 }
 
 /**
- * @param $args Arguments array containing post_id.
+ * @param array $args Arguments array containing post_id.
  * @return bool Success/failure.
  */
 function tweet_update( $args ) {
@@ -258,11 +258,7 @@ function tweet_update( $args ) {
 		// Images have not uploaded, schedule retry.
 		$timeout_stamp = wp_next_scheduled(
 			'pwcc/notes/tweet/timeout',
-			[
-				[
-					'post_id' => $post_id,
-				]
-			]
+			[ $args ]
 		);
 
 		if ( ! $timeout_stamp ) {
