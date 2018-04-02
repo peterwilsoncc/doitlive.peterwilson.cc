@@ -153,7 +153,7 @@ function publish_post( $post_id, $post ) {
 
 	// Check what the post contains.
 	$has_text = (bool) trim( $tweet['text'] ) || ( $tweet['append_url'] === '1' );
-	$images =  array_filter( $tweet['images'], 'wp_attachment_is_image' );
+	$images = array_filter( $tweet['images'], 'wp_attachment_is_image' );
 	$has_images = ! empty( $images );
 
 	if ( ! $has_text && ! $has_images ) {
@@ -229,7 +229,7 @@ function tweet_update( $args ) {
 
 	// Check what the post contains.
 	$has_text = (bool) trim( $tweet['text'] ) || ( $tweet['append_url'] === '1' );
-	$images =  array_filter( $tweet['images'], 'wp_attachment_is_image' );
+	$images = array_filter( $tweet['images'], 'wp_attachment_is_image' );
 	$has_images = ! empty( $images );
 
 	if ( ! $has_text && ! $has_images ) {
