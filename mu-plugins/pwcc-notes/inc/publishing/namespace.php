@@ -263,18 +263,18 @@ function tweet_update( $args ) {
 		);
 
 		if ( ! $timeout_stamp ) {
-			// Time to attempt tweeting has expired.
-			return false;
+			// Retry in 15 seconds.
+			wp_schedule_single_event(
+				time() + 15,
+				'pwcc/notes/tweet/text',
+				[ $args ]
+			);
+			return true;
 		}
 
-		// Retry in 15 seconds.
-		wp_schedule_single_event(
-			time() + 15,
-			'pwcc/notes/tweet/text',
-			[ $args ]
-		);
+		// @todo if AN image has uploaded, do some rescue work and tweet.
 
-		return true;
+		return false;
 	}
 
 	// Setup status update to send to Twitter.
