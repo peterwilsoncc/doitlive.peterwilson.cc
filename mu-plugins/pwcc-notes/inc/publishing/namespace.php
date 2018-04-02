@@ -10,6 +10,8 @@
 
 namespace PWCC\Notes\Publishing;
 
+use PWCC\Notes;
+
 /**
  * Bootstrap Publishing workflow.
  *
@@ -17,6 +19,7 @@ namespace PWCC\Notes\Publishing;
  */
 function bootstrap() {
 	add_filter( 'wp_insert_post_data', __NAMESPACE__ . '\\insert_post_data', 10, 2 );
+	add_action( 'wp_insert_post', __NAMESPACE__ . '\\publish_post', 10, 2 );
 }
 
 /**
@@ -108,4 +111,83 @@ function insert_post_data( array $data, array $postarr ) {
 	}
 
 	return wp_slash( $data );
+}
+
+/**
+ * Tweet when the post is published.
+ *
+ * Set up the required cron jobs for publishing a tweet.
+ *
+ * Runs on the `wp_insert_post` action.
+ *
+ * @todo Fix hackyity delay of scheduling tweeting text.
+ *
+ * @param int      $post_id Post ID.
+ * @param \WP_Post $post    Post object.
+ */
+function publish_post( $post_id, $post ) {
+	if ( $post->post_status !== 'publish' ) {
+		// Unpublished post. Do nothing.
+		return;
+	}
+
+	if ( ! Notes\can_tweet() ) {
+		// Tweeting is not possible.
+		return;
+	}
+
+	if ( get_post_meta( $post_id, 'twitter_id', true ) ) {
+		// This has been tweeted before. Do nothing.
+		return;
+	}
+
+	$tweet = get_post_meta( $post_id, '_pwccindieweb-note', true );
+
+	if ( $tweet['post_on_twitter'] !== '1' ) {
+		// Flagged do not tweet. Do nothing.
+		return;
+	}
+
+	// Check what the post contains.
+	$has_text = (bool) trim( $tweet['text'] ) || ( $tweet['append_url'] === '1' );
+	$images =  array_filter( $tweet['images'], 'wp_attachment_is_image' );
+	$has_images = ! empty( $images );
+
+	if ( ! $has_text && ! $has_images ) {
+		// Got nothing for ya.
+		return;
+	}
+
+	/*
+	 * - Check if in process of being tweeted.
+	 * - Setup images to upload
+	 * - Set up tweet.
+	 */
+
+	if ( wp_next_scheduled( 'pwcc/notes/tweet', [ 'post_id' => $post_id ] ) ) {
+		// Tweeting in progress
+		return;
+	}
+
+	$time = time();
+	if ( $has_images ) {
+		// Give images a few seconds to be uploaded.
+		$time += 10;
+	}
+	wp_schedule_single_event(
+		$time,
+		'pwcc/notes/tweet',
+		[ 'post_id' => $post_id ]
+	);
+
+	foreach ( $images as $image_id ) {
+		wp_schedule_single_event(
+			time(),
+			'pwcc/notes/tweet/image',
+			[
+				'post_id'  => $post_id,
+				'image_id' => $image_id,
+			]
+		);
+	}
 }
