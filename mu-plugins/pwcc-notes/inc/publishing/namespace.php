@@ -165,7 +165,7 @@ function publish_post( $post_id, $post ) {
 	 */
 
 	$next_scheduled = wp_next_scheduled(
-		'pwcc/notes/tweet/text',
+		'pwcc/notes/tweet/timeout',
 		[
 			'post_id' => $post_id,
 		]
