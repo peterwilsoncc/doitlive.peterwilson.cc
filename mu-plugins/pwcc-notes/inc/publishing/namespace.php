@@ -345,5 +345,7 @@ function upload_image_to_twitter( $args ) {
 		$image_upload->media_id_string
 	);
 
+	// @todo remove this entry after the media expires for use with new tweets.
+
 	return true;
 }
