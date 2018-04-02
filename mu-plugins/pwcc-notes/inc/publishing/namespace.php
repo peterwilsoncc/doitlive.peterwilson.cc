@@ -121,6 +121,7 @@ function insert_post_data( array $data, array $postarr ) {
  * Runs on the `wp_insert_post` action.
  *
  * @todo Fix hackyity delay of scheduling tweeting text.
+ * @todo Allow for sites that don't have Cavalcade, Cron Control or another cron runner.
  *
  * @param int      $post_id Post ID.
  * @param \WP_Post $post    Post object.
@@ -159,6 +160,8 @@ function publish_post( $post_id, $post ) {
 	}
 
 	/*
+	 * This process presumes a cron runner.
+	 *
 	 * - Check if in process of being tweeted.
 	 * - Setup images to upload
 	 * - Set up tweet.
