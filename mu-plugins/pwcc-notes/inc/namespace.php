@@ -10,6 +10,8 @@
 
 namespace PWCC\Notes;
 
+use Abraham\TwitterOAuth\TwitterOAuth;
+
 /**
  * Bootstrap notes.
  *
@@ -121,4 +123,18 @@ function can_tweet() {
 		&& defined( 'PWCC_TWTTR_CONSUMER_SECRET' )
 		&& defined( 'PWCC_TWTTR_ACCESS_TOKEN' )
 		&& defined( 'PWCC_TWTTR_ACCESS_SECRET' );
+}
+
+/**
+ * Connect to the Twitter API.
+ *
+ * @return TwitterOAuth Authenticated Twitter connection.
+ */
+function twitter_connection() {
+	return new TwitterOAuth(
+		PWCC_TWTTR_CONSUMER_KEY,
+		PWCC_TWTTR_CONSUMER_SECRET,
+		PWCC_TWTTR_ACCESS_TOKEN,
+		PWCC_TWTTR_ACCESS_SECRET
+	);
 }
