@@ -22,6 +22,7 @@ function bootstrap() {
 	}
 	add_action( 'init', __NAMESPACE__ . '\\register_cpt' );
 	add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\enqueue_admin_assets' );
+	add_filter( 'wp_insert_post_empty_content', __NAMESPACE__ . '\\post_empty_content', 10, 2 );
 
 	// Bootstrap sub components.
 	MetaBoxes\bootstrap();
@@ -78,4 +79,33 @@ function enqueue_admin_assets( $hook_name ) {
 	}
 
 	wp_enqueue_script( 'pwcc-notes' );
+}
+
+/**
+ * Include Twitter field in maybe_empty check for Notes.
+ *
+ * A `pwcc_notes` post type is not considered empty if the
+ * Twitter field has content.
+ *
+ * Runs on the `wp_insert_post_empty_content` filter.
+ *
+ * @todo WP-API support: meta data is not passed to `wp_insert_post` via WP-API updates.
+ *
+ * @param  bool  $is_empty Whether the post should be considered "empty".
+ * @param  array $postarr  Array of post data.
+ * @return bool Modified calculation of whether post should be considered "empty".
+ */
+function post_empty_content( bool $is_empty, array $postarr ) {
+	if ( ! $is_empty || $postarr['post_type'] !== 'pwcc_notes' ) {
+		// Post is already known to have content or is not a note.
+		return $is_empty;
+	}
+
+	// Put relevant content in variables.
+	$note_content = trim( $postarr['_pwccindieweb-note']['cmb-group-0']['text']['cmb-field-0'] );
+
+	// Extend maybe empty check.
+	$is_empty = $is_empty && ! $note_content;
+
+	return (bool) $is_empty;
 }
