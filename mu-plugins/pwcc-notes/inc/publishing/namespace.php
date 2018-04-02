@@ -186,16 +186,16 @@ function publish_post( $post_id, $post ) {
 	}
 
 	wp_schedule_single_event(
-		$time,
-		'pwcc/notes/tweet/text',
+		$time + 120,
+		'pwcc/notes/tweet/timeout',
 		[
 			'post_id' => $post_id,
 		]
 	);
 
 	wp_schedule_single_event(
-		$time + 120,
-		'pwcc/notes/tweet/timeout',
+		$time,
+		'pwcc/notes/tweet/text',
 		[
 			'post_id' => $post_id,
 		]
