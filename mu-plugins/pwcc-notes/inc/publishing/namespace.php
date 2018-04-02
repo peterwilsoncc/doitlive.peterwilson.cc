@@ -284,12 +284,12 @@ function tweet_update( $args ) {
 	}
 
 	$connection = Notes\twitter_connection();
-	$response = $connection->post( "statuses/update", $status_update );
+	$response = $connection->post( 'statuses/update', $status_update );
 
 	if ( $connection->getLastHttpCode() === 200 ) {
 		$twitter_id = $response->id_str;
 		$twitter_user = $response->user->screen_name;
-		$twitter_url = "https://twitter.com/" . $twitter_user . "/status/" . $twitter_id;
+		$twitter_url = "https://twitter.com/${twitter_user}/status/${twitter_id}";
 
 		update_post_meta( $post_id, 'twitter_id', $twitter_id );
 		update_post_meta( $post_id, 'twitter_permalink', $twitter_url );
