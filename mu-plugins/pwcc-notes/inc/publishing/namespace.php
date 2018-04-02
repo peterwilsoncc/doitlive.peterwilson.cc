@@ -304,6 +304,13 @@ function upload_image_to_twitter( $args ) {
 	$post_id  = $args['post_id'];
 	$image_id = $args['image_id'];
 
+	$tweet = get_post_meta( $post_id, '_pwccindieweb-note', true );
+
+	if ( $tweet['post_on_twitter'] !== '1' ) {
+		// Flagged do not tweet. Do nothing.
+		return true;
+	}
+
 	$twitter_id = get_post_meta( $post_id, '_pwccindieweb-twimg-' . intval( $image_id ), true );
 	if ( $twitter_id ) {
 		// The image has been uploaded.
