@@ -75,14 +75,7 @@ function insert_post_data( array $data, array $postarr ) {
 	);
 
 	// Images? Append them to the post.
-	$gallery = [];
-	foreach ( $attachments as $media_id ) {
-		if ( ! wp_attachment_is_image( $media_id ) ) {
-			continue;
-		}
-
-		$gallery[] = $media_id;
-	}
+	$gallery = array_filter( $attachments, 'wp_attachment_is_image' );
 
 	if ( ! empty( $gallery ) ) {
 		/*
