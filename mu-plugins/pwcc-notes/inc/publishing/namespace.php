@@ -52,7 +52,7 @@ function insert_post_data( array $data, array $postarr ) {
 		return wp_slash( $data );
 	}
 
-	if ( $postarr['action'] === 'editpost' ) {
+	if ( ! isset( $postarr['action'] ) || $postarr['action'] !== 'editpost' ) {
 		// Or if it's an inline save.
 		return wp_slash( $data );
 	}
