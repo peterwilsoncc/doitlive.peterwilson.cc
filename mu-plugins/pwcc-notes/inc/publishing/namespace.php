@@ -22,6 +22,7 @@ function bootstrap() {
 	add_action( 'wp_insert_post', __NAMESPACE__ . '\\publish_post', 10, 2 );
 
 	add_action( 'pwcc/notes/tweet/text', __NAMESPACE__ . '\\tweet_update' );
+	add_action( 'pwcc/notes/tweet/image', __NAMESPACE__ . '\\upload_image_to_twitter' );
 }
 
 /**
@@ -297,4 +298,39 @@ function tweet_update( $args ) {
 		return true;
 	}
 	return false;
+}
+
+function upload_image_to_twitter( $args ) {
+	$post_id  = $args[ 'post_id' ];
+	$image_id = $args[ 'image_id' ];
+
+	$twitter_id = get_post_meta( $post_id, '_pwccindieweb-twimg-' . intval( $image_id ), true );
+	if ( $twitter_id ) {
+		// The image has been uploaded.
+		return true;
+	}
+
+	$file = get_attached_file( $image_id );
+	if ( ! file_exists( $file ) ) {
+		// @todo fail gracefully.
+	}
+	if ( filesize( $file ) > 5 * 1024 * 1024 ) {
+		// File is over five meg.
+		// @todo fail gracefully.
+	}
+	$connection = Notes\twitter_connection();
+	$image_upload = $connection->upload( 'media/upload', [ 'media' => $file ] );
+
+	if ( $connection->getLastHttpCode() !== 200 ) {
+		return false;
+	}
+
+	update_post_meta(
+		$post_id,
+		'_pwccindieweb-twimg-' . intval( $image_id ),
+		$image_upload->media_id_string
+	);
+
+	return true;
+
 }
