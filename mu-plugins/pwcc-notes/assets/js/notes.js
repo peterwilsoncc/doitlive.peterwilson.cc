@@ -43,8 +43,8 @@
 		};
 
 		calculateLength();
-		$text.on( 'input', calculateLength );
-		$appendUrl.on( 'change', calculateLength );
+		$text.on( 'input.pwcc', calculateLength );
+		$appendUrl.on( 'change.pwcc', calculateLength );
 	};
 
 	const initSections = () => {
