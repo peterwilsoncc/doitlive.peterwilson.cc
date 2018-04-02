@@ -313,10 +313,12 @@ function upload_image_to_twitter( $args ) {
 	$file = get_attached_file( $image_id );
 	if ( ! file_exists( $file ) ) {
 		// @todo fail gracefully.
+		return false;
 	}
 	if ( filesize( $file ) > 5 * 1024 * 1024 ) {
 		// File is over five meg.
 		// @todo fail gracefully.
+		return false;
 	}
 	$connection = Notes\twitter_connection();
 	$image_upload = $connection->upload( 'media/upload', [ 'media' => $file ] );
@@ -332,5 +334,4 @@ function upload_image_to_twitter( $args ) {
 	);
 
 	return true;
-
 }
