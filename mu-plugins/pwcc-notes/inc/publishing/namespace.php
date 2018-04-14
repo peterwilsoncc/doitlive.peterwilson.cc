@@ -215,6 +215,8 @@ function publish_post( $post_id, $post ) {
 }
 
 /**
+ * Upload an update to the Twitter API.
+ * 
  * @param array $args Arguments array containing post_id.
  * @return bool Success/failure.
  */
@@ -304,7 +306,13 @@ function tweet_update( $args ) {
 	return false;
 }
 
-function upload_image_to_twitter( $args ) {
+/**
+ * Upload an image to the Twitter API.
+ *
+ * @param array $args { Post ID and Image ID }
+ * @return bool Whether function was successful.
+ */
+function upload_image_to_twitter( array $args ) {
 	$post_id  = $args['post_id'];
 	$image_id = $args['image_id'];
 
@@ -362,13 +370,26 @@ function upload_image_to_twitter( $args ) {
 		return false;
 	}
 
-	update_post_meta(
+	/*
+	 * Get expiry time for uploaded meda.
+	 *
+	 * This is used to delete the image ID one minute before Twitter
+	 * expires it for use with new tweets.
+	 */
+	$expiry_time = time() + $image_upload->expires_after_secs - 60;
+
+		update_post_meta(
 		$post_id,
 		'_pwccindieweb-twimg-' . intval( $image_id ),
 		$image_upload->media_id_string
 	);
 
 	// @todo remove this entry after the media expires for use with new tweets.
+	wp_schedule_single_event(
+		$expiry_time,
+		'pwcc/notes/tweet/image/expired',
+		[ $args ]
+	);
 
 	return true;
 }
