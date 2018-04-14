@@ -250,7 +250,6 @@ function tweet_update( $args ) {
 				continue;
 			}
 			$retry = true;
-			break;
 		}
 		$status_update['media_ids'] = join( ',', $images );
 	}
@@ -272,9 +271,11 @@ function tweet_update( $args ) {
 			return true;
 		}
 
-		// @todo if AN image has uploaded, do some rescue work and tweet.
+		if ( ! $status_update['media_ids'] ) {
+			// No images have uploaded. Let it be.
+			return false;
 
-		return false;
+		}
 	}
 
 	// Setup status update to send to Twitter.
