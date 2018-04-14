@@ -4,10 +4,14 @@
 	<rule ref="vendor/humanmade/coding-standards" />
 
 	<!-- Exclude non-project directories -->
-	<exclude-pattern>*/content/uploads/*</exclude-pattern>
-	<exclude-pattern>*/content/test-uploads/*</exclude-pattern>
+	<exclude-pattern>*/uploads/*</exclude-pattern>
+	<exclude-pattern>*/test-uploads/*</exclude-pattern>
 	<exclude-pattern>*/.tests/php/includes/*</exclude-pattern>
 
+	<!-- Exclude third party code -->
+	<exclude-pattern>*/mu-plugins/vendor/*</exclude-pattern>
+	<exclude-pattern>*/plugins/*</exclude-pattern>
+
 	<!-- Exclude build directories -->
-	<exclude-pattern>*/content/themes/peter-wilson-2017/assets/dist/*</exclude-pattern>
+	<exclude-pattern>*/themes/peter-wilson-2017/assets/dist/*</exclude-pattern>
 </ruleset>
