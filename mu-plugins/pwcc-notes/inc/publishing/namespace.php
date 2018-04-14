@@ -54,7 +54,7 @@ function insert_post_data( array $data, array $postarr ) {
 	}
 
 	if ( ! isset( $postarr['action'] ) || $postarr['action'] !== 'editpost' ) {
-		// Or if it's an inline save.
+		// Or if it's not saving from the edit form.
 		return wp_slash( $data );
 	}
 
@@ -62,6 +62,11 @@ function insert_post_data( array $data, array $postarr ) {
 
 	if ( $data['post_type'] !== 'pwcc_notes' || $post_content ) {
 		// Do nothing if it's not a note or post_content is filled.
+		return wp_slash( $data );
+	}
+
+	if ( ! isset( $postarr['_pwccindieweb-note']['cmb-group-0'] ) ) {
+		// Somethings gone wrong.
 		return wp_slash( $data );
 	}
 
@@ -296,10 +301,10 @@ function tweet_update( $args ) {
 	if ( $connection->getLastHttpCode() === 200 ) {
 		$twitter_id = $response->id_str;
 		$twitter_user = $response->user->screen_name;
-		$twitter_url = "https://twitter.com/${twitter_user}/status/${twitter_id}";
+		$twitter_url = esc_url_raw( "https://twitter.com/${twitter_user}/status/${twitter_id}" );
 
-		update_post_meta( $post_id, 'twitter_id', $twitter_id );
-		update_post_meta( $post_id, 'twitter_permalink', $twitter_url );
+		update_post_meta( $post_id, 'twitter_id', wp_slash( $twitter_id ) );
+		update_post_meta( $post_id, 'twitter_permalink', wp_slash( $twitter_url ) );
 
 		return true;
 	}
@@ -352,8 +357,8 @@ function upload_image_to_twitter( array $args ) {
 		 */
 		update_post_meta(
 			$post_id,
-			'_pwccindieweb-twimg-' . intval( $image_id ),
-			'-1'
+			wp_slash( '_pwccindieweb-twimg-' . intval( $image_id ) ),
+			wp_slash( '-1' )
 		);
 		return false;
 	}
@@ -379,8 +384,8 @@ function upload_image_to_twitter( array $args ) {
 
 	update_post_meta(
 		$post_id,
-		'_pwccindieweb-twimg-' . intval( $image_id ),
-		$image_upload->media_id_string
+		wp_slash( '_pwccindieweb-twimg-' . intval( $image_id ) ),
+		wp_slash( $image_upload->media_id_string )
 	);
 
 	// @todo remove this entry after the media expires for use with new tweets.
@@ -402,5 +407,5 @@ function delete_image_twitter_id( $args ) {
 	$post_id  = $args['post_id'];
 	$image_id = $args['image_id'];
 
-	delete_post_meta( $post_id, '_pwccindieweb-twimg-' . intval( $image_id ) );
+	delete_post_meta( $post_id, wp_slash( '_pwccindieweb-twimg-' . intval( $image_id ) ) );
 }
