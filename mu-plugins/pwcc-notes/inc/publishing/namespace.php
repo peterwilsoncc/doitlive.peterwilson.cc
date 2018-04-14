@@ -23,7 +23,7 @@ function bootstrap() {
 
 	add_action( 'pwcc/notes/tweet/text', __NAMESPACE__ . '\\tweet_update' );
 	add_action( 'pwcc/notes/tweet/image', __NAMESPACE__ . '\\upload_image_to_twitter' );
-	add_action( 'pwcc/notes/tweet/image/expired', __NAMESPACE__ . '\\delete_image_twitter_id');
+	add_action( 'pwcc/notes/tweet/image/expired', __NAMESPACE__ . '\\delete_image_twitter_id' );
 }
 
 /**
@@ -216,7 +216,7 @@ function publish_post( $post_id, $post ) {
 
 /**
  * Upload an update to the Twitter API.
- * 
+ *
  * @param array $args Arguments array containing post_id.
  * @return bool Success/failure.
  */
@@ -335,15 +335,14 @@ function upload_image_to_twitter( array $args ) {
 		return false;
 	}
 
-	switch( get_post_mime_type( $image_id ) ) {
-		case 'image/gif' :
+	switch ( get_post_mime_type( $image_id ) ) {
+		case 'image/gif':
 			$max_file_size = 15 * 1000 * 1000; // 15 MB
 			break;
-		default :
+		default:
 			$max_file_size = 5 * 1000 * 1000; // 5 MB
 			break;
 	}
-
 
 	if ( filesize( $file ) > $max_file_size ) {
 		/*
@@ -378,7 +377,7 @@ function upload_image_to_twitter( array $args ) {
 	 */
 	$expiry_time = time() + $image_upload->expires_after_secs - 60;
 
-		update_post_meta(
+	update_post_meta(
 		$post_id,
 		'_pwccindieweb-twimg-' . intval( $image_id ),
 		$image_upload->media_id_string
