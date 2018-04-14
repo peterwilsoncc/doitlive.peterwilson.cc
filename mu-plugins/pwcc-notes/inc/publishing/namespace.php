@@ -244,12 +244,14 @@ function tweet_update( $args ) {
 		// Check the images have uploaded.
 		foreach ( $images as $key => $image ) {
 			$twitter_id = get_post_meta( $post_id, '_pwccindieweb-twimg-' . intval( $image ), true );
-			if ( $twitter_id ) {
+			if ( $twitter_id && $twitter_id !== '-1' ) {
 				$images[ $key ] = $twitter_id;
 				unset( $twitter_id );
 				continue;
+			} elseif ( $twitter_id !== '-1' ) {
+				// Still waiting for upload.
+				$retry = true;
 			}
-			$retry = true;
 		}
 		$status_update['media_ids'] = join( ',', $images );
 	}
@@ -323,9 +325,28 @@ function upload_image_to_twitter( $args ) {
 		// @todo fail gracefully.
 		return false;
 	}
-	if ( filesize( $file ) > 5 * 1024 * 1024 ) {
-		// File is over five meg.
-		// @todo fail gracefully.
+
+	switch( get_post_mime_type( $image_id ) ) {
+		case 'image/gif' :
+			$max_file_size = 15 * 1000 * 1000; // 15 MB
+			break;
+		default :
+			$max_file_size = 5 * 1000 * 1000; // 5 MB
+			break;
+	}
+
+
+	if ( filesize( $file ) > $max_file_size ) {
+		/*
+		 * File is too large.
+		 *
+		 * Update post meta with a magic number.
+		 */
+		update_post_meta(
+			$post_id,
+			'_pwccindieweb-twimg-' . intval( $image_id ),
+			'-1'
+		);
 		return false;
 	}
 	$connection = Notes\twitter_connection();
