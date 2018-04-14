@@ -104,8 +104,12 @@ function post_empty_content( bool $is_empty, array $postarr ) {
 		return $is_empty;
 	}
 
-	// Put relevant content in variables.
-	$note_content = trim( $postarr['_pwccindieweb-note']['cmb-group-0']['text']['cmb-field-0'] );
+	if ( ! isset( $postarr['_pwccindieweb-note']['cmb-group-0']['text'] ) ) {
+		$note_content = '';
+	} else {
+		// Put relevant content in variables.
+		$note_content = trim( $postarr['_pwccindieweb-note']['cmb-group-0']['text']['cmb-field-0'] );
+	}
 
 	// Extend maybe empty check.
 	$is_empty = $is_empty && ! $note_content;
