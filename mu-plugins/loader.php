@@ -16,6 +16,8 @@ $hm_mu_plugins = [
 	'vendor/cavalcade/plugin.php',
 	'vendor/extended-cpts/extended-cpts.php',
 	'vendor/hm-cmb/custom-meta-boxes.php',
+	'vendor/manual-control/manual-control.php',
+	'vendor/rapid-canonical-urls/rapid-canonical-urls.php',
 	'vendor/twitteroauth/autoload.php',
 	'pwcc-notes/plugin.php',
 ];
