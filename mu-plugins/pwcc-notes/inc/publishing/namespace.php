@@ -262,7 +262,7 @@ function tweet_update( $args ) {
 			[ $args ]
 		);
 
-		if ( ! $timeout_stamp ) {
+		if ( $timeout_stamp ) {
 			// Retry in 15 seconds.
 			wp_schedule_single_event(
 				time() + 15,
