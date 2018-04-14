@@ -23,6 +23,7 @@ function bootstrap() {
 
 	add_action( 'pwcc/notes/tweet/text', __NAMESPACE__ . '\\tweet_update' );
 	add_action( 'pwcc/notes/tweet/image', __NAMESPACE__ . '\\upload_image_to_twitter' );
+	add_action( 'pwcc/notes/tweet/image/expired', __NAMESPACE__ . '\\delete_image_twitter_id');
 }
 
 /**
@@ -370,4 +371,16 @@ function upload_image_to_twitter( $args ) {
 	// @todo remove this entry after the media expires for use with new tweets.
 
 	return true;
+}
+
+/**
+ * Delete expired twitter image ID meta data from post.
+ *
+ * @param array $args { Post ID and Image ID }
+ */
+function delete_image_twitter_id( $args ) {
+	$post_id  = $args['post_id'];
+	$image_id = $args['image_id'];
+
+	delete_post_meta( $post_id, '_pwccindieweb-twimg-' . intval( $image_id ) );
 }
