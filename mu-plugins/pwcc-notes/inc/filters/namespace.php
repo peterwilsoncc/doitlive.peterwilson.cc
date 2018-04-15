@@ -16,6 +16,8 @@ namespace PWCC\Notes\Filters;
 function bootstrap() {
 	add_filter( 'the_title', __NAMESPACE__ . '\\filter_the_title', 10, 2  );
 	add_filter( 'wpseo_title', __NAMESPACE__ . '\\filter_wpseo_title', 10 );
+
+	add_filter( 'get_comment_author_url', __NAMESPACE__ . '\\filter_comment_author_url', 10, 2 );
 }
 
 /**
@@ -81,4 +83,31 @@ function filter_wpseo_title( $title ) {
 	$title = wpseo_replace_vars( $pwcc_title . ' %%page%% %%sep%% %%sitename%%', $post );
 
 	return $title;
+}
+
+/**
+ * Filter the author URL for the meta data URL if it exists.
+ *
+ * This is due to the now disabled semantic linkbacks plugin as
+ * it stores the author's URL as meta data and the bridgy link
+ * as in the comment table's field.
+ *
+ * Runs on the filter `get_comment_author_url`.
+ *
+ * @param string $url        The comment author's URL.
+ * @param int    $comment_id The comment ID.
+ * @return mixed|string The modified comment author's URL.
+ */
+function filter_comment_author_url( string $url, int $comment_id ) {
+	$meta_url = get_comment_meta(
+		$comment_id,
+		'semantic_linkbacks_author_url',
+		true
+	);
+
+	if ( ! $meta_url ) {
+		return $url;
+	}
+
+	return esc_url( $meta_url, [ 'http', 'https' ] );
 }
