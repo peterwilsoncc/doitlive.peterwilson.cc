@@ -14,7 +14,7 @@ namespace PWCC\Notes\Filters;
  * Set up filters.
  */
 function bootstrap() {
-	add_filter( 'the_title', __NAMESPACE__ . '\\filter_the_title', 10, 2  );
+	add_filter( 'the_title', __NAMESPACE__ . '\\filter_the_title', 10, 2 );
 	add_filter( 'wpseo_title', __NAMESPACE__ . '\\filter_wpseo_title', 10 );
 
 	add_filter( 'get_comment_author_url', __NAMESPACE__ . '\\filter_comment_author_url', 10, 2 );
