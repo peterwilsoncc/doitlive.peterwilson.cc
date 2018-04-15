@@ -39,7 +39,7 @@ function bootstrap() {
  *
  * Runs on the action `after_setup_theme, 20`.
  */
-function add_status_theme_support(){
+function add_status_theme_support() {
 	global $_wp_theme_features;
 
 	if ( isset( $_wp_theme_features['post-formats'] ) ) {
