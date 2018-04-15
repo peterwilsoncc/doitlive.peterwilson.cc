@@ -27,6 +27,7 @@ function bootstrap() {
 	add_filter( 'wp_insert_post_empty_content', __NAMESPACE__ . '\\post_empty_content', 10, 2 );
 
 	// Bootstrap sub components.
+	Filters\bootstrap();
 	MetaBoxes\bootstrap();
 	Publishing\bootstrap();
 }
