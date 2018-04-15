@@ -26,10 +26,31 @@ function bootstrap() {
 	add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\enqueue_admin_assets' );
 	add_filter( 'wp_insert_post_empty_content', __NAMESPACE__ . '\\post_empty_content', 10, 2 );
 
+	add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_status_theme_support', 20 );
+
 	// Bootstrap sub components.
 	Filters\bootstrap();
 	MetaBoxes\bootstrap();
 	Publishing\bootstrap();
+}
+
+/**
+ * Add `status` to supported post formats.
+ *
+ * Runs on the action `after_setup_theme, 20`.
+ */
+function add_status_theme_support() {
+	global $_wp_theme_features;
+
+	if ( isset( $_wp_theme_features['post-formats'] ) ) {
+		$supported = $_wp_theme_features['post-formats'][0];
+	} else {
+		$supported = [ 'standard' ];
+	}
+
+	$supported[] = 'status';
+
+	add_theme_support( 'post-formats', $supported );
 }
 
 /**
