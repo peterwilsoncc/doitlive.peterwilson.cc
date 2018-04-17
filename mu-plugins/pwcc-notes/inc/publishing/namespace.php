@@ -364,6 +364,7 @@ function upload_image_to_twitter( array $args ) {
 		return false;
 	}
 	$connection = Notes\twitter_connection();
+	$connection->setTimeouts( 10, 60 );
 	$image_upload = $connection->upload(
 		'media/upload',
 		[
