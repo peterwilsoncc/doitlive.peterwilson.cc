@@ -157,10 +157,15 @@ function can_tweet() {
  * @return TwitterOAuth Authenticated Twitter connection.
  */
 function twitter_connection() {
-	return new TwitterOAuth(
+	$connection = new TwitterOAuth(
 		PWCC_TWTTR_CONSUMER_KEY,
 		PWCC_TWTTR_CONSUMER_SECRET,
 		PWCC_TWTTR_ACCESS_TOKEN,
 		PWCC_TWTTR_ACCESS_SECRET
 	);
+
+	// Set two minute timeout.
+	$connection->setTimeouts( 10, 2 * MINUTE_IN_SECONDS );
+
+	return $connection;
 }

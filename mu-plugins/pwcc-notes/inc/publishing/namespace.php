@@ -194,11 +194,11 @@ function publish_post( $post_id, $post ) {
 	$time = time();
 	if ( $has_images ) {
 		// Give images a few seconds to be uploaded.
-		$time += 10;
+		$time += 15;
 	}
 
 	wp_schedule_single_event(
-		$time + 120,
+		$time + ( 4 * MINUTE_IN_SECONDS ),
 		'pwcc/notes/tweet/timeout',
 		[ $args ]
 	);
@@ -275,7 +275,7 @@ function tweet_update( $args ) {
 		if ( $timeout_stamp ) {
 			// Retry in 15 seconds.
 			wp_schedule_single_event(
-				time() + 15,
+				time() + 30,
 				'pwcc/notes/tweet/text',
 				[ $args ]
 			);
@@ -364,7 +364,6 @@ function upload_image_to_twitter( array $args ) {
 		return false;
 	}
 	$connection = Notes\twitter_connection();
-	$connection->setTimeouts( 10, 60 );
 	$image_upload = $connection->upload(
 		'media/upload',
 		[
