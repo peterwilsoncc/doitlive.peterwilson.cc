@@ -91,10 +91,109 @@ function read_notifications( array $args = [] ) {
 
 	$connection = Notes\twitter_connection();
 
-	// * Get the page.
-	// * Check if there are more on the following page.
-	//      * If so, set up a task with `max_id` & `ignore_locks` set.
-	//      * RETURN without deleting lock.
-	// * Process tweets.
+	// Get the page.
+	$response = $connection->get( 'statuses/mentions_timeline', $args );
+
+	if ( $connection->getLastHttpCode() !== 200 ) {
+		// Failed, do nothing and wait for next attempt.
+		unlock_notifications();
+		return false;
+	}
+
+	if ( empty( $response ) ) {
+		// Succeeded, nothing to process.
+		unlock_notifications();
+		return true;
+	}
+
+	// Check if there are more on the following page.
+	$last_reply = end( $response );
+	$last_reply_id = $last_reply->id;
+
+	if ( $last_reply_id === (int) $args['since_id'] ) {
+		$is_next_page = false;
+	} else {
+		$is_next_page = is_next_page(
+			$args,
+			$last_reply_id - 1,
+			'statuses/mentions_timeline'
+		);
+	}
+
+	if ( $is_next_page ) {
+		// Set up a task with `max_id` & `ignore_locks` set.
+		$next_page_args = [
+			'ignore_locks' => true,
+			'max_id' => $last_reply_id - 1,
+		];
+		$next_page_args = wp_parse_args( $next_page_args, $args );
+		// @todo set up task to process.
+		// RETURN without deleting lock.
+	}
+
+	$time = time();
 	unlock_notifications();
+
+	var_dump( $response );
+
+	while ( ! empty( $response ) ) {
+		$processing = array_pop( $response );
+		/*
+		 * @todo
+		 *  - process entities.
+		 *  - include images (hot link or sideload???) [extended entities->media]
+		 *  -
+		 */
+		$comment_args = [
+			'status_id' => $processing->id_str,
+			'content' => $processing->full_text,
+			'status_reply_to' => $processing->in_reply_to_status_id_str,
+			'time' => $processing->created_at,
+			'author' => [
+				'display_name' => $processing->user->name,
+				'url' => $processing->user->url,
+				'avatar' => $processing->user->profile_image_url_https,
+			],
+		];
+
+		var_dump( $comment_args );
+	}
+	exit;
+
+	// * Process tweets.
+
+	exit;
+}
+
+/**
+ * Whether or not there is a next page of replies.
+ *
+ * @param array  $args     @see {read_notifications}.
+ * @param int    $max_id   Maximum ID to check for.
+ * @param string $timeline Timeline to check. Default 'statuses/mentions_timeline'.
+ * @return bool|null Whether or not there is a next page. Null if check failed.
+ */
+function is_next_page( array $args, int $max_id, string $timeline = 'statuses/mentions_timeline' ) {
+	$overrides = [
+		'count' => 1,
+		'trim_user' => 1,
+		'include_entities' => 0,
+		'tweet_mode' => 'compact',
+		'max_id' => $max_id,
+	];
+
+	$args = wp_parse_args( $overrides, $args );
+
+	$connection = Notes\twitter_connection();
+
+	// Get the page.
+	$response = $connection->get( $timeline, $args );
+
+	if ( $connection->getLastHttpCode() !== 200 ) {
+		// Failed, do nothing and wait for next attempt.
+		return null;
+	}
+
+	// There is a next page if the array contains data.
+	return ! empty( $response );
 }
