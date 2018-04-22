@@ -31,6 +31,7 @@ function bootstrap() {
 	// Bootstrap sub components.
 	Filters\bootstrap();
 	MetaBoxes\bootstrap();
+	Notifications\bootstrap();
 	Publishing\bootstrap();
 }
 

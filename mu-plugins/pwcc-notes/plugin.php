@@ -23,6 +23,7 @@ namespace PWCC\Notes;
 require_once __DIR__ . '/inc/namespace.php';
 require_once __DIR__ . '/inc/filters/namespace.php';
 require_once __DIR__ . '/inc/metaboxes/namespace.php';
+require_once __DIR__ . '/inc/notifications/namespace.php';
 require_once __DIR__ . '/inc/publishing/namespace.php';
 
 add_action( 'plugins_loaded', __NAMESPACE__ . '\\bootstrap' );
