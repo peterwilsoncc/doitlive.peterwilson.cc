@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <ruleset>
 	<!-- Use HM Coding Standards -->
-	<rule ref="./vendor/humanmade/coding-standards/ruleset.xml">
+	<rule ref="vendor/humanmade/coding-standards">
 		<exclude name="Generic.Formatting.MultipleStatementAlignment" />
 
 		<!-- Add one extra word delimiter. -->
