@@ -22,7 +22,7 @@ function bootstrap() {
  *
  * @param string $url The URL being modified to a new URL.
  * @param string $urls_home The URLs home site.
- * @param array $custom_home_urls Array of custom home URLs.
+ * @param array $custom_home_urls Array of custom home URLs. Default, Post Type URLs.
  * @return string The modified URL.
  */
 function normalise_url( string $url, string $urls_home, $custom_home_urls = null ) {
