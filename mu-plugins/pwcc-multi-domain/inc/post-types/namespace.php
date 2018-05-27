@@ -53,6 +53,20 @@ function custom_home_urls() {
 }
 
 /**
+ * Modify a URL to use the custom home link.
+ *
+ * Helper function to wrap the general normalisation function and
+ * include the post type home URLs.
+ *
+ * @param string $url The URL being modified to a new URL.
+ * @param string $urls_home The URLs home site.
+ * @return string The modified URL.
+ */
+function normalise_url( string $url, string $urls_home ) {
+	return MultiDomain\normalise_url( $url, $urls_home, custom_home_urls() );
+}
+
+/**
  * Returns the preferred home URL for a custom post type.
  *
  * @param string $post_type The custom post type.
@@ -105,7 +119,7 @@ function filter_permalink( string $permalink, $post ) {
 		return $permalink;
 	}
 
-	return MultiDomain\normalise_url( $permalink, $permalink_home );
+	return normalise_url( $permalink, $permalink_home );
 }
 
 /**
@@ -136,7 +150,7 @@ function filter_home_url( string $home_url, string $path, $orig_scheme, $blog_id
 		return $home_url;
 	}
 
-	return MultiDomain\normalise_url( $home_url, $real_home );
+	return normalise_url( $home_url, $real_home );
 }
 
 /**
@@ -153,5 +167,5 @@ function filter_post_type_archive_link( $link, $post_type ) {
 		return $link;
 	}
 
-	return MultiDomain\normalise_url( $link, $real_home );
+	return normalise_url( $link, $real_home );
 }
