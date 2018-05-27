@@ -15,6 +15,7 @@ namespace PWCC\MultiDomain;
  */
 function bootstrap() {
 	PostTypes\bootstrap();
+	Taxonomies\bootstrap();
 }
 
 /**

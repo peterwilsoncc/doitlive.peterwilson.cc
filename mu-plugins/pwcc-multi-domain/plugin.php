@@ -23,5 +23,6 @@ namespace PWCC\MultiDomain;
 
 require_once __DIR__ . '/inc/namespace.php';
 require_once __DIR__ . '/inc/post-types/namespace.php';
+require_once __DIR__ . '/inc/taxonomies/namespace.php';
 
 add_action( 'plugins_loaded', __NAMESPACE__ . '\\bootstrap' );
