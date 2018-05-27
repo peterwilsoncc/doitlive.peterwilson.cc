@@ -8,6 +8,7 @@
 
 namespace PWCC\MultiDomain\PostTypes;
 
+use PWCC\MultiDomain;
 use WP_Error;
 
 /**
@@ -42,7 +43,7 @@ function custom_home_urls() {
 	 *
 	 * @param array Post Type => custom home key/value pairs.
 	 */
-	$custom_homes = apply_filters( 'pwcc/multi-domain/domains', $custom_homes );
+	$custom_homes = apply_filters( 'pwcc/multi-domain/post-types/domains', $custom_homes );
 
 	$custom_homes = array_map( function( $value ) {
 		return esc_url_raw( trailingslashit( $value ) );
@@ -73,47 +74,9 @@ function get_post_types_custom_home( string $post_type ) {
 	}
 
 	return new WP_Error(
-		'pwcc/multi-domain/unable-to-determine-domain',
+		'pwcc/multi-domain/post-types/unable-to-determine-domain',
 		'Unable to determine domain to use for Post Type'
 	);
-}
-
-function normalise_url( $url, $urls_home ) {
-	// Trust WP to get the scheme correct.
-	$scheme = wp_parse_url( $url, PHP_URL_SCHEME );
-
-	$fix_trailing_slash = function( $normalised_url ) use ( $url ) {
-		if ( substr( $url, -1 ) === '/' ) {
-			return trailingslashit( $normalised_url );
-		}
-		return untrailingslashit( $normalised_url );
-	};
-
-	// Ensure schemes match.
-	$urls_home = set_url_scheme( $urls_home, $scheme );
-
-	$home_urls = array_unique( custom_home_urls() );
-	$home_urls = array_map( function( $url ) use ( $scheme ) {
-		return set_url_scheme( $url, $scheme );
-	}, $home_urls );
-
-	// If it already matches, no need to loop.
-	if ( strpos( $url, $urls_home ) === 0 ) {
-		return $url;
-	}
-
-	foreach( $home_urls as $home_url ) {
-		if ( strpos( $url, $home_url ) === 0 ) {
-			// Replace the home portion with the custom URL.
-			$url = $urls_home . substr( $url, strlen( $home_url ) );
-			// Escape it.
-			$url = esc_url_raw( $url );
-			// Fix the trailing slash and return.
-			return $fix_trailing_slash( $url );
-		}
-	}
-
-	return $url;
 }
 
 /**
@@ -142,7 +105,7 @@ function filter_permalink( string $permalink, $post ) {
 		return $permalink;
 	}
 
-	return normalise_url( $permalink, $permalink_home );
+	return MultiDomain\normalise_url( $permalink, $permalink_home );
 }
 
 /**
@@ -173,7 +136,7 @@ function filter_home_url( string $home_url, string $path, $orig_scheme, $blog_id
 		return $home_url;
 	}
 
-	return normalise_url( $home_url, $real_home );
+	return MultiDomain\normalise_url( $home_url, $real_home );
 }
 
 /**
@@ -182,6 +145,7 @@ function filter_home_url( string $home_url, string $path, $orig_scheme, $blog_id
  *
  * @param string $link      The post type archive permalink.
  * @param string $post_type Post type name.
+ * @return string The modified post type archive URL.
  */
 function filter_post_type_archive_link( $link, $post_type ) {
 	$real_home = get_post_types_custom_home( $post_type );
@@ -189,5 +153,5 @@ function filter_post_type_archive_link( $link, $post_type ) {
 		return $link;
 	}
 
-	return normalise_url( $link, $real_home );
+	return MultiDomain\normalise_url( $link, $real_home );
 }
