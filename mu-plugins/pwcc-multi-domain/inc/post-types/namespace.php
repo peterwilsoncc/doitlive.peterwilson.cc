@@ -6,7 +6,7 @@
  * @license     GPL-2.0+
  */
 
-namespace PWCC\MultiDomain\Post_Types;
+namespace PWCC\MultiDomain\PostTypes;
 
 use PWCC\MultiDomain;
 use WP_Error;
