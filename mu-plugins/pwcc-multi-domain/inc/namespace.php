@@ -23,14 +23,14 @@ function bootstrap() {
  *
  * @param string $url The URL being modified to a new URL.
  * @param string $urls_home The URLs home site.
- * @param array $custom_home_urls Array of custom home URLs. Default, Post Type URLs.
  * @return string The modified URL.
  */
-function normalise_url( string $url, string $urls_home, $custom_home_urls = null ) {
-	if ( $custom_home_urls === null ) {
-		// Default to Post types.
-		$custom_home_urls = PostTypes\custom_home_urls();
-	}
+function normalise_url( string $url, string $urls_home ) {
+	// Combine post types and taxos.
+	$custom_home_urls = array_merge(
+		PostTypes\custom_home_urls(),
+		Taxonomies\custom_home_urls()
+	);
 
 	// Trust WP to get the scheme correct.
 	$scheme = wp_parse_url( $url, PHP_URL_SCHEME );
