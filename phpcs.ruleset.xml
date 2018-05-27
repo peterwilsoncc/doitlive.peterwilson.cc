@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 <ruleset>
 	<!-- Use HM Coding Standards -->
-	<rule ref="vendor/humanmade/coding-standards" />
+	<rule ref="./vendor/humanmade/coding-standards/ruleset.xml">
+		<exclude name="Generic.Formatting.MultipleStatementAlignment" />
+	</rule>
 
 	<!-- Exclude non-project directories -->
 	<exclude-pattern>*/uploads/*</exclude-pattern>
@@ -14,4 +16,7 @@
 
 	<!-- Exclude build directories -->
 	<exclude-pattern>*/themes/peter-wilson-2017/assets/dist/*</exclude-pattern>
+
+	<!-- Show sniff codes in all reports -->
+	<arg value="s"/>
 </ruleset>

@@ -14,7 +14,7 @@ namespace PWCC\MultiDomain;
  * Runs on the `plugins_loaded` filter.
  */
 function bootstrap() {
-	PostTypes\bootstrap();
+	Post_Types\bootstrap();
 	Taxonomies\bootstrap();
 }
 
@@ -28,7 +28,7 @@ function bootstrap() {
 function normalise_url( string $url, string $urls_home ) {
 	// Combine post types and taxos.
 	$custom_home_urls = array_merge(
-		PostTypes\custom_home_urls(),
+		Post_Types\custom_home_urls(),
 		Taxonomies\custom_home_urls()
 	);
 
@@ -58,7 +58,7 @@ function normalise_url( string $url, string $urls_home ) {
 		return $fix_trailing_slash( $url );
 	}
 
-	foreach( $home_urls as $home_url ) {
+	foreach ( $home_urls as $home_url ) {
 		if ( strpos( $url, $home_url ) === 0 ) {
 			// Replace the home portion with the custom URL.
 			$url = $urls_home . substr( $url, strlen( $home_url ) );
