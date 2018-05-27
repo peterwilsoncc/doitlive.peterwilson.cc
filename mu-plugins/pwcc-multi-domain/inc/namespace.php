@@ -41,17 +41,20 @@ function normalise_url( string $url, string $urls_home, $custom_home_urls = null
 		return untrailingslashit( $normalised_url );
 	};
 
-	// Ensure schemes match.
-	$urls_home = set_url_scheme( $urls_home, $scheme );
+	/*
+	 * Trailing slash and set schemes of all URLs.
+	 */
+	$url = trailingslashit( $url );
+	$urls_home = trailingslashit( set_url_scheme( $urls_home, $scheme ) );
 
 	$home_urls = array_unique( $custom_home_urls );
 	$home_urls = array_map( function( $url ) use ( $scheme ) {
-		return set_url_scheme( $url, $scheme );
+		return trailingslashit( set_url_scheme( $url, $scheme ) );
 	}, $home_urls );
 
 	// If it already matches, no need to loop.
 	if ( strpos( $url, $urls_home ) === 0 ) {
-		return $url;
+		return $fix_trailing_slash( $url );
 	}
 
 	foreach( $home_urls as $home_url ) {
@@ -65,5 +68,5 @@ function normalise_url( string $url, string $urls_home, $custom_home_urls = null
 		}
 	}
 
-	return $url;
+	return $fix_trailing_slash( $url );
 }
