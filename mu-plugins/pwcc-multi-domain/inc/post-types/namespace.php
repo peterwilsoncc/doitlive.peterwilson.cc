@@ -6,12 +6,12 @@
  * @license     GPL-2.0+
  */
 
-namespace PWCC\MultiDomain;
+namespace PWCC\MultiDomain\PostTypes;
 
 use WP_Error;
 
 /**
- * Initialise the plugin.
+ * Initialise the namespace.
  *
  * Runs on the `plugins_loaded` filter.
  */
