@@ -10,6 +10,7 @@
 /vendor
 /node_modules
 /phpcs*.xml
-/phpunit*.xml
+/phpunit.xml
+/phpunit.xml.dist
 /composer.*
 *.yaml
