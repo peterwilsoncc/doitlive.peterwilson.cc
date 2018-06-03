@@ -1,0 +1,90 @@
+# PHP CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-php/ for more details
+#
+version: 2
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
+
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/php:7.2-apache-node-browsers
+      - image: circleci/mysql:5.7
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - run:
+          name: "Set Environment Variables"
+          command: |
+            bash .circleci/bin/universal-environment-vars.sh
+            source $BASH_ENV
+      - run:
+          name: "Install System Dependencies"
+          command: |
+            sudo apt-get update
+            sudo apt-get install nano
+            sudo docker-php-ext-install mysqli
+            sudo sh -c "printf '\ndeb http://ftp.us.debian.org/debian sid main\n' >> /etc/apt/sources.list"
+            sudo apt-get update && sudo apt-get install mysql-client-5.7
+      - run:
+          name: "Test Environment Variables"
+          command: |
+            echo $WP_VERSION
+      - run:
+          name: "Install WordPress test suite"
+          command: |
+            bash .circleci/bin/install.sh
+      # Composer
+      - restore_cache:
+          keys:
+          - v1-dep-composer-{{ checksum "composer.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dep-composer
+      - run:
+          name: "Install Project Dependencies (Composer)"
+          command: composer install -n --prefer-dist
+      - save_cache:
+          paths:
+            - ./vendor
+          key: v1-dep-composer-{{ checksum "composer.lock" }}
+      - run:
+          name: "Run PHP Code sniffs"
+          command: |
+            ./vendor/bin/phpcs --standard=phpcs.ruleset.xml . -p
+      - run:
+          name: "Run WP Test suite"
+          command: |
+            ./vendor/bin/phpunit
+  deploy:
+    docker:
+      # specify the version you desire here
+      - image: circleci/php:7.2-apache-node-browsers
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - run:
+          name: "Set Environment Variables"
+          command: |
+            bash .circleci/bin/universal-environment-vars.sh
+            source $BASH_ENV
+      - run:
+          name: "Build"
+          command: |
+            bash .circleci/bin/deploy.sh
