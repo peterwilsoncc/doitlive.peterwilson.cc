@@ -23,6 +23,9 @@ if [[ -d "$BUILD_DIR" ]]; then
 	exit 1
 fi
 
+# Ensure submodules are up-to-date.
+git submodule update --init
+
 # Create and change to build dir.
 mkdir -p $BUILD_DIR
 cd $BUILD_DIR
