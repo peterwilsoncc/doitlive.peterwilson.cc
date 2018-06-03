@@ -6,3 +6,10 @@
 # `branches` option in config.yml instead.
 
 .git
+/.*
+/vendor
+/node_modules
+/phpcs*.xml
+/phpunit*.xml
+/composer.*
+*.yaml
