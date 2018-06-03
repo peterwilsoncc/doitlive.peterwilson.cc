@@ -41,7 +41,7 @@ if ! git rev-parse --verify "remotes/origin/$DEPLOY_BRANCH" >/dev/null 2>&1; the
 	git checkout -b "$DEPLOY_BRANCH"
 else
 	echo "Using existing $DEPLOY_BRANCH"
-	git checkout "$DEPLOY_BRANCH" "origin/$DEPLOY_BRANCH"
+	git checkout -b "$DEPLOY_BRANCH" "origin/$DEPLOY_BRANCH"
 fi
 
 # Sync built files
