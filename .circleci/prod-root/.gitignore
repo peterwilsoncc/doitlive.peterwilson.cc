@@ -3,6 +3,5 @@
 /debug.log
 .DS_Store
 /node_modules
-/content
 /shared
 /.well-known
