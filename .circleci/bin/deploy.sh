@@ -29,7 +29,7 @@ cd $BUILD_DIR
 
 # Checkout Build repo's branch
 git init
-git remote add $BUILD_DIR;
+git remote add origin $BUILD_REPO;
 
 # If the deploy branch doesn't already exist, create it from the empty root.
 if ! git rev-parse --verify "remotes/origin/$DEPLOY_BRANCH" >/dev/null 2>&1; then
