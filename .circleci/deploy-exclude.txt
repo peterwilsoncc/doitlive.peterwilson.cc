@@ -6,9 +6,12 @@
 # `branches` option in config.yml instead.
 
 .git
-/.*
+/.chassis
+/.circleci
+/.tests
 /vendor
 /node_modules
+/.gitmodules
 /phpcs*.xml
 /phpunit.xml
 /phpunit.xml.dist
