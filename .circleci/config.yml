@@ -4,8 +4,21 @@
 #
 version: 2
 
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - feature/ci
+
 jobs:
-  test-php72:
+  build:
     docker:
       # specify the version you desire here
       - image: circleci/php:7.2-apache-node-browsers
@@ -75,16 +88,3 @@ jobs:
           name: "Build"
           command: |
             bash .circleci/bin/build.sh
-
-workflows:
-  version: 2
-  build-deploy:
-    jobs:
-      - test-php72
-      - deploy:
-          requires:
-            - test-php72
-          filters:
-            branches:
-              only:
-                - feature/ci
