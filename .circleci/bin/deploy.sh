@@ -51,10 +51,10 @@ if ! command -v 'rsync'; then
 fi
 
 # Don't forget WordPress
-rsync -av "$WP_CORE_DIR" "$BUILD_DIR/wp"
+rsync -av "$WP_CORE_DIR/" "$BUILD_DIR/wp"
 
 # And the production root files.
-rsync -av "$SRC_DIR/.circleci/prod-root" "$BUILD_DIR" --exclude-from "$SRC_DIR/.circleci/deploy-exclude.txt"
+rsync -av "$SRC_DIR/.circleci/prod-root/" "$BUILD_DIR" --exclude-from "$SRC_DIR/.circleci/deploy-exclude.txt"
 
 # And the content directory.
 rsync -av "$SRC_DIR/" "$BUILD_DIR/content" --exclude-from "$SRC_DIR/.circleci/deploy-exclude.txt"
