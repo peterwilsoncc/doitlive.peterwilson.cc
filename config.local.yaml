@@ -4,9 +4,9 @@ hosts:
   - vagrant.local
 
 extensions:
-  - Chassis/Tester
-  - Chassis/Cavalcade
-  - Chassis/MailHog
-  - Chassis/Xdebug
+  - Chassis/tester
+  - Chassis/cavalcade
+  - Chassis/mailhog
+  - Chassis/xdebug
 
-php: 7.1
+php: 7.2
