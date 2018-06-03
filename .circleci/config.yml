@@ -87,4 +87,4 @@ jobs:
       - run:
           name: "Build"
           command: |
-            bash .circleci/bin/build.sh
+            bash .circleci/bin/deploy.sh
