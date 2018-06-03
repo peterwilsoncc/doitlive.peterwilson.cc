@@ -7,7 +7,6 @@
 
 .git
 /.chassis
-/.circleci
 /.tests
 /vendor
 /node_modules
