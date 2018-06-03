@@ -34,6 +34,7 @@ cd $BUILD_DIR
 # Checkout Build repo's branch
 git init
 git remote add origin $BUILD_REPO;
+git fetch
 
 # If the deploy branch doesn't already exist, create it from the empty root.
 if ! git rev-parse --verify "remotes/origin/$DEPLOY_BRANCH" >/dev/null 2>&1; then
@@ -41,7 +42,6 @@ if ! git rev-parse --verify "remotes/origin/$DEPLOY_BRANCH" >/dev/null 2>&1; the
 	git checkout -b "$DEPLOY_BRANCH"
 else
 	echo "Using existing $DEPLOY_BRANCH"
-	git fetch
 	git checkout -b "$DEPLOY_BRANCH" "origin/$DEPLOY_BRANCH"
 fi
 
