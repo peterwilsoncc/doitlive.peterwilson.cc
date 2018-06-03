@@ -70,8 +70,3 @@ config_test_suite() {
 		sed $ioption "s|localhost|${UNICI_DB_HOST}|" "$WP_TESTS_DIR"/wp-tests-config.php
 	fi
 }
-
-download_wp_core
-download_wp_tests
-install_db
-config_test_suite

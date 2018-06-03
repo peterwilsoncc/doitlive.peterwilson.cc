@@ -31,7 +31,7 @@ jobs:
       - run:
           name: "Set Environment Variables"
           command: |
-            bash .tests/bin/universal-environment-vars.sh
+            bash .circleci/bin/universal-environment-vars.sh
             source $BASH_ENV
       - run:
           name: "Install System Dependencies"
@@ -48,7 +48,7 @@ jobs:
       - run:
           name: "Install WordPress test suite"
           command: |
-            bash .tests/bin/install.sh
+            bash .circleci/bin/install.sh
       # Composer
       - restore_cache:
           keys:
@@ -82,7 +82,7 @@ jobs:
       - run:
           name: "Set Environment Variables"
           command: |
-            bash .tests/bin/universal-environment-vars.sh
+            bash .circleci/bin/universal-environment-vars.sh
             source $BASH_ENV
       - run:
           name: "Build"
