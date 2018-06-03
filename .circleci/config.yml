@@ -15,7 +15,7 @@ workflows:
           filters:
             branches:
               only:
-                - feature/ci
+                - master
 
 jobs:
   build:
