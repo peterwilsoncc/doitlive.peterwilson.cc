@@ -44,6 +44,9 @@ else
 	git checkout -b "$DEPLOY_BRANCH" "origin/$DEPLOY_BRANCH"
 fi
 
+# Remove existing files
+git rm -rfq .
+
 # Sync built files
 echo -e "\nSyncing files..."
 if ! command -v 'rsync'; then
