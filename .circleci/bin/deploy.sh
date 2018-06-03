@@ -4,7 +4,7 @@ BUILD_REPO=git@github.com:peterwilsoncc/built.peterwilson.cc.git
 BUILD_DIR=$UNICI_TMPDIR/build
 GIT_USER="${DEPLOY_GIT_USER:-CircleCI}"
 GIT_EMAIL="${DEPLOY_GIT_EMAIL:-wilson+circleci-build@peterwilson.cc}"
-BRANCH="${CIRCLE_BRANCH}"
+DEPLOY_BRANCH="${CIRCLE_BRANCH}"
 SRC_DIR="${UNICI_PROJECT_DIRECTORY}"
 COMMIT=$(git rev-parse HEAD)
 
@@ -12,7 +12,7 @@ source "$UNICI_PROJECT_DIRECTORY/.circleci/bin/install-functions.sh"
 
 download_wp_core
 
-if [[ -z "$BRANCH" ]]; then
+if [[ -z "$DEPLOY_BRANCH" ]]; then
 	echo "No branch specified!"
 	exit 1
 fi
