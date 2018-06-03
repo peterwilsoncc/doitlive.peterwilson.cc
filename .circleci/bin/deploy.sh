@@ -60,9 +60,6 @@ rsync -av "$WP_CORE_DIR/" "$BUILD_DIR/wp"
 # And the production root files.
 rsync -av "$SRC_DIR/.circleci/prod-root/" "$BUILD_DIR" --exclude-from "$SRC_DIR/.circleci/deploy-exclude.txt"
 
-# Including gitignore, for this one.
-cp "$SRC_DIR/.circleci/prod-root/.gitignore" "$BUILD_DIR"
-
 # And the content directory.
 rsync -av "$SRC_DIR/" "$BUILD_DIR/content" --exclude-from "$SRC_DIR/.circleci/deploy-exclude.txt"
 
