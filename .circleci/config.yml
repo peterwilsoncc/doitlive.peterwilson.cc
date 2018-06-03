@@ -16,23 +16,6 @@ workflows:
             branches:
               only:
                 - master
-  nightly-deploy:
-     triggers:
-       - schedule:
-           cron: "0 0 * * *"
-           filters:
-             branches:
-               only:
-                 - master
-    jobs:
-      - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only:
-                - master
 
 jobs:
   build:
