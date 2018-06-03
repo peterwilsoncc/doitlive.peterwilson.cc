@@ -7,6 +7,8 @@ version: 2
 workflows:
   version: 2
   build-deploy:
+    environment:
+      WP_VERSION: 4.9.6
     jobs:
       - build
       - deploy:
@@ -44,7 +46,7 @@ jobs:
       - run:
           name: "Test Environment Variables"
           command: |
-            echo $UNICI_PROJECT_DIRECTORY
+            echo $WP_VERSION
       - run:
           name: "Install WordPress test suite"
           command: |
