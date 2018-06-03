@@ -27,7 +27,7 @@ fi
 git submodule update --init
 
 # Create and change to build dir.
-mkdir -p $BUILD_DIR
+mkdir -p $BUILD_DIR/content
 cd $BUILD_DIR
 
 # Checkout Build repo's branch
@@ -49,7 +49,10 @@ if ! command -v 'rsync'; then
 	sudo apt-get install -q -y rsync
 fi
 
-rsync -av "$SRC_DIR/" "$BUILD_DIR" --exclude-from "$SRC_DIR/.circleci/deploy-exclude.txt"
+rsync -av "$SRC_DIR/" "$BUILD_DIR/content" --exclude-from "$SRC_DIR/.circleci/deploy-exclude.txt"
+
+# Don't forget WordPress
+mv $WP_CORE_DIR $BUILD_DIR/wp
 
 # Add changed files
 git add .
