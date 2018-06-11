@@ -182,8 +182,6 @@ function twitter_connection() {
  * @return array Modified custom home domains.
  */
 function post_type_domain( array $domains ) {
-//	return $domains;
-
 	if ( defined( 'PWCC_ENV' ) && PWCC_ENV === 'prod' ) {
 		$domains['pwcc_notes'] = 'https://peterwilson.me/';
 		return $domains;
