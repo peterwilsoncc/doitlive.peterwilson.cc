@@ -35,7 +35,7 @@ function custom_home_urls() {
 	 *
 	 * @param array Taxonomy => custom home URL key/value pairs.
 	 */
-	$custom_homes = apply_filters( 'pwcc/multi-domain/taxonomies/domains', $custom_homes );
+	$custom_homes = apply_filters( 'pwcc.multi-domain.taxonomies.domains', $custom_homes );
 
 	$custom_homes = array_map( function( $value ) {
 		return esc_url_raw( trailingslashit( $value ) );

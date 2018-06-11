@@ -43,7 +43,7 @@ function custom_home_urls() {
 	 *
 	 * @param array Post Type => custom home key/value pairs.
 	 */
-	$custom_homes = apply_filters( 'pwcc/multi-domain/post-types/domains', $custom_homes );
+	$custom_homes = apply_filters( 'pwcc.multi-domain.post-types.domains', $custom_homes );
 
 	$custom_homes = array_map( function( $value ) {
 		return esc_url_raw( trailingslashit( $value ) );
