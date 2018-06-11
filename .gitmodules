@@ -16,3 +16,6 @@
 [submodule "dropins/wordpress-pecl-memcached-object-cache"]
 	path = dropins/wordpress-pecl-memcached-object-cache
 	url = https://github.com/humanmade/wordpress-pecl-memcached-object-cache.git
+[submodule "dropins/batcache"]
+	path = dropins/batcache
+	url = https://github.com/humanmade/batcache.git
