@@ -1,0 +1,7 @@
+/production-config.php
+/.idea
+/debug.log
+.DS_Store
+/node_modules
+/shared
+/.well-known
