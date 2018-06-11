@@ -26,9 +26,7 @@ function bootstrap() {
  * @return array Taxonomy => custom home URL key/value pairs.
  */
 function custom_home_urls() {
-	$custom_homes = [
-		'DEFAULT' => 'http://peterwilsoncc.local',
-	];
+	$custom_homes = [];
 
 	/**
 	 * Filters the custom home URLs used for post types.

@@ -33,10 +33,7 @@ function bootstrap() {
  * @return array Post type => custom home URL key/value pairs.
  */
 function custom_home_urls() {
-	$custom_homes = [
-		'pwcc_notes' => 'http://peterwilsonme.local',
-		'DEFAULT' => 'http://peterwilsoncc.local',
-	];
+	$custom_homes = [];
 
 	/**
 	 * Filters the custom home URLs used for post types.
