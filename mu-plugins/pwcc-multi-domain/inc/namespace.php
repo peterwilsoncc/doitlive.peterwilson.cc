@@ -41,7 +41,7 @@ function allowed_hosts( $allowed_hosts ) {
 		Taxonomies\custom_home_urls()
 	);
 
-	$custom_allowed_hosts = array_map( function( $home ){
+	$custom_allowed_hosts = array_map( function( $home ) {
 		return wp_parse_url( $home, PHP_URL_HOST );
 	}, $custom_allowed_hosts );
 
