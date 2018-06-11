@@ -77,7 +77,7 @@ function get_post_types_custom_home( string $post_type ) {
 }
 
 /**
- * Filter post permalink to preferred use preferred home URL.
+ * Filter post permalink to use preferred home URL.
  *
  * Runs on the following filters:
  * - post_link
@@ -137,6 +137,7 @@ function filter_home_url( string $home_url, string $path, $orig_scheme, $blog_id
 }
 
 /**
+ * Filter post type archive use preferred home URL.
  *
  * Runs on the `post_type_archive_link` filter.
  *
