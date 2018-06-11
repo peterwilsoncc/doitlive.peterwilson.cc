@@ -19,6 +19,35 @@ function bootstrap() {
 
 	add_filter( 'pwcc/multi-domain/post-types/domains', __NAMESPACE__ . '\\default_domain' );
 	add_filter( 'pwcc/multi-domain/taxonomies/domains', __NAMESPACE__ . '\\default_domain' );
+
+	add_filter( 'allowed_redirect_hosts', __NAMESPACE__ . '\\allowed_hosts' );
+}
+
+/**
+ * Include custom host names in allowed redirects.
+ *
+ * Ensures comment form and other redirects work correctly
+ * on the custom domains.
+ *
+ * Runs on the filter `allowed_redirect_hosts`.
+ *
+ * @param array $allowed_hosts
+ * @return array
+ */
+function allowed_hosts( $allowed_hosts ) {
+	// Combine post types and taxos.
+	$custom_allowed_hosts = array_merge(
+		PostTypes\custom_home_urls(),
+		Taxonomies\custom_home_urls()
+	);
+
+	$custom_allowed_hosts = array_map( function( $home ){
+		return wp_parse_url( $home, PHP_URL_HOST );
+	}, $custom_allowed_hosts );
+
+	$custom_allowed_hosts = array_unique( $custom_allowed_hosts );
+
+	return array_merge( $allowed_hosts, $custom_allowed_hosts );
 }
 
 /**
