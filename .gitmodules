@@ -13,3 +13,6 @@
 [submodule "mu-plugins/vendor/rapid-canonical-urls"]
 	path = mu-plugins/vendor/rapid-canonical-urls
 	url = https://github.com/peterwilsoncc/rapid-canonical-urls.git
+[submodule "dropins/wordpress-pecl-memcached-object-cache"]
+	path = dropins/wordpress-pecl-memcached-object-cache
+	url = https://github.com/humanmade/wordpress-pecl-memcached-object-cache.git
