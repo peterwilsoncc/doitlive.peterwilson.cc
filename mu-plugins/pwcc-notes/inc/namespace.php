@@ -28,6 +28,8 @@ function bootstrap() {
 
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_status_theme_support', 20 );
 
+	add_filter( 'pwcc/multi-domain/post-types/domains', __NAMESPACE__ . '\\post_type_domain' );
+
 	// Bootstrap sub components.
 	Filters\bootstrap();
 	MetaBoxes\bootstrap();
@@ -168,4 +170,25 @@ function twitter_connection() {
 	$connection->setTimeouts( 10, 2 * MINUTE_IN_SECONDS );
 
 	return $connection;
+}
+
+/**
+ * Define post type's domain according to environment.
+ *
+ * Runs on the filters:
+ * - pwcc/multi-domain/post-types/domains
+ *
+ * @param array $domains Custom home domains.
+ * @return array Modified custom home domains.
+ */
+function post_type_domain( array $domains ) {
+//	return $domains;
+
+	if ( defined( 'PWCC_ENV' ) && PWCC_ENV === 'prod' ) {
+		$domains['pwcc_notes'] = 'https://peterwilson.me/';
+		return $domains;
+	}
+
+	$domains['pwcc_notes'] = 'http://peterwilsonme.local/';
+	return $domains;
 }

@@ -16,6 +16,9 @@ namespace PWCC\MultiDomain;
 function bootstrap() {
 	PostTypes\bootstrap();
 	Taxonomies\bootstrap();
+
+	add_filter( 'pwcc/multi-domain/post-types/domains', __NAMESPACE__ . '\\default_domain' );
+	add_filter( 'pwcc/multi-domain/taxonomies/domains', __NAMESPACE__ . '\\default_domain' );
 }
 
 /**
@@ -70,4 +73,24 @@ function normalise_url( string $url, string $urls_home ) {
 	}
 
 	return $fix_trailing_slash( $url );
+}
+
+/**
+ * Define default domain according to environment.
+ *
+ * Runs on the filters:
+ * - pwcc/multi-domain/post-types/domains
+ * - pwcc/multi-domain/taxonomies/domains
+ *
+ * @param array $domains Custom home domains.
+ * @return array Modified custom home domains.
+ */
+function default_domain( array $domains ) {
+	if ( defined( 'PWCC_ENV' ) && PWCC_ENV === 'prod' ) {
+		$domains['DEFAULT'] = 'https://peterwilson.cc/';
+		return $domains;
+	}
+
+	$domains['DEFAULT'] = 'http://peterwilsoncc.local/';
+	return $domains;
 }
