@@ -26,6 +26,12 @@ if ( file_exists( dirname( __FILE__ ) . '/production-config.php' ) ) {
 	include( dirname( __FILE__ ) . '/production-config.php' );
 }
 
+if ( PWCC_ENV === 'prod' && PWCC_SCHEME === 'http' ) {
+	$redirect= 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+	header( 'HTTP/1.1 301 Moved Permanently' );
+	header( "Location: $redirect" );
+}
+
 // ======================================
 // Fake HTTP Host (for CLI compatibility)
 // ======================================
