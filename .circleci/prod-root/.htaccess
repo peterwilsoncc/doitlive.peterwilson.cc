@@ -1,3 +1,8 @@
+# HTTPS always.
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
+
 # 301 Redirect Entire Directory
 RedirectMatch 301 /shared/(.*) /content/uploads/$1
 
