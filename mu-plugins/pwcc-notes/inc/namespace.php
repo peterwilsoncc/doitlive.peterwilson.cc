@@ -182,7 +182,7 @@ function twitter_connection() {
  * @return array Modified custom home domains.
  */
 function post_type_domain( array $domains ) {
-	if ( ! defined( 'PWCC_ENV') ) {
+	if ( ! defined( 'PWCC_ENV' ) ) {
 		return $domains;
 	}
 
