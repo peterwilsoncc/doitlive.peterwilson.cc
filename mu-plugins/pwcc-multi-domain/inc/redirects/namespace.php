@@ -11,7 +11,6 @@ namespace PWCC\MultiDomain\Redirects;
 use PWCC\MultiDomain;
 use PWCC\MultiDomain\PostTypes;
 use PWCC\MultiDomain\Taxonomies;
-use WP_Error;
 
 /**
  * Initialise the namespace.
