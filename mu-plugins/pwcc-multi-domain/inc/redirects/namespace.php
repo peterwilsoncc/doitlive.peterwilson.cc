@@ -42,6 +42,7 @@ function filter_template_redirect() {
 		$requested_url .= $_SERVER['REQUEST_URI'];
 	}
 
+	// phpcs:ignore
 	$original = @parse_url( $requested_url );
 	if ( false === $original ) {
 		return;
