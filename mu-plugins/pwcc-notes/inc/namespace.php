@@ -182,11 +182,19 @@ function twitter_connection() {
  * @return array Modified custom home domains.
  */
 function post_type_domain( array $domains ) {
-	if ( defined( 'PWCC_ENV' ) && PWCC_ENV === 'prod' ) {
+	if ( ! defined( 'PWCC_ENV') ) {
+		return $domains;
+	}
+
+	if ( PWCC_ENV === 'prod' ) {
 		$domains['pwcc_notes'] = 'https://peterwilson.me/';
 		return $domains;
 	}
 
-	$domains['pwcc_notes'] = 'http://peterwilsonme.local/';
+	if ( PWCC_ENV === 'local' ) {
+		$domains['pwcc_notes'] = 'https://peterwilsonme.local/';
+		return $domains;
+	}
+
 	return $domains;
 }
