@@ -151,7 +151,7 @@ function date_archive_redirect( string $requested_url ) {
  * Wrapper for `wp_safe_redirect` with some logic checking.
  *
  * @param string $requested_url URL requested by the visitor.
- * @param string $real_home The preferred home_url for the requested URL.
+ * @param string $real_home     The preferred home_url for the requested URL.
  */
 function safe_redirect( string $requested_url, string $real_home ) {
 	// Determine normalised URL
