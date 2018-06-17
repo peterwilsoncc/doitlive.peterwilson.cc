@@ -162,5 +162,5 @@ function safe_redirect( string $requested_url, string $real_home ) {
 		return;
 	}
 
-	wp_safe_redirect( $normalised_url );
+	wp_safe_redirect( $normalised_url, 301 );
 }
