@@ -154,7 +154,7 @@ function date_archive_redirect( string $requested_url ) {
  * @param string $real_home     The preferred home_url for the requested URL.
  */
 function safe_redirect( string $requested_url, string $real_home ) {
-	// Determine normalised URL
+	// Determine normalised URL.
 	$normalised_url = MultiDomain\normalise_url( $requested_url, $real_home );
 
 	if ( $requested_url === $normalised_url ) {
