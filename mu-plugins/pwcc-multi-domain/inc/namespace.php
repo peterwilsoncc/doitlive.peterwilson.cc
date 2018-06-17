@@ -16,6 +16,7 @@ namespace PWCC\MultiDomain;
 function bootstrap() {
 	PostTypes\bootstrap();
 	Taxonomies\bootstrap();
+	Redirects\bootstrap();
 
 	add_filter( 'pwcc/multi-domain/post-types/domains', __NAMESPACE__ . '\\default_domain' );
 	add_filter( 'pwcc/multi-domain/taxonomies/domains', __NAMESPACE__ . '\\default_domain' );
