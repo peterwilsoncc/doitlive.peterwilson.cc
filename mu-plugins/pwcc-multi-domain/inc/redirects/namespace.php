@@ -26,6 +26,9 @@ function bootstrap() {
  * Redirect to correct domain.
  *
  * Fires on the action `template_redirect`.
+ *
+ * Ideally this would fire on redirect_canonical but WP
+ * doesn't fire the hook if it determines the URL is valid.
  */
 function filter_template_redirect() {
 	if ( is_404() ) {
