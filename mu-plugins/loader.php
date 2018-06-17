@@ -19,6 +19,7 @@ $hm_mu_plugins = [
 	'vendor/manual-control/manual-control.php',
 	'vendor/rapid-canonical-urls/rapid-canonical-urls.php',
 	'vendor/twitteroauth/autoload.php',
+	'pwcc-multi-domain/plugin.php',
 	'pwcc-notes/plugin.php',
 ];
 

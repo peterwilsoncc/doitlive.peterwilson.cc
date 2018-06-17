@@ -3,4 +3,5 @@
 .DS_Store
 /node_modules
 /upgrade
+/config.local.yaml
 /vendor

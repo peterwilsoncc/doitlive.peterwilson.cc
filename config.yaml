@@ -8,5 +8,6 @@ extensions:
   - Chassis/cavalcade
   - Chassis/mailhog
   - Chassis/xdebug
+  - Chassis/memcache
 
 php: 7.2
