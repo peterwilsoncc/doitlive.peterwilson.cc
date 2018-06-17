@@ -164,4 +164,3 @@ function safe_redirect( string $requested_url, string $real_home ) {
 
 	wp_safe_redirect( $normalised_url );
 }
-
