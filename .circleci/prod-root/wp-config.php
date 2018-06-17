@@ -89,6 +89,7 @@ if ( ! defined( 'WP_DEBUG_DISPLAY' ) ) {
 // ====================================
 
 defined( 'DISALLOW_FILE_EDIT' ) OR define( 'DISALLOW_FILE_EDIT', true );
+defined( 'DISALLOW_FILE_MODS' ) OR define( 'DISALLOW_FILE_MODS', true );
 defined( 'AUTOMATIC_UPDATER_DISABLED' ) OR define( 'AUTOMATIC_UPDATER_DISABLED', true );
 
 // ===================
