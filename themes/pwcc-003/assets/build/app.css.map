@@ -1,0 +1,1 @@
+{"version":3,"sources":["/Users/peterwilson/Sites/doitlive.peterwilson.cc/content/themes/pwcc-003/assets/src/base/body.scss"],"names":[],"mappings":"AAAA,KACC,SAKA,WACA,qBAAuB","file":"./build/app.css","sourcesContent":["body {\n\tmargin: 0;\n\tbackground-color: black;\n}\n\nbody {\n\tcolor: white;\n\tbackground-color: black;\n}\n"],"sourceRoot":""}
