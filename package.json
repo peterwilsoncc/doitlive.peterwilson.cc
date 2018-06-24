@@ -1,0 +1,22 @@
+{
+	"name": "peterwilsoncc",
+	"version": "1.0.0",
+	"description": "WordPress content directory for peterwilson.cc",
+	"main": "index.js",
+	"scripts": {
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/peterwilsoncc/doitlive.peterwilson.cc.git"
+	},
+	"author": "Peter Wilson",
+	"license": "GPL-2.0-or-later",
+	"bugs": {
+		"url": "https://github.com/peterwilsoncc/doitlive.peterwilson.cc/issues"
+	},
+	"homepage": "https://github.com/peterwilsoncc/doitlive.peterwilson.cc#readme",
+	"devDependencies": {
+		"stylelint": "^9.3.0",
+		"stylelint-config-wordpress": "^13.0.0"
+	}
+}
