@@ -5,7 +5,12 @@
 	"main": "index.js",
 	"scripts": {
 		"lint": "yarn lint:scss",
-		"lint:scss": "./node_modules/stylelint/bin/stylelint.js ./{themes,plugins,mu-plugins}/**/*.scss --config=.stylelintrc"
+		"lint:scss": "./node_modules/stylelint/bin/stylelint.js ./{themes,plugins,mu-plugins}/**/*.scss --config=.stylelintrc",
+
+		"build" : "yarn build:webpack",
+		"build:webpack" : "./node_modules/webpack/bin/webpack.js  --config .config/webpack.config.prod.js",
+
+		"start" : "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --config .config/webpack.config.dev.js"
 	},
 	"repository": {
 		"type": "git",
