@@ -26,6 +26,9 @@ fi
 # Ensure submodules are up-to-date.
 git submodule update --init
 
+# Build assets.
+yarn build
+
 # Create and change to build dir.
 mkdir -p $BUILD_DIR
 cd $BUILD_DIR
