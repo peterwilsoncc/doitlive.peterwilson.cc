@@ -9,10 +9,12 @@ function bootstrap() {
 add_action( 'after_setup_theme', __NAMESPACE__ . '\\bootstrap' );
 
 function enqueue() {
-	$loaded = AssetLoader\enqueue_assets( __DIR__ . '/assets', [
-		'handle'  => 'pwcc-003-app',
-		'scripts' => [ ],
-	] );
+	$loaded = AssetLoader\enqueue_assets(
+		__DIR__ . '/assets', [
+			'handle'  => 'pwcc-003-app',
+			'scripts' => [],
+		]
+	);
 
 	if ( ! $loaded ) {
 		wp_enqueue_script(
@@ -22,7 +24,6 @@ function enqueue() {
 			'1.0.0-alpha',
 			true
 		);
-
 
 		wp_enqueue_style(
 			'pwcc-003-app',
