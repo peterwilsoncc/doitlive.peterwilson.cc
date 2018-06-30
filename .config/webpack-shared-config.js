@@ -4,6 +4,7 @@ const path = require( 'path' );
 const webpack = require( 'webpack' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const ManifestPlugin = require( 'webpack-manifest-plugin' );
+const UglifyJSPlugin = require( 'uglifyjs-webpack-plugin' );
 
 const env = require( './env' );
 
@@ -213,6 +214,7 @@ const devConfig = ( config ) => {
  * @param {Object} config A Webpack configuration object to augment.
  * @return {Object} A Webpack configuration object.
  */
+
 const prodConfig = ( config ) => {
 	// Remove dev-mode assets manifest when server quits.
 	return {
@@ -222,7 +224,32 @@ const prodConfig = ( config ) => {
 
 		optimization: {
 			// TODO: Properly configure Webpack 4's minification. This alone is not enough.
-			minimize: true,
+			minimizer: [
+				new UglifyJSPlugin({
+					sourceMap: true,
+					uglifyOptions: {
+						comments: false,
+						toplevel: true,
+						passes: 2,
+						max_line_len: 500,
+						compress: {
+							inline: false
+						}
+					}
+				})
+			],
+			runtimeChunk: false,
+			splitChunks: {
+				cacheGroups: {
+					default: false,
+					commons: {
+						test: /[\\/]node_modules[\\/]/,
+						name: 'vendor_app',
+						chunks: 'all',
+						minChunks: 2
+					}
+				}
+			},
 		},
 
 		module: {
