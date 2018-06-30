@@ -75,7 +75,7 @@ function insert_post_data( array $data, array $postarr ) {
 	$attachments = $postarr['_pwccindieweb-note']['cmb-group-0']['images'];
 
 	// Set the post content to the note content.
-	$data['post_content'] = $note_content;
+	$data['post_content'] = wp_unslash( $note_content );
 
 	// Links ought to be clickable.
 	$data['post_content'] = make_clickable( $data['post_content'] );
