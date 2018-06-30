@@ -272,8 +272,8 @@ const prodConfig = ( config ) => {
 
 		// Set some useful output options.
 		output: {
-			// Add /* filename */ comments to generated require()s in the output.
-			pathinfo: true,
+			// Remove /* filename */ comments for generated require()s in the output.
+			pathinfo: false,
 
 			// Assume that output paths should be relative to the provided context.
 			path: config.context,
