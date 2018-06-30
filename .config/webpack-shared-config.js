@@ -86,6 +86,13 @@ const loaderRules = {
 			},
 		},
 		{
+			loader: require.resolve( 'clean-css-loader' ),
+			options: {
+				level: 2,
+				inline: ["remote"],
+			},
+		},
+		{
 			loader: require.resolve( 'postcss-loader' ),
 			options: {
 				ident: 'postcss',
