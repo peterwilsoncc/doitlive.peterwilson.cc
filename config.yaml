@@ -9,5 +9,6 @@ extensions:
   - Chassis/mailhog
   - Chassis/xdebug
   - Chassis/memcache
+  - Chassis/tachyon
 
 php: 7.2
