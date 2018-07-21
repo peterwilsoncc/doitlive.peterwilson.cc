@@ -18,6 +18,8 @@ $hm_mu_plugins = [
 	'vendor/hm-cmb/custom-meta-boxes.php',
 	'vendor/manual-control/manual-control.php',
 	'vendor/rapid-canonical-urls/rapid-canonical-urls.php',
+	'vendor/s3-uploads/s3-uploads.php',
+	'vendor/tachyon/tachyon.php',
 	'vendor/twitteroauth/autoload.php',
 	'pwcc-multi-domain/plugin.php',
 	'pwcc-notes/plugin.php',
