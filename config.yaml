@@ -10,6 +10,5 @@ extensions:
   - Chassis/xdebug
   - Chassis/memcache
   - Chassis/tachyon
-  - Chassis/fakes3
 
 php: 7.2
