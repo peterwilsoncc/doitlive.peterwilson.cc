@@ -22,3 +22,6 @@
 [submodule "mu-plugins/vendor/s3-uploads"]
 	path = mu-plugins/vendor/s3-uploads
 	url = https://github.com/humanmade/S3-Uploads.git
+[submodule "mu-plugins/vendor/tachyon"]
+	path = mu-plugins/vendor/tachyon
+	url = https://github.com/humanmade/tachyon-plugin.git
