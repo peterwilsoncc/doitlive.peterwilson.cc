@@ -113,7 +113,7 @@ function enqueue_admin_assets( $hook_name ) {
 		'pwcc-notes-twttr-text',
 		plugin_dir_url( __DIR__ ) . 'assets/js/twitter-text.min.js',
 		[],
-		'2.0.5',
+		get_plugin_version(),
 		true
 	);
 
@@ -121,7 +121,7 @@ function enqueue_admin_assets( $hook_name ) {
 		'pwcc-notes',
 		plugin_dir_url( __DIR__ ) . 'assets/js/notes.js',
 		[ 'jquery', 'pwcc-notes-twttr-text' ],
-		'20180401.001',
+		get_plugin_version(),
 		true
 	);
 
