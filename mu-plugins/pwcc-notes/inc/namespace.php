@@ -52,7 +52,7 @@ function get_plugin_version() {
 
 	// Do not apply markup/translate as it'll be cached.
 	$plugin_data = get_plugin_data(
-		__DIR__ . "/../plugin.php",
+		__DIR__ . '/../plugin.php',
 		false,
 		false
 	);
