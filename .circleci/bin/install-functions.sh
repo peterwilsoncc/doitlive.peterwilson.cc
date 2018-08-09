@@ -70,3 +70,18 @@ config_test_suite() {
 		sed $ioption "s|localhost|${UNICI_DB_HOST}|" "$WP_TESTS_DIR"/wp-tests-config.php
 	fi
 }
+
+version_plugin() {
+	# portable in-place argument for both GNU sed and Mac OSX sed
+	if [[ $(uname -s) == 'Darwin' ]]; then
+		local ioption='-i.bak'
+	else
+		local ioption='-i'
+	fi
+
+	local directory="$1";
+	local file="$directory/plugin.php";
+	local hash=$(cd $directory; git log -n 1 --no-merges --pretty=format:%h -- ./);
+
+	sed $ioption "s/%%VERSION%%/$hash/" "$file"
+}

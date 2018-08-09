@@ -11,7 +11,7 @@
  * Plugin Name: PWCC Multi-Domain.
  * Plugin URI:  https://peterwilson.cc/
  * Description: Allow multiple domains for a single WP site..
- * Version:     1.0.0
+ * Version:     %%VERSION%%
  * Author:      Peter Wilson
  * Author URI:  https://peterwilson.cc/
  * Text Domain: pwcc-multi-domain

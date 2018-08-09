@@ -11,7 +11,7 @@
  * Plugin Name: PWCC Notes.
  * Plugin URI:  https://peterwilson.cc/
  * Description: Manage Twitter via a WordPress install.
- * Version:     1.0.0
+ * Version:     %%VERSION%%
  * Author:      Peter Wilson
  * Author URI:  https://peterwilson.cc/
  * Text Domain: pwcc-notes
