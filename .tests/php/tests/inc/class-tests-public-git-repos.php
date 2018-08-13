@@ -33,4 +33,11 @@ class Tests_Public_Git_Repos extends \WP_UnitTestCase {
 
 		$this->assertSame( $expected, $actual );
 	}
+
+	/**
+	 * Ensure the Tachyon-Plugin submodule has loaded.
+	 */
+	function test_tachyon_available() {
+		$this->assertTrue( function_exists( 'tachyon_url' ) );
+	}
 }
