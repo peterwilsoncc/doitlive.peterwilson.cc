@@ -26,7 +26,6 @@ if ( file_exists( __DIR__ . '/includes/bootstrap.php' ) ) {
 	$wp_tests_dir = $wp_develop_dir;
 }
 
-require_once __DIR__ . '/custom-config.php';
 require_once $wp_tests_dir . '/includes/functions.php';
 
 function _register_theme() {
