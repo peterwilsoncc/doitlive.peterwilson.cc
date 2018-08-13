@@ -38,6 +38,8 @@ class Tests_Public_Git_Repos extends \WP_UnitTestCase {
 	 * Ensure the Tachyon-Plugin submodule has loaded.
 	 */
 	function test_tachyon_available() {
-		$this->assertTrue( file_exists( WP_CONTENT_DIR . '/mu-plugins/vendor/tachyon/tachyon.php' ) );
+		$content_root = __DIR__ . '../../../../';
+
+		$this->assertTrue( file_exists( $content_root . '/mu-plugins/vendor/tachyon/tachyon.php' ) );
 	}
 }
