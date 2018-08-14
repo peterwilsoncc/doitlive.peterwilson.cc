@@ -29,6 +29,10 @@ jobs:
     steps:
       - checkout
       - run:
+          name: "Ensure submodules are up to date"
+          command: |
+            git submodule update --init
+      - run:
           name: "Set Environment Variables"
           command: |
             bash .circleci/bin/universal-environment-vars.sh
