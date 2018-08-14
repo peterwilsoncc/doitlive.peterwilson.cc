@@ -29,10 +29,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Ensure submodules are up to date"
-          command: |
-            git submodule update --init
-      - run:
           name: "Set Environment Variables"
           command: |
             bash .circleci/bin/universal-environment-vars.sh
@@ -70,6 +66,10 @@ jobs:
           name: "Run PHP Code sniffs"
           command: |
             ./vendor/bin/phpcs --standard=phpcs.ruleset.xml . -p
+      - run:
+          name: "Ensure submodules are up to date"
+          command: |
+            git submodule update --init
       - run:
           name: "Run WP Test suite"
           command: |
