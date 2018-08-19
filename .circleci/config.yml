@@ -39,11 +39,8 @@ jobs:
             sudo apt-get update
             sudo apt-get install nano
             sudo docker-php-ext-install mysqli
-            sudo apt-get install memcached
-            sudo service memcached restart
             sudo sh -c "printf '\ndeb http://ftp.us.debian.org/debian sid main\n' >> /etc/apt/sources.list"
             sudo apt-get update && sudo apt-get install mysql-client-5.7
-            sudo apt-get install php-memcached
       - run:
           name: "Test Environment Variables"
           command: |
@@ -73,6 +70,11 @@ jobs:
           name: "Ensure submodules are up to date"
           command: |
             git submodule update --init
+      - run:
+          name: "Remove dropins"
+          command: |
+            rm advanced-cache.php
+            rm object-cache.php
       - run:
           name: "Run WP Test suite"
           command: |
