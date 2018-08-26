@@ -44,6 +44,7 @@ jobs:
       - run:
           name: "Install memcached"
           command: |
+            set +e
             sudo apt-get install memcached libmemcached-dev libmemcached11
             sudo service memcached status || sudo service memcached start
             yes '' | sudo pecl install memcached
