@@ -71,11 +71,6 @@ jobs:
           command: |
             git submodule update --init
       - run:
-          name: "Remove dropins"
-          command: |
-            rm advanced-cache.php
-            rm object-cache.php
-      - run:
           name: "Run WP Test suite"
           command: |
             ./vendor/bin/phpunit
