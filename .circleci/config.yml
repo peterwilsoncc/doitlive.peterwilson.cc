@@ -78,7 +78,7 @@ jobs:
       - run:
           name: "Ensure submodules are up to date"
           command: |
-            git submodule update --init
+            git submodule update --init --recursive
       - run:
           name: "Run WP Test suite"
           command: |
