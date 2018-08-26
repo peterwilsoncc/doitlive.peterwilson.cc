@@ -10,6 +10,14 @@
 /.circleci
 /.tests
 /vendor
+/mu-plugins/vendor/cavalcade/tests
+/mu-plugins/vendor/extended-cpts/tests
+/mu-plugins/vendor/hm-cmb/.github
+/mu-plugins/vendor/hm-cmb/bin
+/mu-plugins/vendor/hm-cmb/tests
+/mu-plugins/vendor/s3-uploads/bin
+/mu-plugins/vendor/s3-uploads/tests
+/mu-plugins/vendor/twitteroauth/tests
 /node_modules
 /.gitmodules
 /phpcs*.xml

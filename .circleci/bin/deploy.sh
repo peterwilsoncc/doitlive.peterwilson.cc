@@ -27,7 +27,7 @@ if [[ -d "$BUILD_DIR" ]]; then
 fi
 
 # Ensure submodules are up-to-date.
-git submodule update --init
+git submodule update --init --recursive
 
 # Create and change to build dir.
 mkdir -p $BUILD_DIR

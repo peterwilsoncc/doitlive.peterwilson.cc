@@ -42,6 +42,15 @@ jobs:
             sudo sh -c "printf '\ndeb http://ftp.us.debian.org/debian sid main\n' >> /etc/apt/sources.list"
             sudo apt-get update && sudo apt-get install mysql-client-5.7
       - run:
+          name: "Install memcached"
+          command: |
+            set +e
+            sudo apt-get install memcached libmemcached-dev libmemcached11
+            sudo service memcached status || sudo service memcached start
+            yes '' | sudo pecl install memcached
+            echo "extension = memcached.so" | sudo tee --append /usr/local/etc/php/conf.d/memcache.ini
+            echo "memory_limit = 512M" | sudo tee --append /usr/local/etc/php/conf.d/memcache.ini
+      - run:
           name: "Test Environment Variables"
           command: |
             echo $WP_VERSION
@@ -69,7 +78,7 @@ jobs:
       - run:
           name: "Ensure submodules are up to date"
           command: |
-            git submodule update --init
+            git submodule update --init --recursive
       - run:
           name: "Remove dropins"
           command: |
