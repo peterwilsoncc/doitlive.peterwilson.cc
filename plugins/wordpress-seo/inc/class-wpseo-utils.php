@@ -1088,4 +1088,30 @@ SVG;
 
 		return false;
 	}
+
+	/**
+	 * Determines whether or not WooCommerce is active.
+	 *
+	 * @return bool Whether or not WooCommerce is active.
+	 */
+	public static function is_woocommerce_active() {
+		return class_exists( 'Woocommerce' );
+	}
+
+	/**
+	 * Getter for the Adminl10n array. Applies the wpseo_admin_l10n filter.
+	 *
+	 * @return array The Adminl10n array.
+	 */
+	public static function get_admin_l10n() {
+		$wpseo_admin_l10n = array();
+		$wpseo_admin_l10n = array_merge( $wpseo_admin_l10n, WPSEO_Help_Center::get_translated_texts() );
+
+		$additional_entries = apply_filters( 'wpseo_admin_l10n', array() );
+		if ( is_array( $additional_entries ) ) {
+			$wpseo_admin_l10n = array_merge( $wpseo_admin_l10n, $additional_entries );
+		}
+
+		return $wpseo_admin_l10n;
+	}
 }

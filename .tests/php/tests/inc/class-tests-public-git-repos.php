@@ -15,7 +15,7 @@ class Tests_Public_Git_Repos extends \WP_UnitTestCase {
 	 * the need for an SSH key. This is very convenient.
 	 */
 	function test_public_git_repos() {
-		$git_submodules = __DIR__ . '../../../../.gitmodules';
+		$git_submodules = __DIR__ . '/../../../../.gitmodules';
 
 		if ( ! file_exists( $git_submodules ) ) {
 			$this->assertFileNotExists( $git_submodules );
@@ -32,5 +32,12 @@ class Tests_Public_Git_Repos extends \WP_UnitTestCase {
 		$actual = substr_count( $submodules, 'url = http' );
 
 		$this->assertSame( $expected, $actual );
+	}
+
+	/**
+	 * Ensure the Tachyon-Plugin submodule has loaded.
+	 */
+	function test_tachyon_available() {
+		$this->assertTrue( function_exists( 'tachyon_url' ) );
 	}
 }

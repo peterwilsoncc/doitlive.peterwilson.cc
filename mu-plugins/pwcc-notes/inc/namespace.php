@@ -37,6 +37,31 @@ function bootstrap() {
 }
 
 /**
+ * Get the version of this plugin.
+ *
+ * If the value returned is a placeholder, use the current time.
+ *
+ * @return int|string The plugin version.
+ */
+function get_plugin_version() {
+	static $version;
+
+	if ( $version ) {
+		return $version;
+	}
+
+	// Do not apply markup/translate as it'll be cached.
+	$plugin_data = get_plugin_data(
+		__DIR__ . '/../plugin.php',
+		false,
+		false
+	);
+	$version = $plugin_data['Version'] === '%%VERSION%%' ? time() : $plugin_data['Version'];
+
+	return $version;
+}
+
+/**
  * Add `status` to supported post formats.
  *
  * Runs on the action `after_setup_theme, 20`.
@@ -88,7 +113,7 @@ function enqueue_admin_assets( $hook_name ) {
 		'pwcc-notes-twttr-text',
 		plugin_dir_url( __DIR__ ) . 'assets/js/twitter-text.min.js',
 		[],
-		'2.0.5',
+		get_plugin_version(),
 		true
 	);
 
@@ -96,7 +121,7 @@ function enqueue_admin_assets( $hook_name ) {
 		'pwcc-notes',
 		plugin_dir_url( __DIR__ ) . 'assets/js/notes.js',
 		[ 'jquery', 'pwcc-notes-twttr-text' ],
-		'20180401.001',
+		get_plugin_version(),
 		true
 	);
 

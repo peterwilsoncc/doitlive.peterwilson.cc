@@ -11,6 +11,9 @@ COMMIT=$(git rev-parse HEAD)
 source "$UNICI_PROJECT_DIRECTORY/.circleci/bin/install-functions.sh"
 
 download_wp_core
+version_plugin "$UNICI_PROJECT_DIRECTORY/mu-plugins/pwcc-helpers";
+version_plugin "$UNICI_PROJECT_DIRECTORY/mu-plugins/pwcc-multi-domain";
+version_plugin "$UNICI_PROJECT_DIRECTORY/mu-plugins/pwcc-notes";
 
 if [[ -z "$DEPLOY_BRANCH" ]]; then
 	echo "No branch specified!"
@@ -24,7 +27,7 @@ if [[ -d "$BUILD_DIR" ]]; then
 fi
 
 # Ensure submodules are up-to-date.
-git submodule update --init
+git submodule update --init --recursive
 
 # Build assets.
 yarn build

@@ -5,8 +5,8 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Tags: SEO, XML sitemap, Google Search Console, Content analysis, Readability
 Requires at least: 4.8
-Tested up to: 4.9.6
-Stable tag: 7.6.1
+Tested up to: 4.9.8
+Stable tag: 8.0
 Requires PHP: 5.2.4
 
 Improve your WordPress SEO: Write better content and have a fully optimized WordPress site using the Yoast SEO plugin.
@@ -106,57 +106,74 @@ You'll find answers to many of your questions on [kb.yoast.com](https://yoa.st/1
 
 == Changelog ==
 
-= 7.6.1 =
-Release Date: June 7th, 2018
-
-Bugfixes:
-* Fixes a bug where a JavaScript error was thrown on the post-edit page when certain plugins are active.
-* Fixes a bug where stylesheet definitions would impact form fields of metaboxes on the post-edit pages. The definitions have been contained in a Yoast-selector.
-
-= 7.6.0 =
-Release Date: June 5th, 2018
+= 8.0.0 =
+Release Date: August 14th, 2018
 
 Enhancements:
-* Adds Flesch Reading Ease for Russian.
-* Adds Catalan transition words.
-* Adds a tab to the Help Center on posts, pages, terms and custom post types which explains which template variables can be used in the Snippet Preview.
+* Implements the Yoast sidebar for Gutenberg: added the Readability, Focus Keyword and Cornerstone content tabs to the sidebar.
+* Revamps the Yoast metabox to use the same vertical design as the new sidebar.
+* Implements the same tabbed layout in the plugin's network settings screen that is also used in the plugin's site settings screens.
+* Implements a plugin-specific network settings API and use it in the network settings screen.
+* Introduces a network admin-specific admin bar menu.
+* Adds notifications to the Notification Center in regards to Gutenberg compatibility. If Gutenberg is older than the minimum supported version by Yoast SEO, a 'problem' notification is added. If Gutenberg is only slightly outdated, a 'normal' notification is added.
+* Implements the automatic detection of the keyword for terms based on the term's title.
 
 Bugfixes:
-* Fixes a bug where sequences of symbols which do not contain a single letter or digit were considered as valid keywords.
-* Fixes a bug where Flesch Reading Ease translation strings were not fully translated.
-* Fixes a bug where numbers-only keywords caused the analysis to fail.
-* Fixes a bug where the active keyword in the state wasn't updated whenever changes were made in the keyword field.
-* Fixes a bug where replacevars based on custom fields would throw an error due to a missing ID.
+* Fixes a bug where `/sitemap.xml` would not correctly redirect to `/sitemap_index.xml` in some environments.
+* Fixes a bug where sitemap cache transients would not be correctly cleared.
+* Fixes a bug where markers were wrongfully displayed in Gutenberg.
+* Fixes a bug where SEO titles were incorrectly evaluated as being of a good length when they were actually slightly too long.
 
 Other:
-* Changes the maximum meta description length from 320 to 156 characters.
-* Fixes typo in $field_defs parameter description for wpseo_metabox_entries filter.
-* Restores the warning for using unsupported replacement variables on the search appearance settings page.
+* Moves the network's Restore Site functionality into its own tab.
 
-= 7.5.3 =
-Release Date: May 30th, 2018
-
-* Added hooks and filters to allow our new [search index purge](https://wordpress.org/plugins/yoast-seo-search-index-purge/) plugin to work. You’re encouraged to read [this post about an attachment URL problem](https://yoa.st/2r8) for more info.
-
-= 7.5.1 =
-Release Date: May 16th, 2018
-
-Bugfixes:
-* Fixes a bug where the auto-generating of the slug did not work as expected due to persisting of the post name too agressively.
-
-= 7.5.0 =
-Release Date: May 15th, 2018
+= 7.9.1 =
+Release Date: August 7th, 2018
 
 Enhancements:
-* Adds readability analysis for Russian.
-* Improves accessibility.
+* Improves the link to claim your website on Pinterest by directly sending you to the right location.
+* Adds the passive voice assessment for Dutch.
+* Adds a link to a relevant article about re-using keywords to the feedback of the assessment that checks if the keyword was used previously.
 
 Bugfixes:
-* Fixes a bug where images with specific aspect ratios where removed from OpenGraph consideration. This was causing unexpected results with Facebook sharing. The aspect ratio check has been removed completely.
-* Fixes a bug where sentences ending in multiple sentence marks, exclamation marks or ellipses were treated as multiple sentences.
-* Fixes a bug where attempting to get Yoast SEO options in multi-site, would result in wrong values being returned.
-* Fixes a bug where the sitemap styling could not be loaded when the Site domain differs from the Admin domain.
-* Fixes a bug where the admin bar still used old copy: Dashboard has been renamed to General.
+* Adds a missing H1 heading to the Network Admin > SEO > Edit Files page.
+* Fixes the textarea sizes in the Search Appearance > RSS tab.
+* Fixes a bug where adding a company image in step 4 of the Configuration Wizard, would make the wizard crash.
+* Fixes a bug where PHP error notices were given when the search result doesn't have any WooCommerce products. Props to [jaska120](https://github.com/jaska120).
+* Improves the order in which assessments are triggered. The keyword in the title is only checked once there's a title, the keyword in the introduction is only checked once there's a text, and the keyword in the meta description is only checked once there's a meta description.
+* Fixes a bug that caused keywords to be incorrectly recognized within possessive forms (e.g. `Natalia` in `Natalia's fix`).
+* Improves the recognition of keywords with special diacritics in the URL.
+* Improves keyword recognition through adding Spanish inverted exclamation and question marks to the rules that determine word boundaries.
+
+Other:
+* Corrects the WP_Filesystem() initialization call to support settings import for non-default FS_METHOD definitions. Props to [ptbello](https://github.com/ptbello).
+
+= 7.9.0 =
+Release Date: July 24th, 2018
+
+Enhancements:
+* Introduces the collapsible sections to all the tabs in Search Appearance.
+* Improves accessibility of the collapsible sections in Search Appearance.
+
+Bugfixes:
+* Fixes a bug where archive settings for post types aren't shown on the search appearance page when the `has_archive` for that post type contains an archive slug. Props to [nesinervink](https://github.com/nesinervink), [schurig](https://github.com/schurig).
+* Fixes a bug where a notice ("Notice: Trying to get property of non-object") is given when the `$term->taxonomy` isn't set before it is used. Props to [bainternet](https://github.com/bainternet).
+* Fixes a bug where an uppercased encode URI isn't redirected to the category. Props to [dawnbirth](https://github.com/dawnbirth).
+* Fixes a bug where HTML entities were not always decoded in the Snippet Variables.
+* Fixes a bug where custom field labels would be separated by spaces in the classic editor, but in Gutenberg they would be separated by underscores instead.
+* Fixes a bug where the conversion of `&#039;`, which is PHP's HTML entity for the apostrophy, did not happen.
+* Fixes a bug where the same notification is shown multiple times when trashing multiple posts.
+* Fixes a bug where a possibly non-existent key would be retrieved when generating the `article:section` OpenGraph tag. Props to [mikeschinkel](https://github.com/mikeschinkel).
+* Fixes a bug in the UI that happend when `do_shortcode` was run on category descriptions in the admin list. Additionally, fixes rendering of shortcodes in category descriptions on the frontend.
+* Fixes a bug where saved templates in Search Appearance would be saved incorrectly into the database, resulting in them never being loaded when editing a post, page, etc. This meant that the default template would always be used.
+* Fixes a bug where the "Tagline" / `%%sitedesc%%` snippet editor variable was not selectable in the Search Appearance settings.
+* Fixes a bug where the newsletter signup in the configuration wizard would not work.
+
+Other:
+* Moves some snippet variables to only appear within specific editors. Adds a filter `wpseo_editor_specific_replace_vars` to make this pluggable.
+* Adds the white background to the template of media on the Search Appearance page.
+* Changes feedback in the keyword density assessment to make it more explicit that synonyms are not taken into consideration when calculating the score.
+* Shows a notification with the message that you should check your post type archive settings when these are possibly reset to their defaults in 7.7 or 7.8.
 
 = Earlier versions =
 
