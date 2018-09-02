@@ -64,43 +64,43 @@ $generated_i18n_strings = array(
 	// Reference: yoast-components/composites/OnboardingWizard/StepIndicator.js:50
 	__( 'Step %1$d: %2$s', 'wordpress-seo' ),
 
-	// Reference: js/src/components/ConnectGoogleSearchConsole.js:360
+	// Reference: js/src/components/ConnectGoogleSearchConsole.js:359
 	__( 'Get Google Authorization Code', 'wordpress-seo' ),
 
-	// Reference: js/src/components/ConnectGoogleSearchConsole.js:353
+	// Reference: js/src/components/ConnectGoogleSearchConsole.js:352
 	__( 'To allow %s to fetch your Google Search Console information, please enter your Google Authorization Code. Clicking the button below will open a new window.', 'wordpress-seo' ),
 
-	// Reference: js/src/components/ConnectGoogleSearchConsole.js:342
+	// Reference: js/src/components/ConnectGoogleSearchConsole.js:341
 	__( 'Reauthenticate with Google', 'wordpress-seo' ),
 
-	// Reference: js/src/components/ConnectGoogleSearchConsole.js:317
+	// Reference: js/src/components/ConnectGoogleSearchConsole.js:316
 	__( 'Authenticate', 'wordpress-seo' ),
 
-	// Reference: js/src/components/ConnectGoogleSearchConsole.js:313
+	// Reference: js/src/components/ConnectGoogleSearchConsole.js:312
 	__( 'Enter authorization code here...', 'wordpress-seo' ),
 
-	// Reference: js/src/components/ConnectGoogleSearchConsole.js:302
+	// Reference: js/src/components/ConnectGoogleSearchConsole.js:301
 	__( 'Enter your Google Authorization Code and press the Authenticate button.', 'wordpress-seo' ),
 
-	// Reference: js/src/components/ConnectGoogleSearchConsole.js:277
+	// Reference: js/src/components/ConnectGoogleSearchConsole.js:276
 	__( 'Choose a profile', 'wordpress-seo' ),
 
-	// Reference: js/src/components/ConnectGoogleSearchConsole.js:271
+	// Reference: js/src/components/ConnectGoogleSearchConsole.js:270
 	__( 'Select profile', 'wordpress-seo' ),
 
-	// Reference: js/src/components/ConnectGoogleSearchConsole.js:259
+	// Reference: js/src/components/ConnectGoogleSearchConsole.js:258
 	__( 'There were no profiles found', 'wordpress-seo' ),
 
-	// Reference: js/src/components/ConnectGoogleSearchConsole.js:112
+	// Reference: js/src/components/ConnectGoogleSearchConsole.js:111
 	__( 'There is an error with the request.', 'wordpress-seo' ),
 
-	// Reference: js/src/components/MailchimpSignup.js:224
+	// Reference: js/src/components/MailchimpSignup.js:222
 	__( 'Email', 'wordpress-seo' ),
 
-	// Reference: js/src/components/MailchimpSignup.js:206
+	// Reference: js/src/components/MailchimpSignup.js:204
 	__( 'Sign Up!', 'wordpress-seo' ),
 
-	// Reference: js/src/components/MailchimpSignup.js:110
+	// Reference: js/src/components/MailchimpSignup.js:108
 	__( 'MailChimp signup failed:', 'wordpress-seo' ),
 
 	// Reference: js/src/components/MediaUpload.js:132
@@ -169,11 +169,11 @@ $generated_i18n_strings = array(
 	// Reference: node_modules/yoast-components/composites/Plugin/HelpCenter/HelpCenter.js:80
 	__( 'Need help?', 'wordpress-seo' ),
 
-	// Reference: node_modules/yoast-components/composites/Plugin/Shared/components/KeywordInput.js:125
-	__( 'Focus keyword:', 'wordpress-seo' ),
-
-	// Reference: node_modules/yoast-components/composites/Plugin/Shared/components/KeywordInput.js:99
+	// Reference: node_modules/yoast-components/composites/Plugin/Shared/components/KeywordInput.js:143
 	__( 'Are you trying to use multiple keywords? You should add them separately below.', 'wordpress-seo' ),
+
+	// Reference: node_modules/yoast-components/composites/Plugin/Shared/components/KeywordInput.js:169
+	__( 'Focus keyword:', 'wordpress-seo' ),
 
 	// Reference: node_modules/yoast-components/composites/Plugin/Shared/components/LanguageNotice.js:19
 	__( 'Change language', 'wordpress-seo' ),
@@ -213,10 +213,10 @@ $generated_i18n_strings = array(
 	// Reference: node_modules/yoast-components/composites/Plugin/SnippetEditor/components/SnippetEditorFields.js:223
 	__( 'Meta description', 'wordpress-seo' ),
 
-	// Reference: node_modules/yoast-components/composites/Plugin/SnippetEditor/components/SnippetEditor.js:274
+	// Reference: node_modules/yoast-components/composites/Plugin/SnippetEditor/components/SnippetEditor.js:265
 	__( 'Close snippet editor', 'wordpress-seo' ),
 
-	// Reference: node_modules/yoast-components/composites/Plugin/SnippetEditor/components/SnippetEditor.js:551
+	// Reference: node_modules/yoast-components/composites/Plugin/SnippetEditor/components/SnippetEditor.js:543
 	__( 'Edit snippet', 'wordpress-seo' ),
 
 	// Reference: node_modules/yoast-components/composites/Plugin/SnippetEditor/components/SnippetEditorFields.js:200
