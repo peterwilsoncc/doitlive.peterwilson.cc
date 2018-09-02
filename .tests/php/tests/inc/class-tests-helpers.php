@@ -10,6 +10,12 @@ namespace PWCC\Tests;
  * @group   git
  */
 class Tests_Helpers extends \WP_UnitTestCase {
+	function setUp() {
+		parent::setUp();
+
+		do_action( 'activate_jetpack/jetpack.php' );
+	}
+
 	/**
 	 * Ensures the the Jetpack full sync is only running
 	 * every twelve hours.
