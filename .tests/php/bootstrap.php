@@ -67,15 +67,4 @@ tests_add_filter( 'upload_dir', function( $dir ) {
 	return $dir;
 } );
 
-/**
- * Ensure plugins are active for tests.
- */
-tests_add_filter( 'option_active_plugins', function( $active_plugins ) {
-	$forced_active = [
-		'jetpack/jetpack.php',
-	];
-
-	return array_unique( array_merge( $active_plugins, $forced_active ) );
-} );
-
 require_once $wp_tests_dir . '/includes/bootstrap.php';
