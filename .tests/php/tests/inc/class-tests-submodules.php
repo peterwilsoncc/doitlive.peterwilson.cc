@@ -1,13 +1,13 @@
 <?php
-namespace UniWpCI\Tests;
+namespace PWCC\Tests;
 
 /**
- * Class Tests_Public_Git_Repos
+ * Class Tests_Submodules
  *
- * @package UniWpCI\Tests
+ * @package PWCC\Tests
  * @group   git
  */
-class Tests_Public_Git_Repos extends \WP_UnitTestCase {
+class Tests_Submodules extends \WP_UnitTestCase {
 	/**
 	 * Ensure public git repos are included as HTTP submodules.
 	 *
