@@ -18,6 +18,8 @@ function bootstrap() {
 	add_filter( 'wpseo_title', __NAMESPACE__ . '\\filter_wpseo_title', 10 );
 
 	add_filter( 'get_comment_author_url', __NAMESPACE__ . '\\filter_comment_author_url', 10, 2 );
+
+	add_filter( 'gutenberg_can_edit_post_type', __NAMESPACE__ . '\\prevent_gutenberg_edits', 10, 2 );
 }
 
 /**
@@ -110,4 +112,20 @@ function filter_comment_author_url( string $url, int $comment_id ) {
 	}
 
 	return esc_url( $meta_url, [ 'http', 'https' ] );
+}
+
+/**
+ * Prevent Gutenberg from editing notes.
+ *
+ * @param bool   $can_edit  Whether the post type can be edited or not.
+ * @param string $post_type The post type being checked.
+ * @return bool Modified whether the post type can be edited or not.
+ */
+function prevent_gutenberg_edits( $can_edit, $post_type ) {
+	if ( $post_type === 'pwcc_notes' ) {
+		// Prevent Gutenberg from editing post type.
+		return false;
+	}
+
+	return $can_edit;
 }
