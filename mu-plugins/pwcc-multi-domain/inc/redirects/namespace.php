@@ -87,6 +87,15 @@ function front_page_redirect( string $requested_url ) {
 function singular_redirect( string $requested_url ) {
 	$object    = get_queried_object();
 	$post_type = $object->post_type;
+
+	if ( $object->post_type === 'attachment' && $object->post_parent ) {
+		/*
+		 * Attachments are a special case, the canonical URL is based
+		 * on that of the parent post.
+		 */
+		$post_type = get_post( $object->post_parent )->post_type;
+	}
+
 	$real_home = PostTypes\get_post_types_custom_home( $post_type );
 	if ( is_wp_error( $real_home ) ) {
 		return;
