@@ -18,6 +18,7 @@ use WP_Error;
  */
 function bootstrap() {
 	add_filter( 'term_link', __NAMESPACE__ . '\\filter_term_link', 10, 3 );
+	add_filter( 'paginate_links', __NAMESPACE__ . '\\filter_paginate_links' );
 }
 
 /**
@@ -86,4 +87,28 @@ function filter_term_link( string $termlink, $term, $taxonomy ) {
 	}
 
 	return MultiDomain\normalise_url( $termlink, $termlink_home );
+}
+
+/**
+ * Filters the paginated links for the taxonomy archive pages.
+ *
+ * Runs on the `paginate_links` filter
+ *
+ * @param string $link The paginated link URL.
+ * @return string The modified paginated link URL.
+ */
+function filter_paginate_links( string $link ) {
+	if ( ! is_tax() && ! is_category() && ! is_tag() ) {
+		// It's handled elsewhere.
+		return $link;
+	}
+
+	$object    = get_queried_object();
+	$taxonomy = $object->taxonomy;
+	$real_home = get_taxos_custom_home( $taxonomy );
+	if ( is_wp_error( $real_home ) ) {
+		return $link;
+	}
+
+	return MultiDomain\normalise_url( $link, $real_home );
 }
