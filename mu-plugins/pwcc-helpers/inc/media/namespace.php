@@ -124,18 +124,22 @@ function filter_attachment_meta_data( $data, $attachment_id ) {
 			// $crop_hash = '-c' . substr( strtolower( sha1( $crop_details ) ), 0, 8 );
 		}
 		// Add meta data with fake WP style file name.
-		$data['sizes'][ $size ] = array(
+		$data['sizes'][ $size ] = [
 			'width' => $w,
 			'height' => $h,
 			'file' => "{$filename}{$crop_hash}-{$w}x{$h}.{$ext}",
 			'mime-type' => $mime_type,
-		);
+		];
 	}
 
 	return $data;
 }
 
 /**
+ * Tachyon will sometimes return eastnorth, etc instead of northeast, etc.
+ *
+ * This can cause problems with the Tachyon service.
+ *
  * @param $tachyon_args array Arguments with which to invoke the Tacyon service.
  * @return array Tachyon args with gravity corrected.
  */
