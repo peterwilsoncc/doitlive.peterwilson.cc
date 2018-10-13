@@ -17,7 +17,7 @@ use Tachyon;
  * The purpose of this is the get the return value of the protected
  * image sizes function in the parent class.
  */
-class Tachyon_Helpers extends \Tachyon {
+class Tachyon_Helpers extends Tachyon {
 
 	/**
 	 * Class variables
