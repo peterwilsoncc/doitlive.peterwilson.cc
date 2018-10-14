@@ -130,6 +130,7 @@ function insert_post_data( array $data, array $postarr ) {
  *
  * Runs on the `wp_insert_post` action.
  *
+ * @todo Fix for Gutenberg
  * @todo Fix hackyity delay of scheduling tweeting text.
  * @todo Allow for sites that don't have Cavalcade, Cron Control or another cron runner.
  *
@@ -153,6 +154,12 @@ function publish_post( $post_id, $post ) {
 	}
 
 	$tweet = get_post_meta( $post_id, '_pwccindieweb-note', true );
+
+	// Meta data is not set on `publish_post` via WP-API.
+	if ( ! is_array( $tweet ) ) {
+		// Meta data is not in an expected format.
+		return;
+	}
 
 	if ( $tweet['post_on_twitter'] !== '1' ) {
 		// Flagged do not tweet. Do nothing.
