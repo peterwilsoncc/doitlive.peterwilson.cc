@@ -20,6 +20,7 @@ function bootstrap() {
 	add_filter( 'get_comment_author_url', __NAMESPACE__ . '\\filter_comment_author_url', 10, 2 );
 
 	add_filter( 'gutenberg_can_edit_post_type', __NAMESPACE__ . '\\prevent_gutenberg_edits', 10, 2 );
+	add_filter( 'use_block_editor_for_post_type', __NAMESPACE__ . '\\prevent_gutenberg_edits', 10, 2 );
 }
 
 /**
