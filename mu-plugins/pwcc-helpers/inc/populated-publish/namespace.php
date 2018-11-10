@@ -113,8 +113,8 @@ function populated_post_updated( $post_id, $post_after, $post_before ) {
 	}
 
 	if ( ! is_rest() ) {
-		do_action( "populated.edit_{$type}", $post_id );
-		do_action( "populated.{$type}_updated", $post_id, $post_after, $post_before );
+		do_action( "populated/edit_{$type}", $post_id );
+		do_action( "populated/{$type}_updated", $post_id, $post_after, $post_before );
 		return;
 	}
 
@@ -128,8 +128,8 @@ function populated_post_updated( $post_id, $post_after, $post_before ) {
 	 */
 	$filter = function( $response ) use ( &$filter, $post_id, $post_after, $post_before, $type ) {
 		remove_filter( 'rest_request_after_callbacks', $filter );
-		do_action( "populated.edit_{$type}", $post_id );
-		do_action( "populated.{$type}_updated", $post_id, $post_after, $post_before );
+		do_action( "populated/edit_{$type}", $post_id );
+		do_action( "populated/{$type}_updated", $post_id, $post_after, $post_before );
 		return $response;
 	};
 
@@ -145,7 +145,7 @@ function populated_post_updated( $post_id, $post_after, $post_before ) {
  */
 function populated_add_attachment( $post_id ) {
 	if ( ! is_rest() ) {
-		do_action( 'populated.add_attachment', $post_id );
+		do_action( 'populated/add_attachment', $post_id );
 		return;
 	}
 
@@ -159,7 +159,7 @@ function populated_add_attachment( $post_id ) {
 	 */
 	$filter = function( $response ) use ( &$filter, $post_id ) {
 		remove_filter( 'rest_request_after_callbacks', $filter );
-		do_action( 'populated.add_attachment', $post_id );
+		do_action( 'populated/add_attachment', $post_id );
 		return $response;
 	};
 
@@ -177,9 +177,9 @@ function populated_add_attachment( $post_id ) {
  */
 function populated_insert_post( $post_id, $post, $update ) {
 	if ( ! is_rest() ) {
-		do_action( "populated.save_post_{$post->post_type}", $post_id, $post, $update );
-		do_action( 'populated.save_post', $post_id, $post, $update );
-		do_action( 'populated.wp_insert_post', $post_id, $post, $update );
+		do_action( "populated/save_post_{$post->post_type}", $post_id, $post, $update );
+		do_action( 'populated/save_post', $post_id, $post, $update );
+		do_action( 'populated/wp_insert_post', $post_id, $post, $update );
 		return;
 	}
 
@@ -193,9 +193,9 @@ function populated_insert_post( $post_id, $post, $update ) {
 	 */
 	$filter = function( $response ) use ( &$filter, $post_id, $post, $update ) {
 		remove_filter( 'rest_request_after_callbacks', $filter );
-		do_action( "populated.save_post_{$post->post_type}", $post_id, $post, $update );
-		do_action( 'populated.save_post', $post_id, $post, $update );
-		do_action( 'populated.wp_insert_post', $post_id, $post, $update );
+		do_action( "populated/save_post_{$post->post_type}", $post_id, $post, $update );
+		do_action( 'populated/save_post', $post_id, $post, $update );
+		do_action( 'populated/wp_insert_post', $post_id, $post, $update );
 		return $response;
 	};
 
@@ -213,9 +213,9 @@ function populated_insert_post( $post_id, $post, $update ) {
  */
 function populated_transition_post_status( $new_status, $old_status, $post ) {
 	if ( ! is_rest() ) {
-		do_action( 'populated.transition_post_status', $new_status, $old_status, $post );
-		do_action( "populated.{$old_status}_to_{$new_status}", $post );
-		do_action( "populated.{$new_status}_{$post->post_type}", $post->ID, $post );
+		do_action( 'populated/transition_post_status', $new_status, $old_status, $post );
+		do_action( "populated/{$old_status}_to_{$new_status}", $post );
+		do_action( "populated/{$new_status}_{$post->post_type}", $post->ID, $post );
 		return;
 	}
 
@@ -229,9 +229,9 @@ function populated_transition_post_status( $new_status, $old_status, $post ) {
 	 */
 	$filter = function( $response ) use ( &$filter, $new_status, $old_status, $post ) {
 		remove_filter( 'rest_request_after_callbacks', $filter );
-		do_action( 'populated.transition_post_status', $new_status, $old_status, $post );
-		do_action( "populated.{$old_status}_to_{$new_status}", $post );
-		do_action( "populated.{$new_status}_{$post->post_type}", $post->ID, $post );
+		do_action( 'populated/transition_post_status', $new_status, $old_status, $post );
+		do_action( "populated/{$old_status}_to_{$new_status}", $post );
+		do_action( "populated/{$new_status}_{$post->post_type}", $post->ID, $post );
 		return $response;
 	};
 
