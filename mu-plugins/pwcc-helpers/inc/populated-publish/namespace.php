@@ -23,7 +23,6 @@ namespace PWCC\Helpers\PopulatedPublish;
  */
 function bootstrap() {
 	add_action( 'registered_post_type', __NAMESPACE__ . '\\post_type_rego_action', 10, 2 );
-	add_filter( 'wp_insert_post_empty_content', __NAMESPACE__ . '\\maybe_empty_return', PHP_INT_MAX );
 
 	add_action( 'transition_post_status', __NAMESPACE__ . '\\populated_transition_post_status', 10, 3 );
 	add_action( 'attachment_updated', __NAMESPACE__ . '\\populated_post_updated', 10, 3 );
