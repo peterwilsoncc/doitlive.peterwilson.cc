@@ -30,6 +30,11 @@ function bootstrap() {
  * @param \WP_Post_Type $post_type_object Arguments used to register the post type.
  */
 function post_type_rego_action( $post_type, $post_type_object ) {
+	if ( $post_type_object->show_in_rest === false ) {
+		// The hook doesn't exist for it to run on.
+		return;
+	}
+
 	// Runs late to ensure another plugin hasn't filtered to an error.
 	add_filter( "rest_pre_insert_{$post_type}", __NAMESPACE__ . '\\pre_insert_in_rest', PHP_INT_MAX );
 }
