@@ -15,6 +15,11 @@ namespace PWCC\Helpers\PopulatedPublish;
 function bootstrap() {
 	add_action( 'registered_post_type', __NAMESPACE__ . '\\post_type_rego_action', 10, 2 );
 	add_filter( 'wp_insert_post_empty_content', __NAMESPACE__ . '\\maybe_empty_return', PHP_INT_MAX );
+
+	add_action( 'attachment_updated', __NAMESPACE__ .'\\populated_post_updated', 10, 3 );
+	add_action( 'post_updated', __NAMESPACE__ .'\\populated_post_updated', 10, 3 );
+	add_action( 'add_attachment', __NAMESPACE__ . '\\populated_add_attachment' );
+	add_action( 'wp_insert_post', __NAMESPACE__ . '\\populated_insert_post', 10, 3 );
 }
 
 /**
@@ -49,7 +54,7 @@ function pre_insert_in_rest( $prepared_post ) {
 		return $response;
 	};
 
-	add_filter( 'rest_request_after_callbacks', $filter );
+	add_filter( 'rest_request_after_callbacks', $filter, PHP_INT_MAX );
 
 	return $prepared_post;
 }
@@ -71,4 +76,80 @@ function is_rest( $toggle = null ) {
 	}
 
 	return $in_rest === 0;
+}
+
+/**
+ * Setup populated "edit" and "updated" hooks.
+ *
+ * @param int      $post_id      Post ID.
+ * @param \WP_Post $post_after   Post object following the update.
+ * @param \WP_Post $post_before  Post object before the update.
+ */
+function populated_post_updated( $post_id, $post_after, $post_before ) {
+	if ( $post_after->post_type === 'attachment' ) {
+		$type = "attachment";
+	} else {
+		$type = "post";
+	}
+
+	if ( ! is_rest() ) {
+		do_action( "populated.edit_{$type}", $post_id );
+		do_action( "populated.{$type}_updated", $post_id, $post_after, $post_before );
+		return;
+	}
+
+	$filter = function( $response ) use ( &$filter, $post_id, $post_after, $post_before, $type ) {
+		remove_filter( 'rest_request_after_callbacks', $filter );
+		do_action( "populated.edit_{$type}", $post_id );
+		do_action( "populated.{$type}_updated", $post_id, $post_after, $post_before );
+		return $response;
+	};
+
+	add_filter( 'rest_request_after_callbacks', $filter );
+}
+
+/**
+ * Set up the populated add attachment hooks.
+ *
+ * @param int $post_id Attachment ID.
+ */
+function populated_add_attachment( $post_id ) {
+	if ( ! is_rest() ) {
+		do_action( 'populated.add_attachment', $post_id );
+		return;
+	}
+
+	$filter = function( $response ) use ( &$filter, $post_id ) {
+		remove_filter( 'rest_request_after_callbacks', $filter );
+		do_action( 'populated.add_attachment', $post_id );
+		return $response;
+	};
+
+	add_filter( 'rest_request_after_callbacks', $filter );
+}
+
+/**
+ * Set up populated insert post hooks.
+ *
+ * @param int      $post_id Post ID.
+ * @param \WP_Post $post    Post object.
+ * @param bool     $update  Whether this is an existing post being updated or not.
+ */
+function populated_insert_post( $post_id, $post, $update ) {
+	if ( ! is_rest() ) {
+		do_action( "populated.save_post_{$post->post_type}", $post_ID, $post, $update );
+		do_action( 'populated.save_post', $post_ID, $post, $update );
+		do_action( 'populated.wp_insert_post', $post_ID, $post, $update );
+		return;
+	}
+
+	$filter = function( $response ) use ( &$filter, $post_id, $post, $update ) {
+		remove_filter( 'rest_request_after_callbacks', $filter );
+		do_action( "populated.save_post_{$post->post_type}", $post_ID, $post, $update );
+		do_action( 'populated.save_post', $post_ID, $post, $update );
+		do_action( 'populated.wp_insert_post', $post_ID, $post, $update );
+		return $response;
+	};
+
+	add_filter( 'rest_request_after_callbacks', $filter );
 }
