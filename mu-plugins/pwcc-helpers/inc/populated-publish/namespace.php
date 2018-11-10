@@ -137,17 +137,17 @@ function populated_add_attachment( $post_id ) {
  */
 function populated_insert_post( $post_id, $post, $update ) {
 	if ( ! is_rest() ) {
-		do_action( "populated.save_post_{$post->post_type}", $post_ID, $post, $update );
-		do_action( 'populated.save_post', $post_ID, $post, $update );
-		do_action( 'populated.wp_insert_post', $post_ID, $post, $update );
+		do_action( "populated.save_post_{$post->post_type}", $post_id, $post, $update );
+		do_action( 'populated.save_post', $post_id, $post, $update );
+		do_action( 'populated.wp_insert_post', $post_id, $post, $update );
 		return;
 	}
 
 	$filter = function( $response ) use ( &$filter, $post_id, $post, $update ) {
 		remove_filter( 'rest_request_after_callbacks', $filter );
-		do_action( "populated.save_post_{$post->post_type}", $post_ID, $post, $update );
-		do_action( 'populated.save_post', $post_ID, $post, $update );
-		do_action( 'populated.wp_insert_post', $post_ID, $post, $update );
+		do_action( "populated.save_post_{$post->post_type}", $post_id, $post, $update );
+		do_action( 'populated.save_post', $post_id, $post, $update );
+		do_action( 'populated.wp_insert_post', $post_id, $post, $update );
 		return $response;
 	};
 
