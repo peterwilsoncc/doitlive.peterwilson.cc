@@ -16,8 +16,8 @@ function bootstrap() {
 	add_action( 'registered_post_type', __NAMESPACE__ . '\\post_type_rego_action', 10, 2 );
 	add_filter( 'wp_insert_post_empty_content', __NAMESPACE__ . '\\maybe_empty_return', PHP_INT_MAX );
 
-	add_action( 'attachment_updated', __NAMESPACE__ .'\\populated_post_updated', 10, 3 );
-	add_action( 'post_updated', __NAMESPACE__ .'\\populated_post_updated', 10, 3 );
+	add_action( 'attachment_updated', __NAMESPACE__ . '\\populated_post_updated', 10, 3 );
+	add_action( 'post_updated', __NAMESPACE__ . '\\populated_post_updated', 10, 3 );
 	add_action( 'add_attachment', __NAMESPACE__ . '\\populated_add_attachment' );
 	add_action( 'wp_insert_post', __NAMESPACE__ . '\\populated_insert_post', 10, 3 );
 }
@@ -87,9 +87,9 @@ function is_rest( $toggle = null ) {
  */
 function populated_post_updated( $post_id, $post_after, $post_before ) {
 	if ( $post_after->post_type === 'attachment' ) {
-		$type = "attachment";
+		$type = 'attachment';
 	} else {
-		$type = "post";
+		$type = 'post';
 	}
 
 	if ( ! is_rest() ) {
