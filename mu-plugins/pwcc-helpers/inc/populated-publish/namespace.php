@@ -26,6 +26,8 @@ function bootstrap() {
 /**
  * Register hooks required for all post types.
  *
+ * Runs on the action `registered_post_type`.
+ *
  * @param string        $post_type        Post type.
  * @param \WP_Post_Type $post_type_object Arguments used to register the post type.
  */
@@ -42,6 +44,8 @@ function post_type_rego_action( $post_type, $post_type_object ) {
 /**
  * Activate and deactivate "in rest" for a prepared post.
  *
+ * Runs on the filter `rest_pre_insert_{$post_type}`.
+ *
  * @param \stdClass $prepared_post An object representing a single post prepared
  *                                 for inserting or updating the database.
  *
@@ -56,6 +60,8 @@ function pre_insert_in_rest( $prepared_post ) {
 
 	/**
 	 * Deactivate "in rest" after the callbacks have fired.
+	 *
+	 * Runs on the filter `rest_request_after_callbacks`.
 	 *
 	 * @param \WP_HTTP_Response $response Result to send to the client. Usually a WP_REST_Response.
 	 * @return \WP_HTTP_Response Unmodified response.
@@ -93,6 +99,8 @@ function is_rest( $toggle = null ) {
 /**
  * Setup populated "edit" and "updated" hooks.
  *
+ * Runs on the `attachment_updated` and `post_updated` actions.
+ *
  * @param int      $post_id      Post ID.
  * @param \WP_Post $post_after   Post object following the update.
  * @param \WP_Post $post_before  Post object before the update.
@@ -113,6 +121,8 @@ function populated_post_updated( $post_id, $post_after, $post_before ) {
 	/**
 	 * Fire the hooks once the callback has finished firing.
 	 *
+	 * Runs on the filter `rest_request_after_callbacks`.
+	 *
 	 * @param \WP_HTTP_Response $response Result to send to the client. Usually a WP_REST_Response.
 	 * @return \WP_HTTP_Response Unmodified response.
 	 */
@@ -129,6 +139,8 @@ function populated_post_updated( $post_id, $post_after, $post_before ) {
 /**
  * Set up the populated add attachment hooks.
  *
+ * Runs on the `add_attachment` action.
+ *
  * @param int $post_id Attachment ID.
  */
 function populated_add_attachment( $post_id ) {
@@ -139,6 +151,8 @@ function populated_add_attachment( $post_id ) {
 
 	/**
 	 * Fire the hooks once the callback has finished firing.
+	 *
+	 * Runs on the filter `rest_request_after_callbacks`.
 	 *
 	 * @param \WP_HTTP_Response $response Result to send to the client. Usually a WP_REST_Response.
 	 * @return \WP_HTTP_Response Unmodified response.
@@ -155,6 +169,8 @@ function populated_add_attachment( $post_id ) {
 /**
  * Set up populated insert post hooks.
  *
+ * Runs on the `wp_insert_post` action.
+ *
  * @param int      $post_id Post ID.
  * @param \WP_Post $post    Post object.
  * @param bool     $update  Whether this is an existing post being updated or not.
@@ -169,6 +185,8 @@ function populated_insert_post( $post_id, $post, $update ) {
 
 	/**
 	 * Fire the hooks once the callback has finished firing.
+	 *
+	 * Runs on the filter `rest_request_after_callbacks`.
 	 *
 	 * @param \WP_HTTP_Response $response Result to send to the client. Usually a WP_REST_Response.
 	 * @return \WP_HTTP_Response Unmodified response.
@@ -187,6 +205,8 @@ function populated_insert_post( $post_id, $post, $update ) {
 /**
  * Set up populated post transition hooks.
  *
+ * Runs on the `transition_post_status` action.
+ *
  * @param string   $new_status New post status.
  * @param string   $old_status Old post status.
  * @param \WP_Post $post       Post object.
@@ -201,6 +221,8 @@ function populated_transition_post_status( $new_status, $old_status, $post ) {
 
 	/**
 	 * Fire the hooks once the callback has finished firing.
+	 *
+	 * Runs on the filter `rest_request_after_callbacks`.
 	 *
 	 * @param \WP_HTTP_Response $response Result to send to the client. Usually a WP_REST_Response.
 	 * @return \WP_HTTP_Response Unmodified response.
