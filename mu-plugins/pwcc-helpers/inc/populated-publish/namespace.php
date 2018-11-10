@@ -48,6 +48,12 @@ function pre_insert_in_rest( $prepared_post ) {
 
 	is_rest( true );
 
+	/**
+	 * Deactivate "in rest" after the callbacks have fired.
+	 *
+	 * @param \WP_HTTP_Response $response Result to send to the client. Usually a WP_REST_Response.
+	 * @return \WP_HTTP_Response Unmodified response.
+	 */
 	$filter = function( $response ) use ( &$filter ) {
 		remove_filter( 'rest_request_after_callbacks', $filter );
 		is_rest( false );
@@ -98,6 +104,12 @@ function populated_post_updated( $post_id, $post_after, $post_before ) {
 		return;
 	}
 
+	/**
+	 * Fire the hooks once the callback has finished firing.
+	 *
+	 * @param \WP_HTTP_Response $response Result to send to the client. Usually a WP_REST_Response.
+	 * @return \WP_HTTP_Response Unmodified response.
+	 */
 	$filter = function( $response ) use ( &$filter, $post_id, $post_after, $post_before, $type ) {
 		remove_filter( 'rest_request_after_callbacks', $filter );
 		do_action( "populated.edit_{$type}", $post_id );
@@ -119,6 +131,12 @@ function populated_add_attachment( $post_id ) {
 		return;
 	}
 
+	/**
+	 * Fire the hooks once the callback has finished firing.
+	 *
+	 * @param \WP_HTTP_Response $response Result to send to the client. Usually a WP_REST_Response.
+	 * @return \WP_HTTP_Response Unmodified response.
+	 */
 	$filter = function( $response ) use ( &$filter, $post_id ) {
 		remove_filter( 'rest_request_after_callbacks', $filter );
 		do_action( 'populated.add_attachment', $post_id );
@@ -143,6 +161,12 @@ function populated_insert_post( $post_id, $post, $update ) {
 		return;
 	}
 
+	/**
+	 * Fire the hooks once the callback has finished firing.
+	 *
+	 * @param \WP_HTTP_Response $response Result to send to the client. Usually a WP_REST_Response.
+	 * @return \WP_HTTP_Response Unmodified response.
+	 */
 	$filter = function( $response ) use ( &$filter, $post_id, $post, $update ) {
 		remove_filter( 'rest_request_after_callbacks', $filter );
 		do_action( "populated.save_post_{$post->post_type}", $post_id, $post, $update );
