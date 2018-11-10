@@ -75,7 +75,7 @@ function pre_insert_in_rest( $prepared_post ) {
 	 * @return \WP_HTTP_Response Unmodified response.
 	 */
 	$filter = function( $response ) use ( &$filter ) {
-		remove_filter( 'rest_request_after_callbacks', $filter );
+		remove_filter( 'rest_request_after_callbacks', $filter, PHP_INT_MAX );
 		is_rest( false );
 		return $response;
 	};
