@@ -1,6 +1,15 @@
 <?php
 /**
- * PWCC Helpers.
+ * PWCC Helpers, populated publishing hooks.
+ *
+ * Ensure the post-publish related hooks are populated when they
+ * are fired by prefixing them with `populated/`.
+ *
+ * If in a rest request, the actions are fired at the conclusion of
+ * the rest request on the `rest_request_after_callbacks` filter.
+ *
+ * Otherwise they are fired near their normal location. They may not fire
+ * on the exact hook due to the need to ensure all data is available.
  *
  * @package     PWCC Helpers
  * @author      Peter Wilson
