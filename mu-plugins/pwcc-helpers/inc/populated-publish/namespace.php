@@ -16,6 +16,7 @@ function bootstrap() {
 	add_action( 'registered_post_type', __NAMESPACE__ . '\\post_type_rego_action', 10, 2 );
 	add_filter( 'wp_insert_post_empty_content', __NAMESPACE__ . '\\maybe_empty_return', PHP_INT_MAX );
 
+	add_action( 'transition_post_status', __NAMESPACE__ . '\\populated_transition_post_status', 10, 3 );
 	add_action( 'attachment_updated', __NAMESPACE__ . '\\populated_post_updated', 10, 3 );
 	add_action( 'post_updated', __NAMESPACE__ . '\\populated_post_updated', 10, 3 );
 	add_action( 'add_attachment', __NAMESPACE__ . '\\populated_add_attachment' );
@@ -172,6 +173,38 @@ function populated_insert_post( $post_id, $post, $update ) {
 		do_action( "populated.save_post_{$post->post_type}", $post_id, $post, $update );
 		do_action( 'populated.save_post', $post_id, $post, $update );
 		do_action( 'populated.wp_insert_post', $post_id, $post, $update );
+		return $response;
+	};
+
+	add_filter( 'rest_request_after_callbacks', $filter );
+}
+
+/**
+ * Set up populated post transition hooks.
+ *
+ * @param string   $new_status New post status.
+ * @param string   $old_status Old post status.
+ * @param \WP_Post $post       Post object.
+ */
+function populated_transition_post_status( $new_status, $old_status, $post ) {
+	if ( ! is_rest() ) {
+		do_action( 'populated.transition_post_status', $new_status, $old_status, $post );
+		do_action( "populated.{$old_status}_to_{$new_status}", $post );
+		do_action( "populated.{$new_status}_{$post->post_type}", $post->ID, $post );
+		return;
+	}
+
+	/**
+	 * Fire the hooks once the callback has finished firing.
+	 *
+	 * @param \WP_HTTP_Response $response Result to send to the client. Usually a WP_REST_Response.
+	 * @return \WP_HTTP_Response Unmodified response.
+	 */
+	$filter = function( $response ) use ( &$filter, $new_status, $old_status, $post ) {
+		remove_filter( 'rest_request_after_callbacks', $filter );
+		do_action( 'populated.transition_post_status', $new_status, $old_status, $post );
+		do_action( "populated.{$old_status}_to_{$new_status}", $post );
+		do_action( "populated.{$new_status}_{$post->post_type}", $post->ID, $post );
 		return $response;
 	};
 
