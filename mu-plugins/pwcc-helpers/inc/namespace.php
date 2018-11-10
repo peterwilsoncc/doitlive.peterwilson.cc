@@ -29,6 +29,7 @@ function fast_bootstrap() {
 function bootstrap() {
 	JetpackFixes\bootstrap();
 	CavalcadeMods\bootstrap();
+	PopulatedPublish\bootstrap();
 	TachyonMods\bootstrap();
 }
 
