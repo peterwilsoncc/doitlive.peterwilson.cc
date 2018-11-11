@@ -126,7 +126,7 @@ function populated_post_updated( $post_id, $post_after, $post_before ) {
 		$type = 'post';
 	}
 
-	if ( ! is_rest() ) {
+	if ( ! is_rest() || ! get_post_type_object( get_post_type( $post_id ) )->show_in_rest ) {
 		do_action( "populated/{$type}_updated", $post_id, $post_after, $post_before );
 		return;
 	}
@@ -188,7 +188,7 @@ function populated_add_attachment( $post_id ) {
  * @param bool     $update  Whether this is an existing post being updated or not.
  */
 function populated_insert_post( $post_id, $post, $update ) {
-	if ( ! is_rest() ) {
+	if ( ! is_rest() || ! get_post_type_object( get_post_type( $post_id ) )->show_in_rest ) {
 		do_action( 'populated/wp_insert_post', $post_id, $post, $update );
 		return;
 	}
@@ -220,7 +220,7 @@ function populated_insert_post( $post_id, $post, $update ) {
  * @param \WP_Post $post       Post object.
  */
 function populated_transition_post_status( $new_status, $old_status, $post ) {
-	if ( ! is_rest() ) {
+	if ( ! is_rest() || ! get_post_type_object( get_post_type( $post ) )->show_in_rest ) {
 		do_action( 'populated/transition_post_status', $new_status, $old_status, $post );
 		return;
 	}
