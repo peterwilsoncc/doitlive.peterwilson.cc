@@ -24,6 +24,9 @@
 		"stylelint": "^9.3.0",
 		"stylelint-config-wordpress": "^13.0.0"
 	},
+	"browserslist": [
+		"> 0.25%"
+	],
 	"dependencies": {
 		"autoprefixer": "^8.6.3",
 		"babel-loader": "^7.1.4",
