@@ -9,7 +9,7 @@ function bootstrap() {
 
 function enqueue() {
 	$loaded = AssetLoader\enqueue_assets(
-		__DIR__ . '/assets', [
+		__DIR__ . '/../assets', [
 			'handle'  => 'pwcc-003-app',
 			'scripts' => [],
 		]
