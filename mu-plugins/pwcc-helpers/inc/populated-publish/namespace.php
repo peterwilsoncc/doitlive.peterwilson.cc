@@ -111,6 +111,38 @@ function is_rest( $toggle = null ) {
 }
 
 /**
+ * Set up populated post transition hooks.
+ *
+ * Runs on the `transition_post_status` action.
+ *
+ * @param string   $new_status New post status.
+ * @param string   $old_status Old post status.
+ * @param \WP_Post $post       Post object.
+ */
+function populated_transition_post_status( $new_status, $old_status, $post ) {
+	if ( ! is_rest() || ! get_post_type_object( get_post_type( $post ) )->show_in_rest ) {
+		do_action( 'populated/transition_post_status', $new_status, $old_status, $post );
+		return;
+	}
+
+	/**
+	 * Fire the hooks once the callback has finished firing.
+	 *
+	 * Runs on the filter `rest_request_after_callbacks`.
+	 *
+	 * @param \WP_HTTP_Response $response Result to send to the client. Usually a WP_REST_Response.
+	 * @return \WP_HTTP_Response Unmodified response.
+	 */
+	$filter = function( $response ) use ( &$filter, $new_status, $old_status, $post ) {
+		remove_filter( 'rest_request_after_callbacks', $filter );
+		do_action( 'populated/transition_post_status', $new_status, $old_status, $post );
+		return $response;
+	};
+
+	add_filter( 'rest_request_after_callbacks', $filter );
+}
+
+/**
  * Setup populated "edit" and "updated" hooks.
  *
  * Runs on the `attachment_updated` and `post_updated` actions.
@@ -204,38 +236,6 @@ function populated_insert_post( $post_id, $post, $update ) {
 	$filter = function( $response ) use ( &$filter, $post_id, $post, $update ) {
 		remove_filter( 'rest_request_after_callbacks', $filter );
 		do_action( 'populated/wp_insert_post', $post_id, $post, $update );
-		return $response;
-	};
-
-	add_filter( 'rest_request_after_callbacks', $filter );
-}
-
-/**
- * Set up populated post transition hooks.
- *
- * Runs on the `transition_post_status` action.
- *
- * @param string   $new_status New post status.
- * @param string   $old_status Old post status.
- * @param \WP_Post $post       Post object.
- */
-function populated_transition_post_status( $new_status, $old_status, $post ) {
-	if ( ! is_rest() || ! get_post_type_object( get_post_type( $post ) )->show_in_rest ) {
-		do_action( 'populated/transition_post_status', $new_status, $old_status, $post );
-		return;
-	}
-
-	/**
-	 * Fire the hooks once the callback has finished firing.
-	 *
-	 * Runs on the filter `rest_request_after_callbacks`.
-	 *
-	 * @param \WP_HTTP_Response $response Result to send to the client. Usually a WP_REST_Response.
-	 * @return \WP_HTTP_Response Unmodified response.
-	 */
-	$filter = function( $response ) use ( &$filter, $new_status, $old_status, $post ) {
-		remove_filter( 'rest_request_after_callbacks', $filter );
-		do_action( 'populated/transition_post_status', $new_status, $old_status, $post );
 		return $response;
 	};
 
