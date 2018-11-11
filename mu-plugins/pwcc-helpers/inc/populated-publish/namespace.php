@@ -2,8 +2,8 @@
 /**
  * PWCC Helpers, populated publishing hooks.
  *
- * Ensure the post-publish related hooks are populated when they
- * are fired by prefixing them with `populated/`.
+ * Ensure the post-publish related hooks only run when the term and meta
+ * data has been saved by prefixing them with `populated/`.
  *
  * If in a rest request, the actions are fired at the conclusion of
  * the rest request on the `rest_request_after_callbacks` filter.
