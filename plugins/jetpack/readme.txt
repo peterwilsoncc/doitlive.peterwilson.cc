@@ -1,8 +1,8 @@
 === Jetpack by WordPress.com ===
 Contributors: automattic, adamkheckler, aduth, akirk, allendav, alternatekev, andy, annezazu, apeatling, azaozz, batmoo, barry, beaulebens, blobaugh, cainm, cena, cfinke, chaselivingston, chellycat, clickysteve, csonnek, danielbachhuber, davoraltman, daniloercoli, designsimply, dllh, drawmyface, dsmart, dzver, ebinnion, eliorivero, enej, eoigal, erania-pinnera, ethitter, gcorne, georgestephanis, gibrown, goldsounds, hew, hugobaeta, hypertextranch, iammattthomas, iandunn, jblz, jasmussen, jeffgolenski, jeherve, jenhooks, jenia, jessefriedman, jgs, jkudish, jmdodd, joanrho, johnjamesjacoby, jshreve, keoshi, koke, kraftbj, lancewillett, lschuyler, macmanx, martinremy, matt, matveb, mattwiebe, maverick3x6, mcsf, mdawaffe, MichaelArestad, migueluy, mikeyarce, mkaz, nancythanki, nickmomrik, obenland, oskosk, pento, professor44, rachelsquirrel, rdcoll, ryancowles, richardmuscat, richardmtl, roccotripaldi, samhotchkiss, scarstocea, sdquirk, stephdau, tmoorewp, tyxla, Viper007Bond, westi, yoavf, zinigor
 Tags: Jetpack, WordPress.com, backup, security, related posts, CDN, speed, anti-spam, social sharing, SEO, video, stats
-Stable tag: 6.4.2
-Requires at least: 4.7
+Stable tag: 6.6.1
+Requires at least: 4.8
 Tested up to: 4.9
 
 The ideal plugin for stats, related posts, search engine optimization, social sharing, protection, backups, security, and more.
@@ -98,53 +98,67 @@ There are opportunities for developers at all levels to contribute. [Learn more 
 
 == Changelog ==
 
-= 6.4.2 =
+= 6.6.1 =
 
-* Release date: August 10, 2018
-* Release post: https://wp.me/p1moTy-9pL
-
-**Bug fixes**
-
-Comments: We fixed an error that broke functionality of Social Login for comments.
-
-= 6.4.1 =
-
-* Release date: August 8, 2018
-* Release post: https://wp.me/p1moTy-9pc
+* Release date: October 10, 2018
+* Release post: https://wp.me/p1moTy-aEt
 
 **Bug fixes**
 
-Comments: We fixed an error that broke functionality of nested comments.
+* Sitemaps: improve initial sitemap creation process.
+* Widgets: fix missing CSS for the Social Icons Widgets.
 
-= 6.4 =
+= 6.6 =
 
-* Release date: August 7, 2018
-* Release post: https://wp.me/p1moTy-9md
+* Release date: October 9, 2018
+* Release post: https://wp.me/p1moTy-aa1
+
+**Major Enhancements**
+
+* Verification Tools: enable one-click site verification and sitemap.xml registration with Google.
 
 **Enhancements**
 
-* Connection: Updated connect splash screen with new content.
-* Docs: Added documentation for retrieving provision status of a site.
-* Shortcodes: Added oEmbed support for flat.io.
-* Widgets: Added `jetpack_top_posts_widget_layout` filter that allows you to create a custom display layout for the Top posts widget.
-* Privacy tools: Identify the data export/erasure callbacks for Feedback posts using associative keys, to better match the convention in Core.
-* Privacy tools: Added the `grunion_contact_form_delete_feedback_post` filter hook to allow specific Feedback posts to be bypassed during data erasure requests, similar to the `wp_anonymize_comment` filter in Core.
-* Contact Form: Disabled random table optimizations on core tables.
+* Admin Interface: update all Jetpack settings screens to use a similar design.
+* API: add flags to determine if Jetpack Search is enabled and supported.
+* CDN: First Beta version of the Photon CDN -- Speed up sites and increase max concurrent connections through Photon by cloud-hosting Jetpack and WordPress Core scripts, styles, and assets.
+* Contact Form: add filters to allow customizing the class attributes of inputs and buttons.
+* General: add more constants to error log for the Jetpack test suite.
+* Gutenberg: add infrastructure necessary to add new blocks via Jetpack.
+* Lazy Images: load the placeholder via the `srcset` attribute instead of the `src` attribute.
+* Masterbar: add link to Activity Log.
+* Publicize: the Path Social Network is closing in October. The option has consequently been removed from the Publicize interface.
+* Search: improve the feature activation process.
+* Search: update the admin interface to give more information about what the feature does and how it can be used.
+* Simple Payments: update all mentions of the product for a more consistent naming convention and less confusion for both site owners and translators.
+* Sync: log action when an attachment is added to a post for the first time.
+* Sync: add URL details to synchronization requests.
+* Sync: detect if a post is saved via Gutenberg when synchronizing post events.
 
 **Improved compatibility**
 
-* AMP: Improved AMP compatibility for Comments iframe.
-* General: The SEO Framework is no longer a conflicting Open Graph plugin and is now better compatible with Jetpack.
+* Shortcodes: update Mailchimp shortcode to match the new format offered by Mailchimp.
 
 **Bug fixes**
 
-* Shortcodes: Removed extra black bars from YouTube embeds as controls are inside the container now.
-* Simple Payments: Fixed the custom post type bug that affected Simple Payments widget for 2 year subscriptions.
-* Simple Payments: Fixed site failure which happens on Multisite installation with Simple Payments widget.
-* Simple Payments: Fixed syntax and misc compatibility issues with Simple Payments widget on PHP 5.2.
-* Simple Payments: Added warning for admin users if Simple Payments is not enabled but there are products published on pages/posts as a widget.
-* Lazy Images: Fixed an issue with images not loading while updating quantity in WooCommerce shopping cart.
-* Lazy Images: Fixed centered images that do not crop properly when no JavaScript is enabled.
-* General: Fixed auto scrolling to top when following the Quick Tour buttons.
-* General: Removed ability to set custom name for Site Identity section.
-* General: Added advanced control capabilities to image extraction from posts.
+* CSS Concatenation: add Authors and Social Icons widgets to concatenated styles.
+* Featured Content: avoid registering duplicate Post Types.
+* Geo Location: only enqueue Dashicons when necessary.
+* Google Analytics: do not output tracking code when the "Enhanced eCommerce" option is active, but the WooCommerce plugin is not.
+* Infinite Scroll: add a Privacy Link to the site's footer if a Privacy Policy was set up via WordPress's privacy options.
+* Infinite Scroll: fix video playback of VideoPress videos loaded via Infinite Scroll.
+* Protect: fix layout of legend that prompts the user to solve the math fallback so it works better in all languages.
+* Responsive Videos: avoid PHP notice.
+* Sharing: do not record stats if the stats module is disabled.
+* Sharing: allow saving sharing button options on media edit page as well.
+* Shortcodes: ensure we build minified and RTL stylesheets for slideshows.
+* Simple Payments: Stop contributors from creating inaccessible buttons with a "pending" post status.
+* Sitemaps: no longer add images attached to non-published posts to the image sitemap.
+* Slideshows: ensure arrows point in the right direction for RTL Languages.
+* Sync: avoid PHP notices when synchronizing user information.
+* VideoPress: avoid duplicate rel attributes in links.
+* VideoPress: do not block access to the Video settings for our customers using a 2-year plan.
+
+--------
+
+[See the previous changelogs here](https://raw.githubusercontent.com/Automattic/jetpack/master/changelog.txt).

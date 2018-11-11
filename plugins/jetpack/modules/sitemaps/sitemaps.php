@@ -361,6 +361,16 @@ class Jetpack_Sitemap_Manager {
 	}
 
 	/**
+	 * Callback handler for sitemap cron hook
+	 *
+	 * @access public
+	 */
+	public function callback_sitemap_cron_hook() {
+		$sitemap_builder = new Jetpack_Sitemap_Builder();
+		$sitemap_builder->update_sitemap();
+	}
+
+	/**
 	 * Add actions to schedule sitemap generation.
 	 * Should only be called once, in the constructor.
 	 *
@@ -371,22 +381,30 @@ class Jetpack_Sitemap_Manager {
 		// Add cron schedule.
 		add_filter( 'cron_schedules', array( $this, 'callback_add_sitemap_schedule' ) );
 
-		$sitemap_builder = new Jetpack_Sitemap_Builder();
-
 		add_action(
 			'jp_sitemap_cron_hook',
-			array( $sitemap_builder, 'update_sitemap' )
+			array( $this, 'callback_sitemap_cron_hook' )
 		);
 
 		if ( ! wp_next_scheduled( 'jp_sitemap_cron_hook' ) ) {
+			/**
+			 * Filter the delay in seconds until sitemap generation cron job is started.
+			 *
+			 * This filter allows a site operator or hosting provider to potentialy spread out sitemap generation for a
+			 * lot of sites over time. By default, it will be randomly done over 15 minutes.
+			 *
+			 * @module sitemaps
+			 * @since 6.6.1
+			 *
+			 * @param int $delay Time to delay in seconds.
+			 */
+			$delay = apply_filters( 'jetpack_sitemap_generation_delay', MINUTE_IN_SECONDS * mt_rand( 1, 15 ) ); // Randomly space it out to start within next fifteen minutes.
 			wp_schedule_event(
-				time(),
+				time() + $delay,
 				'sitemap-interval',
 				'jp_sitemap_cron_hook'
 			);
 		}
-
-		return;
 	}
 
 	/**

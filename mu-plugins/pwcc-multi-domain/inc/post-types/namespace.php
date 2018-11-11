@@ -17,7 +17,7 @@ use WP_Error;
  * Runs on the `plugins_loaded` filter.
  */
 function bootstrap() {
-	$filters = [ 'post_link', 'page_link', 'post_type_link', 'get_canonical_url' ];
+	$filters = [ 'post_link', 'page_link', 'post_type_link', 'get_canonical_url', 'attachment_link' ];
 	foreach ( $filters as $filter ) {
 		add_filter( $filter, __NAMESPACE__ . '\\filter_permalink', 10, 2 );
 	}
@@ -25,6 +25,8 @@ function bootstrap() {
 	add_filter( 'home_url', __NAMESPACE__ . '\\filter_home_url', 10, 4 );
 
 	add_filter( 'post_type_archive_link', __NAMESPACE__ . '\\filter_post_type_archive_link', 10, 2 );
+
+	add_filter( 'paginate_links', __NAMESPACE__ . '\\filter_paginate_links' );
 }
 
 /**
@@ -97,6 +99,14 @@ function filter_permalink( string $permalink, $post ) {
 		return $permalink;
 	}
 
+	if ( $post->post_type === 'attachment' && $post->post_parent ) {
+		/*
+		 * Attachments are a special case, the canonical URL is based
+		 * on that of the parent post.
+		 */
+		$post = get_post( $post->post_parent );
+	}
+
 	$permalink_home = get_post_types_custom_home( $post->post_type );
 	if ( is_wp_error( $permalink_home ) ) {
 		return $permalink;
@@ -146,6 +156,30 @@ function filter_home_url( string $home_url, string $path, $orig_scheme, $blog_id
  * @return string The modified post type archive URL.
  */
 function filter_post_type_archive_link( $link, $post_type ) {
+	$real_home = get_post_types_custom_home( $post_type );
+	if ( is_wp_error( $real_home ) ) {
+		return $link;
+	}
+
+	return MultiDomain\normalise_url( $link, $real_home );
+}
+
+/**
+ * Filters the paginated links for the post type archive pages.
+ *
+ * Runs on the `paginate_links` filter
+ *
+ * @param string $link The paginated link URL.
+ * @return string The modified paginated link URL.
+ */
+function filter_paginate_links( string $link ) {
+	if ( ! is_post_type_archive() ) {
+		// It's handled elsewhere.
+		return $link;
+	}
+
+	$object    = get_queried_object();
+	$post_type = $object->name;
 	$real_home = get_post_types_custom_home( $post_type );
 	if ( is_wp_error( $real_home ) ) {
 		return $link;

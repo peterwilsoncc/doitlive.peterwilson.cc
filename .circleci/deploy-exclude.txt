@@ -6,6 +6,11 @@
 # `branches` option in config.yml instead.
 
 .git
+composer.json
+composer.lock
+phpcs*.xml
+phpunit.xml
+phpunit.xml.dist
 /.chassis
 /.circleci
 /.config
@@ -21,8 +26,4 @@
 /mu-plugins/vendor/twitteroauth/tests
 /node_modules
 /.gitmodules
-/phpcs*.xml
-/phpunit.xml
-/phpunit.xml.dist
-/composer.*
 *.yaml
