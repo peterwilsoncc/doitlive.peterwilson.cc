@@ -30,7 +30,7 @@ function bootstrap() {
  * doesn't fire the hook if it determines the URL is valid.
  */
 function filter_template_redirect() {
-	if ( is_404() ) {
+	if ( is_404() || get_queried_object() === null ) {
 		// Do not redirect.
 		return;
 	}
