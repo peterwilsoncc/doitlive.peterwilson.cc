@@ -52,7 +52,7 @@ function post_type_rego_action( $post_type, $post_type_object ) {
 	}
 
 	// Runs late to ensure another plugin hasn't filtered to an error.
-	add_filter( "rest_pre_insert_{$post_type}", __NAMESPACE__ . '\\pre_insert_in_rest', PHP_INT_MAX );
+	add_filter( "rest_pre_insert_{$post_type}", __NAMESPACE__ . '\\pre_insert_in_rest', PHP_INT_MAX, 2 );
 }
 
 /**
@@ -60,12 +60,13 @@ function post_type_rego_action( $post_type, $post_type_object ) {
  *
  * Runs on the filter `rest_pre_insert_{$post_type}`.
  *
- * @param \stdClass $prepared_post An object representing a single post prepared
- *                                 for inserting or updating the database.
+ * @param \stdClass        $prepared_post An object representing a single post prepared
+ *                                        for inserting or updating the database.
+ * @param \WP_REST_Request $pre_request   Request object.
  *
  * @return \stdClass $prepared_post Unmodified object.
  */
-function pre_insert_in_rest( $prepared_post ) {
+function pre_insert_in_rest( $prepared_post, $pre_request ) {
 	if ( is_wp_error( $prepared_post ) ) {
 		return $prepared_post;
 	}
@@ -78,15 +79,24 @@ function pre_insert_in_rest( $prepared_post ) {
 	 * Runs on the filter `rest_request_after_callbacks`.
 	 *
 	 * @param \WP_HTTP_Response $response Result to send to the client. Usually a WP_REST_Response.
+	 * @param \WP_REST_Server   $handler  ResponseHandler instance (usually WP_REST_Server).
+	 * @param \WP_REST_Request  $request  Request used to generate the response.
+	 *
 	 * @return \WP_HTTP_Response Unmodified response.
 	 */
-	$filter = function( $response ) use ( &$filter ) {
+	$filter = function( $response, $handler, $request ) use ( &$filter, $pre_request ) {
+		if ( $request !== $pre_request ) {
+			// Callback for another internal rest request.
+			return $response;
+		}
+
+		do_action( 'populated/fire_callbacks/' . is_rest() );
 		remove_filter( 'rest_request_after_callbacks', $filter, PHP_INT_MAX );
 		is_rest( false );
 		return $response;
 	};
 
-	add_filter( 'rest_request_after_callbacks', $filter, PHP_INT_MAX );
+	add_filter( 'rest_request_after_callbacks', $filter, PHP_INT_MAX, 3 );
 
 	return $prepared_post;
 }
@@ -107,7 +117,12 @@ function is_rest( $toggle = null ) {
 		$in_rest--;
 	}
 
-	return $in_rest === 0;
+	// Safety.
+	if ( $in_rest < 0 ) {
+		$in_rest = 0;
+	}
+
+	return $in_rest;
 }
 
 /**
@@ -125,21 +140,19 @@ function populated_transition_post_status( $new_status, $old_status, $post ) {
 		return;
 	}
 
+	$rest_id = is_rest();
+
 	/**
 	 * Fire the hooks once the callback has finished firing.
 	 *
-	 * Runs on the filter `rest_request_after_callbacks`.
-	 *
-	 * @param \WP_HTTP_Response $response Result to send to the client. Usually a WP_REST_Response.
-	 * @return \WP_HTTP_Response Unmodified response.
+	 * Runs on the action `populated/fire_callbacks/{$rest_id}`.
 	 */
-	$filter = function( $response ) use ( &$filter, $new_status, $old_status, $post ) {
-		remove_filter( 'rest_request_after_callbacks', $filter );
+	$closure = function() use ( &$closure, $new_status, $old_status, $post, $rest_id ) {
+		remove_action( "populated/fire_callbacks/{$rest_id}", $closure );
 		do_action( 'populated/transition_post_status', $new_status, $old_status, $post );
-		return $response;
 	};
 
-	add_filter( 'rest_request_after_callbacks', $filter );
+	add_action( "populated/fire_callbacks/{$rest_id}", $closure );
 }
 
 /**
@@ -163,21 +176,19 @@ function populated_post_updated( $post_id, $post_after, $post_before ) {
 		return;
 	}
 
+	$rest_id = is_rest();
+
 	/**
 	 * Fire the hooks once the callback has finished firing.
 	 *
-	 * Runs on the filter `rest_request_after_callbacks`.
-	 *
-	 * @param \WP_HTTP_Response $response Result to send to the client. Usually a WP_REST_Response.
-	 * @return \WP_HTTP_Response Unmodified response.
+	 * Runs on the action `populated/fire_callbacks/{$rest_id}`.
 	 */
-	$filter = function( $response ) use ( &$filter, $post_id, $post_after, $post_before, $type ) {
-		remove_filter( 'rest_request_after_callbacks', $filter );
+	$closure = function() use ( &$closure, $post_id, $post_after, $post_before, $type, $rest_id ) {
+		remove_action( "populated/fire_callbacks/{$rest_id}", $closure );
 		do_action( "populated/{$type}_updated", $post_id, $post_after, $post_before );
-		return $response;
 	};
 
-	add_filter( 'rest_request_after_callbacks', $filter );
+	add_action( "populated/fire_callbacks/{$rest_id}", $closure );
 }
 
 /**
@@ -193,21 +204,19 @@ function populated_add_attachment( $post_id ) {
 		return;
 	}
 
+	$rest_id = is_rest();
+
 	/**
 	 * Fire the hooks once the callback has finished firing.
 	 *
-	 * Runs on the filter `rest_request_after_callbacks`.
-	 *
-	 * @param \WP_HTTP_Response $response Result to send to the client. Usually a WP_REST_Response.
-	 * @return \WP_HTTP_Response Unmodified response.
+	 * Runs on the action `populated/fire_callbacks/{$rest_id}`.
 	 */
-	$filter = function( $response ) use ( &$filter, $post_id ) {
-		remove_filter( 'rest_request_after_callbacks', $filter );
+	$closure = function() use ( &$closure, $post_id, $rest_id ) {
+		remove_action( "populated/fire_callbacks/{$rest_id}", $closure );
 		do_action( 'populated/add_attachment', $post_id );
-		return $response;
 	};
 
-	add_filter( 'rest_request_after_callbacks', $filter );
+	add_action( "populated/fire_callbacks/{$rest_id}", $closure );
 }
 
 /**
@@ -225,19 +234,17 @@ function populated_insert_post( $post_id, $post, $update ) {
 		return;
 	}
 
+	$rest_id = is_rest();
+
 	/**
 	 * Fire the hooks once the callback has finished firing.
 	 *
-	 * Runs on the filter `rest_request_after_callbacks`.
-	 *
-	 * @param \WP_HTTP_Response $response Result to send to the client. Usually a WP_REST_Response.
-	 * @return \WP_HTTP_Response Unmodified response.
+	 * Runs on the action `populated/fire_callbacks/{$rest_id}`.
 	 */
-	$filter = function( $response ) use ( &$filter, $post_id, $post, $update ) {
-		remove_filter( 'rest_request_after_callbacks', $filter );
+	$closure = function() use ( &$closure, $post_id, $post, $update, $rest_id ) {
+		remove_action( "populated/fire_callbacks/{$rest_id}", $closure );
 		do_action( 'populated/wp_insert_post', $post_id, $post, $update );
-		return $response;
 	};
 
-	add_filter( 'rest_request_after_callbacks', $filter );
+	add_action( "populated/fire_callbacks/{$rest_id}", $closure );
 }
