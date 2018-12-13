@@ -25,7 +25,6 @@ return array(
 	'wp-block-library'                      => array(
 		'editor',
 		'lodash',
-		'moment',
 		'wp-api-fetch',
 		'wp-autop',
 		'wp-blob',
@@ -134,7 +133,7 @@ return array(
 	'wp-editor'                             => array(
 		'jquery',
 		'lodash',
-		'tinymce-latest-lists',
+		'wp-tinymce-lists',
 		'wp-a11y',
 		'wp-api-fetch',
 		'wp-blob',
