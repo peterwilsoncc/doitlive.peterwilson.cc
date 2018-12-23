@@ -85,20 +85,23 @@ function enqueue() {
 		]
 	);
 
-	if ( ! $loaded ) {
-		wp_enqueue_script(
-			'pwcc-003-app',
-			get_stylesheet_directory_uri() . '/assets/build/app.js',
-			[],
-			get_theme_version(),
-			true
-		);
-
-		wp_enqueue_style(
-			'pwcc-003-app',
-			get_stylesheet_directory_uri() . '/assets/build/app.css',
-			[],
-			get_theme_version()
-		);
+	if ( $loaded ) {
+		return;
 	}
+
+	// Enqueue assets manually.
+	wp_enqueue_script(
+		'pwcc-003-app',
+		get_stylesheet_directory_uri() . '/assets/build/app.js',
+		[],
+		get_theme_version(),
+		true
+	);
+
+	wp_enqueue_style(
+		'pwcc-003-app',
+		get_stylesheet_directory_uri() . '/assets/build/app.css',
+		[],
+		get_theme_version()
+	);
 }
