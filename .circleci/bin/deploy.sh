@@ -14,6 +14,7 @@ download_wp_core
 version_plugin "$UNICI_PROJECT_DIRECTORY/mu-plugins/pwcc-helpers";
 version_plugin "$UNICI_PROJECT_DIRECTORY/mu-plugins/pwcc-multi-domain";
 version_plugin "$UNICI_PROJECT_DIRECTORY/mu-plugins/pwcc-notes";
+version_plugin "$UNICI_PROJECT_DIRECTORY/themes/pwcc-003" "style.css";
 
 if [[ -z "$DEPLOY_BRANCH" ]]; then
 	echo "No branch specified!"
