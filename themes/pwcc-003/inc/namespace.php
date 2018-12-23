@@ -7,6 +7,26 @@ function bootstrap() {
 	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue' );
 }
 
+/**
+ * Get the version of this theme.
+ *
+ * If the value returned is a placeholder, use the current time.
+ *
+ * @return int|string The plugin version.
+ */
+function get_theme_version() {
+	static $version;
+
+	if ( $version ) {
+		return $version;
+	}
+
+	$theme_data = wp_get_theme();
+	$version = $theme_data->get( 'Version' ) === '%%VERSION%%' ? microtime( true ) : $theme_data->get( 'Version' );
+
+	return $version;
+}
+
 function enqueue() {
 	$loaded = AssetLoader\enqueue_assets(
 		__DIR__ . '/../assets', [
@@ -20,7 +40,7 @@ function enqueue() {
 			'pwcc-003-app',
 			get_stylesheet_directory_uri() . '/assets/build/app.js',
 			[],
-			'1.0.0-alpha',
+			get_theme_version(),
 			true
 		);
 
@@ -28,7 +48,7 @@ function enqueue() {
 			'pwcc-003-app',
 			get_stylesheet_directory_uri() . '/assets/build/app.css',
 			[],
-			'1.0.0-alpha'
+			get_theme_version()
 		);
 	}
 }
