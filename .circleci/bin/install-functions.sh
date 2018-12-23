@@ -80,7 +80,8 @@ version_plugin() {
 	fi
 
 	local directory="$1";
-	local file="$directory/plugin.php";
+	local filename="${2:-plugin.php}"
+	local file="$directory/$filename";
 	local hash=$(cd $directory; git log -n 1 --no-merges --pretty=format:%h -- ./);
 
 	sed $ioption "s/%%VERSION%%/$hash/" "$file"
