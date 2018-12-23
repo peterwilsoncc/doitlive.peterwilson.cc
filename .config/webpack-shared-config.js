@@ -116,7 +116,8 @@ const loaderRules = {
 		test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|eot|ttf)$/,
 		loader: require.resolve( 'url-loader' ),
 		query: {
-			name: '[name].[ext]',
+			name: 'build/static/[name].[sha1:hash:base36:8].[ext]',
+			publicPath: '../',
 			limit: 10000,
 		},
 	},
