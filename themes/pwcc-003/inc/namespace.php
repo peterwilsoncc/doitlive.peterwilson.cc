@@ -6,6 +6,8 @@ use HumanMade\AssetLoader;
 function bootstrap() {
 	theme_setup();
 	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue' );
+
+	HTML_Header\bootstrap();
 }
 
 /**
