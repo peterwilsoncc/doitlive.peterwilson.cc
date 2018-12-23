@@ -1,8 +1,12 @@
-<html>
-<head>
-	<?php wp_head(); ?>
-</head>
-<body>
-	<?php wp_footer(); ?>
-</body>
-</html>
+<?php
+/**
+ * Theme index file.
+ *
+ * @package pwcc-003 theme.
+ */
+get_header();
+?>
+
+
+<?php
+get_footer();
