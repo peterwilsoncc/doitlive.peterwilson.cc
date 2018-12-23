@@ -27,6 +27,11 @@ function get_theme_version() {
 	return $version;
 }
 
+/**
+ * Enqueue theme CSS and JavaScript.
+ *
+ * Runs on the action `wp_enqueue_scripts`.
+ */
 function enqueue() {
 	$loaded = AssetLoader\enqueue_assets(
 		__DIR__ . '/../assets', [
