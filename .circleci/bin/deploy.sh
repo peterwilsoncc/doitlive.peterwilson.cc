@@ -70,6 +70,7 @@ rsync -av "$WP_CORE_DIR/" "$BUILD_DIR/wp"
 # And the content directory.
 mkdir -p $BUILD_DIR/content
 rsync -av "$SRC_DIR/" "$BUILD_DIR/content" --exclude-from "$SRC_DIR/.circleci/deploy-exclude.txt"
+mkdir -p $BUILD_DIR/content/.gitignore
 
 # Add changed files
 git add .
