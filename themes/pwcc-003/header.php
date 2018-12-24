@@ -21,6 +21,18 @@
 		</svg>
 	</div>
 	<div class="header__nav">
-
+		<?php
+		wp_nav_menu( [
+			'theme_location' => 'global-nav',
+			'container' => 'nav',
+			'container_id' => null,
+			'container_class' => 'global-nav',
+			'menu_id' => 'global-nav__menu',
+			'menu_class' => 'global-nav__menu',
+			'fallback_cb' => false,
+			'depth' => 1,
+			'item_spacing' => 'discard',
+		] );
+		?>
 	</div>
 </header>

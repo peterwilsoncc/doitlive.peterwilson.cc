@@ -8,6 +8,7 @@ function bootstrap() {
 	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue' );
 
 	HTML_Header\bootstrap();
+	Navigation\bootstrap();
 }
 
 /**
