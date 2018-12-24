@@ -31,7 +31,7 @@ fi
 git submodule update --init --recursive
 
 # Build assets.
-yarn run build
+yarn build
 
 # Create and change to build dir.
 mkdir -p $BUILD_DIR
