@@ -38,7 +38,7 @@ function get_menu_base_class( $args ) {
 		$base_class = $args['menu_class'];
 	} elseif ( ! empty( $args['container_class'] ) ) {
 		$base_class = $args['container_class'];
-	} elseif( ! empty( $args['theme_location'] ) ) {
+	} elseif ( ! empty( $args['theme_location'] ) ) {
 		$base_class = $args['theme_location'];
 	} else {
 		return '';
