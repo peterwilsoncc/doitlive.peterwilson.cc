@@ -23,6 +23,33 @@ function register_navigation() {
 }
 
 /**
+ * Determine the base class for a menu.
+ *
+ * This is based on the arguments passed to `wp_nav_menu()`.
+ *
+ * @param \stdClass|array $args `wp_nav_menu()` arguments.
+ *
+ * @return string The base HTML class.
+ */
+function get_menu_base_class( $args ) {
+	$args = (array) $args;
+
+	if ( ! empty( $args['menu_class'] ) ) {
+		$base_class = $args['menu_class'];
+	} elseif ( ! empty( $args['container_class'] ) ) {
+		$base_class = $args['container_class'];
+	} elseif( ! empty( $args['theme_location'] ) ) {
+		$base_class = $args['theme_location'];
+	} else {
+		return '';
+	}
+
+	$base_class = explode( '__', $base_class, 2 )[0];
+
+	return sanitize_html_class( $base_class );
+}
+
+/**
  * Filter the submenu classes to something a bit more BEM like.
  *
  * Selected classes are removed, taking into account those needed by the customizer.
@@ -39,10 +66,15 @@ function filter_submenu_css_class( $classes, $args, $depth ) {
 	// Make the args an array.
 	$args = (array) $args;
 
+	$base_class = get_menu_base_class( $args );
+	if ( ! $base_class ) {
+		// No classes specified, use defaults.
+		return $classes;
+	}
+
 	// Classes to remove.
 	$remove_classes = [ 'sub-menu' ];
 
-	$base_class = explode( '__', $args['container_class'], 2 )[0];
 	$classes[] = sanitize_html_class( "${base_class}__sub-menu" );
 	$classes[] = sanitize_html_class( "${base_class}__sub-menu--depth-" . ( $depth + 1 ) );
 
@@ -69,6 +101,12 @@ function filter_menu_item_css_class( $classes, $item, $args, $depth ) {
 	// Make the args an array.
 	$args = (array) $args;
 
+	$base_class = get_menu_base_class( $args );
+	if ( ! $base_class ) {
+		// No classes specified, use defaults.
+		return $classes;
+	}
+
 	// Classes to remove.
 	$remove_classes = [
 		'menu-item',
@@ -81,7 +119,6 @@ function filter_menu_item_css_class( $classes, $item, $args, $depth ) {
 		sanitize_html_class( "menu-item-object-{$item->object}" ),
 	];
 
-	$base_class = explode( '__', $args['container_class'], 2 )[0];
 	$classes[] = sanitize_html_class( "${base_class}__menu-item" );
 
 	if ( in_array( 'current-menu-item', $classes, true ) ) {
