@@ -90,10 +90,10 @@ function filter_submenu_css_class( $classes, $args, $depth ) {
  *
  * Runs on the filter `nav_menu_css_class`.
  *
- * @param array    $classes The CSS classes that are applied to the menu item's `<li>` element.
+ * @param array     $classes The CSS classes that are applied to the menu item's `<li>` element.
  * @param \WP_Post  $item    The current menu item.
  * @param \stdClass $args    An object of wp_nav_menu() arguments.
- * @param int      $depth   Depth of menu item. Used for padding.
+ * @param int       $depth   Depth of menu item. Used for padding.
  *
  * @return array Modified list of CSS classes applied to the `li` element.
  */
