@@ -1,0 +1,16 @@
+# Exclude vendor code.
+/**/vendor/
+/dropins/
+/plugins/
+/node_modules/
+/vendor/
+
+# Exclude non-project directories.
+/.chassis/
+/.circleci/
+/.tests/
+/uploads/
+/test-uploads/
+
+# Exclude build directories
+/**/dist/

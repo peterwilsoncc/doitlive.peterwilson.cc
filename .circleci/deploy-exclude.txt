@@ -13,6 +13,7 @@ phpunit.xml
 phpunit.xml.dist
 /.chassis
 /.circleci
+/.config
 /.tests
 /vendor
 /mu-plugins/vendor/cavalcade/tests

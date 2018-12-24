@@ -71,10 +71,27 @@ jobs:
           paths:
             - ./vendor
           key: v1-dep-composer-{{ checksum "composer.lock" }}
+      # Yarn
+      - restore_cache:
+          keys:
+          - v1-dep-yarn-{{ checksum "yarn.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dep-yarn
+      - run:
+          name: "Install Project Dependencies (Yarn)"
+          command: yarn install
+      - save_cache:
+          paths:
+            - ./node_modules
+          key: v1-dep-yarn-{{ checksum "yarn.lock" }}
       - run:
           name: "Run PHP Code sniffs"
           command: |
             ./vendor/bin/phpcs --standard=phpcs.ruleset.xml . -p
+      - run:
+          name: "Run SCSS Code sniffs"
+          command: |
+            yarn lint:scss
       - run:
           name: "Ensure submodules are up to date"
           command: |
@@ -102,6 +119,19 @@ jobs:
           command: |
             bash .circleci/bin/universal-environment-vars.sh
             source $BASH_ENV
+      # Yarn
+      - restore_cache:
+          keys:
+          - v1-dep-yarn-{{ checksum "yarn.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dep-yarn
+      - run:
+          name: "Install Project Dependencies (Yarn)"
+          command: yarn install
+      - save_cache:
+          paths:
+            - ./node_modules
+          key: v1-dep-yarn-{{ checksum "yarn.lock" }}
       - run:
           name: "Build"
           command: |

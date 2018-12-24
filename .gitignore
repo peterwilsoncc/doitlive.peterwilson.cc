@@ -5,3 +5,6 @@
 /upgrade
 /config.local.yaml
 /vendor
+
+# Build files
+/themes/pwcc-003/assets/dist/

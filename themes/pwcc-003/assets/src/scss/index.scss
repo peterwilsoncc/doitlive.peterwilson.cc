@@ -1,0 +1,31 @@
+/**
+ * SCSS Main file.
+ */
+
+// Define some variables.
+@import "variables";
+
+/**
+ * Base styles.
+ *
+ * Includes following from vendor directory:
+ * - font-faces
+ */
+@import "base/_index";
+
+/**
+ * Components.
+ */
+@import "components/_index";
+
+/**
+ * Utility Classes.
+ */
+
+/**
+ * Vendor files.
+ */
+
+/**
+ * Block Editor styles.
+ */
