@@ -1,19 +1,17 @@
 <?php
+
+// phpcs:disable HM.Files.NamespaceDirectoryName.NoIncDirectory
+
 /**
- * This namespace handles detecting and loading scripts from a theme or plugin
- * `asset-manifest.json` file, to enable PHP to detect and load from the
- * WebpackDevServer whenever that server is active.
- *
- * If no asset manifest is detected the enqueue_assets function will return
- * `false`, permitting theme and plugin code to manually handle their own
- * enqueues while the development server is not running.
- *
- * Built off of https://github.com/humanmade/react-wp-scripts
- *
- * @package HumanMade
+ * Plugin Name: HM Asset Loader
+ * Plugin URI: https://humanmade.com
+ * Description: Helper for loading scripts & styles with support for Webpack DevServer.
+ * Author: Human Made
+ * Author URI: https://humanmade.com
+ * Version: 1.0.0
  */
 
-namespace HumanMade\AssetLoader;
+namespace HM\Asset_Loader;
 
 /**
  * Attempt to load a file at the specified path and parse its contents as JSON.
@@ -26,6 +24,7 @@ function load_asset_file( $path ) {
 		return null;
 	}
 
+	// phpcs:ignore
 	$contents = file_get_contents( $path );
 
 	if ( empty( $contents ) ) {
@@ -36,172 +35,151 @@ function load_asset_file( $path ) {
 }
 
 /**
- * Check a directory for a dev server asset manifest file, and attempt to
+ * Get assets list from manifest file
+ *
+ * Checks a directory for a root or build asset manifest file, and attempt to
  * decode and return the asset list JSON if found.
  *
- * @param string $directory Root directory possibly containing an `asset-manifest.json` file.
+ * @param string $directory Root directory containing `src` and `build` directory.
+ *
  * @return array|null;
  */
-function get_assets_list( string $directory ) {
-	$directory = trailingslashit( $directory );
-
-	$dev_assets = load_asset_file( $directory . 'asset-manifest.json' );
+function get_assets_list( string $manifest_path ) {
+	$dev_assets = load_asset_file( $manifest_path );
 
 	if ( empty( $dev_assets ) ) {
 		return null;
 	}
 
-	return array_values( $dev_assets );
+	return $dev_assets;
 }
 
 /**
- * Infer a base web URL for a file system path.
+ * Build assets sources
  *
- * @param string $path Filesystem path for which to return a URL.
- * @return string|null
- */
-function infer_base_url( string $path ) {
-	$path = wp_normalize_path( $path );
-
-	$stylesheet_directory = wp_normalize_path( get_stylesheet_directory() );
-	if ( strpos( $path, $stylesheet_directory ) === 0 ) {
-		return get_theme_file_uri( substr( $path, strlen( $stylesheet_directory ) ) );
-	}
-
-	$template_directory = wp_normalize_path( get_template_directory() );
-	if ( strpos( $path, $template_directory ) === 0 ) {
-		return get_theme_file_uri( substr( $path, strlen( $template_directory ) ) );
-	}
-
-	// Any path not known to exist within a theme is treated as a plugin path.
-	$plugin_path = get_plugin_basedir_path();
-	if ( strpos( $path, $plugin_path ) === 0 ) {
-		return plugin_dir_url( __FILE__ ) . substr( $path, strlen( $plugin_path ) + 1 );
-	}
-
-	return '';
-}
-
-/**
- * Return the path of the plugin basedir.
+ * @param array $args Arguments passed to enqueue().
  *
- * @return string
+ * @return array
  */
-function get_plugin_basedir_path() {
-	$plugin_dir_path = wp_normalize_path( plugin_dir_path( __FILE__ ) );
-
-	$plugins_dir_path = wp_normalize_path( trailingslashit( WP_PLUGIN_DIR ) );
-
-	return substr( $plugin_dir_path, 0, strpos( $plugin_dir_path, '/', strlen( $plugins_dir_path ) + 1 ) );
-}
-
-/**
- * Return web URIs or convert relative filesystem paths to absolute paths.
- *
- * @param string $asset_path A relative filesystem path or full resource URI.
- * @param string $base_url   A base URL to prepend to relative bundle URIs.
- * @return string
- */
-function get_asset_uri( string $asset_path, string $base_url ) {
-	if ( strpos( $asset_path, '://' ) !== false ) {
-		return $asset_path;
-	}
-
-	return trailingslashit( $base_url ) . $asset_path;
-}
-
-/**
- * Automatically detect and enqueue assets from a running development server.
- *
- * @param string $directory Root directory containing `src` and `build` directory.
- * @param array  $opts      See options below.
- *     @type string $base_url Root URL containing `src` and `build` directory. Only needed for production.
- *     @type string $handle   Style/script handle. (Default is last part of directory name.)
- *     @type array  $scripts  Script dependencies.
- *     @type array  $styles   Style dependencies.
- * @return boolean Whether any scripts were auto-loaded.
- */
-function enqueue_assets( $directory, $opts = [] ) {
-	$defaults = [
-		'base_url' => '',
-		'handle'   => basename( $directory ),
-		'scripts'  => [],
-		'styles'   => [],
+function build_src( $args ) {
+	$script_url = sprintf( '%s/dist/%s.js', $args['dir_url'], $args['entry'] );
+	$srcs       = [
+		'script' => $script_url,
 	];
 
-	$opts = wp_parse_args( $opts, $defaults );
+	$manifest_path = sprintf( '%s/dist/%s-manifest.json', $args['dir_path'], $args['entry'] );
+	// If manifest file doesn't exist, we're in production mode.
+	if ( ! file_exists( $manifest_path ) ) {
+		if ( $args['has_css'] ) {
+			$srcs['style'] = str_replace( '.js', '.css', $script_url );
+		}
 
-	$assets = get_assets_list( $directory );
+		return $srcs;
+	}
 
-	if ( empty( $assets ) ) {
-		// Unlike when using react-wp-scripts, if $assets is empty we trust the
-		// theme or plugin to handle its own asset loading.
+	$list = get_assets_list( $manifest_path );
+
+	if ( empty( $list ) ) {
+		return $srcs;
+	}
+
+	// This replaces the asset source with the one found in manifest file.
+	array_walk( $srcs, function ( &$src ) use ( $list ) {
+		$key = str_replace( home_url( '/content/' ), '', $src );
+
+		if ( isset( $list[ $key ] ) ) {
+			$src = $list[ $key ];
+		}
+	} );
+
+	return $srcs;
+}
+
+/**
+ * Enqueue assets
+ *
+ * @param array $args {
+ *     @type string  $entry       Entry name as added to webpack.
+ *     @type string  $handle      Handle to register the asset.
+ *     @type bool    $has_css     Whether or not this entry has a CSS output.
+ *     @type string  $dir_path    Absolute path of where the assets are located.
+ *     @type string  $dir_url     Absolute URL of where the assets are located.
+ *     @type array   $script_deps Script dependencies.
+ *     @type array   $style_deps  Style dependencies.
+ *     @type bool    $in_footer   Whether to enqueu the script in the footer instead of the head.
+ * }
+ *
+ * @return bool
+ */
+function enqueue( array $args ) {
+	$defaults = [
+		'entry'       => '',
+		'handle'      => '',
+		'has_css'     => false,
+		'dir_path'    => '',
+		'dir_url'     => '',
+		'script_deps' => [],
+		'style_deps'  => [],
+		'in_footer'   => true,
+		'text_domain' => '',
+		'version'     => null,
+	];
+
+	if ( empty( $args['entry'] ) || empty( $args['dir_path'] ) || empty( $args['dir_url'] ) ) {
 		return false;
 	}
 
-	$base_url = $opts['base_url'];
-	if ( empty( $base_url ) ) {
-		$base_url = infer_base_url( $directory );
+	if ( empty( $args['handle'] ) ) {
+		$args['handle'] = $args['entry'];
 	}
 
-	// There will be at most one JS and one CSS file in vanilla Create React App manifests.
-	$has_css = false;
-	foreach ( $assets as $asset_path ) {
-		$is_js  = preg_match( '/\.js$/', $asset_path );
-		$is_css = preg_match( '/\.css$/', $asset_path );
+	$args = wp_parse_args( $args, $defaults );
+	$srcs = build_src( $args );
 
-		if ( ! $is_js && ! $is_css ) {
-			// Assets such as source maps and images are also listed; ignore these.
-			continue;
-		}
-
-		if ( $is_js ) {
-			wp_enqueue_script(
-				$opts['handle'],
-				get_asset_uri( $asset_path, $base_url ),
-				$opts['scripts'],
-				null,
-				true
-			);
-		} elseif ( $is_css ) {
-			$has_css = true;
-			wp_enqueue_style(
-				$opts['handle'],
-				get_asset_uri( $asset_path, $base_url ),
-				$opts['styles']
-			);
-		}
-	}
-
-	// Ensure CSS dependencies are always loaded, even when using CSS-in-JS in
-	// development.
-	if ( ! $has_css ) {
-		wp_register_style(
-			$opts['handle'],
-			null,
-			$opts['styles']
+	if ( isset( $srcs['script'] ) ) {
+		wp_enqueue_script(
+			$args['handle'],
+			$srcs['script'],
+			$args['script_deps'],
+			$args['version'],
+			$args['in_footer']
 		);
-		wp_enqueue_style( $opts['handle'] );
+
+		if ( ! empty( $args['text_domain'] ) ) {
+			$locale_data = gutenberg_get_jed_locale_data( $args['text_domain'] );
+
+			wp_add_inline_script(
+				$args['handle'],
+				sprintf(
+					'wp.i18n.setLocaleData( %s, %s );',
+					json_encode( $locale_data ), // phpcs:ignore
+					json_encode( $args['text_domain'] ) // phpcs:ignore
+				),
+				'before'
+			);
+		}
 	}
 
-	// Signal that auto-loading occurred.
+	if ( ! $args['has_css'] ) {
+		return true;
+	}
+
+	if ( isset( $srcs['style'] ) ) {
+		wp_enqueue_style(
+			$args['handle'],
+			$srcs['style'],
+			$args['style_deps'],
+			$args['version']
+		);
+	} else {
+		/*
+		 * Always enqueue style dependencies because in development mode,
+		 * the style is not enqueued as it will be added to the head by webpack.
+		 */
+		foreach ( $args['style_deps'] as $style_dep ) {
+			wp_enqueue_style( $style_dep );
+		}
+	}
+
 	return true;
-}
-
-/**
- * Get a cache-busting version of assets for CSS & JS used on HM's servers.
- *
- * @returns string|null String if hash file is needed and found.
- */
-function get_asset_version() {
-	// We only need this for HM's servers.
-	if ( ! defined( 'HM_DEPLOYMENT_REVISION' ) ) {
-		return null;
-	}
-
-	if ( ! file_exists( dirname( dirname( __DIR__ ) ) . '/git-hash.txt' ) ) {
-		return null;
-	}
-
-	return sanitize_key( file_get_contents( dirname( dirname( __DIR__ ) ) . '/git-hash.txt' ) );
 }

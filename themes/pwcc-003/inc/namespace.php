@@ -1,7 +1,7 @@
 <?php
 namespace PWCC\Theme;
 
-use HumanMade\AssetLoader;
+use HM\Asset_Loader;
 
 function bootstrap() {
 	theme_setup();
@@ -78,34 +78,19 @@ function theme_setup() {
  * Runs on the action `wp_enqueue_scripts`.
  */
 function enqueue() {
-	$loaded = AssetLoader\enqueue_assets(
-		__DIR__ . '/../assets', [
-			'handle'  => 'pwcc-003-app',
-			'scripts' => [],
-		]
-	);
+	Asset_Loader\enqueue([
+		'entry'       => 'app',
+		'handle'      => 'pwcc-003',
+		'has_css'     => true,
+		'dir_url'     => get_stylesheet_directory_uri() . '/assets',
+		'dir_path'    => dirname( __DIR__ ) . '/assets',
+		'in_footer'   => true,
+		'style_deps'  => [],
+		'script_deps' => [],
+		'version'     => get_theme_version(),
+	]);
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
-
-	if ( $loaded ) {
-		return;
-	}
-
-	// Enqueue assets manually.
-	wp_enqueue_script(
-		'pwcc-003-app',
-		get_stylesheet_directory_uri() . '/assets/build/app.js',
-		[],
-		get_theme_version(),
-		true
-	);
-
-	wp_enqueue_style(
-		'pwcc-003-app',
-		get_stylesheet_directory_uri() . '/assets/build/app.css',
-		[],
-		get_theme_version()
-	);
 }
