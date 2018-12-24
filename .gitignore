@@ -7,5 +7,4 @@
 /vendor
 
 # Build files
-/themes/pwcc-003/assets/build/
-/themes/pwcc-003/assets/asset-manifest.json
+/themes/pwcc-003/assets/dist/

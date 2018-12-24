@@ -63,7 +63,7 @@ function createEntries( names, basePath, isDevelopment = false ) {
 		context,
 		entry,
 		output: {
-			path: `${ context }/build/`,
+			path: `${ context }/dist/`,
 		},
 	};
 }
