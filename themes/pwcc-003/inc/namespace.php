@@ -62,9 +62,6 @@ function theme_setup() {
 		]
 	);
 
-	// Add support for Block Styles.
-	add_theme_support( 'wp-block-styles' );
-
 	// Add support for full and wide align images.
 	add_theme_support( 'align-wide' );
 
