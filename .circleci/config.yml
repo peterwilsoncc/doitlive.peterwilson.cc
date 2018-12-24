@@ -122,14 +122,16 @@ jobs:
       # Yarn
       - restore_cache:
           keys:
-          - v1-dep-yarn-dev-{{ checksum "yarn.lock" }}
+          - v1-dep-yarn-{{ checksum "yarn.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dep-yarn
       - run:
           name: "Install Project Dependencies (Yarn)"
-          command: yarn install --production=false
+          command: yarn install
       - save_cache:
           paths:
             - ./node_modules
-          key: v1-dep-yarn-dev-{{ checksum "yarn.lock" }}
+          key: v1-dep-yarn-{{ checksum "yarn.lock" }}
       - run:
           name: "Build"
           command: |
