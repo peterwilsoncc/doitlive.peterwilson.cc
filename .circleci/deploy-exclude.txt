@@ -6,11 +6,19 @@
 # `branches` option in config.yml instead.
 
 .git
+.babelrc
+.eslintignore
+.phpcsignore
+.stylelintignore
+.stylelintrc
 composer.json
 composer.lock
+package.json
+package-lock.json
 phpcs*.xml
 phpunit.xml
 phpunit.xml.dist
+yarn.lock
 /.chassis
 /.circleci
 /.config
