@@ -21,10 +21,11 @@
 	},
 	"homepage": "https://github.com/peterwilsoncc/doitlive.peterwilson.cc#readme",
 	"devDependencies": {
+		"stylelint": "^9.9.0",
+		"stylelint-config-wordpress": "^13.1.0"
 	},
 	"browserslist": [
 		"> 0.25%"
 	],
-	"dependencies": {
-	}
+	"dependencies": {}
 }
