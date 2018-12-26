@@ -2,6 +2,9 @@
 namespace PWCC\Theme;
 
 use HM\Asset_Loader;
+use WP_Query;
+
+const CACHE_GROUP = 'theme:pwcc_003';
 
 function bootstrap() {
 	theme_setup();
@@ -91,4 +94,80 @@ function enqueue() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+}
+
+/**
+ * Echo the copyright range for the site.
+ */
+function the_copyright_dates() {
+	echo esc_html( get_copyright_dates() );
+}
+
+/**
+ * Get the copyright range for the site.
+ *
+ * @return string The copyright period represented as a string.
+ */
+function get_copyright_dates() {
+	$user_id = get_current_user_id();
+	$cache_key = "copyright_dates_user{$user_id}";
+
+	$dates = wp_cache_get( $cache_key, CACHE_GROUP );
+	if ( $dates ) {
+		return $dates;
+	}
+
+	$dates = _query_copyright_dates();
+	wp_cache_set( $cache_key, $dates, CACHE_GROUP, DAY_IN_SECONDS );
+
+	return $dates;
+}
+
+/**
+ * Query the DB for first and last copyright dates.
+ *
+ * Queries the database for the oldest and newest posts
+ * to generate the copyright string.
+ *
+ * @access private.
+ *
+ * @return string The copyright period represented as a string.
+ */
+function _query_copyright_dates() {
+	$args = [
+		'post_type' => 'any',
+		'posts_per_page' => 1,
+		'update_post_meta_cache' => false,
+		'update_post_term_cache' => false,
+		'no_found_rows' => false,
+	];
+
+	$oldest = new WP_Query( array_merge( $args, [ 'order' => 'ASC' ] ) );
+
+	/*
+	 * By definition if there is no oldest post there will be no
+	 * newest post so it's safe to bail early if the ASC query returns
+	 * no posts.
+	 */
+	if ( $oldest->post_count === 0 ) {
+		return '';
+	}
+
+	$oldest_post_year = get_the_date( 'Y', $oldest->posts[0]->ID );
+
+	// If the oldest post year is the current year, there will be no time span.
+	if ( $oldest_post_year === date( 'Y', time() ) ) {
+		return $oldest_post_year;
+	}
+
+	$newest = new WP_Query( array_merge( $args, [ 'order' => 'DESC' ] ) );
+	// No count check needed. If there is an oldest post, there is a newest.
+	$newest_post_year = get_the_date( 'Y', $newest->posts[0]->ID );
+
+	// No time span if both oldest and newest post are from the same year.
+	if ( $oldest_post_year === $newest_post_year ) {
+		return $oldest_post_year;
+	}
+
+	return "{$oldest_post_year}&ndash;{$newest_post_year}";
 }
