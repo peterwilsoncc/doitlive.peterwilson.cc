@@ -11,8 +11,10 @@
 .phpcsignore
 .stylelintignore
 .stylelintrc
+.travis.yml
 composer.json
 composer.lock
+README.md
 package.json
 package-lock.json
 phpcs*.xml
@@ -26,6 +28,7 @@ yarn.lock
 /vendor
 /mu-plugins/vendor/cavalcade/tests
 /mu-plugins/vendor/extended-cpts/tests
+/mu-plugins/vendor/extended-template-parts/bin
 /mu-plugins/vendor/hm-cmb/.github
 /mu-plugins/vendor/hm-cmb/bin
 /mu-plugins/vendor/hm-cmb/tests
