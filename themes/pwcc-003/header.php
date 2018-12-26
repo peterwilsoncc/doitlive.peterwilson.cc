@@ -15,7 +15,7 @@
 	</symbol>
 </svg>
 <header class="header">
-	<div class="header__logo logo">
+	<div class="header__logo">
 		<svg class="logo logo--header">
 			<use xlink:href="#pwcc-logo"></use>
 		</svg>
