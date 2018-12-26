@@ -19,6 +19,7 @@ function bootstrap() {
 function register_navigation() {
 	register_nav_menus( [
 		'global-nav' => 'Global navigation',
+		'legal-nav' => 'Legal navigation (footer)',
 	] );
 }
 
