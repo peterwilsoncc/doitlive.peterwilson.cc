@@ -15,6 +15,7 @@ if ( ( defined( 'WP_INSTALLING' ) && WP_INSTALLING ) ) {
 $hm_mu_plugins = [
 	'vendor/cavalcade/plugin.php',
 	'vendor/extended-cpts/extended-cpts.php',
+	'vendor/extended-template-parts/extended-template-parts.php',
 	'vendor/hm-asset-loader/plugin.php',
 	'vendor/hm-cmb/custom-meta-boxes.php',
 	'vendor/manual-control/manual-control.php',
