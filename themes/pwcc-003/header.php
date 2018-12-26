@@ -16,9 +16,12 @@
 </svg>
 <header class="header">
 	<div class="header__logo">
-		<svg class="logo logo--header">
-			<use xlink:href="#pwcc-logo"></use>
-		</svg>
+		<a href="<?php echo esc_url( home_url() ); ?>">
+			<svg class="logo logo--header" role="img" aria-labelledby="logoHeaderTitle">
+				<title id="logoHeaderTitle"><?php bloginfo( 'name' ); ?></title>
+				<use xlink:href="#pwcc-logo"></use>
+			</svg>
+		</a>
 	</div>
 	<div class="header__nav">
 		<?php
