@@ -1,17 +1,34 @@
 .header {
-	border-top: ( 10 / 16 ) * 1rem solid $color-blue;
 	display: grid;
-	grid-template-columns: auto auto;
+	grid-template-columns: 1fr;
+	max-width: 74.5rem;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 1rem;
+	padding-right: 1rem;
+
+	@media ( min-width: 45rem ) {
+		grid-template-columns: min-content 1fr;
+		grid-column-gap: 1rem;
+		align-items: center;
+	}
 }
 
 .header__logo {
 	// Can be either a h1 or p elemenet.
-	margin-top: 0;
-	margin-bottom: 0;
+	margin: 1rem auto 0;
 	font-size: 1rem;
 	line-height: 1;
 }
 
 .header__logo > a {
 	display: block;
+}
+
+.header__nav {
+	margin-top: 1rem;
+
+	@media ( min-width: 45rem ) {
+		justify-self: end;
+	}
 }
