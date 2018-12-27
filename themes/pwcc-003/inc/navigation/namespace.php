@@ -11,6 +11,7 @@ function bootstrap() {
 
 	add_filter( 'nav_menu_submenu_css_class', __NAMESPACE__ . '\\filter_submenu_css_class', 10, 3 );
 	add_filter( 'nav_menu_css_class', __NAMESPACE__ . '\\filter_menu_item_css_class', 10, 4 );
+	add_filter( 'nav_menu_link_attributes', __NAMESPACE__ . '\\filter_menu_link_attributes', 10, 3 );
 }
 
 /**
@@ -137,4 +138,31 @@ function filter_menu_item_css_class( $classes, $item, $args, $depth ) {
 	$classes = array_diff( $classes, $remove_classes );
 
 	return $classes;
+}
+
+/**
+ * Filter the link's class to include something helpful and BEM like.
+ *
+ * @param array     $attributes The HTML attributes applied to the menu item's `<a>` element.
+ * @param \WP_Post  $item       The current menu item.
+ * @param \stdClass $args       An object of wp_nav_menu() arguments.
+ *
+ * @return array Modified HTML attributes.
+ */
+function filter_menu_link_attributes( $attributes, $item, $args ){
+	// Make the args an array.
+	$args = (array) $args;
+
+	$base_class = get_menu_base_class( $args );
+	if ( ! $base_class ) {
+		// No classes specified, use defaults.
+		return $attributes;
+	}
+
+	$classes = [];
+
+	$classes[] = "{$base_class}__item-link";
+
+	$attributes['class'] = implode( ' ', array_map( 'sanitize_html_class', $classes ) );
+	return $attributes;
 }
