@@ -21,6 +21,9 @@ use PWCC\Theme;
 		?>
 	</div>
 </footer>
-<?php wp_footer(); ?>
+<?php
+get_extended_template_part( 'svg-symbols' );
+wp_footer();
+?>
 </body>
 </html>

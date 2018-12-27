@@ -15,14 +15,14 @@
 	</symbol>
 </svg>
 <header class="header">
-	<div class="header__logo">
+	<<?php echo is_front_page() ? 'h1' : 'p'; ?> class="header__logo">
 		<a href="<?php echo esc_url( home_url() ); ?>">
 			<svg class="logo logo--header" role="img" aria-labelledby="logoHeaderTitle">
 				<title id="logoHeaderTitle"><?php bloginfo( 'name' ); ?></title>
 				<use xlink:href="#pwcc-logo"></use>
 			</svg>
 		</a>
-	</div>
+	</<?php echo is_front_page() ? 'h1' : 'p'; ?>>
 	<div class="header__nav">
 		<?php
 		wp_nav_menu( [
