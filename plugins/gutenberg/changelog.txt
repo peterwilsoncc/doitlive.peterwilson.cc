@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 4.7.1 =
+
+### Bug fix
+
+* Editor: Restore the block prop in the BlockListBlock filter
+
 = 4.7.0 =
 
 ### Performance improvements
