@@ -1,8 +1,8 @@
 === Gutenberg ===
 Contributors: matveb, joen, karmatosed
 Requires at least: 4.9.8
-Tested up to: 4.9
-Stable tag: 4.6.1
+Tested up to: 5.0
+Stable tag: 4.7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -131,3 +131,4 @@ See also <a href="https://github.com/WordPress/gutenberg/blob/master/CONTRIBUTIN
 * Add end-to-end test to catch revert of title during a preview after saving a draft
 * Avoid react warnings when merging two adjacent paragraphs
 * Avoid PHP notice in the recent comments block
+* Editor: Restore the block prop in the BlockListBlock filter
