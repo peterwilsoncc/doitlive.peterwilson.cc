@@ -13,7 +13,7 @@ use PWCC\Theme;
 			'container_id' => null,
 			'container_class' => 'legal__nav legal-nav',
 			'menu_id' => 'global-nav__menu',
-			'menu_class' => 'global-nav__menu',
+			'menu_class' => 'global-nav__menu nav',
 			'fallback_cb' => false,
 			'depth' => 1,
 			'item_spacing' => 'discard',
