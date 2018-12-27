@@ -13,6 +13,12 @@
 		</properties>
 	</rule>
 
+	<!-- Add one extra word delimiter. -->
+	<rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
+		<exclude-pattern>*/themes/pwcc-003/*.php</exclude-pattern>
+		<exclude-pattern>*/themes/pwcc-003/template-parts/*</exclude-pattern>
+	</rule>
+
 	<!-- Exclude non-project directories -->
 	<exclude-pattern>*/uploads/*</exclude-pattern>
 	<exclude-pattern>*/test-uploads/*</exclude-pattern>
