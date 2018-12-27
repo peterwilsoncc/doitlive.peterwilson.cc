@@ -1,0 +1,17 @@
+.header {
+	border-top: ( 10 / 16 ) * 1rem solid $color-blue;
+	display: grid;
+	grid-template-columns: auto auto;
+}
+
+.header__logo {
+	// Can be either a h1 or p elemenet.
+	margin-top: 0;
+	margin-bottom: 0;
+	font-size: 1rem;
+	line-height: 1;
+}
+
+.header__logo > a {
+	display: block;
+}
