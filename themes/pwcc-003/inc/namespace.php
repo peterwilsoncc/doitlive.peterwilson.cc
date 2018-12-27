@@ -9,6 +9,7 @@ const CACHE_GROUP = 'theme:pwcc_003';
 function bootstrap() {
 	theme_setup();
 	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue' );
+	add_action( 'wp_footer', __NAMESPACE__ . '\\maybe_show_debug_info', 9999 );
 
 	HTML_Header\bootstrap();
 	Navigation\bootstrap();
@@ -170,4 +171,15 @@ function _query_copyright_dates() {
 	}
 
 	return "{$oldest_post_year}&ndash;{$newest_post_year}";
+}
+
+function maybe_show_debug_info() {
+	if ( PWCC_ENV !== 'local' ) {
+		return;
+	}
+	?>
+	<div style="color: black; background-color: yellow; text-align: center; font-size: 1em;">
+		<p>DB Queries: <?php echo esc_html( get_num_queries() ); ?></p>
+	</div>
+	<?php
 }
