@@ -1,0 +1,63 @@
+/**
+ * Style up the Galleries.
+ *
+ * This file accounts for both the gallery shortcode
+ * and galleries included by the block editor.
+ *
+ * The markup is slightly different but we have the
+ * technology to work around that. I hope.
+ *
+ * Default to two columns, only allow more as the
+ * screen real-estate allows for it.
+ */
+
+.gallery,
+.wp-block-gallery {
+	display: flex;
+	flex-wrap: wrap;
+
+	// Block editor is a list, reset those styles.
+	list-style: none;
+	padding-left: 0;
+}
+
+.gallery-item,
+.blocks-gallery-item {
+	// Default to two columns.
+	width: calc( 50% - 1rem );
+	margin-right: 1rem;
+	margin-bottom: 1rem;
+	flex-grow: 1;
+}
+
+.gallery > .gallery-item:nth-child( 2n ),
+.wp-block-gallery > .blocks-gallery-item:nth-child( 2n ) {
+	margin-right: 0;
+}
+
+.gallery.gallery-columns-1 > .gallery-item,
+.wp-block-gallery.columns-1 > .blocks-gallery-item {
+	width: 100%;
+	margin-right: 0;
+}
+
+// Allow more columns as the real estate allows for them.
+@media ( min-width: 30rem ) {
+	@for $i from 3 through 8 {
+		.gallery.gallery-columns-#{ $i } > .gallery-item,
+		.wp-block-gallery.columns-#{ $i } > .blocks-gallery-item {
+			width: calc( (100% - 1rem * #{ $i - 1 } ) / #{ $i } );
+			margin-right: 1rem;
+
+			&:nth-child( #{ $i } ) {
+				margin-right: 0;
+			}
+		}
+	}
+}
+
+// Always unset the margin on the final image.
+.gallery.gallery > .gallery-item:last-child,
+.wp-block-gallery.wp-block-gallery > .blocks-gallery-item:last-child {
+	margin-right: 0;
+}
