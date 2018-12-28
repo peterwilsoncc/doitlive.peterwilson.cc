@@ -8,7 +8,7 @@ $vars['display_class'] = ! empty( $vars['display_class'] ) ? $vars['display_clas
 			<svg class="icon icon--general" role="img" aria-hidden>
 				<use xlink:href="#pwcc-icon-general"></use>
 			</svg>
-			<span class="">Posted in </span>
+			<span class="screen-reader-text">Posted in </span>
 			<?php the_category( ', ' ); ?>
 		</span>
 	</footer>
