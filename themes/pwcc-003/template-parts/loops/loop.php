@@ -5,7 +5,7 @@
  * @package pwcc-003 theme.
  */
 ?>
-<main class="main hfeed">
+<main class="main main--listing hfeed">
 	<?php
 	while ( have_posts() ) {
 		the_post();

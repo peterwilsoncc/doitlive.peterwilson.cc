@@ -1,0 +1,28 @@
+.entry__content {
+	display: grid;
+	grid-template-columns:
+		[full-start]
+		1fr
+		[wide-start]
+		1fr
+		[content-start]
+		minmax( 0, 40rem )
+		[content-end]
+		1fr
+		[wide-end]
+		1fr
+		[full-end]
+		;
+}
+
+.entry__content > * {
+	grid-column: content;
+}
+
+.entry__content > .alignwide {
+	grid-column: wide;
+}
+
+.entry__content > .alignfull {
+	grid-column: full;
+}
