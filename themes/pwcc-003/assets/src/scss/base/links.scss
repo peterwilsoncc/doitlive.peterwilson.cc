@@ -1,0 +1,33 @@
+a {
+	&,
+	&:visited {
+		color: $color-red;
+		text-decoration: underline;
+		transition: color 200ms ease;
+	}
+
+	&:hover,
+	&:focus,
+	&:active {
+		color: $color-red;
+		text-decoration: none;
+	}
+}
+
+@supports ( text-decoration-color: $color-red ) {
+	a {
+		&,
+		&:visited {
+			color: inherit;
+			text-decoration-color: $color-red;
+		}
+
+		&:hover,
+		&:focus,
+		&:active {
+			color: $color-red;
+			text-decoration: underline;
+			text-decoration-color: $color-black;
+		}
+	}
+}

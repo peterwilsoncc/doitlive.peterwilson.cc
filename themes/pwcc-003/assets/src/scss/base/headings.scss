@@ -1,0 +1,39 @@
+h2,
+.h2 {
+	color: $color-black;
+	font-family: "Roboto Mono", monospace;
+	font-size: 2rem;
+	font-weight: 500;
+}
+
+h3,
+.h3 {
+	color: $color-black;
+	font-family: "Roboto Mono", monospace;
+	font-size: 1.5rem;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+
+h4,
+.h4 {
+	color: $color-red;
+	font-family: "Roboto", sans-serif;
+	font-size: 1.25rem;
+	font-weight: 700;
+}
+
+h5,
+.h5 {
+	color: $color-black;
+	font-family: "Roboto", sans-serif;
+	font-size: 1.25rem;
+	font-weight: 700;
+}
+
+h6,
+.h6 {
+	font-family: "Roboto", sans-serif;
+	font-size: 1.25rem;
+	font-weight: 700;
+}
