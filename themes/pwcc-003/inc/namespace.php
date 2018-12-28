@@ -10,6 +10,8 @@ function bootstrap() {
 	theme_setup();
 	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue' );
 	add_action( 'wp_footer', __NAMESPACE__ . '\\maybe_show_debug_info', 9999 );
+	add_filter( 'img_caption_shortcode_width', '__return_zero' );
+
 
 	HTML_Header\bootstrap();
 	Navigation\bootstrap();
