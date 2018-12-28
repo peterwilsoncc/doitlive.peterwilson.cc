@@ -1,4 +1,8 @@
-<header class="entry-header">
+<?php
+$vars = $this->vars;
+$vars['display_class'] = ! empty( $vars['display_class'] ) ? $vars['display_class'] : 'content';
+?>
+<header class="entry-header entry-header--<?php echo sanitize_html_class( $vars['display_class'] ); ?>">
 	<?php if ( get_the_title() ) : ?>
 		<?php if ( is_singular() && ! is_embed() ) : ?>
 			<h1 class="entry-header__title entry-title">

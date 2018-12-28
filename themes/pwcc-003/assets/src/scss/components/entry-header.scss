@@ -1,0 +1,35 @@
+.entry-header {
+	display: flex;
+	flex-direction: column;
+}
+
+.entry__meta-data {
+	color: $color-purple;
+	font-weight: 500;
+	font-size: 0.875rem;
+	font-style: italic;
+	order: 1;
+}
+
+.entry__published-date {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.entry-header__title {
+	color: $color-red;
+	font-family: "Roboto Mono", monospace;
+	margin-top: 0;
+	margin-bottom: 0;
+	order: 2;
+}
+
+.entry-header__title > a,
+.entry-header__title > a {
+	&,
+	&:visited,
+	&:hover,
+	&:focus {
+		color: inherit;
+	}
+}
