@@ -4,6 +4,8 @@ h2,
 	font-family: "Roboto Mono", monospace;
 	font-size: 2rem;
 	font-weight: 500;
+	margin-bottom: 0;
+	page-break-after: avoid;
 }
 
 h3,
@@ -13,6 +15,8 @@ h3,
 	font-size: 1.5rem;
 	font-weight: 400;
 	text-transform: uppercase;
+	margin-bottom: 0;
+	page-break-after: avoid;
 }
 
 h4,
@@ -21,6 +25,8 @@ h4,
 	font-family: Roboto, sans-serif;
 	font-size: 1.25rem;
 	font-weight: 700;
+	margin-bottom: 0;
+	page-break-after: avoid;
 }
 
 h5,
@@ -29,6 +35,8 @@ h5,
 	font-family: Roboto, sans-serif;
 	font-size: 1.25rem;
 	font-weight: 700;
+	margin-bottom: 0;
+	page-break-after: avoid;
 }
 
 h6,
@@ -36,4 +44,6 @@ h6,
 	font-family: Roboto, sans-serif;
 	font-size: 1.25rem;
 	font-weight: 700;
+	margin-bottom: 0;
+	page-break-after: avoid;
 }
