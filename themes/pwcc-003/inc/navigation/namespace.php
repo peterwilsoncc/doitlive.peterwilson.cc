@@ -149,7 +149,7 @@ function filter_menu_item_css_class( $classes, $item, $args, $depth ) {
  *
  * @return array Modified HTML attributes.
  */
-function filter_menu_link_attributes( $attributes, $item, $args ){
+function filter_menu_link_attributes( $attributes, $item, $args ) {
 	// Make the args an array.
 	$args = (array) $args;
 
