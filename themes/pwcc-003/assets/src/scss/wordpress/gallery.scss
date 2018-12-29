@@ -9,14 +9,13 @@
  *
  * Default to two columns, only allow more as the
  * screen real-estate allows for it.
- *
- * @TODO Grow allowed number of columns gradually.
  */
 
 .gallery,
 .wp-block-gallery {
 	display: flex;
 	flex-wrap: wrap;
+	margin-left: -1rem;
 
 	// Block editor is a list, reset those styles.
 	list-style: none;
@@ -26,10 +25,12 @@
 .gallery-item,
 .blocks-gallery-item {
 	// Default to two columns.
-	width: calc( 50% - 1rem );
-	margin-right: 1rem;
+	min-width: calc( 50% - 1rem );
+	margin-left: 1rem;
 	margin-bottom: 1rem;
 	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: 9rem;
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -38,7 +39,7 @@
 
 // The figure is nested in the block editor gallery.
 .blocks-gallery-item > figure {
-	width: 100%;
+	min-width: 100%;
 	margin-top: 0;
 	margin-bottom: 0;
 }
@@ -58,15 +59,9 @@
 	display: block;
 }
 
-.gallery > :nth-child( 2n ),
-.wp-block-gallery > :nth-child( 2n ) {
-	margin-right: 0;
-}
-
 .gallery-columns-1 > .gallery-item,
 .columns-1 > .blocks-gallery-item {
 	width: 100%;
-	margin-right: 0;
 }
 
 .gallery-caption,
@@ -93,25 +88,11 @@
 	padding: 1em .5em .5em;
 }
 
-@media ( min-width: 30rem ) {
-	@for $i from 3 through 8 {
-		.gallery-columns-#{ $i } > .gallery-item,
-		.columns-#{ $i } > .blocks-gallery-item {
-			width: calc( (100% - 1rem * #{ $i - 1 } ) / #{ $i } );
-			margin-right: 1rem;
-		}
-
-		.gallery-columns-#{ $i } > :nth-child( #{ $i } ),
-		.columns-#{ $i } > :nth-child( #{ $i } ) {
-			margin-right: 0;
-		}
+@for $i from 3 through 8 {
+	.gallery-columns-#{ $i } > .gallery-item,
+	.columns-#{ $i } > .blocks-gallery-item {
+		min-width: calc( ( 100% / #{ $i } ) - 1rem );
 	}
-}
-
-// Always unset the margin on the final image.
-.gallery-item:last-child,
-.blocks-gallery-item:last-child {
-	margin-right: 0;
 }
 
 /*
