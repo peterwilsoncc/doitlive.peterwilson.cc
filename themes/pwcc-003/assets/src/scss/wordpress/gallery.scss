@@ -7,8 +7,13 @@
  * The markup is slightly different but we have the
  * technology to work around that.
  *
- * Default to two columns, only allow more as the
- * screen real-estate allows for it.
+ * Default to eight columns. Any galleries set with
+ * a greater number of columns will display the maximum
+ * number of columns allowed.
+ *
+ * If the number of columns is incorrectly set, eg `columns=""`
+ * in the shortcode, the default value will be hit but the user
+ * is running outside of the warranty if they do that.
  *
  * `min-width` is used throughout in combination with
  * flex-basis to create faux container queries for the
@@ -28,8 +33,11 @@
 
 .gallery-item,
 .blocks-gallery-item {
-	// Default to two columns.
-	min-width: calc( 50% - 1rem );
+	/*
+	 * Default to eight columns as catch-all when eight or more
+	 * columns are set.
+	 */
+	min-width: calc( ( 100% / 8 ) - 1rem );
 	margin-left: 1rem;
 	margin-bottom: 1rem;
 	flex-grow: 1;
@@ -63,11 +71,6 @@
 	display: block;
 }
 
-.gallery-columns-1 > .gallery-item,
-.columns-1 > .blocks-gallery-item {
-	width: 100%;
-}
-
 .gallery-caption,
 .blocks-gallery-item > figure > figcaption {
 	display: block;
@@ -92,7 +95,7 @@
 	padding: 1em .5em .5em;
 }
 
-@for $i from 3 through 8 {
+@for $i from 1 through 7 {
 	.gallery-columns-#{ $i } > .gallery-item,
 	.columns-#{ $i } > .blocks-gallery-item {
 		min-width: calc( ( 100% / #{ $i } ) - 1rem );
