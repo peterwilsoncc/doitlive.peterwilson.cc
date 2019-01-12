@@ -19,5 +19,15 @@ module.exports = env => {
 				isDevelopment,
 			),
 		),
+		// Editor styles.
+		merge(
+			sharedConfig,
+			cssConfig,
+			createEntries(
+				'editor-styles',
+				'themes/pwcc-003/assets',
+				isDevelopment,
+			),
+		),
 	];
 };
