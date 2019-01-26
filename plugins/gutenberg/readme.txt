@@ -2,7 +2,7 @@
 Contributors: matveb, joen, karmatosed
 Requires at least: 4.9.8
 Tested up to: 5.0
-Stable tag: 4.7.1
+Stable tag: 4.8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -82,84 +82,88 @@ See also <a href="https://github.com/WordPress/gutenberg/blob/master/CONTRIBUTIN
 = Latest =
 
 ### Performance
-
- - Improve page initialization time by optimizing the addHook function and the viewport state initialization.
- - Improve typing performance by splitting the state tree.
- - Optimize partial application of runSelector.
- - Move selector calls to the event handles to avoid useless component rerenders.
- - Render DropZone children only when dragging elements over it.
- - Initialize variables only when needed.
-
-### Enhancements
-
- - Add error messages to the image block on upload failures.
- - Merge similar i18n strings.
- - Disable clipboard button in file block during upload.
- - Persist alignment when transforming a gallery to an image and vice-versa.
- - Copy enhancement to the embed block help text.
- - Improve the scrolling of the WordPress navigation menu.
+- Implement an async rendering mode for the data module updates.
+- Avoid rerendering the block components when selecting a block.
+- Improve the performance of isEditorEmptyPost selector (13% typing performance improvement).
+- Data Module: Avoid persisting unchanged values.
+- Update withSelect to use type-optimized isShallowEqual. 
+- Move data selection to event handlers (called only when necessary).
+- Improve the initial rendering time by optimizing the withFilters Higher-order component.
 
 ### Bug Fixes
+- Fix RichText toolbar when using multiline=”li”.
+- Correct the margin of the block icons in the inserter.
+- Fix ampersand in post tags causing editor crash.
+- Remove alignundefined class from gallery block edit markup.
+- Disable the button to open the publish sidebar if locked.
+- Correct the default margin for buttons with icons.
+- Keep the date floating when for posts with "pending" status.
+- Fix using the EXIF title when uploading images.
+- Fix font size picker on mobile.
+- Fix z-index of the Reusable Block Inserter button.
+- Fix autop behavior when a text is followed by a div.
+- Fix warning when returning null from a data module generator. 
+- Announce the screen reader messages in the correct order in Safari.
+- Check Post Type support in the options modal.
 
- - Fix RTL support for the DatePicker component.
- - Change the header level in the BlockCompare component.
- - Show all the taxonomies in the sidebar.
- - Fix the latest posts date className.
- - Fix the “align center” button in Latest Posts block in the backend.
- - Fix block height when DropCap is used.
- - Fix converting caption shortcode with link.
- - Fix edge case in addQueryArgs function.
- - Don’t return the permalink if the CPT is not publicly viewable.
- - Fix error when saving non public CPTs.
- - Properly disable the Publish button when saving is disabled.
+### Enhancements
+- Support customizing the table background colors.
+- Support underlining text using the keyboard shortcut ctrl+U.
+- Apply the editor styles to the HTML Block Preview.
+- Improve the color swatch selection indicator.
+- Improve scrolling behavior in Fullscreen Mode in Edge.
+- Remove deprecated embed providers.
+- Refactor the alignements support in the Cover Block and the Categories Block.
+- Code quality improvement to getBlockContentSchema
+- Internationalize the excerpt documentation link.
+- Improve pasting of quotes with citations.
+- A11y 
+   - Add a tooltip to the block list appender.
+   - Improve the color contrast of the inserter shortcuts.
+   - Remove the label from the Warning component’s menu.
+- Add an option to overwrite the block in the Warning component.
 
-### Various
-
- - Show a message in the browser’s console when in Quirks Mode.
- - Improvements to the @wordpress/scripts package: A new a check-engines command, a lint-style command and an update to lint-js.
+### Extensibility
+- Support custom fetch handlers for wp.apiFetch.
+- Support additional data passed to the mediaUpload utility.
+- Add filter for the preview interstitial markup.
+- Avoid appending empty query string in wp.url.addQueryArgs.
+- Dispatch heartbeat events as hook actions to avoid the jQuery dependency.
+- Support adding classnames to the plugins sidebar panels.
+- Add a className to the parent page selector.
 
 ### Documentation
-
- - Add a getting started with JavaScript tutorial.
- - Document the blocks’ setup states in the design guidelines.
- - Add content to Contributors index page.
- - Improve the components documentation:
-    - The MenuItem component.
-    - The RadioControl component.
-    - The ServerSideRender component.
- - Organise the documentation assets in a dedicated folder.
- - Clarify immutability of the block attributes.
- - Fix the metabox back compat code example.
- - Fix incorrect data module example.
- - Improve the plugin release docs.
- - Remove useless property from the colors code example.
- - Improve the contributing documentation.
- - Fix npm README links.
- - Update the design resources link.
- - Typo fixes.
+- Add tutorials for 
+   - Creating sidebar plugins.
+   - Using the Format API.
+   - Creating meta blocks.
+- Reorganize the tutorials page.
+- Improve the UI component documentation:
+   - The ButtonGroup component.
+   - The IconButton component.
+   - The SelectControl component.
+   - The TextareaControl component.
+   - The TabPanel component.
+   - The Toolbar component.
+   - The FormToggle component.
+- Update the Gutenberg Release and the Repository Management docs.
+- Add new section on scoping JS code.
+- Use Block Editor instead of Gutenberg in the docs.
+- Mention the Advanced Controls Panel in the design guidelines.
+- Clarify the unregisterBlockStyle documentation.
+- Clarify the difference between the button block and the button component.
+- Scope JavaScript ES5 code example.
+- Fix incorrect code example.
+- Clarify the deprecated APIs.
+- Fix typos 1 2 3 4 5 6 7.
 
 ### Chore
-
- - Run e2e tests with popular plugins enabled.
- - Add new e2e tests:
-    - The permalink panel.
-    - The categories panel.
-    - Blocks with meta attributes.
- - Update node-sass to fix Node 11 support.
- - Move the dev dependencies to the root package.json.
- - Improve the Pull Request Template.
- - More logs to the CI jobs.
- - Code style fixes and expand the phpcs coverage.
- - Disable fragile e2e tests.
- - Avoid PHP notices when running the e2e tests in debug mode.
+- Improve CI build times.
+- Extract error messages from console logging in E2E tests.
+- Reorganization of the E2E tests setup and expose it as npm packages.
+- Add aXe accessibility E2E tests support.
+- Add E2E tests for the excerpt meta box plugin.
 
 ### Mobile
-
- - Make a simple version of DefaultBlockAppender.
- - Stop using classname-to-style autotransform in react native.
- - Fix SVG styles.
- - Implement Enter press to add a default block.
- - Hide keyboard when non textual block is selected.
- - Fix undo/redo on new blocks.
- - Pass the blockType prop to RNAztecView.
- - Expose unregisterBlockType.
+- Fix the Image Size implementation. 
+- Fix scrolling long text content.
