@@ -1,0 +1,17 @@
+/**
+ * Only use styles in editor context, otherwise ignore.
+ */
+@mixin editor() {
+	@if $context == 'editor' {
+		@content;
+	}
+}
+
+/**
+ * Only use styles in frontend context, otherwise ignore.
+ */
+@mixin frontend() {
+	@if $context == 'frontend' {
+		@content;
+	}
+}

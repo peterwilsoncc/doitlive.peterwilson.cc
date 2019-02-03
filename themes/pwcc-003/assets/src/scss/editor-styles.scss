@@ -1,5 +1,8 @@
 $context: 'editor';
 
+// Define some variables.
 @import "variables";
+// And some mixins
+@import "mixins/_index";
 
 @import "wordpress/index";
