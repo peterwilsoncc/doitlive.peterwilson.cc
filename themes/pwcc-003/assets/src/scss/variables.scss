@@ -9,3 +9,12 @@ $color-grey-dark: #716675;  // Storm Grey
 $color-grey-mid: #dbd7d7;   // Timberwolf Grey
 $color-grey-light: #f5f3f0; // Eggshell Grey
 $color-white: #fff;         // White
+
+/**
+ * Context.
+ *
+ * This allows editor or frontend contexts to be defined,
+ * code required for a particular context only be wrapped in
+ * an if statement.
+ */
+$context: 'frontend' !default;
