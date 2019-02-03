@@ -2,7 +2,7 @@
 Contributors: matveb, joen, karmatosed
 Requires at least: 4.9.8
 Tested up to: 5.0
-Stable tag: 4.7.0
+Stable tag: 4.8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -81,54 +81,89 @@ See also <a href="https://github.com/WordPress/gutenberg/blob/master/CONTRIBUTIN
 
 = Latest =
 
-### Performance improvements
+### Performance
+- Implement an async rendering mode for the data module updates.
+- Avoid rerendering the block components when selecting a block.
+- Improve the performance of isEditorEmptyPost selector (13% typing performance improvement).
+- Data Module: Avoid persisting unchanged values.
+- Update withSelect to use type-optimized isShallowEqual. 
+- Move data selection to event handlers (called only when necessary).
+- Improve the initial rendering time by optimizing the withFilters Higher-order component.
 
-* Optimize isViewportMatch
-* Performance: BlockListAppender: 1.7x increase on key press
-* Date: Optimize the usage of moment-timezone to save some kilobytes
-* RichText: selectionChange: bind on focus, unbind on blur
-* RichText: only replace range and nodes if different
-* Cache createBlock call in isUnmodifiedDefaultBlock
-* Edit Post: Select blocks only once multiple verified
-* RichText: Do not run valueToEditableHTML on every render
-* RichText: Reuse DOM document across calls to createEmpty
-* Only initialise TinyMCE once per instance
-* Optimize the insertion point component
-* Avoid rerending the current block if the previous block change
-* Avoid getBlock in block-list/block
-* Pass the registry argument to withDispatch to allow selectors to be used
+### Bug Fixes
+- Fix RichText toolbar when using multiline=”li”.
+- Correct the margin of the block icons in the inserter.
+- Fix ampersand in post tags causing editor crash.
+- Remove alignundefined class from gallery block edit markup.
+- Disable the button to open the publish sidebar if locked.
+- Correct the default margin for buttons with icons.
+- Keep the date floating when for posts with "pending" status.
+- Fix using the EXIF title when uploading images.
+- Fix font size picker on mobile.
+- Fix z-index of the Reusable Block Inserter button.
+- Fix autop behavior when a text is followed by a div.
+- Fix warning when returning null from a data module generator. 
+- Announce the screen reader messages in the correct order in Safari.
+- Check Post Type support in the options modal.
 
-### Bug fixes
+### Enhancements
+- Support customizing the table background colors.
+- Support underlining text using the keyboard shortcut ctrl+U.
+- Apply the editor styles to the HTML Block Preview.
+- Improve the color swatch selection indicator.
+- Improve scrolling behavior in Fullscreen Mode in Edge.
+- Remove deprecated embed providers.
+- Refactor the alignements support in the Cover Block and the Categories Block.
+- Code quality improvement to getBlockContentSchema
+- Internationalize the excerpt documentation link.
+- Improve pasting of quotes with citations.
+- A11y 
+   - Add a tooltip to the block list appender.
+   - Improve the color contrast of the inserter shortcuts.
+   - Remove the label from the Warning component’s menu.
+- Add an option to overwrite the block in the Warning component.
 
-* Annotations: Apply annotation className as string
-* RichText: Ensure instance is selected before setting back selection
-* Meta Boxes: Don’t hide disabled meta boxes by modifying DOM
-* Fix: Problems on Media & Text block resizing; Load wp-block-library styles before wp-edit-blocks
-* When a post is saved, check for tinymce and save any editors.
-* Fix: Undoing Image Selection from Media Library in Image Block breaks it
-* Add an end-to-end test for the HTML block
-* Fix regression when copying or cutting content in the editor
-* Fix issue where default appender has icons overlaying the text
-* Set document title for preview loading interstitial
-* Fix: Upload permissions error on end-to-end inline tokens test
-* Ensure classic block caret is in correct position after blur
-* Fix tab navigation sometimes skipping block UI
-* Improve font size picker accessibility: Use a menuitemradio role and better labels
-* Don’t show trashed reusable blocks in the editor or frontend
-* Rename functions, removing gutenberg_ prefix
-* Add block switcher end-to-end tests
-* Allow links in plugin group in the editor more menu
-* Introduce searching of block categories from slash inserter
-* Convert HTML formatting whitespace to spaces
-* Label link format with selected text, not full text
-* Ensure permalink panel is only displayed when a permalink is allowed
-* Allow the user to convert unembeddable URLs to links and try embedding again
-* Improve the top bar tools interaction and consistency
-* Fix overflowing content in the facebook embed preview screen
-* Add an action to set a category icon and correct block categories documentation
-* Fix: pasting a tag that is part of a transform and not matched ignores the content.
-* Packages: Extract Eslint config package
-* Add end-to-end test to catch revert of title during a preview after saving a draft
-* Avoid react warnings when merging two adjacent paragraphs
-* Avoid PHP notice in the recent comments block
-* Editor: Restore the block prop in the BlockListBlock filter
+### Extensibility
+- Support custom fetch handlers for wp.apiFetch.
+- Support additional data passed to the mediaUpload utility.
+- Add filter for the preview interstitial markup.
+- Avoid appending empty query string in wp.url.addQueryArgs.
+- Dispatch heartbeat events as hook actions to avoid the jQuery dependency.
+- Support adding classnames to the plugins sidebar panels.
+- Add a className to the parent page selector.
+
+### Documentation
+- Add tutorials for 
+   - Creating sidebar plugins.
+   - Using the Format API.
+   - Creating meta blocks.
+- Reorganize the tutorials page.
+- Improve the UI component documentation:
+   - The ButtonGroup component.
+   - The IconButton component.
+   - The SelectControl component.
+   - The TextareaControl component.
+   - The TabPanel component.
+   - The Toolbar component.
+   - The FormToggle component.
+- Update the Gutenberg Release and the Repository Management docs.
+- Add new section on scoping JS code.
+- Use Block Editor instead of Gutenberg in the docs.
+- Mention the Advanced Controls Panel in the design guidelines.
+- Clarify the unregisterBlockStyle documentation.
+- Clarify the difference between the button block and the button component.
+- Scope JavaScript ES5 code example.
+- Fix incorrect code example.
+- Clarify the deprecated APIs.
+- Fix typos 1 2 3 4 5 6 7.
+
+### Chore
+- Improve CI build times.
+- Extract error messages from console logging in E2E tests.
+- Reorganization of the E2E tests setup and expose it as npm packages.
+- Add aXe accessibility E2E tests support.
+- Add E2E tests for the excerpt meta box plugin.
+
+### Mobile
+- Fix the Image Size implementation. 
+- Fix scrolling long text content.
