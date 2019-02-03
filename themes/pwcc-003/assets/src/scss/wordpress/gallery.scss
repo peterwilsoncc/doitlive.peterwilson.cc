@@ -32,14 +32,16 @@
 }
 
 .gallery-item,
-.blocks-gallery-item {
+.wp-block-gallery .blocks-gallery-item {
 	/*
 	 * Default to eight columns as catch-all when eight or more
 	 * columns are set.
 	 */
 	min-width: calc( ( 100% / 8 ) - 1rem );
+	width: auto; // Required for blocks.
 	margin-left: 1rem;
 	margin-bottom: 1rem;
+	margin-right: 0; // Required for blocks.
 	flex-grow: 1;
 	flex-shrink: 1;
 	flex-basis: 9rem; // Minimum image width.
@@ -50,37 +52,36 @@
 }
 
 // The figure is nested in the block editor gallery.
-.blocks-gallery-item > figure {
+.wp-block-gallery .blocks-gallery-item figure {
 	min-width: 100%;
 	margin-top: 0;
 	margin-bottom: 0;
 }
 
-/*
- * Wild card selector here is a specificity reduction hack.
- *
- * The first block selector is for an unlinked gallery:
- * `.blocks-gallery-item > figure > img`
- *
- * The second block selector is for a linked gallery:
- * `.blocks-gallery-item > figure > a > img`
- */
+%gallery-block-gallery-icon,
 .gallery-icon,
-.blocks-gallery-item > * > img,
-.blocks-gallery-item > * > * > img {
+.wp-block-gallery .blocks-gallery-item a,
+.wp-block-gallery .blocks-gallery-item img {
 	display: block;
+	width: 100%;
 }
 
+%gallery-block-gallery-caption,
 .gallery-caption,
-.blocks-gallery-item > figure > figcaption {
+.wp-block-gallery .blocks-gallery-item figcaption {
 	display: block;
-	position: absolute;
 	left: 0;
 	right: 0;
 	bottom: 0;
+	width: auto; // Required for blocks.
+
+	@include frontend() {
+		position: absolute;
+	}
 
 	font-size: 0.74rem;
 	color: $color-white;
+	text-align: left; // Required for blocks.
 
 	/*
 	 * 0.55 opacity is the least transparent the background can be while meeting
@@ -97,8 +98,9 @@
 
 @for $i from 1 through 7 {
 	.gallery-columns-#{ $i } > .gallery-item,
-	.columns-#{ $i } > .blocks-gallery-item {
+	.wp-block-gallery.columns-#{ $i } > .blocks-gallery-item {
 		min-width: calc( ( 100% / #{ $i } ) - 1rem );
+		margin-right: 0; // Required for blocks.
 	}
 }
 
@@ -109,7 +111,7 @@
  *
  * The block editor version depends on the setting checked by the user.
  */
-.is-cropped > .blocks-gallery-item > figure,
+.wp-block-gallery.is-cropped .blocks-gallery-item figure,
 .gallery-icon.gallery-icon {
 	display: flex;
 	flex: 1;
@@ -122,4 +124,16 @@
 		height: 100%;
 		width: 100%;
 	}
+}
+
+@include editor() {
+	/*
+	 * The code above messes up the editor styles so this resets the right
+	 * margin in the editor with the required specificity.
+	 */
+	.wp-block-gallery .blocks-gallery-item.blocks-gallery-item {
+		margin-right: 0;
+	}
+
+
 }
