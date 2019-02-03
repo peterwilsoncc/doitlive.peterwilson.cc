@@ -5,4 +5,5 @@ $context: 'editor';
 // And some mixins
 @import "mixins/_index";
 
+@import "base/index";
 @import "wordpress/index";
