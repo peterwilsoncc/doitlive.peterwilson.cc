@@ -14,7 +14,7 @@
  *
  * @return string Returns the post content with archives added.
  */
-function render_block_core_archives( $attributes ) {
+function gutenberg_render_block_core_archives( $attributes ) {
 	$show_post_count = ! empty( $attributes['showPostCounts'] );
 
 	$class = 'wp-block-archives';
@@ -119,13 +119,14 @@ function render_block_core_archives( $attributes ) {
 /**
  * Register archives block.
  */
-function register_block_core_archives() {
+function gutenberg_register_block_core_archives() {
 	register_block_type(
 		'core/archives',
 		array(
 			'attributes'      => array(
 				'align'             => array(
 					'type' => 'string',
+					'enum' => array( 'left', 'center', 'right', 'wide', 'full' ),
 				),
 				'className'         => array(
 					'type' => 'string',
@@ -139,9 +140,8 @@ function register_block_core_archives() {
 					'default' => false,
 				),
 			),
-			'render_callback' => 'render_block_core_archives',
+			'render_callback' => 'gutenberg_render_block_core_archives',
 		)
 	);
 }
-
-add_action( 'init', 'register_block_core_archives' );
+add_action( 'init', 'gutenberg_register_block_core_archives', 20 );

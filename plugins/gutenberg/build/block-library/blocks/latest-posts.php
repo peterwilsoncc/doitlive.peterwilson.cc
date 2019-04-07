@@ -12,7 +12,7 @@
  *
  * @return string Returns the post content with latest posts added.
  */
-function render_block_core_latest_posts( $attributes ) {
+function gutenberg_render_block_core_latest_posts( $attributes ) {
 	$args = array(
 		'posts_per_page'   => $attributes['postsToShow'],
 		'post_status'      => 'publish',
@@ -84,15 +84,19 @@ function render_block_core_latest_posts( $attributes ) {
 /**
  * Registers the `core/latest-posts` block on server.
  */
-function register_block_core_latest_posts() {
+function gutenberg_register_block_core_latest_posts() {
 	register_block_type(
 		'core/latest-posts',
 		array(
 			'attributes'      => array(
-				'categories'      => array(
+				'align'           => array(
 					'type' => 'string',
+					'enum' => array( 'left', 'center', 'right', 'wide', 'full' ),
 				),
 				'className'       => array(
+					'type' => 'string',
+				),
+				'categories'      => array(
 					'type' => 'string',
 				),
 				'postsToShow'     => array(
@@ -111,9 +115,6 @@ function register_block_core_latest_posts() {
 					'type'    => 'number',
 					'default' => 3,
 				),
-				'align'           => array(
-					'type' => 'string',
-				),
 				'order'           => array(
 					'type'    => 'string',
 					'default' => 'desc',
@@ -123,9 +124,8 @@ function register_block_core_latest_posts() {
 					'default' => 'date',
 				),
 			),
-			'render_callback' => 'render_block_core_latest_posts',
+			'render_callback' => 'gutenberg_render_block_core_latest_posts',
 		)
 	);
 }
-
-add_action( 'init', 'register_block_core_latest_posts' );
+add_action( 'init', 'gutenberg_register_block_core_latest_posts', 20 );

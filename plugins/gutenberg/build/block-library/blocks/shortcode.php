@@ -13,20 +13,25 @@
  *
  * @return string Returns the block content.
  */
-function render_block_core_shortcode( $attributes, $content ) {
+function gutenberg_render_block_core_shortcode( $attributes, $content ) {
 	return wpautop( $content );
 }
 
 /**
  * Registers the `core/shortcode` block on server.
  */
-function register_block_core_shortcode() {
+function gutenberg_register_block_core_shortcode() {
 	register_block_type(
 		'core/shortcode',
 		array(
-			'render_callback' => 'render_block_core_shortcode',
+			'attributes'      => array(
+				'text' => array(
+					'type'   => 'string',
+					'source' => 'html',
+				),
+			),
+			'render_callback' => 'gutenberg_render_block_core_shortcode',
 		)
 	);
 }
-
-add_action( 'init', 'register_block_core_shortcode' );
+add_action( 'init', 'gutenberg_register_block_core_shortcode', 20 );
