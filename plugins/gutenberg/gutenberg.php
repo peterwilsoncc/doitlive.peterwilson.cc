@@ -3,7 +3,7 @@
  * Plugin Name: Gutenberg
  * Plugin URI: https://github.com/WordPress/gutenberg
  * Description: Printing since 1440. This is the development plugin for the new block editor in core.
- * Version: 5.4.0
+ * Version: 5.5.0
  * Author: Gutenberg Team
  * Text Domain: gutenberg
  *
@@ -11,24 +11,11 @@
  */
 
 ### BEGIN AUTO-GENERATED DEFINES
-define( 'GUTENBERG_VERSION', '5.4.0' );
-define( 'GUTENBERG_GIT_COMMIT', '3f9b083568d7244b2d6c07d7300c188548c192b9' );
+define( 'GUTENBERG_VERSION', '5.5.0' );
+define( 'GUTENBERG_GIT_COMMIT', 'e728c2432aa472b3bae1a3cf727a7c613cc5144c' );
 ### END AUTO-GENERATED DEFINES
 
 gutenberg_pre_init();
-
-/**
- * Project.
- *
- * The main entry point for the Gutenberg editor. Renders the editor on the
- * wp-admin page for the plugin.
- *
- * @since 0.1.0
- * @deprecated 5.3.0
- */
-function the_gutenberg_project() {
-	_deprecated_function( __FUNCTION__, '5.3.0' );
-}
 
 /**
  * Gutenberg's Menu.
@@ -83,22 +70,6 @@ function gutenberg_menu() {
 add_action( 'admin_menu', 'gutenberg_menu' );
 
 /**
- * Checks whether we're currently loading a Gutenberg page
- *
- * @since 3.1.0
- * @deprecated 5.3.0 WP_Screen::is_block_editor
- *
- * @return boolean Whether Gutenberg is being loaded.
- */
-function is_gutenberg_page() {
-	_deprecated_function( __FUNCTION__, '5.3.0', 'WP_Screen::is_block_editor' );
-
-	require_once ABSPATH . 'wp-admin/includes/screen.php';
-	$screen = get_current_screen();
-	return ! is_null( $screen ) && get_current_screen()->is_block_editor();
-}
-
-/**
  * Display a version notice and deactivate the Gutenberg plugin.
  *
  * @since 0.1.0
@@ -146,21 +117,4 @@ function gutenberg_pre_init() {
 	}
 
 	require_once dirname( __FILE__ ) . '/lib/load.php';
-}
-
-/**
- * Initialize Gutenberg.
- *
- * Load API functions, register scripts and actions, etc.
- *
- * @deprecated 5.3.0
- *
- * @return bool Whether Gutenberg was initialized.
- */
-function gutenberg_init() {
-	_deprecated_function( __FUNCTION__, '5.3.0' );
-
-	require_once ABSPATH . 'wp-admin/includes/screen.php';
-	$screen = get_current_screen();
-	return ! is_null( $screen ) && get_current_screen()->is_block_editor();
 }
