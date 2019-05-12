@@ -25,3 +25,6 @@
 [submodule "mu-plugins/vendor/tachyon"]
 	path = mu-plugins/vendor/tachyon
 	url = https://github.com/humanmade/tachyon-plugin.git
+[submodule "mu-plugins/vendor/smart-media"]
+	path = mu-plugins/vendor/smart-media
+	url = https://github.com/humanmade/smart-media.git
