@@ -1,11 +1,26 @@
+## Editor config files
 /.idea
 /.vscode
-/debug.log
+
+## WP Content directory
+/content/debug.log
+/content/upgrade
+
+## General file system
 .DS_Store
+ehthumbs.db
+Thumbs.db
+._*
+
+## Dependencies
 /node_modules
-/upgrade
-/config.local.yaml
 /vendor
 
+# Altis built
+/chassis
+/wordpress
+/index.php
+/wp-config.php
+
 # Build files
-/themes/pwcc-003/assets/dist/
+/content/themes/pwcc-003/assets/dist/
