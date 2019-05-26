@@ -1,6 +1,3 @@
-[submodule "mu-plugins/vendor/cavalcade"]
-	path = content/mu-plugins/vendor/cavalcade
-	url = https://github.com/humanmade/Cavalcade.git
 [submodule "mu-plugins/vendor/extended-cpts"]
 	path = content/mu-plugins/vendor/extended-cpts
 	url = https://github.com/johnbillion/extended-cpts.git
@@ -13,18 +10,3 @@
 [submodule "mu-plugins/vendor/rapid-canonical-urls"]
 	path = content/mu-plugins/vendor/rapid-canonical-urls
 	url = https://github.com/peterwilsoncc/rapid-canonical-urls.git
-[submodule "dropins/wordpress-pecl-memcached-object-cache"]
-	path = content/dropins/wordpress-pecl-memcached-object-cache
-	url = https://github.com/humanmade/wordpress-pecl-memcached-object-cache.git
-[submodule "dropins/batcache"]
-	path = content/dropins/batcache
-	url = https://github.com/humanmade/batcache.git
-[submodule "mu-plugins/vendor/s3-uploads"]
-	path = content/mu-plugins/vendor/s3-uploads
-	url = https://github.com/humanmade/S3-Uploads.git
-[submodule "mu-plugins/vendor/tachyon"]
-	path = content/mu-plugins/vendor/tachyon
-	url = https://github.com/humanmade/tachyon-plugin.git
-[submodule "mu-plugins/vendor/smart-media"]
-	path = content/mu-plugins/vendor/smart-media
-	url = https://github.com/humanmade/smart-media.git
