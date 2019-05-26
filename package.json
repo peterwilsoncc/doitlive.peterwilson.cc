@@ -5,10 +5,10 @@
 	"main": "index.js",
 	"scripts": {
 		"lint": "yarn lint:scss",
-		"lint:scss": "./node_modules/stylelint/bin/stylelint.js ./{themes,plugins,mu-plugins}/**/*.scss --config=.stylelintrc",
+		"lint:scss": "./node_modules/stylelint/bin/stylelint.js ./content/{themes,plugins,mu-plugins}/**/*.scss --config=.stylelintrc",
 		"build": "yarn build:webpack",
-		"build:webpack": "./node_modules/webpack/bin/webpack.js --env=production --config .config/config.js",
-		"start": "NODE_ENV=development node .config/dev-server.js"
+		"build:webpack": "./node_modules/webpack/bin/webpack.js --env=production --config .webpack/config.js",
+		"start": "NODE_ENV=development node .webpack/dev-server.js"
 	},
 	"repository": {
 		"type": "git",
