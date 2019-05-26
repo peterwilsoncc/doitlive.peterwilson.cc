@@ -19,12 +19,30 @@ class WPSEO_Schema_Person implements WPSEO_Graph_Piece {
 	private $context;
 
 	/**
-	 * WPSEO_Schema_Breadcrumb constructor.
+	 * Array of the social profiles we display for a Person.
+	 *
+	 * @var string[]
+	 */
+	private $social_profiles = array(
+		'facebook',
+		'instagram',
+		'linkedin',
+		'pinterest',
+		'twitter',
+		'myspace',
+		'youtube',
+		'soundcloud',
+		'tumblr',
+		'wikipedia',
+	);
+
+	/**
+	 * WPSEO_Schema_Person constructor.
 	 *
 	 * @param WPSEO_Schema_Context $context A value object with context variables.
 	 */
 	public function __construct( WPSEO_Schema_Context $context ) {
-		$this->context   = $context;
+		$this->context = $context;
 	}
 
 	/**
@@ -77,21 +95,18 @@ class WPSEO_Schema_Person implements WPSEO_Graph_Piece {
 	 *
 	 * @param int $user_id User ID.
 	 *
-	 * @return array $output A list of social profiles.
+	 * @return string[] $output A list of social profiles.
 	 */
 	protected function get_social_profiles( $user_id ) {
-		$social_profiles = array(
-			'facebook',
-			'instagram',
-			'linkedin',
-			'pinterest',
-			'twitter',
-			'myspace',
-			'youtube',
-			'soundcloud',
-			'tumblr',
-			'wikipedia',
-		);
+		/**
+		 * Filter: 'wpseo_schema_person_social_profiles' - Allows filtering of social profiles per user.
+		 *
+		 * @param int $user_id The current user we're grabbing social profiles for.
+		 *
+		 * @api string[] $social_profiles The array of social profiles to retrieve. Each should be a user meta field
+		 *                                key. As they are retrieved using the WordPress function `get_the_author_meta`.
+		 */
+		$social_profiles = apply_filters( 'wpseo_schema_person_social_profiles', $this->social_profiles, $user_id );
 		$output          = array();
 		foreach ( $social_profiles as $profile ) {
 			$social_url = $this->url_social_site( $profile, $user_id );
@@ -141,16 +156,14 @@ class WPSEO_Schema_Person implements WPSEO_Graph_Piece {
 	 * @return array $data The Person schema.
 	 */
 	protected function add_image( $data, $user_data ) {
-		if ( ! get_avatar_url( $user_data->user_email ) ) {
+		$url = get_avatar_url( $user_data->user_email );
+		if ( empty( $url ) ) {
 			return $data;
 		}
 
-		$data['image'] = array(
-			'@type'   => 'ImageObject',
-			'@id'     => $this->context->site_url . WPSEO_Schema_IDs::PERSON_LOGO_HASH,
-			'url'     => get_avatar_url( $user_data->user_email ),
-			'caption' => $user_data->display_name,
-		);
+		$id            = $this->context->site_url . WPSEO_Schema_IDs::PERSON_LOGO_HASH;
+		$schema_image  = new WPSEO_Schema_Image( $id );
+		$data['image'] = $schema_image->simple_image_object( $url, $user_data->display_name );
 
 		return $data;
 	}
