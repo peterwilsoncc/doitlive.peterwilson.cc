@@ -8,5 +8,7 @@
             "email": "git-commit-by@peterwilson.cc"
         }
     ],
-    "require": {}
+    "require": {
+        "altis/core": "^1"
+    }
 }
