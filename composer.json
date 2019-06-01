@@ -48,5 +48,8 @@
                 "type:wordpress-plugin"
             ]
         }
+    },
+    "require-dev": {
+        "humanmade/coding-standards": "^0.6.0"
     }
 }
