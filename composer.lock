@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1409342283bbecc027626434ac4eff8b",
+    "content-hash": "fcdd640a5268e59726e655bfb4f014d6",
     "packages": [
         {
             "name": "altis/cms-installer",
@@ -548,6 +548,34 @@
                 "wordpress"
             ],
             "time": "2019-04-16T05:09:44+00:00"
+        },
+        {
+            "name": "humanmade/tachyon-plugin",
+            "version": "0.10.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/humanmade/tachyon-plugin.git",
+                "reference": "f91750e038240814dfd3d12f5c71c8976ffc0184"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/humanmade/tachyon-plugin/zipball/f91750e038240814dfd3d12f5c71c8976ffc0184",
+                "reference": "f91750e038240814dfd3d12f5c71c8976ffc0184",
+                "shasum": ""
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Joe Hoyle",
+                    "email": "joe@humanmade.com"
+                }
+            ],
+            "description": "Rewrites WordPress image URLs to use Tachyon",
+            "time": "2019-05-20T10:18:04+00:00"
         },
         {
             "name": "humanmade/wordpress-pecl-memcached-object-cache",
