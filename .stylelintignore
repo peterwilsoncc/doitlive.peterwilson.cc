@@ -1,7 +1,8 @@
 # Exclude vendor code.
 /**/vendor/
-/dropins/
-/plugins/
+/content/dropins/
+/content/plugins/
+/wordpress/
 /node_modules/
 /vendor/
 
@@ -9,8 +10,8 @@
 /.chassis/
 /.circleci/
 /.tests/
-/uploads/
-/test-uploads/
+/content/uploads/
+/content/test-uploads/
 
 # Exclude build directories
 /**/dist/
