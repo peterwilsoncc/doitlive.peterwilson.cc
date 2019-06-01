@@ -13,16 +13,10 @@ if ( ( defined( 'WP_INSTALLING' ) && WP_INSTALLING ) ) {
 }
 
 $hm_mu_plugins = [
-	'vendor/cavalcade/plugin.php',
-	'vendor/extended-cpts/extended-cpts.php',
 	'vendor/hm-asset-loader/plugin.php',
 	'vendor/hm-cmb/custom-meta-boxes.php',
 	'vendor/manual-control/manual-control.php',
 	'vendor/rapid-canonical-urls/rapid-canonical-urls.php',
-	'vendor/s3-uploads/s3-uploads.php',
-	'vendor/tachyon/tachyon.php',
-	'vendor/twitteroauth/autoload.php',
-	'vendor/batcache.php',
 	'pwcc-helpers/plugin.php',
 	'pwcc-multi-domain/plugin.php',
 	'pwcc-notes/plugin.php',
