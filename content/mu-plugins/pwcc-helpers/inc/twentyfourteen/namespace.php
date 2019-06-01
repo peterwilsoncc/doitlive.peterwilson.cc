@@ -137,7 +137,7 @@ function wp_push_styles() {
 
 	$push = array_unique( $push );
 
-	// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+	// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
 	@header( 'Link: ' . implode( ', ', $push ), false );
 
 	return $push;
@@ -221,7 +221,7 @@ function wp_push_scripts() {
 
 	$push = array_unique( $push );
 
-	// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+	// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
 	@header( 'Link: ' . implode( ', ', $push ), false );
 
 	return $push;
