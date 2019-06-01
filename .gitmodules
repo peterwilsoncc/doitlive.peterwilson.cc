@@ -1,9 +1,6 @@
 [submodule "mu-plugins/vendor/hm-cmb"]
 	path = content/mu-plugins/vendor/hm-cmb
 	url = https://github.com/humanmade/Custom-Meta-Boxes.git
-[submodule "mu-plugins/vendor/twitteroauth"]
-	path = content/mu-plugins/vendor/twitteroauth
-	url = https://github.com/abraham/twitteroauth.git
 [submodule "mu-plugins/vendor/rapid-canonical-urls"]
 	path = content/mu-plugins/vendor/rapid-canonical-urls
 	url = https://github.com/peterwilsoncc/rapid-canonical-urls.git
