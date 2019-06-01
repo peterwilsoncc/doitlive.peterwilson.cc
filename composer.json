@@ -13,6 +13,7 @@
         "johnpbloch/wordpress": "*",
         "altis/cms-installer": "~0.2.1",
         "humanmade/s3-uploads": "~2.1",
-        "humanmade/cavalcade": "*"
+        "humanmade/cavalcade": "*",
+        "humanmade/wordpress-pecl-memcached-object-cache": "2.0.0"
     }
 }

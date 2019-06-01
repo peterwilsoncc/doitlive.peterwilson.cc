@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "89e700baeebb63fabf9949eb6244133b",
+    "content-hash": "1409342283bbecc027626434ac4eff8b",
     "packages": [
         {
             "name": "altis/cms-installer",
@@ -548,6 +548,34 @@
                 "wordpress"
             ],
             "time": "2019-04-16T05:09:44+00:00"
+        },
+        {
+            "name": "humanmade/wordpress-pecl-memcached-object-cache",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/humanmade/wordpress-pecl-memcached-object-cache.git",
+                "reference": "b8cc6dbda46d39499eaf55fa96c60a449ca936ba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/humanmade/wordpress-pecl-memcached-object-cache/zipball/b8cc6dbda46d39499eaf55fa96c60a449ca936ba",
+                "reference": "b8cc6dbda46d39499eaf55fa96c60a449ca936ba",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Joe Hoyle",
+                    "email": "joehoyle@gmail.com"
+                }
+            ],
+            "description": "A WordPress object cache that uses the memcached (not memcache) PECL extension.",
+            "time": "2019-04-26T07:06:10+00:00"
         },
         {
             "name": "johnpbloch/wordpress",
