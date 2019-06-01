@@ -14,18 +14,22 @@
 	</rule>
 
 	<!-- Exclude non-project directories -->
-	<exclude-pattern>*/uploads/*</exclude-pattern>
-	<exclude-pattern>*/test-uploads/*</exclude-pattern>
-	<exclude-pattern>*/.tests/php/includes/*</exclude-pattern>
+	<exclude-pattern type="relative">^.content/uploads/*</exclude-pattern>
+	<exclude-pattern type="relative">^.content/test-uploads/*</exclude-pattern>
+	<exclude-pattern type="relative">^.tests/php/includes/*</exclude-pattern>
+	<exclude-pattern type="relative">^chassis/*</exclude-pattern>
 
 	<!-- Exclude third party code -->
-	<exclude-pattern>*/mu-plugins/vendor/*</exclude-pattern>
-	<exclude-pattern>*/plugins/*</exclude-pattern>
-	<exclude-pattern>*/vendor/*</exclude-pattern>
-	<exclude-pattern>*/wordpress/*</exclude-pattern>
+	<exclude-pattern type="relative">^content/mu-plugins/vendor/*</exclude-pattern>
+	<exclude-pattern type="relative">^content/plugins/*</exclude-pattern>
+	<exclude-pattern type="relative">^content/themes/*</exclude-pattern>
+	<exclude-pattern type="relative">^vendor/*</exclude-pattern>
+	<exclude-pattern type="relative">^wordpress/*</exclude-pattern>
+	<exclude-pattern type="relative">^wp-config.php</exclude-pattern>
+	<exclude-pattern type="relative">^index.php</exclude-pattern>
 
 	<!-- Exclude build directories -->
-	<exclude-pattern>*/themes/peter-wilson-2017/assets/dist/*</exclude-pattern>
+	<exclude-pattern type="relative">^content/themes/peter-wilson-2017/assets/dist/*</exclude-pattern>
 
 	<!-- Show sniff codes in all reports -->
 	<arg value="s"/>
