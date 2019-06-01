@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "98d8c385eced56f1049d197e34327c69",
+    "content-hash": "89e700baeebb63fabf9949eb6244133b",
     "packages": [
         {
             "name": "altis/cms-installer",
@@ -476,6 +476,41 @@
                 "url"
             ],
             "time": "2018-12-04T20:46:45+00:00"
+        },
+        {
+            "name": "humanmade/cavalcade",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/humanmade/Cavalcade.git",
+                "reference": "61436805c00ca28362d05616e1517247edab8613"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/humanmade/Cavalcade/zipball/61436805c00ca28362d05616e1517247edab8613",
+                "reference": "61436805c00ca28362d05616e1517247edab8613",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "require-dev": {
+                "humanmade/coding-standards": "dev-master"
+            },
+            "type": "wordpress-muplugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Human Made",
+                    "homepage": "https://hmn.md/"
+                }
+            ],
+            "description": "A better wp-cron. Horizontally scalable, works perfectly with multisite.",
+            "homepage": "https://github.com/humanmade/Cavalcade",
+            "time": "2019-04-16T05:02:57+00:00"
         },
         {
             "name": "humanmade/s3-uploads",
