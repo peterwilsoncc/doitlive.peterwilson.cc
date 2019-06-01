@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4bd9c6d98ddf8ac0a68ab53317160897",
+    "content-hash": "549cd2f2ed3ee04c47b24257da82f32a",
     "packages": [
         {
             "name": "altis/cms-installer",
@@ -604,6 +604,54 @@
             ],
             "description": "A WordPress object cache that uses the memcached (not memcache) PECL extension.",
             "time": "2019-04-26T07:06:10+00:00"
+        },
+        {
+            "name": "johnbillion/extended-cpts",
+            "version": "4.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/johnbillion/extended-cpts.git",
+                "reference": "89ba13fa10c66b77f21aacdfb794ef3607814ed5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/johnbillion/extended-cpts/zipball/89ba13fa10c66b77f21aacdfb794ef3607814ed5",
+                "reference": "89ba13fa10c66b77f21aacdfb794ef3607814ed5",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "automattic/phpcs-neutron-standard": "^1.5",
+                "johnbillion/php-docs-standards": "^1.2",
+                "phpunit/phpunit": "^5.7",
+                "slevomat/coding-standard": "^4.0",
+                "wimg/php-compatibility": "^8",
+                "wp-coding-standards/wpcs": "1.0"
+            },
+            "suggest": {
+                "wpackagist-plugin/rewrite-testing": "Rewrite Rule Testing"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "extended-cpts.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "John Blackbourn",
+                    "homepage": "https://johnblackbourn.com/"
+                }
+            ],
+            "description": "A library which provides extended functionality to WordPress custom post types and taxonomies.",
+            "homepage": "https://github.com/johnbillion/extended-cpts/",
+            "time": "2018-12-08T15:16:49+00:00"
         },
         {
             "name": "johnpbloch/wordpress",

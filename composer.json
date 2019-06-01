@@ -29,7 +29,8 @@
         "humanmade/cavalcade": "*",
         "humanmade/wordpress-pecl-memcached-object-cache": "2.0.0",
         "humanmade/tachyon-plugin": "*",
-        "peterwilsoncc/batcache": "1"
+        "peterwilsoncc/batcache": "1",
+        "johnbillion/extended-cpts": "*"
     },
     "extra": {
         "installer-paths": {
