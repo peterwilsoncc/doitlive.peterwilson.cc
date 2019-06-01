@@ -4,8 +4,48 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "83c4014c9c1532475ec638d96a29c2a4",
+    "content-hash": "92772af7c2cb78ed4662bca0657ec7aa",
     "packages": [
+        {
+            "name": "altis/cms-installer",
+            "version": "0.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/humanmade/altis-cms-installer.git",
+                "reference": "e31031feaed83d0b42800fba1f4cfcfe8591ae3d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/humanmade/altis-cms-installer/zipball/e31031feaed83d0b42800fba1f4cfcfe8591ae3d",
+                "reference": "e31031feaed83d0b42800fba1f4cfcfe8591ae3d",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.1",
+                "php": ">=7.1"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Altis\\CMS\\Composer\\Plugin"
+            },
+            "autoload": {
+                "classmap": [
+                    "inc/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Human Made",
+                    "email": "hello@humanmade.com"
+                }
+            ],
+            "description": "CMS Installer plugin for Altis",
+            "time": "2019-05-24T13:33:02+00:00"
+        },
         {
             "name": "altis/core",
             "version": "1.0.0",

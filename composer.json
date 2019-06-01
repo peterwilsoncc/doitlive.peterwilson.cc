@@ -10,6 +10,7 @@
     ],
     "require": {
         "altis/core": "^1",
-        "johnpbloch/wordpress": "*"
+        "johnpbloch/wordpress": "*",
+        "altis/cms-installer": "~0.2.1"
     }
 }
