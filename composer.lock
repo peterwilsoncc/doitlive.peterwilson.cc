@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "fcdd640a5268e59726e655bfb4f014d6",
+    "content-hash": "4bd9c6d98ddf8ac0a68ab53317160897",
     "packages": [
         {
             "name": "altis/cms-installer",
@@ -787,6 +787,17 @@
                 "jsonpath"
             ],
             "time": "2016-12-03T22:08:25+00:00"
+        },
+        {
+            "name": "peterwilsoncc/batcache",
+            "version": "1",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/humanmade/batcache/archive/master.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
         },
         {
             "name": "psr/http-message",

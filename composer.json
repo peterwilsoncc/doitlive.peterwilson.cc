@@ -2,6 +2,19 @@
     "name": "peterwilsoncc/peterwilson.cc",
     "description": "Codebase for peterwilson.cc",
     "type": "project",
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "peterwilsoncc/batcache",
+                "version": "1",
+                "dist": {
+                    "url": "https://github.com/humanmade/batcache/archive/master.zip",
+                    "type": "zip"
+                }
+            }
+        }
+    ],
     "authors": [
         {
             "name": "Peter Wilson",
@@ -15,6 +28,23 @@
         "humanmade/s3-uploads": "~2.1",
         "humanmade/cavalcade": "*",
         "humanmade/wordpress-pecl-memcached-object-cache": "2.0.0",
-        "humanmade/tachyon-plugin": "*"
+        "humanmade/tachyon-plugin": "*",
+        "peterwilsoncc/batcache": "1"
+    },
+    "extra": {
+        "installer-paths": {
+            "vendor/{$vendor}/{$name}/" : [
+                "humanmade/batcache"
+            ],
+            "content/{$name}/": [
+                "type:wordpress-dropin"
+            ],
+            "content/mu-plugins/vendor/{$name}/": [
+                "type:wordpress-muplugin"
+            ],
+            "content/plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ]
+        }
     }
 }
