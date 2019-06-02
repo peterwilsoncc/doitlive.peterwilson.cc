@@ -31,7 +31,8 @@
         "humanmade/tachyon-plugin": "*",
         "peterwilsoncc/batcache": "1",
         "johnbillion/extended-cpts": "*",
-        "abraham/twitteroauth": "^1.0"
+        "abraham/twitteroauth": "^1.0",
+        "altis/cloud": "^1"
     },
     "extra": {
         "installer-paths": {
