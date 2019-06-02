@@ -1,3 +1,4 @@
 <?php
-define( 'WP_CONTENT_DIR', __DIR__ . '/../../content' );
+require_once __DIR__ . '/../../wp-config.php';
+
 define( 'TACHYON_URL', 'http://localhost/uploads' );
