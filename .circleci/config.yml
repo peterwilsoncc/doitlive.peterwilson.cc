@@ -16,6 +16,7 @@ workflows:
             branches:
               only:
                 - master
+                - try-altish
 
 jobs:
   build:
@@ -58,32 +59,21 @@ jobs:
           name: "Install WordPress test suite"
           command: |
             bash .circleci/bin/install.sh
-      # Composer
+      # Dependencies
       - restore_cache:
           keys:
-          - v1-dep-composer-{{ checksum "composer.lock" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dep-composer
+          - v2-dependencies
       - run:
           name: "Install Project Dependencies (Composer)"
-          command: composer install -n --prefer-dist
-      - save_cache:
-          paths:
-            - ./vendor
-          key: v1-dep-composer-{{ checksum "composer.lock" }}
-      # Yarn
-      - restore_cache:
-          keys:
-          - v1-dep-yarn-{{ checksum "yarn.lock" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dep-yarn
+          command: composer install
       - run:
           name: "Install Project Dependencies (Yarn)"
           command: yarn install
       - save_cache:
           paths:
-            - ./node_modules
-          key: v1-dep-yarn-{{ checksum "yarn.lock" }}
+            - ~/.npm
+            - ~/.composer
+          key: v2-dependencies
       - run:
           name: "Run PHP Code sniffs"
           command: |
@@ -114,19 +104,18 @@ jobs:
           command: |
             bash .circleci/bin/universal-environment-vars.sh
             source $BASH_ENV
-      # Yarn
+      # Dependencies
       - restore_cache:
           keys:
-          - v1-dep-yarn-{{ checksum "yarn.lock" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dep-yarn
+          - v2-dependencies
       - run:
           name: "Install Project Dependencies (Yarn)"
           command: yarn install
       - save_cache:
           paths:
-            - ./node_modules
-          key: v1-dep-yarn-{{ checksum "yarn.lock" }}
+            - ~/.npm
+            - ~/.composer
+          key: v2-dependencies
       - run:
           name: "Build"
           command: |
