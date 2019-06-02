@@ -38,12 +38,12 @@ class Tests_Submodules extends \WP_UnitTestCase {
 	 * Ensure the Altis modules have loaded.
 	 */
 	function test_modules_available() {
-		$this->assertTrue( function_exists( 'HM\\Cavalcade\\Plugin\\bootstrap' ) );
-		$this->assertTrue( function_exists( 's3_uploads_init' ) );
-		$this->assertTrue( function_exists( 'register_extended_post_type' ) );
-		$this->assertTrue( function_exists( 'batcache_post' ) );
-		$this->assertTrue( function_exists( 'tachyon_url' ) );
+		$this->assertTrue( function_exists( 'tachyon_url' ), 'Tachyon Plugin unavailable.' );
+		$this->assertTrue( function_exists( 'HM\\Cavalcade\\Plugin\\bootstrap' ), 'Cavalcade unavailable.' );
+		$this->assertTrue( function_exists( 's3_uploads_init' ), 'S3 uploads unavailable.' );
+		$this->assertTrue( function_exists( 'register_extended_post_type' ), 'Extended Post Types unavailable.' );
+		$this->assertTrue( function_exists( 'batcache_post' ), 'Batcache unavailable.' );
 
-		$this->assertTrue( class_exists( 'Abraham\\TwitterOAuth\\Request' ) );
+		$this->assertTrue( class_exists( 'Abraham\\TwitterOAuth\\Request' ), 'TwitterOAuth Request unavailable.' );
 	}
 }
