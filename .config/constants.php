@@ -21,7 +21,7 @@ define( 'WP_CONTENT_DIR', ROOT_DIR . '/content' );
 // Use built-in themes too
 // =======================
 if ( empty( $GLOBALS['wp_theme_directories'] ) ) {
-	$GLOBALS['wp_theme_directories'] = array();
+	$GLOBALS['wp_theme_directories'] = [];
 }
 
 if ( file_exists( WP_CONTENT_DIR . '/themes' ) ) {
