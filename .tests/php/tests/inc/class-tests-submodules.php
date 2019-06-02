@@ -36,12 +36,12 @@ class Tests_Submodules extends \WP_UnitTestCase {
 
 	/**
 	 * Ensure the Altis modules have loaded.
-	 * 
+	 *
 	 * @dataProvider data_modules_available
 	 */
 	function test_modules_available( $test_for, $message, $is_class = false ) {
 		if ( $is_class ) {
-			$this->assertTrue( class_exists( $test_for ),  );
+			$this->assertTrue( class_exists( $test_for ), "$message unavailable." );
 			return;
 		}
 		$this->assertTrue( function_exists( $test_for ), "$message unavailable." );
@@ -52,7 +52,7 @@ class Tests_Submodules extends \WP_UnitTestCase {
 	 *
 	 * 1. String Function or class to test for.
 	 * 2. String Name for message on failure.
-	 * 3. Bool   True if class. 
+	 * 3. Bool   True if class.
 	 */
 	function data_modules_available() {
 		return [
