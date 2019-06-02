@@ -36,14 +36,51 @@ class Tests_Submodules extends \WP_UnitTestCase {
 
 	/**
 	 * Ensure the Altis modules have loaded.
+	 * 
+	 * @dataProvider data_modules_available
 	 */
-	function test_modules_available() {
-		$this->assertTrue( function_exists( 'tachyon_url' ), 'Tachyon Plugin unavailable.' );
-		$this->assertTrue( function_exists( 'HM\\Cavalcade\\Plugin\\bootstrap' ), 'Cavalcade unavailable.' );
-		$this->assertTrue( function_exists( 's3_uploads_init' ), 'S3 uploads unavailable.' );
-		$this->assertTrue( function_exists( 'register_extended_post_type' ), 'Extended Post Types unavailable.' );
-		$this->assertTrue( function_exists( 'batcache_post' ), 'Batcache unavailable.' );
+	function test_modules_available( $test_for, $message, $is_class = false ) {
+		if ( $is_class ) {
+			$this->assertTrue( class_exists( $test_for ),  );
+			return;
+		}
+		$this->assertTrue( function_exists( $test_for ), "$message unavailable." );
+	}
 
-		$this->assertTrue( class_exists( 'Abraham\\TwitterOAuth\\Request' ), 'TwitterOAuth Request unavailable.' );
+	/**
+	 * Data provider for test_modules_available.
+	 *
+	 * 1. String Function or class to test for.
+	 * 2. String Name for message on failure.
+	 * 3. Bool   True if class. 
+	 */
+	function data_modules_available() {
+		return [
+			[
+				'tachyon_url',
+				'Tachyon Plugin',
+			],
+			[
+				's3_uploads_init',
+				'S3 Uploads',
+			],
+			[
+				'HM\\Cavalcade\\Plugin\\bootstrap',
+				'Cavalcade plugin',
+			],
+			[
+				'register_extended_post_type',
+				'Extended Post Types',
+			],
+			[
+				'batcache_post',
+				'Batcache plugin',
+			],
+			[
+				'Abraham\\TwitterOAuth\\Request',
+				'TwitterOAuth Request',
+				true,
+			],
+		];
 	}
 }
