@@ -15,7 +15,7 @@
 
 	<!-- Exclude config directory from some rules -->
 	<rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
-		<exclude-pattern type="relative">^.config/*</exclude-pattern>
+		<exclude-pattern>*/.config/*</exclude-pattern>
 	</rule>
 
 	<!-- Exclude non-project directories -->
