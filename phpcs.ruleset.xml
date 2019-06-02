@@ -13,6 +13,11 @@
 		</properties>
 	</rule>
 
+	<!-- Exclude config directory from some rules -->
+	<rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
+		<exclude-pattern type="relative">^.config/*</exclude-pattern>
+	</rule>
+
 	<!-- Exclude non-project directories -->
 	<exclude-pattern type="relative">^.content/uploads/*</exclude-pattern>
 	<exclude-pattern type="relative">^.content/test-uploads/*</exclude-pattern>
