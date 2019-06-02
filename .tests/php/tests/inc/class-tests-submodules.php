@@ -35,9 +35,15 @@ class Tests_Submodules extends \WP_UnitTestCase {
 	}
 
 	/**
-	 * Ensure the Tachyon-Plugin submodule has loaded.
+	 * Ensure the Altis modules have loaded.
 	 */
-	function test_tachyon_available() {
+	function test_modules_available() {
+		$this->assertTrue( function_exists( 'HM\\Cavalcade\\Plugin\\bootstrap' ) );
+		$this->assertTrue( function_exists( 's3_uploads_init' ) );
+		$this->assertTrue( function_exists( 'register_extended_post_type' ) );
+		$this->assertTrue( function_exists( 'batcache_post' ) );
 		$this->assertTrue( function_exists( 'tachyon_url' ) );
+
+		$this->assertTrue( class_exists( 'Abraham\\TwitterOAuth\\Request' ) );
 	}
 }
