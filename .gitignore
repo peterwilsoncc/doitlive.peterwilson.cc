@@ -22,5 +22,8 @@ Thumbs.db
 /index.php
 /wp-config.php
 
+# Production config
+/wp-config-production.php
+
 # Build files
 /content/themes/pwcc-003/assets/dist/
