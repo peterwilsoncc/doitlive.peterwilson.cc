@@ -1,6 +1,7 @@
 <?php
 
 use const Altis\ROOT_DIR;
+
 /*
  * In Altis, Multisite is always enabled, unless some spooky
  * early loading code tried to change that of course.
