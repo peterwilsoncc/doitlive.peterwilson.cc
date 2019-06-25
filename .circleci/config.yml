@@ -63,8 +63,6 @@ jobs:
       - restore_cache:
           keys:
           - v1-dep-composer-{{ checksum "composer.lock" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dep-composer
       - run:
           name: "Install Project Dependencies (Composer)"
           command: composer install -n --prefer-dist
@@ -76,8 +74,6 @@ jobs:
       - restore_cache:
           keys:
           - v1-dep-yarn-{{ checksum "yarn.lock" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dep-yarn
       - run:
           name: "Install Project Dependencies (Yarn)"
           command: yarn install
@@ -124,8 +120,6 @@ jobs:
       - restore_cache:
           keys:
           - v1-dep-yarn-{{ checksum "yarn.lock" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dep-yarn
       - run:
           name: "Install Project Dependencies (Yarn)"
           command: yarn install
