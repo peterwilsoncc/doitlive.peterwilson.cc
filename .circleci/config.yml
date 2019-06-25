@@ -16,6 +16,7 @@ workflows:
             branches:
               only:
                 - master
+                - try-altish
 
 jobs:
   build:
