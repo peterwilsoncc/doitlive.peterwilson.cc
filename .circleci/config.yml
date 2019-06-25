@@ -59,21 +59,28 @@ jobs:
           name: "Install WordPress test suite"
           command: |
             bash .circleci/bin/install.sh
-      # Dependencies
+      # Composer
       - restore_cache:
           keys:
-          - v2-dependencies
+          - v1-dep-composer-{{ checksum "composer.lock" }}
       - run:
           name: "Install Project Dependencies (Composer)"
-          command: composer install
+          command: composer install -n --prefer-dist
+      - save_cache:
+          paths:
+            - ./vendor
+          key: v1-dep-composer-{{ checksum "composer.lock" }}
+      # Yarn
+      - restore_cache:
+          keys:
+          - v1-dep-yarn-{{ checksum "yarn.lock" }}
       - run:
           name: "Install Project Dependencies (Yarn)"
           command: yarn install
       - save_cache:
           paths:
-            - ~/.npm
-            - ~/.composer
-          key: v2-dependencies
+            - ./node_modules
+          key: v1-dep-yarn-{{ checksum "yarn.lock" }}
       - run:
           name: "Run PHP Code sniffs"
           command: |
@@ -109,18 +116,17 @@ jobs:
           command: |
             bash .circleci/bin/universal-environment-vars.sh
             source $BASH_ENV
-      # Dependencies
+      # Yarn
       - restore_cache:
           keys:
-          - v2-dependencies
+          - v1-dep-yarn-{{ checksum "yarn.lock" }}
       - run:
           name: "Install Project Dependencies (Yarn)"
           command: yarn install
       - save_cache:
           paths:
-            - ~/.npm
-            - ~/.composer
-          key: v2-dependencies
+            - ./node_modules
+          key: v1-dep-yarn-{{ checksum "yarn.lock" }}
       - run:
           name: "Build"
           command: |
