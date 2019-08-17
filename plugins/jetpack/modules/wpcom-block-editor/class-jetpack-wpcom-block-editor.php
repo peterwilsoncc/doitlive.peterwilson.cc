@@ -41,7 +41,7 @@ class Jetpack_WPCOM_Block_Editor {
 		}
 
 		add_action( 'login_init', array( $this, 'allow_block_editor_login' ), 1 );
-		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_scripts' ) );
+		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_scripts' ), 9 );
 		add_filter( 'mce_external_plugins', array( $this, 'add_tinymce_plugins' ) );
 	}
 
@@ -137,7 +137,7 @@ class Jetpack_WPCOM_Block_Editor {
 	 */
 	public function add_login_html() {
 		?>
-		<input type="hidden" name="redirect_to" value="<?php echo esc_url( $_REQUEST['redirect_to'] ); ?>" />
+		<input type="hidden" name="redirect_to" value="<?php echo esc_url( $_REQUEST['redirect_to'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended ?>" />
 		<script type="application/javascript">
 			document.getElementById( 'loginform' ).addEventListener( 'submit' , function() {
 				document.getElementById( 'wp-submit' ).setAttribute( 'disabled', 'disabled' );
@@ -151,7 +151,7 @@ class Jetpack_WPCOM_Block_Editor {
 	 * Does the redirect to the block editor.
 	 */
 	public function do_redirect() {
-		wp_redirect( $GLOBALS['redirect_to'] );
+		wp_safe_redirect( $GLOBALS['redirect_to'] );
 		exit;
 	}
 
@@ -265,7 +265,19 @@ class Jetpack_WPCOM_Block_Editor {
 		wp_enqueue_script(
 			'wpcom-block-editor-common',
 			$src_common,
-			array( 'lodash', 'wp-compose', 'wp-data', 'wp-editor', 'wp-rich-text' ),
+			array(
+				'jquery',
+				'lodash',
+				'wp-blocks',
+				'wp-compose',
+				'wp-data',
+				'wp-dom-ready',
+				'wp-editor',
+				'wp-nux',
+				'wp-plugins',
+				'wp-polyfill',
+				'wp-rich-text',
+			),
 			$version,
 			true
 		);
@@ -303,7 +315,18 @@ class Jetpack_WPCOM_Block_Editor {
 			wp_enqueue_script(
 				'wpcom-block-editor-calypso-iframe-bridge',
 				$src_calypso_iframe_bridge,
-				array( 'calypsoify_wpadminmods_js', 'jquery', 'lodash', 'react', 'wp-blocks', 'wp-data', 'wp-hooks', 'wp-tinymce', 'wp-url' ),
+				array(
+					'calypsoify_wpadminmods_js',
+					'jquery',
+					'lodash',
+					'react',
+					'wp-blocks',
+					'wp-data',
+					'wp-hooks',
+					'wp-polyfill',
+					'wp-tinymce',
+					'wp-url',
+				),
 				$version,
 				true
 			);

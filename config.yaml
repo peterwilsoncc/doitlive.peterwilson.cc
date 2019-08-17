@@ -5,10 +5,14 @@ hosts:
 
 extensions:
   - Chassis/tester
+  - Chassis/phpunit
   - Chassis/cavalcade
   - Chassis/mailhog
   - Chassis/xdebug
   - Chassis/memcache
+  - Chassis/tachyon
+  - Chassis/yarn
+  - Chassis/nodejs
   - Chassis/tachyon
 
 php: 7.2

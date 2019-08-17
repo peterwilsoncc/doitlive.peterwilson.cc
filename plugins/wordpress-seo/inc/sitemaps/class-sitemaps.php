@@ -57,11 +57,15 @@ class WPSEO_Sitemaps {
 	private $current_page = 1;
 
 	/**
+	 * The timezone.
+	 *
 	 * @var WPSEO_Sitemap_Timezone
 	 */
 	private $timezone;
 
 	/**
+	 * The sitemaps router.
+	 *
 	 * @since 3.2
 	 *
 	 * @var WPSEO_Sitemaps_Router
@@ -69,6 +73,8 @@ class WPSEO_Sitemaps {
 	public $router;
 
 	/**
+	 * The sitemap renderer.
+	 *
 	 * @since 3.2
 	 *
 	 * @var WPSEO_Sitemaps_Renderer
@@ -76,6 +82,8 @@ class WPSEO_Sitemaps {
 	public $renderer;
 
 	/**
+	 * The sitemap cache.
+	 *
 	 * @since 3.2
 	 *
 	 * @var WPSEO_Sitemaps_Cache
@@ -83,6 +91,8 @@ class WPSEO_Sitemaps {
 	public $cache;
 
 	/**
+	 * The sitemap providers.
+	 *
 	 * @since 3.2
 	 *
 	 * @var WPSEO_Sitemap_Provider[]
@@ -352,16 +362,14 @@ class WPSEO_Sitemaps {
 				continue;
 			}
 
-			$links = $provider->get_sitemap_links( $type, $entries_per_page, $this->current_page );
-
-			if ( empty( $links ) ) {
+			try {
+				$links = $provider->get_sitemap_links( $type, $entries_per_page, $this->current_page );
+			} catch ( OutOfBoundsException $exception ) {
 				$this->bad_sitemap = true;
-
 				return;
 			}
 
 			$this->sitemap = $this->renderer->get_sitemap( $links, $type, $this->current_page );
-
 			return;
 		}
 
@@ -598,10 +606,10 @@ class WPSEO_Sitemaps {
 		/**
 		 * Filter post status list for sitemap query for the post type.
 		 *
-	         * @param array  $post_statuses Post status list, defaults to array( 'publish' ).
-	         * @param string $type          Post type or SITEMAP_INDEX_TYPE.
+		 * @param array  $post_statuses Post status list, defaults to array( 'publish' ).
+		 * @param string $type          Post type or SITEMAP_INDEX_TYPE.
 		 */
-		$post_statuses = apply_filters( 'wpseo_sitemap_post_statuses' , array( 'publish' ), $type );
+		$post_statuses = apply_filters( 'wpseo_sitemap_post_statuses', array( 'publish' ), $type );
 
 		if ( ! is_array( $post_statuses ) || empty( $post_statuses ) ) {
 			$post_statuses = array( 'publish' );
