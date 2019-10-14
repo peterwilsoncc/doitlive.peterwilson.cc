@@ -59,6 +59,8 @@ config_test_suite() {
 		local ioption='-i'
 	fi
 
+	mkdir -p $UNICI_PROJECT_DIRECTORY/test-uploads
+
 	if [ ! -f wp-tests-config.php ]; then
 		download https://raw.githubusercontent.com/WordPress/wordpress-develop/${WP_TESTS_VERSION}/wp-tests-config-sample.php "$WP_TESTS_DIR"/wp-tests-config.php
 		# remove all forward slashes in the end
