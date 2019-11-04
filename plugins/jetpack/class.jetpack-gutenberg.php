@@ -188,6 +188,24 @@ class Jetpack_Gutenberg {
 	 * @param array  $details A free-form array containing more information on why the extension is unavailable.
 	 */
 	public static function set_extension_unavailable( $slug, $reason, $details = array() ) {
+		if (
+			// Extensions that require a plan may be eligible for upgrades.
+			'missing_plan' === $reason
+			/**
+			 * Filter 'jetpack_block_editor_enable_upgrade_nudge' with `true` to enable or `false`
+			 * to disable paid feature upgrade nudges in the block editor.
+			 *
+			 * @since 7.7.0
+			 *
+			 * @param boolean
+			 */
+			&& ! apply_filters( 'jetpack_block_editor_enable_upgrade_nudge', false )
+		) {
+			// The block editor may apply an upgrade nudge if `missing_plan` is the reason.
+			// Add a descriptive suffix to disable behavior but provide informative reason.
+			$reason .= '__nudge_disabled';
+		}
+
 		self::$availability[ self::remove_extension_prefix( $slug ) ] = array(
 			'reason'  => $reason,
 			'details' => $details,
@@ -624,30 +642,9 @@ class Jetpack_Gutenberg {
 			)
 		);
 
-		wp_set_script_translations( 'jetpack-blocks-editor', 'jetpack', plugins_url( 'languages/json', JETPACK__PLUGIN_FILE ) );
-
-		// Adding a filter late to allow every other filter to process the path, including the CDN.
-		add_filter( 'pre_load_script_translations', array( __CLASS__, 'filter_pre_load_script_translations' ), 1000, 3 );
+		wp_set_script_translations( 'jetpack-blocks-editor', 'jetpack' );
 
 		wp_enqueue_style( 'jetpack-blocks-editor', $editor_style, array(), $version );
-	}
-
-	/**
-	 * A workaround for setting i18n data for WordPress client-side i18n mechanism.
-	 * We are not yet using dotorg language packs for the editor file, so this short-circuits
-	 * the translation loading and feeds our JSON data directly into the translation getter.
-	 *
-	 * @param NULL   $null     not used.
-	 * @param String $file     the file path that is being loaded, ignored.
-	 * @param String $handle   the script handle.
-	 * @return NULL|String the translation data only if we're working with our handle.
-	 */
-	public static function filter_pre_load_script_translations( $null, $file, $handle ) {
-		if ( 'jetpack-blocks-editor' !== $handle ) {
-			return null;
-		}
-
-		return Jetpack::get_i18n_data_json();
 	}
 
 	/**
@@ -670,5 +667,47 @@ class Jetpack_Gutenberg {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Get CSS classes for a block.
+	 *
+	 * @since 7.7.0
+	 *
+	 * @param string $slug  Block slug.
+	 * @param array  $attr  Block attributes.
+	 * @param array  $extra Potential extra classes you may want to provide.
+	 *
+	 * @return string $classes List of CSS classes for a block.
+	 */
+	public static function block_classes( $slug = '', $attr, $extra = array() ) {
+		if ( empty( $slug ) ) {
+			return '';
+		}
+
+		// Basic block name class.
+		$classes = array(
+			'wp-block-jetpack-' . $slug,
+		);
+
+		// Add alignment if provided.
+		if (
+			! empty( $attr['align'] )
+			&& in_array( $attr['align'], array( 'left', 'center', 'right', 'wide', 'full' ), true )
+		) {
+			array_push( $classes, 'align' . $attr['align'] );
+		}
+
+		// Add custom classes if provided in the block editor.
+		if ( ! empty( $attr['className'] ) ) {
+			array_push( $classes, $attr['className'] );
+		}
+
+		// Add any extra classes.
+		if ( is_array( $extra ) && ! empty( $extra ) ) {
+			$classes = array_merge( $classes, $extra );
+		}
+
+		return implode( $classes, ' ' );
 	}
 }
