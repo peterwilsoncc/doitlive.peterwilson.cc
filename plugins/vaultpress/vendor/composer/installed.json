@@ -1,17 +1,17 @@
 [
     {
         "name": "automattic/jetpack-autoloader",
-        "version": "v1.2.0",
-        "version_normalized": "1.2.0.0",
+        "version": "v1.3.7",
+        "version_normalized": "1.3.7.0",
         "source": {
             "type": "git",
             "url": "https://github.com/Automattic/jetpack-autoloader.git",
-            "reference": "4ad9631e68e9da8b8a764615766287becfb27f81"
+            "reference": "34484f300429699e71bc09baa7f459eb1da0fe14"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Automattic/jetpack-autoloader/zipball/4ad9631e68e9da8b8a764615766287becfb27f81",
-            "reference": "4ad9631e68e9da8b8a764615766287becfb27f81",
+            "url": "https://api.github.com/repos/Automattic/jetpack-autoloader/zipball/34484f300429699e71bc09baa7f459eb1da0fe14",
+            "reference": "34484f300429699e71bc09baa7f459eb1da0fe14",
             "shasum": ""
         },
         "require": {
@@ -20,7 +20,7 @@
         "require-dev": {
             "phpunit/phpunit": "^5.7 || ^6.5 || ^7.5"
         },
-        "time": "2019-06-24T15:13:23+00:00",
+        "time": "2019-12-09T22:37:41+00:00",
         "type": "composer-plugin",
         "extra": {
             "class": "Automattic\\Jetpack\\Autoloader\\CustomAutoloaderPlugin"
@@ -39,30 +39,30 @@
     },
     {
         "name": "automattic/jetpack-logo",
-        "version": "v1.1.0",
-        "version_normalized": "1.1.0.0",
+        "version": "v1.1.4",
+        "version_normalized": "1.1.4.0",
         "source": {
             "type": "git",
             "url": "https://github.com/Automattic/jetpack-logo.git",
-            "reference": "c02750b6af95d114ba08562a7df74bab98235fef"
+            "reference": "7da178a529f772cddfd0bbf1775eb30a852739c2"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Automattic/jetpack-logo/zipball/c02750b6af95d114ba08562a7df74bab98235fef",
-            "reference": "c02750b6af95d114ba08562a7df74bab98235fef",
+            "url": "https://api.github.com/repos/Automattic/jetpack-logo/zipball/7da178a529f772cddfd0bbf1775eb30a852739c2",
+            "reference": "7da178a529f772cddfd0bbf1775eb30a852739c2",
             "shasum": ""
         },
         "require-dev": {
             "php-mock/php-mock": "^2.1",
             "phpunit/phpunit": "^5.7 || ^6.5 || ^7.5"
         },
-        "time": "2019-06-10T21:57:07+00:00",
+        "time": "2019-11-08T21:16:05+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
-            "psr-4": {
-                "Automattic\\Jetpack\\Assets\\": "src/"
-            }
+            "classmap": [
+                "src/"
+            ]
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
@@ -179,17 +179,17 @@
     },
     {
         "name": "phpcompatibility/php-compatibility",
-        "version": "9.2.0",
-        "version_normalized": "9.2.0.0",
+        "version": "9.3.4",
+        "version_normalized": "9.3.4.0",
         "source": {
             "type": "git",
             "url": "https://github.com/PHPCompatibility/PHPCompatibility.git",
-            "reference": "3db1bf1e28123fd574a4ae2e9a84072826d51b5e"
+            "reference": "1f37659196e4f3113ea506a7efba201c52303bf1"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/PHPCompatibility/PHPCompatibility/zipball/3db1bf1e28123fd574a4ae2e9a84072826d51b5e",
-            "reference": "3db1bf1e28123fd574a4ae2e9a84072826d51b5e",
+            "url": "https://api.github.com/repos/PHPCompatibility/PHPCompatibility/zipball/1f37659196e4f3113ea506a7efba201c52303bf1",
+            "reference": "1f37659196e4f3113ea506a7efba201c52303bf1",
             "shasum": ""
         },
         "require": {
@@ -206,7 +206,7 @@
             "dealerdirect/phpcodesniffer-composer-installer": "^0.5 || This Composer plugin will sort out the PHPCS 'installed_paths' automatically.",
             "roave/security-advisories": "dev-master || Helps prevent installing dependencies with known security issues."
         },
-        "time": "2019-06-27T19:58:56+00:00",
+        "time": "2019-11-15T04:12:02+00:00",
         "type": "phpcodesniffer-standard",
         "installation-source": "dist",
         "notification-url": "https://packagist.org/downloads/",
@@ -214,10 +214,6 @@
             "LGPL-3.0-or-later"
         ],
         "authors": [
-            {
-                "name": "Contributors",
-                "homepage": "https://github.com/PHPCompatibility/PHPCompatibility/graphs/contributors"
-            },
             {
                 "name": "Wim Godden",
                 "homepage": "https://github.com/wimg",
@@ -227,6 +223,10 @@
                 "name": "Juliette Reinders Folmer",
                 "homepage": "https://github.com/jrfnl",
                 "role": "lead"
+            },
+            {
+                "name": "Contributors",
+                "homepage": "https://github.com/PHPCompatibility/PHPCompatibility/graphs/contributors"
             }
         ],
         "description": "A set of sniffs for PHP_CodeSniffer that checks for PHP cross-version compatibility.",
@@ -239,30 +239,32 @@
     },
     {
         "name": "phpcompatibility/phpcompatibility-paragonie",
-        "version": "1.0.1",
-        "version_normalized": "1.0.1.0",
+        "version": "1.3.0",
+        "version_normalized": "1.3.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/PHPCompatibility/PHPCompatibilityParagonie.git",
-            "reference": "9160de79fcd683b5c99e9c4133728d91529753ea"
+            "reference": "b862bc32f7e860d0b164b199bd995e690b4b191c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/PHPCompatibility/PHPCompatibilityParagonie/zipball/9160de79fcd683b5c99e9c4133728d91529753ea",
-            "reference": "9160de79fcd683b5c99e9c4133728d91529753ea",
+            "url": "https://api.github.com/repos/PHPCompatibility/PHPCompatibilityParagonie/zipball/b862bc32f7e860d0b164b199bd995e690b4b191c",
+            "reference": "b862bc32f7e860d0b164b199bd995e690b4b191c",
             "shasum": ""
         },
         "require": {
             "phpcompatibility/php-compatibility": "^9.0"
         },
         "require-dev": {
-            "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4"
+            "dealerdirect/phpcodesniffer-composer-installer": "^0.5",
+            "paragonie/random_compat": "dev-master",
+            "paragonie/sodium_compat": "dev-master"
         },
         "suggest": {
-            "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4 || This Composer plugin will sort out the PHP_CodeSniffer 'installed_paths' automatically.",
+            "dealerdirect/phpcodesniffer-composer-installer": "^0.5 || This Composer plugin will sort out the PHP_CodeSniffer 'installed_paths' automatically.",
             "roave/security-advisories": "dev-master || Helps prevent installing dependencies with known security issues."
         },
-        "time": "2018-12-16T19:10:44+00:00",
+        "time": "2019-11-04T15:17:54+00:00",
         "type": "phpcodesniffer-standard",
         "installation-source": "dist",
         "notification-url": "https://packagist.org/downloads/",
@@ -392,17 +394,17 @@
     },
     {
         "name": "squizlabs/php_codesniffer",
-        "version": "3.4.2",
-        "version_normalized": "3.4.2.0",
+        "version": "3.5.3",
+        "version_normalized": "3.5.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-            "reference": "b8a7362af1cc1aadb5bd36c3defc4dda2cf5f0a8"
+            "reference": "557a1fc7ac702c66b0bbfe16ab3d55839ef724cb"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/b8a7362af1cc1aadb5bd36c3defc4dda2cf5f0a8",
-            "reference": "b8a7362af1cc1aadb5bd36c3defc4dda2cf5f0a8",
+            "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/557a1fc7ac702c66b0bbfe16ab3d55839ef724cb",
+            "reference": "557a1fc7ac702c66b0bbfe16ab3d55839ef724cb",
             "shasum": ""
         },
         "require": {
@@ -414,7 +416,7 @@
         "require-dev": {
             "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0"
         },
-        "time": "2019-04-10T23:49:02+00:00",
+        "time": "2019-12-04T04:46:47+00:00",
         "bin": [
             "bin/phpcs",
             "bin/phpcbf"

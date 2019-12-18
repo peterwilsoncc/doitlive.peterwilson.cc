@@ -2,9 +2,9 @@
 Contributors: automattic, apokalyptik, briancolinger, josephscott, shaunandrews, xknown, thingalon, annezazu, rachelsquirrel
 Tags: security, malware, virus, archive, back up, back ups, backup, backups, scanning, restore, wordpress backup, site backup, website backup
 Requires at least: 5.1
-Tested up to: 5.2
-Stable tag: 2.0.1
-Requires PHP: 5.3
+Tested up to: 5.3
+Stable tag: 2.1.1
+Requires PHP: 5.6
 License: GPLv2
 
 VaultPress is a subscription service offering real-time backup, automated security scanning, and support from WordPress experts.
@@ -49,34 +49,18 @@ Yes, VaultPress supports Multisite installs. Each site will require its own subs
 
 == Changelog ==
 
-= 2.0.1 =
+= 2.1 =
 
-* Release date: July 12, 2019
-
-**Bug Fixes**
-
-* Security Scanner: ensure the Security Scanner can be triggered at all times.
-
-= 2.0 =
-
-* Release date: July 9, 2019
-
-**Enhancements**
-
-* Dashboard: redesign the main VaultPress dashboard.
+* Release date: December 9, 2019
 
 **Compatibility**
 
-* General: VaultPress now requires PHP 5.3.2, and will display a notice if your site uses an older version of PHP.
-
-
-= 1.9.10 =
-
-* Release date: April 4, 2019
-
-**Bug fixes**
-
-* Fix a PHP fatal error caused by passing an object to the current() function.
+* General: avoid PHP deprecation notices when using a newer version of the Jetpack plugin.
+* Admin Page: do not display a dashboard link if not registered.
+* Admin Page: update reset settings card wording.
+* Connect button: update link to current VaultPress page.
+* Notices: only display notices in specific locations.
+* Notices: update wording for the VaultPress connection notice
 
 --------
 
