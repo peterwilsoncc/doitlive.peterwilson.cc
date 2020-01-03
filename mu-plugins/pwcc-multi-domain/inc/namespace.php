@@ -22,6 +22,34 @@ function bootstrap() {
 	add_filter( 'pwcc/multi-domain/taxonomies/domains', __NAMESPACE__ . '\\default_domain' );
 
 	add_filter( 'allowed_redirect_hosts', __NAMESPACE__ . '\\allowed_hosts' );
+	add_filter( 'url_to_postid', __NAMESPACE__ . '\\filter_url_to_postid' );
+}
+
+/**
+ * Normalise URL to default when looking up post ID from URL.
+ *
+ * url_to_postid() fails when the home URL isn't the default,
+ * so this returns sets the default URL before the query runs.
+ *
+ * @return URL normalised to the default.
+ */
+function filter_url_to_postid( $url ) {
+	$url = normalise_url( $url, custom_home_urls()['DEFAULT'] );
+	return $url;
+}
+
+/**
+ * Combine all allowed home URLs.
+ *
+ * Combines home urls registered for post types and taxonomies.
+ *
+ * @return array Allowed home URLs.
+ */
+function custom_home_urls() {
+	return array_merge(
+		PostTypes\custom_home_urls(),
+		Taxonomies\custom_home_urls()
+	);
 }
 
 /**
@@ -37,10 +65,7 @@ function bootstrap() {
  */
 function allowed_hosts( $allowed_hosts ) {
 	// Combine post types and taxos.
-	$custom_allowed_hosts = array_merge(
-		PostTypes\custom_home_urls(),
-		Taxonomies\custom_home_urls()
-	);
+	$custom_allowed_hosts = custom_home_urls();
 
 	$custom_allowed_hosts = array_map( function( $home ) {
 		return wp_parse_url( $home, PHP_URL_HOST );
@@ -60,10 +85,7 @@ function allowed_hosts( $allowed_hosts ) {
  */
 function normalise_url( string $url, string $urls_home ) {
 	// Combine post types and taxos.
-	$custom_home_urls = array_merge(
-		PostTypes\custom_home_urls(),
-		Taxonomies\custom_home_urls()
-	);
+	$custom_home_urls = custom_home_urls();
 
 	// Trust WP to get the scheme correct.
 	$scheme = wp_parse_url( $url, PHP_URL_SCHEME );
