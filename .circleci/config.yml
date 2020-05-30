@@ -23,7 +23,7 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/php:7.2-apache-node-browsers
-      - image: circleci/mysql:5.7.28
+      - image: circleci/mysql:5.7
 
     working_directory: ~/repo
 
@@ -41,7 +41,7 @@ jobs:
             sudo apt-get install nano
             sudo docker-php-ext-install mysqli
             sudo sh -c "printf '\ndeb http://ftp.us.debian.org/debian sid main\n' >> /etc/apt/sources.list"
-            sudo apt-get update && sudo apt-get install mysql-client-5.7
+            sudo apt-get update && sudo apt-get install default-mysql-client
       - run:
           name: "Install memcached"
           command: |
