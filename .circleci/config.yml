@@ -40,7 +40,6 @@ jobs:
             sudo apt-get update
             sudo apt-get install nano
             sudo docker-php-ext-install mysqli
-            sudo sh -c "printf '\ndeb http://ftp.us.debian.org/debian sid main\n' >> /etc/apt/sources.list"
             sudo apt-get update && sudo apt-get install default-mysql-client
       - run:
           name: "Install memcached"
