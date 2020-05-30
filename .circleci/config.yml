@@ -23,7 +23,7 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/php:7.2-apache-node-browsers
-      - image: circleci/mysql:5.7.16
+      - image: circleci/mysql:5.7.28
 
     working_directory: ~/repo
 
