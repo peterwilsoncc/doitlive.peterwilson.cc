@@ -22,7 +22,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/php:7.2-apache-node-browsers
+      - image: circleci/php:7.3-apache-node-browsers
       - image: circleci/mysql:5.7
 
     working_directory: ~/repo
@@ -97,7 +97,7 @@ jobs:
   deploy:
     docker:
       # specify the version you desire here
-      - image: circleci/php:7.2-apache-node-browsers
+      - image: circleci/php:7.3-apache-node-browsers
 
     working_directory: ~/repo
 
