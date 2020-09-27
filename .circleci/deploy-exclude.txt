@@ -23,6 +23,7 @@ yarn.lock
 /.circleci
 /.config
 /.tests
+/fixperms.sh
 /vendor
 /mu-plugins/vendor/cavalcade/tests
 /mu-plugins/vendor/extended-cpts/tests
