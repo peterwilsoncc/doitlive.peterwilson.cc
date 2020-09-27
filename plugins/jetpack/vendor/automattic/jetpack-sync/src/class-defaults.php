@@ -79,7 +79,7 @@ class Defaults {
 		'social_notifications_like',
 		'social_notifications_reblog',
 		'social_notifications_subscribe',
-		'comment_whitelist',
+		'comment_previously_approved',
 		'comment_max_links',
 		'moderation_keys',
 		'jetpack_wga',
@@ -102,6 +102,7 @@ class Defaults {
 		'jetpack_autoupdate_translations',
 		'carousel_background_color',
 		'carousel_display_exif',
+		'carousel_display_comments',
 		'jetpack_portfolio',
 		'jetpack_portfolio_posts_per_page',
 		'jetpack_testimonial',
@@ -129,7 +130,7 @@ class Defaults {
 		'advanced_seo_title_formats', // Jetpack_SEO_Titles::TITLE_FORMATS_OPTION.
 		'jetpack_api_cache_enabled',
 		'start_of_week',
-		'blacklist_keys',
+		'disallowed_keys',
 		'posts_per_page',
 		'posts_per_rss',
 		'show_on_front',
@@ -154,11 +155,17 @@ class Defaults {
 		'wordads_display_page',
 		'wordads_display_archive',
 		'wordads_custom_adstxt',
+		'wordads_custom_adstxt_enabled',
+		'wordads_ccpa_enabled',
+		'wordads_ccpa_privacy_policy_url',
 		'site_segment',
 		'site_user_type',
 		'site_vertical',
 		'jetpack_excluded_extensions',
 		'jetpack_publicize_options',
+		'jetpack_connection_active_plugins',
+		'jetpack_sync_non_blocking', // is non-blocking Jetpack Sync flow enabled.
+		'ce4wp_referred_by', // Creative Mail. See pbtFPC-H5-p2
 	);
 
 	/**
@@ -379,6 +386,9 @@ class Defaults {
 		'bwg_gallery',
 		'customize_changeset', // WP built-in post type for Customizer changesets.
 		'dn_wp_yt_log',
+		'flamingo_contact', // https://wordpress.org/plugins/flamingo/.
+		'flamingo_inbound',
+		'flamingo_outbound',
 		'http',
 		'idx_page',
 		'jetpack_migration',
@@ -800,6 +810,8 @@ class Defaults {
 		'jetpack-responsive-videos',
 		'infinite-scroll',
 		'site-logo',
+		'editor-color-palette',
+		'editor-gradient-presets',
 	);
 
 	/**
@@ -938,6 +950,7 @@ class Defaults {
 		'jetpack_protect_key',
 		'jetpack_protect_global_whitelist',
 		'active_sitewide_plugins',
+		'auto_update_plugins', // WordPress 5.5+ auto-updates.
 	);
 
 	/**

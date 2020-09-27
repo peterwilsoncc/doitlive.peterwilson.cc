@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit69bd67ac12346324efc8f759616eaba8
+class ComposerStaticInit2c0a7638f32f0b45e798df3127236e43
 {
     public static $files = array (
         'bce4ecd6aabb2a2948e06d0e2c4ea9a6' => __DIR__ . '/..' . '/automattic/jetpack-connection/legacy/load-ixr.php',
@@ -27,6 +27,7 @@ class ComposerStaticInit69bd67ac12346324efc8f759616eaba8
     );
 
     public static $classMap = array (
+        'Automattic\\Jetpack\\A8c_Mc_Stats' => __DIR__ . '/..' . '/automattic/jetpack-a8c-mc-stats/src/class-a8c-mc-stats.php',
         'Automattic\\Jetpack\\Abtest' => __DIR__ . '/..' . '/automattic/jetpack-abtest/src/class-abtest.php',
         'Automattic\\Jetpack\\Assets' => __DIR__ . '/..' . '/automattic/jetpack-assets/src/class-assets.php',
         'Automattic\\Jetpack\\Assets\\Logo' => __DIR__ . '/..' . '/automattic/jetpack-logo/src/class-logo.php',
@@ -35,14 +36,25 @@ class ComposerStaticInit69bd67ac12346324efc8f759616eaba8
         'Automattic\\Jetpack\\Backup\\Helper_Script_Manager' => __DIR__ . '/..' . '/automattic/jetpack-backup/src/class-helper-script-manager.php',
         'Automattic\\Jetpack\\Config' => __DIR__ . '/..' . '/automattic/jetpack-config/src/class-config.php',
         'Automattic\\Jetpack\\Connection\\Client' => __DIR__ . '/..' . '/automattic/jetpack-connection/src/class-client.php',
+        'Automattic\\Jetpack\\Connection\\Error_Handler' => __DIR__ . '/..' . '/automattic/jetpack-connection/src/class-error-handler.php',
         'Automattic\\Jetpack\\Connection\\Manager' => __DIR__ . '/..' . '/automattic/jetpack-connection/src/class-manager.php',
         'Automattic\\Jetpack\\Connection\\Manager_Interface' => __DIR__ . '/..' . '/automattic/jetpack-connection/src/interface-manager.php',
+        'Automattic\\Jetpack\\Connection\\Plugin' => __DIR__ . '/..' . '/automattic/jetpack-connection/src/class-plugin.php',
+        'Automattic\\Jetpack\\Connection\\Plugin_Storage' => __DIR__ . '/..' . '/automattic/jetpack-connection/src/class-plugin-storage.php',
         'Automattic\\Jetpack\\Connection\\REST_Connector' => __DIR__ . '/..' . '/automattic/jetpack-connection/src/class-rest-connector.php',
+        'Automattic\\Jetpack\\Connection\\Rest_Authentication' => __DIR__ . '/..' . '/automattic/jetpack-connection/src/class-rest-authentication.php',
         'Automattic\\Jetpack\\Connection\\Utils' => __DIR__ . '/..' . '/automattic/jetpack-connection/src/class-utils.php',
+        'Automattic\\Jetpack\\Connection\\XMLRPC_Async_Call' => __DIR__ . '/..' . '/automattic/jetpack-connection/src/class-xmlrpc-async-call.php',
         'Automattic\\Jetpack\\Connection\\XMLRPC_Connector' => __DIR__ . '/..' . '/automattic/jetpack-connection/src/class-xmlrpc-connector.php',
         'Automattic\\Jetpack\\Constants' => __DIR__ . '/..' . '/automattic/jetpack-constants/src/class-constants.php',
+        'Automattic\\Jetpack\\Device_Detection' => __DIR__ . '/..' . '/automattic/jetpack-device-detection/src/class-device-detection.php',
+        'Automattic\\Jetpack\\Device_Detection\\User_Agent_Info' => __DIR__ . '/..' . '/automattic/jetpack-device-detection/src/class-user-agent-info.php',
         'Automattic\\Jetpack\\Error' => __DIR__ . '/..' . '/automattic/jetpack-error/src/class-error.php',
-        'Automattic\\Jetpack\\JITM' => __DIR__ . '/..' . '/automattic/jetpack-jitm/src/class-jitm.php',
+        'Automattic\\Jetpack\\Heartbeat' => __DIR__ . '/..' . '/automattic/jetpack-heartbeat/src/class-heartbeat.php',
+        'Automattic\\Jetpack\\JITMS\\JITM' => __DIR__ . '/..' . '/automattic/jetpack-jitm/src/class-jitm.php',
+        'Automattic\\Jetpack\\JITMS\\Post_Connection_JITM' => __DIR__ . '/..' . '/automattic/jetpack-jitm/src/class-post-connection-jitm.php',
+        'Automattic\\Jetpack\\JITMS\\Pre_Connection_JITM' => __DIR__ . '/..' . '/automattic/jetpack-jitm/src/class-pre-connection-jitm.php',
+        'Automattic\\Jetpack\\Jetpack_Lazy_Images' => __DIR__ . '/..' . '/automattic/jetpack-lazy-images/src/lazy-images.php',
         'Automattic\\Jetpack\\Partner' => __DIR__ . '/..' . '/automattic/jetpack-partner/src/class-partner.php',
         'Automattic\\Jetpack\\Plugin\\Tracking' => __DIR__ . '/../..' . '/src/class-tracking.php',
         'Automattic\\Jetpack\\Redirect' => __DIR__ . '/..' . '/automattic/jetpack-redirect/src/class-redirect.php',
@@ -110,9 +122,9 @@ class ComposerStaticInit69bd67ac12346324efc8f759616eaba8
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit69bd67ac12346324efc8f759616eaba8::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit69bd67ac12346324efc8f759616eaba8::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit69bd67ac12346324efc8f759616eaba8::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit2c0a7638f32f0b45e798df3127236e43::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit2c0a7638f32f0b45e798df3127236e43::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit2c0a7638f32f0b45e798df3127236e43::$classMap;
 
         }, null, ClassLoader::class);
     }

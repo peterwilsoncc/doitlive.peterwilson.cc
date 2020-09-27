@@ -234,8 +234,8 @@ class Jetpack_Carousel {
 					'_inc/build/carousel/jetpack-carousel.min.js',
 					'modules/carousel/jetpack-carousel.js'
 				),
-				array( 'jquery.spin' ),
-				$this->asset_version( '20190102' ),
+				array( 'jquery' ),
+				$this->asset_version( JETPACK__VERSION ),
 				true
 			);
 
@@ -252,6 +252,7 @@ class Jetpack_Carousel {
 				'ajaxurl'                         => set_url_scheme( admin_url( 'admin-ajax.php' ) ),
 				'nonce'                           => wp_create_nonce( 'carousel_nonce' ),
 				'display_exif'                    => $this->test_1or0_option( Jetpack_Options::get_option_and_ensure_autoload( 'carousel_display_exif', true ) ),
+				'display_comments'                => $this->test_1or0_option( Jetpack_Options::get_option_and_ensure_autoload( 'carousel_display_comments', true ) ),
 				'display_geo'                     => $this->test_1or0_option( Jetpack_Options::get_option_and_ensure_autoload( 'carousel_display_geo', true ) ),
 				'single_image_gallery'            => $this->single_image_gallery_enabled,
 				'single_image_gallery_media_file' => $this->single_image_gallery_enabled_media_file,
@@ -315,7 +316,7 @@ class Jetpack_Carousel {
 			 *
 			 * @param bool Enable Jetpack Carousel stat collection. Default false.
 			 */
-			if ( apply_filters( 'jetpack_enable_carousel_stats', false ) && in_array( 'stats', Jetpack::get_active_modules() ) && ! ( new Status() )->is_development_mode() ) {
+			if ( apply_filters( 'jetpack_enable_carousel_stats', false ) && in_array( 'stats', Jetpack::get_active_modules(), true ) && ! ( new Status() )->is_offline_mode() ) {
 				$localize_strings['stats'] = 'blog=' . Jetpack_Options::get_option( 'id' ) . '&host=' . wp_parse_url( get_option( 'home' ), PHP_URL_HOST ) . '&v=ext&j=' . JETPACK__API_VERSION . ':' . JETPACK__VERSION;
 
 				// Set the stats as empty if user is logged in but logged-in users shouldn't be tracked.
@@ -340,7 +341,7 @@ class Jetpack_Carousel {
 			 */
 			$localize_strings = apply_filters( 'jp_carousel_localize_strings', $localize_strings );
 			wp_localize_script( 'jetpack-carousel', 'jetpackCarouselStrings', $localize_strings );
-			wp_enqueue_style( 'jetpack-carousel', plugins_url( 'jetpack-carousel.css', __FILE__ ), array(), $this->asset_version( '20120629' ) );
+			wp_enqueue_style( 'jetpack-carousel', plugins_url( 'jetpack-carousel.css', __FILE__ ), array(), $this->asset_version( JETPACK__VERSION ) );
 			wp_style_add_data( 'jetpack-carousel', 'rtl', 'replace' );
 
 			/**
@@ -772,6 +773,9 @@ class Jetpack_Carousel {
 		add_settings_field( 'carousel_display_exif', __( 'Metadata', 'jetpack' ), array( $this, 'carousel_display_exif_callback' ), 'media', 'carousel_section' );
 		register_setting( 'media', 'carousel_display_exif', array( $this, 'carousel_display_exif_sanitize' ) );
 
+		add_settings_field( 'carousel_display_comments', __( 'Comments', 'jetpack' ), array( $this, 'carousel_display_comments_callback' ), 'media', 'carousel_section' );
+		register_setting( 'media', 'carousel_display_comments', array( $this, 'carousel_display_comments_sanitize' ) );
+
 		// No geo setting yet, need to "fuzzify" data first, for privacy
 		// add_settings_field('carousel_display_geo', __( 'Geolocation', 'jetpack' ), array( $this, 'carousel_display_geo_callback' ), 'media', 'carousel_section' );
 		// register_setting( 'media', 'carousel_display_geo', array( $this, 'carousel_display_geo_sanitize' ) );
@@ -834,7 +838,25 @@ class Jetpack_Carousel {
 		$this->settings_checkbox( 'carousel_display_exif', __( 'Show photo metadata (<a href="https://en.wikipedia.org/wiki/Exchangeable_image_file_format" rel="noopener noreferrer" target="_blank">Exif</a>) in carousel, when available.', 'jetpack' ) );
 	}
 
+	/**
+	 * Callback for checkbox and label of field that allows to toggle comments.
+	 */
+	public function carousel_display_comments_callback() {
+		$this->settings_checkbox( 'carousel_display_comments', esc_html__( 'Show comments area in carousel', 'jetpack' ) );
+	}
+
 	function carousel_display_exif_sanitize( $value ) {
+		return $this->sanitize_1or0_option( $value );
+	}
+
+	/**
+	 * Return sanitized option for value that controls whether comments will be hidden or not.
+	 *
+	 * @param number $value Value to sanitize.
+	 *
+	 * @return number Sanitized value, only 1 or 0.
+	 */
+	public function carousel_display_comments_sanitize( $value ) {
 		return $this->sanitize_1or0_option( $value );
 	}
 

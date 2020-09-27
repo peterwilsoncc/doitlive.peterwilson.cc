@@ -257,8 +257,7 @@ class Themes extends Module {
 			return;
 		}
 
-		$real_file = $theme->get_stylesheet_directory() . '/' . $file;
-		if ( ! wp_verify_nonce( $args['nonce'], 'edit-theme_' . $real_file . $stylesheet ) ) {
+		if ( ! wp_verify_nonce( $args['nonce'], 'edit-theme_' . $stylesheet . '_' . $file ) ) {
 			return;
 		}
 
@@ -285,6 +284,7 @@ class Themes extends Module {
 			}
 		}
 
+		$real_file = $theme->get_stylesheet_directory() . '/' . $file;
 		if ( 0 !== validate_file( $real_file, $allowed_files ) ) {
 			return;
 		}
@@ -849,7 +849,7 @@ class Themes extends Module {
 	 *
 	 * @return int total
 	 */
-	public function total( $config ) {
+	public function total( $config ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
 		return 1;
 	}
 

@@ -17,12 +17,10 @@ class Site_Helper {
 	/**
 	 * Retrieves the site name.
 	 *
-	 * @codeCoverageIgnore We have to write test when this method contains own code.
-	 *
 	 * @return string
 	 */
 	public function get_site_name() {
-		return WPSEO_Utils::get_site_name();
+		return wp_strip_all_tags( get_bloginfo( 'name' ), true );
 	}
 
 	/**
@@ -34,6 +32,6 @@ class Site_Helper {
 	 * @return bool True when there was a switch between the multisites.
 	 */
 	public function is_multisite_and_switched() {
-		return is_multisite() && ms_is_switched();
+		return \is_multisite() && \ms_is_switched();
 	}
 }

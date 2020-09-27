@@ -40,7 +40,7 @@ class Indexable_Hierarchy_Repository {
 	 *
 	 * @param int $indexable_id The indexable id.
 	 *
-	 * @return bool Whether or not the indexables were successfully deleted
+	 * @return bool Whether or not the indexables were successfully deleted.
 	 */
 	public function clear_ancestors( $indexable_id ) {
 		return $this->query()->where( 'indexable_id', $indexable_id )->delete_many();
@@ -53,15 +53,17 @@ class Indexable_Hierarchy_Repository {
 	 * @param int $ancestor_id  The ancestor id.
 	 * @param int $depth        The depth.
 	 *
-	 * @return bool Whether or not the ancestor was added succesfully.
+	 * @return bool Whether or not the ancestor was added successfully.
 	 */
 	public function add_ancestor( $indexable_id, $ancestor_id, $depth ) {
-		$hierarchy = $this->query()->create( [
-			'indexable_id' => $indexable_id,
-			'ancestor_id'  => $ancestor_id,
-			'depth'        => $depth,
-			'blog_id'      => \get_current_blog_id(),
-		] );
+		$hierarchy = $this->query()->create(
+			[
+				'indexable_id' => $indexable_id,
+				'ancestor_id'  => $ancestor_id,
+				'depth'        => $depth,
+				'blog_id'      => \get_current_blog_id(),
+			]
+		);
 		return $hierarchy->save();
 	}
 
@@ -80,15 +82,40 @@ class Indexable_Hierarchy_Repository {
 			->find_array();
 
 		if ( ! empty( $ancestors ) ) {
-			return \array_map( function ( $ancestor ) {
+			$callback = function ( $ancestor ) {
 				return $ancestor['ancestor_id'];
-			}, $ancestors );
+			};
+			return \array_map( $callback, $ancestors );
 		}
 
 		$indexable = $this->builder->build( $indexable );
-		return \array_map( function ( $indexable ) {
+		$callback  = function ( $indexable ) {
 			return $indexable->id;
-		}, $indexable->ancestors );
+		};
+		return \array_map( $callback, $indexable->ancestors );
+	}
+
+	/**
+	 * Finds the children for a given indexable.
+	 *
+	 * @param Indexable $indexable The indexable to find the children for.
+	 *
+	 * @return array Array with indexable ids for the children.
+	 */
+	public function find_children( Indexable $indexable ) {
+		$children = $this->query()
+			->select( 'indexable_id' )
+			->where( 'ancestor_id', $indexable->id )
+			->find_array();
+
+		if ( empty( $children ) ) {
+			return [];
+		}
+
+		$callback = function( $child ) {
+			return $child['indexable_id'];
+		};
+		return \array_map( $callback, $children );
 	}
 
 	/**

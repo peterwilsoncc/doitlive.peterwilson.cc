@@ -19,6 +19,8 @@ use YoastSEO_Vendor\Symfony\Component\DependencyInjection\ContainerInterface;
  * @property Helpers\Date_Helper           $date
  * @property Helpers\Home_Url_Helper       $home_url
  * @property Helpers\Image_Helper          $image
+ * @property Helpers\Indexable_Helper      $indexable
+ * @property Helpers\Language_Helper       $language
  * @property Helpers\Meta_Helper           $meta
  * @property Helpers\Options_Helper        $options
  * @property Helpers\Pagination_Helper     $pagination
@@ -33,6 +35,7 @@ use YoastSEO_Vendor\Symfony\Component\DependencyInjection\ContainerInterface;
  * @property Helpers\Taxonomy_Helper       $taxonomy
  * @property Helpers\Url_Helper            $url
  * @property Helpers\User_Helper           $user
+ * @property Helpers\Woocommerce_Helper    $woocommerce
  */
 class Helpers_Surface {
 
@@ -92,7 +95,7 @@ class Helpers_Surface {
 	 * @return mixed The helper class.
 	 */
 	public function __get( $helper ) {
-		$helper = implode( '_', array_map( 'ucfirst', explode( '_', $helper ) ) );
+		$helper = \implode( '_', \array_map( 'ucfirst', \explode( '_', $helper ) ) );
 		$class  = "Yoast\WP\SEO\Helpers\\{$helper}_Helper";
 		return $this->container->get( $class );
 	}
