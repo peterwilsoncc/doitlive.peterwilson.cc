@@ -5,10 +5,21 @@
  * @package WPSEO\Admin
  */
 
+use Yoast\WP\SEO\Context\Meta_Tags_Context;
+use Yoast\WP\SEO\Integrations\Admin\Admin_Columns_Cache_Integration;
+use Yoast\WP\SEO\Surfaces\Values\Meta;
+
 /**
  * Class WPSEO_Meta_Columns.
  */
 class WPSEO_Meta_Columns {
+
+	/**
+	 * Holds the context objects for each indexable.
+	 *
+	 * @var Meta_Tags_Context[]
+	 */
+	protected $context = [];
 
 	/**
 	 * Holds the SEO analysis.
@@ -25,6 +36,13 @@ class WPSEO_Meta_Columns {
 	private $analysis_readability;
 
 	/**
+	 * Admin columns cache.
+	 *
+	 * @var Admin_Columns_Cache_Integration
+	 */
+	private $admin_columns_cache;
+
+	/**
 	 * When page analysis is enabled, just initialize the hooks.
 	 */
 	public function __construct() {
@@ -34,6 +52,7 @@ class WPSEO_Meta_Columns {
 
 		$this->analysis_seo         = new WPSEO_Metabox_Analysis_SEO();
 		$this->analysis_readability = new WPSEO_Metabox_Analysis_Readability();
+		$this->admin_columns_cache  = YoastSEO()->classes->get( Admin_Columns_Cache_Integration::class );
 	}
 
 	/**
@@ -108,17 +127,11 @@ class WPSEO_Meta_Columns {
 				return;
 
 			case 'wpseo-title':
-				$post  = get_post( $post_id, ARRAY_A );
-				$title = wpseo_replace_vars( $this->page_title( $post_id ), $post );
-				$title = apply_filters( 'wpseo_title', $title );
-
-				echo esc_html( $title );
+				echo esc_html( $this->get_meta( $post_id )->title );
 				return;
 
 			case 'wpseo-metadesc':
-				$post         = get_post( $post_id, ARRAY_A );
-				$metadesc_val = wpseo_replace_vars( WPSEO_Meta::get_value( 'metadesc', $post_id ), $post );
-				$metadesc_val = apply_filters( 'wpseo_metadesc', $metadesc_val );
+				$metadesc_val = $this->get_meta( $post_id )->meta_description;
 
 				if ( $metadesc_val === '' ) {
 					echo '<span aria-hidden="true">&#8212;</span><span class="screen-reader-text">',
@@ -256,6 +269,19 @@ class WPSEO_Meta_Columns {
 	 */
 	protected function generate_option( $value, $label, $selected = '' ) {
 		return '<option ' . $selected . ' value="' . esc_attr( $value ) . '">' . esc_html( $label ) . '</option>';
+	}
+
+	/**
+	 * Returns the meta object for a given post ID.
+	 *
+	 * @param int $post_id The post ID.
+	 *
+	 * @return Meta The meta object.
+	 */
+	protected function get_meta( $post_id ) {
+		$indexable = $this->admin_columns_cache->get_indexable( $post_id );
+
+		return YoastSEO()->meta->for_indexable( $indexable, 'Post_Type' );
 	}
 
 	/**
@@ -695,31 +721,6 @@ class WPSEO_Meta_Columns {
 		}
 
 		return WPSEO_Utils::is_metabox_active( $post_type, 'post_type' );
-	}
-
-	/**
-	 * Retrieve the page title.
-	 *
-	 * @param int $post_id Post to retrieve the title for.
-	 *
-	 * @return string
-	 */
-	private function page_title( $post_id ) {
-		$fixed_title = WPSEO_Meta::get_value( 'title', $post_id );
-		if ( $fixed_title !== '' ) {
-			return $fixed_title;
-		}
-
-		$post = get_post( $post_id );
-
-		if ( is_object( $post ) && WPSEO_Options::get( 'title-' . $post->post_type, '' ) !== '' ) {
-			$title_template = WPSEO_Options::get( 'title-' . $post->post_type );
-			$title_template = str_replace( ' %%page%% ', ' ', $title_template );
-
-			return wpseo_replace_vars( $title_template, $post );
-		}
-
-		return wpseo_replace_vars( '%%title%%', $post );
 	}
 
 	/**

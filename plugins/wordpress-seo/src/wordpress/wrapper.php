@@ -7,8 +7,10 @@
 
 namespace Yoast\WP\SEO\WordPress;
 
+use wpdb;
 use WPSEO_Admin_Asset_Manager;
 use WPSEO_Replace_Vars;
+use Yoast_Notification_Center;
 
 /**
  * Wrapper class for WordPress globals.
@@ -19,7 +21,7 @@ class Wrapper {
 	/**
 	 * Wrapper method for returning the wpdb object for use in dependency injection.
 	 *
-	 * @return \wpdb The wpdb global.
+	 * @return wpdb The wpdb global.
 	 */
 	public static function get_wpdb() {
 		global $wpdb;

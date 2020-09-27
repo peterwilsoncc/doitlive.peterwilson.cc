@@ -1,10 +1,10 @@
 === Jetpack by WordPress.com ===
-Contributors: automattic, adamkheckler, aduth, akirk, allendav, alternatekev, andy, annezazu, apeatling, azaozz, batmoo, barry, beaulebens, blobaugh, brbrr, cainm, cena, cfinke, chaselivingston, chellycat, clickysteve, csonnek, danielbachhuber, davoraltman, daniloercoli, delawski, designsimply, dllh, drawmyface, dsmart, dzver, ebinnion, egregor, eliorivero, enej, eoigal, erania-pinnera, ethitter, gcorne, georgestephanis, gibrown, goldsounds, hew, hugobaeta, hypertextranch, iammattthomas, iandunn, jblz, jasmussen, jeffgolenski, jeherve, jenhooks, jenia, jessefriedman, jgs, jkudish, jmdodd, joanrho, johnjamesjacoby, jshreve, kbrownkd, keoshi, koke, kraftbj, lancewillett, lschuyler, macmanx, martinremy, matt, matveb, mattwiebe, maverick3x6, mcsf, mdawaffe, MichaelArestad, migueluy, mikeyarce, mkaz, nancythanki, nickmomrik, obenland, oskosk, pento, professor44, rachelsquirrel, rdcoll, ryancowles, richardmuscat, richardmtl, roccotripaldi, samhotchkiss, scarstocea, scottsweb, sdquirk, simison, stephdau, tmoorewp, tyxla, Viper007Bond, westi, yoavf, zinigor
+Contributors: automattic, adamkheckler, aduth, akirk, allendav, alternatekev, andy, annezazu, apeatling, azaozz, batmoo, barry, beaulebens, biskobe, blobaugh, brbrr, cainm, cena, cfinke, chaselivingston, chellycat, clickysteve, csonnek, danielbachhuber, davoraltman, daniloercoli, delawski, designsimply, dllh, drawmyface, dsmart, dzver, ebinnion, egregor, eliorivero, enej, eoigal, erania-pinnera, ethitter, fgiannar, gcorne, georgestephanis, gibrown, goldsounds, hew, hugobaeta, hypertextranch, iammattthomas, iandunn, jblz, jasmussen, jeffgolenski, jeherve, jenhooks, jenia, jessefriedman, jgs, jkudish, jmdodd, joanrho, johnjamesjacoby, jshreve, kbrownkd, keoshi, koke, kraftbj, lancewillett, leogermani, lschuyler, macmanx, martinremy, matt, matveb, mattwiebe, maverick3x6, mcsf, mdawaffe, mdbitz, MichaelArestad, migueluy, mikeyarce, mkaz, nancythanki, nickmomrik, obenland, oskosk, pento, professor44, rachelsquirrel, rdcoll, ryancowles, richardmuscat, richardmtl, roccotripaldi, samhotchkiss, scarstocea, scottsweb, sdquirk, sermitr, simison, stephdau, tmoorewp, tyxla, Viper007Bond, westi, yoavf, zinigor
 Tags: Jetpack, WordPress.com, backup, security, related posts, CDN, speed, anti-spam, social sharing, SEO, video, stats
-Stable tag: 8.5
-Requires at least: 5.3
+Stable tag: 8.9.1
+Requires at least: 5.4
 Requires PHP: 5.6
-Tested up to: 5.4
+Tested up to: 5.5
 
 The ideal plugin for stats, related posts, search engine optimization, social sharing, protection, backups, security, and more.
 
@@ -27,7 +27,7 @@ Activate site accelerator tools and watch your page load times decrease -- we'll
 
 * Images and static files, like CSS and JavaScript, served from our servers, not yours.
 * Elasticsearch-powered related content and site search, for relevant results with no drain on your servers.
-* Lazy image loading for a faster mobile experience.
+* Lazy load images for a faster mobile experience.
 * Unlimited and high-speed video via our content delivery network.
 
 = Effortless Site Management =
@@ -96,45 +96,80 @@ There are opportunities for developers at all levels to contribute. [Learn more 
 
 == Changelog ==
 
-= 8.5 =
+= 8.9.1 =
 
-* Release date: May 5, 2020
-* Release post: https://wp.me/p1moTy-p00
-
-**Major Enhancements**
-
-* Podcast Player: you can now embed and play recent podcast episodes in any post or page.
+* Release date: September 16, 2020
 
 **Enhancements**
 
-* Comments: update how comment types are stored to be fully compatible with upcoming WordPress Core changes.
-* OpenTable Block: add a warning notice when their selected combination of style and align options may cause display issues.
-* Publicize: allow site owners to set a filter to enable embedding media directly into Twitter embeds.
-* Revue Block: add new customization options.
-* Search: add new option to configure the Instant Search overlay.
-* Sync: improve performance of the synchronization process on sites with plugins generating an important amount of posts.
-
-**Improved compatibility**
-
-* Ad Block: ensure full compatibility of the feature with the AMP plugin.
-* Carousel: ensure full compatibility of the feature with the AMP plugin.
-* Embeds: ensure that all recipes, as well as Google Maps embeds and Scribd embeds, can be viewed with no errors in AMP views.
-* General: when using a beta version of Jetpack via the Jetpack Beta Plugin, allow Multisite connections to be managed in Network Admin.
-* Shortcodes: improve behavior of the Archives shortcode in AMP views.
-* Widgets: ensure that the Twitter Timeline and Internet Defense League widgets are compatible with the AMP plugin.
+* Jetpack Dashboard: add support for new Jetpack plans.
 
 **Bug fixes**
 
-* Dashboard: fix layout issue when using the monthly / yearly toggle in the Jetpack dashboard.
-* Contact Form: avoid making unnecessary requests to the Akismet API.
-* Crowdsignal: fix survey embeds when posts are loaded via Infinite Scroll.
-* Embeds: provide helpful feedback when inline PDFs cannot be displayed in mobile browsers.
-* General: fix comment notification overrides that direct moderation links to the WordPress.com interface.
-* General: improve deprecated hook notices to handle anonymous functions.
-* Site Health Tools: reduce false positives in Jetpack connection tests.
-* Slideshow Block: avoid layout issues when a block is added to a column block.
-* Subscriptions Block: fix layout issue in email input box.
-* Sync: improve performance of the synchronization process when processing a large amount of Akismet feedback.
+* General: avoid deprecation PHP notices when used with WooCommerce 4.4+.
+* Image CDN: avoid PHP warning when replacing URLs by their image CDN equivalent.
+* REST API: avoid authentication issues when using a third-party plugin also using the REST API.
+* Search: fix a bug where no results appear when using Jetpack's Instant Search interface.
+* Site Health Tools: skip a connection status test when in offline mode.
+
+= 8.9 =
+
+* Release date: September 1, 2020
+* Release post: https://wp.me/p1moTy-rAs
+
+**Major Enhancements**
+
+* The new Donations Block allows you to easily accept and process donations on your site.
+* You can now preview how your posts will look on Facebook, Twitter, and Google Search Results even before you hit the Publish button.
+
+
+**Enhancements**
+
+* Blocks: add "Edit" button to the Calendly block toolbar.
+* Blocks: add new "Consent" field option to the Form block.
+* Connection: improve the reconnection process when your site is not properly connected to WordPress.com anymore.
+* Connection: improve messaging offered and displayed in the dashboard when there are connection issues between your site and WordPress.com.
+* Contact Form: put feedback that matches the disallowed list in trash.
+* Dashboard: improved legibility across all Jetpack interfaces.
+* External Media: improve keyboard navigation in the media modal.
+* External Media: offer a way to disconnect Google Photos accounts from within the media modal.
+* Sharing: add spacing around customization link.
+* Search: improve styling of expanded results in the Instant Search interface.
+* Shortcodes: remove jQuery dependency from Gist shortcode.
+
+**Improved compatibility**
+
+* Anti-Spam: better handle globally-configured Akismet API keys in the Jetpack dashboard.
+* Blocks: update to use latest colors defined by WordPress.
+* Blocks: ensure our External Media option is compatible with other plugins that also make changes to the Media Library options in the block editor.
+* Connection: ensure better compatibility of the Monitor, Protect, Secure Sign In, Stats, and Subscription features with your site's connection to WordPress.com.
+* General: remove references to pre-PHP 5.6 code.
+* Sharing: improve accessibility of the sharing butttons in AMP views.
+* Shortcode Embeds: ensure compatibility of the Instagram embeds with upcoming Instagram API changes.
+* Third-party plugin compatibility: add new compatibility file for the Creative Mail plugin.
+* Third-party plugin compatibility: add Slim SEO to the list of plugins compatible with Jetpack's Open Graph and Twitter Cards Meta tags.
+
+**Bug fixes**
+
+* Autoloader: avoid issues when updating plugins using the Autoloader in environments using OPCache.
+* Autoloader: remove the map regeneration that occurs after a plugin update.
+* Activity Log: ensure that theme changes are mentioned in the Activity Log.
+* Blocks: ensure alignment options are respected for the Video block in the editor.
+* Blocks: avoid accidental disconnections of the Payments block in the editor.
+* Blocks: bug fixes and improvement of consistency of block style implementation in the OpenTable block.
+* Blocks: avoid duplicate navigation arrows in the Slideshow block.
+* CLI tools: avoid notices when using Synchronization CLI tools.
+* Connection: ensure that secondary users can connect their own account to their WordPress.com account.
+* Dashboard: fix missing card for Backups in some error cases.
+* Protect: avoid displaying HTML markup on blocked login screen.
+* Protect: avoid Fatal errors when trying to update Protect options from the REST API.
+* Search: ensure that Instant Search options are properly saved in the Customizer.
+* Search: avoid errors when searching for a term and including the "%" symbol.
+* Shortcodes: avoid Fatal errors when receiving unexpected response from Flickr.
+* Theme Tools: resolve a PHP notice in PHP 7.4.
+* Video: ensure that videos uploaded with Jetpack Videos are assigned to the correct author.
+* Widgets: ensure that the Instagram Widget is properly styled when previewed in the customizer.
+* Widgets: do not hide accepted cookie widget to allow visual customization in the Customizer.
 
 --------
 

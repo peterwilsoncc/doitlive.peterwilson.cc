@@ -7,11 +7,11 @@
 
 namespace Yoast\WP\SEO\Builders;
 
-use Exception;
+use WPSEO_Meta;
+use WPSEO_Utils;
 use Yoast\WP\SEO\Helpers\Post_Helper;
 use Yoast\WP\SEO\Models\Indexable;
 use Yoast\WP\SEO\Repositories\Indexable_Repository;
-use Yoast\WP\SEO\Repositories\SEO_Meta_Repository;
 
 /**
  * Formats the post meta to indexable format.
@@ -20,11 +20,11 @@ class Indexable_Post_Builder {
 	use Indexable_Social_Image_Trait;
 
 	/**
-	 * Yoast extension of the Model class.
+	 * The link builder.
 	 *
-	 * @var SEO_Meta_Repository
+	 * @var Indexable_Link_Builder
 	 */
-	protected $seo_meta_repository;
+	protected $link_builder;
 
 	/**
 	 * The indexable repository.
@@ -39,18 +39,20 @@ class Indexable_Post_Builder {
 	 * @var Post_Helper
 	 */
 	protected $post;
-
 	/**
 	 * Indexable_Post_Builder constructor.
 	 *
 	 * @codeCoverageIgnore This is dependency injection only.
 	 *
-	 * @param SEO_Meta_Repository $seo_meta_repository The SEO Meta repository.
-	 * @param Post_Helper         $post                The post helper.
+	 * @param Indexable_Link_Builder $link_builder The link builder.
+	 * @param Post_Helper            $post         The post helper.
 	 */
-	public function __construct( SEO_Meta_Repository $seo_meta_repository, Post_Helper $post ) {
-		$this->seo_meta_repository = $seo_meta_repository;
-		$this->post                = $post;
+	public function __construct(
+		Indexable_Link_Builder $link_builder,
+		Post_Helper $post
+	) {
+		$this->link_builder = $link_builder;
+		$this->post         = $post;
 	}
 
 	/**
@@ -122,7 +124,7 @@ class Indexable_Post_Builder {
 
 		$this->handle_social_images( $indexable );
 
-		$indexable = $this->set_link_count( $post_id, $indexable );
+		$this->link_builder->build( $indexable, $post->post_content );
 
 		$indexable->author_id   = $post->post_author;
 		$indexable->post_parent = $post->post_parent;
@@ -132,7 +134,10 @@ class Indexable_Post_Builder {
 		$indexable->is_protected     = $post->post_password !== '';
 		$indexable->is_public        = $this->is_public( $indexable );
 		$indexable->has_public_posts = $this->has_public_posts( $indexable );
-		$indexable->blog_id         = \get_current_blog_id();
+		$indexable->blog_id          = \get_current_blog_id();
+
+		$indexable->schema_page_type    = $this->get_meta_value( $post_id, 'schema_page_type' );
+		$indexable->schema_article_type = $this->get_meta_value( $post_id, 'schema_article_type' );
 
 		return $indexable;
 	}
@@ -301,29 +306,6 @@ class Indexable_Post_Builder {
 	}
 
 	/**
-	 * Updates the link count from existing data.
-	 *
-	 * @param int       $post_id   The post ID to use.
-	 * @param Indexable $indexable The indexable to extend.
-	 *
-	 * @return Indexable The extended indexable.
-	 */
-	protected function set_link_count( $post_id, Indexable $indexable ) {
-		try {
-			$seo_meta = $this->seo_meta_repository->find_by_post_id( $post_id );
-
-			if ( $seo_meta ) {
-				$indexable->link_count          = $seo_meta->internal_link_count;
-				$indexable->incoming_link_count = $seo_meta->incoming_link_count;
-			}
-		} catch ( Exception $exception ) { // @codingStandardsIgnoreLine Generic.CodeAnalysis.EmptyStatement.DetectedCATCH -- There is nothing to do.
-			// Do nothing here.
-		}
-
-		return $indexable;
-	}
-
-	/**
 	 * Retrieves the current value for the meta field.
 	 *
 	 * @param int    $post_id  The post ID to use.
@@ -332,7 +314,7 @@ class Indexable_Post_Builder {
 	 * @return mixed The value of the indexable entry to use.
 	 */
 	protected function get_meta_value( $post_id, $meta_key ) {
-		$value = \WPSEO_Meta::get_value( $meta_key, $post_id );
+		$value = WPSEO_Meta::get_value( $meta_key, $post_id );
 		if ( \is_string( $value ) && $value === '' ) {
 			return null;
 		}
@@ -452,7 +434,7 @@ class Indexable_Post_Builder {
 
 		if ( ! empty( $image ) ) {
 			$indexable->open_graph_image      = $image['url'];
-			$indexable->open_graph_image_meta = wp_json_encode( $image );
+			$indexable->open_graph_image_meta = WPSEO_Utils::format_json_encode( $image );
 		}
 	}
 }

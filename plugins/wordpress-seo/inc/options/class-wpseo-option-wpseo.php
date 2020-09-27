@@ -26,17 +26,21 @@ class WPSEO_Option_Wpseo extends WPSEO_Option {
 	 */
 	protected $defaults = [
 		// Non-form fields, set via (ajax) function.
+		'tracking'                                 => null,
+		'license_server_version'                   => false,
 		'ms_defaults_set'                          => false,
 		'ignore_search_engines_discouraged_notice' => false,
 		'ignore_indexation_warning'                => false,
 		'indexation_warning_hide_until'            => false,
 		'indexation_started'                       => false,
+		'indexables_indexation_reason'             => '',
+		'indexables_indexation_completed'          => false,
 		// Non-form field, should only be set via validation routine.
-		'version'                         => '', // Leave default as empty to ensure activation/upgrade works.
-		'previous_version'                => '',
+		'version'                                  => '', // Leave default as empty to ensure activation/upgrade works.
+		'previous_version'                         => '',
 		// Form fields.
 		'disableadvanced_meta'                     => true,
-		'enable_headless_rest_endpoints'  => true,
+		'enable_headless_rest_endpoints'           => true,
 		'ryte_indexability'                        => true,
 		'baiduverify'                              => '', // Text field.
 		'googleverify'                             => '', // Text field.
@@ -124,14 +128,20 @@ class WPSEO_Option_Wpseo extends WPSEO_Option {
 	/**
 	 * Add the actions and filters for the option.
 	 *
-	 * @todo [JRF => testers] Check if the extra actions below would run into problems if an option
-	 * is updated early on and if so, change the call to schedule these for a later action on add/update
-	 * instead of running them straight away.
-	 *
 	 * @return \WPSEO_Option_Wpseo
+	 * @todo [JRF => testers] Check if the extra actions below would run into problems if an option
+	 *       is updated early on and if so, change the call to schedule these for a later action on add/update
+	 *       instead of running them straight away.
 	 */
 	protected function __construct() {
 		parent::__construct();
+
+		/**
+		 * Filter: 'wpseo_enable_tracking' - Enables the data tracking of Yoast SEO Premium.
+		 *
+		 * @api string $is_enabled The enabled state. Default is false.
+		 */
+		$this->defaults['tracking'] = apply_filters( 'wpseo_enable_tracking', false );
 
 		/* Clear the cache on update/add. */
 		add_action( 'add_option_' . $this->option_name, [ 'WPSEO_Utils', 'clear_cache' ] );
@@ -235,8 +245,14 @@ class WPSEO_Option_Wpseo extends WPSEO_Option {
 					$clean[ $key ] = WPSEO_VERSION;
 					break;
 				case 'previous_version':
+				case 'license_server_version':
 					if ( isset( $dirty[ $key ] ) ) {
 						$clean[ $key ] = $dirty[ $key ];
+					}
+					break;
+				case 'indexables_indexation_reason':
+					if ( isset( $dirty[ $key ] ) ) {
+						$clean[ $key ] = sanitize_text_field( $dirty[ $key ] );
 					}
 					break;
 
@@ -285,8 +301,8 @@ class WPSEO_Option_Wpseo extends WPSEO_Option {
 					break;
 
 				case 'first_activated_on':
-				case 'indexation_started' :
-				case 'indexation_warning_hide_until' :
+				case 'indexation_started':
+				case 'indexation_warning_hide_until':
 					$clean[ $key ] = false;
 					if ( isset( $dirty[ $key ] ) ) {
 						if ( $dirty[ $key ] === false || WPSEO_Utils::validate_int( $dirty[ $key ] ) ) {
@@ -309,6 +325,10 @@ class WPSEO_Option_Wpseo extends WPSEO_Option {
 						}
 					}
 
+					break;
+
+				case 'tracking':
+					$clean[ $key ] = ( isset( $dirty[ $key ] ) ? WPSEO_Utils::validate_bool( $dirty[ $key ] ) : null );
 					break;
 
 				/*
@@ -408,11 +428,14 @@ class WPSEO_Option_Wpseo extends WPSEO_Option {
 			'ignore_search_engines_discouraged_notice',
 		];
 
+		$target_values = [
+			'ignore',
+			'done',
+		];
+
 		foreach ( $value_change as $key ) {
-			if ( isset( $option_value[ $key ] ) && in_array( $option_value[ $key ], [
-					'ignore',
-					'done',
-				], true )
+			if ( isset( $option_value[ $key ] )
+				 && in_array( $option_value[ $key ], $target_values, true )
 			) {
 				$option_value[ $key ] = true;
 			}

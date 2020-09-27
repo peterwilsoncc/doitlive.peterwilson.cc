@@ -33,11 +33,11 @@ class Redirect {
 	}
 
 	/**
-	 * Builds and returns an URL using the jetpack.com/redirect service
+	 * Builds and returns an URL using the jetpack.com/redirect/ service
 	 *
-	 * If $source is a simple slug, it will be sent using the source query parameter. e.g. jetpack.com/redirect?source=slug
+	 * If $source is a simple slug, it will be sent using the source query parameter. e.g. jetpack.com/redirect/?source=slug
 	 *
-	 * If $source is a full URL, starting with https://, it will be sent using the url query parameter. e.g. jetpack.com/redirect?url=https://wordpress.com
+	 * If $source is a full URL, starting with https://, it will be sent using the url query parameter. e.g. jetpack.com/redirect/?url=https://wordpress.com
 	 *
 	 * Note: if using full URL, query parameters and anchor must be passed in $args. Any querystring of url fragment in the URL will be discarded.
 	 *
@@ -55,14 +55,16 @@ class Redirect {
 	 */
 	public static function get_url( $source, $args = array() ) {
 
-		$url           = 'https://jetpack.com/redirect';
+		$url           = 'https://jetpack.com/redirect/';
 		$args          = wp_parse_args( $args, array( 'site' => self::build_raw_urls( get_home_url() ) ) );
 		$accepted_args = array( 'site', 'path', 'query', 'anchor' );
 
 		$source_key = 'source';
+		$is_url     = false;
 
 		if ( 0 === strpos( $source, 'https://' ) ) {
 			$source_key = 'url';
+			$is_url     = true;
 			$source_url = \wp_parse_url( $source );
 
 			// discard any query and fragments.
@@ -87,6 +89,16 @@ class Redirect {
 			$url = add_query_arg( $to_be_added, $url );
 		}
 
-		return $url;
+		/**
+		 * Filters the return of the Redirect URL.
+		 *
+		 * @since 8.6.0
+		 *
+		 * @param string  $url    The redirect URL.
+		 * @param string  $source The $source informed to Redirect::get_url.
+		 * @param array   $args   The arguments informed to Redirect::get_url.
+		 * @param boolean $is_url Whether $source is a URL or not.
+		 */
+		return \apply_filters( 'jetpack_redirects_get_url', $url, $source, $args, $is_url );
 	}
 }
