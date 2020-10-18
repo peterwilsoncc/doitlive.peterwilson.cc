@@ -22,6 +22,7 @@
 	<exclude-pattern>*/mu-plugins/vendor/*</exclude-pattern>
 	<exclude-pattern>*/plugins/*</exclude-pattern>
 	<exclude-pattern>*/dropins/wordpress-pecl-memcached-object-cache/*</exclude-pattern>
+	<exclude-pattern>*/themes/twentytwentyone/*</exclude-pattern>
 
 	<!-- Exclude build directories -->
 	<exclude-pattern>*/themes/peter-wilson-2017/assets/dist/*</exclude-pattern>
