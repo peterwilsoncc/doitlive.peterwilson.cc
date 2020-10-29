@@ -94,82 +94,6 @@ function twenty_twenty_one_comment_form_defaults( $defaults ) {
 add_filter( 'comment_form_defaults', 'twenty_twenty_one_comment_form_defaults' );
 
 /**
- * Filters the default archive titles.
- *
- * @since 1.0.0
- *
- * @return string
- */
-function twenty_twenty_one_get_the_archive_title() {
-	if ( is_category() ) {
-		return sprintf(
-			/* Translators: %s: The term title. */
-			esc_html__( 'Category Archives: %s', 'twentytwentyone' ),
-			'<span class="page-description">' . single_term_title( '', false ) . '</span>'
-		);
-	}
-
-	if ( is_tag() ) {
-		return sprintf(
-			/* Translators: %s: The term title. */
-			esc_html__( 'Tag Archives: %s', 'twentytwentyone' ),
-			'<span class="page-description">' . single_term_title( '', false ) . '</span>'
-		);
-	}
-
-	if ( is_author() ) {
-		return sprintf(
-			/* Translators: %s: The author name. */
-			esc_html__( 'Author Archives: %s', 'twentytwentyone' ),
-			'<span class="page-description">' . get_the_author_meta( 'display_name' ) . '</span>'
-		);
-	}
-
-	if ( is_year() ) {
-		return sprintf(
-			/* Translators: %s: The year. */
-			esc_html__( 'Yearly Archives: %s', 'twentytwentyone' ),
-			'<span class="page-description">' . get_the_date( _x( 'Y', 'yearly archives date format', 'twentytwentyone' ) ) . '</span>'
-		);
-	}
-
-	if ( is_month() ) {
-		return sprintf(
-			/* Translators: %s: The month. */
-			esc_html__( 'Monthly Archives: %s', 'twentytwentyone' ),
-			'<span class="page-description">' . get_the_date( _x( 'F Y', 'monthly archives date format', 'twentytwentyone' ) ) . '</span>'
-		);
-	}
-
-	if ( is_day() ) {
-		return sprintf(
-			/* Translators: %s: The day. */
-			esc_html__( 'Daily Archives: %s', 'twentytwentyone' ),
-			'<span class="page-description">' . get_the_date() . '</span>'
-		);
-	}
-
-	if ( is_post_type_archive() ) {
-		return sprintf(
-			/* translators: %s: Post type singular name. */
-			esc_html__( '%s Archives', 'twentytwentyone' ),
-			get_post_type_object( get_queried_object()->name )->labels->singular_name
-		);
-	}
-
-	if ( is_tax() ) {
-		return sprintf(
-			/* translators: %s: Taxonomy singular name. */
-			esc_html__( '%s Archives', 'twentytwentyone' ),
-			get_taxonomy( get_queried_object()->taxonomy )->labels->singular_name
-		);
-	}
-
-	return esc_html__( 'Archives:', 'twentytwentyone' );
-}
-add_filter( 'get_the_archive_title', 'twenty_twenty_one_get_the_archive_title' );
-
-/**
  * Determines if post thumbnail can be displayed.
  *
  * @since 1.0.0
@@ -224,7 +148,7 @@ add_filter( 'excerpt_more', 'twenty_twenty_one_continue_reading_link_excerpt' );
  */
 function twenty_twenty_one_continue_reading_link() {
 	if ( ! is_admin() ) {
-		return '<div class="more-link-container"><a class="more-link" href="' . esc_url( get_permalink() ) . '">' . twenty_twenty_one_continue_reading_text() . '</a></div>';
+		return '<div class="more-link-container"><a class="more-link" href="' . esc_url( get_permalink() ) . '#more-' . esc_attr( get_the_ID() ) . '">' . twenty_twenty_one_continue_reading_text() . '</a></div>';
 	}
 }
 
@@ -270,8 +194,8 @@ function twenty_twenty_one_get_icon_svg( $group, $icon, $size = 24 ) {
  * @return string
  */
 function twenty_twenty_one_change_calendar_nav_arrows( $calendar_output ) {
-	$calendar_output = str_replace( '&laquo; ', twenty_twenty_one_get_icon_svg( 'ui', 'arrow_left' ), $calendar_output );
-	$calendar_output = str_replace( ' &raquo;', twenty_twenty_one_get_icon_svg( 'ui', 'arrow_right' ), $calendar_output );
+	$calendar_output = str_replace( '&laquo; ', is_rtl() ? twenty_twenty_one_get_icon_svg( 'ui', 'arrow_right' ) : twenty_twenty_one_get_icon_svg( 'ui', 'arrow_left' ), $calendar_output );
+	$calendar_output = str_replace( ' &raquo;', is_rtl() ? twenty_twenty_one_get_icon_svg( 'ui', 'arrow_left' ) : twenty_twenty_one_get_icon_svg( 'ui', 'arrow_right' ), $calendar_output );
 	return $calendar_output;
 }
 add_filter( 'get_calendar', 'twenty_twenty_one_change_calendar_nav_arrows' );
@@ -396,9 +320,10 @@ function twenty_twenty_one_get_non_latin_css( $type = 'front-end' ) {
  *
  * @since 1.0.0
  *
- * @param string      $block_name The block name/type. Example: `core/image`.
- * @param string|null $content    The content we need to search in. Use null for get_the_content().
- * @param int         $instances  How many instances of the block we want to print. Defaults to 1.
+ * @param string      $block_name The full block type name, or a partial match.
+ *                                Example: `core/image`, `core-embed/*`.
+ * @param string|null $content    The content to search in. Use null for get_the_content().
+ * @param int         $instances  How many instances of the block will be printed (max). Defaults to 1.
  *
  * @return bool Returns true if a block was located & printed, otherwise false.
  */
@@ -421,15 +346,24 @@ function twenty_twenty_one_print_first_instance_of_block( $block_name, $content 
 			continue;
 		}
 
-		// Check if this the block we're looking for.
-		if ( $block_name === $block['blockName'] ) {
+		// Check if this the block matches the $block_name.
+		$is_matching_block = false;
+
+		// If the block ends with *, try to match the first portion.
+		if ( '*' === $block_name[-1] ) {
+			$is_matching_block = 0 === strpos( $block['blockName'], rtrim( $block_name, '*' ) );
+		} else {
+			$is_matching_block = $block_name === $block['blockName'];
+		}
+
+		if ( $is_matching_block ) {
 			// Increment count.
 			$instances_count++;
 
 			// Add the block HTML.
 			$blocks_content .= render_block( $block );
 
-			// Break the loop if we've reached the $instances count.
+			// Break the loop if the $instances count was reached.
 			if ( $instances_count >= $instances ) {
 				break;
 			}
@@ -455,10 +389,49 @@ function twenty_twenty_one_print_first_instance_of_block( $block_name, $content 
 function twenty_twenty_one_password_form( $post = 0 ) {
 	$post   = get_post( $post );
 	$label  = 'pwbox-' . ( empty( $post->ID ) ? wp_rand() : $post->ID );
-	$output = '<p>' . esc_html__( 'This content is password protected. To view it please enter your password below:', 'twentytwentyone' ) . '</p>
+	$output = '<p class="post-password-message">' . esc_html__( 'This content is password protected. Please enter a password to view.', 'twentytwentyone' ) . '</p>
 	<form action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" class="post-password-form" method="post">
-	<label class="post-password-form__label" for="' . esc_attr( $label ) . '">' . esc_html__( 'Password:', 'twentytwentyone' ) . '</label><input class="post-password-form__input" name="post_password" id="' . esc_attr( $label ) . '" type="password" size="20" /><input type="submit" class="post-password-form__submit" name="' . esc_attr__( 'Submit', 'twentytwentyone' ) . '" value="' . esc_attr_x( 'Enter', 'post password form', 'twentytwentyone' ) . '" /></form>
+	<label class="post-password-form__label" for="' . esc_attr( $label ) . '">' . esc_html__( 'Password', 'twentytwentyone' ) . '</label><input class="post-password-form__input" name="post_password" id="' . esc_attr( $label ) . '" type="password" size="20" /><input type="submit" class="post-password-form__submit" name="' . esc_attr__( 'Submit', 'twentytwentyone' ) . '" value="' . esc_attr_x( 'Enter', 'post password form', 'twentytwentyone' ) . '" /></form>
 	';
 	return $output;
 }
 add_filter( 'the_password_form', 'twenty_twenty_one_password_form' );
+
+/**
+ * Filters the list of attachment image attributes.
+ *
+ * @since 1.0.0
+ *
+ * @param array        $attr       Array of attribute values for the image markup, keyed by attribute name.
+ *                                 See wp_get_attachment_image().
+ * @param WP_Post      $attachment Image attachment post.
+ * @param string|array $size       Requested size. Image size or array of width and height values
+ *                                 (in that order). Default 'thumbnail'.
+ *
+ * @return array
+ */
+function twenty_twenty_one_get_attachment_image_attributes( $attr, $attachment, $size ) {
+	$width  = false;
+	$height = false;
+
+	if ( is_array( $size ) ) {
+		$width  = (int) $size[0];
+		$height = (int) $size[1];
+	} elseif ( $attachment && is_object( $attachment ) && $attachment->ID ) {
+		$meta = wp_get_attachment_metadata( $attachment->ID );
+		if ( $meta['width'] && $meta['height'] ) {
+			$width  = (int) $meta['width'];
+			$height = (int) $meta['height'];
+		}
+	}
+
+	if ( $width && $height ) {
+
+		// Add style.
+		$attr['style'] = isset( $attr['style'] ) ? $attr['style'] : '';
+		$attr['style'] = 'width:100%;height:' . round( 100 * $height / $width, 2 ) . '%;' . $attr['style'];
+	}
+
+	return $attr;
+}
+add_filter( 'wp_get_attachment_image_attributes', 'twenty_twenty_one_get_attachment_image_attributes', 10, 3 );
