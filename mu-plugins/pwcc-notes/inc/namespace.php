@@ -75,6 +75,10 @@ function add_status_theme_support() {
 		$supported = [ 'standard' ];
 	}
 
+	if ( in_array( 'status', $supported, true ) ) {
+		// No change required.
+		return;
+	}
 	$supported[] = 'status';
 
 	add_theme_support( 'post-formats', $supported );
