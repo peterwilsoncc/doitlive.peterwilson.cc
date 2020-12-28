@@ -19,7 +19,7 @@ use PWCC\Notes;
  */
 function bootstrap() {
 	add_filter( 'wp_insert_post_data', __NAMESPACE__ . '\\insert_post_data', 10, 2 );
-	add_action( 'wp_insert_post', __NAMESPACE__ . '\\publish_post', 10, 2 );
+	add_action( 'wp_after_insert_post', __NAMESPACE__ . '\\publish_post', 10, 2 );
 
 	add_action( 'pwcc/notes/tweet/text', __NAMESPACE__ . '\\tweet_update' );
 	add_action( 'pwcc/notes/tweet/image', __NAMESPACE__ . '\\upload_image_to_twitter' );
