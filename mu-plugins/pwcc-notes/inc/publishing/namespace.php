@@ -194,7 +194,7 @@ function publish_post( $post_id, $post ) {
 	);
 
 	if ( $next_scheduled ) {
-		// Tweeting in progress
+		// Tweeting in progress.
 		return;
 	}
 
