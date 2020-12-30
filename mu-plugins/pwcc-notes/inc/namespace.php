@@ -75,6 +75,10 @@ function add_status_theme_support() {
 		$supported = [ 'standard' ];
 	}
 
+	if ( in_array( 'status', $supported, true ) ) {
+		// No change required.
+		return;
+	}
 	$supported[] = 'status';
 
 	add_theme_support( 'post-formats', $supported );
@@ -107,8 +111,10 @@ function register_cpt() {
  * Enqueue assets for use in the admin.
  *
  * Runs on the `admin_enqueue_scripts` hook.
+ *
+ * @param string $page_name The name of the admin page user is on.
  */
-function enqueue_admin_assets( $hook_name ) {
+function enqueue_admin_assets( $page_name ) {
 	wp_register_script(
 		'pwcc-notes-twttr-text',
 		plugin_dir_url( __DIR__ ) . 'assets/js/twitter-text.min.js',
@@ -125,7 +131,7 @@ function enqueue_admin_assets( $hook_name ) {
 		true
 	);
 
-	if ( ! in_array( $hook_name, [ 'post-new.php', 'post.php' ], true ) ) {
+	if ( ! in_array( $page_name, [ 'post-new.php', 'post.php' ], true ) ) {
 		// Only register scripts, do not enqueue.
 		return;
 	}
