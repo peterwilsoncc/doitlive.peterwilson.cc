@@ -18,6 +18,10 @@ function gutenberg_render_block_core_post_terms( $attributes, $content, $block )
 		return '';
 	}
 
+	if ( ! is_taxonomy_viewable( $attributes['term'] ) ) {
+		return '';
+	}
+
 	$post_terms = get_the_terms( $block->context['postId'], $attributes['term'] );
 	if ( is_wp_error( $post_terms ) ) {
 		return '';
@@ -26,7 +30,10 @@ function gutenberg_render_block_core_post_terms( $attributes, $content, $block )
 		return '';
 	}
 
-	$align_class_name = empty( $attributes['textAlign'] ) ? '' : ' ' . "has-text-align-{$attributes['textAlign']}";
+	$classes = 'taxonomy-' . $attributes['term'];
+	if ( isset( $attributes['textAlign'] ) ) {
+		$classes .= ' has-text-align-' . $attributes['textAlign'];
+	}
 
 	$terms_links = '';
 	foreach ( $post_terms as $term ) {
@@ -37,7 +44,7 @@ function gutenberg_render_block_core_post_terms( $attributes, $content, $block )
 		);
 	}
 	$terms_links        = trim( $terms_links, ' | ' );
-	$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $align_class_name ) );
+	$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $classes ) );
 
 	return sprintf(
 		'<div %1$s>%2$s</div>',
