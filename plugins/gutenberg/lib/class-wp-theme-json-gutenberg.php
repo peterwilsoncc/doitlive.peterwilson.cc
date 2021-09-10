@@ -61,8 +61,9 @@ class WP_Theme_JSON_Gutenberg {
 			'text'       => null,
 		),
 		'spacing'    => array(
-			'margin'  => null,
-			'padding' => null,
+			'margin'   => null,
+			'padding'  => null,
+			'blockGap' => null,
 		),
 		'typography' => array(
 			'fontFamily'     => null,
@@ -85,6 +86,7 @@ class WP_Theme_JSON_Gutenberg {
 		),
 		'color'      => array(
 			'custom'         => null,
+			'customDuotone'  => null,
 			'customGradient' => null,
 			'duotone'        => null,
 			'gradients'      => null,
@@ -92,7 +94,10 @@ class WP_Theme_JSON_Gutenberg {
 			'palette'        => null,
 		),
 		'custom'     => null,
-		'layout'     => null,
+		'layout'     => array(
+			'contentSize' => null,
+			'wideSize'    => null,
+		),
 		'spacing'    => array(
 			'customMargin'  => null,
 			'customPadding' => null,
@@ -229,6 +234,7 @@ class WP_Theme_JSON_Gutenberg {
 		'padding-right'              => array( 'spacing', 'padding', 'right' ),
 		'padding-bottom'             => array( 'spacing', 'padding', 'bottom' ),
 		'padding-left'               => array( 'spacing', 'padding', 'left' ),
+		'--wp--style--block-gap'     => array( 'spacing', 'blockGap' ),
 		'text-decoration'            => array( 'typography', 'textDecoration' ),
 		'text-transform'             => array( 'typography', 'textTransform' ),
 	);
@@ -542,8 +548,9 @@ class WP_Theme_JSON_Gutenberg {
 		foreach ( self::PROPERTIES_METADATA as $css_property => $value_path ) {
 			$value = self::get_property_value( $styles, $value_path );
 
-			// Skip if empty or value represents array of longhand values.
-			if ( empty( $value ) || is_array( $value ) ) {
+			// Skip if empty and not "0" or value represents array of longhand values.
+			$has_missing_value = empty( $value ) && ! is_numeric( $value );
+			if ( $has_missing_value || is_array( $value ) ) {
 				continue;
 			}
 
@@ -831,6 +838,10 @@ class WP_Theme_JSON_Gutenberg {
 			$selector     = $metadata['selector'];
 			$declarations = self::compute_style_properties( $node );
 			$block_rules .= self::to_ruleset( $selector, $declarations );
+
+			if ( self::ROOT_BLOCK_SELECTOR === $selector ) {
+				$block_rules .= '.wp-site-blocks > * + * { margin-top: var( --wp--style--block-gap ); margin-bottom: 0; }';
+			}
 		}
 
 		$preset_rules = '';
@@ -1086,8 +1097,8 @@ class WP_Theme_JSON_Gutenberg {
 		foreach ( $nodes as $metadata ) {
 			foreach ( $to_replace as $property_path ) {
 				$path = array_merge( $metadata['path'], $property_path );
-				$node = _wp_array_get( $incoming_data, $path, array() );
-				if ( ! empty( $node ) ) {
+				$node = _wp_array_get( $incoming_data, $path, null );
+				if ( isset( $node ) ) {
 					gutenberg_experimental_set( $this->theme_json, $path, $node );
 				}
 			}
@@ -1304,7 +1315,7 @@ class WP_Theme_JSON_Gutenberg {
 				$theme_settings['settings']['spacing'] = array();
 			}
 			$theme_settings['settings']['spacing']['units'] = ( true === $settings['enableCustomUnits'] ) ?
-				array( 'px', 'em', 'rem', 'vh', 'vw' ) :
+				array( 'px', 'em', 'rem', 'vh', 'vw', '%' ) :
 				$settings['enableCustomUnits'];
 		}
 
@@ -1348,6 +1359,10 @@ class WP_Theme_JSON_Gutenberg {
 		}
 
 		// Things that didn't land in core yet, so didn't have a setting assigned.
+		// This should be removed when the plugin minimum WordPress version
+		// is bumped to 5.8.
+		//
+		// Do not port this to WordPress core.
 		if ( current( (array) get_theme_support( 'experimental-link-color' ) ) ) {
 			if ( ! isset( $theme_settings['settings']['color'] ) ) {
 				$theme_settings['settings']['color'] = array();
