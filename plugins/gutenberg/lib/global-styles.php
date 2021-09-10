@@ -26,7 +26,7 @@ function gutenberg_experimental_global_styles_get_stylesheet( $tree, $type = 'al
 
 	if ( $can_use_cached ) {
 		// Check if we have the styles already cached.
-		$cached = get_transient( 'global_styles' );
+		$cached = get_transient( 'gutenberg_global_styles' );
 		if ( $cached ) {
 			return $cached;
 		}
@@ -37,7 +37,7 @@ function gutenberg_experimental_global_styles_get_stylesheet( $tree, $type = 'al
 	if ( $can_use_cached ) {
 		// Cache for a minute.
 		// This cache doesn't need to be any longer, we only want to avoid spikes on high-traffic sites.
-		set_transient( 'global_styles', $stylesheet, MINUTE_IN_SECONDS );
+		set_transient( 'gutenberg_global_styles', $stylesheet, MINUTE_IN_SECONDS );
 	}
 
 	return $stylesheet;
@@ -134,6 +134,12 @@ function gutenberg_experimental_global_styles_settings( $settings ) {
 			'__experimentalNoWrapper' => true,
 		);
 
+		// Make sure the styles array exists.
+		// In some contexts, like the navigation editor, it doesn't.
+		if ( ! isset( $settings['styles'] ) ) {
+			$settings['styles'] = array();
+		}
+
 		// Reset existing global styles.
 		foreach ( $settings['styles'] as $key => $style ) {
 			if ( isset( $style['__unstableType'] ) && 'globalStyles' === $style['__unstableType'] ) {
@@ -226,7 +232,7 @@ function gutenberg_experimental_global_styles_register_user_cpt() {
  * @return string Filtered post content with unsafe rules removed.
  */
 function gutenberg_global_styles_filter_post( $content ) {
-	$decoded_data        = json_decode( stripslashes( $content ), true );
+	$decoded_data        = json_decode( wp_unslash( $content ), true );
 	$json_decoding_error = json_last_error();
 	if (
 		JSON_ERROR_NONE === $json_decoding_error &&
@@ -239,7 +245,7 @@ function gutenberg_global_styles_filter_post( $content ) {
 		$data_to_encode = WP_Theme_JSON_Gutenberg::remove_insecure_properties( $decoded_data );
 
 		$data_to_encode['isGlobalStylesUserThemeJSON'] = true;
-		return wp_json_encode( $data_to_encode );
+		return wp_slash( wp_json_encode( $data_to_encode ) );
 	}
 	return $content;
 }
