@@ -125,7 +125,7 @@ function generate_preview_iframe( $the_content ) {
 	$the_content .= 'src="' . esc_attr( $src_fallback ) . '" ';
 	$the_content .= 'srcdoc="' . esc_attr( $result ) . '" ';
 	$the_content .= 'style="width:100%" ';
-	$the_content .= '/>';
+	$the_content .= '></iframe>';
 	$the_content .= '</div></figure>';
 
 	return $the_content;
