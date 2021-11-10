@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit2543ee878db72f37817a02043beda2c2
+class ComposerStaticInitb030e7231ba5e4459929663950758f48
 {
     public static $prefixLengthsPsr4 = array (
         'C' => 
@@ -21,6 +21,7 @@ class ComposerStaticInit2543ee878db72f37817a02043beda2c2
     );
 
     public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Composer\\Installers\\AglInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/AglInstaller.php',
         'Composer\\Installers\\AimeosInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/AimeosInstaller.php',
         'Composer\\Installers\\AnnotateCmsInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/AnnotateCmsInstaller.php',
@@ -597,6 +598,7 @@ class ComposerStaticInit2543ee878db72f37817a02043beda2c2
         'Yoast\\WP\\SEO\\Conditionals\\Feature_Flag_Conditional' => __DIR__ . '/../..' . '/src/conditionals/feature-flag-conditional.php',
         'Yoast\\WP\\SEO\\Conditionals\\Front_End_Conditional' => __DIR__ . '/../..' . '/src/conditionals/front-end-conditional.php',
         'Yoast\\WP\\SEO\\Conditionals\\Get_Request_Conditional' => __DIR__ . '/../..' . '/src/conditionals/get-request-conditional.php',
+        'Yoast\\WP\\SEO\\Conditionals\\Greek_Support_Conditional' => __DIR__ . '/../..' . '/src/deprecated/src/conditionals/greek-support-conditional.php',
         'Yoast\\WP\\SEO\\Conditionals\\Headless_Rest_Endpoints_Enabled_Conditional' => __DIR__ . '/../..' . '/src/conditionals/headless-rest-endpoints-enabled-conditional.php',
         'Yoast\\WP\\SEO\\Conditionals\\Japanese_Support_Conditional' => __DIR__ . '/../..' . '/src/conditionals/japanese-support-conditional.php',
         'Yoast\\WP\\SEO\\Conditionals\\Jetpack_Conditional' => __DIR__ . '/../..' . '/src/conditionals/jetpack-conditional.php',
@@ -951,9 +953,9 @@ class ComposerStaticInit2543ee878db72f37817a02043beda2c2
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit2543ee878db72f37817a02043beda2c2::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit2543ee878db72f37817a02043beda2c2::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit2543ee878db72f37817a02043beda2c2::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb030e7231ba5e4459929663950758f48::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb030e7231ba5e4459929663950758f48::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitb030e7231ba5e4459929663950758f48::$classMap;
 
         }, null, ClassLoader::class);
     }
