@@ -17,11 +17,23 @@ function gutenberg_render_block_core_post_comment_content( $attributes, $content
 	if ( ! isset( $block->context['commentId'] ) ) {
 		return '';
 	}
-	$wrapper_attributes = get_block_wrapper_attributes();
+
+	$comment_text = get_comment_text( $block->context['commentId'] );
+	if ( ! $comment_text ) {
+		return '';
+	}
+
+	$classes = '';
+	if ( isset( $attributes['textAlign'] ) ) {
+		$classes .= 'has-text-align-' . $attributes['textAlign'];
+	}
+
+	$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $classes ) );
+
 	return sprintf(
 		'<div %1$s>%2$s</div>',
 		$wrapper_attributes,
-		get_comment_text( $block->context['commentId'] )
+		$comment_text
 	);
 }
 

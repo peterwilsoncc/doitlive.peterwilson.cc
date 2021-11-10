@@ -183,7 +183,7 @@ function createPreloadingMiddleware(preloadedData) {
       const path = getStablePath(options.path);
 
       if ('GET' === method && cache[path]) {
-        const cacheData = cache[path]; // Unsetting the cache key ensures that the data is only preloaded a single time
+        const cacheData = cache[path]; // Unsetting the cache key ensures that the data is only used a single time
 
         delete cache[path];
         return Promise.resolve(parse ? cacheData.body : new window.Response(JSON.stringify(cacheData.body), {
@@ -192,7 +192,10 @@ function createPreloadingMiddleware(preloadedData) {
           headers: cacheData.headers
         }));
       } else if ('OPTIONS' === method && cache[method] && cache[method][path]) {
-        return Promise.resolve(parse ? cache[method][path].body : cache[method][path]);
+        const cacheData = cache[method][path]; // Unsetting the cache key ensures that the data is only used a single time
+
+        delete cache[method][path];
+        return Promise.resolve(parse ? cacheData.body : cacheData);
       }
     }
 
@@ -509,15 +512,24 @@ function parseAndThrowError(response, shouldParseResponse = true) {
 
 
 /**
+ * @param {import('../types').APIFetchOptions} options
+ * @return {boolean} True if the request is for media upload.
+ */
+
+function isMediaUploadRequest(options) {
+  const isCreateMethod = !!options.method && options.method === 'POST';
+  const isMediaEndpoint = !!options.path && options.path.indexOf('/wp/v2/media') !== -1 || !!options.url && options.url.indexOf('/wp/v2/media') !== -1;
+  return isMediaEndpoint && isCreateMethod;
+}
+/**
  * Middleware handling media upload failures and retries.
  *
  * @type {import('../types').APIFetchMiddleware}
  */
 
-const mediaUploadMiddleware = (options, next) => {
-  const isMediaUploadRequest = options.path && options.path.indexOf('/wp/v2/media') !== -1 || options.url && options.url.indexOf('/wp/v2/media') !== -1;
 
-  if (!isMediaUploadRequest) {
+const mediaUploadMiddleware = (options, next) => {
+  if (!isMediaUploadRequest(options)) {
     return next(options);
   }
 
