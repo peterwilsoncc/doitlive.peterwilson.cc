@@ -134,33 +134,13 @@ const createRootURLMiddleware = rootURL => (options, next) => {
 
 /* harmony default export */ var root_url = (createRootURLMiddleware);
 //# sourceMappingURL=root-url.js.map
+;// CONCATENATED MODULE: external ["wp","url"]
+var external_wp_url_namespaceObject = window["wp"]["url"];
 ;// CONCATENATED MODULE: ./packages/api-fetch/build-module/middlewares/preloading.js
 /**
- * Given a path, returns a normalized path where equal query parameter values
- * will be treated as identical, regardless of order they appear in the original
- * text.
- *
- * @param {string} path Original path.
- *
- * @return {string} Normalized path.
+ * WordPress dependencies
  */
-function getStablePath(path) {
-  const splitted = path.split('?');
-  const query = splitted[1];
-  const base = splitted[0];
 
-  if (!query) {
-    return base;
-  } // 'b=1&c=2&a=5'
-
-
-  return base + '?' + query // [ 'b=1', 'c=2', 'a=5' ]
-  .split('&') // [ [ 'b, '1' ], [ 'c', '2' ], [ 'a', '5' ] ]
-  .map(entry => entry.split('=')) // [ [ 'a', '5' ], [ 'b, '1' ], [ 'c', '2' ] ]
-  .sort((a, b) => a[0].localeCompare(b[0])) // [ 'a=5', 'b=1', 'c=2' ]
-  .map(pair => pair.join('=')) // 'a=5&b=1&c=2'
-  .join('&');
-}
 /**
  * @param {Record<string, any>} preloadedData
  * @return {import('../types').APIFetchMiddleware} Preloading middleware.
@@ -168,7 +148,7 @@ function getStablePath(path) {
 
 function createPreloadingMiddleware(preloadedData) {
   const cache = Object.keys(preloadedData).reduce((result, path) => {
-    result[getStablePath(path)] = preloadedData[path];
+    result[(0,external_wp_url_namespaceObject.normalizePath)(path)] = preloadedData[path];
     return result;
   },
   /** @type {Record<string, any>} */
@@ -177,10 +157,21 @@ function createPreloadingMiddleware(preloadedData) {
     const {
       parse = true
     } = options;
+    /** @type {string | void} */
 
-    if (typeof options.path === 'string') {
+    let rawPath = options.path;
+
+    if (!rawPath && options.url) {
+      const pathFromQuery = (0,external_wp_url_namespaceObject.getQueryArg)(options.url, 'rest_route');
+
+      if (typeof pathFromQuery === 'string') {
+        rawPath = pathFromQuery;
+      }
+    }
+
+    if (typeof rawPath === 'string') {
       const method = options.method || 'GET';
-      const path = getStablePath(options.path);
+      const path = (0,external_wp_url_namespaceObject.normalizePath)(rawPath);
 
       if ('GET' === method && cache[path]) {
         const cacheData = cache[path]; // Unsetting the cache key ensures that the data is only used a single time
@@ -205,8 +196,6 @@ function createPreloadingMiddleware(preloadedData) {
 
 /* harmony default export */ var preloading = (createPreloadingMiddleware);
 //# sourceMappingURL=preloading.js.map
-;// CONCATENATED MODULE: external ["wp","url"]
-var external_wp_url_namespaceObject = window["wp"]["url"];
 ;// CONCATENATED MODULE: ./packages/api-fetch/build-module/middlewares/fetch-all-middleware.js
 /**
  * WordPress dependencies
@@ -225,14 +214,17 @@ var external_wp_url_namespaceObject = window["wp"]["url"];
  * @return {import('../types').APIFetchOptions} The request with the modified query args
  */
 
-const modifyQuery = ({
-  path,
-  url,
-  ...options
-}, queryArgs) => ({ ...options,
-  url: url && (0,external_wp_url_namespaceObject.addQueryArgs)(url, queryArgs),
-  path: path && (0,external_wp_url_namespaceObject.addQueryArgs)(path, queryArgs)
-});
+const modifyQuery = (_ref, queryArgs) => {
+  let {
+    path,
+    url,
+    ...options
+  } = _ref;
+  return { ...options,
+    url: url && (0,external_wp_url_namespaceObject.addQueryArgs)(url, queryArgs),
+    path: path && (0,external_wp_url_namespaceObject.addQueryArgs)(path, queryArgs)
+  };
+};
 /**
  * Duplicates parsing functionality from apiFetch.
  *
@@ -432,7 +424,9 @@ const userLocaleMiddleware = (options, next) => {
  * @return {Promise<any> | null | Response} Parsed response.
  */
 
-const response_parseResponse = (response, shouldParseResponse = true) => {
+const response_parseResponse = function (response) {
+  let shouldParseResponse = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
   if (shouldParseResponse) {
     if (response.status === 204) {
       return null;
@@ -476,7 +470,8 @@ const parseJsonAndNormalizeError = response => {
  */
 
 
-const parseResponseAndNormalizeError = (response, shouldParseResponse = true) => {
+const parseResponseAndNormalizeError = function (response) {
+  let shouldParseResponse = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
   return Promise.resolve(response_parseResponse(response, shouldParseResponse)).catch(res => parseAndThrowError(res, shouldParseResponse));
 };
 /**
@@ -487,7 +482,9 @@ const parseResponseAndNormalizeError = (response, shouldParseResponse = true) =>
  * @return {Promise<any>} Parsed response.
  */
 
-function parseAndThrowError(response, shouldParseResponse = true) {
+function parseAndThrowError(response) {
+  let shouldParseResponse = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
   if (!shouldParseResponse) {
     throw response;
   }

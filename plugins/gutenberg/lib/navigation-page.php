@@ -21,7 +21,7 @@ function gutenberg_navigation_page() {
 }
 
 /**
- * This function returns an url for the /__experimental/menus endpoint
+ * This function returns an url for the /wp/v2/menus endpoint
  *
  * @since 11.8.0
  *
@@ -29,7 +29,7 @@ function gutenberg_navigation_page() {
  * @return string
  */
 function gutenberg_navigation_get_menus_endpoint( $results_per_page = 100 ) {
-	return '/__experimental/menus?' . build_query(
+	return '/wp/v2/menus?' . build_query(
 		array(
 			'per_page' => $results_per_page,
 			'context'  => 'edit',
@@ -39,7 +39,7 @@ function gutenberg_navigation_get_menus_endpoint( $results_per_page = 100 ) {
 }
 
 /**
- * This function returns an url for the /__experimental/menu-items endpoint
+ * This function returns an url for the /wp/v2/menu-items endpoint
  *
  * @since 11.8.0
  *
@@ -48,7 +48,7 @@ function gutenberg_navigation_get_menus_endpoint( $results_per_page = 100 ) {
  * @return string
  */
 function gutenberg_navigation_get_menu_items_endpoint( $menu_id, $results_per_page = 100 ) {
-	return '/__experimental/menu-items?' . build_query(
+	return '/wp/v2/menu-items?' . build_query(
 		array(
 			'context'  => 'edit',
 			'menus'    => $menu_id,
@@ -88,10 +88,9 @@ function gutenberg_navigation_init( $hook ) {
 	$first_menu_id = ! empty( $menus ) ? $menus[0]->term_id : null;
 
 	$preload_paths = array(
-		'/__experimental/menu-locations',
+		'/wp/v2/menu-locations',
 		array( '/wp/v2/pages', 'OPTIONS' ),
 		array( '/wp/v2/posts', 'OPTIONS' ),
-		gutenberg_navigation_get_menus_endpoint(),
 		gutenberg_navigation_get_types_endpoint(),
 	);
 
@@ -120,6 +119,8 @@ function gutenberg_navigation_init( $hook ) {
 		)
 	);
 
+	gutenberg_navigation_editor_preload_menus();
+
 	wp_enqueue_script( 'wp-edit-navigation' );
 	wp_enqueue_style( 'wp-edit-navigation' );
 	wp_enqueue_script( 'wp-format-library' );
@@ -145,26 +146,22 @@ function gutenberg_navigation_editor_load_block_editor_scripts_and_styles( $is_b
 add_filter( 'should_load_block_editor_scripts_and_styles', 'gutenberg_navigation_editor_load_block_editor_scripts_and_styles' );
 
 /**
- * This function removes menu-related data from the "common" preloading middleware and calls
- * createMenuPreloadingMiddleware middleware because we need to use custom preloading logic for menus.
+ * This function calls createMenuPreloadingMiddleware middleware because
+ * we need to use custom preloading logic for menus.
  *
- * @param Array  $preload_data Array containing the preloaded data.
- * @param string $context Current editor name.
- * @return array Filtered preload data.
+ * @return void
  */
-function gutenberg_navigation_editor_preload_menus( $preload_data, $context ) {
-	if ( 'navigation_editor' !== $context ) {
-		return $preload_data;
-	}
-
-	$menus_data_path = gutenberg_navigation_get_menus_endpoint();
-	$menus_data      = array();
-	if ( ! empty( $preload_data[ $menus_data_path ] ) ) {
-		$menus_data = array( $menus_data_path => $preload_data[ $menus_data_path ] );
-	}
+function gutenberg_navigation_editor_preload_menus() {
+	$menus_data = array_reduce(
+		array(
+			gutenberg_navigation_get_menus_endpoint(),
+		),
+		'rest_preload_api_request',
+		array()
+	);
 
 	if ( ! $menus_data ) {
-		return $preload_data;
+		return;
 	}
 
 	wp_add_inline_script(
@@ -175,9 +172,4 @@ function gutenberg_navigation_editor_preload_menus( $preload_data, $context ) {
 		),
 		'after'
 	);
-
-	unset( $preload_data[ $menus_data_path ] );
-	return $preload_data;
 }
-
-add_filter( 'block_editor_preload_data', 'gutenberg_navigation_editor_preload_menus', 10, 2 );
