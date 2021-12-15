@@ -175,9 +175,11 @@ function isValidFocusableArea(element) {
  */
 
 
-function find(context, {
-  sequential = false
-} = {}) {
+function find(context) {
+  let {
+    sequential = false
+  } = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
   /* eslint-disable jsdoc/no-undefined-types */
 
   /** @type {NodeListOf<HTMLElement>} */
@@ -428,9 +430,12 @@ function getRectangleFromRange(range) {
     } // Ignore tiny selection at the edge of a range.
 
 
-    const filteredRects = rects.filter(({
-      width
-    }) => width > 1); // If it's full of tiny selections, return browser default.
+    const filteredRects = rects.filter(_ref => {
+      let {
+        width
+      } = _ref;
+      return width > 1;
+    }); // If it's full of tiny selections, return browser default.
 
     if (filteredRects.length === 0) {
       return range.getBoundingClientRect();
@@ -536,7 +541,7 @@ function computeCaretRect(win) {
 
 /**
  * Check whether the current document has selected text. This applies to ranges
- * of text in the document, and not selection inside <input> and <textarea>
+ * of text in the document, and not selection inside `<input>` and `<textarea>`
  * elements.
  *
  * See: https://developer.mozilla.org/en-US/docs/Web/API/Window/getSelection#Related_objects.
@@ -666,8 +671,8 @@ function inputFieldHasUncollapsedSelection(element) {
 
 /**
  * Check whether the current document has any sort of selection. This includes
- * ranges of text across elements and any selection inside <input> and
- * <textarea> elements.
+ * ranges of text across elements and any selection inside `<input>` and
+ * `<textarea>` elements.
  *
  * @param {Document} doc The document to check.
  *
@@ -928,12 +933,18 @@ function getRangeHeight(range) {
     return;
   }
 
-  const highestTop = Math.min(...rects.map(({
-    top
-  }) => top));
-  const lowestBottom = Math.max(...rects.map(({
-    bottom
-  }) => bottom));
+  const highestTop = Math.min(...rects.map(_ref => {
+    let {
+      top
+    } = _ref;
+    return top;
+  }));
+  const lowestBottom = Math.max(...rects.map(_ref2 => {
+    let {
+      bottom
+    } = _ref2;
+    return bottom;
+  }));
   return lowestBottom - highestTop;
 }
 //# sourceMappingURL=get-range-height.js.map
@@ -1088,7 +1099,9 @@ function hiddenCaretRangeFromPoint(doc, x, y, container) {
  * @return {boolean} True if at the edge, false if not.
  */
 
-function isEdge(container, isReverse, onlyVertical = false) {
+function isEdge(container, isReverse) {
+  let onlyVertical = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
   if (isInputOrTextArea(container) && typeof container.selectionStart === 'number') {
     if (container.selectionStart !== container.selectionEnd) {
       return false;
@@ -1474,7 +1487,55 @@ function wrap(newNode, referenceNode) {
   newNode.appendChild(referenceNode);
 }
 //# sourceMappingURL=wrap.js.map
+;// CONCATENATED MODULE: ./packages/dom/build-module/dom/safe-html.js
+/**
+ * Internal dependencies
+ */
+
+/**
+ * Strips scripts and on* attributes from HTML.
+ *
+ * @param {string} html HTML to sanitize.
+ *
+ * @return {string} The sanitized HTML.
+ */
+
+function safeHTML(html) {
+  const {
+    body
+  } = document.implementation.createHTMLDocument('');
+  body.innerHTML = html;
+  const elements = body.getElementsByTagName('*');
+  let elementIndex = elements.length;
+
+  while (elementIndex--) {
+    const element = elements[elementIndex];
+
+    if (element.tagName === 'SCRIPT') {
+      remove(element);
+    } else {
+      let attributeIndex = element.attributes.length;
+
+      while (attributeIndex--) {
+        const {
+          name: key
+        } = element.attributes[attributeIndex];
+
+        if (key.startsWith('on')) {
+          element.removeAttribute(key);
+        }
+      }
+    }
+  }
+
+  return body.innerHTML;
+}
+//# sourceMappingURL=safe-html.js.map
 ;// CONCATENATED MODULE: ./packages/dom/build-module/dom/strip-html.js
+/**
+ * Internal dependencies
+ */
+
 /**
  * Removes any HTML tags from the provided string.
  *
@@ -1482,9 +1543,14 @@ function wrap(newNode, referenceNode) {
  *
  * @return {string} The text content with any html removed.
  */
+
 function stripHTML(html) {
-  const document = new window.DOMParser().parseFromString(html, 'text/html');
-  return document.body.textContent || '';
+  // Remove any script tags or on* attributes otherwise their *contents* will be left
+  // in place following removal of HTML tags.
+  html = safeHTML(html);
+  const doc = document.implementation.createHTMLDocument('');
+  doc.body.innerHTML = html;
+  return doc.body.textContent || '';
 }
 //# sourceMappingURL=strip-html.js.map
 ;// CONCATENATED MODULE: ./packages/dom/build-module/dom/is-empty.js
@@ -1754,9 +1820,9 @@ function isElement(node) {
  */
 
 function cleanNodeList(nodeList, doc, schema, inline) {
-  Array.from(nodeList).forEach(
+  Array.from(nodeList).forEach((
   /** @type {Node & { nextElementSibling?: unknown }} */
-  node => {
+  node) => {
     var _schema$tag$isMatch, _schema$tag;
 
     const tag = node.nodeName.toLowerCase(); // It's a valid child, if the tag exists in the schema without an isMatch
@@ -1780,9 +1846,11 @@ function cleanNodeList(nodeList, doc, schema, inline) {
 
         if (node.hasAttributes()) {
           // Strip invalid attributes.
-          Array.from(node.attributes).forEach(({
-            name
-          }) => {
+          Array.from(node.attributes).forEach(_ref => {
+            let {
+              name
+            } = _ref;
+
             if (name !== 'class' && !(0,external_lodash_namespaceObject.includes)(attributes, name)) {
               node.removeAttribute(name);
             }
@@ -1794,14 +1862,12 @@ function cleanNodeList(nodeList, doc, schema, inline) {
             const mattchers = classes.map(item => {
               if (typeof item === 'string') {
                 return (
-                  /** @type {string} */
-                  className => className === item
-                );
+                /** @type {string} */
+                className) => className === item;
               } else if (item instanceof RegExp) {
                 return (
-                  /** @type {string} */
-                  className => item.test(className)
-                );
+                /** @type {string} */
+                className) => item.test(className);
               }
 
               return external_lodash_namespaceObject.noop;
@@ -1886,50 +1952,6 @@ function removeInvalidHTML(HTML, schema, inline) {
   return doc.body.innerHTML;
 }
 //# sourceMappingURL=remove-invalid-html.js.map
-;// CONCATENATED MODULE: ./packages/dom/build-module/dom/safe-html.js
-/**
- * Internal dependencies
- */
-
-/**
- * Strips scripts and on* attributes from HTML.
- *
- * @param {string} html HTML to sanitize.
- *
- * @return {string} The sanitized HTML.
- */
-
-function safeHTML(html) {
-  const {
-    body
-  } = document.implementation.createHTMLDocument('');
-  body.innerHTML = html;
-  const elements = body.getElementsByTagName('*');
-  let elementIndex = elements.length;
-
-  while (elementIndex--) {
-    const element = elements[elementIndex];
-
-    if (element.tagName === 'SCRIPT') {
-      remove(element);
-    } else {
-      let attributeIndex = element.attributes.length;
-
-      while (attributeIndex--) {
-        const {
-          name: key
-        } = element.attributes[attributeIndex];
-
-        if (key.startsWith('on')) {
-          element.removeAttribute(key);
-        }
-      }
-    }
-  }
-
-  return body.innerHTML;
-}
-//# sourceMappingURL=safe-html.js.map
 ;// CONCATENATED MODULE: ./packages/dom/build-module/dom/index.js
 
 
@@ -1970,11 +1992,14 @@ function getFilesFromDataTransfer(dataTransfer) {
   Array.from(dataTransfer.items).forEach(item => {
     const file = item.getAsFile();
 
-    if (file && !files.find(({
-      name,
-      type,
-      size
-    }) => name === file.name && type === file.type && size === file.size)) {
+    if (file && !files.find(_ref => {
+      let {
+        name,
+        type,
+        size
+      } = _ref;
+      return name === file.name && type === file.type && size === file.size;
+    })) {
       files.push(file);
     }
   });
