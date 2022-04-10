@@ -230,14 +230,23 @@ class Jetpack_Widget_Conditions {
 		$widget_conditions_data['author']   = array();
 		$widget_conditions_data['author'][] = array( '', __( 'All author pages', 'jetpack' ) );
 
-		// Only users with publish caps.
-		$authors = get_users(
-			array(
-				'orderby' => 'name',
-				'who'     => 'authors',
-				'fields'  => array( 'ID', 'display_name' ),
-			)
+		/*
+		 * Query for users with publish caps.
+		 */
+		$authors_args = array(
+			'orderby'    => 'name',
+			'capability' => array( 'edit_posts' ),
+			'fields'     => array( 'ID', 'display_name' ),
 		);
+
+		// To-do: remove this once Jetpack requires WordPress 5.9.
+		global $wp_version;
+		if ( version_compare( $wp_version, '5.9-alpha', '<' ) ) {
+			$authors_args['who'] = 'authors';
+			unset( $authors_args['capability'] );
+		}
+
+		$authors = get_users( $authors_args );
 
 		foreach ( $authors as $author ) {
 			$widget_conditions_data['author'][] = array( (string) $author->ID, $author->display_name );
@@ -734,7 +743,7 @@ class Jetpack_Widget_Conditions {
 				}
 
 				// New multi widget (WP_Widget).
-				if ( ! is_null( $widget_number ) ) {
+				if ( $widget_number !== null ) {
 					if ( isset( $settings[ $id_base ][ $widget_number ] ) && false === self::filter_widget( $settings[ $id_base ][ $widget_number ] ) ) {
 						unset( $widget_areas[ $widget_area ][ $position ] );
 					}

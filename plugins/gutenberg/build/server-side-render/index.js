@@ -225,7 +225,7 @@ function ServerSideRender(props) {
   }, []);
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     // Don't debounce the first fetch. This ensures that the first render
-    // shows data as soon as possible
+    // shows data as soon as possible.
     if (prevProps === undefined) {
       fetchData();
     } else if (!(0,external_lodash_namespaceObject.isEqual)(prevProps, props)) {
@@ -274,7 +274,7 @@ function ServerSideRender(props) {
     className: className
   }, response);
 }
-//# sourceMappingURL=server-side-render.js.map
+
 ;// CONCATENATED MODULE: ./packages/server-side-render/build-module/index.js
 
 
@@ -350,7 +350,7 @@ if (window && window.wp && window.wp.components) {
 }
 
 /* harmony default export */ var build_module = (ExportedServerSideRender);
-//# sourceMappingURL=index.js.map
+
 (window.wp = window.wp || {}).serverSideRender = __webpack_exports__["default"];
 /******/ })()
 ;
