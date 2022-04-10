@@ -3,9 +3,9 @@ Contributors: automattic, xwp, adnan007, bjorsch, danwalmsley, davidlonjon, ebin
 Donate link: https://automattic.com
 Tags: performance, speed, pagespeed, web vitals, critical css, optimize, defer
 Requires at least: 5.5
-Tested up to: 5.8
+Tested up to: 5.9
 Requires PHP: 7.0
-Stable tag: 1.3.1
+Stable tag: 1.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -165,28 +165,17 @@ If you run into compatibility issues, please do let us know. You can drop us a l
 1. Manage your Jetpack Boost settings
 
 == Changelog ==
-### 1.3.1-beta - 2021-12-02
-#### Added
-- Critical CSS: Added a filter to allow stylesheets to load synchronously, to avoid CLS issues on certain setups.
-- Critical CSS: Exclude "library" posts from Elementor plugin when generating Critical CSS.
-- Critical CSS: Explicitly hide admin_bar during Critical CSS render, to improve compatability with custom admin bar setups.
-- Speed Scores: Automatically retry if a speed score request is stuck for more than 15 minutes.
-- Stability: New end-to-end testing system.
-
+### 1.4.1 - 2022-04-06
 #### Changed
-- Critical CSS: Detect external CSS URLs from the client side, to improve compatibility with WAFs which modify HTML.
-- Move Boost admin menu into Jetpack submenu.
-- Speed Scores: Automatically refresh speed scores if the theme has changed.
-- Speed Scores: Include active modules and Jetpack Boost version with Speed Score requests.
+- Critical CSS: Tidied up Critical CSS class structure.
+- Critical CSS: Updated Critical CSS generation to exclude animation keyframes.
+- Deferred JS: Updated exclusion attribute to allow quotes.
+- General: Tested compatibility with WordPress 5.9.
+- General: Updated Boost Dashboard heading logo.
+- Lazy Loading: Updated Image Lazy Loading to reflect Jetpack's Lazy Loading setting.
 
 #### Fixed
-- Critical CSS: Ensure CSS files still load when JavaScript is not enabled.
-- Critical CSS: Fixed issue with re-serving Critical CSS during generation process
-- Critical CSS: Fix handling for corrupted font-face rules.
-- Critical CSS: Fix issue with dismissing recommendations after enabling Critical CSS without page refresh.
-- Critical CSS: Use home_url instead of site_url when determining homepage during Critical CSS generation.
-- Minor UI fixes for small screens and tooltip display.
-- Speed Scores: Do not show comparative scores when no modules are active.
+- General: Clean up use of FILTER_SANITIZE_STRING as it is deprecated in PHP 8.1
 
 --------
 

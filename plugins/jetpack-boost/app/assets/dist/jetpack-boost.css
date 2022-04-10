@@ -114,6 +114,10 @@
   display: flex;
   height: 27px;
 }
+.jb-settings-header__logo svg {
+  width: 100%;
+  height: auto;
+}
 @media (min-width: 992px) {
   .jb-settings-header__logo {
     height: 32px;
@@ -939,6 +943,15 @@
   border-right: solid 16px transparent;
   margin-bottom: 2px;
   min-width: 48px;
+}
+
+.jb-cloud-css-meta {
+  display: flex;
+  justify-content: space-between;
+}
+.jb-cloud-css-meta .meta-description {
+  font-size: 14px;
+  color: #888888;
 }
 
 .cross-close {

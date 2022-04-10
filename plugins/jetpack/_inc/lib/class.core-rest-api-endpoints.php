@@ -6,7 +6,7 @@ use Automattic\Jetpack\Connection\Rest_Authentication;
 use Automattic\Jetpack\Connection\REST_Connector;
 use Automattic\Jetpack\Jetpack_CRM_Data;
 use Automattic\Jetpack\Licensing;
-use Automattic\Jetpack\Search\REST_Controller as Search_REST_Controller;
+use Automattic\Jetpack\Plugins_Installer;
 use Automattic\Jetpack\Status\Host;
 use Automattic\Jetpack\Status\Visitor;
 
@@ -31,9 +31,6 @@ add_action( 'rest_api_init', array( 'Jetpack_Core_Json_Api_Endpoints', 'register
 // Load API endpoints that are synced with WP.com
 // Each of these is a class that will register its own routes on 'rest_api_init'.
 require_once JETPACK__PLUGIN_DIR . '_inc/lib/core-api/load-wpcom-endpoints.php';
-
-// Load Search endpoints when WP REST API is initialized.
-add_action( 'rest_api_init', array( new Search_REST_Controller(), 'register_rest_routes' ) );
 
 /**
  * Class Jetpack_Core_Json_Api_Endpoints
@@ -727,6 +724,18 @@ class Jetpack_Core_Json_Api_Endpoints {
 				),
 			)
 		);
+		/**
+		 * Get Jetpack user licenses.
+		 */
+		register_rest_route(
+			'jetpack/v4',
+			'licensing/user/licenses',
+			array(
+				'methods'             => WP_REST_Server::READABLE,
+				'callback'            => __CLASS__ . '::get_user_licenses',
+				'permission_callback' => __CLASS__ . '::user_licensing_permission_check',
+			)
+		);
 
 		/**
 		 * Get Jetpack user license counts.
@@ -1110,6 +1119,39 @@ class Jetpack_Core_Json_Api_Endpoints {
 		if ( 200 === $response_code ) {
 			$license_counts = json_decode( wp_remote_retrieve_body( $wpcom_request ) );
 			return $license_counts;
+		} else {
+			return new WP_Error(
+				'failed_to_fetch_data',
+				esc_html__( 'Unable to fetch the requested data.', 'jetpack' ),
+				array( 'status' => $response_code )
+			);
+		}
+	}
+
+	/**
+	 * Gets the users licenses.
+	 *
+	 * @since 10.4.0
+	 *
+	 * @return string|WP_Error A JSON object of user licenses if the request was successful, or a WP_Error otherwise.
+	 */
+	public static function get_user_licenses() {
+		$wpcom_request = Client::wpcom_json_api_request_as_user(
+			'/jetpack-licensing/user/licenses',
+			'2',
+			array(
+				'method'  => 'GET',
+				'headers' => array(
+					'Content-Type'    => 'application/json',
+					'X-Forwarded-For' => ( new Visitor() )->get_ip( true ),
+				),
+			)
+		);
+
+		$response_code = wp_remote_retrieve_response_code( $wpcom_request );
+		if ( 200 === $response_code ) {
+			$licenses = json_decode( wp_remote_retrieve_body( $wpcom_request ) );
+			return $licenses;
 		} else {
 			return new WP_Error(
 				'failed_to_fetch_data',
@@ -2218,6 +2260,15 @@ class Jetpack_Core_Json_Api_Endpoints {
 	public static function get_updateable_data_list( $selector = '' ) {
 
 		$options = array(
+
+			// Blocks.
+			'jetpack_blocks_disabled'              => array(
+				'description'       => esc_html__( 'Jetpack Blocks disabled.', 'jetpack' ),
+				'type'              => 'boolean',
+				'default'           => false,
+				'validate_callback' => __CLASS__ . '::validate_boolean',
+				'jp_group'          => 'settings',
+			),
 
 			// Carousel
 			'carousel_background_color'            => array(
@@ -3681,8 +3732,7 @@ class Jetpack_Core_Json_Api_Endpoints {
 	 * @return WP_REST_Response|WP_Error List of plugins in the site. Otherwise, a WP_Error instance with the corresponding error.
 	 */
 	public static function get_plugins() {
-		jetpack_require_lib( 'plugins' );
-		$plugins = Jetpack_Plugins::get_plugins();
+		$plugins = Plugins_Installer::get_plugins();
 
 		if ( ! empty( $plugins ) ) {
 			return rest_ensure_response( $plugins );
@@ -3709,14 +3759,12 @@ class Jetpack_Core_Json_Api_Endpoints {
 	public static function install_plugin( $request ) {
 		$plugin = stripslashes( $request['slug'] );
 
-		jetpack_require_lib( 'plugins' );
-
 		// Let's make sure the plugin isn't already installed.
-		$plugin_id = Jetpack_Plugins::get_plugin_id_by_slug( $plugin );
+		$plugin_id = Plugins_Installer::get_plugin_id_by_slug( $plugin );
 
 		// If not installed, let's install now.
 		if ( ! $plugin_id ) {
-			$result = Jetpack_Plugins::install_plugin( $plugin );
+			$result = Plugins_Installer::install_plugin( $plugin );
 
 			if ( is_wp_error( $result ) ) {
 				return new WP_Error(
@@ -3757,7 +3805,7 @@ class Jetpack_Core_Json_Api_Endpoints {
 		 * Let's check again for the plugin's ID if we don't already have it.
 		 */
 		if ( ! $plugin_id ) {
-			$plugin_id = Jetpack_Plugins::get_plugin_id_by_slug( $plugin );
+			$plugin_id = Plugins_Installer::get_plugin_id_by_slug( $plugin );
 			if ( ! $plugin_id ) {
 				return new WP_Error(
 					'unable_to_determine_installed_plugin',
@@ -3804,8 +3852,7 @@ class Jetpack_Core_Json_Api_Endpoints {
 			);
 		}
 
-		jetpack_require_lib( 'plugins' );
-		$plugins = Jetpack_Plugins::get_plugins();
+		$plugins = Plugins_Installer::get_plugins();
 
 		if ( empty( $plugins ) ) {
 			return new WP_Error( 'no_plugins_found', esc_html__( 'This site has no plugins.', 'jetpack' ), array( 'status' => 404 ) );
@@ -3833,7 +3880,7 @@ class Jetpack_Core_Json_Api_Endpoints {
 		}
 
 		// Is the plugin active already?
-		$status = Jetpack_Plugins::get_plugin_status( $plugin );
+		$status = Plugins_Installer::get_plugin_status( $plugin );
 		if ( in_array( $status, array( 'active', 'network-active' ), true ) ) {
 			return new WP_Error(
 				'plugin_already_active',
@@ -3904,8 +3951,7 @@ class Jetpack_Core_Json_Api_Endpoints {
 	 * @return bool|WP_Error True if module was activated. Otherwise, a WP_Error instance with the corresponding error.
 	 */
 	public static function get_plugin( $request ) {
-		jetpack_require_lib( 'plugins' );
-		$plugins = Jetpack_Plugins::get_plugins();
+		$plugins = Plugins_Installer::get_plugins();
 
 		if ( empty( $plugins ) ) {
 			return new WP_Error( 'no_plugins_found', esc_html__( 'This site has no plugins.', 'jetpack' ), array( 'status' => 404 ) );
@@ -3919,7 +3965,7 @@ class Jetpack_Core_Json_Api_Endpoints {
 
 		$plugin_data = $plugins[ $plugin ];
 
-		$plugin_data['active'] = in_array( Jetpack_Plugins::get_plugin_status( $plugin ), array( 'active', 'network-active' ), true );
+		$plugin_data['active'] = in_array( Plugins_Installer::get_plugin_status( $plugin ), array( 'active', 'network-active' ), true );
 
 		return rest_ensure_response(
 			array(
