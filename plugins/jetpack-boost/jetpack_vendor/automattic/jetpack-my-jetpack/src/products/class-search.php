@@ -116,7 +116,7 @@ class Search extends Module_Product {
 	private static function get_state_from_wpcom() {
 		static $status = null;
 
-		if ( ! is_null( $status ) ) {
+		if ( $status !== null ) {
 			return $status;
 		}
 
@@ -159,7 +159,7 @@ class Search extends Module_Product {
 	 * @return ?string
 	 */
 	public static function get_post_activation_url() {
-		return ''; // stay in My Jetpack page.
+		return ''; // stay in My Jetpack page or continue the purchase flow if needed.
 	}
 
 	/**

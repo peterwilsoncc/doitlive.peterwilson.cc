@@ -1,6 +1,6 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName
 /**
- * Module Name: Protect
+ * Module Name: Brute force protection
  * Module Description: Enabling brute force protection will prevent bots and hackers from attempting to log in to your website with common username and password combinations.
  * Sort Order: 1
  * Recommendation Order: 4
@@ -285,7 +285,7 @@ class Jetpack_Protect_Module {
 						{
 							_wpnonce: $( event.delegateTarget ).data( 'dismiss-nonce' ),
 						}
-					).fail( function( error ) { 
+					).fail( function( error ) {
 					<?php
 						// A failure here is really strange, and there's not really anything a site owner can do to fix one.
 						// Just log the error for now to help debugging.
@@ -409,8 +409,8 @@ class Jetpack_Protect_Module {
 			$transient--;
 
 			if ( ! $transient || $transient < 1 ) {
-				$this->delete_transient( 'jpp_math_pass_' . $_COOKIE['jpp_math_pass'] );
-				setcookie( 'jpp_math_pass', 0, time() - DAY_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN, false );
+				$this->delete_transient( 'jpp_math_pass_' . sanitize_key( $_COOKIE['jpp_math_pass'] ) );
+				setcookie( 'jpp_math_pass', 0, time() - DAY_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN, false, true );
 			} else {
 				$this->set_transient( 'jpp_math_pass_' . $_COOKIE['jpp_math_pass'], $transient, DAY_IN_SECONDS );
 			}
