@@ -2433,41 +2433,56 @@ function mapActions(actions, store) {
 
 
 function mapResolveSelectors(selectors, store) {
-  return (0,external_lodash_namespaceObject.mapValues)((0,external_lodash_namespaceObject.omit)(selectors, ['getIsResolving', 'hasStartedResolution', 'hasFinishedResolution', 'isResolving', 'getCachedResolvers']), (selector, selectorName) => function () {
-    for (var _len3 = arguments.length, args = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-      args[_key3] = arguments[_key3];
+  const storeSelectors = (0,external_lodash_namespaceObject.omit)(selectors, ['getIsResolving', 'hasStartedResolution', 'hasFinishedResolution', 'hasResolutionFailed', 'isResolving', 'getCachedResolvers', 'getResolutionState', 'getResolutionError']);
+  return (0,external_lodash_namespaceObject.mapValues)(storeSelectors, (selector, selectorName) => {
+    // If the selector doesn't have a resolver, just convert the return value
+    // (including exceptions) to a Promise, no additional extra behavior is needed.
+    if (!selector.hasResolver) {
+      return async function () {
+        for (var _len3 = arguments.length, args = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+          args[_key3] = arguments[_key3];
+        }
+
+        return selector.apply(null, args);
+      };
     }
 
-    return new Promise((resolve, reject) => {
-      const hasFinished = () => selectors.hasFinishedResolution(selectorName, args);
-
-      const finalize = result => {
-        const hasFailed = selectors.hasResolutionFailed(selectorName, args);
-
-        if (hasFailed) {
-          const error = selectors.getResolutionError(selectorName, args);
-          reject(error);
-        } else {
-          resolve(result);
-        }
-      };
-
-      const getResult = () => selector.apply(null, args); // Trigger the selector (to trigger the resolver)
-
-
-      const result = getResult();
-
-      if (hasFinished()) {
-        return finalize(result);
+    return function () {
+      for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+        args[_key4] = arguments[_key4];
       }
 
-      const unsubscribe = store.subscribe(() => {
+      return new Promise((resolve, reject) => {
+        const hasFinished = () => selectors.hasFinishedResolution(selectorName, args);
+
+        const finalize = result => {
+          const hasFailed = selectors.hasResolutionFailed(selectorName, args);
+
+          if (hasFailed) {
+            const error = selectors.getResolutionError(selectorName, args);
+            reject(error);
+          } else {
+            resolve(result);
+          }
+        };
+
+        const getResult = () => selector.apply(null, args); // Trigger the selector (to trigger the resolver)
+
+
+        const result = getResult();
+
         if (hasFinished()) {
-          unsubscribe();
-          finalize(getResult());
+          return finalize(result);
         }
+
+        const unsubscribe = store.subscribe(() => {
+          if (hasFinished()) {
+            unsubscribe();
+            finalize(getResult());
+          }
+        });
       });
-    });
+    };
   });
 }
 /**
@@ -2507,8 +2522,8 @@ function mapResolvers(resolvers, selectors, store, resolversCache) {
     }
 
     const selectorResolver = function () {
-      for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
-        args[_key4] = arguments[_key4];
+      for (var _len5 = arguments.length, args = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
+        args[_key5] = arguments[_key5];
       }
 
       async function fulfillSelector() {
@@ -2570,8 +2585,8 @@ async function fulfillResolver(store, resolvers, selectorName) {
     return;
   }
 
-  for (var _len5 = arguments.length, args = new Array(_len5 > 3 ? _len5 - 3 : 0), _key5 = 3; _key5 < _len5; _key5++) {
-    args[_key5 - 3] = arguments[_key5];
+  for (var _len6 = arguments.length, args = new Array(_len6 > 3 ? _len6 - 3 : 0), _key6 = 3; _key6 < _len6; _key6++) {
+    args[_key6 - 3] = arguments[_key6];
   }
 
   const action = resolver.fulfill(...args);
@@ -2692,12 +2707,10 @@ function createRegistry() {
   let parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
   const stores = {};
   const emitter = createEmitter();
-
-  const __experimentalListeningStores = new Set();
+  const listeningStores = new Set();
   /**
    * Global listener called for each store's update.
    */
-
 
   function globalListener() {
     emitter.emit();
@@ -2726,9 +2739,7 @@ function createRegistry() {
 
   function select(storeNameOrDescriptor) {
     const storeName = (0,external_lodash_namespaceObject.isObject)(storeNameOrDescriptor) ? storeNameOrDescriptor.name : storeNameOrDescriptor;
-
-    __experimentalListeningStores.add(storeName);
-
+    listeningStores.add(storeName);
     const store = stores[storeName];
 
     if (store) {
@@ -2738,11 +2749,10 @@ function createRegistry() {
     return parent && parent.select(storeName);
   }
 
-  function __experimentalMarkListeningStores(callback, ref) {
-    __experimentalListeningStores.clear();
-
+  function __unstableMarkListeningStores(callback, ref) {
+    listeningStores.clear();
     const result = callback.call(this);
-    ref.current = Array.from(__experimentalListeningStores);
+    ref.current = Array.from(listeningStores);
     return result;
   }
   /**
@@ -2760,9 +2770,7 @@ function createRegistry() {
 
   function resolveSelect(storeNameOrDescriptor) {
     const storeName = (0,external_lodash_namespaceObject.isObject)(storeNameOrDescriptor) ? storeNameOrDescriptor.name : storeNameOrDescriptor;
-
-    __experimentalListeningStores.add(storeName);
-
+    listeningStores.add(storeName);
     const store = stores[storeName];
 
     if (store) {
@@ -2898,7 +2906,7 @@ function createRegistry() {
    */
 
 
-  function __experimentalSubscribeStore(storeName, handler) {
+  function __unstableSubscribeStore(storeName, handler) {
     if (storeName in stores) {
       return stores[storeName].subscribe(handler);
     } // Trying to access a store that hasn't been registered,
@@ -2911,7 +2919,7 @@ function createRegistry() {
       return subscribe(handler);
     }
 
-    return parent.__experimentalSubscribeStore(storeName, handler);
+    return parent.__unstableSubscribeStore(storeName, handler);
   }
 
   function batch(callback) {
@@ -2935,8 +2943,8 @@ function createRegistry() {
     register,
     registerGenericStore,
     registerStore,
-    __experimentalMarkListeningStores,
-    __experimentalSubscribeStore
+    __unstableMarkListeningStores,
+    __unstableSubscribeStore
   }; //
   // TODO:
   // This function will be deprecated as soon as it is no longer internally referenced.
@@ -3229,170 +3237,8 @@ function persistencePlugin(registry, pluginOptions) {
 
   };
 }
-/**
- * Move the 'features' object in local storage from the sourceStoreName to the
- * preferences store.
- *
- * @param {Object} persistence     The persistence interface.
- * @param {string} sourceStoreName The name of the store that has persisted
- *                                 preferences to migrate to the preferences
- *                                 package.
- */
 
-
-function migrateFeaturePreferencesToPreferencesStore(persistence, sourceStoreName) {
-  var _state$interfaceStore, _state$interfaceStore2, _state$interfaceStore3, _state$sourceStoreNam, _state$sourceStoreNam2;
-
-  const preferencesStoreName = 'core/preferences';
-  const interfaceStoreName = 'core/interface';
-  const state = persistence.get(); // Features most recently (and briefly) lived in the interface package.
-  // If data exists there, prioritize using that for the migration. If not
-  // also check the original package as the user may have updated from an
-  // older block editor version.
-
-  const interfaceFeatures = (_state$interfaceStore = state[interfaceStoreName]) === null || _state$interfaceStore === void 0 ? void 0 : (_state$interfaceStore2 = _state$interfaceStore.preferences) === null || _state$interfaceStore2 === void 0 ? void 0 : (_state$interfaceStore3 = _state$interfaceStore2.features) === null || _state$interfaceStore3 === void 0 ? void 0 : _state$interfaceStore3[sourceStoreName];
-  const sourceFeatures = (_state$sourceStoreNam = state[sourceStoreName]) === null || _state$sourceStoreNam === void 0 ? void 0 : (_state$sourceStoreNam2 = _state$sourceStoreNam.preferences) === null || _state$sourceStoreNam2 === void 0 ? void 0 : _state$sourceStoreNam2.features;
-  const featuresToMigrate = interfaceFeatures ? interfaceFeatures : sourceFeatures;
-
-  if (featuresToMigrate) {
-    var _state$preferencesSto;
-
-    const existingPreferences = (_state$preferencesSto = state[preferencesStoreName]) === null || _state$preferencesSto === void 0 ? void 0 : _state$preferencesSto.preferences; // Avoid migrating features again if they've previously been migrated.
-
-    if (!(existingPreferences !== null && existingPreferences !== void 0 && existingPreferences[sourceStoreName])) {
-      // Set the feature values in the interface store, the features
-      // object is keyed by 'scope', which matches the store name for
-      // the source.
-      persistence.set(preferencesStoreName, {
-        preferences: { ...existingPreferences,
-          [sourceStoreName]: featuresToMigrate
-        }
-      }); // Remove migrated feature preferences from `interface`.
-
-      if (interfaceFeatures) {
-        var _state$interfaceStore4, _state$interfaceStore5;
-
-        const otherInterfaceState = state[interfaceStoreName];
-        const otherInterfaceScopes = (_state$interfaceStore4 = state[interfaceStoreName]) === null || _state$interfaceStore4 === void 0 ? void 0 : (_state$interfaceStore5 = _state$interfaceStore4.preferences) === null || _state$interfaceStore5 === void 0 ? void 0 : _state$interfaceStore5.features;
-        persistence.set(interfaceStoreName, { ...otherInterfaceState,
-          preferences: {
-            features: { ...otherInterfaceScopes,
-              [sourceStoreName]: undefined
-            }
-          }
-        });
-      } // Remove migrated feature preferences from the source.
-
-
-      if (sourceFeatures) {
-        var _state$sourceStoreNam3;
-
-        const otherSourceState = state[sourceStoreName];
-        const sourcePreferences = (_state$sourceStoreNam3 = state[sourceStoreName]) === null || _state$sourceStoreNam3 === void 0 ? void 0 : _state$sourceStoreNam3.preferences;
-        persistence.set(sourceStoreName, { ...otherSourceState,
-          preferences: { ...sourcePreferences,
-            features: undefined
-          }
-        });
-      }
-    }
-  }
-}
-function migrateIndividualPreferenceToPreferencesStore(persistence, sourceStoreName, key) {
-  var _state$sourceStoreNam4, _state$sourceStoreNam5, _state$preferencesSto2, _state$preferencesSto3, _state$preferencesSto4, _state$preferencesSto5, _state$preferencesSto6, _state$preferencesSto7, _state$sourceStoreNam6;
-
-  const preferencesStoreName = 'core/preferences';
-  const state = persistence.get();
-  const sourcePreference = (_state$sourceStoreNam4 = state[sourceStoreName]) === null || _state$sourceStoreNam4 === void 0 ? void 0 : (_state$sourceStoreNam5 = _state$sourceStoreNam4.preferences) === null || _state$sourceStoreNam5 === void 0 ? void 0 : _state$sourceStoreNam5[key]; // There's nothing to migrate, exit early.
-
-  if (!sourcePreference) {
-    return;
-  }
-
-  const targetPreference = (_state$preferencesSto2 = state[preferencesStoreName]) === null || _state$preferencesSto2 === void 0 ? void 0 : (_state$preferencesSto3 = _state$preferencesSto2.preferences) === null || _state$preferencesSto3 === void 0 ? void 0 : (_state$preferencesSto4 = _state$preferencesSto3[sourceStoreName]) === null || _state$preferencesSto4 === void 0 ? void 0 : _state$preferencesSto4[key]; // There's existing data at the target, so don't overwrite it, exit early.
-
-  if (targetPreference) {
-    return;
-  }
-
-  const allPreferences = (_state$preferencesSto5 = state[preferencesStoreName]) === null || _state$preferencesSto5 === void 0 ? void 0 : _state$preferencesSto5.preferences;
-  const targetPreferences = (_state$preferencesSto6 = state[preferencesStoreName]) === null || _state$preferencesSto6 === void 0 ? void 0 : (_state$preferencesSto7 = _state$preferencesSto6.preferences) === null || _state$preferencesSto7 === void 0 ? void 0 : _state$preferencesSto7[sourceStoreName];
-  persistence.set(preferencesStoreName, {
-    preferences: { ...allPreferences,
-      [sourceStoreName]: { ...targetPreferences,
-        [key]: sourcePreference
-      }
-    }
-  }); // Remove migrated feature preferences from the source.
-
-  const otherSourceState = state[sourceStoreName];
-  const allSourcePreferences = (_state$sourceStoreNam6 = state[sourceStoreName]) === null || _state$sourceStoreNam6 === void 0 ? void 0 : _state$sourceStoreNam6.preferences;
-  persistence.set(sourceStoreName, { ...otherSourceState,
-    preferences: { ...allSourcePreferences,
-      [key]: undefined
-    }
-  });
-}
-function migrateThirdPartyFeaturePreferencesToPreferencesStore(persistence) {
-  var _state$interfaceStore6, _state$interfaceStore7;
-
-  const interfaceStoreName = 'core/interface';
-  const preferencesStoreName = 'core/preferences';
-  let state = persistence.get();
-  const interfaceScopes = (_state$interfaceStore6 = state[interfaceStoreName]) === null || _state$interfaceStore6 === void 0 ? void 0 : (_state$interfaceStore7 = _state$interfaceStore6.preferences) === null || _state$interfaceStore7 === void 0 ? void 0 : _state$interfaceStore7.features;
-
-  for (const scope in interfaceScopes) {
-    var _state$preferencesSto8, _state$interfaceStore8, _state$interfaceStore9;
-
-    // Don't migrate any core 'scopes'.
-    if (scope.startsWith('core')) {
-      continue;
-    } // Skip this scope if there are no features to migrates
-
-
-    const featuresToMigrate = interfaceScopes[scope];
-
-    if (!featuresToMigrate) {
-      continue;
-    }
-
-    const existingPreferences = (_state$preferencesSto8 = state[preferencesStoreName]) === null || _state$preferencesSto8 === void 0 ? void 0 : _state$preferencesSto8.preferences; // Add the data to the preferences store structure.
-
-    persistence.set(preferencesStoreName, {
-      preferences: { ...existingPreferences,
-        [scope]: featuresToMigrate
-      }
-    }); // Remove the data from the interface store structure.
-    // Call `persistence.get` again to make sure `state` is up-to-date with
-    // any changes from the previous iteration of this loop.
-
-    state = persistence.get();
-    const otherInterfaceState = state[interfaceStoreName];
-    const otherInterfaceScopes = (_state$interfaceStore8 = state[interfaceStoreName]) === null || _state$interfaceStore8 === void 0 ? void 0 : (_state$interfaceStore9 = _state$interfaceStore8.preferences) === null || _state$interfaceStore9 === void 0 ? void 0 : _state$interfaceStore9.features;
-    persistence.set(interfaceStoreName, { ...otherInterfaceState,
-      preferences: {
-        features: { ...otherInterfaceScopes,
-          [scope]: undefined
-        }
-      }
-    });
-  }
-}
-
-persistencePlugin.__unstableMigrate = pluginOptions => {
-  const persistence = createPersistenceInterface(pluginOptions); // Boolean feature preferences.
-
-  migrateFeaturePreferencesToPreferencesStore(persistence, 'core/edit-widgets');
-  migrateFeaturePreferencesToPreferencesStore(persistence, 'core/customize-widgets');
-  migrateFeaturePreferencesToPreferencesStore(persistence, 'core/edit-post');
-  migrateFeaturePreferencesToPreferencesStore(persistence, 'core/edit-site');
-  migrateThirdPartyFeaturePreferencesToPreferencesStore(persistence); // Other ad-hoc preferences.
-
-  migrateIndividualPreferenceToPreferencesStore(persistence, 'core/edit-post', 'hiddenBlockTypes');
-  migrateIndividualPreferenceToPreferencesStore(persistence, 'core/edit-post', 'editorMode');
-  migrateIndividualPreferenceToPreferencesStore(persistence, 'core/edit-post', 'preferredStyleVariations');
-  migrateIndividualPreferenceToPreferencesStore(persistence, 'core/edit-site', 'editorMode');
-};
+persistencePlugin.__unstableMigrate = () => {};
 
 /* harmony default export */ var persistence = (persistencePlugin);
 
@@ -3759,23 +3605,16 @@ function useSelect(mapSelect, deps) {
   const _mapSelect = hasMappingFunction ? callbackMapper : null;
 
   const registry = useRegistry();
-  const isAsync = useAsyncMode(); // React can sometimes clear the `useMemo` cache.
-  // We use the cache-stable `useMemoOne` to avoid
-  // losing queues.
-
-  const queueContext = useMemoOne(() => ({
-    queue: true
-  }), [registry]);
-  const [, forceRender] = (0,external_wp_element_namespaceObject.useReducer)(s => s + 1, 0);
+  const isAsync = useAsyncMode();
+  const latestRegistry = (0,external_wp_element_namespaceObject.useRef)(registry);
   const latestMapSelect = (0,external_wp_element_namespaceObject.useRef)();
   const latestIsAsync = (0,external_wp_element_namespaceObject.useRef)(isAsync);
   const latestMapOutput = (0,external_wp_element_namespaceObject.useRef)();
-  const latestMapOutputError = (0,external_wp_element_namespaceObject.useRef)();
-  const isMountedAndNotUnsubscribing = (0,external_wp_element_namespaceObject.useRef)(); // Keep track of the stores being selected in the _mapSelect function,
+  const latestMapOutputError = (0,external_wp_element_namespaceObject.useRef)(); // Keep track of the stores being selected in the _mapSelect function,
   // and only subscribe to those stores later.
 
   const listeningStores = (0,external_wp_element_namespaceObject.useRef)([]);
-  const trapSelect = (0,external_wp_element_namespaceObject.useCallback)(callback => registry.__experimentalMarkListeningStores(callback, listeningStores), [registry]); // Generate a "flag" for used in the effect dependency array.
+  const wrapSelect = (0,external_wp_element_namespaceObject.useCallback)(callback => registry.__unstableMarkListeningStores(() => callback(registry.select, registry), listeningStores), [registry]); // Generate a "flag" for used in the effect dependency array.
   // It's different than just using `mapSelect` since deps could be undefined,
   // in that case, we would still want to memoize it.
 
@@ -3784,12 +3623,14 @@ function useSelect(mapSelect, deps) {
 
   if (_mapSelect) {
     mapOutput = latestMapOutput.current;
+    const hasReplacedRegistry = latestRegistry.current !== registry;
     const hasReplacedMapSelect = latestMapSelect.current !== _mapSelect;
+    const hasLeftAsyncMode = latestIsAsync.current && !isAsync;
     const lastMapSelectFailed = !!latestMapOutputError.current;
 
-    if (hasReplacedMapSelect || lastMapSelectFailed) {
+    if (hasReplacedRegistry || hasReplacedMapSelect || hasLeftAsyncMode || lastMapSelectFailed) {
       try {
-        mapOutput = trapSelect(() => _mapSelect(registry.select, registry));
+        mapOutput = wrapSelect(_mapSelect);
       } catch (error) {
         let errorMessage = `An error occurred while running 'mapSelect': ${error.message}`;
 
@@ -3810,68 +3651,67 @@ function useSelect(mapSelect, deps) {
       return;
     }
 
+    latestRegistry.current = registry;
     latestMapSelect.current = _mapSelect;
+    latestIsAsync.current = isAsync;
     latestMapOutput.current = mapOutput;
     latestMapOutputError.current = undefined;
-    isMountedAndNotUnsubscribing.current = true; // This has to run after the other ref updates
-    // to avoid using stale values in the flushed
-    // callbacks or potentially overwriting a
-    // changed `latestMapOutput.current`.
+  }); // React can sometimes clear the `useMemo` cache.
+  // We use the cache-stable `useMemoOne` to avoid
+  // losing queues.
 
-    if (latestIsAsync.current !== isAsync) {
-      latestIsAsync.current = isAsync;
-      renderQueue.flush(queueContext);
-    }
-  });
+  const queueContext = useMemoOne(() => ({
+    queue: true
+  }), [registry]);
+  const [, forceRender] = (0,external_wp_element_namespaceObject.useReducer)(s => s + 1, 0);
+  const isMounted = (0,external_wp_element_namespaceObject.useRef)(false);
   (0,external_wp_compose_namespaceObject.useIsomorphicLayoutEffect)(() => {
     if (!hasMappingFunction) {
       return;
     }
 
     const onStoreChange = () => {
-      if (isMountedAndNotUnsubscribing.current) {
-        try {
-          const newMapOutput = trapSelect(() => latestMapSelect.current(registry.select, registry));
+      try {
+        const newMapOutput = wrapSelect(latestMapSelect.current);
 
-          if (external_wp_isShallowEqual_default()(latestMapOutput.current, newMapOutput)) {
-            return;
-          }
-
-          latestMapOutput.current = newMapOutput;
-        } catch (error) {
-          latestMapOutputError.current = error;
+        if (external_wp_isShallowEqual_default()(latestMapOutput.current, newMapOutput)) {
+          return;
         }
 
-        forceRender();
+        latestMapOutput.current = newMapOutput;
+      } catch (error) {
+        latestMapOutputError.current = error;
       }
-    }; // Catch any possible state changes during mount before the subscription
-    // could be set.
 
-
-    if (latestIsAsync.current) {
-      renderQueue.add(queueContext, onStoreChange);
-    } else {
-      onStoreChange();
-    }
+      forceRender();
+    };
 
     const onChange = () => {
+      if (!isMounted.current) {
+        return;
+      }
+
       if (latestIsAsync.current) {
         renderQueue.add(queueContext, onStoreChange);
       } else {
         onStoreChange();
       }
-    };
+    }; // Catch any possible state changes during mount before the subscription
+    // could be set.
 
-    const unsubscribers = listeningStores.current.map(storeName => registry.__experimentalSubscribeStore(storeName, onChange));
+
+    onStoreChange();
+    const unsubscribers = listeningStores.current.map(storeName => registry.__unstableSubscribeStore(storeName, onChange));
+    isMounted.current = true;
     return () => {
-      isMountedAndNotUnsubscribing.current = false; // The return value of the subscribe function could be undefined if the store is a custom generic store.
-
+      // The return value of the subscribe function could be undefined if the store is a custom generic store.
       unsubscribers.forEach(unsubscribe => unsubscribe === null || unsubscribe === void 0 ? void 0 : unsubscribe());
-      renderQueue.flush(queueContext);
+      renderQueue.cancel(queueContext);
+      isMounted.current = false;
     }; // If you're tempted to eliminate the spread dependencies below don't do it!
     // We're passing these in from the calling function and want to make sure we're
     // examining every individual value inside the `deps` array.
-  }, [registry, trapSelect, hasMappingFunction, depsChangedFlag]);
+  }, [registry, wrapSelect, hasMappingFunction, depsChangedFlag]);
   return hasMappingFunction ? mapOutput : registry.select(mapSelect);
 }
 

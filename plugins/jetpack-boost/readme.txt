@@ -5,7 +5,7 @@ Tags: performance, speed, pagespeed, web vitals, critical css, optimize, defer
 Requires at least: 5.5
 Tested up to: 5.9
 Requires PHP: 7.0
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -165,17 +165,9 @@ If you run into compatibility issues, please do let us know. You can drop us a l
 1. Manage your Jetpack Boost settings
 
 == Changelog ==
-### 1.4.1 - 2022-04-06
-#### Changed
-- Critical CSS: Tidied up Critical CSS class structure.
-- Critical CSS: Updated Critical CSS generation to exclude animation keyframes.
-- Deferred JS: Updated exclusion attribute to allow quotes.
-- General: Tested compatibility with WordPress 5.9.
-- General: Updated Boost Dashboard heading logo.
-- Lazy Loading: Updated Image Lazy Loading to reflect Jetpack's Lazy Loading setting.
-
+### 1.4.2 - 2022-04-11
 #### Fixed
-- General: Clean up use of FILTER_SANITIZE_STRING as it is deprecated in PHP 8.1
+- Fixed critical CSS generation failure while using a CDN to serve CSS
 
 --------
 

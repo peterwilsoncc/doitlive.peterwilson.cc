@@ -6372,7 +6372,7 @@ function isMatchingSearchTerm(state, nameOrType, searchTerm) {
   term => term.trim()]);
   const normalizedSearchTerm = getNormalizedSearchTerm(searchTerm);
   const isSearchMatch = (0,external_lodash_namespaceObject.flow)([getNormalizedSearchTerm, normalizedCandidate => (0,external_lodash_namespaceObject.includes)(normalizedCandidate, normalizedSearchTerm)]);
-  return isSearchMatch(blockType.title) || (0,external_lodash_namespaceObject.some)(blockType.keywords, isSearchMatch) || isSearchMatch(blockType.category);
+  return isSearchMatch(blockType.title) || (0,external_lodash_namespaceObject.some)(blockType.keywords, isSearchMatch) || isSearchMatch(blockType.category) || isSearchMatch(blockType.description);
 }
 /**
  * Returns a boolean indicating if a block has child blocks or not.
@@ -6463,10 +6463,62 @@ const __EXPERIMENTAL_STYLE_PROPERTY = {
     value: ['border', 'width'],
     support: ['__experimentalBorder', 'width']
   },
+  borderTopColor: {
+    value: ['border', 'top', 'color'],
+    support: ['__experimentalBorder', 'color']
+  },
+  borderTopStyle: {
+    value: ['border', 'top', 'style'],
+    support: ['__experimentalBorder', 'style']
+  },
+  borderTopWidth: {
+    value: ['border', 'top', 'width'],
+    support: ['__experimentalBorder', 'width']
+  },
+  borderRightColor: {
+    value: ['border', 'right', 'color'],
+    support: ['__experimentalBorder', 'color']
+  },
+  borderRightStyle: {
+    value: ['border', 'right', 'style'],
+    support: ['__experimentalBorder', 'style']
+  },
+  borderRightWidth: {
+    value: ['border', 'right', 'width'],
+    support: ['__experimentalBorder', 'width']
+  },
+  borderBottomColor: {
+    value: ['border', 'bottom', 'color'],
+    support: ['__experimentalBorder', 'color']
+  },
+  borderBottomStyle: {
+    value: ['border', 'bottom', 'style'],
+    support: ['__experimentalBorder', 'style']
+  },
+  borderBottomWidth: {
+    value: ['border', 'bottom', 'width'],
+    support: ['__experimentalBorder', 'width']
+  },
+  borderLeftColor: {
+    value: ['border', 'left', 'color'],
+    support: ['__experimentalBorder', 'color']
+  },
+  borderLeftStyle: {
+    value: ['border', 'left', 'style'],
+    support: ['__experimentalBorder', 'style']
+  },
+  borderLeftWidth: {
+    value: ['border', 'left', 'width'],
+    support: ['__experimentalBorder', 'width']
+  },
   color: {
     value: ['color', 'text'],
     support: ['color', 'text'],
     requiresOptOut: true
+  },
+  filter: {
+    value: ['filter', 'duotone'],
+    support: ['color', '__experimentalDuotone']
   },
   linkColor: {
     value: ['elements', 'link', 'color', 'text'],
@@ -6500,7 +6552,8 @@ const __EXPERIMENTAL_STYLE_PROPERTY = {
       marginRight: 'right',
       marginBottom: 'bottom',
       marginLeft: 'left'
-    }
+    },
+    useEngine: true
   },
   padding: {
     value: ['spacing', 'padding'],
@@ -6709,6 +6762,13 @@ function unstable__bootstrapServerSideBlockDefinitions(definitions) {
       // @see https://github.com/WordPress/gutenberg/pull/29279
       if (serverSideBlockDefinitions[blockName].apiVersion === undefined && definitions[blockName].apiVersion) {
         serverSideBlockDefinitions[blockName].apiVersion = definitions[blockName].apiVersion;
+      } // The `ancestor` prop is not included in the definitions shared
+      // from the server yet, so it needs to be polyfilled as well.
+      // @see https://github.com/WordPress/gutenberg/pull/39894
+
+
+      if (serverSideBlockDefinitions[blockName].ancestor === undefined && definitions[blockName].ancestor) {
+        serverSideBlockDefinitions[blockName].ancestor = definitions[blockName].ancestor;
       }
 
       continue;
@@ -6731,7 +6791,7 @@ function getBlockSettingsFromMetadata(_ref) {
     textdomain,
     ...metadata
   } = _ref;
-  const allowedFields = ['apiVersion', 'title', 'category', 'parent', 'icon', 'description', 'keywords', 'attributes', 'providesContext', 'usesContext', 'supports', 'styles', 'example', 'variations'];
+  const allowedFields = ['apiVersion', 'title', 'category', 'parent', 'ancestor', 'icon', 'description', 'keywords', 'attributes', 'providesContext', 'usesContext', 'supports', 'styles', 'example', 'variations'];
   const settings = (0,external_lodash_namespaceObject.pick)(metadata, allowedFields);
 
   if (textdomain) {
@@ -7370,13 +7430,8 @@ const isPossibleTransformForSource = (transform, direction, blocks) => {
   } // If the transform has a `isMatch` function specified, check that it returns true.
 
 
-  if ((0,external_lodash_namespaceObject.isFunction)(transform.isMatch)) {
-    const attributes = transform.isMultiBlock ? blocks.map(block => block.attributes) : sourceBlock.attributes;
-    const block = transform.isMultiBlock ? blocks : sourceBlock;
-
-    if (!transform.isMatch(attributes, block)) {
-      return false;
-    }
+  if (!maybeCheckTransformIsMatch(transform, blocks)) {
+    return false;
   }
 
   if (transform.usingMobileTransformations && isWildcardBlockTransform(transform) && !isContainerGroupBlock(sourceBlock.name)) {
@@ -7435,7 +7490,7 @@ const getBlockTypesForPossibleToTransforms = blocks => {
 
   const blockNames = (0,external_lodash_namespaceObject.flatMap)(possibleTransforms, transformation => transformation.blocks); // Map block names to block types.
 
-  return blockNames.map(name => registration_getBlockType(name));
+  return blockNames.map(name => name === '*' ? name : registration_getBlockType(name));
 };
 /**
  * Determines whether transform is a "block" type
@@ -7564,6 +7619,25 @@ function getBlockTransforms(direction, blockTypeOrName) {
   }));
 }
 /**
+ * Checks that a given transforms isMatch method passes for given source blocks.
+ *
+ * @param {Object} transform A transform object.
+ * @param {Array}  blocks    Blocks array.
+ *
+ * @return {boolean} True if given blocks are a match for the transform.
+ */
+
+function maybeCheckTransformIsMatch(transform, blocks) {
+  if (typeof transform.isMatch !== 'function') {
+    return true;
+  }
+
+  const sourceBlock = (0,external_lodash_namespaceObject.first)(blocks);
+  const attributes = transform.isMultiBlock ? blocks.map(block => block.attributes) : sourceBlock.attributes;
+  const block = transform.isMultiBlock ? blocks : sourceBlock;
+  return transform.isMatch(attributes, block);
+}
+/**
  * Switch one or more blocks into one or more blocks of the new block type.
  *
  * @param {Array|Object} blocks Blocks array or block object.
@@ -7571,6 +7645,7 @@ function getBlockTransforms(direction, blockTypeOrName) {
  *
  * @return {?Array} Array of blocks or null.
  */
+
 
 function switchToBlockType(blocks, name) {
   const blocksArray = (0,external_lodash_namespaceObject.castArray)(blocks);
@@ -7581,7 +7656,7 @@ function switchToBlockType(blocks, name) {
 
   const transformationsFrom = getBlockTransforms('from', name);
   const transformationsTo = getBlockTransforms('to', sourceName);
-  const transformation = findTransform(transformationsTo, t => t.type === 'block' && (isWildcardBlockTransform(t) || t.blocks.indexOf(name) !== -1) && (!isMultiBlock || t.isMultiBlock)) || findTransform(transformationsFrom, t => t.type === 'block' && (isWildcardBlockTransform(t) || t.blocks.indexOf(sourceName) !== -1) && (!isMultiBlock || t.isMultiBlock)); // Stop if there is no valid transformation.
+  const transformation = findTransform(transformationsTo, t => t.type === 'block' && (isWildcardBlockTransform(t) || t.blocks.indexOf(name) !== -1) && (!isMultiBlock || t.isMultiBlock) && maybeCheckTransformIsMatch(t, blocksArray)) || findTransform(transformationsFrom, t => t.type === 'block' && (isWildcardBlockTransform(t) || t.blocks.indexOf(sourceName) !== -1) && (!isMultiBlock || t.isMultiBlock) && maybeCheckTransformIsMatch(t, blocksArray)); // Stop if there is no valid transformation.
 
   if (!transformation) {
     return null;
@@ -7616,7 +7691,7 @@ function switchToBlockType(blocks, name) {
     return null;
   }
 
-  const hasSwitchedBlock = (0,external_lodash_namespaceObject.some)(transformationResults, result => result.name === name); // Ensure that at least one block object returned by the transformation has
+  const hasSwitchedBlock = name === '*' || (0,external_lodash_namespaceObject.some)(transformationResults, result => result.name === name); // Ensure that at least one block object returned by the transformation has
   // the expected "destination" block type.
 
   if (!hasSwitchedBlock) {
@@ -8348,6 +8423,56 @@ var external_wp_autop_namespaceObject = window["wp"]["autop"];
 ;// CONCATENATED MODULE: external ["wp","isShallowEqual"]
 var external_wp_isShallowEqual_namespaceObject = window["wp"]["isShallowEqual"];
 var external_wp_isShallowEqual_default = /*#__PURE__*/__webpack_require__.n(external_wp_isShallowEqual_namespaceObject);
+;// CONCATENATED MODULE: ./packages/blocks/build-module/api/parser/serialize-raw-block.js
+/**
+ * Internal dependencies
+ */
+
+/**
+ * @typedef {Object}   Options                   Serialization options.
+ * @property {boolean} [isCommentDelimited=true] Whether to output HTML comments around blocks.
+ */
+
+/** @typedef {import("./").WPRawBlock} WPRawBlock */
+
+/**
+ * Serializes a block node into the native HTML-comment-powered block format.
+ * CAVEAT: This function is intended for re-serializing blocks as parsed by
+ * valid parsers and skips any validation steps. This is NOT a generic
+ * serialization function for in-memory blocks. For most purposes, see the
+ * following functions available in the `@wordpress/blocks` package:
+ *
+ * @see serializeBlock
+ * @see serialize
+ *
+ * For more on the format of block nodes as returned by valid parsers:
+ *
+ * @see `@wordpress/block-serialization-default-parser` package
+ * @see `@wordpress/block-serialization-spec-parser` package
+ *
+ * @param {WPRawBlock} rawBlock     A block node as returned by a valid parser.
+ * @param {Options}    [options={}] Serialization options.
+ *
+ * @return {string} An HTML string representing a block.
+ */
+
+function serializeRawBlock(rawBlock) {
+  let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  const {
+    isCommentDelimited = true
+  } = options;
+  const {
+    blockName,
+    attrs = {},
+    innerBlocks = [],
+    innerContent = []
+  } = rawBlock;
+  let childIndex = 0;
+  const content = innerContent.map(item => // `null` denotes a nested block, otherwise we have an HTML fragment.
+  item !== null ? item : serializeRawBlock(innerBlocks[childIndex++], options)).join('\n').replace(/\n+/g, '\n').trim();
+  return isCommentDelimited ? getCommentDelimitedContent(blockName, attrs, content) : content;
+}
+
 ;// CONCATENATED MODULE: ./packages/blocks/build-module/api/serializer.js
 
 
@@ -8368,6 +8493,9 @@ var external_wp_isShallowEqual_default = /*#__PURE__*/__webpack_require__.n(exte
  */
 
 
+
+
+/** @typedef {import('./parser').WPBlock} WPBlock */
 
 /**
  * @typedef {Object} WPBlockSerializationOptions Serialization Options.
@@ -8625,8 +8753,8 @@ function getCommentDelimitedContent(rawBlockName, attributes, content) {
  * Returns the content of a block, including comment delimiters, determining
  * serialized attributes and content form from the current state of the block.
  *
- * @param {Object}                      block   Block instance.
- * @param {WPBlockSerializationOptions} options Serialization options.
+ * @param {WPBlock}                      block   Block instance.
+ * @param {WPBlockSerializationOptions}  options Serialization options.
  *
  * @return {string} Serialized block.
  */
@@ -8635,6 +8763,11 @@ function serializeBlock(block) {
   let {
     isInnerBlocks = false
   } = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+  if (!block.isValid && block.__unstableBlockSource) {
+    return serializeRawBlock(block.__unstableBlockSource);
+  }
+
   const blockName = block.name;
   const saveContent = getBlockInnerHTML(block);
 
@@ -10123,56 +10256,6 @@ function convertLegacyBlockNameAndAttributes(name, attributes) {
   }
 
   return [name, newAttributes];
-}
-
-;// CONCATENATED MODULE: ./packages/blocks/build-module/api/parser/serialize-raw-block.js
-/**
- * Internal dependencies
- */
-
-/**
- * @typedef {Object}   Options                   Serialization options.
- * @property {boolean} [isCommentDelimited=true] Whether to output HTML comments around blocks.
- */
-
-/** @typedef {import("./").WPRawBlock} WPRawBlock */
-
-/**
- * Serializes a block node into the native HTML-comment-powered block format.
- * CAVEAT: This function is intended for re-serializing blocks as parsed by
- * valid parsers and skips any validation steps. This is NOT a generic
- * serialization function for in-memory blocks. For most purposes, see the
- * following functions available in the `@wordpress/blocks` package:
- *
- * @see serializeBlock
- * @see serialize
- *
- * For more on the format of block nodes as returned by valid parsers:
- *
- * @see `@wordpress/block-serialization-default-parser` package
- * @see `@wordpress/block-serialization-spec-parser` package
- *
- * @param {WPRawBlock} rawBlock     A block node as returned by a valid parser.
- * @param {Options}    [options={}] Serialization options.
- *
- * @return {string} An HTML string representing a block.
- */
-
-function serializeRawBlock(rawBlock) {
-  let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  const {
-    isCommentDelimited = true
-  } = options;
-  const {
-    blockName,
-    attrs = {},
-    innerBlocks = [],
-    innerContent = []
-  } = rawBlock;
-  let childIndex = 0;
-  const content = innerContent.map(item => // `null` denotes a nested block, otherwise we have an HTML fragment.
-  item !== null ? item : serializeRawBlock(innerBlocks[childIndex++], options)).join('\n').replace(/\n+/g, '\n').trim();
-  return isCommentDelimited ? getCommentDelimitedContent(blockName, attrs, content) : content;
 }
 
 ;// CONCATENATED MODULE: ./node_modules/hpq/es/get-path.js
