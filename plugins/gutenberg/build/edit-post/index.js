@@ -1,8 +1,8 @@
-/******/ (function() { // webpackBootstrap
+/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 4403:
-/***/ (function(module, exports) {
+/***/ ((module, exports) => {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
   Copyright (c) 2018 Jed Watson.
@@ -93,173 +93,174 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
-/******/ 	!function() {
+/******/ 	(() => {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = function(module) {
+/******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
-/******/ 				function() { return module['default']; } :
-/******/ 				function() { return module; };
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
 /******/ 			__webpack_require__.d(getter, { a: getter });
 /******/ 			return getter;
 /******/ 		};
-/******/ 	}();
+/******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
-/******/ 	!function() {
+/******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = function(exports, definition) {
+/******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
 /******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
-/******/ 	}();
+/******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	!function() {
-/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
-/******/ 	}();
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
-/******/ 	!function() {
+/******/ 	(() => {
 /******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = function(exports) {
+/******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
-/******/ 	}();
+/******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
-!function() {
+(() => {
 "use strict";
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  "PluginBlockSettingsMenuItem": function() { return /* reexport */ plugin_block_settings_menu_item; },
-  "PluginDocumentSettingPanel": function() { return /* reexport */ plugin_document_setting_panel; },
-  "PluginMoreMenuItem": function() { return /* reexport */ plugin_more_menu_item; },
-  "PluginPostPublishPanel": function() { return /* reexport */ plugin_post_publish_panel; },
-  "PluginPostStatusInfo": function() { return /* reexport */ plugin_post_status_info; },
-  "PluginPrePublishPanel": function() { return /* reexport */ plugin_pre_publish_panel; },
-  "PluginSidebar": function() { return /* reexport */ PluginSidebarEditPost; },
-  "PluginSidebarMoreMenuItem": function() { return /* reexport */ PluginSidebarMoreMenuItem; },
-  "__experimentalFullscreenModeClose": function() { return /* reexport */ fullscreen_mode_close; },
-  "__experimentalMainDashboardButton": function() { return /* reexport */ main_dashboard_button; },
-  "initializeEditor": function() { return /* binding */ initializeEditor; },
-  "reinitializeEditor": function() { return /* binding */ reinitializeEditor; },
-  "store": function() { return /* reexport */ store_store; }
+  "PluginBlockSettingsMenuItem": () => (/* reexport */ plugin_block_settings_menu_item),
+  "PluginDocumentSettingPanel": () => (/* reexport */ plugin_document_setting_panel),
+  "PluginMoreMenuItem": () => (/* reexport */ plugin_more_menu_item),
+  "PluginPostPublishPanel": () => (/* reexport */ plugin_post_publish_panel),
+  "PluginPostStatusInfo": () => (/* reexport */ plugin_post_status_info),
+  "PluginPrePublishPanel": () => (/* reexport */ plugin_pre_publish_panel),
+  "PluginSidebar": () => (/* reexport */ PluginSidebarEditPost),
+  "PluginSidebarMoreMenuItem": () => (/* reexport */ PluginSidebarMoreMenuItem),
+  "__experimentalFullscreenModeClose": () => (/* reexport */ fullscreen_mode_close),
+  "__experimentalMainDashboardButton": () => (/* reexport */ main_dashboard_button),
+  "initializeEditor": () => (/* binding */ initializeEditor),
+  "reinitializeEditor": () => (/* binding */ reinitializeEditor),
+  "store": () => (/* reexport */ store_store)
 });
 
 // NAMESPACE OBJECT: ./packages/interface/build-module/store/actions.js
 var actions_namespaceObject = {};
 __webpack_require__.r(actions_namespaceObject);
 __webpack_require__.d(actions_namespaceObject, {
-  "disableComplementaryArea": function() { return disableComplementaryArea; },
-  "enableComplementaryArea": function() { return enableComplementaryArea; },
-  "pinItem": function() { return pinItem; },
-  "setFeatureDefaults": function() { return setFeatureDefaults; },
-  "setFeatureValue": function() { return setFeatureValue; },
-  "toggleFeature": function() { return toggleFeature; },
-  "unpinItem": function() { return unpinItem; }
+  "disableComplementaryArea": () => (disableComplementaryArea),
+  "enableComplementaryArea": () => (enableComplementaryArea),
+  "pinItem": () => (pinItem),
+  "setDefaultComplementaryArea": () => (setDefaultComplementaryArea),
+  "setFeatureDefaults": () => (setFeatureDefaults),
+  "setFeatureValue": () => (setFeatureValue),
+  "toggleFeature": () => (toggleFeature),
+  "unpinItem": () => (unpinItem)
 });
 
 // NAMESPACE OBJECT: ./packages/interface/build-module/store/selectors.js
 var selectors_namespaceObject = {};
 __webpack_require__.r(selectors_namespaceObject);
 __webpack_require__.d(selectors_namespaceObject, {
-  "getActiveComplementaryArea": function() { return getActiveComplementaryArea; },
-  "isFeatureActive": function() { return isFeatureActive; },
-  "isItemPinned": function() { return isItemPinned; }
+  "getActiveComplementaryArea": () => (getActiveComplementaryArea),
+  "isFeatureActive": () => (isFeatureActive),
+  "isItemPinned": () => (isItemPinned)
 });
 
 // NAMESPACE OBJECT: ./packages/edit-post/build-module/store/actions.js
 var store_actions_namespaceObject = {};
 __webpack_require__.r(store_actions_namespaceObject);
 __webpack_require__.d(store_actions_namespaceObject, {
-  "__experimentalSetPreviewDeviceType": function() { return __experimentalSetPreviewDeviceType; },
-  "__unstableCreateTemplate": function() { return __unstableCreateTemplate; },
-  "__unstableSwitchToTemplateMode": function() { return __unstableSwitchToTemplateMode; },
-  "closeGeneralSidebar": function() { return closeGeneralSidebar; },
-  "closeModal": function() { return closeModal; },
-  "closePublishSidebar": function() { return closePublishSidebar; },
-  "hideBlockTypes": function() { return hideBlockTypes; },
-  "initializeMetaBoxes": function() { return initializeMetaBoxes; },
-  "metaBoxUpdatesFailure": function() { return metaBoxUpdatesFailure; },
-  "metaBoxUpdatesSuccess": function() { return metaBoxUpdatesSuccess; },
-  "openGeneralSidebar": function() { return openGeneralSidebar; },
-  "openModal": function() { return openModal; },
-  "openPublishSidebar": function() { return openPublishSidebar; },
-  "removeEditorPanel": function() { return removeEditorPanel; },
-  "requestMetaBoxUpdates": function() { return requestMetaBoxUpdates; },
-  "setAvailableMetaBoxesPerLocation": function() { return setAvailableMetaBoxesPerLocation; },
-  "setIsEditingTemplate": function() { return setIsEditingTemplate; },
-  "setIsInserterOpened": function() { return setIsInserterOpened; },
-  "setIsListViewOpened": function() { return setIsListViewOpened; },
-  "showBlockTypes": function() { return showBlockTypes; },
-  "switchEditorMode": function() { return switchEditorMode; },
-  "toggleEditorPanelEnabled": function() { return toggleEditorPanelEnabled; },
-  "toggleEditorPanelOpened": function() { return toggleEditorPanelOpened; },
-  "toggleFeature": function() { return actions_toggleFeature; },
-  "togglePinnedPluginItem": function() { return togglePinnedPluginItem; },
-  "togglePublishSidebar": function() { return togglePublishSidebar; },
-  "updatePreferredStyleVariations": function() { return updatePreferredStyleVariations; }
+  "__experimentalSetPreviewDeviceType": () => (__experimentalSetPreviewDeviceType),
+  "__unstableCreateTemplate": () => (__unstableCreateTemplate),
+  "__unstableSwitchToTemplateMode": () => (__unstableSwitchToTemplateMode),
+  "closeGeneralSidebar": () => (closeGeneralSidebar),
+  "closeModal": () => (closeModal),
+  "closePublishSidebar": () => (closePublishSidebar),
+  "hideBlockTypes": () => (hideBlockTypes),
+  "initializeMetaBoxes": () => (initializeMetaBoxes),
+  "metaBoxUpdatesFailure": () => (metaBoxUpdatesFailure),
+  "metaBoxUpdatesSuccess": () => (metaBoxUpdatesSuccess),
+  "openGeneralSidebar": () => (openGeneralSidebar),
+  "openModal": () => (openModal),
+  "openPublishSidebar": () => (openPublishSidebar),
+  "removeEditorPanel": () => (removeEditorPanel),
+  "requestMetaBoxUpdates": () => (requestMetaBoxUpdates),
+  "setAvailableMetaBoxesPerLocation": () => (setAvailableMetaBoxesPerLocation),
+  "setIsEditingTemplate": () => (setIsEditingTemplate),
+  "setIsInserterOpened": () => (setIsInserterOpened),
+  "setIsListViewOpened": () => (setIsListViewOpened),
+  "showBlockTypes": () => (showBlockTypes),
+  "switchEditorMode": () => (switchEditorMode),
+  "toggleEditorPanelEnabled": () => (toggleEditorPanelEnabled),
+  "toggleEditorPanelOpened": () => (toggleEditorPanelOpened),
+  "toggleFeature": () => (actions_toggleFeature),
+  "togglePinnedPluginItem": () => (togglePinnedPluginItem),
+  "togglePublishSidebar": () => (togglePublishSidebar),
+  "updatePreferredStyleVariations": () => (updatePreferredStyleVariations)
 });
 
 // NAMESPACE OBJECT: ./packages/edit-post/build-module/store/selectors.js
 var store_selectors_namespaceObject = {};
 __webpack_require__.r(store_selectors_namespaceObject);
 __webpack_require__.d(store_selectors_namespaceObject, {
-  "__experimentalGetInsertionPoint": function() { return __experimentalGetInsertionPoint; },
-  "__experimentalGetPreviewDeviceType": function() { return __experimentalGetPreviewDeviceType; },
-  "areMetaBoxesInitialized": function() { return areMetaBoxesInitialized; },
-  "getActiveGeneralSidebarName": function() { return getActiveGeneralSidebarName; },
-  "getActiveMetaBoxLocations": function() { return getActiveMetaBoxLocations; },
-  "getAllMetaBoxes": function() { return getAllMetaBoxes; },
-  "getEditedPostTemplate": function() { return getEditedPostTemplate; },
-  "getEditorMode": function() { return getEditorMode; },
-  "getHiddenBlockTypes": function() { return getHiddenBlockTypes; },
-  "getMetaBoxesPerLocation": function() { return getMetaBoxesPerLocation; },
-  "getPreference": function() { return getPreference; },
-  "getPreferences": function() { return getPreferences; },
-  "hasMetaBoxes": function() { return hasMetaBoxes; },
-  "isEditingTemplate": function() { return selectors_isEditingTemplate; },
-  "isEditorPanelEnabled": function() { return isEditorPanelEnabled; },
-  "isEditorPanelOpened": function() { return isEditorPanelOpened; },
-  "isEditorPanelRemoved": function() { return isEditorPanelRemoved; },
-  "isEditorSidebarOpened": function() { return isEditorSidebarOpened; },
-  "isFeatureActive": function() { return selectors_isFeatureActive; },
-  "isInserterOpened": function() { return isInserterOpened; },
-  "isListViewOpened": function() { return isListViewOpened; },
-  "isMetaBoxLocationActive": function() { return isMetaBoxLocationActive; },
-  "isMetaBoxLocationVisible": function() { return isMetaBoxLocationVisible; },
-  "isModalActive": function() { return isModalActive; },
-  "isPluginItemPinned": function() { return isPluginItemPinned; },
-  "isPluginSidebarOpened": function() { return isPluginSidebarOpened; },
-  "isPublishSidebarOpened": function() { return isPublishSidebarOpened; },
-  "isSavingMetaBoxes": function() { return selectors_isSavingMetaBoxes; }
+  "__experimentalGetInsertionPoint": () => (__experimentalGetInsertionPoint),
+  "__experimentalGetPreviewDeviceType": () => (__experimentalGetPreviewDeviceType),
+  "areMetaBoxesInitialized": () => (areMetaBoxesInitialized),
+  "getActiveGeneralSidebarName": () => (getActiveGeneralSidebarName),
+  "getActiveMetaBoxLocations": () => (getActiveMetaBoxLocations),
+  "getAllMetaBoxes": () => (getAllMetaBoxes),
+  "getEditedPostTemplate": () => (getEditedPostTemplate),
+  "getEditorMode": () => (getEditorMode),
+  "getHiddenBlockTypes": () => (getHiddenBlockTypes),
+  "getMetaBoxesPerLocation": () => (getMetaBoxesPerLocation),
+  "getPreference": () => (getPreference),
+  "getPreferences": () => (getPreferences),
+  "hasMetaBoxes": () => (hasMetaBoxes),
+  "isEditingTemplate": () => (selectors_isEditingTemplate),
+  "isEditorPanelEnabled": () => (isEditorPanelEnabled),
+  "isEditorPanelOpened": () => (isEditorPanelOpened),
+  "isEditorPanelRemoved": () => (isEditorPanelRemoved),
+  "isEditorSidebarOpened": () => (isEditorSidebarOpened),
+  "isFeatureActive": () => (selectors_isFeatureActive),
+  "isInserterOpened": () => (isInserterOpened),
+  "isListViewOpened": () => (isListViewOpened),
+  "isMetaBoxLocationActive": () => (isMetaBoxLocationActive),
+  "isMetaBoxLocationVisible": () => (isMetaBoxLocationVisible),
+  "isModalActive": () => (isModalActive),
+  "isPluginItemPinned": () => (isPluginItemPinned),
+  "isPluginSidebarOpened": () => (isPluginSidebarOpened),
+  "isPublishSidebarOpened": () => (isPublishSidebarOpened),
+  "isSavingMetaBoxes": () => (selectors_isSavingMetaBoxes)
 });
 
 ;// CONCATENATED MODULE: external ["wp","element"]
-var external_wp_element_namespaceObject = window["wp"]["element"];
+const external_wp_element_namespaceObject = window["wp"]["element"];
 ;// CONCATENATED MODULE: external ["wp","blocks"]
-var external_wp_blocks_namespaceObject = window["wp"]["blocks"];
+const external_wp_blocks_namespaceObject = window["wp"]["blocks"];
 ;// CONCATENATED MODULE: external ["wp","blockLibrary"]
-var external_wp_blockLibrary_namespaceObject = window["wp"]["blockLibrary"];
+const external_wp_blockLibrary_namespaceObject = window["wp"]["blockLibrary"];
 ;// CONCATENATED MODULE: external ["wp","data"]
-var external_wp_data_namespaceObject = window["wp"]["data"];
+const external_wp_data_namespaceObject = window["wp"]["data"];
 ;// CONCATENATED MODULE: external ["wp","hooks"]
-var external_wp_hooks_namespaceObject = window["wp"]["hooks"];
+const external_wp_hooks_namespaceObject = window["wp"]["hooks"];
 ;// CONCATENATED MODULE: external ["wp","preferences"]
-var external_wp_preferences_namespaceObject = window["wp"]["preferences"];
+const external_wp_preferences_namespaceObject = window["wp"]["preferences"];
 ;// CONCATENATED MODULE: external ["wp","mediaUtils"]
-var external_wp_mediaUtils_namespaceObject = window["wp"]["mediaUtils"];
+const external_wp_mediaUtils_namespaceObject = window["wp"]["mediaUtils"];
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/hooks/components/index.js
 /**
  * WordPress dependencies
@@ -290,15 +291,15 @@ function _extends() {
   return _extends.apply(this, arguments);
 }
 ;// CONCATENATED MODULE: external "lodash"
-var external_lodash_namespaceObject = window["lodash"];
+const external_lodash_namespaceObject = window["lodash"];
 ;// CONCATENATED MODULE: external ["wp","components"]
-var external_wp_components_namespaceObject = window["wp"]["components"];
+const external_wp_components_namespaceObject = window["wp"]["components"];
 ;// CONCATENATED MODULE: external ["wp","blockEditor"]
-var external_wp_blockEditor_namespaceObject = window["wp"]["blockEditor"];
+const external_wp_blockEditor_namespaceObject = window["wp"]["blockEditor"];
 ;// CONCATENATED MODULE: external ["wp","i18n"]
-var external_wp_i18n_namespaceObject = window["wp"]["i18n"];
+const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
 ;// CONCATENATED MODULE: external ["wp","compose"]
-var external_wp_compose_namespaceObject = window["wp"]["compose"];
+const external_wp_compose_namespaceObject = window["wp"]["compose"];
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/hooks/validate-multiple-use/index.js
 
 
@@ -435,7 +436,7 @@ function getOutboundType(blockName) {
 
 
 ;// CONCATENATED MODULE: external ["wp","primitives"]
-var external_wp_primitives_namespaceObject = window["wp"]["primitives"];
+const external_wp_primitives_namespaceObject = window["wp"]["primitives"];
 ;// CONCATENATED MODULE: ./packages/icons/build-module/library/external.js
 
 
@@ -449,16 +450,16 @@ const external = (0,external_wp_element_namespaceObject.createElement)(external_
 }, (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M18.2 17c0 .7-.6 1.2-1.2 1.2H7c-.7 0-1.2-.6-1.2-1.2V7c0-.7.6-1.2 1.2-1.2h3.2V4.2H7C5.5 4.2 4.2 5.5 4.2 7v10c0 1.5 1.2 2.8 2.8 2.8h10c1.5 0 2.8-1.2 2.8-2.8v-3.6h-1.5V17zM14.9 3v1.5h3.7l-6.4 6.4 1.1 1.1 6.4-6.4v3.7h1.5V3h-6.3z"
 }));
-/* harmony default export */ var library_external = (external);
+/* harmony default export */ const library_external = (external);
 
 ;// CONCATENATED MODULE: external ["wp","plugins"]
-var external_wp_plugins_namespaceObject = window["wp"]["plugins"];
+const external_wp_plugins_namespaceObject = window["wp"]["plugins"];
 ;// CONCATENATED MODULE: external ["wp","url"]
-var external_wp_url_namespaceObject = window["wp"]["url"];
+const external_wp_url_namespaceObject = window["wp"]["url"];
 ;// CONCATENATED MODULE: external ["wp","notices"]
-var external_wp_notices_namespaceObject = window["wp"]["notices"];
+const external_wp_notices_namespaceObject = window["wp"]["notices"];
 ;// CONCATENATED MODULE: external ["wp","editor"]
-var external_wp_editor_namespaceObject = window["wp"]["editor"];
+const external_wp_editor_namespaceObject = window["wp"]["editor"];
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/plugins/copy-content-menu-item/index.js
 
 
@@ -487,11 +488,11 @@ function CopyContentMenuItem() {
   const ref = (0,external_wp_compose_namespaceObject.useCopyToClipboard)(getText, onSuccess);
   return (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.MenuItem, {
     ref: ref
-  }, (0,external_wp_i18n_namespaceObject.__)('Copy all content'));
+  }, (0,external_wp_i18n_namespaceObject.__)('Copy all blocks'));
 }
 
 ;// CONCATENATED MODULE: external ["wp","keycodes"]
-var external_wp_keycodes_namespaceObject = window["wp"]["keycodes"];
+const external_wp_keycodes_namespaceObject = window["wp"]["keycodes"];
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/store/reducer.js
 /**
  * External dependencies
@@ -725,7 +726,7 @@ const metaBoxes = (0,external_wp_data_namespaceObject.combineReducers)({
   locations: metaBoxLocations,
   initialized: metaBoxesInitialized
 });
-/* harmony default export */ var reducer = ((0,external_wp_data_namespaceObject.combineReducers)({
+/* harmony default export */ const reducer = ((0,external_wp_data_namespaceObject.combineReducers)({
   activeModal,
   metaBoxes,
   publishSidebarActive,
@@ -737,7 +738,7 @@ const metaBoxes = (0,external_wp_data_namespaceObject.combineReducers)({
 }));
 
 ;// CONCATENATED MODULE: external ["wp","apiFetch"]
-var external_wp_apiFetch_namespaceObject = window["wp"]["apiFetch"];
+const external_wp_apiFetch_namespaceObject = window["wp"]["apiFetch"];
 var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_wp_apiFetch_namespaceObject);
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
 var classnames = __webpack_require__(4403);
@@ -755,7 +756,7 @@ const check = (0,external_wp_element_namespaceObject.createElement)(external_wp_
 }, (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M16.7 7.1l-6.3 8.5-3.3-2.5-.9 1.2 4.5 3.4L17.9 8z"
 }));
-/* harmony default export */ var library_check = (check);
+/* harmony default export */ const library_check = (check);
 
 ;// CONCATENATED MODULE: ./packages/icons/build-module/library/star-filled.js
 
@@ -770,7 +771,7 @@ const starFilled = (0,external_wp_element_namespaceObject.createElement)(externa
 }, (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M11.776 4.454a.25.25 0 01.448 0l2.069 4.192a.25.25 0 00.188.137l4.626.672a.25.25 0 01.139.426l-3.348 3.263a.25.25 0 00-.072.222l.79 4.607a.25.25 0 01-.362.263l-4.138-2.175a.25.25 0 00-.232 0l-4.138 2.175a.25.25 0 01-.363-.263l.79-4.607a.25.25 0 00-.071-.222L4.754 9.881a.25.25 0 01.139-.426l4.626-.672a.25.25 0 00.188-.137l2.069-4.192z"
 }));
-/* harmony default export */ var star_filled = (starFilled);
+/* harmony default export */ const star_filled = (starFilled);
 
 ;// CONCATENATED MODULE: ./packages/icons/build-module/library/star-empty.js
 
@@ -787,10 +788,10 @@ const starEmpty = (0,external_wp_element_namespaceObject.createElement)(external
   d: "M9.706 8.646a.25.25 0 01-.188.137l-4.626.672a.25.25 0 00-.139.427l3.348 3.262a.25.25 0 01.072.222l-.79 4.607a.25.25 0 00.362.264l4.138-2.176a.25.25 0 01.233 0l4.137 2.175a.25.25 0 00.363-.263l-.79-4.607a.25.25 0 01.072-.222l3.347-3.262a.25.25 0 00-.139-.427l-4.626-.672a.25.25 0 01-.188-.137l-2.069-4.192a.25.25 0 00-.448 0L9.706 8.646zM12 7.39l-.948 1.921a1.75 1.75 0 01-1.317.957l-2.12.308 1.534 1.495c.412.402.6.982.503 1.55l-.362 2.11 1.896-.997a1.75 1.75 0 011.629 0l1.895.997-.362-2.11a1.75 1.75 0 01.504-1.55l1.533-1.495-2.12-.308a1.75 1.75 0 01-1.317-.957L12 7.39z",
   clipRule: "evenodd"
 }));
-/* harmony default export */ var star_empty = (starEmpty);
+/* harmony default export */ const star_empty = (starEmpty);
 
 ;// CONCATENATED MODULE: external ["wp","viewport"]
-var external_wp_viewport_namespaceObject = window["wp"]["viewport"];
+const external_wp_viewport_namespaceObject = window["wp"]["viewport"];
 ;// CONCATENATED MODULE: ./packages/icons/build-module/library/close-small.js
 
 
@@ -804,10 +805,10 @@ const closeSmall = (0,external_wp_element_namespaceObject.createElement)(externa
 }, (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M12 13.06l3.712 3.713 1.061-1.06L13.061 12l3.712-3.712-1.06-1.06L12 10.938 8.288 7.227l-1.061 1.06L10.939 12l-3.712 3.712 1.06 1.061L12 13.061z"
 }));
-/* harmony default export */ var close_small = (closeSmall);
+/* harmony default export */ const close_small = (closeSmall);
 
 ;// CONCATENATED MODULE: external ["wp","deprecated"]
-var external_wp_deprecated_namespaceObject = window["wp"]["deprecated"];
+const external_wp_deprecated_namespaceObject = window["wp"]["deprecated"];
 var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_namespaceObject);
 ;// CONCATENATED MODULE: ./packages/interface/build-module/store/actions.js
 /**
@@ -815,6 +816,20 @@ var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external
  */
 
 
+/**
+ * Set a default complementary area.
+ *
+ * @param {string} scope Complementary area scope.
+ * @param {string} area  Area identifier.
+ *
+ * @return {Object} Action object.
+ */
+
+const setDefaultComplementaryArea = (scope, area) => ({
+  type: 'SET_DEFAULT_COMPLEMENTARY_AREA',
+  scope,
+  area
+});
 /**
  * Enable the complementary area.
  *
@@ -824,7 +839,8 @@ var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external
 
 const enableComplementaryArea = (scope, area) => _ref => {
   let {
-    registry
+    registry,
+    dispatch
   } = _ref;
 
   // Return early if there's no area.
@@ -832,7 +848,17 @@ const enableComplementaryArea = (scope, area) => _ref => {
     return;
   }
 
-  registry.dispatch(external_wp_preferences_namespaceObject.store).set(scope, 'complementaryArea', area);
+  const isComplementaryAreaVisible = registry.select(external_wp_preferences_namespaceObject.store).get(scope, 'isComplementaryAreaVisible');
+
+  if (!isComplementaryAreaVisible) {
+    registry.dispatch(external_wp_preferences_namespaceObject.store).set(scope, 'isComplementaryAreaVisible', true);
+  }
+
+  dispatch({
+    type: 'ENABLE_COMPLEMENTARY_AREA',
+    scope,
+    area
+  });
 };
 /**
  * Disable the complementary area.
@@ -844,7 +870,11 @@ const disableComplementaryArea = scope => _ref2 => {
   let {
     registry
   } = _ref2;
-  registry.dispatch(external_wp_preferences_namespaceObject.store).set(scope, 'complementaryArea', null);
+  const isComplementaryAreaVisible = registry.select(external_wp_preferences_namespaceObject.store).get(scope, 'isComplementaryAreaVisible');
+
+  if (isComplementaryAreaVisible) {
+    registry.dispatch(external_wp_preferences_namespaceObject.store).set(scope, 'isComplementaryAreaVisible', false);
+  }
 };
 /**
  * Pins an item.
@@ -909,9 +939,9 @@ function toggleFeature(scope, featureName) {
     let {
       registry
     } = _ref5;
-    external_wp_deprecated_default()(`wp.dispatch( 'core/interface' ).toggleFeature`, {
+    external_wp_deprecated_default()(`dispatch( 'core/interface' ).toggleFeature`, {
       since: '6.0',
-      alternative: `wp.dispatch( 'core/preferences' ).toggle`
+      alternative: `dispatch( 'core/preferences' ).toggle`
     });
     registry.dispatch(external_wp_preferences_namespaceObject.store).toggle(scope, featureName);
   };
@@ -932,9 +962,9 @@ function setFeatureValue(scope, featureName, value) {
     let {
       registry
     } = _ref6;
-    external_wp_deprecated_default()(`wp.dispatch( 'core/interface' ).setFeatureValue`, {
+    external_wp_deprecated_default()(`dispatch( 'core/interface' ).setFeatureValue`, {
       since: '6.0',
-      alternative: `wp.dispatch( 'core/preferences' ).set`
+      alternative: `dispatch( 'core/preferences' ).set`
     });
     registry.dispatch(external_wp_preferences_namespaceObject.store).set(scope, featureName, !!value);
   };
@@ -953,9 +983,9 @@ function setFeatureDefaults(scope, defaults) {
     let {
       registry
     } = _ref7;
-    external_wp_deprecated_default()(`wp.dispatch( 'core/interface' ).setFeatureDefaults`, {
+    external_wp_deprecated_default()(`dispatch( 'core/interface' ).setFeatureDefaults`, {
       since: '6.0',
-      alternative: `wp.dispatch( 'core/preferences' ).setDefaults`
+      alternative: `dispatch( 'core/preferences' ).setDefaults`
     });
     registry.dispatch(external_wp_preferences_namespaceObject.store).setDefaults(scope, defaults);
   };
@@ -974,11 +1004,26 @@ function setFeatureDefaults(scope, defaults) {
  * @param {Object} state Global application state.
  * @param {string} scope Item scope.
  *
- * @return {string} The complementary area that is active in the given scope.
+ * @return {string | null | undefined} The complementary area that is active in the given scope.
  */
 
 const getActiveComplementaryArea = (0,external_wp_data_namespaceObject.createRegistrySelector)(select => (state, scope) => {
-  return select(external_wp_preferences_namespaceObject.store).get(scope, 'complementaryArea');
+  var _state$complementaryA;
+
+  const isComplementaryAreaVisible = select(external_wp_preferences_namespaceObject.store).get(scope, 'isComplementaryAreaVisible'); // Return `undefined` to indicate that the user has never toggled
+  // visibility, this is the vanilla default. Other code relies on this
+  // nuance in the return value.
+
+  if (isComplementaryAreaVisible === undefined) {
+    return undefined;
+  } // Return `null` to indicate the user hid the complementary area.
+
+
+  if (!isComplementaryAreaVisible) {
+    return null;
+  }
+
+  return state === null || state === void 0 ? void 0 : (_state$complementaryA = state.complementaryAreas) === null || _state$complementaryA === void 0 ? void 0 : _state$complementaryA[scope];
 });
 /**
  * Returns a boolean indicating if an item is pinned or not.
@@ -1008,12 +1053,56 @@ const isItemPinned = (0,external_wp_data_namespaceObject.createRegistrySelector)
  */
 
 const isFeatureActive = (0,external_wp_data_namespaceObject.createRegistrySelector)(select => (state, scope, featureName) => {
-  external_wp_deprecated_default()(`wp.select( 'core/interface' ).isFeatureActive( scope, featureName )`, {
+  external_wp_deprecated_default()(`select( 'core/interface' ).isFeatureActive( scope, featureName )`, {
     since: '6.0',
-    alternative: `!! wp.select( 'core/preferences' ).isFeatureActive( scope, featureName )`
+    alternative: `select( 'core/preferences' ).get( scope, featureName )`
   });
   return !!select(external_wp_preferences_namespaceObject.store).get(scope, featureName);
 });
+
+;// CONCATENATED MODULE: ./packages/interface/build-module/store/reducer.js
+/**
+ * WordPress dependencies
+ */
+
+function complementaryAreas() {
+  let state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  let action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case 'SET_DEFAULT_COMPLEMENTARY_AREA':
+      {
+        const {
+          scope,
+          area
+        } = action; // If there's already an area, don't overwrite it.
+
+        if (state[scope]) {
+          return state;
+        }
+
+        return { ...state,
+          [scope]: area
+        };
+      }
+
+    case 'ENABLE_COMPLEMENTARY_AREA':
+      {
+        const {
+          scope,
+          area
+        } = action;
+        return { ...state,
+          [scope]: area
+        };
+      }
+  }
+
+  return state;
+}
+/* harmony default export */ const store_reducer = ((0,external_wp_data_namespaceObject.combineReducers)({
+  complementaryAreas
+}));
 
 ;// CONCATENATED MODULE: ./packages/interface/build-module/store/constants.js
 /**
@@ -1035,6 +1124,7 @@ const STORE_NAME = 'core/interface';
 
 
 
+
 /**
  * Store definition for the interface namespace.
  *
@@ -1044,7 +1134,7 @@ const STORE_NAME = 'core/interface';
  */
 
 const store = (0,external_wp_data_namespaceObject.createReduxStore)(STORE_NAME, {
-  reducer: () => {},
+  reducer: store_reducer,
   actions: actions_namespaceObject,
   selectors: selectors_namespaceObject
 }); // Once we build a more generic persistence plugin that works across types of stores
@@ -1057,7 +1147,7 @@ const store = (0,external_wp_data_namespaceObject.createReduxStore)(STORE_NAME, 
  * WordPress dependencies
  */
 
-/* harmony default export */ var complementary_area_context = ((0,external_wp_plugins_namespaceObject.withPluginContext)((context, ownProps) => {
+/* harmony default export */ const complementary_area_context = ((0,external_wp_plugins_namespaceObject.withPluginContext)((context, ownProps) => {
   return {
     icon: ownProps.icon || context.icon,
     identifier: ownProps.identifier || `${context.name}/${ownProps.name}`
@@ -1112,7 +1202,7 @@ function ComplementaryAreaToggle(_ref) {
   }, (0,external_lodash_namespaceObject.omit)(props, ['name'])));
 }
 
-/* harmony default export */ var complementary_area_toggle = (complementary_area_context(ComplementaryAreaToggle));
+/* harmony default export */ const complementary_area_toggle = (complementary_area_context(ComplementaryAreaToggle));
 
 ;// CONCATENATED MODULE: ./packages/interface/build-module/components/complementary-area-header/index.js
 
@@ -1153,7 +1243,7 @@ const ComplementaryAreaHeader = _ref => {
   }, children, toggleButton));
 };
 
-/* harmony default export */ var complementary_area_header = (ComplementaryAreaHeader);
+/* harmony default export */ const complementary_area_header = (ComplementaryAreaHeader);
 
 ;// CONCATENATED MODULE: ./packages/interface/build-module/components/action-item/index.js
 
@@ -1169,6 +1259,8 @@ const ComplementaryAreaHeader = _ref => {
 
 
 
+
+const noop = () => {};
 
 function ActionItemSlot(_ref) {
   let {
@@ -1231,15 +1323,15 @@ function ActionItem(_ref3) {
     } = _ref4;
     return (0,external_wp_element_namespaceObject.createElement)(Component, _extends({
       onClick: onClick || fpOnClick ? function () {
-        (onClick || external_lodash_namespaceObject.noop)(...arguments);
-        (fpOnClick || external_lodash_namespaceObject.noop)(...arguments);
+        (onClick || noop)(...arguments);
+        (fpOnClick || noop)(...arguments);
       } : undefined
     }, props));
   });
 }
 
 ActionItem.Slot = ActionItemSlot;
-/* harmony default export */ var action_item = (ActionItem);
+/* harmony default export */ const action_item = (ActionItem);
 
 ;// CONCATENATED MODULE: ./packages/interface/build-module/components/complementary-area-more-menu-item/index.js
 
@@ -1329,7 +1421,7 @@ function PinnedItemsSlot(_ref2) {
 }
 
 PinnedItems.Slot = PinnedItemsSlot;
-/* harmony default export */ var pinned_items = (PinnedItems);
+/* harmony default export */ const pinned_items = (PinnedItems);
 
 ;// CONCATENATED MODULE: ./packages/interface/build-module/components/complementary-area/index.js
 
@@ -1512,7 +1604,7 @@ function ComplementaryArea(_ref3) {
 
 const ComplementaryAreaWrapped = complementary_area_context(ComplementaryArea);
 ComplementaryAreaWrapped.Slot = ComplementaryAreaSlot;
-/* harmony default export */ var complementary_area = (ComplementaryAreaWrapped);
+/* harmony default export */ const complementary_area = (ComplementaryAreaWrapped);
 
 ;// CONCATENATED MODULE: ./packages/interface/build-module/components/fullscreen-mode/index.js
 /**
@@ -1557,7 +1649,7 @@ const FullscreenMode = _ref => {
   return null;
 };
 
-/* harmony default export */ var fullscreen_mode = (FullscreenMode);
+/* harmony default export */ const fullscreen_mode = (FullscreenMode);
 
 ;// CONCATENATED MODULE: ./packages/interface/build-module/components/interface-skeleton/index.js
 
@@ -1683,7 +1775,7 @@ function InterfaceSkeleton(_ref, ref) {
   }, footer));
 }
 
-/* harmony default export */ var interface_skeleton = ((0,external_wp_element_namespaceObject.forwardRef)(InterfaceSkeleton));
+/* harmony default export */ const interface_skeleton = ((0,external_wp_element_namespaceObject.forwardRef)(InterfaceSkeleton));
 
 ;// CONCATENATED MODULE: ./packages/icons/build-module/library/more-vertical.js
 
@@ -1698,7 +1790,7 @@ const moreVertical = (0,external_wp_element_namespaceObject.createElement)(exter
 }, (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M13 19h-2v-2h2v2zm0-6h-2v-2h2v2zm0-6h-2V5h2v2z"
 }));
-/* harmony default export */ var more_vertical = (moreVertical);
+/* harmony default export */ const more_vertical = (moreVertical);
 
 ;// CONCATENATED MODULE: ./packages/interface/build-module/components/more-menu-dropdown/index.js
 
@@ -1792,7 +1884,7 @@ function Icon(_ref) {
   });
 }
 
-/* harmony default export */ var icon = (Icon);
+/* harmony default export */ const icon = (Icon);
 
 ;// CONCATENATED MODULE: ./packages/icons/build-module/library/chevron-left.js
 
@@ -1807,7 +1899,7 @@ const chevronLeft = (0,external_wp_element_namespaceObject.createElement)(extern
 }, (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M14.6 7l-1.2-1L8 12l5.4 6 1.2-1-4.6-5z"
 }));
-/* harmony default export */ var chevron_left = (chevronLeft);
+/* harmony default export */ const chevron_left = (chevronLeft);
 
 ;// CONCATENATED MODULE: ./packages/icons/build-module/library/chevron-right.js
 
@@ -1822,7 +1914,7 @@ const chevronRight = (0,external_wp_element_namespaceObject.createElement)(exter
 }, (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M10.6 6L9.4 7l4.6 5-4.6 5 1.2 1 5.4-6z"
 }));
-/* harmony default export */ var chevron_right = (chevronRight);
+/* harmony default export */ const chevron_right = (chevronRight);
 
 ;// CONCATENATED MODULE: ./packages/interface/build-module/components/preferences-modal-tabs/index.js
 
@@ -1953,7 +2045,7 @@ const Section = _ref => {
   }, description)), children);
 };
 
-/* harmony default export */ var preferences_modal_section = (Section);
+/* harmony default export */ const preferences_modal_section = (Section);
 
 ;// CONCATENATED MODULE: ./packages/interface/build-module/components/preferences-modal-base-option/index.js
 
@@ -1981,7 +2073,7 @@ function BaseOption(_ref) {
   }), children);
 }
 
-/* harmony default export */ var preferences_modal_base_option = (BaseOption);
+/* harmony default export */ const preferences_modal_base_option = (BaseOption);
 
 ;// CONCATENATED MODULE: ./packages/interface/build-module/components/index.js
 
@@ -2002,9 +2094,9 @@ function BaseOption(_ref) {
 
 
 ;// CONCATENATED MODULE: external ["wp","a11y"]
-var external_wp_a11y_namespaceObject = window["wp"]["a11y"];
+const external_wp_a11y_namespaceObject = window["wp"]["a11y"];
 ;// CONCATENATED MODULE: external ["wp","coreData"]
-var external_wp_coreData_namespaceObject = window["wp"]["coreData"];
+const external_wp_coreData_namespaceObject = window["wp"]["coreData"];
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/utils/meta-boxes.js
 /**
  * Function returning the current Meta Boxes DOM Node in the editor
@@ -2557,31 +2649,57 @@ const initializeMetaBoxes = () => _ref16 => {
 ;// CONCATENATED MODULE: ./node_modules/rememo/es/rememo.js
 
 
-var LEAF_KEY, hasWeakMap;
+/** @typedef {(...args: any[]) => *[]} GetDependants */
+
+/** @typedef {() => void} Clear */
+
+/**
+ * @typedef {{
+ *   getDependants: GetDependants,
+ *   clear: Clear
+ * }} EnhancedSelector
+ */
+
+/**
+ * Internal cache entry.
+ *
+ * @typedef CacheNode
+ *
+ * @property {?CacheNode|undefined} [prev] Previous node.
+ * @property {?CacheNode|undefined} [next] Next node.
+ * @property {*[]} args Function arguments for cache entry.
+ * @property {*} val Function result.
+ */
+
+/**
+ * @typedef Cache
+ *
+ * @property {Clear} clear Function to clear cache.
+ * @property {boolean} [isUniqueByDependants] Whether dependants are valid in
+ * considering cache uniqueness. A cache is unique if dependents are all arrays
+ * or objects.
+ * @property {CacheNode?} [head] Cache head.
+ * @property {*[]} [lastDependants] Dependants from previous invocation.
+ */
 
 /**
  * Arbitrary value used as key for referencing cache object in WeakMap tree.
  *
- * @type {Object}
+ * @type {{}}
  */
-LEAF_KEY = {};
-
-/**
- * Whether environment supports WeakMap.
- *
- * @type {boolean}
- */
-hasWeakMap = typeof WeakMap !== 'undefined';
+var LEAF_KEY = {};
 
 /**
  * Returns the first argument as the sole entry in an array.
  *
- * @param {*} value Value to return.
+ * @template T
  *
- * @return {Array} Value returned as entry in array.
+ * @param {T} value Value to return.
+ *
+ * @return {[T]} Value returned as entry in array.
  */
-function arrayOf( value ) {
-	return [ value ];
+function arrayOf(value) {
+	return [value];
 }
 
 /**
@@ -2592,18 +2710,19 @@ function arrayOf( value ) {
  *
  * @return {boolean} Whether value is object-like.
  */
-function isObjectLike( value ) {
-	return !! value && 'object' === typeof value;
+function isObjectLike(value) {
+	return !!value && 'object' === typeof value;
 }
 
 /**
  * Creates and returns a new cache object.
  *
- * @return {Object} Cache object.
+ * @return {Cache} Cache object.
  */
 function createCache() {
+	/** @type {Cache} */
 	var cache = {
-		clear: function() {
+		clear: function () {
 			cache.head = null;
 		},
 	};
@@ -2615,21 +2734,21 @@ function createCache() {
  * Returns true if entries within the two arrays are strictly equal by
  * reference from a starting index.
  *
- * @param {Array}  a         First array.
- * @param {Array}  b         Second array.
+ * @param {*[]} a First array.
+ * @param {*[]} b Second array.
  * @param {number} fromIndex Index from which to start comparison.
  *
  * @return {boolean} Whether arrays are shallowly equal.
  */
-function isShallowEqual( a, b, fromIndex ) {
+function isShallowEqual(a, b, fromIndex) {
 	var i;
 
-	if ( a.length !== b.length ) {
+	if (a.length !== b.length) {
 		return false;
 	}
 
-	for ( i = fromIndex; i < a.length; i++ ) {
-		if ( a[ i ] !== b[ i ] ) {
+	for (i = fromIndex; i < a.length; i++) {
+		if (a[i] !== b[i]) {
 			return false;
 		}
 	}
@@ -2645,31 +2764,18 @@ function isShallowEqual( a, b, fromIndex ) {
  * dependant references remain the same. If getDependants returns a different
  * reference(s), the cache is cleared and the selector value regenerated.
  *
- * @param {Function} selector      Selector function.
- * @param {Function} getDependants Dependant getter returning an immutable
- *                                 reference or array of reference used in
- *                                 cache bust consideration.
+ * @template {(...args: *[]) => *} S
  *
- * @return {Function} Memoized selector.
+ * @param {S} selector Selector function.
+ * @param {GetDependants=} getDependants Dependant getter returning an array of
+ * references used in cache bust consideration.
  */
-/* harmony default export */ function rememo(selector, getDependants ) {
-	var rootCache, getCache;
+/* harmony default export */ function rememo(selector, getDependants) {
+	/** @type {WeakMap<*,*>} */
+	var rootCache;
 
-	// Use object source as dependant if getter not provided
-	if ( ! getDependants ) {
-		getDependants = arrayOf;
-	}
-
-	/**
-	 * Returns the root cache. If WeakMap is supported, this is assigned to the
-	 * root WeakMap cache set, otherwise it is a shared instance of the default
-	 * cache object.
-	 *
-	 * @return {(WeakMap|Object)} Root cache object.
-	 */
-	function getRootCache() {
-		return rootCache;
-	}
+	/** @type {GetDependants} */
+	var normalizedGetDependants = getDependants ? getDependants : arrayOf;
 
 	/**
 	 * Returns the cache for a given dependants array. When possible, a WeakMap
@@ -2685,85 +2791,93 @@ function isShallowEqual( a, b, fromIndex ) {
 	 *
 	 * @see isObjectLike
 	 *
-	 * @param {Array} dependants Selector dependants.
+	 * @param {*[]} dependants Selector dependants.
 	 *
-	 * @return {Object} Cache object.
+	 * @return {Cache} Cache object.
 	 */
-	function getWeakMapCache( dependants ) {
+	function getCache(dependants) {
 		var caches = rootCache,
 			isUniqueByDependants = true,
-			i, dependant, map, cache;
+			i,
+			dependant,
+			map,
+			cache;
 
-		for ( i = 0; i < dependants.length; i++ ) {
-			dependant = dependants[ i ];
+		for (i = 0; i < dependants.length; i++) {
+			dependant = dependants[i];
 
 			// Can only compose WeakMap from object-like key.
-			if ( ! isObjectLike( dependant ) ) {
+			if (!isObjectLike(dependant)) {
 				isUniqueByDependants = false;
 				break;
 			}
 
 			// Does current segment of cache already have a WeakMap?
-			if ( caches.has( dependant ) ) {
+			if (caches.has(dependant)) {
 				// Traverse into nested WeakMap.
-				caches = caches.get( dependant );
+				caches = caches.get(dependant);
 			} else {
 				// Create, set, and traverse into a new one.
 				map = new WeakMap();
-				caches.set( dependant, map );
+				caches.set(dependant, map);
 				caches = map;
 			}
 		}
 
 		// We use an arbitrary (but consistent) object as key for the last item
 		// in the WeakMap to serve as our running cache.
-		if ( ! caches.has( LEAF_KEY ) ) {
+		if (!caches.has(LEAF_KEY)) {
 			cache = createCache();
 			cache.isUniqueByDependants = isUniqueByDependants;
-			caches.set( LEAF_KEY, cache );
+			caches.set(LEAF_KEY, cache);
 		}
 
-		return caches.get( LEAF_KEY );
+		return caches.get(LEAF_KEY);
 	}
-
-	// Assign cache handler by availability of WeakMap
-	getCache = hasWeakMap ? getWeakMapCache : getRootCache;
 
 	/**
 	 * Resets root memoization cache.
 	 */
 	function clear() {
-		rootCache = hasWeakMap ? new WeakMap() : createCache();
+		rootCache = new WeakMap();
 	}
 
-	// eslint-disable-next-line jsdoc/check-param-names
+	/* eslint-disable jsdoc/check-param-names */
 	/**
 	 * The augmented selector call, considering first whether dependants have
 	 * changed before passing it to underlying memoize function.
 	 *
-	 * @param {Object} source    Source object for derivation.
-	 * @param {...*}   extraArgs Additional arguments to pass to selector.
+	 * @param {*}    source    Source object for derivation.
+	 * @param {...*} extraArgs Additional arguments to pass to selector.
 	 *
 	 * @return {*} Selector result.
 	 */
-	function callSelector( /* source, ...extraArgs */ ) {
+	/* eslint-enable jsdoc/check-param-names */
+	function callSelector(/* source, ...extraArgs */) {
 		var len = arguments.length,
-			cache, node, i, args, dependants;
+			cache,
+			node,
+			i,
+			args,
+			dependants;
 
 		// Create copy of arguments (avoid leaking deoptimization).
-		args = new Array( len );
-		for ( i = 0; i < len; i++ ) {
-			args[ i ] = arguments[ i ];
+		args = new Array(len);
+		for (i = 0; i < len; i++) {
+			args[i] = arguments[i];
 		}
 
-		dependants = getDependants.apply( null, args );
-		cache = getCache( dependants );
+		dependants = normalizedGetDependants.apply(null, args);
+		cache = getCache(dependants);
 
-		// If not guaranteed uniqueness by dependants (primitive type or lack
-		// of WeakMap support), shallow compare against last dependants and, if
-		// references have changed, destroy cache to recalculate result.
-		if ( ! cache.isUniqueByDependants ) {
-			if ( cache.lastDependants && ! isShallowEqual( dependants, cache.lastDependants, 0 ) ) {
+		// If not guaranteed uniqueness by dependants (primitive type), shallow
+		// compare against last dependants and, if references have changed,
+		// destroy cache to recalculate result.
+		if (!cache.isUniqueByDependants) {
+			if (
+				cache.lastDependants &&
+				!isShallowEqual(dependants, cache.lastDependants, 0)
+			) {
 				cache.clear();
 			}
 
@@ -2771,9 +2885,9 @@ function isShallowEqual( a, b, fromIndex ) {
 		}
 
 		node = cache.head;
-		while ( node ) {
+		while (node) {
 			// Check whether node arguments match arguments
-			if ( ! isShallowEqual( node.args, args, 1 ) ) {
+			if (!isShallowEqual(node.args, args, 1)) {
 				node = node.next;
 				continue;
 			}
@@ -2781,16 +2895,16 @@ function isShallowEqual( a, b, fromIndex ) {
 			// At this point we can assume we've found a match
 
 			// Surface matched node to head if not already
-			if ( node !== cache.head ) {
+			if (node !== cache.head) {
 				// Adjust siblings to point to each other.
-				node.prev.next = node.next;
-				if ( node.next ) {
+				/** @type {CacheNode} */ (node.prev).next = node.next;
+				if (node.next) {
 					node.next.prev = node.prev;
 				}
 
 				node.next = cache.head;
 				node.prev = null;
-				cache.head.prev = node;
+				/** @type {CacheNode} */ (cache.head).prev = node;
 				cache.head = node;
 			}
 
@@ -2800,20 +2914,20 @@ function isShallowEqual( a, b, fromIndex ) {
 
 		// No cached value found. Continue to insertion phase:
 
-		node = {
+		node = /** @type {CacheNode} */ ({
 			// Generate the result from original function
-			val: selector.apply( null, args ),
-		};
+			val: selector.apply(null, args),
+		});
 
 		// Avoid including the source object in the cache.
-		args[ 0 ] = null;
+		args[0] = null;
 		node.args = args;
 
 		// Don't need to check whether node is already head, since it would
 		// have been returned above already if it was
 
 		// Shift existing head down list
-		if ( cache.head ) {
+		if (cache.head) {
 			cache.head.prev = node;
 			node.next = cache.head;
 		}
@@ -2823,18 +2937,17 @@ function isShallowEqual( a, b, fromIndex ) {
 		return node.val;
 	}
 
-	callSelector.getDependants = getDependants;
+	callSelector.getDependants = normalizedGetDependants;
 	callSelector.clear = clear;
 	clear();
 
-	return callSelector;
+	return /** @type {S & EnhancedSelector} */ (callSelector);
 }
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/store/selectors.js
 /**
  * External dependencies
  */
-
 
 /**
  * WordPress dependencies
@@ -2871,7 +2984,7 @@ const getEditorMode = (0,external_wp_data_namespaceObject.createRegistrySelector
 
 const isEditorSidebarOpened = (0,external_wp_data_namespaceObject.createRegistrySelector)(select => () => {
   const activeGeneralSidebar = select(store).getActiveComplementaryArea('core/edit-post');
-  return (0,external_lodash_namespaceObject.includes)(['edit-post/document', 'edit-post/block'], activeGeneralSidebar);
+  return ['edit-post/document', 'edit-post/block'].includes(activeGeneralSidebar);
 });
 /**
  * Returns true if the plugin sidebar is opened.
@@ -2883,7 +2996,7 @@ const isEditorSidebarOpened = (0,external_wp_data_namespaceObject.createRegistry
 
 const isPluginSidebarOpened = (0,external_wp_data_namespaceObject.createRegistrySelector)(select => () => {
   const activeGeneralSidebar = select(store).getActiveComplementaryArea('core/edit-post');
-  return !!activeGeneralSidebar && !(0,external_lodash_namespaceObject.includes)(['edit-post/document', 'edit-post/block'], activeGeneralSidebar);
+  return !!activeGeneralSidebar && !['edit-post/document', 'edit-post/block'].includes(activeGeneralSidebar);
 });
 /**
  * Returns the current active general sidebar name, or null if there is no
@@ -2959,9 +3072,9 @@ function convertPanelsToOldFormat(inactivePanels, openPanels) {
 
 
 const getPreferences = (0,external_wp_data_namespaceObject.createRegistrySelector)(select => () => {
-  external_wp_deprecated_default()(`wp.data.select( 'core/edit-post' ).getPreferences`, {
+  external_wp_deprecated_default()(`select( 'core/edit-post' ).getPreferences`, {
     since: '6.0',
-    alternative: `wp.data.select( 'core/preferences' ).get`
+    alternative: `select( 'core/preferences' ).get`
   }); // These preferences now exist in the preferences store.
   // Fetch them so that they can be merged into the post
   // editor preferences.
@@ -2993,9 +3106,9 @@ const getPreferences = (0,external_wp_data_namespaceObject.createRegistrySelecto
  */
 
 function getPreference(state, preferenceKey, defaultValue) {
-  external_wp_deprecated_default()(`wp.data.select( 'core/edit-post' ).getPreference`, {
+  external_wp_deprecated_default()(`select( 'core/edit-post' ).getPreference`, {
     since: '6.0',
-    alternative: `wp.data.select( 'core/preferences' ).get`
+    alternative: `select( 'core/preferences' ).get`
   }); // Avoid using the `getPreferences` registry selector where possible.
 
   const preferences = getPreferences(state);
@@ -3035,7 +3148,7 @@ function isPublishSidebarOpened(state) {
  */
 
 function isEditorPanelRemoved(state, panelName) {
-  return (0,external_lodash_namespaceObject.includes)(state.removedPanels, panelName);
+  return state.removedPanels.includes(panelName);
 }
 /**
  * Returns true if the given panel is enabled, or false otherwise. Panels are
@@ -3123,12 +3236,14 @@ const getActiveMetaBoxLocations = rememo(state => {
  */
 
 function isMetaBoxLocationVisible(state, location) {
-  return isMetaBoxLocationActive(state, location) && (0,external_lodash_namespaceObject.some)(getMetaBoxesPerLocation(state, location), _ref2 => {
+  var _getMetaBoxesPerLocat;
+
+  return isMetaBoxLocationActive(state, location) && ((_getMetaBoxesPerLocat = getMetaBoxesPerLocation(state, location)) === null || _getMetaBoxesPerLocat === void 0 ? void 0 : _getMetaBoxesPerLocat.some(_ref2 => {
     let {
       id
     } = _ref2;
     return isEditorPanelEnabled(state, `meta-box-${id}`);
-  });
+  }));
 }
 /**
  * Returns true if there is an active meta box in the given location, or false
@@ -3165,7 +3280,7 @@ function getMetaBoxesPerLocation(state, location) {
  */
 
 const getAllMetaBoxes = rememo(state => {
-  return (0,external_lodash_namespaceObject.flatten)((0,external_lodash_namespaceObject.values)(state.metaBoxes.locations));
+  return Object.values(state.metaBoxes.locations).flat();
 }, state => [state.metaBoxes.locations]);
 /**
  * Returns true if the post is using Meta Boxes
@@ -3372,7 +3487,7 @@ function KeyboardShortcutsHelpMenuItem(_ref) {
     shortcut: external_wp_keycodes_namespaceObject.displayShortcut.access('h')
   }, (0,external_wp_i18n_namespaceObject.__)('Keyboard shortcuts'));
 }
-/* harmony default export */ var keyboard_shortcuts_help_menu_item = ((0,external_wp_data_namespaceObject.withDispatch)(dispatch => {
+/* harmony default export */ const keyboard_shortcuts_help_menu_item = ((0,external_wp_data_namespaceObject.withDispatch)(dispatch => {
   const {
     openModal
   } = dispatch(store_store);
@@ -3410,7 +3525,7 @@ ToolsMoreMenuGroup.Slot = _ref => {
   }, fills));
 };
 
-/* harmony default export */ var tools_more_menu_group = (ToolsMoreMenuGroup);
+/* harmony default export */ const tools_more_menu_group = (ToolsMoreMenuGroup);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/plugins/welcome-guide-menu-item/index.js
 
@@ -3484,7 +3599,7 @@ function WelcomeGuideMenuItem() {
 });
 
 ;// CONCATENATED MODULE: external ["wp","keyboardShortcuts"]
-var external_wp_keyboardShortcuts_namespaceObject = window["wp"]["keyboardShortcuts"];
+const external_wp_keyboardShortcuts_namespaceObject = window["wp"]["keyboardShortcuts"];
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/text-editor/index.js
 
 
@@ -3496,41 +3611,30 @@ var external_wp_keyboardShortcuts_namespaceObject = window["wp"]["keyboardShortc
 
 
 
-
 /**
  * Internal dependencies
  */
 
 
-
-function TextEditor(_ref) {
-  let {
-    onExit,
-    isRichEditingEnabled
-  } = _ref;
+function TextEditor() {
+  const isRichEditingEnabled = (0,external_wp_data_namespaceObject.useSelect)(select => {
+    return select(external_wp_editor_namespaceObject.store).getEditorSettings().richEditingEnabled;
+  }, []);
+  const {
+    switchEditorMode
+  } = (0,external_wp_data_namespaceObject.useDispatch)(store_store);
   return (0,external_wp_element_namespaceObject.createElement)("div", {
     className: "edit-post-text-editor"
-  }, isRichEditingEnabled && (0,external_wp_element_namespaceObject.createElement)("div", {
+  }, (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.TextEditorGlobalKeyboardShortcuts, null), isRichEditingEnabled && (0,external_wp_element_namespaceObject.createElement)("div", {
     className: "edit-post-text-editor__toolbar"
   }, (0,external_wp_element_namespaceObject.createElement)("h2", null, (0,external_wp_i18n_namespaceObject.__)('Editing code')), (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
     variant: "tertiary",
-    onClick: onExit,
+    onClick: () => switchEditorMode('visual'),
     shortcut: external_wp_keycodes_namespaceObject.displayShortcut.secondary('m')
-  }, (0,external_wp_i18n_namespaceObject.__)('Exit code editor')), (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.TextEditorGlobalKeyboardShortcuts, null)), (0,external_wp_element_namespaceObject.createElement)("div", {
+  }, (0,external_wp_i18n_namespaceObject.__)('Exit code editor'))), (0,external_wp_element_namespaceObject.createElement)("div", {
     className: "edit-post-text-editor__body"
   }, (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.PostTitle, null), (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.PostTextEditor, null)));
 }
-
-/* harmony default export */ var text_editor = ((0,external_wp_compose_namespaceObject.compose)((0,external_wp_data_namespaceObject.withSelect)(select => ({
-  isRichEditingEnabled: select(external_wp_editor_namespaceObject.store).getEditorSettings().richEditingEnabled
-})), (0,external_wp_data_namespaceObject.withDispatch)(dispatch => {
-  return {
-    onExit() {
-      dispatch(store_store).switchEditorMode('visual');
-    }
-
-  };
-}))(TextEditor));
 
 ;// CONCATENATED MODULE: ./packages/icons/build-module/library/arrow-left.js
 
@@ -3545,19 +3649,14 @@ const arrowLeft = (0,external_wp_element_namespaceObject.createElement)(external
 }, (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M20 10.8H6.7l4.1-4.5-1.1-1.1-5.8 6.3 5.8 5.8 1.1-1.1-4-3.9H20z"
 }));
-/* harmony default export */ var arrow_left = (arrowLeft);
+/* harmony default export */ const arrow_left = (arrowLeft);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/visual-editor/block-inspector-button.js
 
 
 /**
- * External dependencies
- */
-
-/**
  * WordPress dependencies
  */
-
 
 
 
@@ -3568,9 +3667,12 @@ const arrowLeft = (0,external_wp_element_namespaceObject.createElement)(external
  */
 
 
+
+const block_inspector_button_noop = () => {};
+
 function BlockInspectorButton(_ref) {
   let {
-    onClick = external_lodash_namespaceObject.noop,
+    onClick = block_inspector_button_noop,
     small = false
   } = _ref;
   const {
@@ -3600,7 +3702,7 @@ function BlockInspectorButton(_ref) {
     shortcut: shortcut
   }, !small && label);
 }
-/* harmony default export */ var block_inspector_button = (BlockInspectorButton);
+/* harmony default export */ const block_inspector_button = (BlockInspectorButton);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/visual-editor/index.js
 
@@ -3977,7 +4079,7 @@ function KeyboardShortcuts() {
   return null;
 }
 
-/* harmony default export */ var keyboard_shortcuts = (KeyboardShortcuts);
+/* harmony default export */ const keyboard_shortcuts = (KeyboardShortcuts);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/keyboard-shortcut-help-modal/config.js
 /**
@@ -4019,6 +4121,18 @@ const textFormattingShortcuts = [{
     character: 'u'
   },
   description: (0,external_wp_i18n_namespaceObject.__)('Underline the selected text.')
+}, {
+  keyCombination: {
+    modifier: 'access',
+    character: 'd'
+  },
+  description: (0,external_wp_i18n_namespaceObject.__)('Strikethrough the selected text.')
+}, {
+  keyCombination: {
+    modifier: 'access',
+    character: 'x'
+  },
+  description: (0,external_wp_i18n_namespaceObject.__)('Make the selected text inline code.')
 }];
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/keyboard-shortcut-help-modal/shortcut.js
@@ -4080,7 +4194,7 @@ function Shortcut(_ref2) {
   }))));
 }
 
-/* harmony default export */ var keyboard_shortcut_help_modal_shortcut = (Shortcut);
+/* harmony default export */ const keyboard_shortcut_help_modal_shortcut = (Shortcut);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/keyboard-shortcut-help-modal/dynamic-shortcut.js
 
@@ -4128,7 +4242,7 @@ function DynamicShortcut(_ref) {
   });
 }
 
-/* harmony default export */ var dynamic_shortcut = (DynamicShortcut);
+/* harmony default export */ const dynamic_shortcut = (DynamicShortcut);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/keyboard-shortcut-help-modal/index.js
 
@@ -4254,7 +4368,7 @@ function KeyboardShortcutHelpModal(_ref4) {
     shortcuts: textFormattingShortcuts
   }));
 }
-/* harmony default export */ var keyboard_shortcut_help_modal = ((0,external_wp_compose_namespaceObject.compose)([(0,external_wp_data_namespaceObject.withSelect)(select => ({
+/* harmony default export */ const keyboard_shortcut_help_modal = ((0,external_wp_compose_namespaceObject.compose)([(0,external_wp_data_namespaceObject.withSelect)(select => ({
   isModalActive: select(store_store).isModalActive(MODAL_NAME)
 })), (0,external_wp_data_namespaceObject.withDispatch)((dispatch, _ref5) => {
   let {
@@ -4313,7 +4427,7 @@ function EnableCustomFieldsOption(_ref2) {
     willEnable: isChecked
   }));
 }
-/* harmony default export */ var enable_custom_fields = ((0,external_wp_data_namespaceObject.withSelect)(select => ({
+/* harmony default export */ const enable_custom_fields = ((0,external_wp_data_namespaceObject.withSelect)(select => ({
   areCustomFieldsEnabled: !!select(external_wp_editor_namespaceObject.store).getEditorSettings().enableCustomFields
 }))(EnableCustomFieldsOption));
 
@@ -4329,7 +4443,7 @@ function EnableCustomFieldsOption(_ref2) {
  */
 
 
-/* harmony default export */ var enable_panel = ((0,external_wp_compose_namespaceObject.compose)((0,external_wp_data_namespaceObject.withSelect)((select, _ref) => {
+/* harmony default export */ const enable_panel = ((0,external_wp_compose_namespaceObject.compose)((0,external_wp_data_namespaceObject.withSelect)((select, _ref) => {
   let {
     panelName
   } = _ref;
@@ -4384,7 +4498,7 @@ const EnablePluginDocumentSettingPanelOption = _ref => {
 };
 
 EnablePluginDocumentSettingPanelOption.Slot = enable_plugin_document_setting_panel_Slot;
-/* harmony default export */ var enable_plugin_document_setting_panel = (EnablePluginDocumentSettingPanelOption);
+/* harmony default export */ const enable_plugin_document_setting_panel = (EnablePluginDocumentSettingPanelOption);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/preferences-modal/options/enable-publish-sidebar.js
 /**
@@ -4395,7 +4509,7 @@ EnablePluginDocumentSettingPanelOption.Slot = enable_plugin_document_setting_pan
 
 
 
-/* harmony default export */ var enable_publish_sidebar = ((0,external_wp_compose_namespaceObject.compose)((0,external_wp_data_namespaceObject.withSelect)(select => ({
+/* harmony default export */ const enable_publish_sidebar = ((0,external_wp_compose_namespaceObject.compose)((0,external_wp_data_namespaceObject.withSelect)(select => ({
   isChecked: select(external_wp_editor_namespaceObject.store).isPublishSidebarEnabled()
 })), (0,external_wp_data_namespaceObject.withDispatch)(dispatch => {
   const {
@@ -4421,7 +4535,7 @@ EnablePluginDocumentSettingPanelOption.Slot = enable_plugin_document_setting_pan
  */
 
 
-/* harmony default export */ var enable_feature = ((0,external_wp_compose_namespaceObject.compose)((0,external_wp_data_namespaceObject.withSelect)((select, _ref) => {
+/* harmony default export */ const enable_feature = ((0,external_wp_compose_namespaceObject.compose)((0,external_wp_data_namespaceObject.withSelect)((select, _ref) => {
   let {
     featureName
   } = _ref;
@@ -4500,7 +4614,7 @@ function MetaBoxesSection(_ref) {
     });
   }));
 }
-/* harmony default export */ var meta_boxes_section = ((0,external_wp_data_namespaceObject.withSelect)(select => {
+/* harmony default export */ const meta_boxes_section = ((0,external_wp_data_namespaceObject.withSelect)(select => {
   const {
     getEditorSettings
   } = select(external_wp_editor_namespaceObject.store);
@@ -4548,7 +4662,7 @@ function BlockTypesChecklist(_ref) {
   }))));
 }
 
-/* harmony default export */ var checklist = (BlockTypesChecklist);
+/* harmony default export */ const checklist = (BlockTypesChecklist);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/block-manager/category.js
 
@@ -4663,7 +4777,7 @@ function BlockManagerCategory(_ref) {
   }));
 }
 
-/* harmony default export */ var block_manager_category = (BlockManagerCategory);
+/* harmony default export */ const block_manager_category = (BlockManagerCategory);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/block-manager/index.js
 
@@ -4752,7 +4866,7 @@ function BlockManager(_ref) {
   })));
 }
 
-/* harmony default export */ var block_manager = ((0,external_wp_data_namespaceObject.withSelect)(select => {
+/* harmony default export */ const block_manager = ((0,external_wp_data_namespaceObject.withSelect)(select => {
   const {
     getBlockTypes,
     getCategories,
@@ -4761,11 +4875,19 @@ function BlockManager(_ref) {
   } = select(external_wp_blocks_namespaceObject.store);
   const {
     getHiddenBlockTypes
-  } = select(store_store);
-  const hiddenBlockTypes = getHiddenBlockTypes();
-  const numberOfHiddenBlocks = (0,external_lodash_namespaceObject.isArray)(hiddenBlockTypes) && hiddenBlockTypes.length;
+  } = select(store_store); // Some hidden blocks become unregistered
+  // by removing for instance the plugin that registered them, yet
+  // they're still remain as hidden by the user's action.
+  // We consider "hidden", blocks which were hidden and
+  // are still registered.
+
+  const blockTypes = getBlockTypes();
+  const hiddenBlockTypes = getHiddenBlockTypes().filter(hiddenBlock => {
+    return blockTypes.some(registeredBlock => registeredBlock.name === hiddenBlock);
+  });
+  const numberOfHiddenBlocks = Array.isArray(hiddenBlockTypes) && hiddenBlockTypes.length;
   return {
-    blockTypes: getBlockTypes(),
+    blockTypes,
     categories: getCategories(),
     hasBlockSupport,
     isMatchingSearchTerm,
@@ -4847,17 +4969,21 @@ function EditPostPreferencesModal() {
       title: (0,external_wp_i18n_namespaceObject.__)('Appearance'),
       description: (0,external_wp_i18n_namespaceObject.__)('Customize options related to the block editor interface and editing flow.')
     }, (0,external_wp_element_namespaceObject.createElement)(enable_feature, {
-      featureName: "reducedUI",
-      help: (0,external_wp_i18n_namespaceObject.__)('Compacts options and outlines in the toolbar.'),
-      label: (0,external_wp_i18n_namespaceObject.__)('Reduce the interface')
-    }), (0,external_wp_element_namespaceObject.createElement)(enable_feature, {
       featureName: "focusMode",
       help: (0,external_wp_i18n_namespaceObject.__)('Highlights the current block and fades other content.'),
       label: (0,external_wp_i18n_namespaceObject.__)('Spotlight mode')
     }), (0,external_wp_element_namespaceObject.createElement)(enable_feature, {
       featureName: "showIconLabels",
-      help: (0,external_wp_i18n_namespaceObject.__)('Shows text instead of icons.'),
-      label: (0,external_wp_i18n_namespaceObject.__)('Display button labels')
+      label: (0,external_wp_i18n_namespaceObject.__)('Show button text labels'),
+      help: (0,external_wp_i18n_namespaceObject.__)('Show text instead of icons on buttons.')
+    }), (0,external_wp_element_namespaceObject.createElement)(enable_feature, {
+      featureName: "showListViewByDefault",
+      help: (0,external_wp_i18n_namespaceObject.__)('Opens the block list view sidebar by default.'),
+      label: (0,external_wp_i18n_namespaceObject.__)('Always open list view')
+    }), (0,external_wp_element_namespaceObject.createElement)(enable_feature, {
+      featureName: "reducedUI",
+      help: (0,external_wp_i18n_namespaceObject.__)('Compacts options and outlines in the toolbar.'),
+      label: (0,external_wp_i18n_namespaceObject.__)('Reduce the interface')
     }), (0,external_wp_element_namespaceObject.createElement)(enable_feature, {
       featureName: "themeStyles",
       help: (0,external_wp_i18n_namespaceObject.__)('Make the editor look like your theme.'),
@@ -5036,7 +5162,7 @@ class BrowserURL extends external_wp_element_namespaceObject.Component {
   }
 
 }
-/* harmony default export */ var browser_url = ((0,external_wp_data_namespaceObject.withSelect)(select => {
+/* harmony default export */ const browser_url = ((0,external_wp_data_namespaceObject.withSelect)(select => {
   const {
     getCurrentPost,
     isSavingPost
@@ -5074,7 +5200,7 @@ const wordpress = (0,external_wp_element_namespaceObject.createElement)(external
 }, (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M20 10c0-5.51-4.49-10-10-10C4.48 0 0 4.49 0 10c0 5.52 4.48 10 10 10 5.51 0 10-4.48 10-10zM7.78 15.37L4.37 6.22c.55-.02 1.17-.08 1.17-.08.5-.06.44-1.13-.06-1.11 0 0-1.45.11-2.37.11-.18 0-.37 0-.58-.01C4.12 2.69 6.87 1.11 10 1.11c2.33 0 4.45.87 6.05 2.34-.68-.11-1.65.39-1.65 1.58 0 .74.45 1.36.9 2.1.35.61.55 1.36.55 2.46 0 1.49-1.4 5-1.4 5l-3.03-8.37c.54-.02.82-.17.82-.17.5-.05.44-1.25-.06-1.22 0 0-1.44.12-2.38.12-.87 0-2.33-.12-2.33-.12-.5-.03-.56 1.2-.06 1.22l.92.08 1.26 3.41zM17.41 10c.24-.64.74-1.87.43-4.25.7 1.29 1.05 2.71 1.05 4.25 0 3.29-1.73 6.24-4.4 7.78.97-2.59 1.94-5.2 2.92-7.78zM6.1 18.09C3.12 16.65 1.11 13.53 1.11 10c0-1.3.23-2.48.72-3.59C3.25 10.3 4.67 14.2 6.1 18.09zm4.03-6.63l2.58 6.98c-.86.29-1.76.45-2.71.45-.79 0-1.57-.11-2.29-.33.81-2.38 1.62-4.74 2.42-7.1z"
 }));
-/* harmony default export */ var library_wordpress = (wordpress);
+/* harmony default export */ const library_wordpress = (wordpress);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/header/fullscreen-mode-close/index.js
 
@@ -5190,7 +5316,7 @@ function FullscreenModeClose(_ref) {
   }, buttonIcon));
 }
 
-/* harmony default export */ var fullscreen_mode_close = (FullscreenModeClose);
+/* harmony default export */ const fullscreen_mode_close = (FullscreenModeClose);
 
 ;// CONCATENATED MODULE: ./packages/icons/build-module/library/list-view.js
 
@@ -5205,7 +5331,7 @@ const listView = (0,external_wp_element_namespaceObject.createElement)(external_
 }, (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M13.8 5.2H3v1.5h10.8V5.2zm-3.6 12v1.5H21v-1.5H10.2zm7.2-6H6.6v1.5h10.8v-1.5z"
 }));
-/* harmony default export */ var list_view = (listView);
+/* harmony default export */ const list_view = (listView);
 
 ;// CONCATENATED MODULE: ./packages/icons/build-module/library/plus.js
 
@@ -5220,7 +5346,7 @@ const plus = (0,external_wp_element_namespaceObject.createElement)(external_wp_p
 }, (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M18 11.2h-5.2V6h-1.6v5.2H6v1.6h5.2V18h1.6v-5.2H18z"
 }));
-/* harmony default export */ var library_plus = (plus);
+/* harmony default export */ const library_plus = (plus);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/header/header-toolbar/index.js
 
@@ -5357,7 +5483,7 @@ function HeaderToolbar() {
   }), overflowItems)));
 }
 
-/* harmony default export */ var header_toolbar = (HeaderToolbar);
+/* harmony default export */ const header_toolbar = (HeaderToolbar);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/header/mode-switcher/index.js
 
@@ -5433,7 +5559,7 @@ function ModeSwitcher() {
   }));
 }
 
-/* harmony default export */ var mode_switcher = (ModeSwitcher);
+/* harmony default export */ const mode_switcher = (ModeSwitcher);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/header/preferences-menu-item/index.js
 
@@ -5506,7 +5632,7 @@ function WritingMenu() {
   }));
 }
 
-/* harmony default export */ var writing_menu = (WritingMenu);
+/* harmony default export */ const writing_menu = (WritingMenu);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/header/more-menu/index.js
 
@@ -5561,7 +5687,7 @@ const MoreMenu = _ref => {
   });
 };
 
-/* harmony default export */ var more_menu = (MoreMenu);
+/* harmony default export */ const more_menu = (MoreMenu);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/header/post-publish-button-or-toggle.js
 
@@ -5642,7 +5768,7 @@ function PostPublishButtonOrToggle(_ref) {
     setEntitiesSavedStatesCallback: setEntitiesSavedStatesCallback
   });
 }
-/* harmony default export */ var post_publish_button_or_toggle = ((0,external_wp_compose_namespaceObject.compose)((0,external_wp_data_namespaceObject.withSelect)(select => ({
+/* harmony default export */ const post_publish_button_or_toggle = ((0,external_wp_compose_namespaceObject.compose)((0,external_wp_data_namespaceObject.withSelect)(select => ({
   hasPublishAction: (0,external_lodash_namespaceObject.get)(select(external_wp_editor_namespaceObject.store).getCurrentPost(), ['_links', 'wp:action-publish'], false),
   isBeingScheduled: select(external_wp_editor_namespaceObject.store).isEditedPostBeingScheduled(),
   isPending: select(external_wp_editor_namespaceObject.store).isCurrentPostPending(),
@@ -5663,8 +5789,14 @@ function PostPublishButtonOrToggle(_ref) {
 
 
 /**
+ * External dependencies
+ */
+
+/**
  * WordPress dependencies
  */
+
+
 
 
 
@@ -5681,13 +5813,24 @@ function DevicePreview() {
     hasActiveMetaboxes,
     isPostSaveable,
     isSaving,
+    isViewable,
     deviceType
-  } = (0,external_wp_data_namespaceObject.useSelect)(select => ({
-    hasActiveMetaboxes: select(store_store).hasMetaBoxes(),
-    isSaving: select(store_store).isSavingMetaBoxes(),
-    isPostSaveable: select(external_wp_editor_namespaceObject.store).isEditedPostSaveable(),
-    deviceType: select(store_store).__experimentalGetPreviewDeviceType()
-  }), []);
+  } = (0,external_wp_data_namespaceObject.useSelect)(select => {
+    const {
+      getEditedPostAttribute
+    } = select(external_wp_editor_namespaceObject.store);
+    const {
+      getPostType
+    } = select(external_wp_coreData_namespaceObject.store);
+    const postType = getPostType(getEditedPostAttribute('type'));
+    return {
+      hasActiveMetaboxes: select(store_store).hasMetaBoxes(),
+      isSaving: select(store_store).isSavingMetaBoxes(),
+      isPostSaveable: select(external_wp_editor_namespaceObject.store).isEditedPostSaveable(),
+      isViewable: (0,external_lodash_namespaceObject.get)(postType, ['viewable'], false),
+      deviceType: select(store_store).__experimentalGetPreviewDeviceType()
+    };
+  }, []);
   const {
     __experimentalSetPreviewDeviceType: setPreviewDeviceType
   } = (0,external_wp_data_namespaceObject.useDispatch)(store_store);
@@ -5696,7 +5839,7 @@ function DevicePreview() {
     className: "edit-post-post-preview-dropdown",
     deviceType: deviceType,
     setDeviceType: setPreviewDeviceType
-  }, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.MenuGroup, null, (0,external_wp_element_namespaceObject.createElement)("div", {
+  }, isViewable && (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.MenuGroup, null, (0,external_wp_element_namespaceObject.createElement)("div", {
     className: "edit-post-header-preview__grouping-external"
   }, (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.PostPreviewButton, {
     className: 'edit-post-header-preview__button-external',
@@ -5740,7 +5883,7 @@ const main_dashboard_button_Slot = _ref => {
 };
 
 MainDashboardButton.Slot = main_dashboard_button_Slot;
-/* harmony default export */ var main_dashboard_button = (MainDashboardButton);
+/* harmony default export */ const main_dashboard_button = (MainDashboardButton);
 
 ;// CONCATENATED MODULE: ./packages/icons/build-module/library/chevron-down.js
 
@@ -5755,7 +5898,7 @@ const chevronDown = (0,external_wp_element_namespaceObject.createElement)(extern
 }, (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M17.5 11.6L12 16l-5.5-4.4.9-1.2L12 14l4.5-3.6 1 1.2z"
 }));
-/* harmony default export */ var chevron_down = (chevronDown);
+/* harmony default export */ const chevron_down = (chevronDown);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/header/template-title/delete-template.js
 
@@ -5823,6 +5966,8 @@ function DeleteTemplate() {
     templateTitle = template.title;
   }
 
+  const isRevertable = template === null || template === void 0 ? void 0 : template.has_theme_file;
+
   const onDelete = () => {
     clearSelectedBlock();
     setIsEditingTemplate(false);
@@ -5846,13 +5991,12 @@ function DeleteTemplate() {
     className: "edit-post-template-top-area__second-menu-group"
   }, (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.Fragment, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.MenuItem, {
     className: "edit-post-template-top-area__delete-template-button",
-    isDestructive: true,
-    variant: "secondary",
-    "aria-label": (0,external_wp_i18n_namespaceObject.__)('Delete template'),
+    isDestructive: !isRevertable,
     onClick: () => {
       setShowConfirmDialog(true);
-    }
-  }, (0,external_wp_i18n_namespaceObject.__)('Delete template')), (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.__experimentalConfirmDialog, {
+    },
+    info: isRevertable ? (0,external_wp_i18n_namespaceObject.__)('Restore template to default state') : undefined
+  }, isRevertable ? (0,external_wp_i18n_namespaceObject.__)('Clear customizations') : (0,external_wp_i18n_namespaceObject.__)('Delete template')), (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.__experimentalConfirmDialog, {
     isOpen: showConfirmDialog,
     onConfirm: onDelete,
     onCancel: () => {
@@ -5903,9 +6047,9 @@ function EditTemplateTitle() {
   } = (0,external_wp_data_namespaceObject.useSelect)(external_wp_editor_namespaceObject.store);
   const {
     updateEditorSettings
-  } = (0,external_wp_data_namespaceObject.useDispatch)(external_wp_editor_namespaceObject.store);
+  } = (0,external_wp_data_namespaceObject.useDispatch)(external_wp_editor_namespaceObject.store); // Only user-created and non-default templates can change the name.
 
-  if (template.has_theme_file) {
+  if (!template.is_custom || template.has_theme_file) {
     return null;
   }
 
@@ -5917,7 +6061,9 @@ function EditTemplateTitle() {
     templateTitle = template.slug;
   }
 
-  return (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.TextControl, {
+  return (0,external_wp_element_namespaceObject.createElement)("div", {
+    className: "edit-site-template-details__group"
+  }, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.TextControl, {
     label: (0,external_wp_i18n_namespaceObject.__)('Title'),
     value: templateTitle,
     help: (0,external_wp_i18n_namespaceObject.__)('Give the template a title that indicates its purpose, e.g. "Full Width".'),
@@ -5937,7 +6083,7 @@ function EditTemplateTitle() {
         title: newTitle
       });
     }
-  });
+  }));
 }
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/header/template-title/template-description.js
@@ -5971,7 +6117,9 @@ function TemplateDescription() {
     return null;
   }
 
-  return (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.Fragment, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.__experimentalHeading, {
+  return (0,external_wp_element_namespaceObject.createElement)("div", {
+    className: "edit-site-template-details__group"
+  }, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.__experimentalHeading, {
     level: 4,
     weight: 600
   }, title), (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.__experimentalText, {
@@ -6086,7 +6234,7 @@ function TemplateTitle() {
   }, templateTitle));
 }
 
-/* harmony default export */ var template_title = (TemplateTitle);
+/* harmony default export */ const template_title = (TemplateTitle);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/header/index.js
 
@@ -6170,7 +6318,7 @@ function Header(_ref) {
   })));
 }
 
-/* harmony default export */ var header = (Header);
+/* harmony default export */ const header = (Header);
 
 ;// CONCATENATED MODULE: ./packages/icons/build-module/library/close.js
 
@@ -6185,7 +6333,7 @@ const close_close = (0,external_wp_element_namespaceObject.createElement)(extern
 }, (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M13 11.8l6.1-6.3-1-1-6.1 6.2-6.1-6.2-1 1 6.1 6.3-6.5 6.7 1 1 6.5-6.6 6.5 6.6 1-1z"
 }));
-/* harmony default export */ var library_close = (close_close);
+/* harmony default export */ const library_close = (close_close);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/secondary-sidebar/inserter-sidebar.js
 
@@ -6327,7 +6475,7 @@ const cog = (0,external_wp_element_namespaceObject.createElement)(external_wp_pr
   d: "M10.289 4.836A1 1 0 0111.275 4h1.306a1 1 0 01.987.836l.244 1.466c.787.26 1.503.679 2.108 1.218l1.393-.522a1 1 0 011.216.437l.653 1.13a1 1 0 01-.23 1.273l-1.148.944a6.025 6.025 0 010 2.435l1.149.946a1 1 0 01.23 1.272l-.653 1.13a1 1 0 01-1.216.437l-1.394-.522c-.605.54-1.32.958-2.108 1.218l-.244 1.466a1 1 0 01-.987.836h-1.306a1 1 0 01-.986-.836l-.244-1.466a5.995 5.995 0 01-2.108-1.218l-1.394.522a1 1 0 01-1.217-.436l-.653-1.131a1 1 0 01.23-1.272l1.149-.946a6.026 6.026 0 010-2.435l-1.148-.944a1 1 0 01-.23-1.272l.653-1.131a1 1 0 011.217-.437l1.393.522a5.994 5.994 0 012.108-1.218l.244-1.466zM14.929 12a3 3 0 11-6 0 3 3 0 016 0z",
   clipRule: "evenodd"
 }));
-/* harmony default export */ var library_cog = (cog);
+/* harmony default export */ const library_cog = (cog);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/sidebar/settings-header/index.js
 
@@ -6396,7 +6544,7 @@ const SettingsHeader = _ref => {
   (0,external_wp_i18n_namespaceObject.__)('Block'))));
 };
 
-/* harmony default export */ var settings_header = (SettingsHeader);
+/* harmony default export */ const settings_header = (SettingsHeader);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/sidebar/post-visibility/index.js
 
@@ -6451,7 +6599,7 @@ function PostVisibility() {
     }
   });
 }
-/* harmony default export */ var post_visibility = (PostVisibility);
+/* harmony default export */ const post_visibility = (PostVisibility);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/sidebar/post-trash/index.js
 
@@ -6477,12 +6625,15 @@ function PostTrash() {
 
 function PostSchedule() {
   const anchorRef = (0,external_wp_element_namespaceObject.useRef)();
+  const fullLabel = (0,external_wp_editor_namespaceObject.usePostScheduleLabel)({
+    full: true
+  });
   return (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.PostScheduleCheck, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.PanelRow, {
     className: "edit-post-post-schedule",
     ref: anchorRef
   }, (0,external_wp_element_namespaceObject.createElement)("span", null, (0,external_wp_i18n_namespaceObject.__)('Publish')), (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Dropdown, {
     popoverProps: {
-      anchorRef: anchorRef.current
+      anchorRef
     },
     position: "bottom left",
     contentClassName: "edit-post-post-schedule__dialog",
@@ -6495,13 +6646,20 @@ function PostSchedule() {
         className: "edit-post-post-schedule__toggle",
         onClick: onToggle,
         "aria-expanded": isOpen,
-        variant: "tertiary"
+        variant: "tertiary",
+        label: fullLabel
       }, (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.PostScheduleLabel, null)));
     },
-    renderContent: () => (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.PostSchedule, null)
+    renderContent: _ref2 => {
+      let {
+        onClose
+      } = _ref2;
+      return (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.PostSchedule, {
+        onClose: onClose
+      });
+    }
   })));
 }
-/* harmony default export */ var post_schedule = (PostSchedule);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/sidebar/post-sticky/index.js
 
@@ -6514,7 +6672,7 @@ function PostSchedule() {
 function PostSticky() {
   return (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.PostStickyCheck, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.PanelRow, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.PostSticky, null)));
 }
-/* harmony default export */ var post_sticky = (PostSticky);
+/* harmony default export */ const post_sticky = (PostSticky);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/sidebar/post-author/index.js
 
@@ -6529,7 +6687,7 @@ function PostAuthor() {
     className: "edit-post-post-author"
   }, (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.PostAuthor, null)));
 }
-/* harmony default export */ var post_author = (PostAuthor);
+/* harmony default export */ const post_author = (PostAuthor);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/sidebar/post-slug/index.js
 
@@ -6542,7 +6700,7 @@ function PostAuthor() {
 function PostSlug() {
   return (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.PostSlugCheck, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.PanelRow, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.PostSlug, null)));
 }
-/* harmony default export */ var post_slug = (PostSlug);
+/* harmony default export */ const post_slug = (PostSlug);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/sidebar/post-format/index.js
 
@@ -6555,7 +6713,7 @@ function PostSlug() {
 function PostFormat() {
   return (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.PostFormatCheck, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.PanelRow, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.PostFormat, null)));
 }
-/* harmony default export */ var post_format = (PostFormat);
+/* harmony default export */ const post_format = (PostFormat);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/sidebar/post-pending-status/index.js
 
@@ -6568,13 +6726,13 @@ function PostFormat() {
 function PostPendingStatus() {
   return (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.PostPendingStatusCheck, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.PanelRow, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.PostPendingStatus, null)));
 }
-/* harmony default export */ var post_pending_status = (PostPendingStatus);
+/* harmony default export */ const post_pending_status = (PostPendingStatus);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/sidebar/plugin-post-status-info/index.js
 
 
 /**
- * Defines as extensibility slot for the Status & visibility panel.
+ * Defines as extensibility slot for the Summary panel.
  */
 
 /**
@@ -6586,7 +6744,7 @@ const {
   Slot: plugin_post_status_info_Slot
 } = (0,external_wp_components_namespaceObject.createSlotFill)('PluginPostStatusInfo');
 /**
- * Renders a row in the Status & visibility panel of the Document sidebar.
+ * Renders a row in the Summary panel of the Document sidebar.
  * It should be noted that this is named and implemented around the function it serves
  * and not its location, which may change in future iterations.
  *
@@ -6640,7 +6798,346 @@ const PluginPostStatusInfo = _ref => {
 };
 
 PluginPostStatusInfo.Slot = plugin_post_status_info_Slot;
-/* harmony default export */ var plugin_post_status_info = (PluginPostStatusInfo);
+/* harmony default export */ const plugin_post_status_info = (PluginPostStatusInfo);
+
+;// CONCATENATED MODULE: ./packages/icons/build-module/library/add-template.js
+
+
+/**
+ * WordPress dependencies
+ */
+
+const addTemplate = (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.SVG, {
+  viewBox: "0 0 24 24",
+  xmlns: "http://www.w3.org/2000/svg"
+}, (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
+  fillRule: "evenodd",
+  clipRule: "evenodd",
+  d: "M18.5 5.5V8H20V5.5H22.5V4H20V1.5H18.5V4H16V5.5H18.5ZM13.9624 4H6C4.89543 4 4 4.89543 4 6V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V10.0391H18.5V18C18.5 18.2761 18.2761 18.5 18 18.5H10L10 10.4917L16.4589 10.5139L16.4641 9.01389L5.5 8.97618V6C5.5 5.72386 5.72386 5.5 6 5.5H13.9624V4ZM5.5 10.4762V18C5.5 18.2761 5.72386 18.5 6 18.5H8.5L8.5 10.4865L5.5 10.4762Z"
+}));
+/* harmony default export */ const add_template = (addTemplate);
+
+;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/sidebar/post-template/create-modal.js
+
+
+/**
+ * WordPress dependencies
+ */
+
+
+
+
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+const DEFAULT_TITLE = (0,external_wp_i18n_namespaceObject.__)('Custom Template');
+
+function PostTemplateCreateModal(_ref) {
+  let {
+    onClose
+  } = _ref;
+  const defaultBlockTemplate = (0,external_wp_data_namespaceObject.useSelect)(select => select(external_wp_editor_namespaceObject.store).getEditorSettings().defaultBlockTemplate, []);
+  const {
+    __unstableCreateTemplate,
+    __unstableSwitchToTemplateMode
+  } = (0,external_wp_data_namespaceObject.useDispatch)(store_store);
+  const [title, setTitle] = (0,external_wp_element_namespaceObject.useState)('');
+  const [isBusy, setIsBusy] = (0,external_wp_element_namespaceObject.useState)(false);
+
+  const cancel = () => {
+    setTitle('');
+    onClose();
+  };
+
+  const submit = async event => {
+    event.preventDefault();
+
+    if (isBusy) {
+      return;
+    }
+
+    setIsBusy(true);
+    const newTemplateContent = defaultBlockTemplate !== null && defaultBlockTemplate !== void 0 ? defaultBlockTemplate : (0,external_wp_blocks_namespaceObject.serialize)([(0,external_wp_blocks_namespaceObject.createBlock)('core/group', {
+      tagName: 'header',
+      layout: {
+        inherit: true
+      }
+    }, [(0,external_wp_blocks_namespaceObject.createBlock)('core/site-title'), (0,external_wp_blocks_namespaceObject.createBlock)('core/site-tagline')]), (0,external_wp_blocks_namespaceObject.createBlock)('core/separator'), (0,external_wp_blocks_namespaceObject.createBlock)('core/group', {
+      tagName: 'main'
+    }, [(0,external_wp_blocks_namespaceObject.createBlock)('core/group', {
+      layout: {
+        inherit: true
+      }
+    }, [(0,external_wp_blocks_namespaceObject.createBlock)('core/post-title')]), (0,external_wp_blocks_namespaceObject.createBlock)('core/post-content', {
+      layout: {
+        inherit: true
+      }
+    })])]);
+    await __unstableCreateTemplate({
+      slug: (0,external_wp_url_namespaceObject.cleanForSlug)(title || DEFAULT_TITLE),
+      content: newTemplateContent,
+      title: title || DEFAULT_TITLE
+    });
+    setIsBusy(false);
+    cancel();
+
+    __unstableSwitchToTemplateMode(true);
+  };
+
+  return (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Modal, {
+    title: (0,external_wp_i18n_namespaceObject.__)('Create custom template'),
+    closeLabel: (0,external_wp_i18n_namespaceObject.__)('Close'),
+    onRequestClose: cancel,
+    className: "edit-post-post-template__create-modal"
+  }, (0,external_wp_element_namespaceObject.createElement)("form", {
+    className: "edit-post-post-template__create-form",
+    onSubmit: submit
+  }, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Flex, {
+    align: "flex-start",
+    gap: 8
+  }, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.FlexItem, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.TextControl, {
+    label: (0,external_wp_i18n_namespaceObject.__)('Name'),
+    value: title,
+    onChange: setTitle,
+    placeholder: DEFAULT_TITLE,
+    disabled: isBusy,
+    help: (0,external_wp_i18n_namespaceObject.__)('Describe the purpose of the template, e.g. "Full Width". Custom templates can be applied to any post or page.')
+  }))), (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Flex, {
+    justify: "flex-end",
+    expanded: false
+  }, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.FlexItem, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
+    variant: "tertiary",
+    onClick: cancel
+  }, (0,external_wp_i18n_namespaceObject.__)('Cancel'))), (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.FlexItem, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
+    variant: "primary",
+    type: "submit",
+    isBusy: isBusy,
+    "aria-disabled": isBusy
+  }, (0,external_wp_i18n_namespaceObject.__)('Create'))))));
+}
+
+;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/sidebar/post-template/form.js
+
+
+/**
+ * WordPress dependencies
+ */
+
+
+
+
+
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+function PostTemplateForm(_ref) {
+  var _options$find, _selectedOption$value;
+
+  let {
+    onClose
+  } = _ref;
+  const {
+    isPostsPage,
+    availableTemplates,
+    fetchedTemplates,
+    selectedTemplateSlug,
+    canCreate,
+    canEdit
+  } = (0,external_wp_data_namespaceObject.useSelect)(select => {
+    const editorSettings = select(external_wp_editor_namespaceObject.store).getEditorSettings();
+    const siteSettings = select(external_wp_coreData_namespaceObject.store).getEntityRecord('root', 'site');
+
+    const _isPostsPage = select(external_wp_editor_namespaceObject.store).getCurrentPostId() === (siteSettings === null || siteSettings === void 0 ? void 0 : siteSettings.page_for_posts);
+
+    const canCreateTemplates = select(external_wp_coreData_namespaceObject.store).canUser('create', 'templates');
+    return {
+      isPostsPage: _isPostsPage,
+      availableTemplates: editorSettings.availableTemplates,
+      fetchedTemplates: select(external_wp_coreData_namespaceObject.store).getEntityRecords('postType', 'wp_template', {
+        post_type: select(external_wp_editor_namespaceObject.store).getCurrentPostType(),
+        per_page: -1
+      }),
+      selectedTemplateSlug: select(external_wp_editor_namespaceObject.store).getEditedPostAttribute('template'),
+      canCreate: canCreateTemplates && !_isPostsPage,
+      canEdit: canCreateTemplates && editorSettings.supportsTemplateMode && !!select(store_store).getEditedPostTemplate()
+    };
+  }, []);
+  const options = (0,external_wp_element_namespaceObject.useMemo)(() => Object.entries({ ...availableTemplates,
+    ...Object.fromEntries((fetchedTemplates !== null && fetchedTemplates !== void 0 ? fetchedTemplates : []).map(_ref2 => {
+      let {
+        slug,
+        title
+      } = _ref2;
+      return [slug, title.rendered];
+    }))
+  }).map(_ref3 => {
+    let [slug, title] = _ref3;
+    return {
+      value: slug,
+      label: title
+    };
+  }), [availableTemplates, fetchedTemplates]);
+  const selectedOption = (_options$find = options.find(option => option.value === selectedTemplateSlug)) !== null && _options$find !== void 0 ? _options$find : options.find(option => !option.value); // The default option has '' value.
+
+  const {
+    editPost
+  } = (0,external_wp_data_namespaceObject.useDispatch)(external_wp_editor_namespaceObject.store);
+  const {
+    __unstableSwitchToTemplateMode
+  } = (0,external_wp_data_namespaceObject.useDispatch)(store_store);
+  const [isCreateModalOpen, setIsCreateModalOpen] = (0,external_wp_element_namespaceObject.useState)(false);
+  return (0,external_wp_element_namespaceObject.createElement)("div", {
+    className: "edit-post-post-template__form"
+  }, (0,external_wp_element_namespaceObject.createElement)(external_wp_blockEditor_namespaceObject.__experimentalInspectorPopoverHeader, {
+    title: (0,external_wp_i18n_namespaceObject.__)('Template'),
+    help: (0,external_wp_i18n_namespaceObject.__)('Templates define the way content is displayed when viewing your site.'),
+    actions: canCreate ? [{
+      icon: add_template,
+      label: (0,external_wp_i18n_namespaceObject.__)('Add template'),
+      onClick: () => setIsCreateModalOpen(true)
+    }] : [],
+    onClose: onClose
+  }), isPostsPage ? (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Notice, {
+    className: "edit-post-post-template__notice",
+    status: "warning",
+    isDismissible: false
+  }, (0,external_wp_i18n_namespaceObject.__)('The posts page template cannot be changed.')) : (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.SelectControl, {
+    hideLabelFromVision: true,
+    label: (0,external_wp_i18n_namespaceObject.__)('Template'),
+    value: (_selectedOption$value = selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.value) !== null && _selectedOption$value !== void 0 ? _selectedOption$value : '',
+    options: options,
+    onChange: slug => editPost({
+      template: slug || ''
+    })
+  }), canEdit && (0,external_wp_element_namespaceObject.createElement)("p", null, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
+    variant: "link",
+    onClick: () => __unstableSwitchToTemplateMode()
+  }, (0,external_wp_i18n_namespaceObject.__)('Edit template'))), isCreateModalOpen && (0,external_wp_element_namespaceObject.createElement)(PostTemplateCreateModal, {
+    onClose: () => setIsCreateModalOpen(false)
+  }));
+}
+
+;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/sidebar/post-template/index.js
+
+
+/**
+ * WordPress dependencies
+ */
+
+
+
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+function PostTemplate() {
+  const anchorRef = (0,external_wp_element_namespaceObject.useRef)();
+  const isVisible = (0,external_wp_data_namespaceObject.useSelect)(select => {
+    var _select$canUser;
+
+    const postTypeSlug = select(external_wp_editor_namespaceObject.store).getCurrentPostType();
+    const postType = select(external_wp_coreData_namespaceObject.store).getPostType(postTypeSlug);
+
+    if (!(postType !== null && postType !== void 0 && postType.viewable)) {
+      return false;
+    }
+
+    const settings = select(external_wp_editor_namespaceObject.store).getEditorSettings();
+    const hasTemplates = !!settings.availableTemplates && Object.keys(settings.availableTemplates).length > 0;
+
+    if (hasTemplates) {
+      return true;
+    }
+
+    const canCreateTemplates = (_select$canUser = select(external_wp_coreData_namespaceObject.store).canUser('create', 'templates')) !== null && _select$canUser !== void 0 ? _select$canUser : false;
+    return canCreateTemplates;
+  }, []);
+
+  if (!isVisible) {
+    return null;
+  }
+
+  return (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.PanelRow, {
+    className: "edit-post-post-template",
+    ref: anchorRef
+  }, (0,external_wp_element_namespaceObject.createElement)("span", null, (0,external_wp_i18n_namespaceObject.__)('Template')), (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Dropdown, {
+    popoverProps: {
+      anchorRef
+    },
+    position: "bottom left",
+    className: "edit-post-post-template__dropdown",
+    contentClassName: "edit-post-post-template__dialog",
+    renderToggle: _ref => {
+      let {
+        isOpen,
+        onToggle
+      } = _ref;
+      return (0,external_wp_element_namespaceObject.createElement)(PostTemplateToggle, {
+        isOpen: isOpen,
+        onClick: onToggle
+      });
+    },
+    renderContent: _ref2 => {
+      let {
+        onClose
+      } = _ref2;
+      return (0,external_wp_element_namespaceObject.createElement)(PostTemplateForm, {
+        onClose: onClose
+      });
+    }
+  }));
+}
+
+function PostTemplateToggle(_ref3) {
+  let {
+    isOpen,
+    onClick
+  } = _ref3;
+  const templateTitle = (0,external_wp_data_namespaceObject.useSelect)(select => {
+    var _select$getEntityReco;
+
+    const templateSlug = select(external_wp_editor_namespaceObject.store).getEditedPostAttribute('template');
+    const settings = select(external_wp_editor_namespaceObject.store).getEditorSettings();
+
+    if (settings.availableTemplates[templateSlug]) {
+      return settings.availableTemplates[templateSlug];
+    }
+
+    const template = (_select$getEntityReco = select(external_wp_coreData_namespaceObject.store).getEntityRecords('postType', 'wp_template', {
+      per_page: -1
+    })) === null || _select$getEntityReco === void 0 ? void 0 : _select$getEntityReco.find(_ref4 => {
+      let {
+        slug
+      } = _ref4;
+      return slug === templateSlug;
+    });
+    return template === null || template === void 0 ? void 0 : template.title.rendered;
+  }, []);
+  return (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
+    className: "edit-post-post-template__toggle",
+    variant: "tertiary",
+    "aria-expanded": isOpen,
+    "aria-label": templateTitle ? (0,external_wp_i18n_namespaceObject.sprintf)( // translators: %s: Name of the currently selected template.
+    (0,external_wp_i18n_namespaceObject.__)('Select template: %s'), templateTitle) : (0,external_wp_i18n_namespaceObject.__)('Select template'),
+    onClick: onClick
+  }, templateTitle !== null && templateTitle !== void 0 ? templateTitle : (0,external_wp_i18n_namespaceObject.__)('(none)'));
+}
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/sidebar/post-status/index.js
 
@@ -6666,6 +7163,7 @@ PluginPostStatusInfo.Slot = plugin_post_status_info_Slot;
 
 
 
+
 /**
  * Module Constants
  */
@@ -6679,13 +7177,13 @@ function PostStatus(_ref) {
   } = _ref;
   return (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.PanelBody, {
     className: "edit-post-post-status",
-    title: (0,external_wp_i18n_namespaceObject.__)('Status & visibility'),
+    title: (0,external_wp_i18n_namespaceObject.__)('Summary'),
     opened: isOpened,
     onToggle: onTogglePanel
-  }, (0,external_wp_element_namespaceObject.createElement)(plugin_post_status_info.Slot, null, fills => (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.Fragment, null, (0,external_wp_element_namespaceObject.createElement)(post_visibility, null), (0,external_wp_element_namespaceObject.createElement)(post_schedule, null), (0,external_wp_element_namespaceObject.createElement)(post_format, null), (0,external_wp_element_namespaceObject.createElement)(post_sticky, null), (0,external_wp_element_namespaceObject.createElement)(post_pending_status, null), (0,external_wp_element_namespaceObject.createElement)(post_slug, null), (0,external_wp_element_namespaceObject.createElement)(post_author, null), fills, (0,external_wp_element_namespaceObject.createElement)(PostTrash, null))));
+  }, (0,external_wp_element_namespaceObject.createElement)(plugin_post_status_info.Slot, null, fills => (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.Fragment, null, (0,external_wp_element_namespaceObject.createElement)(post_visibility, null), (0,external_wp_element_namespaceObject.createElement)(PostSchedule, null), (0,external_wp_element_namespaceObject.createElement)(PostTemplate, null), (0,external_wp_element_namespaceObject.createElement)(post_format, null), (0,external_wp_element_namespaceObject.createElement)(post_sticky, null), (0,external_wp_element_namespaceObject.createElement)(post_pending_status, null), (0,external_wp_element_namespaceObject.createElement)(post_slug, null), (0,external_wp_element_namespaceObject.createElement)(post_author, null), fills, (0,external_wp_element_namespaceObject.createElement)(PostTrash, null))));
 }
 
-/* harmony default export */ var post_status = ((0,external_wp_compose_namespaceObject.compose)([(0,external_wp_data_namespaceObject.withSelect)(select => {
+/* harmony default export */ const post_status = ((0,external_wp_compose_namespaceObject.compose)([(0,external_wp_data_namespaceObject.withSelect)(select => {
   // We use isEditorPanelRemoved to hide the panel if it was programatically removed. We do
   // not use isEditorPanelEnabled since this panel should not be disabled through the UI.
   const {
@@ -6723,7 +7221,7 @@ function LastRevision() {
   }, (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.PostLastRevision, null)));
 }
 
-/* harmony default export */ var last_revision = (LastRevision);
+/* harmony default export */ const last_revision = (LastRevision);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/sidebar/post-taxonomies/taxonomy-panel.js
 
@@ -6771,7 +7269,7 @@ function TaxonomyPanel(_ref) {
   }, children);
 }
 
-/* harmony default export */ var taxonomy_panel = ((0,external_wp_compose_namespaceObject.compose)((0,external_wp_data_namespaceObject.withSelect)((select, ownProps) => {
+/* harmony default export */ const taxonomy_panel = ((0,external_wp_compose_namespaceObject.compose)((0,external_wp_data_namespaceObject.withSelect)((select, ownProps) => {
   const slug = (0,external_lodash_namespaceObject.get)(ownProps.taxonomy, ['slug']);
   const panelName = slug ? `taxonomy-panel-${slug}` : '';
   return {
@@ -6808,7 +7306,7 @@ function PostTaxonomies() {
   }));
 }
 
-/* harmony default export */ var post_taxonomies = (PostTaxonomies);
+/* harmony default export */ const post_taxonomies = (PostTaxonomies);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/sidebar/featured-image/index.js
 
@@ -6882,7 +7380,7 @@ const applyWithDispatch = (0,external_wp_data_namespaceObject.withDispatch)(disp
     onTogglePanel: (0,external_lodash_namespaceObject.partial)(toggleEditorPanelOpened, featured_image_PANEL_NAME)
   };
 });
-/* harmony default export */ var featured_image = ((0,external_wp_compose_namespaceObject.compose)(applyWithSelect, applyWithDispatch)(FeaturedImage));
+/* harmony default export */ const featured_image = ((0,external_wp_compose_namespaceObject.compose)(applyWithSelect, applyWithDispatch)(FeaturedImage));
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/sidebar/post-excerpt/index.js
 
@@ -6924,7 +7422,7 @@ function PostExcerpt(_ref) {
   }, (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.PostExcerpt, null)));
 }
 
-/* harmony default export */ var post_excerpt = ((0,external_wp_compose_namespaceObject.compose)([(0,external_wp_data_namespaceObject.withSelect)(select => {
+/* harmony default export */ const post_excerpt = ((0,external_wp_compose_namespaceObject.compose)([(0,external_wp_data_namespaceObject.withSelect)(select => {
   return {
     isEnabled: select(store_store).isEditorPanelEnabled(post_excerpt_PANEL_NAME),
     isOpened: select(store_store).isEditorPanelOpened(post_excerpt_PANEL_NAME)
@@ -7042,7 +7540,7 @@ function PostLink(_ref) {
   }, isEditable ? (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.Fragment, null, prefixElement, postNameElement, suffixElement) : postLink)));
 }
 
-/* harmony default export */ var post_link = ((0,external_wp_compose_namespaceObject.compose)([(0,external_wp_data_namespaceObject.withSelect)(select => {
+/* harmony default export */ const post_link = ((0,external_wp_compose_namespaceObject.compose)([(0,external_wp_data_namespaceObject.withSelect)(select => {
   const {
     isPermalinkEditable,
     getCurrentPost,
@@ -7148,7 +7646,7 @@ function DiscussionPanel(_ref) {
   }, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.PanelRow, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.PostPingbacks, null)))));
 }
 
-/* harmony default export */ var discussion_panel = ((0,external_wp_compose_namespaceObject.compose)([(0,external_wp_data_namespaceObject.withSelect)(select => {
+/* harmony default export */ const discussion_panel = ((0,external_wp_compose_namespaceObject.compose)([(0,external_wp_data_namespaceObject.withSelect)(select => {
   return {
     isEnabled: select(store_store).isEditorPanelEnabled(discussion_panel_PANEL_NAME),
     isOpened: select(store_store).isEditorPanelOpened(discussion_panel_PANEL_NAME)
@@ -7223,7 +7721,7 @@ function PageAttributes() {
     onToggle: onTogglePanel
   }, (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.PageAttributesParent, null), (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.PanelRow, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.PageAttributesOrder, null))));
 }
-/* harmony default export */ var page_attributes = (PageAttributes);
+/* harmony default export */ const page_attributes = (PageAttributes);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/meta-boxes/meta-boxes-area/index.js
 
@@ -7287,7 +7785,7 @@ function MetaBoxesArea(_ref) {
   }));
 }
 
-/* harmony default export */ var meta_boxes_area = (MetaBoxesArea);
+/* harmony default export */ const meta_boxes_area = (MetaBoxesArea);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/meta-boxes/meta-box-visibility.js
 /**
@@ -7336,7 +7834,7 @@ class MetaBoxVisibility extends external_wp_element_namespaceObject.Component {
 
 }
 
-/* harmony default export */ var meta_box_visibility = ((0,external_wp_data_namespaceObject.withSelect)((select, _ref) => {
+/* harmony default export */ const meta_box_visibility = ((0,external_wp_data_namespaceObject.withSelect)((select, _ref) => {
   let {
     id
   } = _ref;
@@ -7416,7 +7914,7 @@ function MetaBoxes(_ref) {
 }
 
 ;// CONCATENATED MODULE: external ["wp","warning"]
-var external_wp_warning_namespaceObject = window["wp"]["warning"];
+const external_wp_warning_namespaceObject = window["wp"]["warning"];
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/sidebar/plugin-document-setting-panel/index.js
 
 
@@ -7545,7 +8043,7 @@ const PluginDocumentSettingPanel = (0,external_wp_compose_namespaceObject.compos
   };
 }))(PluginDocumentSettingFill);
 PluginDocumentSettingPanel.Slot = plugin_document_setting_panel_Slot;
-/* harmony default export */ var plugin_document_setting_panel = (PluginDocumentSettingPanel);
+/* harmony default export */ const plugin_document_setting_panel = (PluginDocumentSettingPanel);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/sidebar/plugin-sidebar/index.js
 
@@ -7656,306 +8154,6 @@ function PluginSidebarEditPost(_ref) {
   }, props));
 }
 
-;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/sidebar/template/actions.js
-
-
-/**
- * External dependencies
- */
-
-/**
- * WordPress dependencies
- */
-
-
-
-
-
-
-
-/**
- * Internal dependencies
- */
-
-
-
-
-function PostTemplateActions(_ref) {
-  let {
-    isPostsPage
-  } = _ref;
-  const [isModalOpen, setIsModalOpen] = (0,external_wp_element_namespaceObject.useState)(false);
-  const [isBusy, setIsBusy] = (0,external_wp_element_namespaceObject.useState)(false);
-  const [title, setTitle] = (0,external_wp_element_namespaceObject.useState)('');
-  const {
-    template,
-    supportsTemplateMode,
-    defaultTemplate
-  } = (0,external_wp_data_namespaceObject.useSelect)(select => {
-    var _getPostType$viewable, _getPostType;
-
-    const {
-      getCurrentPostType,
-      getEditorSettings
-    } = select(external_wp_editor_namespaceObject.store);
-    const {
-      getPostType
-    } = select(external_wp_coreData_namespaceObject.store);
-    const {
-      getEditedPostTemplate
-    } = select(store_store);
-    const isViewable = (_getPostType$viewable = (_getPostType = getPostType(getCurrentPostType())) === null || _getPostType === void 0 ? void 0 : _getPostType.viewable) !== null && _getPostType$viewable !== void 0 ? _getPostType$viewable : false;
-
-    const _supportsTemplateMode = getEditorSettings().supportsTemplateMode && isViewable;
-
-    return {
-      template: _supportsTemplateMode && getEditedPostTemplate(),
-      supportsTemplateMode: _supportsTemplateMode,
-      defaultTemplate: getEditorSettings().defaultBlockTemplate
-    };
-  }, []);
-  const {
-    __unstableCreateTemplate,
-    __unstableSwitchToTemplateMode
-  } = (0,external_wp_data_namespaceObject.useDispatch)(store_store);
-
-  if (!supportsTemplateMode) {
-    return null;
-  }
-
-  const defaultTitle = (0,external_wp_i18n_namespaceObject.__)('Custom Template');
-
-  async function onCreateTemplate(event) {
-    event.preventDefault();
-
-    if (isBusy) {
-      return;
-    }
-
-    setIsBusy(true);
-    const newTemplateContent = defaultTemplate !== null && defaultTemplate !== void 0 ? defaultTemplate : (0,external_wp_blocks_namespaceObject.serialize)([(0,external_wp_blocks_namespaceObject.createBlock)('core/group', {
-      tagName: 'header',
-      layout: {
-        inherit: true
-      }
-    }, [(0,external_wp_blocks_namespaceObject.createBlock)('core/site-title'), (0,external_wp_blocks_namespaceObject.createBlock)('core/site-tagline')]), (0,external_wp_blocks_namespaceObject.createBlock)('core/separator'), (0,external_wp_blocks_namespaceObject.createBlock)('core/group', {
-      tagName: 'main'
-    }, [(0,external_wp_blocks_namespaceObject.createBlock)('core/group', {
-      layout: {
-        inherit: true
-      }
-    }, [(0,external_wp_blocks_namespaceObject.createBlock)('core/post-title')]), (0,external_wp_blocks_namespaceObject.createBlock)('core/post-content', {
-      layout: {
-        inherit: true
-      }
-    })])]);
-    await __unstableCreateTemplate({
-      slug: 'wp-custom-template-' + (0,external_lodash_namespaceObject.kebabCase)(title || defaultTitle),
-      content: newTemplateContent,
-      title: title || defaultTitle
-    });
-    setIsBusy(false);
-    setIsModalOpen(false);
-
-    __unstableSwitchToTemplateMode(true);
-  }
-
-  return (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.Fragment, null, (0,external_wp_element_namespaceObject.createElement)("div", {
-    className: "edit-post-template__actions"
-  }, !!template && (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
-    variant: "link",
-    onClick: () => __unstableSwitchToTemplateMode()
-  }, (0,external_wp_i18n_namespaceObject.__)('Edit')), !isPostsPage && (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
-    variant: "link",
-    onClick: () => setIsModalOpen(true)
-  },
-  /* translators: button to create a new template */
-  (0,external_wp_i18n_namespaceObject._x)('New', 'action'))), isModalOpen && (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Modal, {
-    title: (0,external_wp_i18n_namespaceObject.__)('Create custom template'),
-    closeLabel: (0,external_wp_i18n_namespaceObject.__)('Close'),
-    onRequestClose: () => {
-      setIsModalOpen(false);
-      setTitle('');
-    },
-    overlayClassName: "edit-post-template__modal"
-  }, (0,external_wp_element_namespaceObject.createElement)("form", {
-    onSubmit: onCreateTemplate
-  }, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Flex, {
-    align: "flex-start",
-    gap: 8
-  }, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.FlexItem, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.TextControl, {
-    label: (0,external_wp_i18n_namespaceObject.__)('Name'),
-    value: title,
-    onChange: setTitle,
-    placeholder: defaultTitle,
-    disabled: isBusy,
-    help: (0,external_wp_i18n_namespaceObject.__)('Describe the purpose of the template, e.g. "Full Width". Custom templates can be applied to any post or page.')
-  }))), (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Flex, {
-    className: "edit-post-template__modal-actions",
-    justify: "flex-end",
-    expanded: false
-  }, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.FlexItem, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
-    variant: "tertiary",
-    onClick: () => {
-      setIsModalOpen(false);
-      setTitle('');
-    }
-  }, (0,external_wp_i18n_namespaceObject.__)('Cancel'))), (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.FlexItem, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
-    variant: "primary",
-    type: "submit",
-    isBusy: isBusy,
-    "aria-disabled": isBusy
-  }, (0,external_wp_i18n_namespaceObject.__)('Create')))))));
-}
-
-/* harmony default export */ var actions = (PostTemplateActions);
-
-;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/sidebar/template/index.js
-
-
-/**
- * External dependencies
- */
-
-/**
- * WordPress dependencies
- */
-
-
-
-
-
-
-
-/**
- * Internal dependencies
- */
-
-
-
-/**
- * Module Constants
- */
-
-const template_PANEL_NAME = 'template';
-function TemplatePanel() {
-  const {
-    isEnabled,
-    isOpened,
-    isPostsPage,
-    selectedTemplate,
-    availableTemplates,
-    fetchedTemplates,
-    isViewable,
-    template,
-    supportsTemplateMode,
-    canUserCreate
-  } = (0,external_wp_data_namespaceObject.useSelect)(select => {
-    var _getPostType$viewable, _getPostType;
-
-    const {
-      isEditorPanelEnabled,
-      isEditorPanelOpened,
-      getEditedPostTemplate
-    } = select(store_store);
-    const {
-      getEditedPostAttribute,
-      getEditorSettings,
-      getCurrentPostId,
-      getCurrentPostType
-    } = select(external_wp_editor_namespaceObject.store);
-    const {
-      getPostType,
-      getEntityRecord,
-      getEntityRecords,
-      canUser
-    } = select(external_wp_coreData_namespaceObject.store);
-    const currentPostId = getCurrentPostId();
-    const currentPostType = getCurrentPostType();
-    const settings = getEntityRecord('root', 'site');
-
-    const _isViewable = (_getPostType$viewable = (_getPostType = getPostType(currentPostType)) === null || _getPostType === void 0 ? void 0 : _getPostType.viewable) !== null && _getPostType$viewable !== void 0 ? _getPostType$viewable : false;
-
-    const _supportsTemplateMode = select(external_wp_editor_namespaceObject.store).getEditorSettings().supportsTemplateMode && _isViewable;
-
-    const templateRecords = getEntityRecords('postType', 'wp_template', {
-      post_type: currentPostType,
-      per_page: -1
-    });
-    return {
-      isEnabled: isEditorPanelEnabled(template_PANEL_NAME),
-      isOpened: isEditorPanelOpened(template_PANEL_NAME),
-      isPostsPage: currentPostId === (settings === null || settings === void 0 ? void 0 : settings.page_for_posts),
-      selectedTemplate: getEditedPostAttribute('template'),
-      availableTemplates: getEditorSettings().availableTemplates,
-      fetchedTemplates: templateRecords,
-      template: _supportsTemplateMode && getEditedPostTemplate(),
-      isViewable: _isViewable,
-      supportsTemplateMode: _supportsTemplateMode,
-      canUserCreate: canUser('create', 'templates')
-    };
-  }, []);
-  const templates = (0,external_wp_element_namespaceObject.useMemo)(() => {
-    return { ...availableTemplates,
-      ...(0,external_lodash_namespaceObject.fromPairs)((fetchedTemplates !== null && fetchedTemplates !== void 0 ? fetchedTemplates : []).map(_ref => {
-        let {
-          slug,
-          title
-        } = _ref;
-        return [slug, title.rendered];
-      }))
-    };
-  }, [availableTemplates, fetchedTemplates]);
-  const {
-    toggleEditorPanelOpened
-  } = (0,external_wp_data_namespaceObject.useDispatch)(store_store);
-  const {
-    editPost
-  } = (0,external_wp_data_namespaceObject.useDispatch)(external_wp_editor_namespaceObject.store);
-
-  if (!isEnabled || !isViewable || (0,external_lodash_namespaceObject.isEmpty)(availableTemplates) && (!supportsTemplateMode || !canUserCreate)) {
-    return null;
-  }
-
-  const onTogglePanel = (0,external_lodash_namespaceObject.partial)(toggleEditorPanelOpened, template_PANEL_NAME);
-
-  let panelTitle = (0,external_wp_i18n_namespaceObject.__)('Template');
-
-  if (!!template) {
-    var _template$title;
-
-    panelTitle = (0,external_wp_i18n_namespaceObject.sprintf)(
-    /* translators: %s: template title */
-    (0,external_wp_i18n_namespaceObject.__)('Template: %s'), (_template$title = template === null || template === void 0 ? void 0 : template.title) !== null && _template$title !== void 0 ? _template$title : template.slug);
-  }
-
-  return (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.PanelBody, {
-    title: panelTitle,
-    opened: isOpened,
-    onToggle: onTogglePanel
-  }, isPostsPage ? (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Notice, {
-    className: "edit-post-template__notice",
-    status: "warning",
-    isDismissible: false
-  }, (0,external_wp_i18n_namespaceObject.__)('The posts page template cannot be changed.')) : (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.SelectControl, {
-    hideLabelFromVision: true,
-    label: (0,external_wp_i18n_namespaceObject.__)('Template:'),
-    value: Object.keys(templates).includes(selectedTemplate) ? selectedTemplate : '',
-    onChange: templateSlug => {
-      editPost({
-        template: templateSlug || ''
-      });
-    },
-    options: (0,external_lodash_namespaceObject.map)(templates, (templateName, templateSlug) => ({
-      value: templateSlug,
-      label: templateName
-    }))
-  }), canUserCreate && (0,external_wp_element_namespaceObject.createElement)(actions, {
-    isPostsPage: isPostsPage
-  }));
-}
-/* harmony default export */ var template = (TemplatePanel);
-
 ;// CONCATENATED MODULE: ./packages/icons/build-module/library/layout.js
 
 
@@ -7969,7 +8167,7 @@ const layout = (0,external_wp_element_namespaceObject.createElement)(external_wp
 }, (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M18 5.5H6a.5.5 0 00-.5.5v3h13V6a.5.5 0 00-.5-.5zm.5 5H10v8h8a.5.5 0 00.5-.5v-7.5zm-10 0h-3V18a.5.5 0 00.5.5h2.5v-8zM6 4h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2z"
 }));
-/* harmony default export */ var library_layout = (layout);
+/* harmony default export */ const library_layout = (layout);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/sidebar/template-summary/index.js
 
@@ -8008,7 +8206,7 @@ function TemplateSummary() {
   }, (template === null || template === void 0 ? void 0 : template.title) || (template === null || template === void 0 ? void 0 : template.slug)), (0,external_wp_element_namespaceObject.createElement)("p", null, template === null || template === void 0 ? void 0 : template.description))));
 }
 
-/* harmony default export */ var template_summary = (TemplateSummary);
+/* harmony default export */ const template_summary = (TemplateSummary);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/sidebar/settings-sidebar/index.js
 
@@ -8024,7 +8222,6 @@ function TemplateSummary() {
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -8090,12 +8287,12 @@ const SettingsSidebar = () => {
     toggleShortcut: keyboardShortcut,
     icon: library_cog,
     isActiveByDefault: SIDEBAR_ACTIVE_BY_DEFAULT
-  }, !isTemplateMode && sidebarName === 'edit-post/document' && (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.Fragment, null, (0,external_wp_element_namespaceObject.createElement)(post_status, null), (0,external_wp_element_namespaceObject.createElement)(template, null), (0,external_wp_element_namespaceObject.createElement)(plugin_document_setting_panel.Slot, null), (0,external_wp_element_namespaceObject.createElement)(last_revision, null), (0,external_wp_element_namespaceObject.createElement)(post_link, null), (0,external_wp_element_namespaceObject.createElement)(post_taxonomies, null), (0,external_wp_element_namespaceObject.createElement)(featured_image, null), (0,external_wp_element_namespaceObject.createElement)(post_excerpt, null), (0,external_wp_element_namespaceObject.createElement)(discussion_panel, null), (0,external_wp_element_namespaceObject.createElement)(page_attributes, null), (0,external_wp_element_namespaceObject.createElement)(MetaBoxes, {
+  }, !isTemplateMode && sidebarName === 'edit-post/document' && (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.Fragment, null, (0,external_wp_element_namespaceObject.createElement)(post_status, null), (0,external_wp_element_namespaceObject.createElement)(plugin_document_setting_panel.Slot, null), (0,external_wp_element_namespaceObject.createElement)(last_revision, null), (0,external_wp_element_namespaceObject.createElement)(post_link, null), (0,external_wp_element_namespaceObject.createElement)(post_taxonomies, null), (0,external_wp_element_namespaceObject.createElement)(featured_image, null), (0,external_wp_element_namespaceObject.createElement)(post_excerpt, null), (0,external_wp_element_namespaceObject.createElement)(discussion_panel, null), (0,external_wp_element_namespaceObject.createElement)(page_attributes, null), (0,external_wp_element_namespaceObject.createElement)(MetaBoxes, {
     location: "side"
   })), isTemplateMode && sidebarName === 'edit-post/document' && (0,external_wp_element_namespaceObject.createElement)(template_summary, null), sidebarName === 'edit-post/block' && (0,external_wp_element_namespaceObject.createElement)(external_wp_blockEditor_namespaceObject.BlockInspector, null));
 };
 
-/* harmony default export */ var settings_sidebar = (SettingsSidebar);
+/* harmony default export */ const settings_sidebar = (SettingsSidebar);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/welcome-guide/image.js
 
@@ -8356,7 +8553,7 @@ const PluginPostPublishPanel = (0,external_wp_compose_namespaceObject.compose)((
   };
 }))(PluginPostPublishPanelFill);
 PluginPostPublishPanel.Slot = plugin_post_publish_panel_Slot;
-/* harmony default export */ var plugin_post_publish_panel = (PluginPostPublishPanel);
+/* harmony default export */ const plugin_post_publish_panel = (PluginPostPublishPanel);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/sidebar/plugin-pre-publish-panel/index.js
 
@@ -8446,7 +8643,7 @@ const PluginPrePublishPanel = (0,external_wp_compose_namespaceObject.compose)((0
   };
 }))(PluginPrePublishPanelFill);
 PluginPrePublishPanel.Slot = plugin_pre_publish_panel_Slot;
-/* harmony default export */ var plugin_pre_publish_panel = (PluginPrePublishPanel);
+/* harmony default export */ const plugin_pre_publish_panel = (PluginPrePublishPanel);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/layout/actions-panel.js
 
@@ -8555,20 +8752,40 @@ function ActionsPanel(_ref) {
 
 
 
-function PatternSelection(_ref) {
-  let {
-    onChoosePattern
-  } = _ref;
+function useStartPatterns() {
+  // A pattern is a start pattern if it includes 'core/post-content' in its blockTypes,
+  // and it has no postTypes declares and the current post type is page or if
+  // the current post type is part of the postTypes declared.
   const {
-    blockPatterns
+    blockPatternsWithPostContentBlockType,
+    postType
   } = (0,external_wp_data_namespaceObject.useSelect)(select => {
     const {
       __experimentalGetPatternsByBlockTypes
     } = select(external_wp_blockEditor_namespaceObject.store);
+    const {
+      getCurrentPostType
+    } = select(external_wp_editor_namespaceObject.store);
     return {
-      blockPatterns: __experimentalGetPatternsByBlockTypes('core/post-content')
+      // get pa
+      blockPatternsWithPostContentBlockType: __experimentalGetPatternsByBlockTypes('core/post-content'),
+      postType: getCurrentPostType()
     };
   }, []);
+  return (0,external_wp_element_namespaceObject.useMemo)(() => {
+    // filter patterns without postTypes declared if the current postType is page
+    // or patterns that declare the current postType in its post type array.
+    return blockPatternsWithPostContentBlockType.filter(pattern => {
+      return postType === 'page' && !pattern.postTypes || Array.isArray(pattern.postTypes) && pattern.postTypes.includes(postType);
+    });
+  }, [postType, blockPatternsWithPostContentBlockType]);
+}
+
+function PatternSelection(_ref) {
+  let {
+    onChoosePattern
+  } = _ref;
+  const blockPatterns = useStartPatterns();
   const shownBlockPatterns = (0,external_wp_compose_namespaceObject.useAsyncList)(blockPatterns);
   const {
     resetEditorBlocks
@@ -8590,16 +8807,14 @@ const START_PAGE_MODAL_STATES = {
 };
 function StartPageOptions() {
   const [modalState, setModalState] = (0,external_wp_element_namespaceObject.useState)(START_PAGE_MODAL_STATES.INITIAL);
+  const blockPatterns = useStartPatterns();
+  const hasStartPattern = blockPatterns.length > 0;
   const shouldOpenModel = (0,external_wp_data_namespaceObject.useSelect)(select => {
-    if (modalState !== START_PAGE_MODAL_STATES.INITIAL) {
+    if (!hasStartPattern || modalState !== START_PAGE_MODAL_STATES.INITIAL) {
       return false;
     }
 
     const {
-      __experimentalGetPatternsByBlockTypes
-    } = select(external_wp_blockEditor_namespaceObject.store);
-    const {
-      getCurrentPostType,
       getEditedPostContent,
       isEditedPostSaveable
     } = select(external_wp_editor_namespaceObject.store);
@@ -8607,8 +8822,8 @@ function StartPageOptions() {
       isEditingTemplate,
       isFeatureActive
     } = select(store_store);
-    return getCurrentPostType() === 'page' && !isEditedPostSaveable() && '' === getEditedPostContent() && !isEditingTemplate() && !isFeatureActive('welcomeGuide') && __experimentalGetPatternsByBlockTypes('core/post-content').length >= 1;
-  }, [modalState]);
+    return !isEditedPostSaveable() && '' === getEditedPostContent() && !isEditingTemplate() && !isFeatureActive('welcomeGuide');
+  }, [modalState, hasStartPattern]);
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     if (shouldOpenModel) {
       setModalState(START_PAGE_MODAL_STATES.PATTERN);
@@ -8822,7 +9037,7 @@ function Layout(_ref) {
       scope: "core/edit-post"
     })),
     notices: (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.EditorSnackbars, null),
-    content: (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.Fragment, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.EditorNotices, null), (mode === 'text' || !isRichEditingEnabled) && (0,external_wp_element_namespaceObject.createElement)(text_editor, null), isRichEditingEnabled && mode === 'visual' && (0,external_wp_element_namespaceObject.createElement)(VisualEditor, {
+    content: (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.Fragment, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.EditorNotices, null), (mode === 'text' || !isRichEditingEnabled) && (0,external_wp_element_namespaceObject.createElement)(TextEditor, null), isRichEditingEnabled && mode === 'visual' && (0,external_wp_element_namespaceObject.createElement)(VisualEditor, {
       styles: styles
     }), !isTemplateMode && (0,external_wp_element_namespaceObject.createElement)("div", {
       className: "edit-post-layout__metaboxes"
@@ -8852,7 +9067,7 @@ function Layout(_ref) {
   }));
 }
 
-/* harmony default export */ var components_layout = (Layout);
+/* harmony default export */ const components_layout = (Layout);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/editor-initialization/listener-hooks.js
 /**
@@ -9066,7 +9281,7 @@ function Editor(_ref) {
       defaultAllowedBlockTypes: settings.allowedBlockTypes
     }; // Omit hidden block types if exists and non-empty.
 
-    if ((0,external_lodash_namespaceObject.size)(hiddenBlockTypes) > 0) {
+    if (hiddenBlockTypes.length > 0) {
       // Defer to passed setting for `allowedBlockTypes` if provided as
       // anything other than `true` (where `true` is equivalent to allow
       // all block types).
@@ -9109,7 +9324,7 @@ function Editor(_ref) {
   })), (0,external_wp_element_namespaceObject.createElement)(external_wp_editor_namespaceObject.PostLockedModal, null)))));
 }
 
-/* harmony default export */ var editor = (Editor);
+/* harmony default export */ const editor = (Editor);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/block-settings-menu/plugin-block-settings-menu-item.js
 
@@ -9226,7 +9441,7 @@ const PluginBlockSettingsMenuItem = _ref => {
   });
 };
 
-/* harmony default export */ var plugin_block_settings_menu_item = (PluginBlockSettingsMenuItem);
+/* harmony default export */ const plugin_block_settings_menu_item = (PluginBlockSettingsMenuItem);
 
 ;// CONCATENATED MODULE: ./packages/edit-post/build-module/components/header/plugin-more-menu-item/index.js
 /**
@@ -9293,7 +9508,7 @@ const PluginBlockSettingsMenuItem = _ref => {
  * @return {WPComponent} The component to be rendered.
  */
 
-/* harmony default export */ var plugin_more_menu_item = ((0,external_wp_compose_namespaceObject.compose)((0,external_wp_plugins_namespaceObject.withPluginContext)((context, ownProps) => {
+/* harmony default export */ const plugin_more_menu_item = ((0,external_wp_compose_namespaceObject.compose)((0,external_wp_plugins_namespaceObject.withPluginContext)((context, ownProps) => {
   var _ownProps$as;
 
   return {
@@ -9449,12 +9664,18 @@ function initializeEditor(id, postType, postId, settings, initialEdits) {
     preferredStyleVariations: {},
     showBlockBreadcrumbs: true,
     showIconLabels: false,
+    showListViewByDefault: false,
     themeStyles: true,
     welcomeGuide: true,
     welcomeGuideTemplate: true
   });
 
-  (0,external_wp_data_namespaceObject.dispatch)(external_wp_blocks_namespaceObject.store).__experimentalReapplyBlockTypeFilters();
+  (0,external_wp_data_namespaceObject.dispatch)(external_wp_blocks_namespaceObject.store).__experimentalReapplyBlockTypeFilters(); // Check if the block list view should be open by default.
+
+
+  if ((0,external_wp_data_namespaceObject.select)(store_store).isFeatureActive('showListViewByDefault')) {
+    (0,external_wp_data_namespaceObject.dispatch)(store_store).setIsListViewOpened(true);
+  }
 
   (0,external_wp_blockLibrary_namespaceObject.registerCoreBlocks)();
 
@@ -9519,7 +9740,8 @@ function initializeEditor(id, postType, postId, settings, initialEdits) {
 
 
 
-}();
+})();
+
 (window.wp = window.wp || {}).editPost = __webpack_exports__;
 /******/ })()
 ;

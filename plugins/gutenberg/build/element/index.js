@@ -1,36 +1,36 @@
-/******/ (function() { // webpackBootstrap
+/******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	// The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
-/******/ 	!function() {
+/******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = function(exports, definition) {
+/******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
 /******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
-/******/ 	}();
+/******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	!function() {
-/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
-/******/ 	}();
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
-/******/ 	!function() {
+/******/ 	(() => {
 /******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = function(exports) {
+/******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
-/******/ 	}();
+/******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
@@ -39,45 +39,45 @@ __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  "Children": function() { return /* reexport */ external_React_namespaceObject.Children; },
-  "Component": function() { return /* reexport */ external_React_namespaceObject.Component; },
-  "Fragment": function() { return /* reexport */ external_React_namespaceObject.Fragment; },
-  "Platform": function() { return /* reexport */ platform; },
-  "RawHTML": function() { return /* reexport */ RawHTML; },
-  "StrictMode": function() { return /* reexport */ external_React_namespaceObject.StrictMode; },
-  "Suspense": function() { return /* reexport */ external_React_namespaceObject.Suspense; },
-  "cloneElement": function() { return /* reexport */ external_React_namespaceObject.cloneElement; },
-  "concatChildren": function() { return /* reexport */ concatChildren; },
-  "createContext": function() { return /* reexport */ external_React_namespaceObject.createContext; },
-  "createElement": function() { return /* reexport */ external_React_namespaceObject.createElement; },
-  "createInterpolateElement": function() { return /* reexport */ create_interpolate_element; },
-  "createPortal": function() { return /* reexport */ external_ReactDOM_namespaceObject.createPortal; },
-  "createRef": function() { return /* reexport */ external_React_namespaceObject.createRef; },
-  "findDOMNode": function() { return /* reexport */ external_ReactDOM_namespaceObject.findDOMNode; },
-  "forwardRef": function() { return /* reexport */ external_React_namespaceObject.forwardRef; },
-  "hydrate": function() { return /* reexport */ external_ReactDOM_namespaceObject.hydrate; },
-  "isEmptyElement": function() { return /* reexport */ isEmptyElement; },
-  "isValidElement": function() { return /* reexport */ external_React_namespaceObject.isValidElement; },
-  "lazy": function() { return /* reexport */ external_React_namespaceObject.lazy; },
-  "memo": function() { return /* reexport */ external_React_namespaceObject.memo; },
-  "render": function() { return /* reexport */ external_ReactDOM_namespaceObject.render; },
-  "renderToString": function() { return /* reexport */ serialize; },
-  "switchChildrenNodeName": function() { return /* reexport */ switchChildrenNodeName; },
-  "unmountComponentAtNode": function() { return /* reexport */ external_ReactDOM_namespaceObject.unmountComponentAtNode; },
-  "useCallback": function() { return /* reexport */ external_React_namespaceObject.useCallback; },
-  "useContext": function() { return /* reexport */ external_React_namespaceObject.useContext; },
-  "useDebugValue": function() { return /* reexport */ external_React_namespaceObject.useDebugValue; },
-  "useEffect": function() { return /* reexport */ external_React_namespaceObject.useEffect; },
-  "useImperativeHandle": function() { return /* reexport */ external_React_namespaceObject.useImperativeHandle; },
-  "useLayoutEffect": function() { return /* reexport */ external_React_namespaceObject.useLayoutEffect; },
-  "useMemo": function() { return /* reexport */ external_React_namespaceObject.useMemo; },
-  "useReducer": function() { return /* reexport */ external_React_namespaceObject.useReducer; },
-  "useRef": function() { return /* reexport */ external_React_namespaceObject.useRef; },
-  "useState": function() { return /* reexport */ external_React_namespaceObject.useState; }
+  "Children": () => (/* reexport */ external_React_namespaceObject.Children),
+  "Component": () => (/* reexport */ external_React_namespaceObject.Component),
+  "Fragment": () => (/* reexport */ external_React_namespaceObject.Fragment),
+  "Platform": () => (/* reexport */ platform),
+  "RawHTML": () => (/* reexport */ RawHTML),
+  "StrictMode": () => (/* reexport */ external_React_namespaceObject.StrictMode),
+  "Suspense": () => (/* reexport */ external_React_namespaceObject.Suspense),
+  "cloneElement": () => (/* reexport */ external_React_namespaceObject.cloneElement),
+  "concatChildren": () => (/* reexport */ concatChildren),
+  "createContext": () => (/* reexport */ external_React_namespaceObject.createContext),
+  "createElement": () => (/* reexport */ external_React_namespaceObject.createElement),
+  "createInterpolateElement": () => (/* reexport */ create_interpolate_element),
+  "createPortal": () => (/* reexport */ external_ReactDOM_namespaceObject.createPortal),
+  "createRef": () => (/* reexport */ external_React_namespaceObject.createRef),
+  "findDOMNode": () => (/* reexport */ external_ReactDOM_namespaceObject.findDOMNode),
+  "forwardRef": () => (/* reexport */ external_React_namespaceObject.forwardRef),
+  "hydrate": () => (/* reexport */ external_ReactDOM_namespaceObject.hydrate),
+  "isEmptyElement": () => (/* reexport */ isEmptyElement),
+  "isValidElement": () => (/* reexport */ external_React_namespaceObject.isValidElement),
+  "lazy": () => (/* reexport */ external_React_namespaceObject.lazy),
+  "memo": () => (/* reexport */ external_React_namespaceObject.memo),
+  "render": () => (/* reexport */ external_ReactDOM_namespaceObject.render),
+  "renderToString": () => (/* reexport */ serialize),
+  "switchChildrenNodeName": () => (/* reexport */ switchChildrenNodeName),
+  "unmountComponentAtNode": () => (/* reexport */ external_ReactDOM_namespaceObject.unmountComponentAtNode),
+  "useCallback": () => (/* reexport */ external_React_namespaceObject.useCallback),
+  "useContext": () => (/* reexport */ external_React_namespaceObject.useContext),
+  "useDebugValue": () => (/* reexport */ external_React_namespaceObject.useDebugValue),
+  "useEffect": () => (/* reexport */ external_React_namespaceObject.useEffect),
+  "useImperativeHandle": () => (/* reexport */ external_React_namespaceObject.useImperativeHandle),
+  "useLayoutEffect": () => (/* reexport */ external_React_namespaceObject.useLayoutEffect),
+  "useMemo": () => (/* reexport */ external_React_namespaceObject.useMemo),
+  "useReducer": () => (/* reexport */ external_React_namespaceObject.useReducer),
+  "useRef": () => (/* reexport */ external_React_namespaceObject.useRef),
+  "useState": () => (/* reexport */ external_React_namespaceObject.useState)
 });
 
 ;// CONCATENATED MODULE: external "React"
-var external_React_namespaceObject = window["React"];
+const external_React_namespaceObject = window["React"];
 ;// CONCATENATED MODULE: ./packages/element/build-module/create-interpolate-element.js
 /**
  * Internal dependencies
@@ -410,16 +410,13 @@ function closeOuterElement(endOffset) {
   output.push((0,external_React_namespaceObject.cloneElement)(element, null, ...children));
 }
 
-/* harmony default export */ var create_interpolate_element = (createInterpolateElement);
+/* harmony default export */ const create_interpolate_element = (createInterpolateElement);
 
-;// CONCATENATED MODULE: external "lodash"
-var external_lodash_namespaceObject = window["lodash"];
 ;// CONCATENATED MODULE: ./packages/element/build-module/react.js
 /**
  * External dependencies
  */
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
-
 
 /**
  * Object containing a React element.
@@ -625,7 +622,7 @@ function concatChildren() {
 
 function switchChildrenNodeName(children, nodeName) {
   return children && external_React_namespaceObject.Children.map(children, (elt, index) => {
-    if ((0,external_lodash_namespaceObject.isString)(elt)) {
+    if (typeof (elt === null || elt === void 0 ? void 0 : elt.valueOf()) === 'string') {
       return (0,external_React_namespaceObject.createElement)(nodeName, {
         key: index
       }, elt);
@@ -643,7 +640,7 @@ function switchChildrenNodeName(children, nodeName) {
 }
 
 ;// CONCATENATED MODULE: external "ReactDOM"
-var external_ReactDOM_namespaceObject = window["ReactDOM"];
+const external_ReactDOM_namespaceObject = window["ReactDOM"];
 ;// CONCATENATED MODULE: ./packages/element/build-module/react-platform.js
 /**
  * External dependencies
@@ -693,22 +690,17 @@ var external_ReactDOM_namespaceObject = window["ReactDOM"];
 
 ;// CONCATENATED MODULE: ./packages/element/build-module/utils.js
 /**
- * External dependencies
- */
-
-/**
  * Checks if the provided WP element is empty.
  *
  * @param {*} element WP element to check.
  * @return {boolean} True when an element is considered empty.
  */
-
 const isEmptyElement = element => {
-  if ((0,external_lodash_namespaceObject.isNumber)(element)) {
+  if (typeof element === 'number') {
     return false;
   }
 
-  if ((0,external_lodash_namespaceObject.isString)(element) || (0,external_lodash_namespaceObject.isArray)(element)) {
+  if (typeof (element === null || element === void 0 ? void 0 : element.valueOf()) === 'string' || Array.isArray(element)) {
     return !element.length;
   }
 
@@ -749,10 +741,12 @@ const Platform = {
  * ```
  */
 
-/* harmony default export */ var platform = (Platform);
+/* harmony default export */ const platform = (Platform);
 
+;// CONCATENATED MODULE: external "lodash"
+const external_lodash_namespaceObject = window["lodash"];
 ;// CONCATENATED MODULE: external ["wp","escapeHtml"]
-var external_wp_escapeHtml_namespaceObject = window["wp"]["escapeHtml"];
+const external_wp_escapeHtml_namespaceObject = window["wp"]["escapeHtml"];
 ;// CONCATENATED MODULE: ./packages/element/build-module/raw-html.js
 /**
  * Internal dependencies
@@ -1041,7 +1035,7 @@ function getNormalAttributeName(attribute) {
 
 
 function getNormalStylePropertyName(property) {
-  if ((0,external_lodash_namespaceObject.startsWith)(property, '--')) {
+  if (property.startsWith('--')) {
     return property;
   }
 
@@ -1116,7 +1110,7 @@ function renderElement(element, context) {
         children,
         ...wrapperProps
       } = props;
-      return renderNativeComponent((0,external_lodash_namespaceObject.isEmpty)(wrapperProps) ? null : 'div', { ...wrapperProps,
+      return renderNativeComponent(!Object.keys(wrapperProps).length ? null : 'div', { ...wrapperProps,
         dangerouslySetInnerHTML: {
           __html: children
         }
@@ -1169,7 +1163,11 @@ function renderNativeComponent(type, props, context) {
     // place of children. Ensure to omit so it is not assigned as attribute
     // as well.
     content = renderChildren(props.value, context, legacyContext);
-    props = (0,external_lodash_namespaceObject.omit)(props, 'value');
+    const {
+      value,
+      ...restProps
+    } = props;
+    props = restProps;
   } else if (props.dangerouslySetInnerHTML && typeof props.dangerouslySetInnerHTML.__html === 'string') {
     // Dangerous content is left unescaped.
     content = props.dangerouslySetInnerHTML.__html;
@@ -1234,7 +1232,7 @@ function renderComponent(Component, props, context) {
 function renderChildren(children, context) {
   let legacyContext = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
   let result = '';
-  children = (0,external_lodash_namespaceObject.castArray)(children);
+  children = Array.isArray(children) ? children : [children];
 
   for (let i = 0; i < children.length; i++) {
     const child = children[i];
@@ -1337,7 +1335,7 @@ function renderStyle(style) {
 
   return result;
 }
-/* harmony default export */ var serialize = (renderElement);
+/* harmony default export */ const serialize = (renderElement);
 
 ;// CONCATENATED MODULE: ./packages/element/build-module/index.js
 

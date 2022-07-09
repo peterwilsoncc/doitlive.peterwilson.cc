@@ -1,48 +1,48 @@
-/******/ (function() { // webpackBootstrap
+/******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	// The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
-/******/ 	!function() {
+/******/ 	(() => {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = function(module) {
+/******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
-/******/ 				function() { return module['default']; } :
-/******/ 				function() { return module; };
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
 /******/ 			__webpack_require__.d(getter, { a: getter });
 /******/ 			return getter;
 /******/ 		};
-/******/ 	}();
+/******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
-/******/ 	!function() {
+/******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = function(exports, definition) {
+/******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
 /******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
-/******/ 	}();
+/******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	!function() {
-/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
-/******/ 	}();
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
-/******/ 	!function() {
+/******/ 	(() => {
 /******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = function(exports) {
+/******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
-/******/ 	}();
+/******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
@@ -51,12 +51,12 @@ __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  "__unstableCreatePersistenceLayer": function() { return /* binding */ __unstableCreatePersistenceLayer; },
-  "create": function() { return /* reexport */ create; }
+  "__unstableCreatePersistenceLayer": () => (/* binding */ __unstableCreatePersistenceLayer),
+  "create": () => (/* reexport */ create)
 });
 
 ;// CONCATENATED MODULE: external ["wp","apiFetch"]
-var external_wp_apiFetch_namespaceObject = window["wp"]["apiFetch"];
+const external_wp_apiFetch_namespaceObject = window["wp"]["apiFetch"];
 var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_wp_apiFetch_namespaceObject);
 ;// CONCATENATED MODULE: ./packages/preferences-persistence/build-module/create/debounce-async.js
 /**
@@ -802,10 +802,38 @@ function convertLegacyLocalStorageData(userId) {
   return convertLegacyData(data);
 }
 
+;// CONCATENATED MODULE: ./packages/preferences-persistence/build-module/migrations/preferences-package-data/convert-complementary-areas.js
+function convertComplementaryAreas(state) {
+  return Object.keys(state).reduce((stateAccumulator, scope) => {
+    const scopeData = state[scope]; // If a complementary area is truthy, convert it to the `isComplementaryAreaVisible` boolean.
+
+    if (scopeData !== null && scopeData !== void 0 && scopeData.complementaryArea) {
+      const updatedScopeData = { ...scopeData
+      };
+      delete updatedScopeData.complementaryArea;
+      updatedScopeData.isComplementaryAreaVisible = true;
+      stateAccumulator[scope] = updatedScopeData;
+      return stateAccumulator;
+    }
+
+    return stateAccumulator;
+  }, state);
+}
+
+;// CONCATENATED MODULE: ./packages/preferences-persistence/build-module/migrations/preferences-package-data/index.js
+/**
+ * Internal dependencies
+ */
+
+function convertPreferencesPackageData(data) {
+  return convertComplementaryAreas(data);
+}
+
 ;// CONCATENATED MODULE: ./packages/preferences-persistence/build-module/index.js
 /**
  * Internal dependencies
  */
+
 
 
 
@@ -834,9 +862,9 @@ function __unstableCreatePersistenceLayer(serverData, userId) {
   let preloadedData;
 
   if (serverData && serverModified >= localModified) {
-    preloadedData = serverData;
+    preloadedData = convertPreferencesPackageData(serverData);
   } else if (localData) {
-    preloadedData = localData;
+    preloadedData = convertPreferencesPackageData(localData);
   } else {
     // Check if there is data in the legacy format from the old persistence system.
     preloadedData = convertLegacyLocalStorageData(userId);

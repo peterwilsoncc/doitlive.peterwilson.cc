@@ -15,7 +15,6 @@ use Yoast\WP\SEO\Integrations\Integration_Interface;
 use Yoast\WP\SEO\Integrations\Admin\Social_Profiles_Helper;
 use Yoast\WP\SEO\Routes\Indexing_Route;
 
-// phpcs:disable Yoast.NamingConventions.ObjectNameDepth.MaxExceeded -- First time configuration simply has a lot of words.
 /**
  * First_Time_Configuration_Integration class
  */
@@ -71,7 +70,7 @@ class First_Time_Configuration_Integration implements Integration_Interface {
 	}
 
 	/**
-	 * Configuration_Workout_Integration constructor.
+	 * First_Time_Configuration_Integration constructor.
 	 *
 	 * @param WPSEO_Admin_Asset_Manager $admin_asset_manager    The admin asset manager.
 	 * @param WPSEO_Addon_Manager       $addon_manager          The addon manager.
@@ -120,7 +119,7 @@ class First_Time_Configuration_Integration implements Integration_Interface {
 	}
 
 	/**
-	 * Adds the data for the configuration workout to the wpseoWorkoutsData object.
+	 * Adds the data for the first-time configuration to the wpseoFirstTimeConfigurationData object.
 	 */
 	public function enqueue_assets() {
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Date is not processed or saved.
