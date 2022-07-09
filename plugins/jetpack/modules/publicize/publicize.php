@@ -444,7 +444,8 @@ abstract class Publicize_Base {
 				return false;
 			}
 
-			$profile_url_query = wp_parse_url( $cmeta['connection_data']['meta']['profile_url'], PHP_URL_QUERY );
+			$profile_url_query      = wp_parse_url( $cmeta['connection_data']['meta']['profile_url'], PHP_URL_QUERY );
+			$profile_url_query_args = null;
 			wp_parse_str( $profile_url_query, $profile_url_query_args );
 
 			$id = null;
@@ -1440,6 +1441,18 @@ abstract class Publicize_Base {
 		}
 		return str_replace( $search, $replace, $string );
 	}
+
+	/**
+	 * Get Calypso URL for Publicize connections.
+	 *
+	 * @param string $source The idenfitier of the place the function is called from.
+	 * @return string
+	 */
+	public function publicize_connections_url( $source = 'calypso-marketing-connections' ) {
+		$allowed_sources = array( 'jetpack-social-connections-admin-page', 'jetpack-social-connections-classic-editor', 'calypso-marketing-connections' );
+		$source          = in_array( $source, $allowed_sources, true ) ? $source : 'calypso-marketing-connections';
+		return Redirect::get_url( $source, array( 'site' => ( new Status() )->get_site_suffix() ) );
+	}
 }
 
 /**
@@ -1448,5 +1461,6 @@ abstract class Publicize_Base {
  * @return string
  */
 function publicize_calypso_url() {
+	_deprecated_function( __METHOD__, '11.0', 'Publicize::publicize_connections_url' );
 	return Redirect::get_url( 'calypso-marketing-connections', array( 'site' => ( new Status() )->get_site_suffix() ) );
 }
