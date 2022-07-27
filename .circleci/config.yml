@@ -74,10 +74,6 @@ jobs:
           name: "Install Project Dependencies (Yarn)"
           command: yarn install
       - run:
-          name: "Run PHP Code sniffs"
-          command: |
-            ./vendor/bin/phpcs --standard=phpcs.ruleset.xml . -p
-      - run:
           name: "Run SCSS Code sniffs"
           command: |
             yarn lint:scss
