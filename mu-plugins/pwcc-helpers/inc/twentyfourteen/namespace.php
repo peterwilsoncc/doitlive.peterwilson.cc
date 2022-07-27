@@ -2,11 +2,15 @@
 /**
  * PWCC Helpers.
  *
+ * Naming this file and namespace for the specific theme I was using at the
+ * time was a terrible idea.
+ *
  * @package     PWCC Helpers
  * @author      Peter Wilson
  * @copyright   2018 Peter Wilson
  * @license     GPL-2.0+
  */
+
 namespace PWCC\Helpers\TwentyFourteen;
 
 /**
@@ -28,13 +32,13 @@ function bootstrap() {
  * @TODO: Only push on first visit.
  */
 function after_theme_bootstrap() {
-	if ( ! function_exists( '\\twentyfourteen_setup' ) ) {
+	if ( ! function_exists( '\\twenty_twenty_one_setup' ) ) {
 		// The site is not using twentyfourteen. Bail.
 		return;
 	}
 
 	add_action( 'template_redirect', __NAMESPACE__ . '\\enqueue_scripts' );
-	remove_action( 'wp_enqueue_scripts', 'twentyfourteen_scripts' );
+	remove_action( 'wp_enqueue_scripts', 'twenty_twenty_one_scripts' );
 }
 
 /**
@@ -137,7 +141,7 @@ function wp_push_styles() {
 
 	$push = array_unique( $push );
 
-	// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+	// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
 	@header( 'Link: ' . implode( ', ', $push ), false );
 
 	return $push;
@@ -186,7 +190,7 @@ function wp_push_scripts() {
 			continue;
 		}
 
-		// Only push header scripts
+		// Only push header scripts.
 		if ( $obj->groups[ $handle ] > 0 ) {
 			continue;
 		}
@@ -221,7 +225,7 @@ function wp_push_scripts() {
 
 	$push = array_unique( $push );
 
-	// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+	// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
 	@header( 'Link: ' . implode( ', ', $push ), false );
 
 	return $push;
@@ -233,7 +237,7 @@ function wp_push_scripts() {
  * This runs on the `template_redirect` action.
  */
 function enqueue_scripts() {
-	twentyfourteen_scripts();
+	twenty_twenty_one_scripts();
 
 	wp_push_styles();
 	wp_push_scripts();
