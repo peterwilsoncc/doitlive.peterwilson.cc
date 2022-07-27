@@ -10,7 +10,8 @@
  * @copyright   2018 Peter Wilson
  * @license     GPL-2.0+
  */
-namespace PWCC\Helpers\TwentyFourteen;
+
+ namespace PWCC\Helpers\TwentyFourteen;
 
 /**
  * Boostrap the plugin.
@@ -189,7 +190,7 @@ function wp_push_scripts() {
 			continue;
 		}
 
-		// Only push header scripts
+		// Only push header scripts.
 		if ( $obj->groups[ $handle ] > 0 ) {
 			continue;
 		}
@@ -224,7 +225,7 @@ function wp_push_scripts() {
 
 	$push = array_unique( $push );
 
-	// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+	// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
 	@header( 'Link: ' . implode( ', ', $push ), false );
 
 	return $push;
