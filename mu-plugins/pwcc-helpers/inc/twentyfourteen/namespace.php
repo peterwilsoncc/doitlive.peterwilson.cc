@@ -11,7 +11,7 @@
  * @license     GPL-2.0+
  */
 
- namespace PWCC\Helpers\TwentyFourteen;
+namespace PWCC\Helpers\TwentyFourteen;
 
 /**
  * Boostrap the plugin.
@@ -141,7 +141,7 @@ function wp_push_styles() {
 
 	$push = array_unique( $push );
 
-	// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+	// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
 	@header( 'Link: ' . implode( ', ', $push ), false );
 
 	return $push;
