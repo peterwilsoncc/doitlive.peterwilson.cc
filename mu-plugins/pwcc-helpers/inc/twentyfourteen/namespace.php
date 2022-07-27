@@ -2,6 +2,9 @@
 /**
  * PWCC Helpers.
  *
+ * Naming this file and namespace for the specific theme I was using at the
+ * time was a terrible idea.
+ *
  * @package     PWCC Helpers
  * @author      Peter Wilson
  * @copyright   2018 Peter Wilson
@@ -28,13 +31,13 @@ function bootstrap() {
  * @TODO: Only push on first visit.
  */
 function after_theme_bootstrap() {
-	if ( ! function_exists( '\\twentyfourteen_setup' ) ) {
+	if ( ! function_exists( '\\twenty_twenty_one_setup' ) ) {
 		// The site is not using twentyfourteen. Bail.
 		return;
 	}
 
 	add_action( 'template_redirect', __NAMESPACE__ . '\\enqueue_scripts' );
-	remove_action( 'wp_enqueue_scripts', 'twentyfourteen_scripts' );
+	remove_action( 'wp_enqueue_scripts', 'twenty_twenty_one_scripts' );
 }
 
 /**
@@ -233,7 +236,7 @@ function wp_push_scripts() {
  * This runs on the `template_redirect` action.
  */
 function enqueue_scripts() {
-	twentyfourteen_scripts();
+	twenty_twenty_one_scripts();
 
 	wp_push_styles();
 	wp_push_scripts();
