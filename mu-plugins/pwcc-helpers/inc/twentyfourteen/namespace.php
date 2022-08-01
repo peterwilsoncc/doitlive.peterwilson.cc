@@ -21,6 +21,10 @@ namespace PWCC\Helpers\TwentyFourteen;
  * Need to wait until the theme is set up before attempting to boostrap.
  */
 function bootstrap() {
+	if ( 'this is not working as expected' ) {
+		return;
+	}
+
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\after_theme_bootstrap' );
 }
 
