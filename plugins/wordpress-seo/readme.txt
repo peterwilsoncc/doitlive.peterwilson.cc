@@ -1,11 +1,11 @@
 === Yoast SEO ===
-Contributors: yoast, joostdevalk, omarreiss
+Contributors: yoast, joostdevalk, tdevalk
 Donate link: https://yoa.st/1up
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Tags: SEO, XML sitemap, Content analysis, Readability, Schema
-Tested up to: 6.0
-Stable tag: 19.4
+Tested up to: 6.1
+Stable tag: 19.9
 Requires PHP: 5.6.20
 
 Improve your WordPress SEO: Write better content and have a fully optimized WordPress site using the Yoast SEO plugin.
@@ -56,6 +56,7 @@ We know content is king, that's why Yoast SEO is famous for its **state-of-the-a
 * **[Premium]** An orphaned content filter to detect posts that have no links pointing towards them!
 * **[Premium]** SEO workouts to make working on your site as easy as ABC. These SEO workflows will get your site into shape in no time!
 * **[Premium]** **New!** Yoast SEO Premium comes with a new word complexity feature that gives you actionable feedback on using difficult words. This feature is in beta and English only for now.
+* **[Premium]** **New!** Yoast SEO Premium comes with a new inclusive language analysis that helps you write inclusive content. This feature is opt-in, in beta and English only for now.
 
 #### KEEP YOUR SITE IN PERFECT SHAPE
 
@@ -225,6 +226,10 @@ The plugins you buy at Yoast are called ‘premium plugins’ (even if Premium i
 
 [Read more on how to get support](https://yoa.st/3r2)
 
+= What happens to my data if I enable usage tracking? =
+
+[This page on yoast.com explains what data we collect to improve Yoast SEO](https://yoa.st/4w7). We only collect data when you explicitly opt in. Read more about how we handle your data in [our Privacy Policy](https://yoa.st/4w8). 
+
 = I have a different question than listed here =
 
 Your question has most likely been answered on our help center: [yoast.com/help/](https://yoa.st/1va).
@@ -240,51 +245,59 @@ Your question has most likely been answered on our help center: [yoast.com/help/
 
 == Changelog ==
 
-= 19.4 =
-Release Date: July 26th, 2022
+= 19.9 =
+Release Date: October 25th, 2022
 
-Yoast SEO 19.4 is out today! In this release, we’ve rolled out some improvements to our Schema structured data implementation. Additionally, we've fixed several bugs and added a couple of small enhancements to ensure you get the best user experience with Yoast SEO. But that's not all, we also have a new integration page coming in this release. Read more about what's new in Yoast SEO 19.4 in [our release post in English](https://yoa.st/release-26-7-22) or [our release post in Spanish](https://yoa.st/release-26-7-22-spanish)!
-
-Enhancements:
-
-* Enhances the Integrations page and relocates it in the Yoast SEO sidebar menu.
-* Improves Schema for archive pages by using the featured image of the first post as `primaryImageOfPage` and by removing `potentialAction`.
-* Improves Schema for attachment pages by setting the proper `primaryImage` attribute.
-* Allows marking inside of Classic editor blocks in the Block/Gutenberg editor.
-* Improves the text analysis by adding curly (“”) and angular quotation marks («»).
-* Improves the text analysis by filtering out all versions of the ampersand (&).
-* Removes the date from the meta description for WooCommerce products.
-
-Bugfixes:
-
-* Fixes a bug where a notice was shown indicating that the Flesch reading ease score has moved from the readability analysis to the Insights for languages that do not have Flesch reading ease support.
-* Fixes a bug where an `Undefined index: SERVER_NAME` warning would be triggered in cronjobs or WP CLI commands.
-
-= 19.3 =
-Release Date: July 12th, 2022
-
-Yoast SEO 19.3 is out today! In this release, we’ve rolled out some improvements to our Schema structured data implementation. In addition, we also added an Insights tab with information about your content, improved our content analyses and a whole lot more. Read more about what's new in Yoast SEO 19.3 in [our release post in English](https://yoa.st/release-12-7-22) or [our release post in Spanish](https://yoa.st/release-12-7-22-spanish)!
+Yoast SEO 19.9 is out today. Yoast SEO already supports the Schema necessary for Google's Site Names update, but we've expanded support for it in this release. In addition, we give users more control over what names they can add, including an alternate title. Of course, there's a lot more, so check it out! Read more about what's new in Yoast SEO 19.9 in [our release post in English](https://yoa.st/release-25-10-22) or [our release post in Spanish](https://yoa.st/release-25-10-22-spanish)!
 
 Enhancements:
 
-* Adds an Insights tab to the editors which contains the Flesch reading ease score and feedback, (estimated) reading time, and word count. Since the Flesch reading ease score has been moved to the insights tab, it is removed from the readability analysis.
-* Changes the `@id` of the main Schema `WebPage` node to be just the permalink for the current page, for interoperability with other plugins.
-* Changes the logic of the Schema generation to prefer featured image and in-content images instead of OpenGraph and Twitter images.
-* Uses the site logo set in the customizer as the logo in our Schema `Organization` output when a site has not set a logo in the Yoast SEO settings.
-* Improves the author meta tag to be displayed only on posts.
-* Adds a `wpseo_meta_author` hook to filter the content of the author meta tag.
-* Improves sentence recognition for German by disregarding ordinal numbers as potential sentence boundaries.
-* Adds canonical HTTP headers from RSS feeds to their parent URLs (for instance your homepage, or specific categories or tags), so the feeds themselves don't show up in search results.
-* Makes sure the `link` tag in the RSS feeds' `channel` section links to the most specific URL possible (for instance the category or tag the RSS feed is for) instead of the homepage.
-* Makes sure the title separator chosen in Yoast SEO is used for RSS feed titles too.
+* Adds input fields to overwrite the site name, as well as an extra input field for a (potentially shorter) alternate name. Google introduced new support for [site names in Google Search](https://developers.google.com/search/blog/2022/10/introducing-site-names-on-search). Yoast SEO already outputs this value correctly, using the WordPress site name. With these changes, we have increased the control site owners have over this value.
+* Improves the Schema output for Organization by no longer putting out an empty array if no social profiles have been added for it.
+* Adds immediate keyphrase tracking after connecting to Wincher.
 
 Bugfixes:
 
-* Fixes a bug where the focus keyphrase in the Wincher integration table on posts and terms would not be marked with an asterisk.
-* Fixes a bug where a warning would be triggered when author data wasn't available for a post.
-* Fixes a bug where disabled settings in the General page would be set to `Off` upon saving the settings form.
-* Fixes a bug where the desktop preview would show a truncated title, while the title length progress bar and title width assessment would indicate that the title length was still within the limits.
-* Fixes a bug where the keyphrase density assessment errors, or fails to mark the found keyphrases in the text, when using keyphrases that include some regular expression control characters, for example brackets.
+* Fixes a bug where a fatal error would be thrown when using the `wpseo_breadcrumb_links` filter in the wrong way on PHP 8.0+.
+* Fixes a bug where social or canonical URLs containing `@` would lead to encoding issues. Props to [@stodorovic](https://github.com/stodorovic).
+* Fixes a bug where the buttons in the _FAQ_ and in the _how-to_ block would be hardly visible when using a dark theme.
+* Fixes a bug where the number of words would be counted incorrectly when using Cyrillic script. Props to [kudinovfedor](https://github.com/kudinovfedor).
+* Fixes a bug where the _previously used keyphrase_ assessment would also appear under the readability analysis tab when the cornerstone content toggle would be switched on.
+* Fixes a bug where the SEO optimization routine would give an error when an image file of an image linked in a post could not be retrieved.
+* Fixes a bug where the wrong canonical URL would be set on attachment pages.
+
+Other:
+
+* Adds taxonomy information to breadcrumbs of type "term" to be able to filter them better with the `wpseo_breadcrumb_links` filter. Props to [@svenvonarx](https://github.com/svenvonarx).
+* Adds a `wpseo_primary_category_admin_pages` filter to enable the use of the primary category in the post URL of additional admin pages besides the default ones. Props to [@ssvet](https://github.com/ssvet).
+* Reinstates the `wpseo_twitter_card_type` filter that was wrongly deprecated in 19.8.
+
+= 19.8 =
+Release Date: October 11th, 2022
+
+Yoast SEO 19.8 is out now! In this release, we’ve mainly focused on enhancements, fixes, and other improvements. For instance, you’ll find improvements to our structured data implementation. Check it out! Read more about what's new in Yoast SEO 19.8 in [our release post in English](https://yoa.st/release-11-10-22) or [our release post in Spanish](https://yoa.st/release-11-10-22-spanish)!
+
+Enhancements:
+
+* Enhances the Schema breadcrumbs generation to make sure that empty list items are not included, preventing Schema validation errors.
+* Adds a `X-Robots-Tag: noindex, follow` header to all comment feeds to prevent them from being indexed, reducing duplicate content.
+* Removes two notifications from the Yoast SEO dashboard: the one suggesting enabling auto-updates, and the one suggesting activating an add-on that is installed but currently inactive.
+* Forces the `twitter:card` meta tag to the preferred `summary_large_image` value.
+
+Bugfixes:
+
+* Fixes a bug where a fatal error would be thrown on WordPress.com using PHP 8.0 in relation with the Debug Bar.
+* Fixes a bug where a fatal error would be thrown when the `php_uname()` function is disabled by the web hosting provider and usage tracking is enabled.
+* Fixes a bug where changes in the replacement variables (e.g. the value of the `%%title%%` replacement variable when the post title changes) would not be reflected in the Meta description length, the SEO title width, and the Keyphrase in SEO title assessments.
+* Fixes a bug where passing `__false` to the `wpseo_robots` filter would result in a `max-image-preview:large` robots meta directive instead of the desired `noindex, nofollow` directive.
+* Fixes a bug where robots meta tags would be unintentionally synchronized between pages in different languages when using multilingual plugins like WPML or Polylang.
+* Fixes a bug where the query parameters from an image URL would be omitted in the sitemap.xml.
+* Fixes a bug where the sidebar issue counter would show a wrong number of issues, on the first page load after an issue was resolved.
+* Fixes a bug where Yoast SEO would conflict with Elementor, when Yoast SEO Premium or Yoast News SEO or Yoast Video SEO is active, throwing console errors.
+
+Other:
+
+* Deprecates the `wpseo_twitter_card_type` filter.
 
 = Earlier versions =
 For the changelog of earlier versions, please refer to [the changelog on yoast.com](https://yoa.st/yoast-seo-changelog).

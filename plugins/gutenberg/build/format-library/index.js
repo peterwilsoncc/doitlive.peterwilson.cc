@@ -268,15 +268,15 @@ function InlineUI(_ref) {
     style
   } = activeObjectAttributes;
   const [width, setWidth] = (0,external_wp_element_namespaceObject.useState)(style === null || style === void 0 ? void 0 : style.replace(/\D/g, ''));
-  const anchorRef = (0,external_wp_richText_namespaceObject.useAnchorRef)({
-    ref: contentRef,
+  const popoverAnchor = (0,external_wp_richText_namespaceObject.useAnchor)({
+    editableContentElement: contentRef.current,
     value,
     settings: image_image
   });
   return (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Popover, {
     position: "bottom center",
     focusOnMount: false,
-    anchorRef: anchorRef,
+    anchor: popoverAnchor,
     className: "block-editor-format-toolbar__image-popover"
   }, (0,external_wp_element_namespaceObject.createElement)("form", {
     className: "block-editor-format-toolbar__image-container-content",
@@ -921,8 +921,8 @@ function InlineLinkUI(_ref) {
     }
   }
 
-  const anchorRef = (0,external_wp_richText_namespaceObject.useAnchorRef)({
-    ref: contentRef,
+  const popoverAnchor = (0,external_wp_richText_namespaceObject.useAnchor)({
+    editableContentElement: contentRef.current,
     value,
     settings: build_module_link_link
   }); // Generate a string based key that is unique to this anchor reference.
@@ -930,7 +930,7 @@ function InlineLinkUI(_ref) {
   // potential stale state bugs caused by the component not being remounted
   // See https://github.com/WordPress/gutenberg/pull/34742.
 
-  const forceRemountKey = use_link_instance_key(anchorRef); // The focusOnMount prop shouldn't evolve during render of a Popover
+  const forceRemountKey = use_link_instance_key(popoverAnchor); // The focusOnMount prop shouldn't evolve during render of a Popover
   // otherwise it causes a render of the content.
 
   const focusOnMount = (0,external_wp_element_namespaceObject.useRef)(addingLink ? 'firstElement' : false);
@@ -958,10 +958,11 @@ function InlineLinkUI(_ref) {
   }
 
   return (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Popover, {
-    anchorRef: anchorRef,
+    anchor: popoverAnchor,
     focusOnMount: focusOnMount.current,
     onClose: stopAddingLink,
-    position: "bottom center"
+    position: "bottom center",
+    shift: true
   }, (0,external_wp_element_namespaceObject.createElement)(external_wp_blockEditor_namespaceObject.__experimentalLinkControl, {
     key: forceRemountKey,
     value: linkValue,
@@ -1258,8 +1259,6 @@ const underline = {
 
 };
 
-;// CONCATENATED MODULE: external "lodash"
-const external_lodash_namespaceObject = window["lodash"];
 ;// CONCATENATED MODULE: ./packages/icons/build-module/icon/index.js
 /**
  * WordPress dependencies
@@ -1307,17 +1306,27 @@ const textColor = (0,external_wp_element_namespaceObject.createElement)(external
 }));
 /* harmony default export */ const text_color = (textColor);
 
-;// CONCATENATED MODULE: ./packages/format-library/build-module/text-color/inline.js
+;// CONCATENATED MODULE: ./packages/icons/build-module/library/color.js
 
-
-/**
- * External dependencies
- */
 
 /**
  * WordPress dependencies
  */
 
+const color = (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.SVG, {
+  viewBox: "0 0 24 24",
+  xmlns: "http://www.w3.org/2000/svg"
+}, (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
+  d: "M17.2 10.9c-.5-1-1.2-2.1-2.1-3.2-.6-.9-1.3-1.7-2.1-2.6L12 4l-1 1.1c-.6.9-1.3 1.7-2 2.6-.8 1.2-1.5 2.3-2 3.2-.6 1.2-1 2.2-1 3 0 3.4 2.7 6.1 6.1 6.1s6.1-2.7 6.1-6.1c0-.8-.3-1.8-1-3zm-5.1 7.6c-2.5 0-4.6-2.1-4.6-4.6 0-.3.1-1 .8-2.3.5-.9 1.1-1.9 2-3.1.7-.9 1.3-1.7 1.8-2.3.7.8 1.3 1.6 1.8 2.3.8 1.1 1.5 2.2 2 3.1.7 1.3.8 2 .8 2.3 0 2.5-2.1 4.6-4.6 4.6z"
+}));
+/* harmony default export */ const library_color = (color);
+
+;// CONCATENATED MODULE: ./packages/format-library/build-module/text-color/inline.js
+
+
+/**
+ * WordPress dependencies
+ */
 
 
 
@@ -1418,10 +1427,12 @@ function ColorPicker(_ref) {
     onChange
   } = _ref;
   const colors = (0,external_wp_data_namespaceObject.useSelect)(select => {
+    var _getSettings$colors;
+
     const {
       getSettings
     } = select(external_wp_blockEditor_namespaceObject.store);
-    return (0,external_lodash_namespaceObject.get)(getSettings(), ['colors'], []);
+    return (_getSettings$colors = getSettings().colors) !== null && _getSettings$colors !== void 0 ? _getSettings$colors : [];
   }, []);
   const onColorChange = (0,external_wp_element_namespaceObject.useCallback)(color => {
     onChange(setColors(value, name, colors, {
@@ -1444,22 +1455,22 @@ function InlineColorUI(_ref2) {
     contentRef
   } = _ref2;
 
-  /* 
+  /*
    As you change the text color by typing a HEX value into a field,
    the return value of document.getSelection jumps to the field you're editing,
-   not the highlighted text. Given that useAnchorRef uses document.getSelection,
+   not the highlighted text. Given that useAnchor uses document.getSelection,
    it will return null, since it can't find the <mark> element within the HEX input.
    This caches the last truthy value of the selection anchor reference.
    */
-  const anchorRef = (0,external_wp_blockEditor_namespaceObject.useCachedTruthy)((0,external_wp_richText_namespaceObject.useAnchorRef)({
-    ref: contentRef,
+  const popoverAnchor = (0,external_wp_blockEditor_namespaceObject.useCachedTruthy)((0,external_wp_richText_namespaceObject.useAnchor)({
+    editableContentElement: contentRef.current,
     value,
     settings: text_color_textColor
   }));
   return (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Popover, {
     onClose: onClose,
     className: "components-inline-color-popover",
-    anchorRef: anchorRef
+    anchor: popoverAnchor
   }, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.TabPanel, {
     tabs: [{
       name: 'color',
@@ -1480,13 +1491,8 @@ function InlineColorUI(_ref2) {
 
 
 /**
- * External dependencies
- */
-
-/**
  * WordPress dependencies
  */
-
 
 
 
@@ -1551,7 +1557,7 @@ function TextColorEdit(_ref2) {
   const enableIsAddingColor = (0,external_wp_element_namespaceObject.useCallback)(() => setIsAddingColor(true), [setIsAddingColor]);
   const disableIsAddingColor = (0,external_wp_element_namespaceObject.useCallback)(() => setIsAddingColor(false), [setIsAddingColor]);
   const colorIndicatorStyle = (0,external_wp_element_namespaceObject.useMemo)(() => fillComputedColors(contentRef.current, getActiveColors(value, text_color_name, colors)), [value, colors]);
-  const hasColorsToChoose = !(0,external_lodash_namespaceObject.isEmpty)(colors) || !allowCustomControl;
+  const hasColorsToChoose = colors.length || !allowCustomControl;
 
   if (!hasColorsToChoose && !isActive) {
     return null;
@@ -1561,7 +1567,7 @@ function TextColorEdit(_ref2) {
     className: "format-library-text-color-button",
     isActive: isActive,
     icon: (0,external_wp_element_namespaceObject.createElement)(icon, {
-      icon: text_color,
+      icon: Object.keys(activeAttributes).length ? text_color : library_color,
       style: colorIndicatorStyle
     }),
     title: text_color_title // If has no colors to choose but a color is active remove the color onClick.

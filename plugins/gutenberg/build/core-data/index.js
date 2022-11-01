@@ -572,7 +572,8 @@ __webpack_require__.d(__webpack_exports__, {
   "useEntityId": () => (/* reexport */ useEntityId),
   "useEntityProp": () => (/* reexport */ useEntityProp),
   "useEntityRecord": () => (/* reexport */ useEntityRecord),
-  "useEntityRecords": () => (/* reexport */ useEntityRecords)
+  "useEntityRecords": () => (/* reexport */ useEntityRecords),
+  "useResourcePermissions": () => (/* reexport */ useResourcePermissions)
 });
 
 // NAMESPACE OBJECT: ./packages/core-data/build-module/actions.js
@@ -682,6 +683,8 @@ __webpack_require__.d(resolvers_namespaceObject, {
 const external_wp_data_namespaceObject = window["wp"]["data"];
 ;// CONCATENATED MODULE: external "lodash"
 const external_lodash_namespaceObject = window["lodash"];
+;// CONCATENATED MODULE: external ["wp","compose"]
+const external_wp_compose_namespaceObject = window["wp"]["compose"];
 ;// CONCATENATED MODULE: external ["wp","isShallowEqual"]
 const external_wp_isShallowEqual_namespaceObject = window["wp"]["isShallowEqual"];
 var external_wp_isShallowEqual_default = /*#__PURE__*/__webpack_require__.n(external_wp_isShallowEqual_namespaceObject);
@@ -809,6 +812,367 @@ const onSubKey = actionProperty => reducer => function () {
   };
 };
 /* harmony default export */ const on_sub_key = (onSubKey);
+
+;// CONCATENATED MODULE: ./node_modules/tslib/tslib.es6.js
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+/* global Reflect, Promise */
+
+var extendStatics = function(d, b) {
+    extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+    return extendStatics(d, b);
+};
+
+function __extends(d, b) {
+    if (typeof b !== "function" && b !== null)
+        throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+    extendStatics(d, b);
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    }
+    return __assign.apply(this, arguments);
+}
+
+function __rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+}
+
+function __decorate(decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+
+function __param(paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+}
+
+function __metadata(metadataKey, metadataValue) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+}
+
+function __awaiter(thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+}
+
+function __generator(thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+}
+
+var __createBinding = Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+});
+
+function __exportStar(m, o) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(o, p)) __createBinding(o, m, p);
+}
+
+function __values(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+}
+
+function __read(o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+}
+
+/** @deprecated */
+function __spread() {
+    for (var ar = [], i = 0; i < arguments.length; i++)
+        ar = ar.concat(__read(arguments[i]));
+    return ar;
+}
+
+/** @deprecated */
+function __spreadArrays() {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+}
+
+function __spreadArray(to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || from);
+}
+
+function __await(v) {
+    return this instanceof __await ? (this.v = v, this) : new __await(v);
+}
+
+function __asyncGenerator(thisArg, _arguments, generator) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var g = generator.apply(thisArg, _arguments || []), i, q = [];
+    return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+    function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+    function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+    function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+    function fulfill(value) { resume("next", value); }
+    function reject(value) { resume("throw", value); }
+    function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+}
+
+function __asyncDelegator(o) {
+    var i, p;
+    return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+    function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+}
+
+function __asyncValues(o) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var m = o[Symbol.asyncIterator], i;
+    return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+    function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+    function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+}
+
+function __makeTemplateObject(cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+
+var __setModuleDefault = Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+};
+
+function __importStar(mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+}
+
+function __importDefault(mod) {
+    return (mod && mod.__esModule) ? mod : { default: mod };
+}
+
+function __classPrivateFieldGet(receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+}
+
+function __classPrivateFieldSet(receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+}
+
+;// CONCATENATED MODULE: ./node_modules/lower-case/dist.es2015/index.js
+/**
+ * Source: ftp://ftp.unicode.org/Public/UCD/latest/ucd/SpecialCasing.txt
+ */
+var SUPPORTED_LOCALE = {
+    tr: {
+        regexp: /\u0130|\u0049|\u0049\u0307/g,
+        map: {
+            İ: "\u0069",
+            I: "\u0131",
+            İ: "\u0069",
+        },
+    },
+    az: {
+        regexp: /\u0130/g,
+        map: {
+            İ: "\u0069",
+            I: "\u0131",
+            İ: "\u0069",
+        },
+    },
+    lt: {
+        regexp: /\u0049|\u004A|\u012E|\u00CC|\u00CD|\u0128/g,
+        map: {
+            I: "\u0069\u0307",
+            J: "\u006A\u0307",
+            Į: "\u012F\u0307",
+            Ì: "\u0069\u0307\u0300",
+            Í: "\u0069\u0307\u0301",
+            Ĩ: "\u0069\u0307\u0303",
+        },
+    },
+};
+/**
+ * Localized lower case.
+ */
+function localeLowerCase(str, locale) {
+    var lang = SUPPORTED_LOCALE[locale.toLowerCase()];
+    if (lang)
+        return lowerCase(str.replace(lang.regexp, function (m) { return lang.map[m]; }));
+    return lowerCase(str);
+}
+/**
+ * Lower case as a function.
+ */
+function lowerCase(str) {
+    return str.toLowerCase();
+}
+
+;// CONCATENATED MODULE: ./node_modules/no-case/dist.es2015/index.js
+
+// Support camel case ("camelCase" -> "camel Case" and "CAMELCase" -> "CAMEL Case").
+var DEFAULT_SPLIT_REGEXP = [/([a-z0-9])([A-Z])/g, /([A-Z])([A-Z][a-z])/g];
+// Remove all non-word characters.
+var DEFAULT_STRIP_REGEXP = /[^A-Z0-9]+/gi;
+/**
+ * Normalize the string into something other libraries can manipulate easier.
+ */
+function noCase(input, options) {
+    if (options === void 0) { options = {}; }
+    var _a = options.splitRegexp, splitRegexp = _a === void 0 ? DEFAULT_SPLIT_REGEXP : _a, _b = options.stripRegexp, stripRegexp = _b === void 0 ? DEFAULT_STRIP_REGEXP : _b, _c = options.transform, transform = _c === void 0 ? lowerCase : _c, _d = options.delimiter, delimiter = _d === void 0 ? " " : _d;
+    var result = replace(replace(input, splitRegexp, "$1\0$2"), stripRegexp, "\0");
+    var start = 0;
+    var end = result.length;
+    // Trim the delimiter from around the output string.
+    while (result.charAt(start) === "\0")
+        start++;
+    while (result.charAt(end - 1) === "\0")
+        end--;
+    // Transform each token independently.
+    return result.slice(start, end).split("\0").map(transform).join(delimiter);
+}
+/**
+ * Replace `re` in the input string with the replacement value.
+ */
+function replace(input, re, value) {
+    if (re instanceof RegExp)
+        return input.replace(re, value);
+    return re.reduce(function (input, re) { return input.replace(re, value); }, input);
+}
+
+;// CONCATENATED MODULE: ./node_modules/upper-case-first/dist.es2015/index.js
+/**
+ * Upper case the first character of an input string.
+ */
+function upperCaseFirst(input) {
+    return input.charAt(0).toUpperCase() + input.substr(1);
+}
+
+;// CONCATENATED MODULE: ./node_modules/capital-case/dist.es2015/index.js
+
+
+
+function capitalCaseTransform(input) {
+    return upperCaseFirst(input.toLowerCase());
+}
+function capitalCase(input, options) {
+    if (options === void 0) { options = {}; }
+    return noCase(input, __assign({ delimiter: " ", transform: capitalCaseTransform }, options));
+}
+
+;// CONCATENATED MODULE: ./node_modules/pascal-case/dist.es2015/index.js
+
+
+function pascalCaseTransform(input, index) {
+    var firstChar = input.charAt(0);
+    var lowerChars = input.substr(1).toLowerCase();
+    if (index > 0 && firstChar >= "0" && firstChar <= "9") {
+        return "_" + firstChar + lowerChars;
+    }
+    return "" + firstChar.toUpperCase() + lowerChars;
+}
+function dist_es2015_pascalCaseTransformMerge(input) {
+    return input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
+}
+function pascalCase(input, options) {
+    if (options === void 0) { options = {}; }
+    return noCase(input, __assign({ delimiter: "", transform: pascalCaseTransform }, options));
+}
 
 ;// CONCATENATED MODULE: external ["wp","apiFetch"]
 const external_wp_apiFetch_namespaceObject = window["wp"]["apiFetch"];
@@ -1051,13 +1415,8 @@ async function defaultProcessor(requests) {
 
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/batch/create-batch.js
 /**
- * External dependencies
- */
-
-/**
  * Internal dependencies
  */
-
 
 /**
  * Creates a batch, which can be used to combine multiple API requests into one
@@ -1192,13 +1551,8 @@ function createBatch() {
       }
 
       let isSuccess = true;
-
-      for (const pair of (0,external_lodash_namespaceObject.zip)(results, queue)) {
-        /** @type {{error?: unknown, output?: unknown}} */
-        const result = pair[0];
-        /** @type {{resolve: (value: any) => void; reject: (error: any) => void} | undefined} */
-
-        const queueItem = pair[1];
+      results.forEach((result, key) => {
+        const queueItem = queue[key];
 
         if (result !== null && result !== void 0 && result.error) {
           queueItem === null || queueItem === void 0 ? void 0 : queueItem.reject(result.error);
@@ -1208,8 +1562,7 @@ function createBatch() {
 
           queueItem === null || queueItem === void 0 ? void 0 : queueItem.resolve((_result$output = result === null || result === void 0 ? void 0 : result.output) !== null && _result$output !== void 0 ? _result$output : result);
         }
-      }
-
+      });
       queue = [];
       return isSuccess;
     }
@@ -1284,6 +1637,9 @@ const STORE_NAME = 'core';
 
 /**
  * Returns an action object used in signalling that authors have been received.
+ * Ignored from documentation as it's internal to the data store.
+ *
+ * @ignore
  *
  * @param {string}       queryID Query ID.
  * @param {Array|Object} users   Users received.
@@ -1300,6 +1656,9 @@ function receiveUserQuery(queryID, users) {
 }
 /**
  * Returns an action used in signalling that the current user has been received.
+ * Ignored from documentation as it's internal to the data store.
+ *
+ * @ignore
  *
  * @param {Object} currentUser Current user object.
  *
@@ -1366,6 +1725,9 @@ function receiveEntityRecords(kind, name, records, query) {
 }
 /**
  * Returns an action object used in signalling that the current theme has been received.
+ * Ignored from documentation as it's internal to the data store.
+ *
+ * @ignore
  *
  * @param {Object} currentTheme The current theme.
  *
@@ -1380,6 +1742,9 @@ function receiveCurrentTheme(currentTheme) {
 }
 /**
  * Returns an action object used in signalling that the current global styles id has been received.
+ * Ignored from documentation as it's internal to the data store.
+ *
+ * @ignore
  *
  * @param {string} currentGlobalStylesId The current global styles id.
  *
@@ -1394,6 +1759,9 @@ function __experimentalReceiveCurrentGlobalStylesId(currentGlobalStylesId) {
 }
 /**
  * Returns an action object used in signalling that the theme base global styles have been received
+ * Ignored from documentation as it's internal to the data store.
+ *
+ * @ignore
  *
  * @param {string} stylesheet   The theme's identifier
  * @param {Object} globalStyles The global styles object.
@@ -1410,6 +1778,9 @@ function __experimentalReceiveThemeBaseGlobalStyles(stylesheet, globalStyles) {
 }
 /**
  * Returns an action object used in signalling that the theme global styles variations have been received.
+ * Ignored from documentation as it's internal to the data store.
+ *
+ * @ignore
  *
  * @param {string} stylesheet The theme's identifier
  * @param {Array}  variations The global styles variations.
@@ -1443,6 +1814,9 @@ function receiveThemeSupports() {
 /**
  * Returns an action object used in signalling that the preview data for
  * a given URl has been received.
+ * Ignored from documentation as it's internal to the data store.
+ *
+ * @ignore
  *
  * @param {string} url     URL to preview the embed for.
  * @param {*}      preview Preview data.
@@ -1976,6 +2350,9 @@ function receiveUploadPermissions(hasUploadPermissions) {
 /**
  * Returns an action object used in signalling that the current user has
  * permission to perform an action on a REST resource.
+ * Ignored from documentation as it's internal to the data store.
+ *
+ * @ignore
  *
  * @param {string}  key       A key that represents the action and REST resource.
  * @param {boolean} isAllowed Whether or not the user can perform the action.
@@ -1993,6 +2370,9 @@ function receiveUserPermission(key, isAllowed) {
 /**
  * Returns an action object used in signalling that the autosaves for a
  * post have been received.
+ * Ignored from documentation as it's internal to the data store.
+ *
+ * @ignore
  *
  * @param {number}       postId    The id of the post that is parent to the autosave.
  * @param {Array|Object} autosaves An array of autosaves or singular autosave object.
@@ -2013,6 +2393,7 @@ function receiveAutosaves(postId, autosaves) {
  * External dependencies
  */
 
+
 /**
  * WordPress dependencies
  */
@@ -2026,7 +2407,32 @@ function receiveAutosaves(postId, autosaves) {
 
 const DEFAULT_ENTITY_KEY = 'id';
 const POST_RAW_ATTRIBUTES = ['title', 'excerpt', 'content'];
-const attachmentConfig = {
+const rootEntitiesConfig = [{
+  label: (0,external_wp_i18n_namespaceObject.__)('Base'),
+  kind: 'root',
+  name: '__unstableBase',
+  baseURL: '/',
+  baseURLParams: {
+    _fields: ['description', 'gmt_offset', 'home', 'name', 'site_icon', 'site_icon_url', 'site_logo', 'timezone_string', 'url'].join(',')
+  }
+}, {
+  label: (0,external_wp_i18n_namespaceObject.__)('Site'),
+  name: 'site',
+  kind: 'root',
+  baseURL: '/wp/v2/settings',
+  getTitle: record => {
+    return (0,external_lodash_namespaceObject.get)(record, ['title'], (0,external_wp_i18n_namespaceObject.__)('Site Title'));
+  }
+}, {
+  label: (0,external_wp_i18n_namespaceObject.__)('Post Type'),
+  name: 'postType',
+  kind: 'root',
+  key: 'slug',
+  baseURL: '/wp/v2/types',
+  baseURLParams: {
+    context: 'edit'
+  }
+}, {
   name: 'media',
   kind: 'root',
   baseURL: '/wp/v2/media',
@@ -2036,27 +2442,7 @@ const attachmentConfig = {
   plural: 'mediaItems',
   label: (0,external_wp_i18n_namespaceObject.__)('Media'),
   rawAttributes: ['caption', 'title', 'description']
-};
-const siteConfig = {
-  label: (0,external_wp_i18n_namespaceObject.__)('Site'),
-  name: 'site',
-  kind: 'root',
-  baseURL: '/wp/v2/settings',
-  getTitle: record => {
-    return (0,external_lodash_namespaceObject.get)(record, ['title'], (0,external_wp_i18n_namespaceObject.__)('Site Title'));
-  }
-};
-const postTypeConfig = {
-  label: (0,external_wp_i18n_namespaceObject.__)('Post Type'),
-  name: 'postType',
-  kind: 'root',
-  key: 'slug',
-  baseURL: '/wp/v2/types',
-  baseURLParams: {
-    context: 'edit'
-  }
-};
-const taxonomyConfig = {
+}, {
   name: 'taxonomy',
   kind: 'root',
   key: 'slug',
@@ -2066,8 +2452,7 @@ const taxonomyConfig = {
   },
   plural: 'taxonomies',
   label: (0,external_wp_i18n_namespaceObject.__)('Taxonomy')
-};
-const sidebarConfig = {
+}, {
   name: 'sidebar',
   kind: 'root',
   baseURL: '/wp/v2/sidebars',
@@ -2079,8 +2464,7 @@ const sidebarConfig = {
     blocks: true
   },
   label: (0,external_wp_i18n_namespaceObject.__)('Widget areas')
-};
-const widgetConfig = {
+}, {
   name: 'widget',
   kind: 'root',
   baseURL: '/wp/v2/widgets',
@@ -2092,8 +2476,7 @@ const widgetConfig = {
     blocks: true
   },
   label: (0,external_wp_i18n_namespaceObject.__)('Widgets')
-};
-const widgetTypeConfig = {
+}, {
   name: 'widgetType',
   kind: 'root',
   baseURL: '/wp/v2/widget-types',
@@ -2102,8 +2485,7 @@ const widgetTypeConfig = {
   },
   plural: 'widgetTypes',
   label: (0,external_wp_i18n_namespaceObject.__)('Widget types')
-};
-const userConfig = {
+}, {
   label: (0,external_wp_i18n_namespaceObject.__)('User'),
   name: 'user',
   kind: 'root',
@@ -2112,8 +2494,7 @@ const userConfig = {
     context: 'edit'
   },
   plural: 'users'
-};
-const commentConfig = {
+}, {
   name: 'comment',
   kind: 'root',
   baseURL: '/wp/v2/comments',
@@ -2122,8 +2503,7 @@ const commentConfig = {
   },
   plural: 'comments',
   label: (0,external_wp_i18n_namespaceObject.__)('Comment')
-};
-const menuConfig = {
+}, {
   name: 'menu',
   kind: 'root',
   baseURL: '/wp/v2/menus',
@@ -2132,8 +2512,7 @@ const menuConfig = {
   },
   plural: 'menus',
   label: (0,external_wp_i18n_namespaceObject.__)('Menu')
-};
-const menuItemConfig = {
+}, {
   name: 'menuItem',
   kind: 'root',
   baseURL: '/wp/v2/menu-items',
@@ -2143,8 +2522,7 @@ const menuItemConfig = {
   plural: 'menuItems',
   label: (0,external_wp_i18n_namespaceObject.__)('Menu Item'),
   rawAttributes: ['title']
-};
-const menuLocationConfig = {
+}, {
   name: 'menuLocation',
   kind: 'root',
   baseURL: '/wp/v2/menu-locations',
@@ -2154,8 +2532,7 @@ const menuLocationConfig = {
   plural: 'menuLocations',
   label: (0,external_wp_i18n_namespaceObject.__)('Menu Location'),
   key: 'name'
-};
-const globalStyleConfig = {
+}, {
   label: (0,external_wp_i18n_namespaceObject.__)('Global Styles'),
   name: 'globalStyles',
   kind: 'root',
@@ -2170,8 +2547,7 @@ const globalStyleConfig = {
 
     return (record === null || record === void 0 ? void 0 : (_record$title = record.title) === null || _record$title === void 0 ? void 0 : _record$title.rendered) || (record === null || record === void 0 ? void 0 : record.title);
   }
-};
-const themeConfig = {
+}, {
   label: (0,external_wp_i18n_namespaceObject.__)('Themes'),
   name: 'theme',
   kind: 'root',
@@ -2180,8 +2556,7 @@ const themeConfig = {
     context: 'edit'
   },
   key: 'stylesheet'
-};
-const pluginConfig = {
+}, {
   label: (0,external_wp_i18n_namespaceObject.__)('Plugins'),
   name: 'plugin',
   kind: 'root',
@@ -2190,16 +2565,7 @@ const pluginConfig = {
     context: 'edit'
   },
   key: 'plugin'
-};
-const rootEntitiesConfig = [{
-  label: (0,external_wp_i18n_namespaceObject.__)('Base'),
-  kind: 'root',
-  name: '__unstableBase',
-  baseURL: '/',
-  baseURLParams: {
-    _fields: ['description', 'gmt_offset', 'home', 'name', 'site_icon', 'site_icon_url', 'site_logo', 'timezone_string', 'url'].join(',')
-  }
-}, siteConfig, postTypeConfig, attachmentConfig, taxonomyConfig, sidebarConfig, widgetConfig, widgetTypeConfig, userConfig, commentConfig, menuConfig, menuItemConfig, menuLocationConfig, globalStyleConfig, themeConfig, pluginConfig];
+}];
 const additionalEntityConfigLoaders = [{
   kind: 'postType',
   loadEntities: loadPostTypeEntities
@@ -2264,9 +2630,9 @@ async function loadPostTypeEntities() {
       },
       rawAttributes: POST_RAW_ATTRIBUTES,
       getTitle: record => {
-        var _record$title2;
+        var _record$title2, _record$slug;
 
-        return (record === null || record === void 0 ? void 0 : (_record$title2 = record.title) === null || _record$title2 === void 0 ? void 0 : _record$title2.rendered) || (record === null || record === void 0 ? void 0 : record.title) || (isTemplate ? (0,external_lodash_namespaceObject.startCase)(record.slug) : String(record.id));
+        return (record === null || record === void 0 ? void 0 : (_record$title2 = record.title) === null || _record$title2 === void 0 ? void 0 : _record$title2.rendered) || (record === null || record === void 0 ? void 0 : record.title) || (isTemplate ? capitalCase((_record$slug = record.slug) !== null && _record$slug !== void 0 ? _record$slug : '') : String(record.id));
       },
       __unstablePrePersist: isTemplate ? undefined : prePersistPostType,
       __unstable_rest_base: postType.rest_base
@@ -2327,9 +2693,9 @@ const getMethodName = function (kind, name) {
     kind,
     name
   });
-  const kindPrefix = kind === 'root' ? '' : (0,external_lodash_namespaceObject.upperFirst)((0,external_lodash_namespaceObject.camelCase)(kind));
-  const nameSuffix = (0,external_lodash_namespaceObject.upperFirst)((0,external_lodash_namespaceObject.camelCase)(name)) + (usePlural ? 's' : '');
-  const suffix = usePlural && 'plural' in entityConfig && entityConfig !== null && entityConfig !== void 0 && entityConfig.plural ? (0,external_lodash_namespaceObject.upperFirst)((0,external_lodash_namespaceObject.camelCase)(entityConfig.plural)) : nameSuffix;
+  const kindPrefix = kind === 'root' ? '' : pascalCase(kind);
+  const nameSuffix = pascalCase(name) + (usePlural ? 's' : '');
+  const suffix = usePlural && 'plural' in entityConfig && entityConfig !== null && entityConfig !== void 0 && entityConfig.plural ? pascalCase(entityConfig.plural) : nameSuffix;
   return `${prefix}${kindPrefix}${suffix}`;
 };
 /**
@@ -2541,6 +2907,7 @@ function getQueryParts(query) {
  */
 
 
+
 /**
  * Internal dependencies
  */
@@ -2700,7 +3067,7 @@ function itemIsComplete() {
  * @return {Object} Next state.
  */
 
-const receiveQueries = (0,external_lodash_namespaceObject.flowRight)([// Limit to matching action type so we don't attempt to replace action on
+const receiveQueries = (0,external_wp_compose_namespaceObject.compose)([// Limit to matching action type so we don't attempt to replace action on
 // an unhandled action.
 if_matching_action(action => 'query' in action), // Inject query parts into action for use both in `onSubKey` and reducer.
 replace_action(action => {
@@ -2781,6 +3148,7 @@ const queries = function () {
 /**
  * WordPress dependencies
  */
+
 
 
 
@@ -2988,7 +3356,7 @@ function themeGlobalStyleVariations() {
  */
 
 function entity(entityConfig) {
-  return (0,external_lodash_namespaceObject.flowRight)([// Limit to matching action type so we don't attempt to replace action on
+  return (0,external_wp_compose_namespaceObject.compose)([// Limit to matching action type so we don't attempt to replace action on
   // an unhandled action.
   if_matching_action(action => action.name && action.kind && action.name === entityConfig.name && action.kind === entityConfig.kind), // Inject the entity config into the action.
   replace_action(action => {
@@ -4020,22 +4388,28 @@ function getEntityConfig(state, kind, name) {
   });
 }
 /**
- * GetEntityRecord is declared as an *interface*, but it actually describes
- * the specifies the getEntityRecord *function* signature. It may seem unusual,
- * but it's just how TypeScript implements function overloading.
+ * GetEntityRecord is declared as a *callable interface* with
+ * two signatures to work around the fact that TypeScript doesn't
+ * allow currying generic functions:
  *
- * More accurately, GetEntityRecord distinguishes between two different signatures
- * the getEntityRecord selector has:
+ * ```ts
+ * 		type CurriedState = F extends ( state: any, ...args: infer P ) => infer R
+ * 			? ( ...args: P ) => R
+ * 			: F;
+ * 		type Selector = <K extends string | number>(
+ *         state: any,
+ *         kind: K,
+ *         key: K extends string ? 'string value' : false
+ *    ) => K;
+ * 		type BadlyInferredSignature = CurriedState< Selector >
+ *    // BadlyInferredSignature evaluates to:
+ *    // (kind: string number, key: false | "string value") => string number
+ * ```
  *
- * 1. When query._fields is not given, the returned type is EntityRecordOf< K, N, C >
- * 2. When query._fields is given, the returned type is Partial<EntityRecordOf< K, N, C >>
+ * The signature without the state parameter shipped as CurriedSignature
+ * is used in the return value of `select( coreStore )`.
  *
- * Unfortunately, due to a TypeScript limitation (https://github.com/microsoft/TypeScript/issues/23132)
- * we can't use a single function signature with a return type such as:
- *
- *    Fields extends undefined
- * 	    ? EntityRecordOf< K, N, C >
- * 		  : Partial< EntityRecordOf< K, N, C > >
+ * See https://github.com/WordPress/gutenberg/pull/41578 for more details.
  */
 
 /**
@@ -4047,7 +4421,8 @@ function getEntityConfig(state, kind, name) {
  * @param  kind  Entity kind.
  * @param  name  Entity name.
  * @param  key   Record's key
- * @param  query Optional query.
+ * @param  query Optional query. If requesting specific
+ *               fields, fields must always include the ID.
  *
  * @return Record.
  */
@@ -4159,22 +4534,12 @@ function hasEntityRecords(state, kind, name, query) {
   return Array.isArray(getEntityRecords(state, kind, name, query));
 }
 /**
- * GetEntityRecord is declared as an *interface*, but it actually describes
- * the specifies the getEntityRecord *function* signature. It may seem unusual,
- * but it's just how TypeScript implements function overloading.
+ * GetEntityRecord is declared as a *callable interface* with
+ * two signatures to work around the fact that TypeScript doesn't
+ * allow currying generic functions.
  *
- * More accurately, GetEntityRecord distinguishes between two different signatures
- * the getEntityRecord selector has:
- *
- * 1. When query._fields is not given, the returned type is EntityRecordOf< K, N, C >[]
- * 2. When query._fields is given, the returned type is Partial<EntityRecordOf< K, N, C >>[]
- *
- * Unfortunately, due to a TypeScript limitation (https://github.com/microsoft/TypeScript/issues/23132)
- * we can't use a single function signature with a return type such as:
- *
- *    Fields extends undefined
- * 	    ? EntityRecordOf< K, N, C >[]
- * 		  : Partial< EntityRecordOf< K, N, C > >[]
+ * @see GetEntityRecord
+ * @see https://github.com/WordPress/gutenberg/pull/41578
  */
 
 /**
@@ -4183,7 +4548,8 @@ function hasEntityRecords(state, kind, name, query) {
  * @param  state State tree
  * @param  kind  Entity kind.
  * @param  name  Entity name.
- * @param  query Optional terms query.
+ * @param  query Optional terms query. If requesting specific
+ *               fields, fields must always include the ID.
  *
  * @return Records.
  */
@@ -4228,7 +4594,7 @@ const __experimentalGetDirtyEntityRecords = rememo(state => {
           dirtyRecords.push({
             // We avoid using primaryKey because it's transformed into a string
             // when it's used as an object key.
-            key: entityRecord[entityConfig.key || DEFAULT_ENTITY_KEY],
+            key: entityRecord ? entityRecord[entityConfig.key || DEFAULT_ENTITY_KEY] : undefined,
             title: (entityConfig === null || entityConfig === void 0 ? void 0 : (_entityConfig$getTitl = entityConfig.getTitle) === null || _entityConfig$getTitl === void 0 ? void 0 : _entityConfig$getTitl.call(entityConfig, entityRecord)) || '',
             name,
             kind
@@ -4267,7 +4633,7 @@ const __experimentalGetEntitiesBeingSaved = rememo(state => {
           recordsBeingSaved.push({
             // We avoid using primaryKey because it's transformed into a string
             // when it's used as an object key.
-            key: entityRecord[entityConfig.key || DEFAULT_ENTITY_KEY],
+            key: entityRecord ? entityRecord[entityConfig.key || DEFAULT_ENTITY_KEY] : undefined,
             title: (entityConfig === null || entityConfig === void 0 ? void 0 : (_entityConfig$getTitl2 = entityConfig.getTitle) === null || _entityConfig$getTitl2 === void 0 ? void 0 : _entityConfig$getTitl2.call(entityConfig, entityRecord)) || '',
             name,
             kind
@@ -4586,7 +4952,7 @@ function isPreviewEmbedFallback(state, url) {
  */
 
 function canUser(state, action, resource, id) {
-  const key = (0,external_lodash_namespaceObject.compact)([action, resource, id]).join('/');
+  const key = [action, resource, id].filter(Boolean).join('/');
   return (0,external_lodash_namespaceObject.get)(state, ['userPermissions', key]);
 }
 /**
@@ -4699,13 +5065,12 @@ function __experimentalGetTemplateForLink(state, link) {
   const records = getEntityRecords(state, 'postType', 'wp_template', {
     'find-template': link
   });
-  const template = records !== null && records !== void 0 && records.length ? records[0] : null;
 
-  if (template) {
-    return getEditedEntityRecord(state, 'postType', 'wp_template', template.id);
+  if (records !== null && records !== void 0 && records.length) {
+    return getEditedEntityRecord(state, 'postType', 'wp_template', records[0].id);
   }
 
-  return template;
+  return null;
 }
 /**
  * Retrieve the current theme's base global styles
@@ -4762,6 +5127,24 @@ function getBlockPatterns(state) {
 
 function getBlockPatternCategories(state) {
   return state.blockPatternCategories;
+}
+
+;// CONCATENATED MODULE: ./node_modules/camel-case/dist.es2015/index.js
+
+
+function camelCaseTransform(input, index) {
+    if (index === 0)
+        return input.toLowerCase();
+    return pascalCaseTransform(input, index);
+}
+function camelCaseTransformMerge(input, index) {
+    if (index === 0)
+        return input.toLowerCase();
+    return pascalCaseTransformMerge(input);
+}
+function camelCase(input, options) {
+    if (options === void 0) { options = {}; }
+    return pascalCase(input, __assign({ transform: camelCaseTransform }, options));
 }
 
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/utils/forward-resolver.js
@@ -4842,7 +5225,8 @@ const resolvers_getCurrentUser = () => async _ref2 => {
  * @param {string}           name  Entity name.
  * @param {number|string}    key   Record's key
  * @param {Object|undefined} query Optional object of query parameters to
- *                                 include with request.
+ *                                 include with request. If requesting specific
+ *                                 fields, fields must always include the ID.
  */
 
 const resolvers_getEntityRecord = function (kind, name) {
@@ -4854,10 +5238,7 @@ const resolvers_getEntityRecord = function (kind, name) {
       dispatch
     } = _ref3;
     const configs = await dispatch(getOrLoadEntitiesConfig(kind));
-    const entityConfig = (0,external_lodash_namespaceObject.find)(configs, {
-      kind,
-      name
-    });
+    const entityConfig = configs.find(config => config.name === name && config.kind === kind);
 
     if (!entityConfig || entityConfig !== null && entityConfig !== void 0 && entityConfig.__experimentalNoFetch) {
       return;
@@ -4873,7 +5254,7 @@ const resolvers_getEntityRecord = function (kind, name) {
         // records are stored by ID reference. Thus, fields must always include
         // the ID.
         query = { ...query,
-          _fields: (0,external_lodash_namespaceObject.uniq)([...(get_normalized_comma_separable(query._fields) || []), entityConfig.key || DEFAULT_ENTITY_KEY]).join()
+          _fields: [...new Set([...(get_normalized_comma_separable(query._fields) || []), entityConfig.key || DEFAULT_ENTITY_KEY])].join()
         };
       } // Disable reason: While true that an early return could leave `path`
       // unused, it's important that path is derived using the query prior to
@@ -4925,7 +5306,8 @@ const resolvers_getEditedEntityRecord = forward_resolver('getEntityRecord');
  *
  * @param {string}  kind  Entity kind.
  * @param {string}  name  Entity name.
- * @param {Object?} query Query Object.
+ * @param {Object?} query Query Object. If requesting specific fields, fields
+ *                        must always include the ID.
  */
 
 const resolvers_getEntityRecords = function (kind, name) {
@@ -4935,10 +5317,7 @@ const resolvers_getEntityRecords = function (kind, name) {
       dispatch
     } = _ref4;
     const configs = await dispatch(getOrLoadEntitiesConfig(kind));
-    const entityConfig = (0,external_lodash_namespaceObject.find)(configs, {
-      kind,
-      name
-    });
+    const entityConfig = configs.find(config => config.name === name && config.kind === kind);
 
     if (!entityConfig || entityConfig !== null && entityConfig !== void 0 && entityConfig.__experimentalNoFetch) {
       return;
@@ -4956,7 +5335,7 @@ const resolvers_getEntityRecords = function (kind, name) {
         // records are stored by ID reference. Thus, fields must always include
         // the ID.
         query = { ...query,
-          _fields: (0,external_lodash_namespaceObject.uniq)([...(get_normalized_comma_separable(query._fields) || []), entityConfig.key || DEFAULT_ENTITY_KEY]).join()
+          _fields: [...new Set([...(get_normalized_comma_separable(query._fields) || []), entityConfig.key || DEFAULT_ENTITY_KEY])].join()
         };
       }
 
@@ -5055,36 +5434,47 @@ const resolvers_getEmbedPreview = url => async _ref6 => {
  * Checks whether the current user can perform the given action on the given
  * REST resource.
  *
- * @param {string}  action   Action to check. One of: 'create', 'read', 'update',
- *                           'delete'.
- * @param {string}  resource REST resource to check, e.g. 'media' or 'posts'.
- * @param {?string} id       ID of the rest resource to check.
+ * @param {string}  requestedAction Action to check. One of: 'create', 'read', 'update',
+ *                                  'delete'.
+ * @param {string}  resource        REST resource to check, e.g. 'media' or 'posts'.
+ * @param {?string} id              ID of the rest resource to check.
  */
 
-const resolvers_canUser = (action, resource, id) => async _ref7 => {
+const resolvers_canUser = (requestedAction, resource, id) => async _ref7 => {
   var _response$headers;
 
   let {
-    dispatch
+    dispatch,
+    registry
   } = _ref7;
-  const methods = {
-    create: 'POST',
-    read: 'GET',
-    update: 'PUT',
-    delete: 'DELETE'
-  };
-  const method = methods[action];
+  const {
+    hasStartedResolution
+  } = registry.select(STORE_NAME);
+  const resourcePath = id ? `${resource}/${id}` : resource;
+  const retrievedActions = ['create', 'read', 'update', 'delete'];
 
-  if (!method) {
-    throw new Error(`'${action}' is not a valid action.`);
+  if (!retrievedActions.includes(requestedAction)) {
+    throw new Error(`'${requestedAction}' is not a valid action.`);
+  } // Prevent resolving the same resource twice.
+
+
+  for (const relatedAction of retrievedActions) {
+    if (relatedAction === requestedAction) {
+      continue;
+    }
+
+    const isAlreadyResolving = hasStartedResolution('canUser', [relatedAction, resource, id]);
+
+    if (isAlreadyResolving) {
+      return;
+    }
   }
 
-  const path = id ? `/wp/v2/${resource}/${id}` : `/wp/v2/${resource}`;
   let response;
 
   try {
     response = await external_wp_apiFetch_default()({
-      path,
+      path: `/wp/v2/${resourcePath}`,
       method: 'OPTIONS',
       parse: false
     });
@@ -5098,9 +5488,22 @@ const resolvers_canUser = (action, resource, id) => async _ref7 => {
 
 
   const allowHeader = (_response$headers = response.headers) === null || _response$headers === void 0 ? void 0 : _response$headers.get('allow');
-  const key = (0,external_lodash_namespaceObject.compact)([action, resource, id]).join('/');
-  const isAllowed = (0,external_lodash_namespaceObject.includes)(allowHeader, method);
-  dispatch.receiveUserPermission(key, isAllowed);
+  const allowedMethods = (allowHeader === null || allowHeader === void 0 ? void 0 : allowHeader.allow) || allowHeader || '';
+  const permissions = {};
+  const methods = {
+    create: 'POST',
+    read: 'GET',
+    update: 'PUT',
+    delete: 'DELETE'
+  };
+
+  for (const [actionName, methodName] of Object.entries(methods)) {
+    permissions[actionName] = allowedMethods.includes(methodName);
+  }
+
+  for (const action of retrievedActions) {
+    dispatch.receiveUserPermission(`${action}/${resourcePath}`, permissions[action]);
+  }
 };
 /**
  * Checks whether the current user can perform the given action on the given
@@ -5116,10 +5519,7 @@ const resolvers_canUserEditEntityRecord = (kind, name, recordId) => async _ref8 
     dispatch
   } = _ref8;
   const configs = await dispatch(getOrLoadEntitiesConfig(kind));
-  const entityConfig = (0,external_lodash_namespaceObject.find)(configs, {
-    kind,
-    name
-  });
+  const entityConfig = configs.find(config => config.name === name && config.kind === kind);
 
   if (!entityConfig) {
     return;
@@ -5214,6 +5614,8 @@ resolvers_experimentalGetTemplateForLink.shouldInvalidate = action => {
 };
 
 const resolvers_experimentalGetCurrentGlobalStylesId = () => async _ref13 => {
+  var _activeThemes$, _activeThemes$$_links, _activeThemes$$_links2, _activeThemes$$_links3;
+
   let {
     dispatch,
     resolveSelect
@@ -5221,7 +5623,7 @@ const resolvers_experimentalGetCurrentGlobalStylesId = () => async _ref13 => {
   const activeThemes = await resolveSelect.getEntityRecords('root', 'theme', {
     status: 'active'
   });
-  const globalStylesURL = (0,external_lodash_namespaceObject.get)(activeThemes, [0, '_links', 'wp:user-global-styles', 0, 'href']);
+  const globalStylesURL = activeThemes === null || activeThemes === void 0 ? void 0 : (_activeThemes$ = activeThemes[0]) === null || _activeThemes$ === void 0 ? void 0 : (_activeThemes$$_links = _activeThemes$._links) === null || _activeThemes$$_links === void 0 ? void 0 : (_activeThemes$$_links2 = _activeThemes$$_links['wp:user-global-styles']) === null || _activeThemes$$_links2 === void 0 ? void 0 : (_activeThemes$$_links3 = _activeThemes$$_links2[0]) === null || _activeThemes$$_links3 === void 0 ? void 0 : _activeThemes$$_links3.href;
 
   if (globalStylesURL) {
     const globalStylesObject = await external_wp_apiFetch_default()({
@@ -5262,16 +5664,19 @@ const resolvers_getBlockPatterns = () => async _ref16 => {
   const restPatterns = await external_wp_apiFetch_default()({
     path: '/wp/v2/block-patterns/patterns'
   });
-  const patterns = (0,external_lodash_namespaceObject.map)(restPatterns, pattern => (0,external_lodash_namespaceObject.mapKeys)(pattern, (value, key) => (0,external_lodash_namespaceObject.camelCase)(key)));
+  const patterns = restPatterns === null || restPatterns === void 0 ? void 0 : restPatterns.map(pattern => Object.fromEntries(Object.entries(pattern).map(_ref17 => {
+    let [key, value] = _ref17;
+    return [camelCase(key), value];
+  })));
   dispatch({
     type: 'RECEIVE_BLOCK_PATTERNS',
     patterns
   });
 };
-const resolvers_getBlockPatternCategories = () => async _ref17 => {
+const resolvers_getBlockPatternCategories = () => async _ref18 => {
   let {
     dispatch
-  } = _ref17;
+  } = _ref18;
   const categories = await external_wp_apiFetch_default()({
     path: '/wp/v2/block-patterns/categories'
   });
@@ -5798,386 +6203,6 @@ function useEntityBlockEditor(kind, name) {
   return [blocks !== null && blocks !== void 0 ? blocks : EMPTY_ARRAY, onInput, onChange];
 }
 
-// EXTERNAL MODULE: ./node_modules/memize/index.js
-var memize = __webpack_require__(9756);
-var memize_default = /*#__PURE__*/__webpack_require__.n(memize);
-;// CONCATENATED MODULE: ./packages/core-data/build-module/hooks/memoize.js
-/**
- * External dependencies
- */
- // re-export due to restrictive esModuleInterop setting
-
-/* harmony default export */ const memoize = ((memize_default()));
-
-;// CONCATENATED MODULE: ./packages/core-data/build-module/hooks/constants.js
-let Status;
-
-(function (Status) {
-  Status["Idle"] = "IDLE";
-  Status["Resolving"] = "RESOLVING";
-  Status["Error"] = "ERROR";
-  Status["Success"] = "SUCCESS";
-})(Status || (Status = {}));
-
-;// CONCATENATED MODULE: ./packages/core-data/build-module/hooks/use-query-select.js
-/**
- * WordPress dependencies
- */
-
-/**
- * Internal dependencies
- */
-
-
-
-const META_SELECTORS = ['getIsResolving', 'hasStartedResolution', 'hasFinishedResolution', 'isResolving', 'getCachedResolvers'];
-
-/**
- * Like useSelect, but the selectors return objects containing
- * both the original data AND the resolution info.
- *
- * @param {Function} mapQuerySelect see useSelect
- * @param {Array}    deps           see useSelect
- *
- * @example
- * ```js
- * import { useQuerySelect } from '@wordpress/data';
- * import { store as coreDataStore } from '@wordpress/core-data';
- *
- * function PageTitleDisplay( { id } ) {
- *   const { data: page, isResolving } = useQuerySelect( ( query ) => {
- *     return query( coreDataStore ).getEntityRecord( 'postType', 'page', id )
- *   }, [ id ] );
- *
- *   if ( isResolving ) {
- *     return 'Loading...';
- *   }
- *
- *   return page.title;
- * }
- *
- * // Rendered in the application:
- * // <PageTitleDisplay id={ 10 } />
- * ```
- *
- * In the above example, when `PageTitleDisplay` is rendered into an
- * application, the page and the resolution details will be retrieved from
- * the store state using the `mapSelect` callback on `useQuerySelect`.
- *
- * If the id prop changes then any page in the state for that id is
- * retrieved. If the id prop doesn't change and other props are passed in
- * that do change, the title will not change because the dependency is just
- * the id.
- * @see useSelect
- *
- * @return {QuerySelectResponse} Queried data.
- */
-function __experimentalUseQuerySelect(mapQuerySelect, deps) {
-  return (0,external_wp_data_namespaceObject.useSelect)((select, registry) => {
-    const resolve = store => enrichSelectors(select(store));
-
-    return mapQuerySelect(resolve, registry);
-  }, deps);
-}
-
-/**
- * Transform simple selectors into ones that return an object with the
- * original return value AND the resolution info.
- *
- * @param {Object} selectors Selectors to enrich
- * @return {EnrichedSelectors} Enriched selectors
- */
-const enrichSelectors = memoize(selectors => {
-  const resolvers = {};
-
-  for (const selectorName in selectors) {
-    if (META_SELECTORS.includes(selectorName)) {
-      continue;
-    }
-
-    Object.defineProperty(resolvers, selectorName, {
-      get: () => function () {
-        const {
-          getIsResolving,
-          hasFinishedResolution
-        } = selectors;
-
-        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-          args[_key] = arguments[_key];
-        }
-
-        const isResolving = !!getIsResolving(selectorName, args);
-        const hasResolved = !isResolving && hasFinishedResolution(selectorName, args);
-        const data = selectors[selectorName](...args);
-        let status;
-
-        if (isResolving) {
-          status = Status.Resolving;
-        } else if (hasResolved) {
-          if (data) {
-            status = Status.Success;
-          } else {
-            status = Status.Error;
-          }
-        } else {
-          status = Status.Idle;
-        }
-
-        return {
-          data,
-          status,
-          isResolving,
-          hasResolved
-        };
-      }
-    });
-  }
-
-  return resolvers;
-});
-
-;// CONCATENATED MODULE: ./packages/core-data/build-module/hooks/use-entity-record.js
-/**
- * WordPress dependencies
- */
-
-/**
- * Internal dependencies
- */
-
-
-
-
-/**
- * Resolves the specified entity record.
- *
- * @param  kind     Kind of the entity, e.g. `root` or a `postType`. See rootEntitiesConfig in ../entities.ts for a list of available kinds.
- * @param  name     Name of the entity, e.g. `plugin` or a `post`. See rootEntitiesConfig in ../entities.ts for a list of available names.
- * @param  recordId ID of the requested entity record.
- * @param  options  Optional hook options.
- * @example
- * ```js
- * import { useEntityRecord } from '@wordpress/core-data';
- *
- * function PageTitleDisplay( { id } ) {
- *   const { record, isResolving } = useEntityRecord( 'postType', 'page', id );
- *
- *   if ( isResolving ) {
- *     return 'Loading...';
- *   }
- *
- *   return record.title;
- * }
- *
- * // Rendered in the application:
- * // <PageTitleDisplay id={ 1 } />
- * ```
- *
- * In the above example, when `PageTitleDisplay` is rendered into an
- * application, the page and the resolution details will be retrieved from
- * the store state using `getEntityRecord()`, or resolved if missing.
- *
- * @return Entity record data.
- * @template RecordType
- */
-function useEntityRecord(kind, name, recordId) {
-  let options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {
-    enabled: true
-  };
-  const {
-    data: record,
-    ...rest
-  } = __experimentalUseQuerySelect(query => {
-    if (!options.enabled) {
-      return null;
-    }
-
-    return query(store).getEntityRecord(kind, name, recordId);
-  }, [kind, name, recordId, options.enabled]);
-  return {
-    record,
-    ...rest
-  };
-}
-function __experimentalUseEntityRecord(kind, name, recordId, options) {
-  external_wp_deprecated_default()(`wp.data.__experimentalUseEntityRecord`, {
-    alternative: 'wp.data.useEntityRecord',
-    since: '6.1'
-  });
-  return useEntityRecord(kind, name, recordId, options);
-}
-
-;// CONCATENATED MODULE: ./packages/core-data/build-module/hooks/use-entity-records.js
-/**
- * WordPress dependencies
- */
-
-
-/**
- * Internal dependencies
- */
-
-
-
-const use_entity_records_EMPTY_ARRAY = [];
-/**
- * Resolves the specified entity records.
- *
- * @param  kind      Kind of the entity, e.g. `root` or a `postType`. See rootEntitiesConfig in ../entities.ts for a list of available kinds.
- * @param  name      Name of the entity, e.g. `plugin` or a `post`. See rootEntitiesConfig in ../entities.ts for a list of available names.
- * @param  queryArgs Optional HTTP query description for how to fetch the data, passed to the requested API endpoint.
- * @param  options   Optional hook options.
- * @example
- * ```js
- * import { useEntityRecord } from '@wordpress/core-data';
- *
- * function PageTitlesList() {
- *   const { records, isResolving } = useEntityRecords( 'postType', 'page' );
- *
- *   if ( isResolving ) {
- *     return 'Loading...';
- *   }
- *
- *   return (
- *     <ul>
- *       {records.map(( page ) => (
- *         <li>{ page.title }</li>
- *       ))}
- *     </ul>
- *   );
- * }
- *
- * // Rendered in the application:
- * // <PageTitlesList />
- * ```
- *
- * In the above example, when `PageTitlesList` is rendered into an
- * application, the list of records and the resolution details will be retrieved from
- * the store state using `getEntityRecords()`, or resolved if missing.
- *
- * @return Entity records data.
- * @template RecordType
- */
-
-function useEntityRecords(kind, name) {
-  let queryArgs = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-  let options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {
-    enabled: true
-  };
-  // Serialize queryArgs to a string that can be safely used as a React dep.
-  // We can't just pass queryArgs as one of the deps, because if it is passed
-  // as an object literal, then it will be a different object on each call even
-  // if the values remain the same.
-  const queryAsString = (0,external_wp_url_namespaceObject.addQueryArgs)('', queryArgs);
-  const {
-    data: records,
-    ...rest
-  } = __experimentalUseQuerySelect(query => {
-    if (!options.enabled) {
-      return {
-        // Avoiding returning a new reference on every execution.
-        data: use_entity_records_EMPTY_ARRAY
-      };
-    }
-
-    return query(store).getEntityRecords(kind, name, queryArgs);
-  }, [kind, name, queryAsString, options.enabled]);
-  return {
-    records,
-    ...rest
-  };
-}
-function __experimentalUseEntityRecords(kind, name, queryArgs, options) {
-  external_wp_deprecated_default()(`wp.data.__experimentalUseEntityRecords`, {
-    alternative: 'wp.data.useEntityRecords',
-    since: '6.1'
-  });
-  return useEntityRecords(kind, name, queryArgs, options);
-}
-
-;// CONCATENATED MODULE: ./packages/core-data/build-module/hooks/use-resource-permissions.js
-/**
- * Internal dependencies
- */
-
-
-
-
-/**
- * Resolves resource permissions.
- *
- * @param  resource The resource in question, e.g. media.
- * @param  id       ID of a specific resource entry, if needed, e.g. 10.
- *
- * @example
- * ```js
- * import { useResourcePermissions } from '@wordpress/core-data';
- *
- * function PagesList() {
- *   const { canCreate, isResolving } = useResourcePermissions( 'pages' );
- *
- *   if ( isResolving ) {
- *     return 'Loading ...';
- *   }
- *
- *   return (
- *     <div>
- *       {canCreate ? (<button>+ Create a new page</button>) : false}
- *       // ...
- *     </div>
- *   );
- * }
- *
- * // Rendered in the application:
- * // <PagesList />
- * ```
- *
- * In the above example, when `PagesList` is rendered into an
- * application, the appropriate permissions and the resolution details will be retrieved from
- * the store state using `canUser()`, or resolved if missing.
- *
- * @return Entity records data.
- * @template IdType
- */
-function __experimentalUseResourcePermissions(resource, id) {
-  return __experimentalUseQuerySelect(resolve => {
-    const {
-      canUser
-    } = resolve(store);
-    const create = canUser('create', resource);
-
-    if (!id) {
-      return [create.hasResolved, {
-        status: create.status,
-        isResolving: create.isResolving,
-        canCreate: create.hasResolved && create.data
-      }];
-    }
-
-    const update = canUser('update', resource, id);
-
-    const _delete = canUser('delete', resource, id);
-
-    const isResolving = create.isResolving || update.isResolving || _delete.isResolving;
-    const hasResolved = create.hasResolved && update.hasResolved && _delete.hasResolved;
-    let status = Status.Idle;
-
-    if (isResolving) {
-      status = Status.Resolving;
-    } else if (hasResolved) {
-      status = Status.Success;
-    }
-
-    return [hasResolved, {
-      status,
-      isResolving,
-      canCreate: hasResolved && create.data,
-      canUpdate: hasResolved && update.data,
-      canDelete: hasResolved && _delete.data
-    }];
-  }, [resource, id]);
-}
-
 ;// CONCATENATED MODULE: external ["wp","htmlEntities"]
 const external_wp_htmlEntities_namespaceObject = window["wp"]["htmlEntities"];
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/fetch/__experimental-fetch-link-suggestions.js
@@ -6473,7 +6498,535 @@ const fetchUrlData = async function (url) {
 
 
 
+// EXTERNAL MODULE: ./node_modules/memize/index.js
+var memize = __webpack_require__(9756);
+var memize_default = /*#__PURE__*/__webpack_require__.n(memize);
+;// CONCATENATED MODULE: ./packages/core-data/build-module/hooks/memoize.js
+/**
+ * External dependencies
+ */
+ // re-export due to restrictive esModuleInterop setting
+
+/* harmony default export */ const memoize = ((memize_default()));
+
+;// CONCATENATED MODULE: ./packages/core-data/build-module/hooks/constants.js
+let Status;
+
+(function (Status) {
+  Status["Idle"] = "IDLE";
+  Status["Resolving"] = "RESOLVING";
+  Status["Error"] = "ERROR";
+  Status["Success"] = "SUCCESS";
+})(Status || (Status = {}));
+
+;// CONCATENATED MODULE: ./packages/core-data/build-module/hooks/use-query-select.js
+/**
+ * WordPress dependencies
+ */
+
+/**
+ * Internal dependencies
+ */
+
+
+
+const META_SELECTORS = ['getIsResolving', 'hasStartedResolution', 'hasFinishedResolution', 'isResolving', 'getCachedResolvers'];
+
+/**
+ * Like useSelect, but the selectors return objects containing
+ * both the original data AND the resolution info.
+ *
+ * @since 6.1.0 Introduced in WordPress core.
+ * @private
+ *
+ * @param {Function} mapQuerySelect see useSelect
+ * @param {Array}    deps           see useSelect
+ *
+ * @example
+ * ```js
+ * import { useQuerySelect } from '@wordpress/data';
+ * import { store as coreDataStore } from '@wordpress/core-data';
+ *
+ * function PageTitleDisplay( { id } ) {
+ *   const { data: page, isResolving } = useQuerySelect( ( query ) => {
+ *     return query( coreDataStore ).getEntityRecord( 'postType', 'page', id )
+ *   }, [ id ] );
+ *
+ *   if ( isResolving ) {
+ *     return 'Loading...';
+ *   }
+ *
+ *   return page.title;
+ * }
+ *
+ * // Rendered in the application:
+ * // <PageTitleDisplay id={ 10 } />
+ * ```
+ *
+ * In the above example, when `PageTitleDisplay` is rendered into an
+ * application, the page and the resolution details will be retrieved from
+ * the store state using the `mapSelect` callback on `useQuerySelect`.
+ *
+ * If the id prop changes then any page in the state for that id is
+ * retrieved. If the id prop doesn't change and other props are passed in
+ * that do change, the title will not change because the dependency is just
+ * the id.
+ * @see useSelect
+ *
+ * @return {QuerySelectResponse} Queried data.
+ */
+function useQuerySelect(mapQuerySelect, deps) {
+  return (0,external_wp_data_namespaceObject.useSelect)((select, registry) => {
+    const resolve = store => enrichSelectors(select(store));
+
+    return mapQuerySelect(resolve, registry);
+  }, deps);
+}
+
+/**
+ * Transform simple selectors into ones that return an object with the
+ * original return value AND the resolution info.
+ *
+ * @param {Object} selectors Selectors to enrich
+ * @return {EnrichedSelectors} Enriched selectors
+ */
+const enrichSelectors = memoize(selectors => {
+  const resolvers = {};
+
+  for (const selectorName in selectors) {
+    if (META_SELECTORS.includes(selectorName)) {
+      continue;
+    }
+
+    Object.defineProperty(resolvers, selectorName, {
+      get: () => function () {
+        const {
+          getIsResolving,
+          hasFinishedResolution
+        } = selectors;
+
+        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+          args[_key] = arguments[_key];
+        }
+
+        const isResolving = !!getIsResolving(selectorName, args);
+        const hasResolved = !isResolving && hasFinishedResolution(selectorName, args);
+        const data = selectors[selectorName](...args);
+        let status;
+
+        if (isResolving) {
+          status = Status.Resolving;
+        } else if (hasResolved) {
+          if (data) {
+            status = Status.Success;
+          } else {
+            status = Status.Error;
+          }
+        } else {
+          status = Status.Idle;
+        }
+
+        return {
+          data,
+          status,
+          isResolving,
+          hasResolved
+        };
+      }
+    });
+  }
+
+  return resolvers;
+});
+
+;// CONCATENATED MODULE: ./packages/core-data/build-module/hooks/use-entity-record.js
+/**
+ * WordPress dependencies
+ */
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+/**
+ * Resolves the specified entity record.
+ *
+ * @since 6.1.0 Introduced in WordPress core.
+ *
+ * @param  kind     Kind of the entity, e.g. `root` or a `postType`. See rootEntitiesConfig in ../entities.ts for a list of available kinds.
+ * @param  name     Name of the entity, e.g. `plugin` or a `post`. See rootEntitiesConfig in ../entities.ts for a list of available names.
+ * @param  recordId ID of the requested entity record.
+ * @param  options  Optional hook options.
+ * @example
+ * ```js
+ * import { useEntityRecord } from '@wordpress/core-data';
+ *
+ * function PageTitleDisplay( { id } ) {
+ *   const { record, isResolving } = useEntityRecord( 'postType', 'page', id );
+ *
+ *   if ( isResolving ) {
+ *     return 'Loading...';
+ *   }
+ *
+ *   return record.title;
+ * }
+ *
+ * // Rendered in the application:
+ * // <PageTitleDisplay id={ 1 } />
+ * ```
+ *
+ * In the above example, when `PageTitleDisplay` is rendered into an
+ * application, the page and the resolution details will be retrieved from
+ * the store state using `getEntityRecord()`, or resolved if missing.
+ *
+ * @example
+ * ```js
+ * import { useDispatch } from '@wordpress/data';
+ * import { useCallback } from '@wordpress/element';
+ * import { __ } from '@wordpress/i18n';
+ * import { TextControl } from '@wordpress/components';
+ * import { store as noticeStore } from '@wordpress/notices';
+ * import { useEntityRecord } from '@wordpress/core-data';
+ *
+ * function PageRenameForm( { id } ) {
+ * 	const page = useEntityRecord( 'postType', 'page', id );
+ * 	const { createSuccessNotice, createErrorNotice } =
+ * 		useDispatch( noticeStore );
+ *
+ * 	const setTitle = useCallback( ( title ) => {
+ * 		page.edit( { title } );
+ * 	}, [ page.edit ] );
+ *
+ * 	if ( page.isResolving ) {
+ * 		return 'Loading...';
+ * 	}
+ *
+ * 	async function onRename( event ) {
+ * 		event.preventDefault();
+ * 		try {
+ * 			await page.save();
+ * 			createSuccessNotice( __( 'Page renamed.' ), {
+ * 				type: 'snackbar',
+ * 			} );
+ * 		} catch ( error ) {
+ * 			createErrorNotice( error.message, { type: 'snackbar' } );
+ * 		}
+ * 	}
+ *
+ * 	return (
+ * 		<form onSubmit={ onRename }>
+ * 			<TextControl
+ * 				label={ __( 'Name' ) }
+ * 				value={ page.editedRecord.title }
+ * 				onChange={ setTitle }
+ * 			/>
+ * 			<button type="submit">{ __( 'Save' ) }</button>
+ * 		</form>
+ * 	);
+ * }
+ *
+ * // Rendered in the application:
+ * // <PageRenameForm id={ 1 } />
+ * ```
+ *
+ * In the above example, updating and saving the page title is handled
+ * via the `edit()` and `save()` mutation helpers provided by
+ * `useEntityRecord()`;
+ *
+ * @return Entity record data.
+ * @template RecordType
+ */
+function useEntityRecord(kind, name, recordId) {
+  let options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {
+    enabled: true
+  };
+  const {
+    editEntityRecord,
+    saveEditedEntityRecord
+  } = (0,external_wp_data_namespaceObject.useDispatch)(store);
+  const mutations = (0,external_wp_element_namespaceObject.useMemo)(() => ({
+    edit: record => editEntityRecord(kind, name, recordId, record),
+    save: function () {
+      let saveOptions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      return saveEditedEntityRecord(kind, name, recordId, {
+        throwOnError: true,
+        ...saveOptions
+      });
+    }
+  }), [recordId]);
+  const {
+    editedRecord,
+    hasEdits
+  } = (0,external_wp_data_namespaceObject.useSelect)(select => ({
+    editedRecord: select(store).getEditedEntityRecord(kind, name, recordId),
+    hasEdits: select(store).hasEditsForEntityRecord(kind, name, recordId)
+  }), [kind, name, recordId]);
+  const {
+    data: record,
+    ...querySelectRest
+  } = useQuerySelect(query => {
+    if (!options.enabled) {
+      return null;
+    }
+
+    return query(store).getEntityRecord(kind, name, recordId);
+  }, [kind, name, recordId, options.enabled]);
+  return {
+    record,
+    editedRecord,
+    hasEdits,
+    ...querySelectRest,
+    ...mutations
+  };
+}
+function __experimentalUseEntityRecord(kind, name, recordId, options) {
+  external_wp_deprecated_default()(`wp.data.__experimentalUseEntityRecord`, {
+    alternative: 'wp.data.useEntityRecord',
+    since: '6.1'
+  });
+  return useEntityRecord(kind, name, recordId, options);
+}
+
+;// CONCATENATED MODULE: ./packages/core-data/build-module/hooks/use-entity-records.js
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+const use_entity_records_EMPTY_ARRAY = [];
+/**
+ * Resolves the specified entity records.
+ *
+ * @since 6.1.0 Introduced in WordPress core.
+ *
+ * @param  kind      Kind of the entity, e.g. `root` or a `postType`. See rootEntitiesConfig in ../entities.ts for a list of available kinds.
+ * @param  name      Name of the entity, e.g. `plugin` or a `post`. See rootEntitiesConfig in ../entities.ts for a list of available names.
+ * @param  queryArgs Optional HTTP query description for how to fetch the data, passed to the requested API endpoint.
+ * @param  options   Optional hook options.
+ * @example
+ * ```js
+ * import { useEntityRecord } from '@wordpress/core-data';
+ *
+ * function PageTitlesList() {
+ *   const { records, isResolving } = useEntityRecords( 'postType', 'page' );
+ *
+ *   if ( isResolving ) {
+ *     return 'Loading...';
+ *   }
+ *
+ *   return (
+ *     <ul>
+ *       {records.map(( page ) => (
+ *         <li>{ page.title }</li>
+ *       ))}
+ *     </ul>
+ *   );
+ * }
+ *
+ * // Rendered in the application:
+ * // <PageTitlesList />
+ * ```
+ *
+ * In the above example, when `PageTitlesList` is rendered into an
+ * application, the list of records and the resolution details will be retrieved from
+ * the store state using `getEntityRecords()`, or resolved if missing.
+ *
+ * @return Entity records data.
+ * @template RecordType
+ */
+
+function useEntityRecords(kind, name) {
+  let queryArgs = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  let options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {
+    enabled: true
+  };
+  // Serialize queryArgs to a string that can be safely used as a React dep.
+  // We can't just pass queryArgs as one of the deps, because if it is passed
+  // as an object literal, then it will be a different object on each call even
+  // if the values remain the same.
+  const queryAsString = (0,external_wp_url_namespaceObject.addQueryArgs)('', queryArgs);
+  const {
+    data: records,
+    ...rest
+  } = useQuerySelect(query => {
+    if (!options.enabled) {
+      return {
+        // Avoiding returning a new reference on every execution.
+        data: use_entity_records_EMPTY_ARRAY
+      };
+    }
+
+    return query(store).getEntityRecords(kind, name, queryArgs);
+  }, [kind, name, queryAsString, options.enabled]);
+  return {
+    records,
+    ...rest
+  };
+}
+function __experimentalUseEntityRecords(kind, name, queryArgs, options) {
+  external_wp_deprecated_default()(`wp.data.__experimentalUseEntityRecords`, {
+    alternative: 'wp.data.useEntityRecords',
+    since: '6.1'
+  });
+  return useEntityRecords(kind, name, queryArgs, options);
+}
+
+;// CONCATENATED MODULE: ./packages/core-data/build-module/hooks/use-resource-permissions.js
+/**
+ * WordPress dependencies
+ */
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+
+/**
+ * Resolves resource permissions.
+ *
+ * @since 6.1.0 Introduced in WordPress core.
+ *
+ * @param  resource The resource in question, e.g. media.
+ * @param  id       ID of a specific resource entry, if needed, e.g. 10.
+ *
+ * @example
+ * ```js
+ * import { useResourcePermissions } from '@wordpress/core-data';
+ *
+ * function PagesList() {
+ *   const { canCreate, isResolving } = useResourcePermissions( 'pages' );
+ *
+ *   if ( isResolving ) {
+ *     return 'Loading ...';
+ *   }
+ *
+ *   return (
+ *     <div>
+ *       {canCreate ? (<button>+ Create a new page</button>) : false}
+ *       // ...
+ *     </div>
+ *   );
+ * }
+ *
+ * // Rendered in the application:
+ * // <PagesList />
+ * ```
+ *
+ * @example
+ * ```js
+ * import { useResourcePermissions } from '@wordpress/core-data';
+ *
+ * function Page({ pageId }) {
+ *   const {
+ *     canCreate,
+ *     canUpdate,
+ *     canDelete,
+ *     isResolving
+ *   } = useResourcePermissions( 'pages', pageId );
+ *
+ *   if ( isResolving ) {
+ *     return 'Loading ...';
+ *   }
+ *
+ *   return (
+ *     <div>
+ *       {canCreate ? (<button>+ Create a new page</button>) : false}
+ *       {canUpdate ? (<button>Edit page</button>) : false}
+ *       {canDelete ? (<button>Delete page</button>) : false}
+ *       // ...
+ *     </div>
+ *   );
+ * }
+ *
+ * // Rendered in the application:
+ * // <Page pageId={ 15 } />
+ * ```
+ *
+ * In the above example, when `PagesList` is rendered into an
+ * application, the appropriate permissions and the resolution details will be retrieved from
+ * the store state using `canUser()`, or resolved if missing.
+ *
+ * @return Entity records data.
+ * @template IdType
+ */
+function useResourcePermissions(resource, id) {
+  return useQuerySelect(resolve => {
+    const {
+      canUser
+    } = resolve(store);
+    const create = canUser('create', resource);
+
+    if (!id) {
+      const read = canUser('read', resource);
+      const isResolving = create.isResolving || read.isResolving;
+      const hasResolved = create.hasResolved && read.hasResolved;
+      let status = Status.Idle;
+
+      if (isResolving) {
+        status = Status.Resolving;
+      } else if (hasResolved) {
+        status = Status.Success;
+      }
+
+      return {
+        status,
+        isResolving,
+        hasResolved,
+        canCreate: create.hasResolved && create.data,
+        canRead: read.hasResolved && read.data
+      };
+    }
+
+    const read = canUser('read', resource, id);
+    const update = canUser('update', resource, id);
+
+    const _delete = canUser('delete', resource, id);
+
+    const isResolving = read.isResolving || create.isResolving || update.isResolving || _delete.isResolving;
+    const hasResolved = read.hasResolved && create.hasResolved && update.hasResolved && _delete.hasResolved;
+    let status = Status.Idle;
+
+    if (isResolving) {
+      status = Status.Resolving;
+    } else if (hasResolved) {
+      status = Status.Success;
+    }
+
+    return {
+      status,
+      isResolving,
+      hasResolved,
+      canRead: hasResolved && read.data,
+      canCreate: hasResolved && create.data,
+      canUpdate: hasResolved && update.data,
+      canDelete: hasResolved && _delete.data
+    };
+  }, [resource, id]);
+}
+function __experimentalUseResourcePermissions(resource, id) {
+  external_wp_deprecated_default()(`wp.data.__experimentalUseResourcePermissions`, {
+    alternative: 'wp.data.useResourcePermissions',
+    since: '6.1'
+  });
+  return useResourcePermissions(resource, id);
+}
+
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/hooks/index.js
+
 
 
 
@@ -6561,16 +7114,11 @@ const storeConfig = () => ({
  * Store definition for the code data namespace.
  *
  * @see https://github.com/WordPress/gutenberg/blob/HEAD/packages/data/README.md#createReduxStore
- *
- * @type {Object}
  */
 
 
 const store = (0,external_wp_data_namespaceObject.createReduxStore)(STORE_NAME, storeConfig());
 (0,external_wp_data_namespaceObject.register)(store);
-
-
-
 
 
 

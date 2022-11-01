@@ -414,7 +414,13 @@ const external_lodash_namespaceObject = window["lodash"];
  */
 
 function blockToMenuItem(block, menuItem, parentId, blockPosition, menuId) {
-  menuItem = (0,external_lodash_namespaceObject.omit)(menuItem, 'menus', 'meta', '_links');
+  const {
+    menus,
+    meta,
+    _links,
+    ...restMenuItem
+  } = menuItem;
+  menuItem = restMenuItem;
   menuItem.content = (0,external_lodash_namespaceObject.get)(menuItem.content, 'raw', menuItem.content);
   let attributes;
 
@@ -536,7 +542,7 @@ function menuItemsToBlocks(menuItems) {
 
 function mapMenuItemsToBlocks(menuItems) {
   // The menuItem should be in menu_order sort order.
-  const sortedItems = (0,external_lodash_namespaceObject.sortBy)(menuItems, 'menu_order');
+  const sortedItems = [...menuItems].sort((a, b) => a.menu_order - b.menu_order);
   const blocks = sortedItems.map(menuItem => {
     var _menuItem$children;
 
@@ -561,10 +567,7 @@ function mapMenuItemsToBlocks(menuItems) {
 
     return (0,external_wp_blocks_namespaceObject.createBlock)(itemBlockName, attributes, nestedBlocks);
   });
-  return (0,external_lodash_namespaceObject.zip)(blocks, sortedItems).map(_ref2 => {
-    let [block, menuItem] = _ref2;
-    return addRecordIdToBlock(block, menuItem.id);
-  });
+  return blocks.map((block, blockIndex) => addRecordIdToBlock(block, sortedItems[blockIndex].id));
 } // A few parameters are using snake case, let's embrace that for convenience:
 
 /* eslint-disable camelcase */
@@ -577,7 +580,7 @@ function mapMenuItemsToBlocks(menuItems) {
  */
 
 
-function menuItemToBlockAttributes(_ref3) {
+function menuItemToBlockAttributes(_ref2) {
   var _object;
 
   let {
@@ -591,7 +594,7 @@ function menuItemToBlockAttributes(_ref3) {
     url,
     type: menuItemTypeField,
     target
-  } = _ref3;
+  } = _ref2;
 
   // For historical reasons, the `core/navigation-link` variation type is `tag`
   // whereas WP Core expects `post_tag` as the `object` type.
@@ -825,13 +828,8 @@ const STORE_NAME = 'core/edit-navigation';
 
 ;// CONCATENATED MODULE: ./packages/edit-navigation/build-module/store/actions.js
 /**
- * External dependencies
- */
-
-/**
  * WordPress dependencies
  */
-
 
 
 
@@ -879,7 +877,7 @@ const saveNavigationPost = post => async _ref => {
   } catch (saveError) {
     const errorMessage = saveError ? (0,external_wp_i18n_namespaceObject.sprintf)(
     /* translators: %s: The text of an error message (potentially untranslated). */
-    (0,external_wp_i18n_namespaceObject.__)("Unable to save: '%s'"), saveError.message) : (0,external_wp_i18n_namespaceObject.__)('Unable to save: An error ocurred.');
+    (0,external_wp_i18n_namespaceObject.__)("Unable to save: '%s'"), saveError.message) : (0,external_wp_i18n_namespaceObject.__)('Unable to save: An error occurred.');
     registry.dispatch(external_wp_notices_namespaceObject.store).createErrorNotice(errorMessage, {
       type: 'snackbar'
     });
@@ -915,12 +913,12 @@ const batchSaveMenuItems = (navigationBlock, menuId) => async _ref2 => {
 
   const navBlockAfterUpdates = await dispatch(batchUpdateMenuItems(navBlockWithRecordIds, menuId)); // Delete menu items.
 
-  const deletedIds = (0,external_lodash_namespaceObject.difference)(oldMenuItems.map(_ref3 => {
+  const deletedIds = oldMenuItems.map(_ref3 => {
     let {
       id
     } = _ref3;
     return id;
-  }), blocksTreeToList(navBlockAfterUpdates).map(getRecordIdFromBlock));
+  }).filter(id => !blocksTreeToList(navBlockAfterUpdates).map(getRecordIdFromBlock).includes(id));
   await dispatch(batchDeleteMenuItems(deletedIds));
   return navBlockAfterUpdates;
 };
@@ -950,7 +948,7 @@ const batchInsertPlaceholderMenuItems = navigationBlock => async _ref4 => {
   });
   const results = await registry.dispatch(external_wp_coreData_namespaceObject.store).__experimentalBatch(tasks); // Return an updated navigation block with all the IDs in.
 
-  const blockToResult = new Map((0,external_lodash_namespaceObject.zip)(blocksWithoutRecordId, results));
+  const blockToResult = new Map(blocksWithoutRecordId.map((block, index) => [block, results[index]]));
   return mapBlocksTree(navigationBlock, block => {
     if (!blockToResult.has(block)) {
       return block;
@@ -2768,10 +2766,6 @@ ComplementaryAreaWrapped.Slot = ComplementaryAreaSlot;
  * WordPress dependencies
  */
 
-/**
- * WordPress dependencies
- */
-
 
 
 
@@ -2794,8 +2788,10 @@ function useHTMLClass(className) {
 
 function InterfaceSkeleton(_ref, ref) {
   let {
+    isDistractionFree,
     footer,
     header,
+    editorNotices,
     sidebar,
     secondarySidebar,
     notices,
@@ -2833,6 +2829,21 @@ function InterfaceSkeleton(_ref, ref) {
   const mergedLabels = { ...defaultLabels,
     ...labels
   };
+  const headerVariants = {
+    hidden: isDistractionFree ? {
+      opacity: 0
+    } : {
+      opacity: 1
+    },
+    hover: {
+      opacity: 1,
+      transition: {
+        type: 'tween',
+        delay: 0.2,
+        delayChildren: 0.2
+      }
+    }
+  };
   return (0,external_wp_element_namespaceObject.createElement)("div", _extends({}, navigateRegionsProps, {
     ref: (0,external_wp_compose_namespaceObject.useMergeRefs)([ref, navigateRegionsProps.ref]),
     className: classnames_default()(className, 'interface-interface-skeleton', navigateRegionsProps.className, !!footer && 'has-footer')
@@ -2843,12 +2854,26 @@ function InterfaceSkeleton(_ref, ref) {
     tabIndex: "-1"
   }, drawer), (0,external_wp_element_namespaceObject.createElement)("div", {
     className: "interface-interface-skeleton__editor"
-  }, !!header && (0,external_wp_element_namespaceObject.createElement)("div", {
+  }, !!header && isDistractionFree && (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.__unstableMotion.div, {
+    initial: isDistractionFree ? 'hidden' : 'hover',
+    whileHover: "hover",
+    variants: headerVariants,
+    transition: {
+      type: 'tween',
+      delay: 0.8
+    },
     className: "interface-interface-skeleton__header",
     role: "region",
     "aria-label": mergedLabels.header,
     tabIndex: "-1"
-  }, header), (0,external_wp_element_namespaceObject.createElement)("div", {
+  }, header), !!header && !isDistractionFree && (0,external_wp_element_namespaceObject.createElement)("div", {
+    className: "interface-interface-skeleton__header",
+    role: "region",
+    "aria-label": mergedLabels.header,
+    tabIndex: "-1"
+  }, header), isDistractionFree && (0,external_wp_element_namespaceObject.createElement)("div", {
+    className: "interface-interface-skeleton__header"
+  }, editorNotices), (0,external_wp_element_namespaceObject.createElement)("div", {
     className: "interface-interface-skeleton__body"
   }, !!secondarySidebar && (0,external_wp_element_namespaceObject.createElement)("div", {
     className: "interface-interface-skeleton__secondary-sidebar",
@@ -3006,10 +3031,10 @@ function NameDisplay() {
  * WordPress dependencies
  */
 
+
 /**
  * Internal dependencies
  */
-
 
 
 const addMenuNameEditor = (0,external_wp_compose_namespaceObject.createHigherOrderComponent)(BlockEdit => props => {
@@ -3944,11 +3969,18 @@ function MenuActions(_ref) {
     isLoading
   } = _ref;
   const [selectedMenuId, setSelectedMenuId] = useSelectedMenuId();
-  const [menuName] = useMenuEntityProp('name', selectedMenuId); // The title ref is passed to the popover as the anchorRef so that the
-  // dropdown is centered over the whole title area rather than just one
-  // part of it.
+  const [menuName] = useMenuEntityProp('name', selectedMenuId); // Use internal state instead of a ref to make sure that the component
+  // re-renders when the popover's anchor updates.
 
-  const titleRef = (0,external_wp_element_namespaceObject.useRef)();
+  const [popoverAnchor, setPopoverAnchor] = (0,external_wp_element_namespaceObject.useState)(null); // Memoize popoverProps to avoid returning a new object every time.
+
+  const popoverProps = (0,external_wp_element_namespaceObject.useMemo)(() => ({
+    className: 'edit-navigation-menu-actions__switcher-dropdown',
+    position: 'bottom center',
+    // Use the title ref as the popover's anchor so that the dropdown is
+    // centered over the whole title area rather than just on part of it.
+    anchor: popoverAnchor
+  }), [popoverAnchor]);
 
   if (isLoading) {
     return (0,external_wp_element_namespaceObject.createElement)("div", {
@@ -3959,7 +3991,7 @@ function MenuActions(_ref) {
   return (0,external_wp_element_namespaceObject.createElement)("div", {
     className: "edit-navigation-menu-actions"
   }, (0,external_wp_element_namespaceObject.createElement)("div", {
-    ref: titleRef,
+    ref: setPopoverAnchor,
     className: "edit-navigation-menu-actions__subtitle-wrapper"
   }, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.__experimentalText, {
     size: "body",
@@ -3976,11 +4008,7 @@ function MenuActions(_ref) {
       showTooltip: false,
       __experimentalIsFocusable: true
     },
-    popoverProps: {
-      className: 'edit-navigation-menu-actions__switcher-dropdown',
-      position: 'bottom center',
-      anchorRef: titleRef.current
-    }
+    popoverProps: popoverProps
   }, _ref2 => {
     let {
       onClose
@@ -4150,6 +4178,7 @@ function UndoButton() {
 
 
 function RedoButton() {
+  const shortcut = (0,external_wp_keycodes_namespaceObject.isAppleOS)() ? external_wp_keycodes_namespaceObject.displayShortcut.primaryShift('z') : external_wp_keycodes_namespaceObject.displayShortcut.primary('y');
   const hasRedo = (0,external_wp_data_namespaceObject.useSelect)(select => select(external_wp_coreData_namespaceObject.store).hasRedo(), []);
   const {
     redo
@@ -4157,7 +4186,7 @@ function RedoButton() {
   return (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.ToolbarButton, {
     icon: !(0,external_wp_i18n_namespaceObject.isRTL)() ? library_redo : library_undo,
     label: (0,external_wp_i18n_namespaceObject.__)('Redo'),
-    shortcut: external_wp_keycodes_namespaceObject.displayShortcut.primaryShift('z') // If there are no undo levels we don't want to actually disable this
+    shortcut: shortcut // If there are no undo levels we don't want to actually disable this
     // button, because it will remove focus for keyboard users.
     // See: https://github.com/WordPress/gutenberg/issues/3486
     ,

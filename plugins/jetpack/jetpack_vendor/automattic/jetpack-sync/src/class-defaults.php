@@ -57,6 +57,7 @@ class Defaults {
 		'disabled_reblogs',
 		'disallowed_keys',
 		'enable_header_ad',
+		'featured_image_email_enabled',
 		'gmt_offset',
 		'gravatar_disable_hovercards',
 		'highlander_comment_form_prompt',
@@ -407,6 +408,7 @@ class Defaults {
 		'scheduled-action', // Action Scheduler - Job Queue for WordPress https://github.com/woocommerce/woocommerce/tree/e7762627c37ec1f7590e6cac4218ba0c6a20024d/includes/libraries/action-scheduler .
 		'secupress_log_action',
 		'sg_optimizer_jobs',
+		'sl-insta-media',
 		'snitch',
 		'vip-legacy-redirect',
 		'wp-rest-api-log', // https://wordpress.org/plugins/wp-rest-api-log/.
@@ -796,16 +798,21 @@ class Defaults {
 	 */
 	public static $default_theme_support_whitelist = array(
 		'align-wide',
+		'appearance-tools', // In Gutenberg.
 		'automatic-feed-links',
 		'block-templates',
+		'block-template-parts', // WP 6.1. Added via https://core.trac.wordpress.org/changeset/54176
 		'custom-background',
 		'custom-header',
 		'custom-logo',
 		'customize-selective-refresh-widgets',
 		'dark-editor-style',
+		'default-color-palette', // In Gutenberg.
+		'default-gradient-presets', // In Gutenberg.
 		'disable-custom-colors',
 		'disable-custom-font-sizes',
 		'disable-custom-gradients',
+		'disable-layout-styles', // WP 6.1. Added via https://core.trac.wordpress.org/changeset/54159
 		'editor-color-palette',
 		'editor-font-sizes',
 		'editor-gradient-presets',

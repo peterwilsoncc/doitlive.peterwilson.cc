@@ -9,6 +9,8 @@
 
 namespace Automattic\Jetpack\Publicize;
 
+use Automattic\Jetpack\Connection\Client;
+use Automattic\Jetpack\Current_Plan;
 use Automattic\Jetpack\Redirect;
 use Automattic\Jetpack\Status;
 
@@ -446,7 +448,8 @@ abstract class Publicize_Base {
 				return false;
 			}
 
-			$profile_url_query = wp_parse_url( $cmeta['connection_data']['meta']['profile_url'], PHP_URL_QUERY );
+			$profile_url_query      = wp_parse_url( $cmeta['connection_data']['meta']['profile_url'], PHP_URL_QUERY );
+			$profile_url_query_args = null;
 			wp_parse_str( $profile_url_query, $profile_url_query_args );
 
 			$id = null;
@@ -859,7 +862,6 @@ abstract class Publicize_Base {
 					'service_label'   => $this->get_service_label( $service_name ),
 					'display_name'    => $this->get_display_name( $service_name, $connection ),
 					'profile_picture' => $this->get_profile_picture( $connection ),
-
 					'enabled'         => $enabled,
 					'done'            => $done,
 					'toggleable'      => $toggleable,
@@ -1005,7 +1007,7 @@ abstract class Publicize_Base {
 	public function register_post_meta() {
 		$message_args = array(
 			'type'          => 'string',
-			'description'   => __( 'The message to use instead of the title when sharing to Publicize Services', 'jetpack-publicize-pkg' ),
+			'description'   => __( 'The message to use instead of the title when sharing to Jetpack Social services', 'jetpack-publicize-pkg' ),
 			'single'        => true,
 			'default'       => '',
 			'show_in_rest'  => array(
@@ -1439,6 +1441,77 @@ abstract class Publicize_Base {
 		$allowed_sources = array( 'jetpack-social-connections-admin-page', 'jetpack-social-connections-classic-editor', 'calypso-marketing-connections' );
 		$source          = in_array( $source, $allowed_sources, true ) ? $source : 'calypso-marketing-connections';
 		return Redirect::get_url( $source, array( 'site' => ( new Status() )->get_site_suffix() ) );
+	}
+
+	/**
+	 * Call the WPCOM REST API to get the Publicize shares info.
+	 *
+	 * @param string $blog_id The WPCOM blog_id for the current blog.
+	 * @return array
+	 */
+	public function get_publicize_shares_info( $blog_id ) {
+		static $share_info_response = null;
+		$key                        = 'jetpack_social_shares_info';
+
+		if ( ! isset( $share_info_response ) ) {
+			$response            = Client::wpcom_json_api_request_as_blog(
+				sprintf( 'sites/%d/jetpack-social', absint( $blog_id ) ),
+				'2',
+				array(
+					'headers' => array( 'content-type' => 'application/json' ),
+					'method'  => 'GET',
+				),
+				null,
+				'wpcom'
+			);
+			$rest_controller     = new REST_Controller();
+			$share_info_response = $rest_controller->make_proper_response( $response );
+			if ( ! is_wp_error( $share_info_response ) ) {
+				set_transient( $key, $share_info_response, DAY_IN_SECONDS );
+				return $share_info_response;
+			}
+			$cached_response = get_transient( $key );
+			if ( ! empty( $cached_response ) ) {
+				return $cached_response;
+			}
+		}
+
+		return ! is_wp_error( $share_info_response ) ? $share_info_response : null;
+	}
+
+	/**
+	 * Call the WPCOM REST API to calculate the scheduled shares.
+	 *
+	 * @param string $blog_id The blog_id.
+	 */
+	public function calculate_scheduled_shares( $blog_id ) {
+		$response        = Client::wpcom_json_api_request_as_blog(
+			sprintf( 'sites/%d/jetpack-social/count-scheduled-shares', absint( $blog_id ) ),
+			'2',
+			array(
+				'headers' => array( 'content-type' => 'application/json' ),
+				'method'  => 'GET',
+			),
+			null,
+			'wpcom'
+		);
+		$rest_controller = new REST_Controller();
+		return $rest_controller->make_proper_response( $response );
+	}
+
+	/**
+	 * Check if we have a paid Jetpack Social plan.
+	 *
+	 * @param bool $refresh_from_wpcom Whether to force refresh the plan check.
+	 *
+	 * @return bool True if we have a paid plan, false otherwise.
+	 */
+	public function has_paid_plan( $refresh_from_wpcom = false ) {
+		static $has_paid_plan = null;
+		if ( ! $has_paid_plan ) {
+			$has_paid_plan = Current_Plan::supports( 'social-shares-1000', $refresh_from_wpcom );
+		}
+		return $has_paid_plan;
 	}
 }
 
