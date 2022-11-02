@@ -40,7 +40,7 @@ function grunion_contact_form_require_endpoint() {
  */
 function grunion_contact_form_set_block_template_attribute( $template ) {
 	global $_wp_current_template_content;
-	if ( ABSPATH . WPINC . '/template-canvas.php' === $template ) {
+	if ( 'template-canvas.php' === basename( $template ) ) {
 		Grunion_Contact_Form::style_on();
 		$_wp_current_template_content = grunion_contact_form_apply_block_attribute(
 			$_wp_current_template_content,
@@ -3122,6 +3122,9 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 			// 'textarea' => field_id,
 		);
 
+		// Initialize marketing consent
+		$field_ids['email_marketing_consent'] = null;
+
 		foreach ( $this->fields as $id => $field ) {
 			$field_ids['all'][] = $id;
 
@@ -3142,8 +3145,18 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 				case 'url':
 				case 'subject':
 				case 'textarea':
-				case 'consent':
 					$field_ids[ $type ] = $id;
+					break;
+				case 'consent':
+					// Set email marketing consent for the first Consent type field
+					if ( null === $field_ids['email_marketing_consent'] ) {
+						if ( $field->value ) {
+							$field_ids['email_marketing_consent'] = true;
+						} else {
+							$field_ids['email_marketing_consent'] = false;
+						}
+					}
+					$field_ids['extra'][] = $id;
 					break;
 				default:
 					// Put everything else in extra
@@ -3169,8 +3182,7 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 		$block_template      = $this->get_attribute( 'block_template' );
 		$block_template_part = $this->get_attribute( 'block_template_part' );
 
-		$contact_form_subject    = $this->get_attribute( 'subject' );
-		$email_marketing_consent = false;
+		$contact_form_subject = $this->get_attribute( 'subject' );
 
 		$to     = str_replace( ' ', '', $to );
 		$emails = explode( ',', $to );
@@ -3275,11 +3287,11 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 			}
 		}
 
-		if ( isset( $field_ids['consent'] ) ) {
-			$field = $this->fields[ $field_ids['consent'] ];
-			if ( $field->value ) {
-				$email_marketing_consent = true;
-			}
+		// Set marketing consent
+		$email_marketing_consent = $field_ids['email_marketing_consent'];
+
+		if ( null === $email_marketing_consent ) {
+			$email_marketing_consent = false;
 		}
 
 		$all_values   = array();
@@ -3394,8 +3406,9 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 		 * @since 1.3.1
 		 *
 		 * @param string|array $to Array of valid email addresses, or single email address.
+		 * @param array $all_values Contact form fields
 		 */
-		$to            = (array) apply_filters( 'contact_form_to', $to );
+		$to            = (array) apply_filters( 'contact_form_to', $to, $all_values );
 		$reply_to_addr = $to[0]; // get just the address part before the name part is added
 
 		foreach ( $to as $to_key => $to_value ) {
@@ -3507,7 +3520,7 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 				'post_date'    => addslashes( $feedback_time ),
 				'post_type'    => 'feedback',
 				'post_status'  => addslashes( $feedback_status ),
-				'post_parent'  => (int) $post->ID,
+				'post_parent'  => $post ? (int) $post->ID : 0,
 				'post_title'   => addslashes( wp_kses( $feedback_title, array() ) ),
 				// phpcs:ignore WordPress.NamingConventions.ValidVariableName.InterpolatedVariableNotSnakeCase, WordPress.PHP.NoSilencedErrors.Discouraged, WordPress.PHP.DevelopmentFunctions.error_log_print_r
 				'post_content' => addslashes( wp_kses( "$comment_content\n<!--more-->\nAUTHOR: {$comment_author}\nAUTHOR EMAIL: {$comment_author_email}\nAUTHOR URL: {$comment_author_url}\nSUBJECT: {$subject}\nIP: {$comment_author_IP}\n" . @print_r( $all_values, true ), array() ) ), // so that search will pick up this data
@@ -3662,7 +3675,7 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 		$custom_redirect = false;
 		if ( 'redirect' === $this->get_attribute( 'customThankyou' ) ) {
 			$custom_redirect = true;
-			$redirect        = esc_url( $this->get_attribute( 'customThankyouRedirect' ) );
+			$redirect        = esc_url_raw( $this->get_attribute( 'customThankyouRedirect' ) );
 		}
 
 		if ( ! $redirect ) {
@@ -4089,12 +4102,12 @@ class Grunion_Contact_Form_Field extends Crunion_Contact_Form_Shortcode {
 
 		if ( isset( $_POST[ $field_id ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- no site changes.
 			if ( is_array( $_POST[ $field_id ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- no site changes.
-				$this->value = array_map( 'sanitize_text_field', wp_unslash( $_POST[ $field_id ] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing -- no site changes.
+				$this->value = array_map( 'sanitize_textarea_field', wp_unslash( $_POST[ $field_id ] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing -- no site changes.
 			} else {
-				$this->value = sanitize_text_field( wp_unslash( $_POST[ $field_id ] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing -- no site changes.
+				$this->value = sanitize_textarea_field( wp_unslash( $_POST[ $field_id ] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing -- no site changes.
 			}
 		} elseif ( isset( $_GET[ $field_id ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- no site changes.
-			$this->value = sanitize_text_field( wp_unslash( $_GET[ $field_id ] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- no site changes.
+			$this->value = sanitize_textarea_field( wp_unslash( $_GET[ $field_id ] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- no site changes.
 		} elseif (
 			is_user_logged_in() &&
 			( ( defined( 'IS_WPCOM' ) && IS_WPCOM ) ||

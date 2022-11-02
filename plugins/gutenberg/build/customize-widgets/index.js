@@ -1031,6 +1031,12 @@ const textFormattingShortcuts = [{
     character: 'd'
   },
   description: (0,external_wp_i18n_namespaceObject.__)('Strikethrough the selected text.')
+}, {
+  keyCombination: {
+    modifier: 'access',
+    character: 'x'
+  },
+  description: (0,external_wp_i18n_namespaceObject.__)('Make the selected text inline code.')
 }];
 
 ;// CONCATENATED MODULE: external "lodash"
@@ -1382,6 +1388,7 @@ function Header(_ref) {
     isFixedToolbarActive
   } = _ref;
   const [[hasUndo, hasRedo], setUndoRedo] = (0,external_wp_element_namespaceObject.useState)([sidebar.hasUndo(), sidebar.hasRedo()]);
+  const shortcut = (0,external_wp_keycodes_namespaceObject.isAppleOS)() ? external_wp_keycodes_namespaceObject.displayShortcut.primaryShift('z') : external_wp_keycodes_namespaceObject.displayShortcut.primary('y');
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     return sidebar.subscribeHistory(() => {
       setUndoRedo([sidebar.hasUndo(), sidebar.hasRedo()]);
@@ -1411,7 +1418,7 @@ function Header(_ref) {
     /* translators: button label text should, if possible, be under 16 characters. */
     ,
     label: (0,external_wp_i18n_namespaceObject.__)('Redo'),
-    shortcut: external_wp_keycodes_namespaceObject.displayShortcut.primaryShift('z') // If there are no undo levels we don't want to actually disable this
+    shortcut: shortcut // If there are no undo levels we don't want to actually disable this
     // button, because it will remove focus for keyboard users.
     // See: https://github.com/WordPress/gutenberg/issues/3486
     ,
@@ -1476,11 +1483,6 @@ var external_wp_isShallowEqual_default = /*#__PURE__*/__webpack_require__.n(exte
 
 /**
  * WordPress dependencies
- */
-
-
-/**
- * External dependencies
  */
 
 
@@ -1554,7 +1556,12 @@ function blockToWidget(block) {
     };
   }
 
-  return { ...(0,external_lodash_namespaceObject.omit)(existingWidget, ['form', 'rendered']),
+  const {
+    form,
+    rendered,
+    ...restExistingWidget
+  } = existingWidget || {};
+  return { ...restExistingWidget,
     ...widget
   };
 }
@@ -1585,7 +1592,9 @@ function widgetToBlock(_ref) {
   } = instance;
 
   if (idBase === 'block') {
-    const parsedBlocks = (0,external_wp_blocks_namespaceObject.parse)(raw.content);
+    const parsedBlocks = (0,external_wp_blocks_namespaceObject.parse)(raw.content, {
+      __unstableSkipAutop: true
+    });
     block = parsedBlocks.length ? parsedBlocks[0] : (0,external_wp_blocks_namespaceObject.createBlock)('core/paragraph', {});
   } else if (number) {
     // Widget that extends WP_Widget.

@@ -1,10 +1,10 @@
 === Jetpack - WP Security, Backup, Speed, & Growth ===
 Contributors: automattic, adamkheckler, adrianmoldovanwp, aduth, akirk, allendav, alternatekev, andy, annamcphee, annezazu, apeatling, arcangelini, azaozz, batmoo, barry, beaulebens, biskobe, blobaugh, bjorsch, brbrr, cainm, cena, cfinke, chaselivingston, chellycat, clickysteve, csonnek, danielbachhuber, davoraltman, daniloercoli, delawski, designsimply, dllh, drawmyface, dsmart, dzver, ebinnion, egregor, eliorivero, enej, eoigal, erania-pinnera, ethitter, fgiannar, gcorne, georgestephanis, gibrown, goldsounds, hew, hugobaeta, hypertextranch, iammattthomas, iandunn, jblz, jasmussen, jeffgolenski, jeherve, jenhooks, jenia, jessefriedman, jgs, jkudish, jmdodd, joanrho, johnjamesjacoby, jshreve, kbrownkd, keoshi, koke, kraftbj, lancewillett, leogermani, lschuyler, macmanx, martinremy, matt, matveb, mattwiebe, maverick3x6, mcsf, mdawaffe, mdbitz, MichaelArestad, migueluy, mikeyarce, mkaz, nancythanki, nickmomrik, obenland, oskosk, pento, professor44, rachelsquirrel, rdcoll, ryancowles, richardmuscat, richardmtl, robertbpugh, roccotripaldi, samhotchkiss, samiff, scarstocea, scottsweb, sdixon194, sdquirk, sermitr, simison, stephdau, tmoorewp, tyxla, Viper007Bond, westi, yoavf, zinigor
 Tags: Security, backup, Woo, malware, scan, spam, CDN, search, social
-Stable tag: 11.1.2
-Requires at least: 5.9
+Stable tag: 11.5
+Requires at least: 6.0
 Requires PHP: 5.6
-Tested up to: 6.0
+Tested up to: 6.1
 
 Improve your WP security with powerful one-click tools like backup and malware scan. Get essential free tools including stats, CDN and social sharing.
 
@@ -242,44 +242,43 @@ Jetpack Backup can do a full website migration to a new host, migrate theme file
 4. Promote your newest posts, pages, and products across your social media channels.
 
 == Changelog ==
-### 11.1.2 - 2022-07-15
-#### Bug fixes
-- Dashboard: avoid JavaScript errors and layout problems on sites experiencing URL-related connection issues with WordPress.com.
-
-### 11.1 - 2022-07-05
+### 11.5 - 2022-11-01
 #### Enhancements
-- Dashboard: add "Getting started with Jetpack Backup" video to Assistant and "At a glance" dashboard.
-- Recipe Block (beta): introduce a new Recipe block to display an easy to read recipe anywhere on your site. Currently a JETPACK_BETA_BLOCKS feature.
-- VideoPress: enable blocks with VideoPress markdown to be previewed within the mobile app.
-- VideoPress Block (beta): introduce VideoPress block currently in beta status.
+- Dashboard: add a new illustration for WooCommerce recommendation.
+- Dashboard: add connection widget for unconnected sites.
+- Dashboard: add Jetpack Search Free and Jetpack Social to My Products. [#27007, #26990]
+- Dashboard: ensure Apps card is always displayed, regardless of whether promotions are active.
+- Form block: add Contact Form child blocks to the Block Library.
+- Form block: add default spacing attributes on all form variations.
+- Form block: change layout flex styles.
+- Form block: improve parent block selection when inner block is already selected.
+- Form block: move Contact Form child blocks to a new category and remove some Core blocks from the child blocks list.
+- Form block: remove duplicated contact form settings from the Contact Form block's toolbar in favor of the sidebar.
+- Jetpack Social: display broken connections to user in editor.
+- Payment Button block: support a wider varity of layout options.
+- Payment Buttons block: add typography controls.
+- Publicize: make the pre-publish panel initially closed by default.
+- Social: show pre-publish panel if the site has connections enabled.
+- Stats: change mentions of "Site Stats" with "Jetpack Stats".
+- Subscription block: don't include Jetpack Social connections in subscriber count.
+- Subscription block: revert the subscription block subscriber count change.
+- Subscriptions: bold the display reader numbers in subscriptions panel instead of underlined.
+- VideoPress: change the toolbar text for the "Edit video" button on the VideoPress block to "Replace" to match the core video block's toolbar.
+- VideoPress: move videopress/video transfrom from VideoPress plugin to Jetpack plugin
 
 #### Improved compatibility
-- Blocks: add Jetpack block elements to WPML configuration so they can be translated.
-- Connection: update connection banner to use updated Emerald styling.
-- Custom Post Types: change Nova functions to public to re-allow hooking.
-- Publicize: configure Publicize only when the module is active.
-- VideoPress: update non-iframe player to latest version for sites using the `jetpack_videopress_player_use_iframe` filter.
+- Contact Form Block: removed compatibility checks involving automatic deactivation of contact form functionality.
 
 #### Bug fixes
-- CLI: avoid PHP notice when running connection tests.
-- Connection: move the connection_url_redirect action handling to the connection package.
-- Contact Form: support saving array of data, such as multiple checkboxes.
-- Contact Form Block: display expected success message when used in FSE header or footer.
-- Contact Form Block: radio, select, and multiple checkbox fields can now have option with a value of '0'.
-- Dashboard: fix the link to Anti-spam stats.
-- Dashboard: format anti-spam stats properly, including in languages using a space as thousands separator.
-- Mailchimp Block: center spinner during loading block content.
-- Payment Block: fix issue preventing images in payment buttons.
-- Payments Block: only add PayPal email meta to Payment posts.
-- Payments Block: remove hardcoded recurring-payments button color.
-- Photon: do not return Photonized URLs to the block editor in WordPress 6.0.
-- Search: avoid broken images in search results by preferring the _jetpack_featured_media_url postmeta over the GUID.
-- SEO Tools: allow WooCommerce to use custom SEO description for the shop page.
-- Sharing: avoid fatal errors when email sharing process is called  without clicking on the button.
-- Subscribe Block: fix double-quote breaking the Subscribe block button.
-- VideoPress: fix average color parameter for seekbar.
-- VideoPress: fix embeds in classic editor when theme has no $content_width set.
-- VideoPress Block: fix Cancel button on block and provide better error message when video format is not supported.
+- Contact Form: display consent form field result in notification emails and feedback views.
+- Contact Form: remove overlay causing issues with the block inserter hover behavior.
+- CRM: Fix unmounted state updates in Form CRM integration
+- Form block: include spacing between Contact Form blocks to allow the block inserter to be shown on mouse hover.
+- Form block: prevent contact form from escaping valid URL characters in the redirect URL
+- Get Apps card: Iterate on link to jetpack.com/apps to ensure backwards compatibility and click-tracking
+- Payment Buttons block: fix payment-buttons font sizes taking precedence over the font sizes of contained button blocks.
+- Publicize Components: Fix the panel component refactor
+- Social: Ensure we have a user connection when loading the module
 
 --------
 

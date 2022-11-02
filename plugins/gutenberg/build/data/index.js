@@ -455,7 +455,7 @@ __webpack_require__.d(__webpack_exports__, {
   "AsyncModeProvider": () => (/* reexport */ async_mode_provider_context),
   "RegistryConsumer": () => (/* reexport */ RegistryConsumer),
   "RegistryProvider": () => (/* reexport */ context),
-  "combineReducers": () => (/* reexport */ (turbo_combine_reducers_default())),
+  "combineReducers": () => (/* binding */ build_module_combineReducers),
   "controls": () => (/* reexport */ controls),
   "createReduxStore": () => (/* reexport */ createReduxStore),
   "createRegistry": () => (/* reexport */ createRegistry),
@@ -1255,6 +1255,8 @@ var equivalent_key_map_default = /*#__PURE__*/__webpack_require__.n(equivalent_k
 ;// CONCATENATED MODULE: external ["wp","reduxRoutine"]
 const external_wp_reduxRoutine_namespaceObject = window["wp"]["reduxRoutine"];
 var external_wp_reduxRoutine_default = /*#__PURE__*/__webpack_require__.n(external_wp_reduxRoutine_namespaceObject);
+;// CONCATENATED MODULE: external ["wp","compose"]
+const external_wp_compose_namespaceObject = window["wp"]["compose"];
 ;// CONCATENATED MODULE: ./packages/data/build-module/factory.js
 /**
  * Creates a selector function that takes additional curried argument with the
@@ -1697,7 +1699,6 @@ function selectorArgsToStateKey(args) {
  */
 
 
-
 /**
  * Internal dependencies
  */
@@ -1817,7 +1818,17 @@ const isResolved = function () {
       return {};
 
     case 'INVALIDATE_RESOLUTION_FOR_STORE_SELECTOR':
-      return (0,external_lodash_namespaceObject.has)(state, [action.selectorName]) ? (0,external_lodash_namespaceObject.omit)(state, [action.selectorName]) : state;
+      {
+        if (action.selectorName in state) {
+          const {
+            [action.selectorName]: removedSelector,
+            ...restState
+          } = state;
+          return restState;
+        }
+
+        return state;
+      }
 
     case 'START_RESOLUTION':
     case 'FINISH_RESOLUTION':
@@ -2147,6 +2158,7 @@ function invalidateResolutionForStoreSelector(selectorName) {
  */
 
 
+
 /**
  * Internal dependencies
  */
@@ -2381,7 +2393,7 @@ function instantiateReduxStore(key, options, registry, thunkArgs) {
   });
   return createStore(enhancedReducer, {
     root: initialState
-  }, (0,external_lodash_namespaceObject.flowRight)(enhancers));
+  }, (0,external_wp_compose_namespaceObject.compose)(enhancers));
 }
 /**
  * Maps selectors to a store.
@@ -2449,7 +2461,17 @@ function mapActions(actions, store) {
 
 
 function mapResolveSelectors(selectors, store) {
-  const storeSelectors = (0,external_lodash_namespaceObject.omit)(selectors, ['getIsResolving', 'hasStartedResolution', 'hasFinishedResolution', 'hasResolutionFailed', 'isResolving', 'getCachedResolvers', 'getResolutionState', 'getResolutionError']);
+  const {
+    getIsResolving,
+    hasStartedResolution,
+    hasFinishedResolution,
+    hasResolutionFailed,
+    isResolving,
+    getCachedResolvers,
+    getResolutionState,
+    getResolutionError,
+    ...storeSelectors
+  } = selectors;
   return (0,external_lodash_namespaceObject.mapValues)(storeSelectors, (selector, selectorName) => {
     // If the selector doesn't have a resolver, just convert the return value
     // (including exceptions) to a Promise, no additional extra behavior is needed.
@@ -3014,10 +3036,10 @@ function createRegistry() {
 
   function batch(callback) {
     emitter.pause();
-    (0,external_lodash_namespaceObject.forEach)(stores, store => store.emitter.pause());
+    Object.values(stores).forEach(store => store.emitter.pause());
     callback();
     emitter.resume();
-    (0,external_lodash_namespaceObject.forEach)(stores, store => store.emitter.resume());
+    Object.values(stores).forEach(store => store.emitter.resume());
   }
 
   let registry = {
@@ -3071,6 +3093,42 @@ function createRegistry() {
 
 /* harmony default export */ const default_registry = (createRegistry());
 
+;// CONCATENATED MODULE: ./node_modules/is-plain-object/dist/is-plain-object.mjs
+/*!
+ * is-plain-object <https://github.com/jonschlinkert/is-plain-object>
+ *
+ * Copyright (c) 2014-2017, Jon Schlinkert.
+ * Released under the MIT License.
+ */
+
+function is_plain_object_isObject(o) {
+  return Object.prototype.toString.call(o) === '[object Object]';
+}
+
+function is_plain_object_isPlainObject(o) {
+  var ctor,prot;
+
+  if (is_plain_object_isObject(o) === false) return false;
+
+  // If has modified constructor
+  ctor = o.constructor;
+  if (ctor === undefined) return true;
+
+  // If has modified prototype
+  prot = ctor.prototype;
+  if (is_plain_object_isObject(prot) === false) return false;
+
+  // If constructor does not have an Object-specific method
+  if (prot.hasOwnProperty('isPrototypeOf') === false) {
+    return false;
+  }
+
+  // Most likely a plain Object
+  return true;
+}
+
+
+
 ;// CONCATENATED MODULE: ./packages/data/build-module/plugins/persistence/storage/object.js
 let objectStorage;
 const storage = {
@@ -3121,6 +3179,7 @@ try {
 /**
  * External dependencies
  */
+
 
 /**
  * Internal dependencies
@@ -3269,7 +3328,7 @@ function persistencePlugin(registry, pluginOptions) {
       const reducers = keys.reduce((accumulator, key) => Object.assign(accumulator, {
         [key]: (state, action) => action.nextState[key]
       }), {});
-      getPersistedState = withLazySameState(turbo_combine_reducers_default()(reducers));
+      getPersistedState = withLazySameState(build_module_combineReducers(reducers));
     } else {
       getPersistedState = (state, action) => action.nextState;
     }
@@ -3303,7 +3362,7 @@ function persistencePlugin(registry, pluginOptions) {
           type: '@@WP/PERSISTENCE_RESTORE'
         });
 
-        if ((0,external_lodash_namespaceObject.isPlainObject)(initialState) && (0,external_lodash_namespaceObject.isPlainObject)(persistedState)) {
+        if (is_plain_object_isPlainObject(initialState) && is_plain_object_isPlainObject(persistedState)) {
           // If state is an object, ensure that:
           // - Other keys are left intact when persisting only a
           //   subset of keys.
@@ -3356,8 +3415,6 @@ function _extends() {
 }
 ;// CONCATENATED MODULE: external ["wp","element"]
 const external_wp_element_namespaceObject = window["wp"]["element"];
-;// CONCATENATED MODULE: external ["wp","compose"]
-const external_wp_compose_namespaceObject = window["wp"]["compose"];
 ;// CONCATENATED MODULE: external "React"
 const external_React_namespaceObject = window["React"];
 ;// CONCATENATED MODULE: ./node_modules/use-memo-one/dist/use-memo-one.esm.js
@@ -3724,6 +3781,7 @@ function useSelect(mapSelect, deps) {
 
   const depsChangedFlag = (0,external_wp_element_namespaceObject.useMemo)(() => ({}), deps || []);
   let mapOutput;
+  let selectorRan = false;
 
   if (_mapSelect) {
     mapOutput = latestMapOutput.current;
@@ -3735,6 +3793,7 @@ function useSelect(mapSelect, deps) {
     if (hasReplacedRegistry || hasReplacedMapSelect || hasLeftAsyncMode || lastMapSelectFailed) {
       try {
         mapOutput = wrapSelect(_mapSelect);
+        selectorRan = true;
       } catch (error) {
         let errorMessage = `An error occurred while running 'mapSelect': ${error.message}`;
 
@@ -3758,7 +3817,11 @@ function useSelect(mapSelect, deps) {
     latestRegistry.current = registry;
     latestMapSelect.current = _mapSelect;
     latestIsAsync.current = isAsync;
-    latestMapOutput.current = mapOutput;
+
+    if (selectorRan) {
+      latestMapOutput.current = mapOutput;
+    }
+
     latestMapOutputError.current = undefined;
   }); // React can sometimes clear the `useMemo` cache.
   // We use the cache-stable `useMemoOne` to avoid
@@ -3858,10 +3921,12 @@ function useSuspenseSelect(mapSelect, deps) {
   const hasReplacedRegistry = latestRegistry.current !== registry;
   const hasReplacedMapSelect = latestMapSelect.current !== _mapSelect;
   const hasLeftAsyncMode = latestIsAsync.current && !isAsync;
+  let selectorRan = false;
 
   if (hasReplacedRegistry || hasReplacedMapSelect || hasLeftAsyncMode) {
     try {
       mapOutput = wrapSelect(_mapSelect);
+      selectorRan = true;
     } catch (error) {
       mapOutputError = error;
     }
@@ -3871,7 +3936,11 @@ function useSuspenseSelect(mapSelect, deps) {
     latestRegistry.current = registry;
     latestMapSelect.current = _mapSelect;
     latestIsAsync.current = isAsync;
-    latestMapOutput.current = mapOutput;
+
+    if (selectorRan) {
+      latestMapOutput.current = mapOutput;
+    }
+
     latestMapOutputError.current = mapOutputError;
   }); // React can sometimes clear the `useMemo` cache.
   // We use the cache-stable `useMemoOne` to avoid
@@ -4184,7 +4253,15 @@ const withRegistry = (0,external_wp_compose_namespaceObject.createHigherOrderCom
  * Internal dependencies
  */
 
-/** @typedef {import('../../types').StoreDescriptor} StoreDescriptor */
+/**
+ * @typedef {import('../../types').StoreDescriptor<StoreConfig>} StoreDescriptor
+ * @template StoreConfig
+ */
+
+/**
+ * @typedef {import('../../types').UseDispatchReturn<StoreNameOrDescriptor>} UseDispatchReturn
+ * @template StoreNameOrDescriptor
+ */
 
 /**
  * A custom react hook returning the current registry dispatch actions creators.
@@ -4192,11 +4269,12 @@ const withRegistry = (0,external_wp_compose_namespaceObject.createHigherOrderCom
  * Note: The component using this hook must be within the context of a
  * RegistryProvider.
  *
- * @param {string|StoreDescriptor} [storeNameOrDescriptor] Optionally provide the name of the
- *                                                         store or its descriptor from which to
- *                                                         retrieve action creators. If not
- *                                                         provided, the registry.dispatch
- *                                                         function is returned instead.
+ * @template {undefined | string | StoreDescriptor<any>} [StoreNameOrDescriptor=undefined]
+ * @param {StoreNameOrDescriptor} [storeNameOrDescriptor] Optionally provide the name of the
+ *                                                        store or its descriptor from which to
+ *                                                        retrieve action creators. If not
+ *                                                        provided, the registry.dispatch
+ *                                                        function is returned instead.
  *
  * @example
  * This illustrates a pattern where you may need to retrieve dynamic data from
@@ -4229,7 +4307,7 @@ const withRegistry = (0,external_wp_compose_namespaceObject.createHigherOrderCom
  * //
  * // <SaleButton>Start Sale!</SaleButton>
  * ```
- * @return {Function}  A custom react hook.
+ * @return {UseDispatchReturn<StoreNameOrDescriptor>} A custom react hook.
  */
 
 const useDispatch = storeNameOrDescriptor => {
@@ -4278,6 +4356,7 @@ const useDispatch = storeNameOrDescriptor => {
  * The combineReducers helper function turns an object whose values are different
  * reducing functions into a single reducing function you can pass to registerReducer.
  *
+ * @type  {import('./types').combineReducers}
  * @param {Object} reducers An object whose values correspond to different reducing
  *                          functions that need to be combined into one.
  *
@@ -4313,7 +4392,7 @@ const useDispatch = storeNameOrDescriptor => {
  *                    object, and constructs a state object with the same shape.
  */
 
-
+const build_module_combineReducers = (turbo_combine_reducers_default());
 /**
  * Given a store descriptor, returns an object of the store's selectors.
  * The selector functions are been pre-bound to pass the current state automatically.

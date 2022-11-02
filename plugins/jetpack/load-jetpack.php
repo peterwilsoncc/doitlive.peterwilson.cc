@@ -10,6 +10,7 @@
  * in require_lib().
  *
  * @since 4.0.2
+ * @deprecated since 11.3 Use `JETPACK__PLUGIN_DIR . '_inc/lib/'` instead.
  *
  * @return string Location of Jetpack library directory.
  *
@@ -55,6 +56,7 @@ require_once JETPACK__PLUGIN_DIR . 'class.jetpack-autoupdate.php';
 require_once JETPACK__PLUGIN_DIR . 'class.frame-nonce-preview.php';
 require_once JETPACK__PLUGIN_DIR . 'modules/module-headings.php';
 require_once JETPACK__PLUGIN_DIR . 'class.jetpack-connection-banner.php';
+require_once JETPACK__PLUGIN_DIR . 'class-jetpack-connection-widget.php';
 require_once JETPACK__PLUGIN_DIR . 'class.jetpack-plan.php';
 // Used by the API endpoints.
 require_once JETPACK__PLUGIN_DIR . 'modules/seo-tools/class-jetpack-seo-utils.php';
