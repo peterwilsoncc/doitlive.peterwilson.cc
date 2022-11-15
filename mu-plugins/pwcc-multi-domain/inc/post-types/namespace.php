@@ -104,7 +104,10 @@ function filter_permalink( string $permalink, $post ) {
 		 * Attachments are a special case, the canonical URL is based
 		 * on that of the parent post.
 		 */
-		$post = get_post( $post->post_parent );
+		$parent = get_post( $post->post_parent );
+		if ( $parent instanceof \WP_Post ) {
+			$post = $parent;
+		}
 	}
 
 	$permalink_home = get_post_types_custom_home( $post->post_type );
