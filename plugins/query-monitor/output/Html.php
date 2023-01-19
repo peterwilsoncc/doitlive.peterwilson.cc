@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 /**
  * Abstract output class for HTML pages.
  *
@@ -49,7 +49,7 @@ abstract class QM_Output_Html extends QM_Output {
 		ob_start();
 		// compat until I convert all the existing outputters to use `get_output()`
 		$this->output();
-		$out = ob_get_clean();
+		$out = (string) ob_get_clean();
 		return $out;
 	}
 
@@ -282,10 +282,10 @@ abstract class QM_Output_Html extends QM_Output {
 	/**
 	 * Returns the table filter controls. Safe for output.
 	 *
-	 * @param  string   $name   The name for the `data-` attributes that get filtered by this control.
-	 * @param  string[] $values Option values for this control.
-	 * @param  string   $label  Label text for the filter control.
-	 * @param  array    $args {
+	 * @param  string         $name   The name for the `data-` attributes that get filtered by this control.
+	 * @param  (string|int)[] $values Option values for this control.
+	 * @param  string         $label  Label text for the filter control.
+	 * @param  array          $args {
 	 *     @type string   $highlight The name for the `data-` attributes that get highlighted by this control.
 	 *     @type string[] $prepend   Associative array of options to prepend to the list of values.
 	 *     @type string[] $append    Associative array of options to append to the list of values.
@@ -378,7 +378,7 @@ abstract class QM_Output_Html extends QM_Output {
 
 		$out .= '</span>';
 		$out .= '<button class="qm-sort-controls" aria-label="' . esc_attr__( 'Sort data by this column', 'query-monitor' ) . '">';
-		$out .= QueryMonitor::init()->icon( 'arrow-down' );
+		$out .= QueryMonitor::icon( 'arrow-down' );
 		$out .= '</button>';
 		$out .= '</label>';
 		return $out;
@@ -410,7 +410,7 @@ abstract class QM_Output_Html extends QM_Output {
 			esc_attr( $filter ),
 			esc_attr( $value ),
 			$label,
-			QueryMonitor::init()->icon( 'filter' )
+			QueryMonitor::icon( 'filter' )
 		);
 	}
 
@@ -426,7 +426,7 @@ abstract class QM_Output_Html extends QM_Output {
 			'<a href="%1$s" class="qm-link">%2$s%3$s</a>',
 			esc_attr( $href ),
 			$label,
-			QueryMonitor::init()->icon( 'external' )
+			QueryMonitor::icon( 'external' )
 		);
 	}
 
@@ -521,7 +521,9 @@ abstract class QM_Output_Html extends QM_Output {
 			}
 		}
 
-		$link = sprintf( self::get_file_link_format(), rawurlencode( $file ), intval( $link_line ) );
+		/** @var string */
+		$link_format = self::get_file_link_format();
+		$link = sprintf( $link_format, rawurlencode( $file ), intval( $link_line ) );
 
 		if ( $is_filename ) {
 			$format = '<a href="%1$s" class="qm-edit-link">%2$s%3$s</a>';
@@ -533,17 +535,16 @@ abstract class QM_Output_Html extends QM_Output {
 			$format,
 			esc_attr( $link ),
 			esc_html( $text ),
-			QueryMonitor::init()->icon( 'edit' )
+			QueryMonitor::icon( 'edit' )
 		);
 	}
 
 	/**
 	 * Provides a protocol URL for edit links in QM stack traces for various editors.
 	 *
-	 * @param string $editor the chosen code editor
-	 * @param string $default_format a format to use if no editor is found
-	 *
-	 * @return string a protocol URL format
+	 * @param string       $editor         The chosen code editor.
+	 * @param string|false $default_format A format to use if no editor is found.
+	 * @return string|false A protocol URL format or boolean false.
 	 */
 	public static function get_editor_file_link_format( $editor, $default_format ) {
 		switch ( $editor ) {
