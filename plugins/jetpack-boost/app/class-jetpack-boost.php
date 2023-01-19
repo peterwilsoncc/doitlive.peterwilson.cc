@@ -13,10 +13,12 @@
 namespace Automattic\Jetpack_Boost;
 
 use Automattic\Jetpack\My_Jetpack\Initializer as My_Jetpack_Initializer;
+use Automattic\Jetpack\Plugin_Deactivation\Deactivation_Handler;
 use Automattic\Jetpack_Boost\Admin\Admin;
 use Automattic\Jetpack_Boost\Admin\Config;
 use Automattic\Jetpack_Boost\Admin\Regenerate_Admin_Notice;
 use Automattic\Jetpack_Boost\Features\Optimizations\Optimizations;
+use Automattic\Jetpack_Boost\Features\Setup_Prompt\Setup_Prompt;
 use Automattic\Jetpack_Boost\Lib\Analytics;
 use Automattic\Jetpack_Boost\Lib\CLI;
 use Automattic\Jetpack_Boost\Lib\Connection;
@@ -24,7 +26,7 @@ use Automattic\Jetpack_Boost\Lib\Critical_CSS\Critical_CSS_Storage;
 use Automattic\Jetpack_Boost\Lib\Setup;
 use Automattic\Jetpack_Boost\Lib\Transient;
 use Automattic\Jetpack_Boost\REST_API\Endpoints\Config_State;
-use Automattic\Jetpack_Boost\REST_API\Endpoints\Get_Started;
+use Automattic\Jetpack_Boost\REST_API\Endpoints\List_Site_Urls;
 use Automattic\Jetpack_Boost\REST_API\Endpoints\Optimization_Status;
 use Automattic\Jetpack_Boost\REST_API\Endpoints\Optimizations_Status;
 use Automattic\Jetpack_Boost\REST_API\REST_API;
@@ -98,6 +100,10 @@ class Jetpack_Boost {
 
 		// Initialize the Admin experience.
 		$this->init_admin( $optimizations );
+
+		// Add the setup prompt.
+		Setup::add( new Setup_Prompt() );
+
 		add_action( 'init', array( $this, 'init_textdomain' ) );
 
 		add_action( 'handle_environment_change', array( $this, 'handle_environment_change' ) );
@@ -106,6 +112,8 @@ class Jetpack_Boost {
 		do_action( 'jetpack_boost_loaded', $this );
 
 		My_Jetpack_Initializer::init();
+
+		Deactivation_Handler::init( $this->plugin_name, __DIR__ . '/admin/deactivation-dialog.php' );
 	}
 
 	/**
@@ -122,6 +130,7 @@ class Jetpack_Boost {
 	public static function activate() {
 		// Make sure user sees the "Get Started" when first time opening.
 		Config::set_getting_started( true );
+		Analytics::record_user_event( 'activate_plugin' );
 	}
 
 	/**
@@ -140,7 +149,7 @@ class Jetpack_Boost {
 		REST_API::register( Optimization_Status::class );
 		REST_API::register( Optimizations_Status::class );
 		REST_API::register( Config_State::class );
-		REST_API::register( Get_Started::class );
+		REST_API::register( List_Site_Urls::class );
 		$this->connection->ensure_connection();
 		new Admin( $modules );
 	}

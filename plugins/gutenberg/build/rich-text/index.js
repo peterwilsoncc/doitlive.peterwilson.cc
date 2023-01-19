@@ -1,48 +1,48 @@
-/******/ (() => { // webpackBootstrap
+/******/ (function() { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	// The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
+/******/ 		__webpack_require__.n = function(module) {
 /******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
+/******/ 				function() { return module['default']; } :
+/******/ 				function() { return module; };
 /******/ 			__webpack_require__.d(getter, { a: getter });
 /******/ 			return getter;
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 		__webpack_require__.d = function(exports, definition) {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
 /******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
+/******/ 		__webpack_require__.r = function(exports) {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
@@ -51,60 +51,60 @@ __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  "__UNSTABLE_LINE_SEPARATOR": () => (/* reexport */ LINE_SEPARATOR),
-  "__experimentalRichText": () => (/* reexport */ __experimentalRichText),
-  "__unstableCreateElement": () => (/* reexport */ createElement),
-  "__unstableFormatEdit": () => (/* reexport */ FormatEdit),
-  "__unstableInsertLineSeparator": () => (/* reexport */ insertLineSeparator),
-  "__unstableIsEmptyLine": () => (/* reexport */ isEmptyLine),
-  "__unstableToDom": () => (/* reexport */ toDom),
-  "__unstableUseRichText": () => (/* reexport */ useRichText),
-  "applyFormat": () => (/* reexport */ applyFormat),
-  "concat": () => (/* reexport */ concat),
-  "create": () => (/* reexport */ create),
-  "getActiveFormat": () => (/* reexport */ getActiveFormat),
-  "getActiveFormats": () => (/* reexport */ getActiveFormats),
-  "getActiveObject": () => (/* reexport */ getActiveObject),
-  "getTextContent": () => (/* reexport */ getTextContent),
-  "insert": () => (/* reexport */ insert),
-  "insertObject": () => (/* reexport */ insertObject),
-  "isCollapsed": () => (/* reexport */ isCollapsed),
-  "isEmpty": () => (/* reexport */ isEmpty),
-  "join": () => (/* reexport */ join),
-  "registerFormatType": () => (/* reexport */ registerFormatType),
-  "remove": () => (/* reexport */ remove),
-  "removeFormat": () => (/* reexport */ removeFormat),
-  "replace": () => (/* reexport */ replace_replace),
-  "slice": () => (/* reexport */ slice),
-  "split": () => (/* reexport */ split),
-  "store": () => (/* reexport */ store),
-  "toHTMLString": () => (/* reexport */ toHTMLString),
-  "toggleFormat": () => (/* reexport */ toggleFormat),
-  "unregisterFormatType": () => (/* reexport */ unregisterFormatType),
-  "useAnchor": () => (/* reexport */ useAnchor),
-  "useAnchorRef": () => (/* reexport */ useAnchorRef)
+  "__UNSTABLE_LINE_SEPARATOR": function() { return /* reexport */ LINE_SEPARATOR; },
+  "__experimentalRichText": function() { return /* reexport */ __experimentalRichText; },
+  "__unstableCreateElement": function() { return /* reexport */ createElement; },
+  "__unstableFormatEdit": function() { return /* reexport */ FormatEdit; },
+  "__unstableInsertLineSeparator": function() { return /* reexport */ insertLineSeparator; },
+  "__unstableIsEmptyLine": function() { return /* reexport */ isEmptyLine; },
+  "__unstableToDom": function() { return /* reexport */ toDom; },
+  "__unstableUseRichText": function() { return /* reexport */ useRichText; },
+  "applyFormat": function() { return /* reexport */ applyFormat; },
+  "concat": function() { return /* reexport */ concat; },
+  "create": function() { return /* reexport */ create; },
+  "getActiveFormat": function() { return /* reexport */ getActiveFormat; },
+  "getActiveFormats": function() { return /* reexport */ getActiveFormats; },
+  "getActiveObject": function() { return /* reexport */ getActiveObject; },
+  "getTextContent": function() { return /* reexport */ getTextContent; },
+  "insert": function() { return /* reexport */ insert; },
+  "insertObject": function() { return /* reexport */ insertObject; },
+  "isCollapsed": function() { return /* reexport */ isCollapsed; },
+  "isEmpty": function() { return /* reexport */ isEmpty; },
+  "join": function() { return /* reexport */ join; },
+  "registerFormatType": function() { return /* reexport */ registerFormatType; },
+  "remove": function() { return /* reexport */ remove; },
+  "removeFormat": function() { return /* reexport */ removeFormat; },
+  "replace": function() { return /* reexport */ replace_replace; },
+  "slice": function() { return /* reexport */ slice; },
+  "split": function() { return /* reexport */ split; },
+  "store": function() { return /* reexport */ store; },
+  "toHTMLString": function() { return /* reexport */ toHTMLString; },
+  "toggleFormat": function() { return /* reexport */ toggleFormat; },
+  "unregisterFormatType": function() { return /* reexport */ unregisterFormatType; },
+  "useAnchor": function() { return /* reexport */ useAnchor; },
+  "useAnchorRef": function() { return /* reexport */ useAnchorRef; }
 });
 
 // NAMESPACE OBJECT: ./packages/rich-text/build-module/store/selectors.js
 var selectors_namespaceObject = {};
 __webpack_require__.r(selectors_namespaceObject);
 __webpack_require__.d(selectors_namespaceObject, {
-  "getFormatType": () => (getFormatType),
-  "getFormatTypeForBareElement": () => (getFormatTypeForBareElement),
-  "getFormatTypeForClassName": () => (getFormatTypeForClassName),
-  "getFormatTypes": () => (getFormatTypes)
+  "getFormatType": function() { return getFormatType; },
+  "getFormatTypeForBareElement": function() { return getFormatTypeForBareElement; },
+  "getFormatTypeForClassName": function() { return getFormatTypeForClassName; },
+  "getFormatTypes": function() { return getFormatTypes; }
 });
 
 // NAMESPACE OBJECT: ./packages/rich-text/build-module/store/actions.js
 var actions_namespaceObject = {};
 __webpack_require__.r(actions_namespaceObject);
 __webpack_require__.d(actions_namespaceObject, {
-  "addFormatTypes": () => (addFormatTypes),
-  "removeFormatTypes": () => (removeFormatTypes)
+  "addFormatTypes": function() { return addFormatTypes; },
+  "removeFormatTypes": function() { return removeFormatTypes; }
 });
 
 ;// CONCATENATED MODULE: external ["wp","data"]
-const external_wp_data_namespaceObject = window["wp"]["data"];
+var external_wp_data_namespaceObject = window["wp"]["data"];
 ;// CONCATENATED MODULE: ./packages/rich-text/build-module/store/reducer.js
 /**
  * WordPress dependencies
@@ -141,7 +141,7 @@ function formatTypes() {
 
   return state;
 }
-/* harmony default export */ const reducer = ((0,external_wp_data_namespaceObject.combineReducers)({
+/* harmony default export */ var reducer = ((0,external_wp_data_namespaceObject.combineReducers)({
   formatTypes
 }));
 
@@ -480,12 +480,19 @@ function getFormatType(state, name) {
  */
 
 function getFormatTypeForBareElement(state, bareElementTagName) {
-  return getFormatTypes(state).find(_ref => {
+  const formatTypes = getFormatTypes(state);
+  return formatTypes.find(_ref => {
     let {
       className,
       tagName
     } = _ref;
     return className === null && bareElementTagName === tagName;
+  }) || formatTypes.find(_ref2 => {
+    let {
+      className,
+      tagName
+    } = _ref2;
+    return className === null && '*' === tagName;
   });
 }
 /**
@@ -498,10 +505,10 @@ function getFormatTypeForBareElement(state, bareElementTagName) {
  */
 
 function getFormatTypeForClassName(state, elementClassName) {
-  return getFormatTypes(state).find(_ref2 => {
+  return getFormatTypes(state).find(_ref3 => {
     let {
       className
-    } = _ref2;
+    } = _ref3;
 
     if (className === null) {
       return false;
@@ -860,7 +867,7 @@ function createEmptyValue() {
 
 function toFormat(_ref) {
   let {
-    type,
+    tagName,
     attributes
   } = _ref;
   let formatType;
@@ -879,15 +886,15 @@ function toFormat(_ref) {
   }
 
   if (!formatType) {
-    formatType = (0,external_wp_data_namespaceObject.select)(store).getFormatTypeForBareElement(type);
+    formatType = (0,external_wp_data_namespaceObject.select)(store).getFormatTypeForBareElement(tagName);
   }
 
   if (!formatType) {
     return attributes ? {
-      type,
+      type: tagName,
       attributes
     } : {
-      type
+      type: tagName
     };
   }
 
@@ -897,7 +904,8 @@ function toFormat(_ref) {
 
   if (!attributes) {
     return {
-      type: formatType.name
+      type: formatType.name,
+      tagName
     };
   }
 
@@ -929,6 +937,7 @@ function toFormat(_ref) {
 
   return {
     type: formatType.name,
+    tagName,
     attributes: registeredAttributes,
     unregisteredAttributes
   };
@@ -1182,7 +1191,7 @@ function createFromElement(_ref2) {
 
   for (let index = 0; index < length; index++) {
     const node = element.childNodes[index];
-    const type = node.nodeName.toLowerCase();
+    const tagName = node.nodeName.toLowerCase();
 
     if (node.nodeType === node.TEXT_NODE) {
       let filter = removeReservedCharacters;
@@ -1210,16 +1219,16 @@ function createFromElement(_ref2) {
 
     if (isEditableTree && ( // Ignore any placeholders.
     node.getAttribute('data-rich-text-placeholder') || // Ignore any line breaks that are not inserted by us.
-    type === 'br' && !node.getAttribute('data-rich-text-line-break'))) {
+    tagName === 'br' && !node.getAttribute('data-rich-text-line-break'))) {
       accumulateSelection(accumulator, node, range, createEmptyValue());
       continue;
     }
 
-    if (type === 'script') {
+    if (tagName === 'script') {
       const value = {
         formats: [,],
         replacements: [{
-          type,
+          type: tagName,
           attributes: {
             'data-rich-text-script': node.getAttribute('data-rich-text-script') || encodeURIComponent(node.innerHTML)
           }
@@ -1231,7 +1240,7 @@ function createFromElement(_ref2) {
       continue;
     }
 
-    if (type === 'br') {
+    if (tagName === 'br') {
       accumulateSelection(accumulator, node, range, createEmptyValue());
       mergePair(accumulator, create({
         text: '\n'
@@ -1240,13 +1249,13 @@ function createFromElement(_ref2) {
     }
 
     const format = toFormat({
-      type,
+      tagName,
       attributes: getAttributes({
         element: node
       })
     });
 
-    if (multilineWrapperTags && multilineWrapperTags.indexOf(type) !== -1) {
+    if (multilineWrapperTags && multilineWrapperTags.indexOf(tagName) !== -1) {
       const value = createFromMultilineElement({
         element: node,
         range,
@@ -1794,7 +1803,7 @@ function registerFormatType(name, settings) {
   if (settings.className === null) {
     const formatTypeForBareElement = (0,external_wp_data_namespaceObject.select)(store).getFormatTypeForBareElement(settings.tagName);
 
-    if (formatTypeForBareElement) {
+    if (formatTypeForBareElement && formatTypeForBareElement.name !== 'core/unknown') {
       window.console.error(`Format "${formatTypeForBareElement.name}" is already registered to handle bare tag name "${settings.tagName}".`);
       return;
     }
@@ -2318,6 +2327,7 @@ function restoreOnAttributes(attributes, isEditableTree) {
  *
  * @param {Object}  $1                        Named parameters.
  * @param {string}  $1.type                   The format type.
+ * @param {string}  $1.tagName                The tag name.
  * @param {Object}  $1.attributes             The format attributes.
  * @param {Object}  $1.unregisteredAttributes The unregistered format
  *                                            attributes.
@@ -2334,6 +2344,7 @@ function restoreOnAttributes(attributes, isEditableTree) {
 function fromFormat(_ref) {
   let {
     type,
+    tagName,
     attributes,
     unregisteredAttributes,
     object,
@@ -2384,7 +2395,7 @@ function fromFormat(_ref) {
   }
 
   return {
-    type: formatType.tagName,
+    type: formatType.tagName === '*' ? tagName : formatType.tagName,
     object: formatType.object,
     attributes: restoreOnAttributes(elementAttributes, isEditableTree)
   };
@@ -2513,6 +2524,7 @@ function toTree(_ref2) {
 
         const {
           type,
+          tagName,
           attributes,
           unregisteredAttributes
         } = format;
@@ -2520,6 +2532,7 @@ function toTree(_ref2) {
         const parent = getParent(pointer);
         const newNode = append(parent, fromFormat({
           type,
+          tagName,
           attributes,
           unregisteredAttributes,
           boundaryClass,
@@ -2962,7 +2975,7 @@ function applySelection(_ref6, current) {
 }
 
 ;// CONCATENATED MODULE: external ["wp","escapeHtml"]
-const external_wp_escapeHtml_namespaceObject = window["wp"]["escapeHtml"];
+var external_wp_escapeHtml_namespaceObject = window["wp"]["escapeHtml"];
 ;// CONCATENATED MODULE: ./packages/rich-text/build-module/to-html-string.js
 /**
  * WordPress dependencies
@@ -3105,9 +3118,9 @@ function createChildrenHTML() {
 }
 
 ;// CONCATENATED MODULE: external ["wp","a11y"]
-const external_wp_a11y_namespaceObject = window["wp"]["a11y"];
+var external_wp_a11y_namespaceObject = window["wp"]["a11y"];
 ;// CONCATENATED MODULE: external ["wp","i18n"]
-const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
+var external_wp_i18n_namespaceObject = window["wp"]["i18n"];
 ;// CONCATENATED MODULE: ./packages/rich-text/build-module/toggle-format.js
 /**
  * WordPress dependencies
@@ -3189,9 +3202,9 @@ function unregisterFormatType(name) {
 }
 
 ;// CONCATENATED MODULE: external ["wp","element"]
-const external_wp_element_namespaceObject = window["wp"]["element"];
+var external_wp_element_namespaceObject = window["wp"]["element"];
 ;// CONCATENATED MODULE: external ["wp","deprecated"]
-const external_wp_deprecated_namespaceObject = window["wp"]["deprecated"];
+var external_wp_deprecated_namespaceObject = window["wp"]["deprecated"];
 var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_namespaceObject);
 ;// CONCATENATED MODULE: ./packages/rich-text/build-module/component/use-anchor-ref.js
 /**
@@ -3331,6 +3344,7 @@ function useAnchor(_ref) {
       return;
     }
 
+    const selectionWithinEditableContentElement = editableContentElement === null || editableContentElement === void 0 ? void 0 : editableContentElement.contains(selection === null || selection === void 0 ? void 0 : selection.anchorNode);
     const range = selection.getRangeAt(0);
 
     if (!activeFormat) {
@@ -3338,7 +3352,7 @@ function useAnchor(_ref) {
         ownerDocument: range.startContainer.ownerDocument,
 
         getBoundingClientRect() {
-          return range.getBoundingClientRect();
+          return selectionWithinEditableContentElement ? range.getBoundingClientRect() : editableContentElement.getBoundingClientRect();
         }
 
       };
@@ -3357,7 +3371,7 @@ function useAnchor(_ref) {
 }
 
 ;// CONCATENATED MODULE: external ["wp","compose"]
-const external_wp_compose_namespaceObject = window["wp"]["compose"];
+var external_wp_compose_namespaceObject = window["wp"]["compose"];
 ;// CONCATENATED MODULE: ./packages/rich-text/build-module/component/use-default-style.js
 /**
  * WordPress dependencies
@@ -3509,7 +3523,7 @@ function useCopyHandler(props) {
 }
 
 ;// CONCATENATED MODULE: external ["wp","keycodes"]
-const external_wp_keycodes_namespaceObject = window["wp"]["keycodes"];
+var external_wp_keycodes_namespaceObject = window["wp"]["keycodes"];
 ;// CONCATENATED MODULE: ./packages/rich-text/build-module/component/use-format-boundaries.js
 /**
  * WordPress dependencies
