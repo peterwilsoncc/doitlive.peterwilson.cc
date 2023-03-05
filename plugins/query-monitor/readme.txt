@@ -3,7 +3,7 @@ Contributors: johnbillion
 Tags: debug, debug-bar, development, performance, query monitor, rest-api
 Requires at least: 4.9
 Tested up to: 6.1
-Stable tag: 3.11.1
+Stable tag: 3.11.2
 License: GPLv2 or later
 Requires PHP: 7.2
 Donate link: https://github.com/sponsors/johnbillion
@@ -140,6 +140,15 @@ Yes. You can enable this on the Settings panel.
 In addition, if you like the plugin then I'd love for you to [leave a review](https://wordpress.org/support/view/plugin-reviews/query-monitor). Tell all your friends about it too!
 
 ## Changelog ##
+
+### 3.11.2 ###
+
+* Implements various accessibility improvements
+* Fixes an issue where not all admin area footer scripts were shown in the Scripts panel
+* Improves output when the SQLite feature in the Performance Labs plugin is in use
+* Removes QM output altogether from the Customizer
+* Ensures `wp-content/db.php` from another plugin doesn't get removed when deactivating QM
+
 
 ### 3.11.1 ###
 
@@ -392,13 +401,3 @@ In addition, if you like the plugin then I'd love for you to [leave a review](ht
   * Separate and simplify the output for the object cache and opcode cache statuses. Fixes #413.
   * Better formatting when no object cache stats are available.
 
-
-### 3.3.1 ###
-
-* Move the hook processing into its own class and out of the collector, so it can be re-used even if the Hooks collector isn't in use. Fixes #399.
-* Increase the sidebar layout to 100% height when there's no admin toolbar.
-* Update the QM element ID in the "worst case scenario" JS. Fixes #398.
-* Improve the layout of the Settings panel.
-* Force the `Core` and `Non-Core` filter items to the bottom of the list, so plugins and themes takes precedence.
-* Add an entry for the Settings screen to the narrow view nav menu.
-* Add the admin notice hooks to the list of concerned actions for the Admin Screen panel.

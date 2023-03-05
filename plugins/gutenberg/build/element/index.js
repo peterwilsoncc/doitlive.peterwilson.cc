@@ -103,6 +103,7 @@ __webpack_require__.d(__webpack_exports__, {
   "createRef": function() { return /* reexport */ external_React_namespaceObject.createRef; },
   "createRoot": function() { return /* reexport */ client/* createRoot */.s; },
   "findDOMNode": function() { return /* reexport */ external_ReactDOM_.findDOMNode; },
+  "flushSync": function() { return /* reexport */ external_ReactDOM_.flushSync; },
   "forwardRef": function() { return /* reexport */ external_React_namespaceObject.forwardRef; },
   "hydrate": function() { return /* reexport */ external_ReactDOM_.hydrate; },
   "hydrateRoot": function() { return /* reexport */ client/* hydrateRoot */.a; },
@@ -754,6 +755,13 @@ var client = __webpack_require__(4470);
 
 
 /**
+ * Forces React to flush any updates inside the provided callback synchronously.
+ *
+ * @param {Function} callback Callback to run synchronously.
+ */
+
+
+/**
  * Renders a given element into the target DOM node.
  *
  * @param {import('./react').WPElement} element Element to render.
@@ -1226,7 +1234,6 @@ var external_wp_escapeHtml_namespaceObject = window["wp"]["escapeHtml"];
 /**
  * Internal dependencies
  */
- // Disable reason: JSDoc linter doesn't seem to parse the union (`&`) correctly.
 
 /** @typedef {{children: string} & import('react').ComponentPropsWithoutRef<'div'>} RawHTMLProps */
 
