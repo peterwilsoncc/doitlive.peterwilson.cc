@@ -1,9 +1,9 @@
 === Syntax-highlighting Code Block (with Server-side Rendering) ===
 Contributors: westonruter, allejo
 Tags: block, code, code syntax, syntax highlight, code highlighting
-Requires at least: 5.5
-Tested up to: 5.6
-Stable tag: 1.3.1
+Requires at least: 5.6
+Tested up to: 6.2
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 5.6
@@ -28,6 +28,7 @@ This is a fork of [Code Syntax Block](https://github.com/mkaz/code-syntax-block)
 
 [highlight.php](https://github.com/scrivo/highlight.php) is released under the BSD 3-Clause License. Copyright © 2006-2013, Ivan Sagalaev (maniac@softwaremaniacs.org), highlight.js (original author). Copyright © 2013, Geert Bergman (geert@scrivo.nl), highlight.php
 
+
 == Screenshots ==
 
 1. Code blocks can be added as normal, optionally overriding the auto-detected language. Also specify any lines to be highlighted, whether to show line numbers, and if the lines should wrap.
@@ -36,3 +37,4 @@ This is a fork of [Code Syntax Block](https://github.com/mkaz/code-syntax-block)
 == Changelog ==
 
 For the plugin’s changelog, please see [the Releases page on GitHub](https://github.com/westonruter/syntax-highlighting-code-block/releases).
+

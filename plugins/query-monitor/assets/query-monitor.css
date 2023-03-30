@@ -5,19 +5,19 @@
  * @package query-monitor
  */
 #query-monitor-main {
-  --qm-container-fg: #444;
+  --qm-container-fg: #333;
   --qm-container-bg: #f3f3f3;
   --qm-container-overflow: #ececec;
   --qm-panel-border: #aaa;
-  --qm-panel-fg: #444;
+  --qm-panel-fg: #333;
   --qm-panel-bg: #fff;
   --qm-panel-separator: #ddd;
   --qm-panel-menu-border: #ddd;
-  --qm-panel-menu-fg: #444;
+  --qm-panel-menu-fg: #333;
   --qm-panel-menu-bg: #f3f3f3;
-  --qm-panel-menu-fg-hover: #444;
+  --qm-panel-menu-fg-hover: #333;
   --qm-panel-menu-bg-hover: #cde;
-  --qm-panel-menu-fg-current: #444;
+  --qm-panel-menu-fg-current: #333;
   --qm-panel-menu-bg-current: #def;
   --qm-panel-menu-bg-current-focus: #f7fbff;
   --qm-panel-menu-fg-selected: #fff;
@@ -26,7 +26,7 @@
   --qm-panel-menu-shadow: #006291;
   --qm-cell-border: #e0e0e0;
   --qm-cell-bg-hover: #eef3fa;
-  --qm-cell-fg-highlight: #444;
+  --qm-cell-fg-highlight: #333;
   --qm-cell-bg-highlight: #ffd;
   --qm-cell-bg-highlight-dark: #ffffaa;
   --qm-cell-bg-stripe: #f9f9f9;
@@ -51,7 +51,7 @@
   --qm-warn-bg-dark: #ffe8e8;
   --qm-warn-border: #ffd6d6;
   --qm-nonselect-fg: #a0a;
-  --qm-selection-fg: #444;
+  --qm-selection-fg: #333;
   --qm-selection-bg: #B9D6FB;
 }
 

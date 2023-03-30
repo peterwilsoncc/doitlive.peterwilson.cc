@@ -527,6 +527,13 @@ class QM_Backtrace {
 			$return['calling_file'] = $this->calling_file;
 			$return['calling_line'] = $this->calling_line;
 
+			if ( ! isset( $return['file'] ) ) {
+				$return['file'] = $this->calling_file;
+			}
+
+			if ( ! isset( $return['line'] ) ) {
+				$return['line'] = $this->calling_line;
+			}
 		}
 
 		if ( isset( $frame['line'] ) ) {

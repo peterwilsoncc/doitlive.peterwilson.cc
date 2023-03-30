@@ -8,19 +8,16 @@
 		"issues": "https://github.com/Automattic/jetpack/issues"
 	},
 	"require": {
-		"automattic/jetpack-logo": "^1.5",
-		"automattic/jetpack-autoloader": "^2.11"
+		"automattic/jetpack-logo": "^1.5.22",
+		"automattic/jetpack-autoloader": "^2.11.16"
 	},
 	"require-dev": {
-		"yoast/phpunit-polyfills": "1.0.3",
-		"automattic/jetpack-changelogger": "^3.1"
+		"yoast/phpunit-polyfills": "1.0.4",
+		"automattic/jetpack-changelogger": "^3.3.2"
 	},
 	"scripts": {
 		"phpunit": [
 			"./vendor/phpunit/phpunit/phpunit --colors=always"
-		],
-		"test-coverage": [
-			"php -dpcov.directory=. ./vendor/bin/phpunit --coverage-clover \"$COVERAGE_DIR/clover.xml\""
 		],
 		"test-php": [
 			"@composer phpunit"
@@ -30,7 +27,7 @@
 	"minimum-stability": "dev",
 	"prefer-stable": true,
 	"config": {
-		"autoloader-suffix": "9559eef123208b7d1b9c15b978567267_vaultpressⓥ2_2_2",
+		"autoloader-suffix": "9559eef123208b7d1b9c15b978567267_vaultpressⓥ2_2_3",
 		"allow-plugins": {
 			"automattic/jetpack-autoloader": true
 		}

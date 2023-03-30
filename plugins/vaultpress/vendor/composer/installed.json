@@ -2,27 +2,27 @@
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
-            "version": "v2.11.6",
-            "version_normalized": "2.11.6.0",
+            "version": "v2.11.16",
+            "version_normalized": "2.11.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Automattic/jetpack-autoloader.git",
-                "reference": "a22f41ff845b8bd4591a933b282270f57dd5bc1d"
+                "reference": "43bc969fd90ce3d92e7b75fbf384a5fd03963dad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Automattic/jetpack-autoloader/zipball/a22f41ff845b8bd4591a933b282270f57dd5bc1d",
-                "reference": "a22f41ff845b8bd4591a933b282270f57dd5bc1d",
+                "url": "https://api.github.com/repos/Automattic/jetpack-autoloader/zipball/43bc969fd90ce3d92e7b75fbf384a5fd03963dad",
+                "reference": "43bc969fd90ce3d92e7b75fbf384a5fd03963dad",
                 "shasum": ""
             },
             "require": {
                 "composer-plugin-api": "^1.1 || ^2.0"
             },
             "require-dev": {
-                "automattic/jetpack-changelogger": "^3.1",
-                "yoast/phpunit-polyfills": "1.0.3"
+                "automattic/jetpack-changelogger": "^3.3.2",
+                "yoast/phpunit-polyfills": "1.0.4"
             },
-            "time": "2022-06-21T07:32:07+00:00",
+            "time": "2023-02-20T19:47:16+00:00",
             "type": "composer-plugin",
             "extra": {
                 "autotagger": true,
@@ -50,30 +50,30 @@
             ],
             "description": "Creates a custom autoloader for a plugin or theme.",
             "support": {
-                "source": "https://github.com/Automattic/jetpack-autoloader/tree/v2.11.6"
+                "source": "https://github.com/Automattic/jetpack-autoloader/tree/v2.11.16"
             },
             "install-path": "../automattic/jetpack-autoloader"
         },
         {
             "name": "automattic/jetpack-logo",
-            "version": "v1.5.16",
-            "version_normalized": "1.5.16.0",
+            "version": "v1.5.22",
+            "version_normalized": "1.5.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Automattic/jetpack-logo.git",
-                "reference": "b262f5d88e372ccb0d2df169ab5046033293c81e"
+                "reference": "21b4ac9b32556ffdace7b7e22d21a954e01d5229"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Automattic/jetpack-logo/zipball/b262f5d88e372ccb0d2df169ab5046033293c81e",
-                "reference": "b262f5d88e372ccb0d2df169ab5046033293c81e",
+                "url": "https://api.github.com/repos/Automattic/jetpack-logo/zipball/21b4ac9b32556ffdace7b7e22d21a954e01d5229",
+                "reference": "21b4ac9b32556ffdace7b7e22d21a954e01d5229",
                 "shasum": ""
             },
             "require-dev": {
-                "automattic/jetpack-changelogger": "^3.1",
-                "yoast/phpunit-polyfills": "1.0.3"
+                "automattic/jetpack-changelogger": "^3.3.2",
+                "yoast/phpunit-polyfills": "1.0.4"
             },
-            "time": "2022-06-21T15:37:56+00:00",
+            "time": "2023-02-20T19:47:14+00:00",
             "type": "jetpack-library",
             "extra": {
                 "autotagger": true,
@@ -97,7 +97,7 @@
             ],
             "description": "A logo for Jetpack",
             "support": {
-                "source": "https://github.com/Automattic/jetpack-logo/tree/v1.5.16"
+                "source": "https://github.com/Automattic/jetpack-logo/tree/v1.5.22"
             },
             "install-path": "../automattic/jetpack-logo"
         }
