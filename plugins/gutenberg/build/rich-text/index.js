@@ -2634,10 +2634,26 @@ function toTree(_ref2) {
   return tree;
 }
 
+;// CONCATENATED MODULE: ./packages/rich-text/build-module/is-range-equal.js
+/**
+ * Returns true if two ranges are equal, or false otherwise. Ranges are
+ * considered equal if their start and end occur in the same container and
+ * offset.
+ *
+ * @param {Range|null} a First range object to test.
+ * @param {Range|null} b First range object to test.
+ *
+ * @return {boolean} Whether the two ranges are equal.
+ */
+function isRangeEqual(a, b) {
+  return a === b || a && b && a.startContainer === b.startContainer && a.startOffset === b.startOffset && a.endContainer === b.endContainer && a.endOffset === b.endOffset;
+}
+
 ;// CONCATENATED MODULE: ./packages/rich-text/build-module/to-dom.js
 /**
  * Internal dependencies
  */
+
 
 
 /** @typedef {import('./create').RichTextValue} RichTextValue */
@@ -2906,21 +2922,6 @@ function applyValue(future, current) {
     current.removeChild(current.childNodes[i]);
   }
 }
-/**
- * Returns true if two ranges are equal, or false otherwise. Ranges are
- * considered equal if their start and end occur in the same container and
- * offset.
- *
- * @param {Range} a First range object to test.
- * @param {Range} b First range object to test.
- *
- * @return {boolean} Whether the two ranges are equal.
- */
-
-function isRangeEqual(a, b) {
-  return a.startContainer === b.startContainer && a.startOffset === b.startOffset && a.endContainer === b.endContainer && a.endOffset === b.endOffset;
-}
-
 function applySelection(_ref6, current) {
   let {
     startPath,
@@ -3290,21 +3291,106 @@ function useAnchorRef(_ref) {
  * WordPress dependencies
  */
 
-/**
- * Internal dependencies
- */
-
-
 /** @typedef {import('../register-format-type').RichTextFormatType} RichTextFormatType */
 
 /** @typedef {import('../create').RichTextValue} RichTextValue */
 
+/**
+ * Given a range and a format tag name and class name, returns the closest
+ * format element.
+ *
+ * @param {Range}       range                  The Range to check.
+ * @param {HTMLElement} editableContentElement The editable wrapper.
+ * @param {string}      tagName                The tag name of the format element.
+ * @param {string}      className              The class name of the format element.
+ *
+ * @return {HTMLElement|undefined} The format element, if found.
+ */
+
+function getFormatElement(range, editableContentElement, tagName, className) {
+  let element = range.startContainer; // If the caret is right before the element, select the next element.
+
+  element = element.nextElementSibling || element;
+
+  if (element.nodeType !== element.ELEMENT_NODE) {
+    element = element.parentElement;
+  }
+
+  if (!element) return;
+  if (element === editableContentElement) return;
+  if (!editableContentElement.contains(element)) return;
+  const selector = tagName + (className ? '.' + className : ''); // .closest( selector ), but with a boundary. Check if the element matches
+  // the selector. If it doesn't match, try the parent element if it's not the
+  // editable wrapper. We don't want to try to match ancestors of the editable
+  // wrapper, which is what .closest( selector ) would do. When the element is
+  // the editable wrapper (which is most likely the case because most text is
+  // unformatted), this never runs.
+
+  while (element !== editableContentElement) {
+    if (element.matches(selector)) {
+      return element;
+    }
+
+    element = element.parentElement;
+  }
+}
 /**
  * @typedef {Object} VirtualAnchorElement
  * @property {Function} getBoundingClientRect A function returning a DOMRect
  * @property {Document} ownerDocument         The element's ownerDocument
  */
 
+/**
+ * Creates a virtual anchor element for a range.
+ *
+ * @param {Range}       range                  The range to create a virtual anchor element for.
+ * @param {HTMLElement} editableContentElement The editable wrapper.
+ *
+ * @return {VirtualAnchorElement} The virtual anchor element.
+ */
+
+
+function createVirtualAnchorElement(range, editableContentElement) {
+  return {
+    ownerDocument: range.startContainer.ownerDocument,
+
+    getBoundingClientRect() {
+      return editableContentElement.contains(range.startContainer) ? range.getBoundingClientRect() : editableContentElement.getBoundingClientRect();
+    }
+
+  };
+}
+/**
+ * Get the anchor: a format element if there is a matching one based on the
+ * tagName and className or a range otherwise.
+ *
+ * @param {HTMLElement} editableContentElement The editable wrapper.
+ * @param {string}      tagName                The tag name of the format
+ *                                             element.
+ * @param {string}      className              The class name of the format
+ *                                             element.
+ *
+ * @return {HTMLElement|VirtualAnchorElement|undefined} The anchor.
+ */
+
+
+function getAnchor(editableContentElement, tagName, className) {
+  if (!editableContentElement) return;
+  const {
+    ownerDocument
+  } = editableContentElement;
+  const {
+    defaultView
+  } = ownerDocument;
+  const selection = defaultView.getSelection();
+  if (!selection) return;
+  if (!selection.rangeCount) return;
+  const range = selection.getRangeAt(0);
+  if (!range || !range.startContainer) return;
+  const formatElement = getFormatElement(range, editableContentElement, tagName, className);
+  if (formatElement) return formatElement;
+  return createVirtualAnchorElement(range, editableContentElement);
+}
 /**
  * This hook, to be used in a format type's Edit component, returns the active
  * element that is formatted, or a virtual element for the selection range if
@@ -3314,60 +3400,48 @@ function useAnchorRef(_ref) {
  * @param {Object}             $1                        Named parameters.
  * @param {HTMLElement|null}   $1.editableContentElement The element containing
  *                                                       the editable content.
- * @param {RichTextValue}      $1.value                  Value to check for selection.
  * @param {RichTextFormatType} $1.settings               The format type's settings.
  * @return {Element|VirtualAnchorElement|undefined|null} The active element or selection range.
  */
 
+
 function useAnchor(_ref) {
   let {
     editableContentElement,
-    value,
     settings = {}
   } = _ref;
   const {
     tagName,
-    className,
-    name
+    className
   } = settings;
-  const activeFormat = name ? getActiveFormat(value, name) : undefined;
-  return (0,external_wp_element_namespaceObject.useMemo)(() => {
+  const [anchor, setAnchor] = (0,external_wp_element_namespaceObject.useState)(() => getAnchor(editableContentElement, tagName, className));
+  (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
     if (!editableContentElement) return;
     const {
-      ownerDocument: {
-        defaultView
-      }
+      ownerDocument
     } = editableContentElement;
-    const selection = defaultView.getSelection();
 
-    if (!selection.rangeCount) {
-      return;
+    function callback() {
+      setAnchor(getAnchor(editableContentElement, tagName, className));
     }
 
-    const selectionWithinEditableContentElement = editableContentElement === null || editableContentElement === void 0 ? void 0 : editableContentElement.contains(selection === null || selection === void 0 ? void 0 : selection.anchorNode);
-    const range = selection.getRangeAt(0);
-
-    if (!activeFormat) {
-      return {
-        ownerDocument: range.startContainer.ownerDocument,
-
-        getBoundingClientRect() {
-          return selectionWithinEditableContentElement ? range.getBoundingClientRect() : editableContentElement.getBoundingClientRect();
-        }
-
-      };
+    function attach() {
+      ownerDocument.addEventListener('selectionchange', callback);
     }
 
-    let element = range.startContainer; // If the caret is right before the element, select the next element.
-
-    element = element.nextElementSibling || element;
-
-    while (element.nodeType !== element.ELEMENT_NODE) {
-      element = element.parentNode;
+    function detach() {
+      ownerDocument.removeEventListener('selectionchange', callback);
     }
 
-    return element.closest(tagName + (className ? '.' + className : ''));
-  }, [editableContentElement, activeFormat, value.start, value.end, tagName, className]);
+    if (editableContentElement === ownerDocument.activeElement) {
+      attach();
+    }
+
+    editableContentElement.addEventListener('focusin', attach);
+    editableContentElement.addEventListener('focusout', detach);
+    return detach;
+  }, [editableContentElement, tagName, className]);
+  return anchor;
 }
 
 ;// CONCATENATED MODULE: external ["wp","compose"]
@@ -3793,7 +3867,6 @@ function useInputAndSelection(props) {
       defaultView
     } = ownerDocument;
     let isComposing = false;
-    let rafId;
 
     function onInput(event) {
       // Do not trigger a change if characters are being composed.
@@ -3840,20 +3913,16 @@ function useInputAndSelection(props) {
       handleChange(change);
     }
     /**
-     * Syncs the selection to local state. A callback for the `selectionchange`
-     * native events, `keyup`, `mouseup` and `touchend` synthetic events, and
-     * animation frames after the `focus` event.
-     *
-     * @param {Event|DOMHighResTimeStamp} event
+     * Syncs the selection to local state. A callback for the
+     * `selectionchange` event.
      */
 
 
-    function handleSelectionChange(event) {
+    function handleSelectionChange() {
       const {
         record,
         applyRecord,
         createRecord,
-        isSelected,
         onSelectionChange
       } = propsRef.current; // Check if the implementor disabled editing. `contentEditable`
       // does disable input, but not text selection, so we must ignore
@@ -3910,10 +3979,6 @@ function useInputAndSelection(props) {
           onSelectionChange(undefined, offset);
         }
 
-        return;
-      }
-
-      if (event.type !== 'selectionchange' && !isSelected) {
         return;
       } // In case of a keyboard event, ignore selection changes during
       // composition.
@@ -4017,41 +4082,88 @@ function useInputAndSelection(props) {
           end: index,
           activeFormats: use_input_and_selection_EMPTY_ACTIVE_FORMATS
         };
-        onSelectionChange(index, index);
       } else {
         applyRecord(record.current);
         onSelectionChange(record.current.start, record.current.end);
-      } // Update selection as soon as possible, which is at the next animation
-      // frame. The event listener for selection changes may be added too late
-      // at this point, but this focus event is still too early to calculate
-      // the selection.
-
-
-      rafId = defaultView.requestAnimationFrame(handleSelectionChange);
+      }
     }
 
     element.addEventListener('input', onInput);
     element.addEventListener('compositionstart', onCompositionStart);
     element.addEventListener('compositionend', onCompositionEnd);
-    element.addEventListener('focus', onFocus); // Selection updates must be done at these events as they
-    // happen before the `selectionchange` event. In some cases,
-    // the `selectionchange` event may not even fire, for
-    // example when the window receives focus again on click.
-
-    element.addEventListener('keyup', handleSelectionChange);
-    element.addEventListener('mouseup', handleSelectionChange);
-    element.addEventListener('touchend', handleSelectionChange);
+    element.addEventListener('focus', onFocus);
     ownerDocument.addEventListener('selectionchange', handleSelectionChange);
     return () => {
       element.removeEventListener('input', onInput);
       element.removeEventListener('compositionstart', onCompositionStart);
       element.removeEventListener('compositionend', onCompositionEnd);
       element.removeEventListener('focus', onFocus);
-      element.removeEventListener('keyup', handleSelectionChange);
-      element.removeEventListener('mouseup', handleSelectionChange);
-      element.removeEventListener('touchend', handleSelectionChange);
       ownerDocument.removeEventListener('selectionchange', handleSelectionChange);
-      defaultView.cancelAnimationFrame(rafId);
+    };
+  }, []);
+}
+
+;// CONCATENATED MODULE: ./packages/rich-text/build-module/component/use-selection-change-compat.js
+/**
+ * WordPress dependencies
+ */
+
+/**
+ * Internal dependencies
+ */
+
+
+/**
+ * Sometimes some browsers are not firing a `selectionchange` event when
+ * changing the selection by mouse or keyboard. This hook makes sure that, if we
+ * detect no `selectionchange` or `input` event between the up and down events,
+ * we fire a `selectionchange` event.
+ *
+ * @return {import('@wordpress/compose').RefEffect} A ref effect attaching the
+ *                                                  listeners.
+ */
+
+function useSelectionChangeCompat() {
+  return (0,external_wp_compose_namespaceObject.useRefEffect)(element => {
+    const {
+      ownerDocument
+    } = element;
+    const {
+      defaultView
+    } = ownerDocument;
+    const selection = defaultView.getSelection();
+    let range;
+
+    function getRange() {
+      return selection.rangeCount ? selection.getRangeAt(0) : null;
+    }
+
+    function onDown(event) {
+      const type = event.type === 'keydown' ? 'keyup' : 'pointerup';
+
+      function onCancel() {
+        ownerDocument.removeEventListener(type, onUp);
+        ownerDocument.removeEventListener('selectionchange', onCancel);
+        ownerDocument.removeEventListener('input', onCancel);
+      }
+
+      function onUp() {
+        onCancel();
+        if (isRangeEqual(range, getRange())) return;
+        ownerDocument.dispatchEvent(new Event('selectionchange'));
+      }
+
+      ownerDocument.addEventListener(type, onUp);
+      ownerDocument.addEventListener('selectionchange', onCancel);
+      ownerDocument.addEventListener('input', onCancel);
+      range = getRange();
+    }
+
+    element.addEventListener('pointerdown', onDown);
+    element.addEventListener('keydown', onDown);
+    return () => {
+      element.removeEventListener('pointerdown', onDown);
+      element.removeEventListener('keydown', onDown);
     };
   }, []);
 }
@@ -4201,6 +4313,7 @@ function useDelete(props) {
 /**
  * Internal dependencies
  */
+
 
 
 
@@ -4430,12 +4543,18 @@ function useRichText(_ref) {
     handleChange,
     isSelected,
     onSelectionChange
-  }), (0,external_wp_compose_namespaceObject.useRefEffect)(() => {
+  }), useSelectionChangeCompat(), (0,external_wp_compose_namespaceObject.useRefEffect)(() => {
     applyFromProps();
     didMount.current = true;
   }, [placeholder, ...__unstableDependencies])]);
   return {
     value: record.current,
+    // A function to get the most recent value so event handlers in
+    // useRichText implementations have access to it. For example when
+    // listening to input events, we internally update the state, but this
+    // state is not yet available to the input event handler because React
+    // may re-render asynchronously.
+    getValue: () => record.current,
     onChange: handleChange,
     ref: mergedRefs
   };

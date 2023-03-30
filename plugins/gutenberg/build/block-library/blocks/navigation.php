@@ -348,7 +348,7 @@ function gutenberg_block_core_navigation_maybe_use_classic_menu_fallback() {
 	$wp_insert_post_result = wp_insert_post(
 		array(
 			'post_content' => $classic_nav_menu_blocks,
-			'post_title'   => $classic_nav_menu->slug,
+			'post_title'   => $classic_nav_menu->name,
 			'post_name'    => $classic_nav_menu->slug,
 			'post_status'  => 'publish',
 			'post_type'    => 'wp_navigation',
@@ -453,7 +453,6 @@ function gutenberg_block_core_navigation_get_fallback_blocks() {
 	$fallback_blocks = $registry->is_registered( 'core/page-list' ) ? $page_list_fallback : array();
 
 	// Default to a list of Pages.
-
 	$navigation_post = gutenberg_block_core_navigation_get_most_recently_published_navigation();
 
 	// If there are no navigation posts then try to find a classic menu
@@ -471,6 +470,10 @@ function gutenberg_block_core_navigation_get_fallback_blocks() {
 		// In this case default to the (Page List) fallback.
 		$fallback_blocks = ! empty( $maybe_fallback ) ? $maybe_fallback : $fallback_blocks;
 	}
+
+	// Normalizing blocks may result in an empty array of blocks if they were all `null` blocks.
+	// In this case default empty blocks.
+	$fallback_blocks = ! empty( $maybe_fallback ) ? $maybe_fallback : array();
 
 	/**
 	 * Filters the fallback experience for the Navigation block.
@@ -531,7 +534,6 @@ function gutenberg_block_core_navigation_from_block_get_post_ids( $block ) {
  * @return string Returns the post content with the legacy widget added.
  */
 function gutenberg_render_block_core_navigation( $attributes, $content, $block ) {
-
 	static $seen_menu_names = array();
 
 	// Flag used to indicate whether the rendered output is considered to be

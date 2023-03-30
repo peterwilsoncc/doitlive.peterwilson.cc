@@ -2421,6 +2421,147 @@ if (true) {
 
 /***/ }),
 
+/***/ 2364:
+/***/ (function(module) {
+
+"use strict";
+
+
+var isMergeableObject = function isMergeableObject(value) {
+	return isNonNullObject(value)
+		&& !isSpecial(value)
+};
+
+function isNonNullObject(value) {
+	return !!value && typeof value === 'object'
+}
+
+function isSpecial(value) {
+	var stringValue = Object.prototype.toString.call(value);
+
+	return stringValue === '[object RegExp]'
+		|| stringValue === '[object Date]'
+		|| isReactElement(value)
+}
+
+// see https://github.com/facebook/react/blob/b5ac963fb791d1298e7f396236383bc955f916c1/src/isomorphic/classic/element/ReactElement.js#L21-L25
+var canUseSymbol = typeof Symbol === 'function' && Symbol.for;
+var REACT_ELEMENT_TYPE = canUseSymbol ? Symbol.for('react.element') : 0xeac7;
+
+function isReactElement(value) {
+	return value.$$typeof === REACT_ELEMENT_TYPE
+}
+
+function emptyTarget(val) {
+	return Array.isArray(val) ? [] : {}
+}
+
+function cloneUnlessOtherwiseSpecified(value, options) {
+	return (options.clone !== false && options.isMergeableObject(value))
+		? deepmerge(emptyTarget(value), value, options)
+		: value
+}
+
+function defaultArrayMerge(target, source, options) {
+	return target.concat(source).map(function(element) {
+		return cloneUnlessOtherwiseSpecified(element, options)
+	})
+}
+
+function getMergeFunction(key, options) {
+	if (!options.customMerge) {
+		return deepmerge
+	}
+	var customMerge = options.customMerge(key);
+	return typeof customMerge === 'function' ? customMerge : deepmerge
+}
+
+function getEnumerableOwnPropertySymbols(target) {
+	return Object.getOwnPropertySymbols
+		? Object.getOwnPropertySymbols(target).filter(function(symbol) {
+			return Object.propertyIsEnumerable.call(target, symbol)
+		})
+		: []
+}
+
+function getKeys(target) {
+	return Object.keys(target).concat(getEnumerableOwnPropertySymbols(target))
+}
+
+function propertyIsOnObject(object, property) {
+	try {
+		return property in object
+	} catch(_) {
+		return false
+	}
+}
+
+// Protects from prototype poisoning and unexpected merging up the prototype chain.
+function propertyIsUnsafe(target, key) {
+	return propertyIsOnObject(target, key) // Properties are safe to merge if they don't exist in the target yet,
+		&& !(Object.hasOwnProperty.call(target, key) // unsafe if they exist up the prototype chain,
+			&& Object.propertyIsEnumerable.call(target, key)) // and also unsafe if they're nonenumerable.
+}
+
+function mergeObject(target, source, options) {
+	var destination = {};
+	if (options.isMergeableObject(target)) {
+		getKeys(target).forEach(function(key) {
+			destination[key] = cloneUnlessOtherwiseSpecified(target[key], options);
+		});
+	}
+	getKeys(source).forEach(function(key) {
+		if (propertyIsUnsafe(target, key)) {
+			return
+		}
+
+		if (propertyIsOnObject(target, key) && options.isMergeableObject(source[key])) {
+			destination[key] = getMergeFunction(key, options)(target[key], source[key], options);
+		} else {
+			destination[key] = cloneUnlessOtherwiseSpecified(source[key], options);
+		}
+	});
+	return destination
+}
+
+function deepmerge(target, source, options) {
+	options = options || {};
+	options.arrayMerge = options.arrayMerge || defaultArrayMerge;
+	options.isMergeableObject = options.isMergeableObject || isMergeableObject;
+	// cloneUnlessOtherwiseSpecified is added to `options` so that custom arrayMerge()
+	// implementations can use it. The caller may not replace it.
+	options.cloneUnlessOtherwiseSpecified = cloneUnlessOtherwiseSpecified;
+
+	var sourceIsArray = Array.isArray(source);
+	var targetIsArray = Array.isArray(target);
+	var sourceAndTargetTypesMatch = sourceIsArray === targetIsArray;
+
+	if (!sourceAndTargetTypesMatch) {
+		return cloneUnlessOtherwiseSpecified(source, options)
+	} else if (sourceIsArray) {
+		return options.arrayMerge(target, source, options)
+	} else {
+		return mergeObject(target, source, options)
+	}
+}
+
+deepmerge.all = function deepmergeAll(array, options) {
+	if (!Array.isArray(array)) {
+		throw new Error('first argument should be an array')
+	}
+
+	return array.reduce(function(prev, next) {
+		return deepmerge(prev, next, options)
+	}, {})
+};
+
+var deepmerge_1 = deepmerge;
+
+module.exports = deepmerge_1;
+
+
+/***/ }),
+
 /***/ 9196:
 /***/ (function(module) {
 
@@ -2553,7 +2694,7 @@ __webpack_require__.d(__webpack_exports__, {
   "FormTokenField": function() { return /* reexport */ form_token_field; },
   "G": function() { return /* reexport */ external_wp_primitives_namespaceObject.G; },
   "GradientPicker": function() { return /* reexport */ GradientPicker; },
-  "Guide": function() { return /* reexport */ Guide; },
+  "Guide": function() { return /* reexport */ guide; },
   "GuidePage": function() { return /* reexport */ GuidePage; },
   "HorizontalRule": function() { return /* reexport */ external_wp_primitives_namespaceObject.HorizontalRule; },
   "Icon": function() { return /* reexport */ build_module_icon; },
@@ -2629,18 +2770,18 @@ __webpack_require__.d(__webpack_exports__, {
   "__experimentalIsEmptyBorder": function() { return /* reexport */ isEmptyBorder; },
   "__experimentalItem": function() { return /* reexport */ item_component; },
   "__experimentalItemGroup": function() { return /* reexport */ item_group_component; },
-  "__experimentalNavigation": function() { return /* reexport */ Navigation; },
+  "__experimentalNavigation": function() { return /* reexport */ navigation; },
   "__experimentalNavigationBackButton": function() { return /* reexport */ back_button; },
-  "__experimentalNavigationGroup": function() { return /* reexport */ NavigationGroup; },
-  "__experimentalNavigationItem": function() { return /* reexport */ NavigationItem; },
-  "__experimentalNavigationMenu": function() { return /* reexport */ NavigationMenu; },
+  "__experimentalNavigationGroup": function() { return /* reexport */ group; },
+  "__experimentalNavigationItem": function() { return /* reexport */ navigation_item; },
+  "__experimentalNavigationMenu": function() { return /* reexport */ navigation_menu; },
   "__experimentalNavigatorBackButton": function() { return /* reexport */ navigator_back_button_component; },
   "__experimentalNavigatorButton": function() { return /* reexport */ navigator_button_component; },
   "__experimentalNavigatorProvider": function() { return /* reexport */ navigator_provider_component; },
   "__experimentalNavigatorScreen": function() { return /* reexport */ navigator_screen_component; },
   "__experimentalNavigatorToParentButton": function() { return /* reexport */ navigator_to_parent_button_component; },
   "__experimentalNumberControl": function() { return /* reexport */ number_control; },
-  "__experimentalPaletteEdit": function() { return /* reexport */ PaletteEdit; },
+  "__experimentalPaletteEdit": function() { return /* reexport */ palette_edit; },
   "__experimentalParseQuantityAndUnitFromRawValue": function() { return /* reexport */ parseQuantityAndUnitFromRawValue; },
   "__experimentalRadio": function() { return /* reexport */ radio_group_radio; },
   "__experimentalRadioGroup": function() { return /* reexport */ radio_group; },
@@ -15144,14 +15285,7 @@ function Icon(_ref) {
   }
 
   if ('function' === typeof icon) {
-    if (icon.prototype instanceof external_wp_element_namespaceObject.Component) {
-      return (0,external_wp_element_namespaceObject.createElement)(icon, {
-        size,
-        ...additionalProps
-      });
-    }
-
-    return icon({
+    return (0,external_wp_element_namespaceObject.createElement)(icon, {
       size,
       ...additionalProps
     });
@@ -15181,11 +15315,48 @@ function Icon(_ref) {
 
 ;// CONCATENATED MODULE: external ["wp","warning"]
 var external_wp_warning_namespaceObject = window["wp"]["warning"];
+// EXTERNAL MODULE: ./packages/components/node_modules/deepmerge/dist/cjs.js
+var cjs = __webpack_require__(2364);
+var cjs_default = /*#__PURE__*/__webpack_require__.n(cjs);
 // EXTERNAL MODULE: ./node_modules/fast-deep-equal/es6/index.js
 var es6 = __webpack_require__(5619);
 var es6_default = /*#__PURE__*/__webpack_require__.n(es6);
-;// CONCATENATED MODULE: external "lodash"
-var external_lodash_namespaceObject = window["lodash"];
+;// CONCATENATED MODULE: ./node_modules/is-plain-object/dist/is-plain-object.mjs
+/*!
+ * is-plain-object <https://github.com/jonschlinkert/is-plain-object>
+ *
+ * Copyright (c) 2014-2017, Jon Schlinkert.
+ * Released under the MIT License.
+ */
+
+function is_plain_object_isObject(o) {
+  return Object.prototype.toString.call(o) === '[object Object]';
+}
+
+function is_plain_object_isPlainObject(o) {
+  var ctor,prot;
+
+  if (is_plain_object_isObject(o) === false) return false;
+
+  // If has modified constructor
+  ctor = o.constructor;
+  if (ctor === undefined) return true;
+
+  // If has modified prototype
+  prot = ctor.prototype;
+  if (is_plain_object_isObject(prot) === false) return false;
+
+  // If constructor does not have an Object-specific method
+  if (prot.hasOwnProperty('isPrototypeOf') === false) {
+    return false;
+  }
+
+  // Most likely a plain Object
+  return true;
+}
+
+
+
 ;// CONCATENATED MODULE: ./packages/components/build-module/utils/hooks/use-update-effect.js
 /**
  * WordPress dependencies
@@ -15224,6 +15395,7 @@ function useUpdateEffect(effect, deps) {
 /**
  * External dependencies
  */
+
 
 
 /**
@@ -15266,7 +15438,7 @@ function useContextSystemBridge(_ref) {
   }, [value]); // `parentContext` will always be memoized (i.e., the result of this hook itself)
   // or the default value from when the `ComponentsContext` was originally
   // initialized (which will never change, it's a static variable)
-  // so this memoization will prevent `merge` and `JSON.parse/stringify` from rerunning unless
+  // so this memoization will prevent `deepmerge()` from rerunning unless
   // the references to `value` change OR the `parentContext` has an actual material change
   // (because again, it's guaranteed to be memoized or a static reference to the empty object
   // so we know that the only changes for `parentContext` are material ones... i.e., why we
@@ -15274,11 +15446,13 @@ function useContextSystemBridge(_ref) {
   // need to bother with the `value`). The `useUpdateEffect` above will ensure that we are
   // correctly warning when the `value` isn't being properly memoized. All of that to say
   // that this should be super safe to assume that `useMemo` will only run on actual
-  // changes to the two dependencies, therefore saving us calls to `merge` and `JSON.parse/stringify`!
+  // changes to the two dependencies, therefore saving us calls to `deepmerge()`!
 
   const config = (0,external_wp_element_namespaceObject.useMemo)(() => {
     // Deep clone `parentContext` to avoid mutating it later.
-    return (0,external_lodash_namespaceObject.merge)(JSON.parse(JSON.stringify(parentContext)), value);
+    return cjs_default()(parentContext !== null && parentContext !== void 0 ? parentContext : {}, value !== null && value !== void 0 ? value : {}, {
+      isMergeableObject: is_plain_object_isPlainObject
+    });
   }, [parentContext, value]);
   return config;
 }
@@ -15369,6 +15543,344 @@ function getConnectedNamespace() {
   };
 }
 
+;// CONCATENATED MODULE: ./node_modules/tslib/tslib.es6.js
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+/* global Reflect, Promise */
+
+var tslib_es6_extendStatics = function(d, b) {
+    tslib_es6_extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+    return tslib_es6_extendStatics(d, b);
+};
+
+function tslib_es6_extends(d, b) {
+    if (typeof b !== "function" && b !== null)
+        throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+    tslib_es6_extendStatics(d, b);
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+
+var tslib_es6_assign = function() {
+    tslib_es6_assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    }
+    return tslib_es6_assign.apply(this, arguments);
+}
+
+function tslib_es6_rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+}
+
+function tslib_es6_decorate(decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+
+function tslib_es6_param(paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+}
+
+function tslib_es6_metadata(metadataKey, metadataValue) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+}
+
+function tslib_es6_awaiter(thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+}
+
+function tslib_es6_generator(thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+}
+
+var tslib_es6_createBinding = Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+});
+
+function tslib_es6_exportStar(m, o) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(o, p)) tslib_es6_createBinding(o, m, p);
+}
+
+function tslib_es6_values(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+}
+
+function tslib_es6_read(o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+}
+
+/** @deprecated */
+function tslib_es6_spread() {
+    for (var ar = [], i = 0; i < arguments.length; i++)
+        ar = ar.concat(tslib_es6_read(arguments[i]));
+    return ar;
+}
+
+/** @deprecated */
+function tslib_es6_spreadArrays() {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+}
+
+function tslib_es6_spreadArray(to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || from);
+}
+
+function tslib_es6_await(v) {
+    return this instanceof tslib_es6_await ? (this.v = v, this) : new tslib_es6_await(v);
+}
+
+function tslib_es6_asyncGenerator(thisArg, _arguments, generator) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var g = generator.apply(thisArg, _arguments || []), i, q = [];
+    return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+    function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+    function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+    function step(r) { r.value instanceof tslib_es6_await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+    function fulfill(value) { resume("next", value); }
+    function reject(value) { resume("throw", value); }
+    function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+}
+
+function tslib_es6_asyncDelegator(o) {
+    var i, p;
+    return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+    function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: tslib_es6_await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+}
+
+function tslib_es6_asyncValues(o) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var m = o[Symbol.asyncIterator], i;
+    return m ? m.call(o) : (o = typeof tslib_es6_values === "function" ? tslib_es6_values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+    function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+    function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+}
+
+function tslib_es6_makeTemplateObject(cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+
+var tslib_es6_setModuleDefault = Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+};
+
+function tslib_es6_importStar(mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) tslib_es6_createBinding(result, mod, k);
+    tslib_es6_setModuleDefault(result, mod);
+    return result;
+}
+
+function tslib_es6_importDefault(mod) {
+    return (mod && mod.__esModule) ? mod : { default: mod };
+}
+
+function tslib_es6_classPrivateFieldGet(receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+}
+
+function tslib_es6_classPrivateFieldSet(receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+}
+
+;// CONCATENATED MODULE: ./node_modules/lower-case/dist.es2015/index.js
+/**
+ * Source: ftp://ftp.unicode.org/Public/UCD/latest/ucd/SpecialCasing.txt
+ */
+var SUPPORTED_LOCALE = {
+    tr: {
+        regexp: /\u0130|\u0049|\u0049\u0307/g,
+        map: {
+            İ: "\u0069",
+            I: "\u0131",
+            İ: "\u0069",
+        },
+    },
+    az: {
+        regexp: /\u0130/g,
+        map: {
+            İ: "\u0069",
+            I: "\u0131",
+            İ: "\u0069",
+        },
+    },
+    lt: {
+        regexp: /\u0049|\u004A|\u012E|\u00CC|\u00CD|\u0128/g,
+        map: {
+            I: "\u0069\u0307",
+            J: "\u006A\u0307",
+            Į: "\u012F\u0307",
+            Ì: "\u0069\u0307\u0300",
+            Í: "\u0069\u0307\u0301",
+            Ĩ: "\u0069\u0307\u0303",
+        },
+    },
+};
+/**
+ * Localized lower case.
+ */
+function localeLowerCase(str, locale) {
+    var lang = SUPPORTED_LOCALE[locale.toLowerCase()];
+    if (lang)
+        return lowerCase(str.replace(lang.regexp, function (m) { return lang.map[m]; }));
+    return lowerCase(str);
+}
+/**
+ * Lower case as a function.
+ */
+function lowerCase(str) {
+    return str.toLowerCase();
+}
+
+;// CONCATENATED MODULE: ./node_modules/no-case/dist.es2015/index.js
+
+// Support camel case ("camelCase" -> "camel Case" and "CAMELCase" -> "CAMEL Case").
+var DEFAULT_SPLIT_REGEXP = [/([a-z0-9])([A-Z])/g, /([A-Z])([A-Z][a-z])/g];
+// Remove all non-word characters.
+var DEFAULT_STRIP_REGEXP = /[^A-Z0-9]+/gi;
+/**
+ * Normalize the string into something other libraries can manipulate easier.
+ */
+function noCase(input, options) {
+    if (options === void 0) { options = {}; }
+    var _a = options.splitRegexp, splitRegexp = _a === void 0 ? DEFAULT_SPLIT_REGEXP : _a, _b = options.stripRegexp, stripRegexp = _b === void 0 ? DEFAULT_STRIP_REGEXP : _b, _c = options.transform, transform = _c === void 0 ? lowerCase : _c, _d = options.delimiter, delimiter = _d === void 0 ? " " : _d;
+    var result = replace(replace(input, splitRegexp, "$1\0$2"), stripRegexp, "\0");
+    var start = 0;
+    var end = result.length;
+    // Trim the delimiter from around the output string.
+    while (result.charAt(start) === "\0")
+        start++;
+    while (result.charAt(end - 1) === "\0")
+        end--;
+    // Transform each token independently.
+    return result.slice(start, end).split("\0").map(transform).join(delimiter);
+}
+/**
+ * Replace `re` in the input string with the replacement value.
+ */
+function replace(input, re, value) {
+    if (re instanceof RegExp)
+        return input.replace(re, value);
+    return re.reduce(function (input, re) { return input.replace(re, value); }, input);
+}
+
+;// CONCATENATED MODULE: ./node_modules/dot-case/dist.es2015/index.js
+
+
+function dotCase(input, options) {
+    if (options === void 0) { options = {}; }
+    return noCase(input, tslib_es6_assign({ delimiter: "." }, options));
+}
+
+;// CONCATENATED MODULE: ./node_modules/param-case/dist.es2015/index.js
+
+
+function paramCase(input, options) {
+    if (options === void 0) { options = {}; }
+    return dotCase(input, tslib_es6_assign({ delimiter: "-" }, options));
+}
+
 // EXTERNAL MODULE: ./node_modules/memize/index.js
 var memize = __webpack_require__(9756);
 var memize_default = /*#__PURE__*/__webpack_require__.n(memize);
@@ -15386,13 +15898,13 @@ var memize_default = /*#__PURE__*/__webpack_require__.n(memize);
  */
 
 function getStyledClassName(namespace) {
-  const kebab = (0,external_lodash_namespaceObject.kebabCase)(namespace);
+  const kebab = paramCase(namespace);
   return `components-${kebab}`;
 }
 
 const getStyledClassNameFromKey = memize_default()(getStyledClassName);
 
-;// CONCATENATED MODULE: ./node_modules/@emotion/cache/node_modules/@emotion/sheet/dist/emotion-sheet.browser.esm.js
+;// CONCATENATED MODULE: ./node_modules/@emotion/sheet/dist/emotion-sheet.browser.esm.js
 /*
 
 Based off glamor's StyleSheet, thanks Sunil ❤️
@@ -15533,7 +16045,7 @@ var emotion_sheet_browser_esm_StyleSheet = /*#__PURE__*/function () {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@emotion/cache/node_modules/stylis/src/Utility.js
+;// CONCATENATED MODULE: ./node_modules/stylis/src/Utility.js
 /**
  * @param {number}
  * @return {number}
@@ -15584,7 +16096,7 @@ function match (value, pattern) {
  * @param {string} replacement
  * @return {string}
  */
-function replace (value, pattern, replacement) {
+function Utility_replace (value, pattern, replacement) {
 	return value.replace(pattern, replacement)
 }
 
@@ -15650,7 +16162,7 @@ function Utility_combine (array, callback) {
 	return array.map(callback).join('')
 }
 
-;// CONCATENATED MODULE: ./node_modules/@emotion/cache/node_modules/stylis/src/Tokenizer.js
+;// CONCATENATED MODULE: ./node_modules/stylis/src/Tokenizer.js
 
 
 var line = 1
@@ -15898,7 +16410,7 @@ function identifier (index) {
 	return slice(index, position)
 }
 
-;// CONCATENATED MODULE: ./node_modules/@emotion/cache/node_modules/stylis/src/Enum.js
+;// CONCATENATED MODULE: ./node_modules/stylis/src/Enum.js
 var MS = '-ms-'
 var MOZ = '-moz-'
 var WEBKIT = '-webkit-'
@@ -15920,7 +16432,7 @@ var FONT_FACE = '@font-face'
 var COUNTER_STYLE = '@counter-style'
 var FONT_FEATURE_VALUES = '@font-feature-values'
 
-;// CONCATENATED MODULE: ./node_modules/@emotion/cache/node_modules/stylis/src/Serializer.js
+;// CONCATENATED MODULE: ./node_modules/stylis/src/Serializer.js
 
 
 
@@ -15957,7 +16469,7 @@ function stringify (element, index, children, callback) {
 	return Utility_strlen(children = serialize(element.children, callback)) ? element.return = element.value + '{' + children + '}' : ''
 }
 
-;// CONCATENATED MODULE: ./node_modules/@emotion/cache/node_modules/stylis/src/Prefixer.js
+;// CONCATENATED MODULE: ./node_modules/stylis/src/Prefixer.js
 
 
 
@@ -15991,37 +16503,37 @@ function prefix (value, length) {
 			return WEBKIT + value + MS + 'flex-' + value + value
 		// align-items
 		case 5187:
-			return WEBKIT + value + replace(value, /(\w+).+(:[^]+)/, WEBKIT + 'box-$1$2' + MS + 'flex-$1$2') + value
+			return WEBKIT + value + Utility_replace(value, /(\w+).+(:[^]+)/, WEBKIT + 'box-$1$2' + MS + 'flex-$1$2') + value
 		// align-self
 		case 5443:
-			return WEBKIT + value + MS + 'flex-item-' + replace(value, /flex-|-self/, '') + value
+			return WEBKIT + value + MS + 'flex-item-' + Utility_replace(value, /flex-|-self/, '') + value
 		// align-content
 		case 4675:
-			return WEBKIT + value + MS + 'flex-line-pack' + replace(value, /align-content|flex-|-self/, '') + value
+			return WEBKIT + value + MS + 'flex-line-pack' + Utility_replace(value, /align-content|flex-|-self/, '') + value
 		// flex-shrink
 		case 5548:
-			return WEBKIT + value + MS + replace(value, 'shrink', 'negative') + value
+			return WEBKIT + value + MS + Utility_replace(value, 'shrink', 'negative') + value
 		// flex-basis
 		case 5292:
-			return WEBKIT + value + MS + replace(value, 'basis', 'preferred-size') + value
+			return WEBKIT + value + MS + Utility_replace(value, 'basis', 'preferred-size') + value
 		// flex-grow
 		case 6060:
-			return WEBKIT + 'box-' + replace(value, '-grow', '') + WEBKIT + value + MS + replace(value, 'grow', 'positive') + value
+			return WEBKIT + 'box-' + Utility_replace(value, '-grow', '') + WEBKIT + value + MS + Utility_replace(value, 'grow', 'positive') + value
 		// transition
 		case 4554:
-			return WEBKIT + replace(value, /([^-])(transform)/g, '$1' + WEBKIT + '$2') + value
+			return WEBKIT + Utility_replace(value, /([^-])(transform)/g, '$1' + WEBKIT + '$2') + value
 		// cursor
 		case 6187:
-			return replace(replace(replace(value, /(zoom-|grab)/, WEBKIT + '$1'), /(image-set)/, WEBKIT + '$1'), value, '') + value
+			return Utility_replace(Utility_replace(Utility_replace(value, /(zoom-|grab)/, WEBKIT + '$1'), /(image-set)/, WEBKIT + '$1'), value, '') + value
 		// background, background-image
 		case 5495: case 3959:
-			return replace(value, /(image-set\([^]*)/, WEBKIT + '$1' + '$`$1')
+			return Utility_replace(value, /(image-set\([^]*)/, WEBKIT + '$1' + '$`$1')
 		// justify-content
 		case 4968:
-			return replace(replace(value, /(.+:)(flex-)?(.*)/, WEBKIT + 'box-pack:$3' + MS + 'flex-pack:$3'), /s.+-b[^;]+/, 'justify') + WEBKIT + value + value
+			return Utility_replace(Utility_replace(value, /(.+:)(flex-)?(.*)/, WEBKIT + 'box-pack:$3' + MS + 'flex-pack:$3'), /s.+-b[^;]+/, 'justify') + WEBKIT + value + value
 		// (margin|padding)-inline-(start|end)
 		case 4095: case 3583: case 4068: case 2532:
-			return replace(value, /(.+)-inline(.+)/, WEBKIT + '$1$2') + value
+			return Utility_replace(value, /(.+)-inline(.+)/, WEBKIT + '$1$2') + value
 		// (min|max)?(width|height|inline-size|block-size)
 		case 8116: case 7059: case 5753: case 5535:
 		case 5445: case 5701: case 4933: case 4677:
@@ -16036,10 +16548,10 @@ function prefix (value, length) {
 							break
 					// (f)ill-available, (f)it-content
 					case 102:
-						return replace(value, /(.+:)(.+)-([^]+)/, '$1' + WEBKIT + '$2-$3' + '$1' + MOZ + (Utility_charat(value, length + 3) == 108 ? '$3' : '$2-$3')) + value
+						return Utility_replace(value, /(.+:)(.+)-([^]+)/, '$1' + WEBKIT + '$2-$3' + '$1' + MOZ + (Utility_charat(value, length + 3) == 108 ? '$3' : '$2-$3')) + value
 					// (s)tretch
 					case 115:
-						return ~indexof(value, 'stretch') ? prefix(replace(value, 'stretch', 'fill-available'), length) + value : value
+						return ~indexof(value, 'stretch') ? prefix(Utility_replace(value, 'stretch', 'fill-available'), length) + value : value
 				}
 			break
 		// position: sticky
@@ -16052,10 +16564,10 @@ function prefix (value, length) {
 			switch (Utility_charat(value, Utility_strlen(value) - 3 - (~indexof(value, '!important') && 10))) {
 				// stic(k)y
 				case 107:
-					return replace(value, ':', ':' + WEBKIT) + value
+					return Utility_replace(value, ':', ':' + WEBKIT) + value
 				// (inline-)?fl(e)x
 				case 101:
-					return replace(value, /(.+:)([^;!]+)(;|!.+)?/, '$1' + WEBKIT + (Utility_charat(value, 14) === 45 ? 'inline-' : '') + 'box$3' + '$1' + WEBKIT + '$2$3' + '$1' + MS + '$2box$3') + value
+					return Utility_replace(value, /(.+:)([^;!]+)(;|!.+)?/, '$1' + WEBKIT + (Utility_charat(value, 14) === 45 ? 'inline-' : '') + 'box$3' + '$1' + WEBKIT + '$2$3' + '$1' + MS + '$2box$3') + value
 			}
 			break
 		// writing-mode
@@ -16063,13 +16575,13 @@ function prefix (value, length) {
 			switch (Utility_charat(value, length + 11)) {
 				// vertical-l(r)
 				case 114:
-					return WEBKIT + value + MS + replace(value, /[svh]\w+-[tblr]{2}/, 'tb') + value
+					return WEBKIT + value + MS + Utility_replace(value, /[svh]\w+-[tblr]{2}/, 'tb') + value
 				// vertical-r(l)
 				case 108:
-					return WEBKIT + value + MS + replace(value, /[svh]\w+-[tblr]{2}/, 'tb-rl') + value
+					return WEBKIT + value + MS + Utility_replace(value, /[svh]\w+-[tblr]{2}/, 'tb-rl') + value
 				// horizontal(-)tb
 				case 45:
-					return WEBKIT + value + MS + replace(value, /[svh]\w+-[tblr]{2}/, 'lr') + value
+					return WEBKIT + value + MS + Utility_replace(value, /[svh]\w+-[tblr]{2}/, 'lr') + value
 			}
 
 			return WEBKIT + value + MS + value + value
@@ -16078,7 +16590,7 @@ function prefix (value, length) {
 	return value
 }
 
-;// CONCATENATED MODULE: ./node_modules/@emotion/cache/node_modules/stylis/src/Middleware.js
+;// CONCATENATED MODULE: ./node_modules/stylis/src/Middleware.js
 
 
 
@@ -16127,20 +16639,20 @@ function prefixer (element, index, children, callback) {
 				case DECLARATION: element.return = prefix(element.value, element.length)
 					break
 				case KEYFRAMES:
-					return serialize([copy(element, {value: replace(element.value, '@', '@' + WEBKIT)})], callback)
+					return serialize([copy(element, {value: Utility_replace(element.value, '@', '@' + WEBKIT)})], callback)
 				case Enum_RULESET:
 					if (element.length)
 						return Utility_combine(element.props, function (value) {
 							switch (match(value, /(::plac\w+|:read-\w+)/)) {
 								// :read-(only|write)
 								case ':read-only': case ':read-write':
-									return serialize([copy(element, {props: [replace(value, /:(read-\w+)/, ':' + MOZ + '$1')]})], callback)
+									return serialize([copy(element, {props: [Utility_replace(value, /:(read-\w+)/, ':' + MOZ + '$1')]})], callback)
 								// :placeholder
 								case '::placeholder':
 									return serialize([
-										copy(element, {props: [replace(value, /:(plac\w+)/, ':' + WEBKIT + 'input-$1')]}),
-										copy(element, {props: [replace(value, /:(plac\w+)/, ':' + MOZ + '$1')]}),
-										copy(element, {props: [replace(value, /:(plac\w+)/, MS + 'input-$1')]})
+										copy(element, {props: [Utility_replace(value, /:(plac\w+)/, ':' + WEBKIT + 'input-$1')]}),
+										copy(element, {props: [Utility_replace(value, /:(plac\w+)/, ':' + MOZ + '$1')]}),
+										copy(element, {props: [Utility_replace(value, /:(plac\w+)/, MS + 'input-$1')]})
 									], callback)
 							}
 
@@ -16188,7 +16700,7 @@ function namespace (element) {
 	}
 }
 
-;// CONCATENATED MODULE: ./node_modules/@emotion/cache/node_modules/stylis/src/Parser.js
+;// CONCATENATED MODULE: ./node_modules/stylis/src/Parser.js
 
 
 
@@ -16235,7 +16747,7 @@ function Parser_parse (value, root, parent, rule, rules, rulesets, pseudo, point
 			// (
 			case 40:
 				if (previous != 108 && characters.charCodeAt(length - 1) == 58) {
-					if (indexof(characters += replace(delimit(character), '&', '&\f'), '&\f') != -1)
+					if (indexof(characters += Utility_replace(delimit(character), '&', '&\f'), '&\f') != -1)
 						ampersand = -1
 					break
 				}
@@ -16272,7 +16784,7 @@ function Parser_parse (value, root, parent, rule, rules, rulesets, pseudo, point
 					// ;
 					case 59 + offset:
 						if (property > 0 && (Utility_strlen(characters) - length))
-							Utility_append(property > 32 ? declaration(characters + ';', rule, parent, length - 1) : declaration(replace(characters, ' ', '') + ';', rule, parent, length - 2), declarations)
+							Utility_append(property > 32 ? declaration(characters + ';', rule, parent, length - 1) : declaration(Utility_replace(characters, ' ', '') + ';', rule, parent, length - 2), declarations)
 						break
 					// @ ;
 					case 59: characters += ';'
@@ -16354,7 +16866,7 @@ function ruleset (value, root, parent, index, offset, rules, points, type, props
 
 	for (var i = 0, j = 0, k = 0; i < index; ++i)
 		for (var x = 0, y = Utility_substr(value, post + 1, post = abs(j = points[i])), z = value; x < size; ++x)
-			if (z = trim(j > 0 ? rule[x] + ' ' + y : replace(y, /&\f/g, rule[x])))
+			if (z = trim(j > 0 ? rule[x] + ' ' + y : Utility_replace(y, /&\f/g, rule[x])))
 				props[k++] = z
 
 	return node(value, root, parent, offset === 0 ? Enum_RULESET : type, props, children, length)
@@ -21027,11 +21539,17 @@ function Shortcut(props) {
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/tooltip/index.js
 
+
 // @ts-nocheck
+
+/**
+ * External dependencies
+ */
 
 /**
  * WordPress dependencies
  */
+
 
 
 /**
@@ -21088,18 +21606,20 @@ const addPopoverToGrandchildren = _ref3 => {
     offset,
     position,
     shortcut,
-    text
+    text,
+    className,
+    ...props
   } = _ref3;
-  return (0,external_wp_element_namespaceObject.concatChildren)(grandchildren, isOver && (0,external_wp_element_namespaceObject.createElement)(popover, {
+  return (0,external_wp_element_namespaceObject.concatChildren)(grandchildren, isOver && (0,external_wp_element_namespaceObject.createElement)(popover, extends_extends({
     focusOnMount: false,
     position: position,
-    className: "components-tooltip",
+    className: classnames_default()('components-tooltip', className),
     "aria-hidden": "true",
     animate: false,
     offset: offset,
     anchor: anchor,
     shift: true
-  }, text, (0,external_wp_element_namespaceObject.createElement)(build_module_shortcut, {
+  }, props), text, (0,external_wp_element_namespaceObject.createElement)(build_module_shortcut, {
     className: "components-tooltip__shortcut",
     shortcut: shortcut
   })));
@@ -21129,7 +21649,8 @@ function Tooltip(props) {
     position = 'bottom middle',
     text,
     shortcut,
-    delay = TOOLTIP_DELAY
+    delay = TOOLTIP_DELAY,
+    ...popoverProps
   } = props;
   /**
    * Whether a mouse is currently pressed, used in determining whether
@@ -21278,7 +21799,8 @@ function Tooltip(props) {
   };
   const childrenWithPopover = addPopoverToGrandchildren({
     grandchildren,
-    ...popoverData
+    ...popoverData,
+    ...popoverProps
   });
   return getElementWithPopover({
     child,
@@ -23787,7 +24309,7 @@ function getDefaultOrigin(type) {
 /**
  * @param {GetAnimateOptions} options
  *
- * @return {string | void} ClassName that applies the animations
+ * @return {string | undefined} ClassName that applies the animations
  */
 
 
@@ -23812,6 +24334,8 @@ function getAnimateClassName(options) {
   if (type === 'slide-in') {
     return classnames_default()('components-animate__slide-in', 'is-from-' + origin);
   }
+
+  return undefined;
 } // @ts-ignore Reason: Planned for deprecation
 
 function Animate(_ref) {
@@ -24520,7 +25044,7 @@ function hook_useDeprecatedProps(props) {
 
 function useFlex(props) {
   const {
-    align = 'center',
+    align,
     className,
     direction: directionProp = 'row',
     expanded = true,
@@ -24535,7 +25059,7 @@ function useFlex(props) {
   const cx = useCx();
   const classes = (0,external_wp_element_namespaceObject.useMemo)(() => {
     const base = /*#__PURE__*/emotion_react_browser_esm_css({
-      alignItems: isColumn ? 'normal' : align,
+      alignItems: align !== null && align !== void 0 ? align : isColumn ? 'normal' : 'center',
       flexDirection: direction,
       flexWrap: wrap ? 'wrap' : undefined,
       gap: space(gap),
@@ -26056,8 +26580,8 @@ function InputBase(_ref, ref) {
 }
 /* harmony default export */ var input_base = ((0,external_wp_element_namespaceObject.forwardRef)(InputBase));
 
-;// CONCATENATED MODULE: ./node_modules/@use-gesture/core/dist/maths-b2a210f4.esm.js
-function maths_b2a210f4_esm_clamp(v, min, max) {
+;// CONCATENATED MODULE: ./node_modules/@use-gesture/core/dist/maths-0ab39ae9.esm.js
+function maths_0ab39ae9_esm_clamp(v, min, max) {
   return Math.max(min, Math.min(v, max));
 }
 const V = {
@@ -26065,34 +26589,27 @@ const V = {
     if (v === undefined) v = fallback;
     return Array.isArray(v) ? v : [v, v];
   },
-
   add(v1, v2) {
     return [v1[0] + v2[0], v1[1] + v2[1]];
   },
-
   sub(v1, v2) {
     return [v1[0] - v2[0], v1[1] - v2[1]];
   },
-
   addTo(v1, v2) {
     v1[0] += v2[0];
     v1[1] += v2[1];
   },
-
   subTo(v1, v2) {
     v1[0] -= v2[0];
     v1[1] -= v2[1];
   }
-
 };
-
 function rubberband(distance, dimension, constant) {
   if (dimension === 0 || Math.abs(dimension) === Infinity) return Math.pow(distance, constant * 5);
   return distance * dimension * constant / (dimension + constant * distance);
 }
-
 function rubberbandIfOutOfBounds(position, min, max, constant = 0.15) {
-  if (constant === 0) return maths_b2a210f4_esm_clamp(position, min, max);
+  if (constant === 0) return maths_0ab39ae9_esm_clamp(position, min, max);
   if (position < min) return -rubberband(min - position, max - min, constant) + min;
   if (position > max) return +rubberband(position - max, max - min, constant) + max;
   return position;
@@ -26104,10 +26621,27 @@ function computeRubberband(bounds, [Vx, Vy], [Rx, Ry]) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@use-gesture/core/dist/actions-5ad85d2f.esm.js
+;// CONCATENATED MODULE: ./node_modules/@use-gesture/core/dist/actions-b1cc53c2.esm.js
 
 
-function actions_5ad85d2f_esm_defineProperty(obj, key, value) {
+function _toPrimitive(input, hint) {
+  if (typeof input !== "object" || input === null) return input;
+  var prim = input[Symbol.toPrimitive];
+  if (prim !== undefined) {
+    var res = prim.call(input, hint || "default");
+    if (typeof res !== "object") return res;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return (hint === "string" ? String : Number)(input);
+}
+
+function _toPropertyKey(arg) {
+  var key = _toPrimitive(arg, "string");
+  return typeof key === "symbol" ? key : String(key);
+}
+
+function actions_b1cc53c2_esm_defineProperty(obj, key, value) {
+  key = _toPropertyKey(key);
   if (key in obj) {
     Object.defineProperty(obj, key, {
       value: value,
@@ -26118,33 +26652,28 @@ function actions_5ad85d2f_esm_defineProperty(obj, key, value) {
   } else {
     obj[key] = value;
   }
-
   return obj;
 }
 
-function actions_5ad85d2f_esm_ownKeys(object, enumerableOnly) {
+function actions_b1cc53c2_esm_ownKeys(object, enumerableOnly) {
   var keys = Object.keys(object);
-
   if (Object.getOwnPropertySymbols) {
     var symbols = Object.getOwnPropertySymbols(object);
     enumerableOnly && (symbols = symbols.filter(function (sym) {
       return Object.getOwnPropertyDescriptor(object, sym).enumerable;
     })), keys.push.apply(keys, symbols);
   }
-
   return keys;
 }
-
-function actions_5ad85d2f_esm_objectSpread2(target) {
+function actions_b1cc53c2_esm_objectSpread2(target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = null != arguments[i] ? arguments[i] : {};
-    i % 2 ? actions_5ad85d2f_esm_ownKeys(Object(source), !0).forEach(function (key) {
-      actions_5ad85d2f_esm_defineProperty(target, key, source[key]);
-    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : actions_5ad85d2f_esm_ownKeys(Object(source)).forEach(function (key) {
+    i % 2 ? actions_b1cc53c2_esm_ownKeys(Object(source), !0).forEach(function (key) {
+      actions_b1cc53c2_esm_defineProperty(target, key, source[key]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : actions_b1cc53c2_esm_ownKeys(Object(source)).forEach(function (key) {
       Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
     });
   }
-
   return target;
 }
 
@@ -26170,16 +26699,18 @@ const EVENT_TYPE_MAP = {
     end: 'end'
   }
 };
-
 function capitalize(string) {
   if (!string) return '';
   return string[0].toUpperCase() + string.slice(1);
 }
-
+const actionsWithoutCaptureSupported = ['enter', 'leave'];
+function hasCapture(capture = false, actionKey) {
+  return capture && !actionsWithoutCaptureSupported.includes(actionKey);
+}
 function toHandlerProp(device, action = '', capture = false) {
   const deviceProps = EVENT_TYPE_MAP[device];
   const actionKey = deviceProps ? deviceProps[action] || action : action;
-  return 'on' + capitalize(device) + capitalize(actionKey) + (capture ? 'Capture' : '');
+  return 'on' + capitalize(device) + capitalize(actionKey) + (hasCapture(capture, actionKey) ? 'Capture' : '');
 }
 const pointerCaptureEvents = ['gotpointercapture', 'lostpointercapture'];
 function parseProp(prop) {
@@ -26203,23 +26734,23 @@ function toDomEventType(device, action = '') {
 function isTouch(event) {
   return 'touches' in event;
 }
-
+function getPointerType(event) {
+  if (isTouch(event)) return 'touch';
+  if ('pointerType' in event) return event.pointerType;
+  return 'mouse';
+}
 function getCurrentTargetTouchList(event) {
   return Array.from(event.touches).filter(e => {
     var _event$currentTarget, _event$currentTarget$;
-
     return e.target === event.currentTarget || ((_event$currentTarget = event.currentTarget) === null || _event$currentTarget === void 0 ? void 0 : (_event$currentTarget$ = _event$currentTarget.contains) === null || _event$currentTarget$ === void 0 ? void 0 : _event$currentTarget$.call(_event$currentTarget, e.target));
   });
 }
-
 function getTouchList(event) {
   return event.type === 'touchend' || event.type === 'touchcancel' ? event.changedTouches : event.targetTouches;
 }
-
 function getValueEvent(event) {
   return isTouch(event) ? getTouchList(event)[0] : event;
 }
-
 function distanceAngle(P1, P2) {
   const dx = P2.clientX - P1.clientX;
   const dy = P2.clientY - P1.clientY;
@@ -26257,7 +26788,6 @@ function wheelValues(event) {
     deltaY,
     deltaMode
   } = event;
-
   if (deltaMode === 1) {
     deltaX *= LINE_HEIGHT;
     deltaY *= LINE_HEIGHT;
@@ -26265,12 +26795,10 @@ function wheelValues(event) {
     deltaX *= PAGE_HEIGHT;
     deltaY *= PAGE_HEIGHT;
   }
-
   return [deltaX, deltaY];
 }
 function scrollValues(event) {
   var _ref, _ref2;
-
   const {
     scrollX,
     scrollY,
@@ -26282,7 +26810,6 @@ function scrollValues(event) {
 function getEventDetails(event) {
   const payload = {};
   if ('buttons' in event) payload.buttons = event.buttons;
-
   if ('shiftKey' in event) {
     const {
       shiftKey,
@@ -26297,7 +26824,6 @@ function getEventDetails(event) {
       ctrlKey
     });
   }
-
   return payload;
 }
 
@@ -26308,17 +26834,15 @@ function call(v, ...args) {
     return v;
   }
 }
-function actions_5ad85d2f_esm_noop() {}
+function actions_b1cc53c2_esm_noop() {}
 function chain(...fns) {
-  if (fns.length === 0) return actions_5ad85d2f_esm_noop;
+  if (fns.length === 0) return actions_b1cc53c2_esm_noop;
   if (fns.length === 1) return fns[0];
   return function () {
     let result;
-
     for (const fn of fns) {
       result = fn.apply(this, arguments) || result;
     }
-
     return result;
   };
 }
@@ -26332,7 +26856,6 @@ class Engine {
     this.ctrl = ctrl;
     this.args = args;
     this.key = key;
-
     if (!this.state) {
       this.state = {};
       this.computeValues([0, 0]);
@@ -26341,39 +26864,30 @@ class Engine {
       this.reset();
     }
   }
-
   get state() {
     return this.ctrl.state[this.key];
   }
-
   set state(state) {
     this.ctrl.state[this.key] = state;
   }
-
   get shared() {
     return this.ctrl.state.shared;
   }
-
   get eventStore() {
     return this.ctrl.gestureEventStores[this.key];
   }
-
   get timeoutStore() {
     return this.ctrl.gestureTimeoutStores[this.key];
   }
-
   get config() {
     return this.ctrl.config[this.key];
   }
-
   get sharedConfig() {
     return this.ctrl.config.shared;
   }
-
   get handler() {
     return this.ctrl.handlers[this.key];
   }
-
   reset() {
     const {
       state,
@@ -26402,11 +26916,9 @@ class Engine {
     state.delta = [0, 0];
     state.timeStamp = 0;
   }
-
   start(event) {
     const state = this.state;
     const config = this.config;
-
     if (!state._active) {
       this.reset();
       this.computeInitial();
@@ -26416,22 +26928,18 @@ class Engine {
       state.lastOffset = config.from ? call(config.from, state) : state.offset;
       state.offset = state.lastOffset;
     }
-
     state.startTime = state.timeStamp = event.timeStamp;
   }
-
   computeValues(values) {
     const state = this.state;
     state._values = values;
     state.values = this.config.transform(values);
   }
-
   computeInitial() {
     const state = this.state;
     state._initial = state._values;
     state.initial = state.values;
   }
-
   compute(event) {
     const {
       state,
@@ -26440,7 +26948,6 @@ class Engine {
     } = this;
     state.args = this.args;
     let dt = 0;
-
     if (event) {
       state.event = event;
       if (config.preventDefault && event.cancelable) state.event.preventDefault();
@@ -26453,20 +26960,17 @@ class Engine {
       state.timeStamp = event.timeStamp;
       state.elapsedTime = state.timeStamp - state.startTime;
     }
-
     if (state._active) {
       const _absoluteDelta = state._delta.map(Math.abs);
-
       V.addTo(state._distance, _absoluteDelta);
     }
-
+    if (this.axisIntent) this.axisIntent(event);
     const [_m0, _m1] = state._movement;
     const [t0, t1] = config.threshold;
     const {
       _step,
       values
     } = state;
-
     if (config.hasCustomTransform) {
       if (_step[0] === false) _step[0] = Math.abs(_m0) >= t0 && values[0];
       if (_step[1] === false) _step[1] = Math.abs(_m1) >= t1 && values[1];
@@ -26474,11 +26978,9 @@ class Engine {
       if (_step[0] === false) _step[0] = Math.abs(_m0) >= t0 && Math.sign(_m0) * t0;
       if (_step[1] === false) _step[1] = Math.abs(_m1) >= t1 && Math.sign(_m1) * t1;
     }
-
     state.intentional = _step[0] !== false || _step[1] !== false;
     if (!state.intentional) return;
     const movement = [0, 0];
-
     if (config.hasCustomTransform) {
       const [v0, v1] = values;
       movement[0] = _step[0] !== false ? v0 - _step[0] : 0;
@@ -26487,38 +26989,22 @@ class Engine {
       movement[0] = _step[0] !== false ? _m0 - _step[0] : 0;
       movement[1] = _step[1] !== false ? _m1 - _step[1] : 0;
     }
-
-    if (this.intent) this.intent(movement);
-
-    if (state._active && !state._blocked || state.active) {
+    if (this.restrictToAxis && !state._blocked) this.restrictToAxis(movement);
+    const previousOffset = state.offset;
+    const gestureIsActive = state._active && !state._blocked || state.active;
+    if (gestureIsActive) {
       state.first = state._active && !state.active;
       state.last = !state._active && state.active;
       state.active = shared[this.ingKey] = state._active;
-
       if (event) {
         if (state.first) {
           if ('bounds' in config) state._bounds = call(config.bounds, state);
           if (this.setup) this.setup();
         }
-
         state.movement = movement;
-        const previousOffset = state.offset;
         this.computeOffset();
-
-        if (!state.last || dt > BEFORE_LAST_KINEMATICS_DELAY) {
-          state.delta = V.sub(state.offset, previousOffset);
-          const absoluteDelta = state.delta.map(Math.abs);
-          V.addTo(state.distance, absoluteDelta);
-          state.direction = state.delta.map(Math.sign);
-          state._direction = state._delta.map(Math.sign);
-
-          if (!state.first && dt > 0) {
-            state.velocity = [absoluteDelta[0] / dt, absoluteDelta[1] / dt];
-          }
-        }
       }
     }
-
     const [ox, oy] = state.offset;
     const [[x0, x1], [y0, y1]] = state._bounds;
     state.overflow = [ox < x0 ? -1 : ox > x1 ? 1 : 0, oy < y0 ? -1 : oy > y1 ? 1 : 0];
@@ -26526,82 +27012,87 @@ class Engine {
     state._movementBound[1] = state.overflow[1] ? state._movementBound[1] === false ? state._movement[1] : state._movementBound[1] : false;
     const rubberband = state._active ? config.rubberband || [0, 0] : [0, 0];
     state.offset = computeRubberband(state._bounds, state.offset, rubberband);
+    state.delta = V.sub(state.offset, previousOffset);
     this.computeMovement();
+    if (gestureIsActive && (!state.last || dt > BEFORE_LAST_KINEMATICS_DELAY)) {
+      state.delta = V.sub(state.offset, previousOffset);
+      const absoluteDelta = state.delta.map(Math.abs);
+      V.addTo(state.distance, absoluteDelta);
+      state.direction = state.delta.map(Math.sign);
+      state._direction = state._delta.map(Math.sign);
+      if (!state.first && dt > 0) {
+        state.velocity = [absoluteDelta[0] / dt, absoluteDelta[1] / dt];
+      }
+    }
   }
-
   emit() {
     const state = this.state;
     const shared = this.shared;
     const config = this.config;
     if (!state._active) this.clean();
     if ((state._blocked || !state.intentional) && !state._force && !config.triggerAllEvents) return;
-    const memo = this.handler(actions_5ad85d2f_esm_objectSpread2(actions_5ad85d2f_esm_objectSpread2(actions_5ad85d2f_esm_objectSpread2({}, shared), state), {}, {
+    const memo = this.handler(actions_b1cc53c2_esm_objectSpread2(actions_b1cc53c2_esm_objectSpread2(actions_b1cc53c2_esm_objectSpread2({}, shared), state), {}, {
       [this.aliasKey]: state.values
     }));
     if (memo !== undefined) state.memo = memo;
   }
-
   clean() {
     this.eventStore.clean();
     this.timeoutStore.clean();
   }
-
 }
 
-function selectAxis([dx, dy]) {
-  const d = Math.abs(dx) - Math.abs(dy);
-  if (d > 0) return 'x';
-  if (d < 0) return 'y';
+function selectAxis([dx, dy], threshold) {
+  const absDx = Math.abs(dx);
+  const absDy = Math.abs(dy);
+  if (absDx > absDy && absDx > threshold) {
+    return 'x';
+  }
+  if (absDy > absDx && absDy > threshold) {
+    return 'y';
+  }
   return undefined;
 }
-
-function restrictVectorToAxis(v, axis) {
-  switch (axis) {
-    case 'x':
-      v[1] = 0;
-      break;
-
-    case 'y':
-      v[0] = 0;
-      break;
-  }
-}
-
 class CoordinatesEngine extends Engine {
   constructor(...args) {
     super(...args);
-
-    actions_5ad85d2f_esm_defineProperty(this, "aliasKey", 'xy');
+    actions_b1cc53c2_esm_defineProperty(this, "aliasKey", 'xy');
   }
-
   reset() {
     super.reset();
     this.state.axis = undefined;
   }
-
   init() {
     this.state.offset = [0, 0];
     this.state.lastOffset = [0, 0];
   }
-
   computeOffset() {
     this.state.offset = V.add(this.state.lastOffset, this.state.movement);
   }
-
   computeMovement() {
     this.state.movement = V.sub(this.state.offset, this.state.lastOffset);
   }
-
-  intent(v) {
-    this.state.axis = this.state.axis || selectAxis(v);
-    this.state._blocked = (this.config.lockDirection || !!this.config.axis) && !this.state.axis || !!this.config.axis && this.config.axis !== this.state.axis;
-    if (this.state._blocked) return;
-
+  axisIntent(event) {
+    const state = this.state;
+    const config = this.config;
+    if (!state.axis && event) {
+      const threshold = typeof config.axisThreshold === 'object' ? config.axisThreshold[getPointerType(event)] : config.axisThreshold;
+      state.axis = selectAxis(state._movement, threshold);
+    }
+    state._blocked = (config.lockDirection || !!config.axis) && !state.axis || !!config.axis && config.axis !== state.axis;
+  }
+  restrictToAxis(v) {
     if (this.config.axis || this.config.lockDirection) {
-      restrictVectorToAxis(v, this.state.axis);
+      switch (this.state.axis) {
+        case 'x':
+          v[1] = 0;
+          break;
+        case 'y':
+          v[0] = 0;
+          break;
+      }
     }
   }
-
 }
 
 const identity = v => v;
@@ -26610,71 +27101,62 @@ const commonConfigResolver = {
   enabled(value = true) {
     return value;
   },
-
+  eventOptions(value, _k, config) {
+    return actions_b1cc53c2_esm_objectSpread2(actions_b1cc53c2_esm_objectSpread2({}, config.shared.eventOptions), value);
+  },
   preventDefault(value = false) {
     return value;
   },
-
   triggerAllEvents(value = false) {
     return value;
   },
-
   rubberband(value = 0) {
     switch (value) {
       case true:
         return [DEFAULT_RUBBERBAND, DEFAULT_RUBBERBAND];
-
       case false:
         return [0, 0];
-
       default:
         return V.toVector(value);
     }
   },
-
   from(value) {
     if (typeof value === 'function') return value;
     if (value != null) return V.toVector(value);
   },
-
   transform(value, _k, config) {
     const transform = value || config.shared.transform;
     this.hasCustomTransform = !!transform;
-
     if (false) {}
-
     return transform || identity;
   },
-
   threshold(value) {
     return V.toVector(value, 0);
   }
-
 };
-
 if (false) {}
 
-const coordinatesConfigResolver = actions_5ad85d2f_esm_objectSpread2(actions_5ad85d2f_esm_objectSpread2({}, commonConfigResolver), {}, {
+const DEFAULT_AXIS_THRESHOLD = 0;
+const coordinatesConfigResolver = actions_b1cc53c2_esm_objectSpread2(actions_b1cc53c2_esm_objectSpread2({}, commonConfigResolver), {}, {
   axis(_v, _k, {
     axis
   }) {
     this.lockDirection = axis === 'lock';
     if (!this.lockDirection) return axis;
   },
-
+  axisThreshold(value = DEFAULT_AXIS_THRESHOLD) {
+    return value;
+  },
   bounds(value = {}) {
     if (typeof value === 'function') {
       return state => coordinatesConfigResolver.bounds(value(state));
     }
-
     if ('current' in value) {
       return () => value.current;
     }
-
     if (typeof HTMLElement === 'function' && value instanceof HTMLElement) {
       return value;
     }
-
     const {
       left = -Infinity,
       right = Infinity,
@@ -26683,23 +27165,19 @@ const coordinatesConfigResolver = actions_5ad85d2f_esm_objectSpread2(actions_5ad
     } = value;
     return [[left, right], [top, bottom]];
   }
-
 });
 
-const DISPLACEMENT = 10;
 const KEYS_DELTA_MAP = {
-  ArrowRight: (factor = 1) => [DISPLACEMENT * factor, 0],
-  ArrowLeft: (factor = 1) => [-DISPLACEMENT * factor, 0],
-  ArrowUp: (factor = 1) => [0, -DISPLACEMENT * factor],
-  ArrowDown: (factor = 1) => [0, DISPLACEMENT * factor]
+  ArrowRight: (displacement, factor = 1) => [displacement * factor, 0],
+  ArrowLeft: (displacement, factor = 1) => [-1 * displacement * factor, 0],
+  ArrowUp: (displacement, factor = 1) => [0, -1 * displacement * factor],
+  ArrowDown: (displacement, factor = 1) => [0, displacement * factor]
 };
 class DragEngine extends CoordinatesEngine {
   constructor(...args) {
     super(...args);
-
-    actions_5ad85d2f_esm_defineProperty(this, "ingKey", 'dragging');
+    actions_b1cc53c2_esm_defineProperty(this, "ingKey", 'dragging');
   }
-
   reset() {
     super.reset();
     const state = this.state;
@@ -26713,13 +27191,10 @@ class DragEngine extends CoordinatesEngine {
     state.canceled = false;
     state.cancel = this.cancel.bind(this);
   }
-
   setup() {
     const state = this.state;
-
     if (state._bounds instanceof HTMLElement) {
       const boundRect = state._bounds.getBoundingClientRect();
-
       const targetRect = state.currentTarget.getBoundingClientRect();
       const _bounds = {
         left: boundRect.left - targetRect.left + state.offset[0],
@@ -26730,7 +27205,6 @@ class DragEngine extends CoordinatesEngine {
       state._bounds = coordinatesConfigResolver.bounds(_bounds);
     }
   }
-
   cancel() {
     const state = this.state;
     if (state.canceled) return;
@@ -26741,45 +27215,43 @@ class DragEngine extends CoordinatesEngine {
       this.emit();
     }, 0);
   }
-
   setActive() {
     this.state._active = this.state._pointerActive || this.state._keyboardActive;
   }
-
   clean() {
     this.pointerClean();
     this.state._pointerActive = false;
     this.state._keyboardActive = false;
     super.clean();
   }
-
   pointerDown(event) {
     const config = this.config;
     const state = this.state;
     if (event.buttons != null && (Array.isArray(config.pointerButtons) ? !config.pointerButtons.includes(event.buttons) : config.pointerButtons !== -1 && config.pointerButtons !== event.buttons)) return;
-    this.ctrl.setEventIds(event);
-
+    const ctrlIds = this.ctrl.setEventIds(event);
     if (config.pointerCapture) {
       event.target.setPointerCapture(event.pointerId);
     }
-
-    if (state._pointerActive) return;
+    if (ctrlIds && ctrlIds.size > 1 && state._pointerActive) return;
     this.start(event);
     this.setupPointer(event);
     state._pointerId = pointerId(event);
     state._pointerActive = true;
     this.computeValues(pointerValues(event));
     this.computeInitial();
-
-    if (config.preventScroll) {
+    if (config.preventScrollAxis && getPointerType(event) !== 'mouse') {
+      state._active = false;
       this.setupScrollPrevention(event);
     } else if (config.delay > 0) {
       this.setupDelayTrigger(event);
+      if (config.triggerAllEvents) {
+        this.compute(event);
+        this.emit();
+      }
     } else {
       this.startPointerDrag(event);
     }
   }
-
   startPointerDrag(event) {
     const state = this.state;
     state._active = true;
@@ -26788,35 +27260,29 @@ class DragEngine extends CoordinatesEngine {
     this.compute(event);
     this.emit();
   }
-
   pointerMove(event) {
     const state = this.state;
     const config = this.config;
     if (!state._pointerActive) return;
     if (state.type === event.type && event.timeStamp === state.timeStamp) return;
     const id = pointerId(event);
-    if (state._pointerId && id !== state._pointerId) return;
-
+    if (state._pointerId !== undefined && id !== state._pointerId) return;
     const _values = pointerValues(event);
-
     if (document.pointerLockElement === event.target) {
       state._delta = [event.movementX, event.movementY];
     } else {
       state._delta = V.sub(_values, state._values);
       this.computeValues(_values);
     }
-
     V.addTo(state._movement, state._delta);
     this.compute(event);
-
-    if (state._delayed) {
+    if (state._delayed && state.intentional) {
       this.timeoutStore.remove('dragDelay');
       state.active = false;
       this.startPointerDrag(event);
       return;
     }
-
-    if (config.preventScroll && !state._preventScroll) {
+    if (config.preventScrollAxis && !state._preventScroll) {
       if (state.axis) {
         if (state.axis === config.preventScrollAxis || config.preventScrollAxis === 'xy') {
           state._active = false;
@@ -26831,13 +27297,10 @@ class DragEngine extends CoordinatesEngine {
         return;
       }
     }
-
     this.emit();
   }
-
   pointerUp(event) {
     this.ctrl.setEventIds(event);
-
     try {
       if (this.config.pointerCapture && event.target.hasPointerCapture(event.pointerId)) {
         ;
@@ -26846,18 +27309,16 @@ class DragEngine extends CoordinatesEngine {
     } catch (_unused) {
       if (false) {}
     }
-
     const state = this.state;
     const config = this.config;
-    if (!state._pointerActive) return;
+    if (!state._active || !state._pointerActive) return;
     const id = pointerId(event);
-    if (state._pointerId && id !== state._pointerId) return;
+    if (state._pointerId !== undefined && id !== state._pointerId) return;
     this.state._pointerActive = false;
     this.setActive();
     this.compute(event);
     const [dx, dy] = state._distance;
     state.tap = dx <= config.tapsThreshold && dy <= config.tapsThreshold;
-
     if (state.tap && config.filterTaps) {
       state._force = true;
     } else {
@@ -26867,86 +27328,72 @@ class DragEngine extends CoordinatesEngine {
       const [svx, svy] = config.swipe.velocity;
       const [sx, sy] = config.swipe.distance;
       const sdt = config.swipe.duration;
-
       if (state.elapsedTime < sdt) {
         if (Math.abs(vx) > svx && Math.abs(mx) > sx) state.swipe[0] = dirx;
         if (Math.abs(vy) > svy && Math.abs(my) > sy) state.swipe[1] = diry;
       }
     }
-
     this.emit();
   }
-
   pointerClick(event) {
-    if (!this.state.tap) {
+    if (!this.state.tap && event.detail > 0) {
       event.preventDefault();
       event.stopPropagation();
     }
   }
-
   setupPointer(event) {
     const config = this.config;
-    let device = config.device;
-
+    const device = config.device;
     if (false) {}
-
     if (config.pointerLock) {
       event.currentTarget.requestPointerLock();
     }
-
     if (!config.pointerCapture) {
       this.eventStore.add(this.sharedConfig.window, device, 'change', this.pointerMove.bind(this));
       this.eventStore.add(this.sharedConfig.window, device, 'end', this.pointerUp.bind(this));
       this.eventStore.add(this.sharedConfig.window, device, 'cancel', this.pointerUp.bind(this));
     }
   }
-
   pointerClean() {
     if (this.config.pointerLock && document.pointerLockElement === this.state.currentTarget) {
       document.exitPointerLock();
     }
   }
-
   preventScroll(event) {
     if (this.state._preventScroll && event.cancelable) {
       event.preventDefault();
     }
   }
-
   setupScrollPrevention(event) {
+    this.state._preventScroll = false;
     persistEvent(event);
-    this.eventStore.add(this.sharedConfig.window, 'touch', 'change', this.preventScroll.bind(this), {
+    const remove = this.eventStore.add(this.sharedConfig.window, 'touch', 'change', this.preventScroll.bind(this), {
       passive: false
     });
-    this.eventStore.add(this.sharedConfig.window, 'touch', 'end', this.clean.bind(this), {
-      passive: false
-    });
-    this.eventStore.add(this.sharedConfig.window, 'touch', 'cancel', this.clean.bind(this), {
-      passive: false
-    });
-    this.timeoutStore.add('startPointerDrag', this.startPointerDrag.bind(this), this.config.preventScroll, event);
+    this.eventStore.add(this.sharedConfig.window, 'touch', 'end', remove);
+    this.eventStore.add(this.sharedConfig.window, 'touch', 'cancel', remove);
+    this.timeoutStore.add('startPointerDrag', this.startPointerDrag.bind(this), this.config.preventScrollDelay, event);
   }
-
   setupDelayTrigger(event) {
     this.state._delayed = true;
-    this.timeoutStore.add('dragDelay', this.startPointerDrag.bind(this), this.config.delay, event);
+    this.timeoutStore.add('dragDelay', () => {
+      this.state._step = [0, 0];
+      this.startPointerDrag(event);
+    }, this.config.delay);
   }
-
   keyDown(event) {
     const deltaFn = KEYS_DELTA_MAP[event.key];
-
     if (deltaFn) {
       const state = this.state;
       const factor = event.shiftKey ? 10 : event.altKey ? 0.1 : 1;
-      state._delta = deltaFn(factor);
       this.start(event);
+      state._delta = deltaFn(this.config.keyboardDisplacement, factor);
       state._keyboardActive = true;
       V.addTo(state._movement, state._delta);
       this.compute(event);
       this.emit();
     }
   }
-
   keyUp(event) {
     if (!(event.key in KEYS_DELTA_MAP)) return;
     this.state._keyboardActive = false;
@@ -26954,21 +27401,19 @@ class DragEngine extends CoordinatesEngine {
     this.compute(event);
     this.emit();
   }
-
   bind(bindFunction) {
     const device = this.config.device;
     bindFunction(device, 'start', this.pointerDown.bind(this));
-
     if (this.config.pointerCapture) {
       bindFunction(device, 'change', this.pointerMove.bind(this));
       bindFunction(device, 'end', this.pointerUp.bind(this));
       bindFunction(device, 'cancel', this.pointerUp.bind(this));
       bindFunction('lostPointerCapture', '', this.pointerUp.bind(this));
     }
-
-    bindFunction('key', 'down', this.keyDown.bind(this));
-    bindFunction('key', 'up', this.keyUp.bind(this));
-
+    if (this.config.keys) {
+      bindFunction('key', 'down', this.keyDown.bind(this));
+      bindFunction('key', 'up', this.keyUp.bind(this));
+    }
     if (this.config.filterTaps) {
       bindFunction('click', '', this.pointerClick.bind(this), {
         capture: true,
@@ -26976,31 +27421,24 @@ class DragEngine extends CoordinatesEngine {
       });
     }
   }
-
 }
-
 function persistEvent(event) {
   'persist' in event && typeof event.persist === 'function' && event.persist();
 }
 
-const actions_5ad85d2f_esm_isBrowser = typeof window !== 'undefined' && window.document && window.document.createElement;
-
-function actions_5ad85d2f_esm_supportsTouchEvents() {
-  return actions_5ad85d2f_esm_isBrowser && 'ontouchstart' in window;
+const actions_b1cc53c2_esm_isBrowser = typeof window !== 'undefined' && window.document && window.document.createElement;
+function actions_b1cc53c2_esm_supportsTouchEvents() {
+  return actions_b1cc53c2_esm_isBrowser && 'ontouchstart' in window;
 }
-
 function isTouchScreen() {
-  return actions_5ad85d2f_esm_supportsTouchEvents() || actions_5ad85d2f_esm_isBrowser && window.navigator.maxTouchPoints > 1;
+  return actions_b1cc53c2_esm_supportsTouchEvents() || actions_b1cc53c2_esm_isBrowser && window.navigator.maxTouchPoints > 1;
 }
-
-function actions_5ad85d2f_esm_supportsPointerEvents() {
-  return actions_5ad85d2f_esm_isBrowser && 'onpointerdown' in window;
+function actions_b1cc53c2_esm_supportsPointerEvents() {
+  return actions_b1cc53c2_esm_isBrowser && 'onpointerdown' in window;
 }
-
 function supportsPointerLock() {
-  return actions_5ad85d2f_esm_isBrowser && 'exitPointerLock' in window.document;
+  return actions_b1cc53c2_esm_isBrowser && 'exitPointerLock' in window.document;
 }
-
 function supportsGestureEvents() {
   try {
     return 'constructor' in GestureEvent;
@@ -27008,13 +27446,12 @@ function supportsGestureEvents() {
     return false;
   }
 }
-
 const SUPPORT = {
-  isBrowser: actions_5ad85d2f_esm_isBrowser,
+  isBrowser: actions_b1cc53c2_esm_isBrowser,
   gesture: supportsGestureEvents(),
   touch: isTouchScreen(),
   touchscreen: isTouchScreen(),
-  pointer: actions_5ad85d2f_esm_supportsPointerEvents(),
+  pointer: actions_b1cc53c2_esm_supportsPointerEvents(),
   pointerLock: supportsPointerLock()
 };
 
@@ -27023,44 +27460,45 @@ const DEFAULT_DRAG_DELAY = 180;
 const DEFAULT_SWIPE_VELOCITY = 0.5;
 const DEFAULT_SWIPE_DISTANCE = 50;
 const DEFAULT_SWIPE_DURATION = 250;
-const dragConfigResolver = actions_5ad85d2f_esm_objectSpread2(actions_5ad85d2f_esm_objectSpread2({}, coordinatesConfigResolver), {}, {
-  pointerLock(_v, _k, {
+const DEFAULT_KEYBOARD_DISPLACEMENT = 10;
+const DEFAULT_DRAG_AXIS_THRESHOLD = {
+  mouse: 0,
+  touch: 0,
+  pen: 8
+};
+const dragConfigResolver = actions_b1cc53c2_esm_objectSpread2(actions_b1cc53c2_esm_objectSpread2({}, coordinatesConfigResolver), {}, {
+  device(_v, _k, {
     pointer: {
+      touch = false,
       lock = false,
-      touch = false
+      mouse = false
     } = {}
   }) {
-    this.useTouch = touch && SUPPORT.touch;
-    return lock && SUPPORT.pointerLock;
-  },
-
-  device(_v, _k) {
-    if (this.useTouch) return 'touch';
+    this.pointerLock = lock && SUPPORT.pointerLock;
+    if (SUPPORT.touch && touch) return 'touch';
     if (this.pointerLock) return 'mouse';
-    if (SUPPORT.pointer) return 'pointer';
+    if (SUPPORT.pointer && !mouse) return 'pointer';
     if (SUPPORT.touch) return 'touch';
     return 'mouse';
   },
-
-  preventScroll(value = false, _k, {
-    preventScrollAxis = 'y'
+  preventScrollAxis(value, _k, {
+    preventScroll
   }) {
-    if (preventScrollAxis) this.preventScrollAxis = preventScrollAxis;
-    if (!SUPPORT.touchscreen) return false;
-    if (typeof value === 'number') return value;
-    return value ? DEFAULT_PREVENT_SCROLL_DELAY : false;
+    this.preventScrollDelay = typeof preventScroll === 'number' ? preventScroll : preventScroll || preventScroll === undefined && value ? DEFAULT_PREVENT_SCROLL_DELAY : undefined;
+    if (!SUPPORT.touchscreen || preventScroll === false) return undefined;
+    return value ? value : preventScroll !== undefined ? 'y' : undefined;
   },
-
   pointerCapture(_v, _k, {
     pointer: {
       capture = true,
-      buttons = 1
+      buttons = 1,
+      keys = true
     } = {}
   }) {
     this.pointerButtons = buttons;
+    this.keys = keys;
     return !this.pointerLock && this.device === 'pointer' && capture;
   },
-
   threshold(value, _k, {
     filterTaps = false,
     tapsThreshold = 3,
@@ -27071,7 +27509,6 @@ const dragConfigResolver = actions_5ad85d2f_esm_objectSpread2(actions_5ad85d2f_e
     this.tapsThreshold = tapsThreshold;
     return threshold;
   },
-
   swipe({
     velocity = DEFAULT_SWIPE_VELOCITY,
     distance = DEFAULT_SWIPE_DISTANCE,
@@ -27083,41 +27520,51 @@ const dragConfigResolver = actions_5ad85d2f_esm_objectSpread2(actions_5ad85d2f_e
       duration
     };
   },
-
   delay(value = 0) {
     switch (value) {
       case true:
         return DEFAULT_DRAG_DELAY;
-
       case false:
         return 0;
-
       default:
         return value;
     }
+  },
+  axisThreshold(value) {
+    if (!value) return DEFAULT_DRAG_AXIS_THRESHOLD;
+    return actions_b1cc53c2_esm_objectSpread2(actions_b1cc53c2_esm_objectSpread2({}, DEFAULT_DRAG_AXIS_THRESHOLD), value);
+  },
+  keyboardDisplacement(value = DEFAULT_KEYBOARD_DISPLACEMENT) {
+    return value;
   }
-
 });
-
 if (false) {}
 
+function clampStateInternalMovementToBounds(state) {
+  const [ox, oy] = state.overflow;
+  const [dx, dy] = state._delta;
+  const [dirx, diry] = state._direction;
+  if (ox < 0 && dx > 0 && dirx < 0 || ox > 0 && dx < 0 && dirx > 0) {
+    state._movement[0] = state._movementBound[0];
+  }
+  if (oy < 0 && dy > 0 && diry < 0 || oy > 0 && dy < 0 && diry > 0) {
+    state._movement[1] = state._movementBound[1];
+  }
+}
+
 const SCALE_ANGLE_RATIO_INTENT_DEG = 30;
-const PINCH_WHEEL_RATIO = 36;
+const PINCH_WHEEL_RATIO = 100;
 class PinchEngine extends Engine {
   constructor(...args) {
     super(...args);
-
-    actions_5ad85d2f_esm_defineProperty(this, "ingKey", 'pinching');
-
-    actions_5ad85d2f_esm_defineProperty(this, "aliasKey", 'da');
+    actions_b1cc53c2_esm_defineProperty(this, "ingKey", 'pinching');
+    actions_b1cc53c2_esm_defineProperty(this, "aliasKey", 'da');
   }
-
   init() {
     this.state.offset = [1, 0];
     this.state.lastOffset = [1, 0];
     this.state._pointerEvents = new Map();
   }
-
   reset() {
     super.reset();
     const state = this.state;
@@ -27126,21 +27573,18 @@ class PinchEngine extends Engine {
     state.cancel = this.cancel.bind(this);
     state.turns = 0;
   }
-
   computeOffset() {
     const {
       type,
       movement,
       lastOffset
     } = this.state;
-
     if (type === 'wheel') {
       this.state.offset = V.add(movement, lastOffset);
     } else {
       this.state.offset = [(1 + movement[0]) * lastOffset[0], movement[1] + lastOffset[1]];
     }
   }
-
   computeMovement() {
     const {
       offset,
@@ -27148,20 +27592,19 @@ class PinchEngine extends Engine {
     } = this.state;
     this.state.movement = [offset[0] / lastOffset[0], offset[1] - lastOffset[1]];
   }
-
-  intent(v) {
+  axisIntent() {
     const state = this.state;
-
+    const [_m0, _m1] = state._movement;
     if (!state.axis) {
-      const axisMovementDifference = Math.abs(v[0]) * SCALE_ANGLE_RATIO_INTENT_DEG - Math.abs(v[1]);
+      const axisMovementDifference = Math.abs(_m0) * SCALE_ANGLE_RATIO_INTENT_DEG - Math.abs(_m1);
       if (axisMovementDifference < 0) state.axis = 'angle';else if (axisMovementDifference > 0) state.axis = 'scale';
     }
-
+  }
+  restrictToAxis(v) {
     if (this.config.lockDirection) {
-      if (state.axis === 'scale') v[1] = 0;else if (state.axis === 'angle') v[0] = 0;
+      if (this.state.axis === 'scale') v[1] = 0;else if (this.state.axis === 'angle') v[0] = 0;
     }
   }
-
   cancel() {
     const state = this.state;
     if (state.canceled) return;
@@ -27172,23 +27615,19 @@ class PinchEngine extends Engine {
       this.emit();
     }, 0);
   }
-
   touchStart(event) {
     this.ctrl.setEventIds(event);
     const state = this.state;
     const ctrlTouchIds = this.ctrl.touchIds;
-
     if (state._active) {
       if (state._touchIds.every(id => ctrlTouchIds.has(id))) return;
     }
-
     if (ctrlTouchIds.size < 2) return;
     this.start(event);
     state._touchIds = Array.from(ctrlTouchIds).slice(0, 2);
     const payload = touchDistanceAngle(event, state._touchIds);
     this.pinchStart(event, payload);
   }
-
   pointerStart(event) {
     if (event.buttons != null && event.buttons % 2 !== 1) return;
     this.ctrl.setEventIds(event);
@@ -27196,21 +27635,17 @@ class PinchEngine extends Engine {
     const state = this.state;
     const _pointerEvents = state._pointerEvents;
     const ctrlPointerIds = this.ctrl.pointerIds;
-
     if (state._active) {
       if (Array.from(_pointerEvents.keys()).every(id => ctrlPointerIds.has(id))) return;
     }
-
     if (_pointerEvents.size < 2) {
       _pointerEvents.set(event.pointerId, event);
     }
-
     if (state._pointerEvents.size < 2) return;
     this.start(event);
     const payload = distanceAngle(...Array.from(_pointerEvents.values()));
     this.pinchStart(event, payload);
   }
-
   pinchStart(event, payload) {
     const state = this.state;
     state.origin = payload.origin;
@@ -27219,25 +27654,20 @@ class PinchEngine extends Engine {
     this.compute(event);
     this.emit();
   }
-
   touchMove(event) {
     if (!this.state._active) return;
     const payload = touchDistanceAngle(event, this.state._touchIds);
     this.pinchMove(event, payload);
   }
-
   pointerMove(event) {
     const _pointerEvents = this.state._pointerEvents;
-
     if (_pointerEvents.has(event.pointerId)) {
       _pointerEvents.set(event.pointerId, event);
     }
-
     if (!this.state._active) return;
     const payload = distanceAngle(...Array.from(_pointerEvents.values()));
     this.pinchMove(event, payload);
   }
-
   pinchMove(event, payload) {
     const state = this.state;
     const prev_a = state._values[1];
@@ -27251,39 +27681,31 @@ class PinchEngine extends Engine {
     this.compute(event);
     this.emit();
   }
-
   touchEnd(event) {
     this.ctrl.setEventIds(event);
     if (!this.state._active) return;
-
     if (this.state._touchIds.some(id => !this.ctrl.touchIds.has(id))) {
       this.state._active = false;
       this.compute(event);
       this.emit();
     }
   }
-
   pointerEnd(event) {
     const state = this.state;
     this.ctrl.setEventIds(event);
-
     try {
       event.target.releasePointerCapture(event.pointerId);
     } catch (_unused) {}
-
     if (state._pointerEvents.has(event.pointerId)) {
       state._pointerEvents.delete(event.pointerId);
     }
-
     if (!state._active) return;
-
     if (state._pointerEvents.size < 2) {
       state._active = false;
       this.compute(event);
       this.emit();
     }
   }
-
   gestureStart(event) {
     if (event.cancelable) event.preventDefault();
     const state = this.state;
@@ -27294,7 +27716,6 @@ class PinchEngine extends Engine {
     this.compute(event);
     this.emit();
   }
-
   gestureMove(event) {
     if (event.cancelable) event.preventDefault();
     if (!this.state._active) return;
@@ -27307,88 +27728,75 @@ class PinchEngine extends Engine {
     this.compute(event);
     this.emit();
   }
-
   gestureEnd(event) {
     if (!this.state._active) return;
     this.state._active = false;
     this.compute(event);
     this.emit();
   }
-
   wheel(event) {
-    if (!event.ctrlKey) return;
+    const modifierKey = this.config.modifierKey;
+    if (modifierKey && !event[modifierKey]) return;
     if (!this.state._active) this.wheelStart(event);else this.wheelChange(event);
     this.timeoutStore.add('wheelEnd', this.wheelEnd.bind(this));
   }
-
   wheelStart(event) {
     this.start(event);
     this.wheelChange(event);
   }
-
   wheelChange(event) {
     const isR3f = ('uv' in event);
-
     if (!isR3f) {
       if (event.cancelable) {
         event.preventDefault();
       }
-
       if (false) {}
     }
-
     const state = this.state;
     state._delta = [-wheelValues(event)[1] / PINCH_WHEEL_RATIO * state.offset[0], 0];
     V.addTo(state._movement, state._delta);
+    clampStateInternalMovementToBounds(state);
     this.state.origin = [event.clientX, event.clientY];
     this.compute(event);
     this.emit();
   }
-
   wheelEnd() {
     if (!this.state._active) return;
     this.state._active = false;
     this.compute();
     this.emit();
   }
-
   bind(bindFunction) {
     const device = this.config.device;
-
     if (!!device) {
       bindFunction(device, 'start', this[device + 'Start'].bind(this));
       bindFunction(device, 'change', this[device + 'Move'].bind(this));
       bindFunction(device, 'end', this[device + 'End'].bind(this));
       bindFunction(device, 'cancel', this[device + 'End'].bind(this));
-    } else {
+    }
+    if (this.config.pinchOnWheel) {
       bindFunction('wheel', '', this.wheel.bind(this), {
         passive: false
       });
     }
   }
-
 }
 
-const pinchConfigResolver = actions_5ad85d2f_esm_objectSpread2(actions_5ad85d2f_esm_objectSpread2({}, commonConfigResolver), {}, {
-  useTouch(_v, _k, {
+const pinchConfigResolver = actions_b1cc53c2_esm_objectSpread2(actions_b1cc53c2_esm_objectSpread2({}, commonConfigResolver), {}, {
+  device(_v, _k, {
+    shared,
     pointer: {
       touch = false
     } = {}
   }) {
-    return touch && SUPPORT.touch;
-  },
-
-  device(_v, _k, config) {
-    const sharedConfig = config.shared;
+    const sharedConfig = shared;
     if (sharedConfig.target && !SUPPORT.touch && SUPPORT.gesture) return 'gesture';
-    if (this.useTouch) return 'touch';
-
+    if (SUPPORT.touch && touch) return 'touch';
     if (SUPPORT.touchscreen) {
       if (SUPPORT.pointer) return 'pointer';
       if (SUPPORT.touch) return 'touch';
     }
   },
-
   bounds(_v, _k, {
     scaleBounds = {},
     angleBounds = {}
@@ -27400,7 +27808,6 @@ const pinchConfigResolver = actions_5ad85d2f_esm_objectSpread2(actions_5ad85d2f_
       });
       return [D.min, D.max];
     };
-
     const _angleBounds = state => {
       const A = assignDefault(call(angleBounds, state), {
         min: -Infinity,
@@ -27408,32 +27815,33 @@ const pinchConfigResolver = actions_5ad85d2f_esm_objectSpread2(actions_5ad85d2f_
       });
       return [A.min, A.max];
     };
-
     if (typeof scaleBounds !== 'function' && typeof angleBounds !== 'function') return [_scaleBounds(), _angleBounds()];
     return state => [_scaleBounds(state), _angleBounds(state)];
   },
-
   threshold(value, _k, config) {
     this.lockDirection = config.axis === 'lock';
     const threshold = V.toVector(value, this.lockDirection ? [0.1, 3] : 0);
     return threshold;
+  },
+  modifierKey(value) {
+    if (value === undefined) return 'ctrlKey';
+    return value;
+  },
+  pinchOnWheel(value = true) {
+    return value;
   }
-
 });
 
 class MoveEngine extends CoordinatesEngine {
   constructor(...args) {
     super(...args);
-
-    actions_5ad85d2f_esm_defineProperty(this, "ingKey", 'moving');
+    actions_b1cc53c2_esm_defineProperty(this, "ingKey", 'moving');
   }
-
   move(event) {
     if (this.config.mouseOnly && event.pointerType !== 'mouse') return;
     if (!this.state._active) this.moveStart(event);else this.moveChange(event);
     this.timeoutStore.add('moveEnd', this.moveEnd.bind(this));
   }
-
   moveStart(event) {
     this.start(event);
     this.computeValues(pointerValues(event));
@@ -27441,7 +27849,6 @@ class MoveEngine extends CoordinatesEngine {
     this.computeInitial();
     this.emit();
   }
-
   moveChange(event) {
     if (!this.state._active) return;
     const values = pointerValues(event);
@@ -27452,38 +27859,32 @@ class MoveEngine extends CoordinatesEngine {
     this.compute(event);
     this.emit();
   }
-
   moveEnd(event) {
     if (!this.state._active) return;
     this.state._active = false;
     this.compute(event);
     this.emit();
   }
-
   bind(bindFunction) {
     bindFunction('pointer', 'change', this.move.bind(this));
     bindFunction('pointer', 'leave', this.moveEnd.bind(this));
   }
-
 }
 
-const moveConfigResolver = actions_5ad85d2f_esm_objectSpread2(actions_5ad85d2f_esm_objectSpread2({}, coordinatesConfigResolver), {}, {
+const moveConfigResolver = actions_b1cc53c2_esm_objectSpread2(actions_b1cc53c2_esm_objectSpread2({}, coordinatesConfigResolver), {}, {
   mouseOnly: (value = true) => value
 });
 
 class ScrollEngine extends CoordinatesEngine {
   constructor(...args) {
     super(...args);
-
-    actions_5ad85d2f_esm_defineProperty(this, "ingKey", 'scrolling');
+    actions_b1cc53c2_esm_defineProperty(this, "ingKey", 'scrolling');
   }
-
   scroll(event) {
     if (!this.state._active) this.start(event);
     this.scrollChange(event);
     this.timeoutStore.add('scrollEnd', this.scrollEnd.bind(this));
   }
-
   scrollChange(event) {
     if (event.cancelable) event.preventDefault();
     const state = this.state;
@@ -27494,18 +27895,15 @@ class ScrollEngine extends CoordinatesEngine {
     this.compute(event);
     this.emit();
   }
-
   scrollEnd() {
     if (!this.state._active) return;
     this.state._active = false;
     this.compute();
     this.emit();
   }
-
   bind(bindFunction) {
     bindFunction('scroll', '', this.scroll.bind(this));
   }
-
 }
 
 const scrollConfigResolver = coordinatesConfigResolver;
@@ -27513,47 +27911,30 @@ const scrollConfigResolver = coordinatesConfigResolver;
 class WheelEngine extends CoordinatesEngine {
   constructor(...args) {
     super(...args);
-
-    actions_5ad85d2f_esm_defineProperty(this, "ingKey", 'wheeling');
+    actions_b1cc53c2_esm_defineProperty(this, "ingKey", 'wheeling');
   }
-
   wheel(event) {
     if (!this.state._active) this.start(event);
     this.wheelChange(event);
     this.timeoutStore.add('wheelEnd', this.wheelEnd.bind(this));
   }
-
   wheelChange(event) {
     const state = this.state;
     state._delta = wheelValues(event);
     V.addTo(state._movement, state._delta);
-    const [ox, oy] = state.overflow;
-    const [dx, dy] = state._delta;
-    const [dirx, diry] = state._direction;
-
-    if (ox < 0 && dx > 0 && dirx < 0 || ox > 0 && dx < 0 && dirx > 0) {
-      state._movement[0] = state._movementBound[0];
-    }
-
-    if (oy < 0 && dy > 0 && diry < 0 || oy > 0 && dy < 0 && diry > 0) {
-      state._movement[1] = state._movementBound[1];
-    }
-
+    clampStateInternalMovementToBounds(state);
     this.compute(event);
     this.emit();
   }
-
   wheelEnd() {
     if (!this.state._active) return;
     this.state._active = false;
     this.compute();
     this.emit();
   }
-
   bind(bindFunction) {
     bindFunction('wheel', '', this.wheel.bind(this));
   }
-
 }
 
 const wheelConfigResolver = coordinatesConfigResolver;
@@ -27561,10 +27942,8 @@ const wheelConfigResolver = coordinatesConfigResolver;
 class HoverEngine extends CoordinatesEngine {
   constructor(...args) {
     super(...args);
-
-    actions_5ad85d2f_esm_defineProperty(this, "ingKey", 'hovering');
+    actions_b1cc53c2_esm_defineProperty(this, "ingKey", 'hovering');
   }
-
   enter(event) {
     if (this.config.mouseOnly && event.pointerType !== 'mouse') return;
     this.start(event);
@@ -27572,7 +27951,6 @@ class HoverEngine extends CoordinatesEngine {
     this.compute(event);
     this.emit();
   }
-
   leave(event) {
     if (this.config.mouseOnly && event.pointerType !== 'mouse') return;
     const state = this.state;
@@ -27585,50 +27963,48 @@ class HoverEngine extends CoordinatesEngine {
     state.delta = state.movement;
     this.emit();
   }
-
   bind(bindFunction) {
     bindFunction('pointer', 'enter', this.enter.bind(this));
     bindFunction('pointer', 'leave', this.leave.bind(this));
   }
-
 }
 
-const hoverConfigResolver = actions_5ad85d2f_esm_objectSpread2(actions_5ad85d2f_esm_objectSpread2({}, coordinatesConfigResolver), {}, {
+const hoverConfigResolver = actions_b1cc53c2_esm_objectSpread2(actions_b1cc53c2_esm_objectSpread2({}, coordinatesConfigResolver), {}, {
   mouseOnly: (value = true) => value
 });
 
-const actions_5ad85d2f_esm_EngineMap = new Map();
+const actions_b1cc53c2_esm_EngineMap = new Map();
 const ConfigResolverMap = new Map();
-function actions_5ad85d2f_esm_registerAction(action) {
-  actions_5ad85d2f_esm_EngineMap.set(action.key, action.engine);
+function actions_b1cc53c2_esm_registerAction(action) {
+  actions_b1cc53c2_esm_EngineMap.set(action.key, action.engine);
   ConfigResolverMap.set(action.key, action.resolver);
 }
-const actions_5ad85d2f_esm_dragAction = {
+const actions_b1cc53c2_esm_dragAction = {
   key: 'drag',
   engine: DragEngine,
   resolver: dragConfigResolver
 };
-const actions_5ad85d2f_esm_hoverAction = {
+const actions_b1cc53c2_esm_hoverAction = {
   key: 'hover',
   engine: HoverEngine,
   resolver: hoverConfigResolver
 };
-const actions_5ad85d2f_esm_moveAction = {
+const actions_b1cc53c2_esm_moveAction = {
   key: 'move',
   engine: MoveEngine,
   resolver: moveConfigResolver
 };
-const actions_5ad85d2f_esm_pinchAction = {
+const actions_b1cc53c2_esm_pinchAction = {
   key: 'pinch',
   engine: PinchEngine,
   resolver: pinchConfigResolver
 };
-const actions_5ad85d2f_esm_scrollAction = {
+const actions_b1cc53c2_esm_scrollAction = {
   key: 'scroll',
   engine: ScrollEngine,
   resolver: scrollConfigResolver
 };
-const actions_5ad85d2f_esm_wheelAction = {
+const actions_b1cc53c2_esm_wheelAction = {
   key: 'wheel',
   engine: WheelEngine,
   resolver: wheelConfigResolver
@@ -27645,13 +28021,11 @@ function use_gesture_core_esm_objectWithoutPropertiesLoose(source, excluded) {
   var target = {};
   var sourceKeys = Object.keys(source);
   var key, i;
-
   for (i = 0; i < sourceKeys.length; i++) {
     key = sourceKeys[i];
     if (excluded.indexOf(key) >= 0) continue;
     target[key] = source[key];
   }
-
   return target;
 }
 
@@ -27659,10 +28033,8 @@ function _objectWithoutProperties(source, excluded) {
   if (source == null) return {};
   var target = use_gesture_core_esm_objectWithoutPropertiesLoose(source, excluded);
   var key, i;
-
   if (Object.getOwnPropertySymbols) {
     var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
-
     for (i = 0; i < sourceSymbolKeys.length; i++) {
       key = sourceSymbolKeys[i];
       if (excluded.indexOf(key) >= 0) continue;
@@ -27670,7 +28042,6 @@ function _objectWithoutProperties(source, excluded) {
       target[key] = source[key];
     }
   }
-
   return target;
 }
 
@@ -27679,18 +28050,14 @@ const sharedConfigResolver = {
     if (value) {
       return () => 'current' in value ? value.current : value;
     }
-
     return undefined;
   },
-
   enabled(value = true) {
     return value;
   },
-
   window(value = SUPPORT.isBrowser ? window : undefined) {
     return value;
   },
-
   eventOptions({
     passive = true,
     capture = false
@@ -27700,148 +28067,120 @@ const sharedConfigResolver = {
       capture
     };
   },
-
   transform(value) {
     return value;
   }
-
 };
 
 const _excluded = ["target", "eventOptions", "window", "enabled", "transform"];
 function resolveWith(config = {}, resolvers) {
   const result = {};
-
   for (const [key, resolver] of Object.entries(resolvers)) {
     switch (typeof resolver) {
       case 'function':
         if (false) {} else {
           result[key] = resolver.call(result, config[key], key, config);
         }
-
         break;
-
       case 'object':
         result[key] = resolveWith(config[key], resolver);
         break;
-
       case 'boolean':
         if (resolver) result[key] = config[key];
         break;
     }
   }
-
   return result;
 }
-function use_gesture_core_esm_parse(config, gestureKey) {
-  const _ref = config,
-        {
-    target,
-    eventOptions,
-    window,
-    enabled,
-    transform
-  } = _ref,
-        rest = _objectWithoutProperties(_ref, _excluded);
-
-  const _config = {
-    shared: resolveWith({
+function use_gesture_core_esm_parse(newConfig, gestureKey, _config = {}) {
+  const _ref = newConfig,
+    {
       target,
       eventOptions,
       window,
       enabled,
       transform
-    }, sharedConfigResolver)
-  };
-
+    } = _ref,
+    rest = _objectWithoutProperties(_ref, _excluded);
+  _config.shared = resolveWith({
+    target,
+    eventOptions,
+    window,
+    enabled,
+    transform
+  }, sharedConfigResolver);
   if (gestureKey) {
     const resolver = ConfigResolverMap.get(gestureKey);
-    _config[gestureKey] = resolveWith(actions_5ad85d2f_esm_objectSpread2({
+    _config[gestureKey] = resolveWith(actions_b1cc53c2_esm_objectSpread2({
       shared: _config.shared
     }, rest), resolver);
   } else {
     for (const key in rest) {
       const resolver = ConfigResolverMap.get(key);
-
       if (resolver) {
-        _config[key] = resolveWith(actions_5ad85d2f_esm_objectSpread2({
+        _config[key] = resolveWith(actions_b1cc53c2_esm_objectSpread2({
           shared: _config.shared
         }, rest[key]), resolver);
       } else if (false) {}
     }
   }
-
   return _config;
 }
 
 class EventStore {
-  constructor(ctrl) {
-    actions_5ad85d2f_esm_defineProperty(this, "_listeners", []);
-
+  constructor(ctrl, gestureKey) {
+    actions_b1cc53c2_esm_defineProperty(this, "_listeners", new Set());
     this._ctrl = ctrl;
+    this._gestureKey = gestureKey;
   }
-
   add(element, device, action, handler, options) {
+    const listeners = this._listeners;
     const type = toDomEventType(device, action);
-
-    const eventOptions = actions_5ad85d2f_esm_objectSpread2(actions_5ad85d2f_esm_objectSpread2({}, this._ctrl.config.shared.eventOptions), options);
-
+    const _options = this._gestureKey ? this._ctrl.config[this._gestureKey].eventOptions : {};
+    const eventOptions = actions_b1cc53c2_esm_objectSpread2(actions_b1cc53c2_esm_objectSpread2({}, _options), options);
     element.addEventListener(type, handler, eventOptions);
-
-    this._listeners.push(() => element.removeEventListener(type, handler, eventOptions));
+    const remove = () => {
+      element.removeEventListener(type, handler, eventOptions);
+      listeners.delete(remove);
+    };
+    listeners.add(remove);
+    return remove;
   }
-
   clean() {
     this._listeners.forEach(remove => remove());
-
-    this._listeners = [];
+    this._listeners.clear();
   }
-
 }
 
 class TimeoutStore {
   constructor() {
-    actions_5ad85d2f_esm_defineProperty(this, "_timeouts", new Map());
+    actions_b1cc53c2_esm_defineProperty(this, "_timeouts", new Map());
   }
-
   add(key, callback, ms = 140, ...args) {
     this.remove(key);
-
     this._timeouts.set(key, window.setTimeout(callback, ms, ...args));
   }
-
   remove(key) {
     const timeout = this._timeouts.get(key);
-
     if (timeout) window.clearTimeout(timeout);
   }
-
   clean() {
     this._timeouts.forEach(timeout => void window.clearTimeout(timeout));
-
     this._timeouts.clear();
   }
-
 }
 
 class Controller {
   constructor(handlers) {
-    actions_5ad85d2f_esm_defineProperty(this, "gestures", new Set());
-
-    actions_5ad85d2f_esm_defineProperty(this, "_targetEventStore", new EventStore(this));
-
-    actions_5ad85d2f_esm_defineProperty(this, "gestureEventStores", {});
-
-    actions_5ad85d2f_esm_defineProperty(this, "gestureTimeoutStores", {});
-
-    actions_5ad85d2f_esm_defineProperty(this, "handlers", {});
-
-    actions_5ad85d2f_esm_defineProperty(this, "config", {});
-
-    actions_5ad85d2f_esm_defineProperty(this, "pointerIds", new Set());
-
-    actions_5ad85d2f_esm_defineProperty(this, "touchIds", new Set());
-
-    actions_5ad85d2f_esm_defineProperty(this, "state", {
+    actions_b1cc53c2_esm_defineProperty(this, "gestures", new Set());
+    actions_b1cc53c2_esm_defineProperty(this, "_targetEventStore", new EventStore(this));
+    actions_b1cc53c2_esm_defineProperty(this, "gestureEventStores", {});
+    actions_b1cc53c2_esm_defineProperty(this, "gestureTimeoutStores", {});
+    actions_b1cc53c2_esm_defineProperty(this, "handlers", {});
+    actions_b1cc53c2_esm_defineProperty(this, "config", {});
+    actions_b1cc53c2_esm_defineProperty(this, "pointerIds", new Set());
+    actions_b1cc53c2_esm_defineProperty(this, "touchIds", new Set());
+    actions_b1cc53c2_esm_defineProperty(this, "state", {
       shared: {
         shiftKey: false,
         metaKey: false,
@@ -27849,98 +28188,82 @@ class Controller {
         altKey: false
       }
     });
-
     resolveGestures(this, handlers);
   }
-
   setEventIds(event) {
     if (isTouch(event)) {
       this.touchIds = new Set(touchIds(event));
+      return this.touchIds;
     } else if ('pointerId' in event) {
       if (event.type === 'pointerup' || event.type === 'pointercancel') this.pointerIds.delete(event.pointerId);else if (event.type === 'pointerdown') this.pointerIds.add(event.pointerId);
+      return this.pointerIds;
     }
   }
-
   applyHandlers(handlers, nativeHandlers) {
     this.handlers = handlers;
     this.nativeHandlers = nativeHandlers;
   }
-
   applyConfig(config, gestureKey) {
-    this.config = use_gesture_core_esm_parse(config, gestureKey);
+    this.config = use_gesture_core_esm_parse(config, gestureKey, this.config);
   }
-
   clean() {
     this._targetEventStore.clean();
-
     for (const key of this.gestures) {
       this.gestureEventStores[key].clean();
       this.gestureTimeoutStores[key].clean();
     }
   }
-
   effect() {
     if (this.config.shared.target) this.bind();
     return () => this._targetEventStore.clean();
   }
-
   bind(...args) {
     const sharedConfig = this.config.shared;
-    const eventOptions = sharedConfig.eventOptions;
     const props = {};
     let target;
-
     if (sharedConfig.target) {
       target = sharedConfig.target();
       if (!target) return;
     }
-
-    const bindFunction = bindToProps(props, eventOptions, !!target);
-
     if (sharedConfig.enabled) {
       for (const gestureKey of this.gestures) {
-        if (this.config[gestureKey].enabled) {
-          const Engine = actions_5ad85d2f_esm_EngineMap.get(gestureKey);
+        const gestureConfig = this.config[gestureKey];
+        const bindFunction = bindToProps(props, gestureConfig.eventOptions, !!target);
+        if (gestureConfig.enabled) {
+          const Engine = actions_b1cc53c2_esm_EngineMap.get(gestureKey);
           new Engine(this, args, gestureKey).bind(bindFunction);
         }
       }
-
+      const nativeBindFunction = bindToProps(props, sharedConfig.eventOptions, !!target);
       for (const eventKey in this.nativeHandlers) {
-        bindFunction(eventKey, '', event => this.nativeHandlers[eventKey](actions_5ad85d2f_esm_objectSpread2(actions_5ad85d2f_esm_objectSpread2({}, this.state.shared), {}, {
+        nativeBindFunction(eventKey, '', event => this.nativeHandlers[eventKey](actions_b1cc53c2_esm_objectSpread2(actions_b1cc53c2_esm_objectSpread2({}, this.state.shared), {}, {
           event,
           args
         })), undefined, true);
       }
     }
-
     for (const handlerProp in props) {
       props[handlerProp] = chain(...props[handlerProp]);
     }
-
     if (!target) return props;
-
     for (const handlerProp in props) {
       const {
         device,
         capture,
         passive
       } = parseProp(handlerProp);
-
       this._targetEventStore.add(target, device, '', props[handlerProp], {
         capture,
         passive
       });
     }
   }
-
 }
-
 function setupGesture(ctrl, gestureKey) {
   ctrl.gestures.add(gestureKey);
-  ctrl.gestureEventStores[gestureKey] = new EventStore(ctrl);
+  ctrl.gestureEventStores[gestureKey] = new EventStore(ctrl, gestureKey);
   ctrl.gestureTimeoutStores[gestureKey] = new TimeoutStore();
 }
-
 function resolveGestures(ctrl, internalHandlers) {
   if (internalHandlers.drag) setupGesture(ctrl, 'drag');
   if (internalHandlers.wheel) setupGesture(ctrl, 'wheel');
@@ -27949,10 +28272,8 @@ function resolveGestures(ctrl, internalHandlers) {
   if (internalHandlers.pinch) setupGesture(ctrl, 'pinch');
   if (internalHandlers.hover) setupGesture(ctrl, 'hover');
 }
-
 const bindToProps = (props, eventOptions, withPassiveOption) => (device, action, handler, options = {}, isNative = false) => {
   var _options$capture, _options$passive;
-
   const capture = (_options$capture = options.capture) !== null && _options$capture !== void 0 ? _options$capture : eventOptions.capture;
   const passive = (_options$passive = options.passive) !== null && _options$passive !== void 0 ? _options$passive : eventOptions.passive;
   let handlerProp = isNative ? device : toHandlerProp(device, action, capture);
@@ -27962,12 +28283,10 @@ const bindToProps = (props, eventOptions, withPassiveOption) => (device, action,
 };
 
 const RE_NOT_NATIVE = /^on(Drag|Wheel|Scroll|Move|Pinch|Hover)/;
-
 function sortHandlers(_handlers) {
   const native = {};
   const handlers = {};
   const actions = new Set();
-
   for (let key in _handlers) {
     if (RE_NOT_NATIVE.test(key)) {
       actions.add(RegExp.lastMatch);
@@ -27976,22 +28295,16 @@ function sortHandlers(_handlers) {
       native[key] = _handlers[key];
     }
   }
-
   return [handlers, native, actions];
 }
-
 function registerGesture(actions, handlers, handlerKey, key, internalHandlers, config) {
   if (!actions.has(handlerKey)) return;
-
   if (!EngineMap.has(key)) {
     if (false) {}
-
     return;
   }
-
   const startKey = handlerKey + 'Start';
   const endKey = handlerKey + 'End';
-
   const fn = state => {
     let memo = undefined;
     if (state.first && startKey in handlers) handlers[startKey](state);
@@ -27999,11 +28312,9 @@ function registerGesture(actions, handlers, handlerKey, key, internalHandlers, c
     if (state.last && endKey in handlers) handlers[endKey](state);
     return memo;
   };
-
   internalHandlers[key] = fn;
   config[key] = config[key] || {};
 }
-
 function use_gesture_core_esm_parseMergedHandlers(mergedHandlers, mergedConfig) {
   const [handlers, nativeHandlers, actions] = sortHandlers(mergedHandlers);
   const internalHandlers = {};
@@ -28038,71 +28349,69 @@ function useRecognizers(handlers, config = {}, gestureKey, nativeHandlers) {
   external_React_default().useEffect(() => {
     return ctrl.clean.bind(ctrl);
   }, []);
-
   if (config.target === undefined) {
     return ctrl.bind.bind(ctrl);
   }
-
   return undefined;
 }
 
-function use_gesture_react_esm_useDrag(handler, config = {}) {
-  actions_5ad85d2f_esm_registerAction(actions_5ad85d2f_esm_dragAction);
+function use_gesture_react_esm_useDrag(handler, config) {
+  actions_b1cc53c2_esm_registerAction(actions_b1cc53c2_esm_dragAction);
   return useRecognizers({
     drag: handler
-  }, config, 'drag');
+  }, config || {}, 'drag');
 }
 
-function usePinch(handler, config = {}) {
+function usePinch(handler, config) {
   registerAction(pinchAction);
   return useRecognizers({
     pinch: handler
-  }, config, 'pinch');
+  }, config || {}, 'pinch');
 }
 
-function useWheel(handler, config = {}) {
+function useWheel(handler, config) {
   registerAction(wheelAction);
   return useRecognizers({
     wheel: handler
-  }, config, 'wheel');
+  }, config || {}, 'wheel');
 }
 
-function useScroll(handler, config = {}) {
+function useScroll(handler, config) {
   registerAction(scrollAction);
   return useRecognizers({
     scroll: handler
-  }, config, 'scroll');
+  }, config || {}, 'scroll');
 }
 
-function useMove(handler, config = {}) {
+function useMove(handler, config) {
   registerAction(moveAction);
   return useRecognizers({
     move: handler
-  }, config, 'move');
+  }, config || {}, 'move');
 }
 
-function useHover(handler, config = {}) {
-  actions_5ad85d2f_esm_registerAction(actions_5ad85d2f_esm_hoverAction);
+function useHover(handler, config) {
+  actions_b1cc53c2_esm_registerAction(actions_b1cc53c2_esm_hoverAction);
   return useRecognizers({
     hover: handler
-  }, config, 'hover');
+  }, config || {}, 'hover');
 }
 
 function createUseGesture(actions) {
   actions.forEach(registerAction);
-  return function useGesture(_handlers, _config = {}) {
+  return function useGesture(_handlers, _config) {
     const {
       handlers,
       nativeHandlers,
       config
-    } = parseMergedHandlers(_handlers, _config);
+    } = parseMergedHandlers(_handlers, _config || {});
     return useRecognizers(handlers, config, undefined, nativeHandlers);
   };
 }
 
-function useGesture(handlers, config = {}) {
+function useGesture(handlers, config) {
   const hook = createUseGesture([dragAction, pinchAction, scrollAction, wheelAction, moveAction, hoverAction]);
-  return hook(handlers, config);
+  return hook(handlers, config || {});
 }
 
 
@@ -28736,13 +29045,8 @@ const ForwardedComponent = (0,external_wp_element_namespaceObject.forwardRef)(In
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/utils/font.js
 /**
- * External dependencies
- */
-
-/**
  * Internal dependencies
  */
-
 
 /**
  *
@@ -28751,7 +29055,9 @@ const ForwardedComponent = (0,external_wp_element_namespaceObject.forwardRef)(In
  */
 
 function font(value) {
-  return (0,external_lodash_namespaceObject.get)(font_values, value, '');
+  var _FONT$value;
+
+  return (_FONT$value = font_values[value]) !== null && _FONT$value !== void 0 ? _FONT$value : '';
 }
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/utils/box-sizing.js
@@ -29229,8 +29535,8 @@ const H_ALIGNMENTS = {
     justify: 'center'
   },
   bottomLeft: {
-    align: 'flex-start',
-    justify: 'flex-end'
+    align: 'flex-end',
+    justify: 'flex-start'
   },
   bottomRight: {
     align: 'flex-end',
@@ -29274,8 +29580,8 @@ const V_ALIGNMENTS = {
     align: 'center'
   },
   bottomLeft: {
-    justify: 'flex-start',
-    align: 'flex-end'
+    justify: 'flex-end',
+    align: 'flex-start'
   },
   bottomRight: {
     justify: 'flex-end',
@@ -29298,7 +29604,7 @@ const V_ALIGNMENTS = {
     align: 'flex-end'
   },
   stretch: {
-    justify: 'stretch'
+    align: 'stretch'
   },
   top: {
     justify: 'flex-start',
@@ -29668,9 +29974,7 @@ function UnforwardedNumberControl(_ref, forwardedRef) {
 
 
     if (type === DRAG && isDragEnabled) {
-      // @ts-expect-error TODO: See if reducer actions can be typed better
-      const [x, y] = payload.delta; // @ts-expect-error TODO: See if reducer actions can be typed better
-
+      const [x, y] = payload.delta;
       const enableShift = payload.shiftKey && isShiftStepEnabled;
       const modifier = enableShift ? ensureNumber(shiftStep) * baseStep : baseStep;
       let directionModifier;
@@ -30225,11 +30529,16 @@ function getDefaultUseItems(autocompleter) {
  * WordPress dependencies
  */
 
+ // Error expected because `@wordpress/rich-text` is not yet fully typed.
+// @ts-expect-error
+
 
 
 /**
  * Internal dependencies
  */
+
+
 
 
 
@@ -30248,15 +30557,22 @@ function getAutoCompleterUI(autocompleter) {
       onSelect,
       onReset,
       reset,
-      value,
       contentRef
     } = _ref;
     const [items] = useItems(filterValue);
     const popoverAnchor = (0,external_wp_richText_namespaceObject.useAnchor)({
-      editableContentElement: contentRef.current,
-      value
+      editableContentElement: contentRef.current
     });
-    const popoverRef = (0,external_wp_element_namespaceObject.useRef)();
+    const [needsA11yCompat, setNeedsA11yCompat] = (0,external_wp_element_namespaceObject.useState)(false);
+    const popoverRef = (0,external_wp_element_namespaceObject.useRef)(null);
+    const popoverRefs = (0,external_wp_compose_namespaceObject.useMergeRefs)([popoverRef, (0,external_wp_compose_namespaceObject.useRefEffect)(node => {
+      if (!contentRef.current) return; // If the popover is rendered in a different document than
+      // the content, we need to duplicate the options list in the
+      // content document so that it's available to the screen
+      // readers, which check the DOM ID based aira-* attributes.
+
+      setNeedsA11yCompat(node.ownerDocument !== contentRef.current.ownerDocument);
+    }, [contentRef])]);
     useOnClickOutside(popoverRef, reset);
     (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
       onChangeOptions(items); // Temporarily disabling exhaustive-deps to avoid introducing unexpected side effecst.
@@ -30264,32 +30580,41 @@ function getAutoCompleterUI(autocompleter) {
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [items]);
 
-    if (!items.length > 0) {
+    if (items.length === 0) {
       return null;
     }
 
-    return (0,external_wp_element_namespaceObject.createElement)(popover, {
+    const ListBox = _ref2 => {
+      let {
+        Component = 'div'
+      } = _ref2;
+      return (0,external_wp_element_namespaceObject.createElement)(Component, {
+        id: listBoxId,
+        role: "listbox",
+        className: "components-autocomplete__results"
+      }, items.map((option, index) => (0,external_wp_element_namespaceObject.createElement)(build_module_button, {
+        key: option.key,
+        id: `components-autocomplete-item-${instanceId}-${option.key}`,
+        role: "option",
+        "aria-selected": index === selectedIndex,
+        disabled: option.isDisabled,
+        className: classnames_default()('components-autocomplete__result', className, {
+          'is-selected': index === selectedIndex
+        }),
+        onClick: () => onSelect(option)
+      }, option.label)));
+    };
+
+    return (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.Fragment, null, (0,external_wp_element_namespaceObject.createElement)(popover, {
       focusOnMount: false,
       onClose: onReset,
       placement: "top-start",
       className: "components-autocomplete__popover",
       anchor: popoverAnchor,
-      ref: popoverRef
-    }, (0,external_wp_element_namespaceObject.createElement)("div", {
-      id: listBoxId,
-      role: "listbox",
-      className: "components-autocomplete__results"
-    }, items.map((option, index) => (0,external_wp_element_namespaceObject.createElement)(build_module_button, {
-      key: option.key,
-      id: `components-autocomplete-item-${instanceId}-${option.key}`,
-      role: "option",
-      "aria-selected": index === selectedIndex,
-      disabled: option.isDisabled,
-      className: classnames_default()('components-autocomplete__result', className, {
-        'is-selected': index === selectedIndex
-      }),
-      onClick: () => onSelect(option)
-    }, option.label))));
+      ref: popoverRefs
+    }, (0,external_wp_element_namespaceObject.createElement)(ListBox, null)), contentRef.current && needsA11yCompat && (0,external_ReactDOM_namespaceObject.createPortal)((0,external_wp_element_namespaceObject.createElement)(ListBox, {
+      Component: visually_hidden_component
+    }), contentRef.current.ownerDocument.body));
   }
 
   return AutocompleterUI;
@@ -30339,82 +30664,7 @@ function useOnClickOutside(ref, handler) {
 
 
 
-/**
- * A raw completer option.
- *
- * @typedef {*} CompleterOption
- */
-
-/**
- * @callback FnGetOptions
- *
- * @return {(CompleterOption[]|Promise.<CompleterOption[]>)} The completer options or a promise for them.
- */
-
-/**
- * @callback FnGetOptionKeywords
- * @param {CompleterOption} option a completer option.
- *
- * @return {string[]} list of key words to search.
- */
-
-/**
- * @callback FnIsOptionDisabled
- * @param {CompleterOption} option a completer option.
- *
- * @return {string[]} whether or not the given option is disabled.
- */
-
-/**
- * @callback FnGetOptionLabel
- * @param {CompleterOption} option a completer option.
- *
- * @return {(string|Array.<(string|WPElement)>)} list of react components to render.
- */
-
-/**
- * @callback FnAllowContext
- * @param {string} before the string before the auto complete trigger and query.
- * @param {string} after  the string after the autocomplete trigger and query.
- *
- * @return {boolean} true if the completer can handle.
- */
-
-/**
- * @typedef {Object} OptionCompletion
- * @property {'insert-at-caret'|'replace'} action the intended placement of the completion.
- * @property {OptionCompletionValue}       value  the completion value.
- */
-
-/**
- * A completion value.
- *
- * @typedef {(string|WPElement|Object)} OptionCompletionValue
- */
-
-/**
- * @callback FnGetOptionCompletion
- * @param {CompleterOption} value the value of the completer option.
- * @param {string}          query the text value of the autocomplete query.
- *
- * @return {(OptionCompletion|OptionCompletionValue)} the completion for the given option. If an
- * 													   OptionCompletionValue is returned, the
- * 													   completion action defaults to `insert-at-caret`.
- */
-
-/**
- * @typedef {Object} WPCompleter
- * @property {string}                           name                a way to identify a completer, useful for selective overriding.
- * @property {?string}                          className           A class to apply to the popup menu.
- * @property {string}                           triggerPrefix       the prefix that will display the menu.
- * @property {(CompleterOption[]|FnGetOptions)} options             the completer options or a function to get them.
- * @property {?FnGetOptionKeywords}             getOptionKeywords   get the keywords for a given option.
- * @property {?FnIsOptionDisabled}              isOptionDisabled    get whether or not the given option is disabled.
- * @property {FnGetOptionLabel}                 getOptionLabel      get the label for a given option.
- * @property {?FnAllowContext}                  allowContext        filter the context under which the autocomplete activates.
- * @property {FnGetOptionCompletion}            getOptionCompletion get the completion associated with a given option.
- */
-
+const EMPTY_FILTERED_OPTIONS = [];
 function useAutocomplete(_ref) {
   let {
     record,
@@ -30426,13 +30676,17 @@ function useAutocomplete(_ref) {
   const debouncedSpeak = (0,external_wp_compose_namespaceObject.useDebounce)(external_wp_a11y_namespaceObject.speak, 500);
   const instanceId = (0,external_wp_compose_namespaceObject.useInstanceId)(useAutocomplete);
   const [selectedIndex, setSelectedIndex] = (0,external_wp_element_namespaceObject.useState)(0);
-  const [filteredOptions, setFilteredOptions] = (0,external_wp_element_namespaceObject.useState)([]);
+  const [filteredOptions, setFilteredOptions] = (0,external_wp_element_namespaceObject.useState)(EMPTY_FILTERED_OPTIONS);
   const [filterValue, setFilterValue] = (0,external_wp_element_namespaceObject.useState)('');
   const [autocompleter, setAutocompleter] = (0,external_wp_element_namespaceObject.useState)(null);
   const [AutocompleterUI, setAutocompleterUI] = (0,external_wp_element_namespaceObject.useState)(null);
   const backspacing = (0,external_wp_element_namespaceObject.useRef)(false);
 
   function insertCompletion(replacement) {
+    if (autocompleter === null) {
+      return;
+    }
+
     const end = record.start;
     const start = end - autocompleter.triggerPrefix.length - filterValue.length;
     const toInsert = (0,external_wp_richText_namespaceObject.create)({
@@ -30452,21 +30706,23 @@ function useAutocomplete(_ref) {
 
     if (getOptionCompletion) {
       const completion = getOptionCompletion(option.value, filterValue);
-      const {
-        action,
-        value
-      } = undefined === completion.action || undefined === completion.value ? {
+
+      const isCompletionObject = obj => {
+        return obj !== null && typeof obj === 'object' && 'action' in obj && obj.action !== undefined && 'value' in obj && obj.value !== undefined;
+      };
+
+      const completionObject = isCompletionObject(completion) ? completion : {
         action: 'insert-at-caret',
         value: completion
-      } : completion;
+      };
 
-      if ('replace' === action) {
-        onReplace([value]); // When replacing, the component will unmount, so don't reset
+      if ('replace' === completionObject.action) {
+        onReplace([completionObject.value]); // When replacing, the component will unmount, so don't reset
         // state (below) on an unmounted component.
 
         return;
-      } else if ('insert-at-caret' === action) {
-        insertCompletion(value);
+      } else if ('insert-at-caret' === completionObject.action) {
+        insertCompletion(completionObject.value);
       }
     } // Reset autocomplete state after insertion rather than before
     // so insertion events don't cause the completion menu to redisplay.
@@ -30477,7 +30733,7 @@ function useAutocomplete(_ref) {
 
   function reset() {
     setSelectedIndex(0);
-    setFilteredOptions([]);
+    setFilteredOptions(EMPTY_FILTERED_OPTIONS);
     setFilterValue('');
     setAutocompleter(null);
     setAutocompleterUI(null);
@@ -30571,24 +30827,22 @@ function useAutocomplete(_ref) {
   }, [record]);
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     if (!textContent) {
-      reset();
+      if (autocompleter) reset();
       return;
     }
 
-    const text = remove_accents_default()(textContent);
-    const textAfterSelection = (0,external_wp_richText_namespaceObject.getTextContent)((0,external_wp_richText_namespaceObject.slice)(record, undefined, (0,external_wp_richText_namespaceObject.getTextContent)(record).length));
     const completer = completers === null || completers === void 0 ? void 0 : completers.find(_ref2 => {
       let {
         triggerPrefix,
         allowContext
       } = _ref2;
-      const index = text.lastIndexOf(triggerPrefix);
+      const index = textContent.lastIndexOf(triggerPrefix);
 
       if (index === -1) {
         return false;
       }
 
-      const textWithoutTrigger = text.slice(index + triggerPrefix.length);
+      const textWithoutTrigger = textContent.slice(index + triggerPrefix.length);
       const tooDistantFromTrigger = textWithoutTrigger.length > 50; // 50 chars seems to be a good limit.
       // This is a final barrier to prevent the effect from completing with
       // an extremely long string, which causes the editor to slow-down
@@ -30622,7 +30876,9 @@ function useAutocomplete(_ref) {
         return false;
       }
 
-      if (allowContext && !allowContext(text.slice(0, index), textAfterSelection)) {
+      const textAfterSelection = (0,external_wp_richText_namespaceObject.getTextContent)((0,external_wp_richText_namespaceObject.slice)(record, undefined, (0,external_wp_richText_namespaceObject.getTextContent)(record).length));
+
+      if (allowContext && !allowContext(textContent.slice(0, index), textAfterSelection)) {
         return false;
       }
 
@@ -30634,16 +30890,17 @@ function useAutocomplete(_ref) {
     });
 
     if (!completer) {
-      reset();
+      if (autocompleter) reset();
       return;
     }
 
     const safeTrigger = escapeRegExp(completer.triggerPrefix);
+    const text = remove_accents_default()(textContent);
     const match = text.slice(text.lastIndexOf(completer.triggerPrefix)).match(new RegExp(`${safeTrigger}([\u0000-\uFFFF]*)$`));
     const query = match && match[1];
     setAutocompleter(completer);
     setAutocompleterUI(() => completer !== autocompleter ? getAutoCompleterUI(completer) : AutocompleterUI);
-    setFilterValue(query); // Temporarily disabling exhaustive-deps to avoid introducing unexpected side effecst.
+    setFilterValue(query === null ? '' : query); // Temporarily disabling exhaustive-deps to avoid introducing unexpected side effecst.
     // See https://github.com/WordPress/gutenberg/pull/41820
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [textContent]);
@@ -30654,7 +30911,7 @@ function useAutocomplete(_ref) {
     className
   } = autocompleter || {};
   const isExpanded = !!autocompleter && filteredOptions.length > 0;
-  const listBoxId = isExpanded ? `components-autocomplete-listbox-${instanceId}` : null;
+  const listBoxId = isExpanded ? `components-autocomplete-listbox-${instanceId}` : undefined;
   const activeId = isExpanded ? `components-autocomplete-item-${instanceId}-${selectedKey}` : null;
   const hasSelection = record.start !== undefined;
   return {
@@ -30676,11 +30933,24 @@ function useAutocomplete(_ref) {
   };
 }
 
+function useLastDifferentValue(value) {
+  const history = (0,external_wp_element_namespaceObject.useRef)(new Set());
+  history.current.add(value); // Keep the history size to 2.
+
+  if (history.current.size > 2) {
+    history.current.delete(Array.from(history.current)[0]);
+  }
+
+  return Array.from(history.current)[0];
+}
+
 function useAutocompleteProps(options) {
-  const [isVisible, setIsVisible] = (0,external_wp_element_namespaceObject.useState)(false);
-  const ref = (0,external_wp_element_namespaceObject.useRef)();
-  const recordAfterInput = (0,external_wp_element_namespaceObject.useRef)();
+  const ref = (0,external_wp_element_namespaceObject.useRef)(null);
   const onKeyDownRef = (0,external_wp_element_namespaceObject.useRef)();
+  const {
+    record
+  } = options;
+  const previousRecord = useLastDifferentValue(record);
   const {
     popover,
     listBoxId,
@@ -30690,37 +30960,22 @@ function useAutocompleteProps(options) {
     contentRef: ref
   });
   onKeyDownRef.current = onKeyDown;
-  (0,external_wp_element_namespaceObject.useEffect)(() => {
-    if (isVisible) {
-      if (!recordAfterInput.current) {
-        recordAfterInput.current = options.record;
-      } else if (recordAfterInput.current.start !== options.record.start || recordAfterInput.current.end !== options.record.end) {
-        setIsVisible(false);
-        recordAfterInput.current = null;
-      }
-    } // eslint-disable-next-line react-hooks/exhaustive-deps
-
-  }, [options.record]);
   const mergedRefs = (0,external_wp_compose_namespaceObject.useMergeRefs)([ref, (0,external_wp_compose_namespaceObject.useRefEffect)(element => {
     function _onKeyDown(event) {
-      onKeyDownRef.current(event);
-    }
+      var _onKeyDownRef$current;
 
-    function _onInput() {
-      // Only show auto complete UI if the user is inputting text.
-      setIsVisible(true);
-      recordAfterInput.current = null;
+      (_onKeyDownRef$current = onKeyDownRef.current) === null || _onKeyDownRef$current === void 0 ? void 0 : _onKeyDownRef$current.call(onKeyDownRef, event);
     }
 
     element.addEventListener('keydown', _onKeyDown);
-    element.addEventListener('input', _onInput);
     return () => {
       element.removeEventListener('keydown', _onKeyDown);
-      element.removeEventListener('input', _onInput);
     };
-  }, [])]);
+  }, [])]); // We only want to show the popover if the user has typed something.
 
-  if (!isVisible) {
+  const didUserInput = record.text !== (previousRecord === null || previousRecord === void 0 ? void 0 : previousRecord.text);
+
+  if (!didUserInput) {
     return {
       ref: mergedRefs
     };
@@ -31775,10 +32030,10 @@ const SelectControlChevronDown = () => {
  * External dependencies
  */
 
-
 /**
  * WordPress dependencies
  */
+
 
 
 /**
@@ -31798,8 +32053,8 @@ function select_control_useUniqueId(idProp) {
   return idProp || id;
 }
 
-function UnforwardedSelectControl(_ref, ref) {
-  let {
+function UnforwardedSelectControl(props, ref) {
+  const {
     className,
     disabled = false,
     help,
@@ -31808,7 +32063,7 @@ function UnforwardedSelectControl(_ref, ref) {
     label,
     multiple = false,
     onBlur = select_control_noop,
-    onChange = select_control_noop,
+    onChange,
     onFocus = select_control_noop,
     options = [],
     size = 'default',
@@ -31819,8 +32074,8 @@ function UnforwardedSelectControl(_ref, ref) {
     suffix,
     __next36pxDefaultSize = false,
     __nextHasNoMarginBottom = false,
-    ...props
-  } = _ref;
+    ...restProps
+  } = props;
   const [isFocused, setIsFocused] = (0,external_wp_element_namespaceObject.useState)(false);
   const id = select_control_useUniqueId(idProp);
   const helpId = help ? `${id}__help` : undefined; // Disable reason: A select with an onchange throws a warning.
@@ -31838,31 +32093,35 @@ function UnforwardedSelectControl(_ref, ref) {
   };
 
   const handleOnChange = event => {
-    if (multiple) {
-      const selectedOptions = Array.from(event.target.options).filter(_ref2 => {
+    var _props$onChange2;
+
+    if (props.multiple) {
+      var _props$onChange;
+
+      const selectedOptions = Array.from(event.target.options).filter(_ref => {
         let {
           selected
-        } = _ref2;
+        } = _ref;
         return selected;
       });
-      const newValues = selectedOptions.map(_ref3 => {
+      const newValues = selectedOptions.map(_ref2 => {
         let {
           value
-        } = _ref3;
+        } = _ref2;
         return value;
       });
-      onChange(newValues);
+      (_props$onChange = props.onChange) === null || _props$onChange === void 0 ? void 0 : _props$onChange.call(props, newValues, {
+        event
+      });
       return;
     }
 
-    onChange(event.target.value, {
+    (_props$onChange2 = props.onChange) === null || _props$onChange2 === void 0 ? void 0 : _props$onChange2.call(props, event.target.value, {
       event
     });
   };
 
   const classes = classnames_default()('components-select-control', className);
-  /* eslint-disable jsx-a11y/no-onchange */
-
   return (0,external_wp_element_namespaceObject.createElement)(base_control, {
     help: help,
     id: id,
@@ -31879,7 +32138,7 @@ function UnforwardedSelectControl(_ref, ref) {
     prefix: prefix,
     labelPosition: labelPosition,
     __next36pxDefaultSize: __next36pxDefaultSize
-  }, (0,external_wp_element_namespaceObject.createElement)(Select, extends_extends({}, props, {
+  }, (0,external_wp_element_namespaceObject.createElement)(Select, extends_extends({}, restProps, {
     __next36pxDefaultSize: __next36pxDefaultSize,
     "aria-describedby": helpId,
     className: "components-select-control__input",
@@ -31900,7 +32159,6 @@ function UnforwardedSelectControl(_ref, ref) {
       disabled: option.disabled
     }, option.label);
   }))));
-  /* eslint-enable jsx-a11y/no-onchange */
 }
 /**
  * `SelectControl` allows users to select from a single or multiple option menu.
@@ -32793,6 +33051,7 @@ function UnforwardedRangeControl(props, forwardedRef) {
     },
     trackColor: trackColor
   }), (0,external_wp_element_namespaceObject.createElement)(ThumbWrapper, {
+    className: "components-range-control__thumb-wrapper",
     style: offsetStyle,
     disabled: disabled
   }, (0,external_wp_element_namespaceObject.createElement)(Thumb, {
@@ -36467,7 +36726,6 @@ const check = (0,external_wp_element_namespaceObject.createElement)(external_wp_
 ;// CONCATENATED MODULE: ./packages/components/build-module/circular-option-picker/index.js
 
 
-// @ts-nocheck
 
 /**
  * External dependencies
@@ -36485,15 +36743,14 @@ const check = (0,external_wp_element_namespaceObject.createElement)(external_wp_
 
 
 
-
-function Option(props) {
-  const {
+function Option(_ref) {
+  let {
     className,
     isSelected,
     selectedIconProps,
     tooltipText,
     ...additionalProps
-  } = props;
+  } = _ref;
   const optionButton = (0,external_wp_element_namespaceObject.createElement)(build_module_button, extends_extends({
     isPressed: isSelected,
     className: "components-circular-option-picker__option"
@@ -36506,21 +36763,20 @@ function Option(props) {
     icon: library_check
   }, selectedIconProps ? selectedIconProps : {})));
 }
-
-function DropdownLinkAction(props) {
-  const {
+function DropdownLinkAction(_ref2) {
+  let {
     buttonProps,
     className,
     dropdownProps,
     linkText
-  } = props;
+  } = _ref2;
   return (0,external_wp_element_namespaceObject.createElement)(dropdown, extends_extends({
     className: classnames_default()('components-circular-option-picker__dropdown-link-action', className),
-    renderToggle: _ref => {
+    renderToggle: _ref3 => {
       let {
         isOpen,
         onToggle
-      } = _ref;
+      } = _ref3;
       return (0,external_wp_element_namespaceObject.createElement)(build_module_button, extends_extends({
         "aria-expanded": isOpen,
         "aria-haspopup": "true",
@@ -36530,18 +36786,62 @@ function DropdownLinkAction(props) {
     }
   }, dropdownProps));
 }
-
-function ButtonAction(props) {
-  const {
+function ButtonAction(_ref4) {
+  let {
     className,
     children,
     ...additionalProps
-  } = props;
+  } = _ref4;
   return (0,external_wp_element_namespaceObject.createElement)(build_module_button, extends_extends({
     className: classnames_default()('components-circular-option-picker__clear', className),
     variant: "tertiary"
   }, additionalProps), children);
 }
+/**
+ *`CircularOptionPicker` is a component that displays a set of options as circular buttons.
+ *
+ * ```jsx
+ * import { CircularOptionPicker } from '../circular-option-picker';
+ * import { useState } from '@wordpress/element';
+ *
+ * const Example = () => {
+ * 	const [ currentColor, setCurrentColor ] = useState();
+ * 	const colors = [
+ * 		{ color: '#f00', name: 'Red' },
+ * 		{ color: '#0f0', name: 'Green' },
+ * 		{ color: '#00f', name: 'Blue' },
+ * 	];
+ * 	const colorOptions = (
+ * 		<>
+ * 			{ colors.map( ( { color, name }, index ) => {
+ * 				return (
+ * 					<CircularOptionPicker.Option
+ * 						key={ `${ color }-${ index }` }
+ * 						tooltipText={ name }
+ * 						style={ { backgroundColor: color, color } }
+ * 						isSelected={ index === currentColor }
+ * 						onClick={ () => setCurrentColor( index ) }
+ * 						aria-label={ name }
+ * 					/>
+ * 				);
+ * 			} ) }
+ * 		</>
+ * 	);
+ * 	return (
+ * 		<CircularOptionPicker
+ * 				options={ colorOptions }
+ * 				actions={
+ * 					<CircularOptionPicker.ButtonAction
+ * 						onClick={ () => setCurrentColor( undefined ) }
+ * 					>
+ * 						{ 'Clear' }
+ * 					</CircularOptionPicker.ButtonAction>
+ * 				}
+ * 			/>
+ * 	);
+ * };
+ * ```
+ */
 
 function CircularOptionPicker(props) {
   const {
@@ -36558,9 +36858,11 @@ function CircularOptionPicker(props) {
     className: "components-circular-option-picker__custom-clear-wrapper"
   }, actions));
 }
+
 CircularOptionPicker.Option = Option;
 CircularOptionPicker.ButtonAction = ButtonAction;
 CircularOptionPicker.DropdownLinkAction = DropdownLinkAction;
+/* harmony default export */ var circular_option_picker = (CircularOptionPicker);
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/v-stack/hook.js
 /**
@@ -36571,11 +36873,13 @@ CircularOptionPicker.DropdownLinkAction = DropdownLinkAction;
 function useVStack(props) {
   const {
     expanded = false,
+    alignment = 'stretch',
     ...otherProps
   } = useContextSystem(props, 'VStack');
   const hStackProps = useHStack({
     direction: 'column',
     expanded,
+    alignment,
     ...otherProps
   });
   return hStackProps;
@@ -36984,7 +37288,7 @@ function SinglePalette(_ref) {
       } = _ref2;
       const colordColor = colord_w(color);
       const isSelected = value === color;
-      return (0,external_wp_element_namespaceObject.createElement)(CircularOptionPicker.Option, {
+      return (0,external_wp_element_namespaceObject.createElement)(circular_option_picker.Option, {
         key: `${color}-${index}`,
         isSelected: isSelected,
         selectedIconProps: isSelected ? {
@@ -37003,7 +37307,7 @@ function SinglePalette(_ref) {
       });
     });
   }, [colors, value, onChange, clearColor]);
-  return (0,external_wp_element_namespaceObject.createElement)(CircularOptionPicker, {
+  return (0,external_wp_element_namespaceObject.createElement)(circular_option_picker, {
     className: className,
     options: colorOptions,
     actions: actions
@@ -37111,7 +37415,7 @@ function UnforwardedColorPalette(props, forwardedRef) {
     clearColor,
     onChange,
     value,
-    actions: !!clearable && (0,external_wp_element_namespaceObject.createElement)(CircularOptionPicker.ButtonAction, {
+    actions: !!clearable && (0,external_wp_element_namespaceObject.createElement)(circular_option_picker.ButtonAction, {
       onClick: clearColor
     }, (0,external_wp_i18n_namespaceObject.__)('Clear')),
     headingLevel
@@ -41730,6 +42034,8 @@ const KEYBOARD_CONTROL_POINT_VARIATION = MINIMUM_DISTANCE_BETWEEN_INSERTER_AND_P
 const MINIMUM_DISTANCE_BETWEEN_INSERTER_AND_MARKER = (INSERT_POINT_WIDTH + GRADIENT_MARKERS_WIDTH) / 2;
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/custom-gradient-picker/gradient-bar/utils.js
+// @ts-nocheck
+
 /**
  * Internal dependencies
  */
@@ -41910,6 +42216,7 @@ function getHorizontalRelativeGradientPosition(mouseXCoordinate, containerElemen
 ;// CONCATENATED MODULE: ./packages/components/build-module/custom-gradient-picker/gradient-bar/control-points.js
 
 
+// @ts-nocheck
 
 /**
  * External dependencies
@@ -42174,6 +42481,7 @@ ControlPoints.InsertPoint = InsertPoint;
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/custom-gradient-picker/gradient-bar/index.js
 
+// @ts-nocheck
 
 /**
  * External dependencies
@@ -42388,6 +42696,7 @@ const DIRECTIONAL_ORIENTATION_ANGLE_MAP = {
 };
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/custom-gradient-picker/serializer.js
+// @ts-nocheck
 function serializeGradientColor(_ref) {
   let {
     type,
@@ -42449,6 +42758,8 @@ function serializeGradient(_ref3) {
 }
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/custom-gradient-picker/utils.js
+// @ts-nocheck
+
 /**
  * External dependencies
  */
@@ -42581,6 +42892,7 @@ const AccessoryWrapper = /*#__PURE__*/emotion_styled_base_browser_esm(flex_block
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/custom-gradient-picker/index.js
 
+// @ts-nocheck
 
 /**
  * External dependencies
@@ -42742,6 +43054,7 @@ function CustomGradientPicker(_ref3) {
 ;// CONCATENATED MODULE: ./packages/components/build-module/gradient-picker/index.js
 
 
+// @ts-nocheck
 
 /**
  * WordPress dependencies
@@ -42781,7 +43094,7 @@ function SingleOrigin(_ref) {
         gradient,
         name
       } = _ref2;
-      return (0,external_wp_element_namespaceObject.createElement)(CircularOptionPicker.Option, {
+      return (0,external_wp_element_namespaceObject.createElement)(circular_option_picker.Option, {
         key: gradient,
         value: gradient,
         isSelected: value === gradient,
@@ -42798,7 +43111,7 @@ function SingleOrigin(_ref) {
       });
     });
   }, [gradients, value, onChange, clearGradient]);
-  return (0,external_wp_element_namespaceObject.createElement)(CircularOptionPicker, {
+  return (0,external_wp_element_namespaceObject.createElement)(circular_option_picker, {
     className: className,
     options: gradientOptions,
     actions: actions
@@ -42884,7 +43197,7 @@ function GradientPicker(_ref5) {
       gradients: gradients,
       onChange: onChange,
       value: value,
-      actions: clearable && !disableCustomGradients && (0,external_wp_element_namespaceObject.createElement)(CircularOptionPicker.ButtonAction, {
+      actions: clearable && !disableCustomGradients && (0,external_wp_element_namespaceObject.createElement)(circular_option_picker.ButtonAction, {
         onClick: clearGradient
       }, (0,external_wp_i18n_namespaceObject.__)('Clear')),
       headingLevel: headingLevel
@@ -43245,12 +43558,16 @@ function DropdownMenu(dropdownMenuProps) {
         }
       };
 
+      const {
+        as: Toggle = build_module_button,
+        ...restToggleProps
+      } = toggleProps !== null && toggleProps !== void 0 ? toggleProps : {};
       const mergedToggleProps = mergeProps({
         className: classnames_default()('components-dropdown-menu__toggle', {
           'is-opened': isOpen
         })
-      }, toggleProps);
-      return (0,external_wp_element_namespaceObject.createElement)(build_module_button, extends_extends({}, mergedToggleProps, {
+      }, restToggleProps);
+      return (0,external_wp_element_namespaceObject.createElement)(Toggle, extends_extends({}, mergedToggleProps, {
         icon: icon,
         onClick: event => {
           onToggle(event);
@@ -43332,7 +43649,7 @@ function palette_edit_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have
 
 
 
-const IndicatorStyled = /*#__PURE__*/emotion_styled_base_browser_esm(CircularOptionPicker.Option,  true ? {
+const IndicatorStyled = /*#__PURE__*/emotion_styled_base_browser_esm(circular_option_picker.Option,  true ? {
   target: "e5bw3229"
 } : 0)("width:", space(6), ";height:", space(6), ";pointer-events:none;" + ( true ? "" : 0));
 const NameInputControl = /*#__PURE__*/emotion_styled_base_browser_esm(input_control,  true ? {
@@ -43421,10 +43738,10 @@ function NameInput(_ref) {
  * It expects slugs to be in the format: slugPrefix + color- + number.
  * It then sets the id component of the new name based on the incremented id of the highest existing slug id.
  *
- * @param {string} elements   An array of color palette items.
- * @param {string} slugPrefix The slug prefix used to match the element slug.
+ * @param elements   An array of color palette items.
+ * @param slugPrefix The slug prefix used to match the element slug.
  *
- * @return {string} A unique name for a palette item.
+ * @return A unique name for a palette item.
  */
 
 
@@ -43465,18 +43782,22 @@ function ColorPickerPopover(_ref2) {
   }, !isGradient && (0,external_wp_element_namespaceObject.createElement)(LegacyAdapter, {
     color: element.color,
     enableAlpha: true,
-    onChange: newColor => onChange({ ...element,
-      color: newColor
-    })
+    onChange: newColor => {
+      onChange({ ...element,
+        color: newColor
+      });
+    }
   }), isGradient && (0,external_wp_element_namespaceObject.createElement)("div", {
     className: "components-palette-edit__popover-gradient-picker"
   }, (0,external_wp_element_namespaceObject.createElement)(CustomGradientPicker, {
     __nextHasNoMargin: true,
     __experimentalIsRenderedInSidebar: true,
     value: element.gradient,
-    onChange: newGradient => onChange({ ...element,
-      gradient: newGradient
-    })
+    onChange: newGradient => {
+      onChange({ ...element,
+        gradient: newGradient
+      });
+    }
   })));
 }
 
@@ -43515,7 +43836,7 @@ function palette_edit_Option(_ref3) {
     value: element.name,
     onChange: nextName => onChange({ ...element,
       name: nextName,
-      slug: slugPrefix + (0,external_lodash_namespaceObject.kebabCase)(nextName)
+      slug: slugPrefix + paramCase(nextName !== null && nextName !== void 0 ? nextName : '')
     })
   }) : (0,external_wp_element_namespaceObject.createElement)(NameContainer, null, element.name)), isEditing && !canOnlyChangeValues && (0,external_wp_element_namespaceObject.createElement)(flex_item_component, null, (0,external_wp_element_namespaceObject.createElement)(RemoveButton, {
     isSmall: true,
@@ -43556,7 +43877,9 @@ function PaletteEditListView(_ref5) {
   }, [elements]);
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     return () => {
-      if (elementsReference.current.some((element, index) => isTemporaryElement(slugPrefix, element, index))) {
+      var _elementsReference$cu;
+
+      if ((_elementsReference$cu = elementsReference.current) !== null && _elementsReference$cu !== void 0 && _elementsReference$cu.some(element => isTemporaryElement(slugPrefix, element))) {
         const newElements = elementsReference.current.filter(element => !isTemporaryElement(slugPrefix, element));
         onChange(newElements.length ? newElements : undefined);
       }
@@ -43610,6 +43933,27 @@ function PaletteEditListView(_ref5) {
 }
 
 const EMPTY_ARRAY = [];
+/**
+ * Allows editing a palette of colors or gradients.
+ *
+ * ```jsx
+ * import { PaletteEdit } from '@wordpress/components';
+ * const MyPaletteEdit = () => {
+ *   const [ controlledColors, setControlledColors ] = useState( colors );
+ *
+ *   return (
+ *     <PaletteEdit
+ *       colors={ controlledColors }
+ *       onChange={ ( newColors?: Color[] ) => {
+ *         setControlledColors( newColors );
+ *       } }
+ *       paletteLabel="Here is a label"
+ *     />
+ *   );
+ * };
+ * ```
+ */
+
 function PaletteEdit(_ref6) {
   let {
     gradients,
@@ -43626,12 +43970,12 @@ function PaletteEdit(_ref6) {
   const elements = isGradient ? gradients : colors;
   const [isEditing, setIsEditing] = (0,external_wp_element_namespaceObject.useState)(false);
   const [editingElement, setEditingElement] = (0,external_wp_element_namespaceObject.useState)(null);
-  const isAdding = isEditing && editingElement && elements[editingElement] && !elements[editingElement].slug;
+  const isAdding = isEditing && !!editingElement && elements[editingElement] && !elements[editingElement].slug;
   const elementsLength = elements.length;
   const hasElements = elementsLength > 0;
   const debounceOnChange = (0,external_wp_compose_namespaceObject.useDebounce)(onChange, 100);
   const onSelectPaletteItem = (0,external_wp_element_namespaceObject.useCallback)((value, newEditingElementIndex) => {
-    const selectedElement = elements[newEditingElementIndex];
+    const selectedElement = newEditingElementIndex === undefined ? undefined : elements[newEditingElementIndex];
     const key = isGradient ? 'gradient' : 'color'; // Ensures that the index returned matches a known element value.
 
     if (!!selectedElement && selectedElement[key] === value) {
@@ -43655,14 +43999,21 @@ function PaletteEdit(_ref6) {
     label: isGradient ? (0,external_wp_i18n_namespaceObject.__)('Add gradient') : (0,external_wp_i18n_namespaceObject.__)('Add color'),
     onClick: () => {
       const tempOptionName = getNameForPosition(elements, slugPrefix);
-      onChange([...elements, { ...(isGradient ? {
-          gradient: DEFAULT_GRADIENT
-        } : {
-          color: DEFAULT_COLOR
-        }),
-        name: tempOptionName,
-        slug: slugPrefix + (0,external_lodash_namespaceObject.kebabCase)(tempOptionName)
-      }]);
+
+      if (!!gradients) {
+        onChange([...gradients, {
+          gradient: DEFAULT_GRADIENT,
+          name: tempOptionName,
+          slug: slugPrefix + paramCase(tempOptionName)
+        }]);
+      } else {
+        onChange([...colors, {
+          color: DEFAULT_COLOR,
+          name: tempOptionName,
+          slug: slugPrefix + paramCase(tempOptionName)
+        }]);
+      }
+
       setIsEditing(true);
       setEditingElement(elements.length);
     }
@@ -43704,7 +44055,8 @@ function PaletteEdit(_ref6) {
     }, isGradient ? (0,external_wp_i18n_namespaceObject.__)('Reset gradient') : (0,external_wp_i18n_namespaceObject.__)('Reset colors'))));
   }))), hasElements && (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.Fragment, null, isEditing && (0,external_wp_element_namespaceObject.createElement)(PaletteEditListView, {
     canOnlyChangeValues: canOnlyChangeValues,
-    elements: elements,
+    elements: elements // @ts-expect-error TODO: Don't know how to resolve
+    ,
     onChange: onChange,
     editingElement: editingElement,
     setEditingElement: setEditingElement,
@@ -43714,7 +44066,8 @@ function PaletteEdit(_ref6) {
     isGradient: isGradient,
     onClose: () => setEditingElement(null),
     onChange: newElement => {
-      debounceOnChange(elements.map((currentElement, currentIndex) => {
+      debounceOnChange( // @ts-expect-error TODO: Don't know how to resolve
+      elements.map((currentElement, currentIndex) => {
         if (currentIndex === editingElement) {
           return newElement;
         }
@@ -43722,8 +44075,9 @@ function PaletteEdit(_ref6) {
         return currentElement;
       }));
     },
-    element: elements[editingElement]
-  }), !isEditing && (isGradient ? (0,external_wp_element_namespaceObject.createElement)(GradientPicker, {
+    element: elements[editingElement !== null && editingElement !== void 0 ? editingElement : -1]
+  }), !isEditing && (isGradient ? // @ts-expect-error TODO: Remove when GradientPicker is typed.
+  (0,external_wp_element_namespaceObject.createElement)(GradientPicker, {
     __nextHasNoMargin: true,
     gradients: gradients,
     onChange: onSelectPaletteItem,
@@ -43736,6 +44090,7 @@ function PaletteEdit(_ref6) {
     disableCustomColors: true
   }))), !hasElements && emptyMessage);
 }
+/* harmony default export */ var palette_edit = (PaletteEdit);
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/combobox-control/styles.js
 
@@ -54243,15 +54598,16 @@ const DateTimePicker = (0,external_wp_element_namespaceObject.forwardRef)(Unforw
  */
 
 /**
+ * Internal dependencies
+ */
+
+/**
  * Finds the correct size object from the provided sizes
  * table by size slug (eg: `medium`)
  *
- * @param {Array}  sizes containing objects for each size definition.
- * @param {string} slug  a string representation of the size (eg: `medium`).
- *
- * @return {Object} the matching size definition.
+ * @param sizes containing objects for each size definition.
+ * @param slug  a string representation of the size (eg: `medium`).
  */
-
 const findSizeBySlug = (sizes, slug) => sizes.find(size => slug === size.slug);
 /* harmony default export */ var dimension_control_sizes = ([{
   name: (0,external_wp_i18n_namespaceObject._x)('None', 'Size of a UI element'),
@@ -54288,6 +54644,31 @@ const findSizeBySlug = (sizes, slug) => sizes.find(size => slug === size.slug);
 
 
 
+
+
+/**
+ * `DimensionControl` is a component designed to provide a UI to control spacing and/or dimensions.
+ *
+ * This feature is still experimental. “Experimental” means this is an early implementation subject to drastic and breaking changes.
+ *
+ * ```jsx
+ * import { useState } from 'react';
+ * import { __experimentalDimensionControl as DimensionControl } from '@wordpress/components';
+ *
+ * export default function MyCustomDimensionControl() {
+ * 	const [ paddingSize, setPaddingSize ] = useState( '' );
+ *
+ * 	return (
+ * 		<DimensionControl
+ * 			label={ 'Padding' }
+ * 			icon={ 'desktop' }
+ * 			onChange={ ( value ) => setPaddingSize( value ) }
+ * 			value={ paddingSize }
+ * 		/>
+ * 	);
+ * }
+ * ```
+ */
 function DimensionControl(props) {
   const {
     label,
@@ -54302,7 +54683,7 @@ function DimensionControl(props) {
     const theSize = findSizeBySlug(sizes, val);
 
     if (!theSize || value === theSize.slug) {
-      onChange(undefined);
+      onChange === null || onChange === void 0 ? void 0 : onChange(undefined);
     } else if (typeof onChange === 'function') {
       onChange(theSize.slug);
     }
@@ -54322,7 +54703,7 @@ function DimensionControl(props) {
     return [{
       label: (0,external_wp_i18n_namespaceObject.__)('Default'),
       value: ''
-    }].concat(options);
+    }, ...options];
   };
 
   const selectLabel = (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.Fragment, null, icon && (0,external_wp_element_namespaceObject.createElement)(build_module_icon, {
@@ -55171,7 +55552,7 @@ function DuotonePicker(_ref) {
   } = _ref;
   const [defaultDark, defaultLight] = (0,external_wp_element_namespaceObject.useMemo)(() => getDefaultColors(colorPalette), [colorPalette]);
   const isUnset = value === 'unset';
-  const unsetOption = (0,external_wp_element_namespaceObject.createElement)(CircularOptionPicker.Option, {
+  const unsetOption = (0,external_wp_element_namespaceObject.createElement)(circular_option_picker.Option, {
     key: "unset",
     value: "unset",
     isSelected: isUnset,
@@ -55196,7 +55577,7 @@ function DuotonePicker(_ref) {
     const label = name ? (0,external_wp_i18n_namespaceObject.sprintf)( // translators: %s: The name of the option e.g: "Dark grayscale".
     (0,external_wp_i18n_namespaceObject.__)('Duotone: %s'), name) : tooltipText;
     const isSelected = es6_default()(colors, value);
-    return (0,external_wp_element_namespaceObject.createElement)(CircularOptionPicker.Option, {
+    return (0,external_wp_element_namespaceObject.createElement)(circular_option_picker.Option, {
       key: slug,
       value: colors,
       isSelected: isSelected,
@@ -55208,9 +55589,9 @@ function DuotonePicker(_ref) {
       }
     });
   });
-  return (0,external_wp_element_namespaceObject.createElement)(CircularOptionPicker, {
+  return (0,external_wp_element_namespaceObject.createElement)(circular_option_picker, {
     options: unsetable ? [unsetOption, ...options] : options,
-    actions: !!clearable && (0,external_wp_element_namespaceObject.createElement)(CircularOptionPicker.ButtonAction, {
+    actions: !!clearable && (0,external_wp_element_namespaceObject.createElement)(circular_option_picker.ButtonAction, {
       onClick: () => onChange(undefined)
     }, (0,external_wp_i18n_namespaceObject.__)('Clear'))
   }, (0,external_wp_element_namespaceObject.createElement)(spacer_component, {
@@ -57215,6 +57596,7 @@ const UnforwardedFontSizePicker = (props, ref) => {
     disableCustomFontSizes = false,
     onChange,
     size = 'default',
+    units: unitsProp,
     value,
     withSlider = false,
     withReset = true
@@ -57229,7 +57611,7 @@ const UnforwardedFontSizePicker = (props, ref) => {
   }
 
   const units = useCustomUnits({
-    availableUnits: ['px', 'em', 'rem']
+    availableUnits: unitsProp || ['px', 'em', 'rem']
   });
   const shouldUseSelectControl = fontSizes.length > 5;
   const selectedFontSize = fontSizes.find(fontSize => fontSize.size === value);
@@ -57752,7 +58134,7 @@ function FormTokenField(props) {
   }
 
   function onBlur() {
-    if (inputHasValidValue()) {
+    if (inputHasValidValue() && __experimentalValidateInput(incompleteTokenValue)) {
       setIsActive(false);
     } else {
       // Reset to initial state
@@ -58337,16 +58719,49 @@ function PageControl(_ref) {
 
 
 
+
+/**
+ * `Guide` is a React component that renders a _user guide_ in a modal. The guide consists of several pages which the user can step through one by one. The guide is finished when the modal is closed or when the user clicks _Finish_ on the last page of the guide.
+ *
+ * ```jsx
+ * function MyTutorial() {
+ * 	const [ isOpen, setIsOpen ] = useState( true );
+ *
+ * 	if ( ! isOpen ) {
+ * 		return null;
+ * 	}
+ *
+ * 	return (
+ * 		<Guide
+ * 			onFinish={ () => setIsOpen( false ) }
+ * 			pages={ [
+ * 				{
+ * 					content: <p>Welcome to the ACME Store!</p>,
+ * 				},
+ * 				{
+ * 					image: <img src="https://acmestore.com/add-to-cart.png" />,
+ * 					content: (
+ * 						<p>
+ * 							Click <i>Add to Cart</i> to buy a product.
+ * 						</p>
+ * 					),
+ * 				},
+ * 			] }
+ * 		/>
+ * 	);
+ * }
+ * ```
+ */
 function Guide(_ref) {
   let {
     children,
     className,
     contentLabel,
-    finishButtonText,
+    finishButtonText = (0,external_wp_i18n_namespaceObject.__)('Finish'),
     onFinish,
     pages = []
   } = _ref;
-  const guideContainer = (0,external_wp_element_namespaceObject.useRef)();
+  const guideContainer = (0,external_wp_element_namespaceObject.useRef)(null);
   const [currentPage, setCurrentPage] = (0,external_wp_element_namespaceObject.useState)(0);
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     if (external_wp_element_namespaceObject.Children.count(children)) {
@@ -58360,16 +58775,18 @@ function Guide(_ref) {
     // Each time we change the current page, start from the first element of the page.
     // This also solves any focus loss that can happen.
     if (guideContainer.current) {
-      var _focus$tabbable$find, _focus$tabbable$find$;
+      var _;
 
-      (_focus$tabbable$find = external_wp_dom_namespaceObject.focus.tabbable.find(guideContainer.current)) === null || _focus$tabbable$find === void 0 ? void 0 : (_focus$tabbable$find$ = _focus$tabbable$find[0]) === null || _focus$tabbable$find$ === void 0 ? void 0 : _focus$tabbable$find$.focus();
+      (_ = external_wp_dom_namespaceObject.focus.tabbable.find(guideContainer.current)[0]) === null || _ === void 0 ? void 0 : _.focus();
     }
   }, [currentPage]);
 
   if (external_wp_element_namespaceObject.Children.count(children)) {
-    pages = external_wp_element_namespaceObject.Children.map(children, child => ({
+    var _Children$map;
+
+    pages = (_Children$map = external_wp_element_namespaceObject.Children.map(children, child => ({
       content: child
-    }));
+    }))) !== null && _Children$map !== void 0 ? _Children$map : [];
   }
 
   const canGoBack = currentPage > 0;
@@ -58426,8 +58843,10 @@ function Guide(_ref) {
   }, (0,external_wp_i18n_namespaceObject.__)('Next')), !canGoForward && (0,external_wp_element_namespaceObject.createElement)(build_module_button, {
     className: "components-guide__finish-button",
     onClick: onFinish
-  }, finishButtonText || (0,external_wp_i18n_namespaceObject.__)('Finish')))));
+  }, finishButtonText))));
 }
+
+/* harmony default export */ var guide = (Guide);
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/guide/page.js
 
@@ -58436,6 +58855,10 @@ function Guide(_ref) {
  * WordPress dependencies
  */
 
+
+/**
+ * Internal dependencies
+ */
 
 function GuidePage(props) {
   (0,external_wp_element_namespaceObject.useEffect)(() => {
@@ -59009,23 +59432,26 @@ const SEARCH_FOCUS_DELAY = 100;
 
 const context_noop = () => {};
 
+const defaultIsEmpty = () => false;
+
+const defaultGetter = () => undefined;
+
 const NavigationContext = (0,external_wp_element_namespaceObject.createContext)({
   activeItem: undefined,
   activeMenu: ROOT_MENU,
   setActiveMenu: context_noop,
-  isMenuEmpty: context_noop,
   navigationTree: {
     items: {},
-    getItem: context_noop,
+    getItem: defaultGetter,
     addItem: context_noop,
     removeItem: context_noop,
     menus: {},
-    getMenu: context_noop,
+    getMenu: defaultGetter,
     addMenu: context_noop,
     removeMenu: context_noop,
     childMenu: {},
     traverseMenu: context_noop,
-    isMenuEmpty: context_noop
+    isMenuEmpty: defaultIsEmpty
   }
 });
 const useNavigationContext = () => (0,external_wp_element_namespaceObject.useContext)(NavigationContext);
@@ -59185,53 +59611,53 @@ function navigation_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have t
 
 
 const NavigationUI = emotion_styled_base_browser_esm("div",  true ? {
-  target: "ejwewyf11"
+  target: "eeiismy11"
 } : 0)("width:100%;box-sizing:border-box;padding:0 ", space(4), ";overflow:hidden;" + ( true ? "" : 0));
 const MenuUI = emotion_styled_base_browser_esm("div",  true ? {
-  target: "ejwewyf10"
+  target: "eeiismy10"
 } : 0)("margin-top:", space(6), ";margin-bottom:", space(6), ";display:flex;flex-direction:column;ul{padding:0;margin:0;list-style:none;}.components-navigation__back-button{margin-bottom:", space(6), ";}.components-navigation__group+.components-navigation__group{margin-top:", space(6), ";}" + ( true ? "" : 0));
 const MenuBackButtonUI = /*#__PURE__*/emotion_styled_base_browser_esm(build_module_button,  true ? {
-  target: "ejwewyf9"
+  target: "eeiismy9"
 } : 0)( true ? {
   name: "26l0q2",
   styles: "&.is-tertiary{color:inherit;opacity:0.7;&:hover:not( :disabled ){opacity:1;box-shadow:none;color:inherit;}&:active:not( :disabled ){background:transparent;opacity:1;color:inherit;}}"
 } : 0);
 const MenuTitleUI = emotion_styled_base_browser_esm("div",  true ? {
-  target: "ejwewyf8"
+  target: "eeiismy8"
 } : 0)( true ? {
   name: "1aubja5",
   styles: "overflow:hidden;width:100%"
 } : 0);
 const MenuTitleActionsUI = emotion_styled_base_browser_esm("span",  true ? {
-  target: "ejwewyf7"
+  target: "eeiismy7"
 } : 0)("height:", space(6), ";.components-button.is-small{color:inherit;opacity:0.7;margin-right:", space(1), ";padding:0;&:active:not( :disabled ){background:none;opacity:1;color:inherit;}&:hover:not( :disabled ){box-shadow:none;opacity:1;color:inherit;}}" + ( true ? "" : 0));
 const MenuTitleSearchUI = /*#__PURE__*/emotion_styled_base_browser_esm(search_control,  true ? {
-  target: "ejwewyf6"
+  target: "eeiismy6"
 } : 0)( true ? {
   name: "za3n3e",
   styles: "input[type='search'].components-search-control__input{margin:0;background:#303030;color:#fff;&:focus{background:#434343;color:#fff;}&::placeholder{color:rgba( 255, 255, 255, 0.6 );}}svg{fill:white;}.components-button.has-icon{padding:0;min-width:auto;}"
 } : 0);
 const GroupTitleUI = /*#__PURE__*/emotion_styled_base_browser_esm(heading_component,  true ? {
-  target: "ejwewyf5"
+  target: "eeiismy5"
 } : 0)("min-height:", space(12), ";align-items:center;color:inherit;display:flex;justify-content:space-between;margin-bottom:", space(2), ";padding:", () => (0,external_wp_i18n_namespaceObject.isRTL)() ? `${space(1)} ${space(4)} ${space(1)} ${space(2)}` : `${space(1)} ${space(2)} ${space(1)} ${space(4)}`, ";" + ( true ? "" : 0));
 const ItemBaseUI = emotion_styled_base_browser_esm("li",  true ? {
-  target: "ejwewyf4"
+  target: "eeiismy4"
 } : 0)("border-radius:2px;color:inherit;margin-bottom:0;>button,>a.components-button,>a{width:100%;color:inherit;opacity:0.7;padding:", space(2), " ", space(4), ";", rtl({
   textAlign: 'left'
 }, {
   textAlign: 'right'
 }), " &:hover,&:focus:not( [aria-disabled='true'] ):active,&:active:not( [aria-disabled='true'] ):active{color:inherit;opacity:1;}}&.is-active{background-color:", COLORS.ui.theme, ";color:", COLORS.white, ";>button,>a{color:", COLORS.white, ";opacity:1;}}>svg path{color:", COLORS.gray[600], ";}" + ( true ? "" : 0));
 const ItemUI = emotion_styled_base_browser_esm("div",  true ? {
-  target: "ejwewyf3"
+  target: "eeiismy3"
 } : 0)("display:flex;align-items:center;height:auto;min-height:40px;margin:0;padding:", space(1.5), " ", space(4), ";font-weight:400;line-height:20px;width:100%;color:inherit;opacity:0.7;" + ( true ? "" : 0));
 const ItemIconUI = emotion_styled_base_browser_esm("span",  true ? {
-  target: "ejwewyf2"
+  target: "eeiismy2"
 } : 0)("display:flex;margin-right:", space(2), ";" + ( true ? "" : 0));
 const ItemBadgeUI = emotion_styled_base_browser_esm("span",  true ? {
-  target: "ejwewyf1"
+  target: "eeiismy1"
 } : 0)("margin-left:", () => (0,external_wp_i18n_namespaceObject.isRTL)() ? '0' : space(2), ";margin-right:", () => (0,external_wp_i18n_namespaceObject.isRTL)() ? space(2) : '0', ";display:inline-flex;padding:", space(1), " ", space(3), ";border-radius:2px;animation:fade-in 250ms ease-out;@keyframes fade-in{from{opacity:0;}to{opacity:1;}}", reduceMotion('animation'), ";" + ( true ? "" : 0));
 const ItemTitleUI = /*#__PURE__*/emotion_styled_base_browser_esm(text_component,  true ? {
-  target: "ejwewyf0"
+  target: "eeiismy0"
 } : 0)(() => (0,external_wp_i18n_namespaceObject.isRTL)() ? 'margin-left: auto;' : 'margin-right: auto;', " font-size:14px;line-height:20px;color:inherit;" + ( true ? "" : 0));
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/navigation/use-navigation-tree-nodes.js
@@ -59239,7 +59665,7 @@ const ItemTitleUI = /*#__PURE__*/emotion_styled_base_browser_esm(text_component,
  * WordPress dependencies
  */
 
-const useNavigationTreeNodes = () => {
+function useNavigationTreeNodes() {
   const [nodes, setNodes] = (0,external_wp_element_namespaceObject.useState)({});
 
   const getNode = key => nodes[key];
@@ -59270,7 +59696,7 @@ const useNavigationTreeNodes = () => {
     addNode,
     removeNode
   };
-};
+}
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/navigation/use-create-navigation-tree.js
 /**
@@ -59313,6 +59739,7 @@ const useCreateNavigationTree = () => {
     let current;
 
     while (queue.length > 0) {
+      // Type cast to string is safe because of the `length > 0` check above.
       current = getMenu(queue.shift());
 
       if (!current || visited.includes(current.menu)) {
@@ -59335,6 +59762,8 @@ const useCreateNavigationTree = () => {
         isEmpty = false;
         return false;
       }
+
+      return undefined;
     });
     return isEmpty;
   };
@@ -59350,6 +59779,10 @@ const useCreateNavigationTree = () => {
       setChildMenu(state => {
         const newState = { ...state
         };
+
+        if (!value.parentMenu) {
+          return newState;
+        }
 
         if (!newState[value.parentMenu]) {
           newState[value.parentMenu] = [];
@@ -59391,6 +59824,48 @@ const useCreateNavigationTree = () => {
 
 
 const navigation_noop = () => {};
+/**
+ * Render a navigation list with optional groupings and hierarchy.
+ *
+ * @example
+ * ```jsx
+ * import {
+ *   __experimentalNavigation as Navigation,
+ *   __experimentalNavigationGroup as NavigationGroup,
+ *   __experimentalNavigationItem as NavigationItem,
+ *   __experimentalNavigationMenu as NavigationMenu,
+ * } from '@wordpress/components';
+ *
+ * const MyNavigation = () => (
+ *   <Navigation>
+ *     <NavigationMenu title="Home">
+ *       <NavigationGroup title="Group 1">
+ *         <NavigationItem item="item-1" title="Item 1" />
+ *         <NavigationItem item="item-2" title="Item 2" />
+ *       </NavigationGroup>
+ *       <NavigationGroup title="Group 2">
+ *         <NavigationItem
+ *           item="item-3"
+ *           navigateToMenu="category"
+ *           title="Category"
+ *         />
+ *       </NavigationGroup>
+ *     </NavigationMenu>
+ *
+ *     <NavigationMenu
+ *       backButtonLabel="Home"
+ *       menu="category"
+ *       parentMenu="root"
+ *       title="Category"
+ *     >
+ *       <NavigationItem badge="1" item="child-1" title="Child 1" />
+ *       <NavigationItem item="child-2" title="Child 2" />
+ *     </NavigationMenu>
+ *   </Navigation>
+ * );
+ * ```
+ */
+
 
 function Navigation(_ref) {
   let {
@@ -59447,13 +59922,14 @@ function Navigation(_ref) {
     className: classes
   }, (0,external_wp_element_namespaceObject.createElement)("div", {
     key: menu,
-    className: classnames_default()({
+    className: animateClassName ? classnames_default()({
       [animateClassName]: isMounted.current && slideOrigin
-    })
+    }) : undefined
   }, (0,external_wp_element_namespaceObject.createElement)(NavigationContext.Provider, {
     value: context
   }, children)));
 }
+/* harmony default export */ var navigation = (Navigation);
 
 ;// CONCATENATED MODULE: ./packages/icons/build-module/library/chevron-right.js
 
@@ -59506,7 +59982,7 @@ const chevronLeft = (0,external_wp_element_namespaceObject.createElement)(extern
 
 
 
-function NavigationBackButton(_ref, ref) {
+function UnforwardedNavigationBackButton(_ref, ref) {
   var _navigationTree$getMe;
 
   let {
@@ -59521,7 +59997,7 @@ function NavigationBackButton(_ref, ref) {
     navigationTree
   } = useNavigationContext();
   const classes = classnames_default()('components-navigation__back-button', className);
-  const parentMenuTitle = (_navigationTree$getMe = navigationTree.getMenu(parentMenu)) === null || _navigationTree$getMe === void 0 ? void 0 : _navigationTree$getMe.title;
+  const parentMenuTitle = parentMenu !== undefined ? (_navigationTree$getMe = navigationTree.getMenu(parentMenu)) === null || _navigationTree$getMe === void 0 ? void 0 : _navigationTree$getMe.title : undefined;
 
   const handleOnClick = event => {
     if (typeof onClick === 'function') {
@@ -59547,11 +60023,16 @@ function NavigationBackButton(_ref, ref) {
   }), backButtonLabel || parentMenuTitle || (0,external_wp_i18n_namespaceObject.__)('Back'));
 }
 
-/* harmony default export */ var back_button = ((0,external_wp_element_namespaceObject.forwardRef)(NavigationBackButton));
+const NavigationBackButton = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedNavigationBackButton);
+/* harmony default export */ var back_button = (NavigationBackButton);
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/navigation/group/context.js
 /**
  * WordPress dependencies
+ */
+
+/**
+ * Internal dependencies
  */
 
 const NavigationGroupContext = (0,external_wp_element_namespaceObject.createContext)({
@@ -59616,6 +60097,7 @@ function NavigationGroup(_ref) {
     role: "group"
   }, children)));
 }
+/* harmony default export */ var group = (NavigationGroup);
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/navigation/item/base-content.js
 
@@ -59631,7 +60113,6 @@ function NavigationItemBaseContent(props) {
   } = props;
   return (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.Fragment, null, title && (0,external_wp_element_namespaceObject.createElement)(ItemTitleUI, {
     className: "components-navigation__item-title",
-    variant: "body.small",
     as: "span"
   }, title), badge && (0,external_wp_element_namespaceObject.createElement)(ItemBadgeUI, {
     className: "components-navigation__item-badge"
@@ -59641,6 +60122,10 @@ function NavigationItemBaseContent(props) {
 ;// CONCATENATED MODULE: ./packages/components/build-module/navigation/menu/context.js
 /**
  * WordPress dependencies
+ */
+
+/**
+ * Internal dependencies
  */
 
 const NavigationMenuContext = (0,external_wp_element_namespaceObject.createContext)({
@@ -59688,7 +60173,7 @@ const useNavigationTreeItem = (itemId, props) => {
   } = useNavigationMenuContext();
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     const isMenuActive = activeMenu === menu;
-    const isItemVisible = !search || normalizedSearch(props.title, search);
+    const isItemVisible = !search || props.title !== undefined && normalizedSearch(props.title, search);
     addItem(itemId, { ...props,
       group,
       menu,
@@ -59839,6 +60324,7 @@ function NavigationItem(props) {
     icon: navigationIcon
   })));
 }
+/* harmony default export */ var navigation_item = (NavigationItem);
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/navigation/menu/use-navigation-tree-menu.js
 /**
@@ -59931,12 +60417,14 @@ function MenuTitleSearch(_ref) {
   const {
     menu
   } = useNavigationMenuContext();
-  const inputRef = (0,external_wp_element_namespaceObject.useRef)(); // Wait for the slide-in animation to complete before autofocusing the input.
+  const inputRef = (0,external_wp_element_namespaceObject.useRef)(null); // Wait for the slide-in animation to complete before autofocusing the input.
   // This prevents scrolling to the input during the animation.
 
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     const delayedFocus = setTimeout(() => {
-      inputRef.current.focus();
+      var _inputRef$current;
+
+      (_inputRef$current = inputRef.current) === null || _inputRef$current === void 0 ? void 0 : _inputRef$current.focus();
     }, SEARCH_FOCUS_DELAY);
     return () => {
       clearTimeout(delayedFocus);
@@ -59956,16 +60444,16 @@ function MenuTitleSearch(_ref) {
   }, [items, search]);
 
   const onClose = () => {
-    onSearch('');
+    onSearch === null || onSearch === void 0 ? void 0 : onSearch('');
     onCloseSearch();
   };
 
-  function onKeyDown(event) {
+  const onKeyDown = event => {
     if (event.code === 'Escape' && !event.defaultPrevented) {
       event.preventDefault();
       onClose();
     }
-  }
+  };
 
   const inputId = `components-navigation__menu-title-search-${menu}`;
   const placeholder = (0,external_wp_i18n_namespaceObject.sprintf)(
@@ -59977,7 +60465,7 @@ function MenuTitleSearch(_ref) {
     autoComplete: "off",
     className: "components-navigation__menu-search-input",
     id: inputId,
-    onChange: value => onSearch(value),
+    onChange: value => onSearch === null || onSearch === void 0 ? void 0 : onSearch(value),
     onKeyDown: onKeyDown,
     placeholder: placeholder,
     onClose: onClose,
@@ -60020,7 +60508,7 @@ function NavigationMenuTitle(_ref) {
   const {
     menu
   } = useNavigationMenuContext();
-  const searchButtonRef = (0,external_wp_element_namespaceObject.useRef)();
+  const searchButtonRef = (0,external_wp_element_namespaceObject.useRef)(null);
 
   if (!title) {
     return null;
@@ -60031,7 +60519,9 @@ function NavigationMenuTitle(_ref) {
     // eslint-disable-next-line @wordpress/react-no-unsafe-timeout
 
     setTimeout(() => {
-      searchButtonRef.current.focus();
+      var _searchButtonRef$curr;
+
+      (_searchButtonRef$curr = searchButtonRef.current) === null || _searchButtonRef$curr === void 0 ? void 0 : _searchButtonRef$curr.focus();
     }, SEARCH_FOCUS_DELAY);
   };
 
@@ -60180,6 +60670,7 @@ function NavigationMenu(props) {
     search: search
   })))));
 }
+/* harmony default export */ var navigation_menu = (NavigationMenu);
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/navigator/context.js
 /**
@@ -61004,8 +61495,10 @@ function UnconnectedNavigatorScreen(props, forwardedRef) {
       ease: 'easeInOut'
     },
     x: 0
-  };
-  const initial = {
+  }; // Disable the initial animation if the screen is the very first screen to be
+  // rendered within the current `NavigatorProvider`.
+
+  const initial = location.isInitial && !location.isBack ? false : {
     opacity: 0,
     x: (0,external_wp_i18n_namespaceObject.isRTL)() && location.isBack || !(0,external_wp_i18n_namespaceObject.isRTL)() && !location.isBack ? 50 : -50
   };
@@ -61691,8 +62184,8 @@ const chevronUp = (0,external_wp_element_namespaceObject.createElement)(external
 
 const body_noop = () => {};
 
-function PanelBody(_ref, ref) {
-  let {
+function UnforwardedPanelBody(props, ref) {
+  const {
     buttonProps = {},
     children,
     className,
@@ -61702,11 +62195,12 @@ function PanelBody(_ref, ref) {
     opened,
     title,
     scrollAfterOpen = true
-  } = _ref;
+  } = props;
   const [isOpened, setIsOpened] = use_controlled_state(opened, {
-    initial: initialOpen === undefined ? true : initialOpen
+    initial: initialOpen === undefined ? true : initialOpen,
+    fallback: false
   });
-  const nodeRef = (0,external_wp_element_namespaceObject.useRef)(); // Defaults to 'smooth' scrolling
+  const nodeRef = (0,external_wp_element_namespaceObject.useRef)(null); // Defaults to 'smooth' scrolling
   // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
 
   const scrollBehavior = (0,external_wp_compose_namespaceObject.useReducedMotion)() ? 'auto' : 'smooth';
@@ -61746,20 +62240,20 @@ function PanelBody(_ref, ref) {
     ref: (0,external_wp_compose_namespaceObject.useMergeRefs)([nodeRef, ref])
   }, (0,external_wp_element_namespaceObject.createElement)(PanelBodyTitle, extends_extends({
     icon: icon,
-    isOpened: isOpened,
+    isOpened: Boolean(isOpened),
     onClick: handleOnToggle,
     title: title
   }, buttonProps)), typeof children === 'function' ? children({
-    opened: isOpened
+    opened: Boolean(isOpened)
   }) : isOpened && children);
 }
-const PanelBodyTitle = (0,external_wp_element_namespaceObject.forwardRef)((_ref2, ref) => {
+const PanelBodyTitle = (0,external_wp_element_namespaceObject.forwardRef)((_ref, ref) => {
   let {
     isOpened,
     icon,
     title,
     ...props
-  } = _ref2;
+  } = _ref;
   if (!title) return null;
   return (0,external_wp_element_namespaceObject.createElement)("h2", {
     className: "components-panel__body-title"
@@ -61778,9 +62272,8 @@ const PanelBodyTitle = (0,external_wp_element_namespaceObject.forwardRef)((_ref2
     size: 20
   })));
 });
-const body_ForwardedComponent = (0,external_wp_element_namespaceObject.forwardRef)(PanelBody);
-body_ForwardedComponent.displayName = 'PanelBody';
-/* harmony default export */ var body = (body_ForwardedComponent);
+const PanelBody = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedPanelBody);
+/* harmony default export */ var body = (PanelBody);
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/panel/row.js
 
@@ -61904,13 +62397,11 @@ function Placeholder(props) {
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/query-controls/terms.js
 /**
- * External dependencies
- */
-
-/**
  * Internal dependencies
  */
-
+const ensureParentsAreDefined = terms => {
+  return terms.every(term => term.parent !== null);
+};
 /**
  * Returns terms in a tree form.
  *
@@ -61918,20 +62409,35 @@ function Placeholder(props) {
  *
  * @return Terms in tree format.
  */
-function buildTermsTree(flatTerms) {
-  const flatTermsWithParentAndChildren = flatTerms.map(term => {
-    return {
-      children: [],
-      parent: null,
-      ...term,
-      id: String(term.id)
-    };
-  });
-  const termsByParent = (0,external_lodash_namespaceObject.groupBy)(flatTermsWithParentAndChildren, 'parent');
 
-  if (termsByParent.null && termsByParent.null.length) {
+
+function buildTermsTree(flatTerms) {
+  const flatTermsWithParentAndChildren = flatTerms.map(term => ({
+    children: [],
+    parent: null,
+    ...term,
+    id: String(term.id)
+  })); // We use a custom type guard here to ensure that the parent property is
+  // defined on all terms. The type of the `parent` property is `number | null`
+  // and we need to ensure that it is `number`. This is because we use the
+  // `parent` property as a key in the `termsByParent` object.
+
+  if (!ensureParentsAreDefined(flatTermsWithParentAndChildren)) {
     return flatTermsWithParentAndChildren;
   }
+
+  const termsByParent = flatTermsWithParentAndChildren.reduce((acc, term) => {
+    const {
+      parent
+    } = term;
+
+    if (!acc[parent]) {
+      acc[parent] = [];
+    }
+
+    acc[parent].push(term);
+    return acc;
+  }, {});
 
   const fillWithChildren = terms => {
     return terms.map(term => {
@@ -62064,10 +62570,6 @@ function AuthorSelect(_ref) {
   return (0,external_wp_element_namespaceObject.createElement)(tree_select, {
     label,
     noOptionLabel,
-    // Since the `multiple` attribute is not passed to `TreeSelect`, it is
-    // safe to assume that the argument of `onChange` cannot be `string[]`.
-    // The correct solution would be to type `SelectControl` better, so that
-    // the type of `value` and `onChange` vary depending on `multiple`.
     onChange: onChangeProp,
     tree: termsTree,
     selectedId: selectedAuthorId !== undefined ? String(selectedAuthorId) : undefined
@@ -62083,10 +62585,10 @@ function AuthorSelect(_ref) {
  */
 
 
-
 /**
  * WordPress dependencies
  */
+
 
 function CategorySelect(_ref) {
   let {
@@ -62103,10 +62605,6 @@ function CategorySelect(_ref) {
   return (0,external_wp_element_namespaceObject.createElement)(tree_select, extends_extends({
     label,
     noOptionLabel,
-    // Since the `multiple` attribute is not passed to `TreeSelect`, it is
-    // safe to assume that the argument of `onChange` cannot be `string[]`.
-    // The correct solution would be to type `SelectControl` better, so that
-    // the type of `value` and `onChange` vary depending on `multiple`.
     onChange: onChangeProp,
     tree: termsTree,
     selectedId: selectedCategoryId !== undefined ? String(selectedCategoryId) : undefined
@@ -63578,7 +64076,7 @@ const TooltipWrapper = emotion_styled_base_browser_esm("div",  true ? {
 } : 0);
 const resize_tooltip_styles_Tooltip = emotion_styled_base_browser_esm("div",  true ? {
   target: "e1wq7y4k1"
-} : 0)("background:", COLORS.gray[900], ";border-radius:2px;box-sizing:border-box;font-size:12px;color:", COLORS.ui.textDark, ";padding:4px 8px;position:relative;" + ( true ? "" : 0)); // TODO: Resolve need to use &&& to increase specificity
+} : 0)("background:", COLORS.gray[900], ";border-radius:2px;box-sizing:border-box;font-family:", font('default.fontFamily'), ";font-size:12px;color:", COLORS.ui.textDark, ";padding:4px 8px;position:relative;" + ( true ? "" : 0)); // TODO: Resolve need to use &&& to increase specificity
 // https://github.com/WordPress/gutenberg/issues/18483
 
 const LabelText = /*#__PURE__*/emotion_styled_base_browser_esm(text_component,  true ? {
@@ -63809,7 +64307,6 @@ const ResizableBox = (0,external_wp_element_namespaceObject.forwardRef)(Unforwar
  */
 
 
-
 /**
  * Internal dependencies
  */
@@ -63837,25 +64334,26 @@ function ResponsiveWrapper(_ref) {
     children,
     isInline = false
   } = _ref;
-  const [containerResizeListener, {
-    width: containerWidth
-  }] = (0,external_wp_compose_namespaceObject.useResizeObserver)();
 
   if (external_wp_element_namespaceObject.Children.count(children) !== 1) {
     return null;
   }
 
-  const imageStyle = {
-    paddingBottom: naturalWidth < (containerWidth !== null && containerWidth !== void 0 ? containerWidth : 0) ? naturalHeight : naturalHeight / naturalWidth * 100 + '%'
-  };
   const TagName = isInline ? 'span' : 'div';
+  let aspectRatio;
+
+  if (naturalWidth && naturalHeight) {
+    aspectRatio = `${naturalWidth} / ${naturalHeight}`;
+  }
+
   return (0,external_wp_element_namespaceObject.createElement)(TagName, {
     className: "components-responsive-wrapper"
-  }, containerResizeListener, (0,external_wp_element_namespaceObject.createElement)(TagName, {
-    style: imageStyle
-  }), (0,external_wp_element_namespaceObject.cloneElement)(children, {
-    className: classnames_default()('components-responsive-wrapper__content', children.props.className)
-  }));
+  }, (0,external_wp_element_namespaceObject.createElement)("div", null, (0,external_wp_element_namespaceObject.cloneElement)(children, {
+    className: classnames_default()('components-responsive-wrapper__content', children.props.className),
+    style: { ...children.props.style,
+      aspectRatio
+    }
+  })));
 }
 
 /* harmony default export */ var responsive_wrapper = (ResponsiveWrapper);
@@ -65215,13 +65713,15 @@ var ToolbarItem = createComponent({
 
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/toolbar/toolbar-context/index.js
-// @ts-nocheck
+/**
+ * External dependencies
+ */
 
 /**
  * WordPress dependencies
  */
 
-const ToolbarContext = (0,external_wp_element_namespaceObject.createContext)();
+const ToolbarContext = (0,external_wp_element_namespaceObject.createContext)(undefined);
 /* harmony default export */ var toolbar_context = (ToolbarContext);
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/toolbar/toolbar-item/index.js
@@ -65281,26 +65781,33 @@ function toolbar_item_ToolbarItem(_ref, ref) {
 ;// CONCATENATED MODULE: ./packages/components/build-module/toolbar/toolbar-button/toolbar-button-container.js
 
 
-// @ts-nocheck
-const ToolbarButtonContainer = props => (0,external_wp_element_namespaceObject.createElement)("div", {
-  className: props.className
-}, props.children);
+/**
+ * Internal dependencies
+ */
+const ToolbarButtonContainer = _ref => {
+  let {
+    children,
+    className
+  } = _ref;
+  return (0,external_wp_element_namespaceObject.createElement)("div", {
+    className: className
+  }, children);
+};
 
 /* harmony default export */ var toolbar_button_container = (ToolbarButtonContainer);
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/toolbar/toolbar-button/index.js
 
 
-// @ts-nocheck
 
 /**
  * External dependencies
  */
 
+
 /**
  * WordPress dependencies
  */
-
 
 /**
  * Internal dependencies
@@ -65311,15 +65818,15 @@ const ToolbarButtonContainer = props => (0,external_wp_element_namespaceObject.c
 
 
 
-function ToolbarButton(_ref, ref) {
+function UnforwardedToolbarButton(_ref, ref) {
   let {
-    containerClassName,
-    className,
-    extraProps,
     children,
-    title,
+    className,
+    containerClassName,
+    extraProps,
     isActive,
     isDisabled,
+    title,
     ...props
   } = _ref;
   const accessibleToolbarState = (0,external_wp_element_namespaceObject.useContext)(toolbar_context);
@@ -65334,7 +65841,7 @@ function ToolbarButton(_ref, ref) {
       shortcut: props.shortcut,
       "data-subscript": props.subscript,
       onClick: event => {
-        event.stopPropagation();
+        event.stopPropagation(); // TODO: Possible bug; maybe use onClick instead of props.onClick.
 
         if (props.onClick) {
           props.onClick(event);
@@ -65354,14 +65861,38 @@ function ToolbarButton(_ref, ref) {
     className: classnames_default()('components-toolbar-button', className)
   }, extraProps, props, {
     ref: ref
-  }), toolbarItemProps => (0,external_wp_element_namespaceObject.createElement)(build_module_button, extends_extends({
+  }), // @ts-expect-error
+  toolbarItemProps => (0,external_wp_element_namespaceObject.createElement)(build_module_button, extends_extends({
     label: title,
     isPressed: isActive,
     disabled: isDisabled
   }, toolbarItemProps), children));
 }
+/**
+ * ToolbarButton can be used to add actions to a toolbar, usually inside a Toolbar
+ * or ToolbarGroup when used to create general interfaces.
+ *
+ * ```jsx
+ * import { Toolbar, ToolbarButton } from '@wordpress/components';
+ * import { edit } from '@wordpress/icons';
+ *
+ * function MyToolbar() {
+ *   return (
+ *		<Toolbar label="Options">
+ *			<ToolbarButton
+ *				icon={ edit }
+ *				label="Edit"
+ *				onClick={ () => alert( 'Editing' ) }
+ *			/>
+ *		</Toolbar>
+ *   );
+ * }
+ * ```
+ */
 
-/* harmony default export */ var toolbar_button = ((0,external_wp_element_namespaceObject.forwardRef)(ToolbarButton));
+
+const ToolbarButton = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedToolbarButton);
+/* harmony default export */ var toolbar_button = (ToolbarButton);
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/toolbar/toolbar-group/toolbar-group-container.js
 
@@ -65852,6 +66383,8 @@ const ToolsPanelContext = (0,external_wp_element_namespaceObject.createContext)(
   registerPanelItem: tools_panel_context_noop,
   deregisterPanelItem: tools_panel_context_noop,
   flagItemCustomization: tools_panel_context_noop,
+  registerResetAllFilter: tools_panel_context_noop,
+  deregisterResetAllFilter: tools_panel_context_noop,
   areAllOptionalControlsHidden: true
 });
 const useToolsPanelContext = () => (0,external_wp_element_namespaceObject.useContext)(ToolsPanelContext);
@@ -66151,6 +66684,7 @@ function useToolsPanel(props) {
   }, [wasResetting]); // Allow panel items to register themselves.
 
   const [panelItems, setPanelItems] = (0,external_wp_element_namespaceObject.useState)([]);
+  const [resetAllFilters, setResetAllFilters] = (0,external_wp_element_namespaceObject.useState)([]);
   const registerPanelItem = (0,external_wp_element_namespaceObject.useCallback)(item => {
     setPanelItems(items => {
       const newItems = [...items]; // If an item with this label has already been registered, remove it
@@ -66183,7 +66717,17 @@ function useToolsPanel(props) {
 
       return newItems;
     });
-  }, [setPanelItems]); // Manage and share display state of menu items representing child controls.
+  }, [setPanelItems]);
+  const registerResetAllFilter = (0,external_wp_element_namespaceObject.useCallback)(newFilter => {
+    setResetAllFilters(filters => {
+      return [...filters, newFilter];
+    });
+  }, [setResetAllFilters]);
+  const deregisterResetAllFilter = (0,external_wp_element_namespaceObject.useCallback)(filterToRemove => {
+    setResetAllFilters(filters => {
+      return filters.filter(filter => filter !== filterToRemove);
+    });
+  }, [setResetAllFilters]); // Manage and share display state of menu items representing child controls.
 
   const [menuItems, setMenuItems] = (0,external_wp_element_namespaceObject.useState)({
     default: {},
@@ -66255,15 +66799,8 @@ function useToolsPanel(props) {
 
   const resetAllItems = (0,external_wp_element_namespaceObject.useCallback)(() => {
     if (typeof resetAll === 'function') {
-      isResetting.current = true; // Collect available reset filters from panel items.
-
-      const filters = [];
-      panelItems.forEach(item => {
-        if (item.resetAllFilter) {
-          filters.push(item.resetAllFilter);
-        }
-      });
-      resetAll(filters);
+      isResetting.current = true;
+      resetAll(resetAllFilters);
     } // Turn off display of all non-default items.
 
 
@@ -66272,7 +66809,7 @@ function useToolsPanel(props) {
       shouldReset: true
     });
     setMenuItems(resetMenuItems);
-  }, [panelItems, resetAll, setMenuItems]); // Assist ItemGroup styling when there are potentially hidden placeholder
+  }, [panelItems, resetAllFilters, resetAll, setMenuItems]); // Assist ItemGroup styling when there are potentially hidden placeholder
   // items by identifying first & last items that are toggled on for display.
 
   const getFirstVisibleItemLabel = items => {
@@ -66286,6 +66823,7 @@ function useToolsPanel(props) {
   const panelContext = (0,external_wp_element_namespaceObject.useMemo)(() => ({
     areAllOptionalControlsHidden,
     deregisterPanelItem,
+    deregisterResetAllFilter,
     firstDisplayedItem,
     flagItemCustomization,
     hasMenuItems: !!panelItems.length,
@@ -66294,10 +66832,11 @@ function useToolsPanel(props) {
     menuItems,
     panelId,
     registerPanelItem,
+    registerResetAllFilter,
     shouldRenderPlaceholderItems,
     __experimentalFirstVisibleItemClass,
     __experimentalLastVisibleItemClass
-  }), [areAllOptionalControlsHidden, deregisterPanelItem, firstDisplayedItem, flagItemCustomization, lastDisplayedItem, menuItems, panelId, panelItems, registerPanelItem, shouldRenderPlaceholderItems, __experimentalFirstVisibleItemClass, __experimentalLastVisibleItemClass]);
+  }), [areAllOptionalControlsHidden, deregisterPanelItem, deregisterResetAllFilter, firstDisplayedItem, flagItemCustomization, lastDisplayedItem, menuItems, panelId, panelItems, registerResetAllFilter, registerPanelItem, shouldRenderPlaceholderItems, __experimentalFirstVisibleItemClass, __experimentalLastVisibleItemClass]);
   return { ...otherProps,
     headingLevel,
     panelContext,
@@ -66437,6 +66976,8 @@ function useToolsPanelItem(props) {
   const {
     panelId: currentPanelId,
     menuItems,
+    registerResetAllFilter,
+    deregisterResetAllFilter,
     registerPanelItem,
     deregisterPanelItem,
     flagItemCustomization,
@@ -66459,7 +67000,6 @@ function useToolsPanelItem(props) {
         hasValue: hasValueCallback,
         isShownByDefault,
         label,
-        resetAllFilter: resetAllFilterCallback,
         panelId
       });
     }
@@ -66469,7 +67009,18 @@ function useToolsPanelItem(props) {
         deregisterPanelItem(label);
       }
     };
-  }, [currentPanelId, hasMatchingPanel, isShownByDefault, label, hasValueCallback, panelId, previousPanelId, resetAllFilterCallback, registerPanelItem, deregisterPanelItem]); // Note: `label` is used as a key when building menu item state in
+  }, [currentPanelId, hasMatchingPanel, isShownByDefault, label, hasValueCallback, panelId, previousPanelId, registerPanelItem, deregisterPanelItem]);
+  (0,external_wp_element_namespaceObject.useEffect)(() => {
+    if (hasMatchingPanel) {
+      registerResetAllFilter(resetAllFilterCallback);
+    }
+
+    return () => {
+      if (hasMatchingPanel) {
+        deregisterResetAllFilter(resetAllFilterCallback);
+      }
+    };
+  }, [registerResetAllFilter, deregisterResetAllFilter, resetAllFilterCallback, hasMatchingPanel]); // Note: `label` is used as a key when building menu item state in
   // `ToolsPanel`.
 
   const menuGroup = isShownByDefault ? 'default' : 'optional';
@@ -67331,11 +67882,13 @@ const defaultShortcuts = {
 };
 function useNavigateRegions() {
   let shortcuts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultShortcuts;
-  const ref = (0,external_wp_element_namespaceObject.useRef)();
+  const ref = (0,external_wp_element_namespaceObject.useRef)(null);
   const [isFocusingRegions, setIsFocusingRegions] = (0,external_wp_element_namespaceObject.useState)(false);
 
   function focusRegion(offset) {
-    const regions = Array.from(ref.current.querySelectorAll('[role="region"][tabindex="-1"]'));
+    var _ref$current$querySel, _ref$current, _ref$current2, _ref$current2$ownerDo, _ref$current2$ownerDo2;
+
+    const regions = Array.from((_ref$current$querySel = (_ref$current = ref.current) === null || _ref$current === void 0 ? void 0 : _ref$current.querySelectorAll('[role="region"][tabindex="-1"]')) !== null && _ref$current$querySel !== void 0 ? _ref$current$querySel : []);
 
     if (!regions.length) {
       return;
@@ -67343,7 +67896,8 @@ function useNavigateRegions() {
 
     let nextRegion = regions[0]; // Based off the current element, use closest to determine the wrapping region since this operates up the DOM. Also, match tabindex to avoid edge cases with regions we do not want.
 
-    const selectedIndex = regions.indexOf(ref.current.ownerDocument.activeElement.closest('[role="region"][tabindex="-1"]'));
+    const wrappingRegion = (_ref$current2 = ref.current) === null || _ref$current2 === void 0 ? void 0 : (_ref$current2$ownerDo = _ref$current2.ownerDocument) === null || _ref$current2$ownerDo === void 0 ? void 0 : (_ref$current2$ownerDo2 = _ref$current2$ownerDo.activeElement) === null || _ref$current2$ownerDo2 === void 0 ? void 0 : _ref$current2$ownerDo2.closest('[role="region"][tabindex="-1"]');
+    const selectedIndex = wrappingRegion ? regions.indexOf(wrappingRegion) : -1;
 
     if (selectedIndex !== -1) {
       let nextIndex = selectedIndex + offset;
@@ -67392,6 +67946,33 @@ function useNavigateRegions() {
 
   };
 }
+/**
+ * `navigateRegions` is a React [higher-order component](https://facebook.github.io/react/docs/higher-order-components.html)
+ * adding keyboard navigation to switch between the different DOM elements marked as "regions" (role="region").
+ * These regions should be focusable (By adding a tabIndex attribute for example). For better accessibility,
+ * these elements must be properly labelled to briefly describe the purpose of the content in the region.
+ * For more details, see "Landmark Roles" in the [WAI-ARIA specification](https://www.w3.org/TR/wai-aria/)
+ * and "Landmark Regions" in the [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/).
+ *
+ * ```jsx
+ * import { navigateRegions } from '@wordpress/components';
+ *
+ * const MyComponentWithNavigateRegions = navigateRegions( () => (
+ * 	<div>
+ * 		<div role="region" tabIndex="-1" aria-label="Header">
+ * 			Header
+ * 		</div>
+ * 		<div role="region" tabIndex="-1" aria-label="Content">
+ * 			Content
+ * 		</div>
+ * 		<div role="region" tabIndex="-1" aria-label="Sidebar">
+ * 			Sidebar
+ * 		</div>
+ * 	</div>
+ * ) );
+ * ```
+ */
+
 /* harmony default export */ var navigate_regions = ((0,external_wp_compose_namespaceObject.createHigherOrderComponent)(Component => _ref3 => {
   let {
     shortcuts,
@@ -67405,6 +67986,15 @@ function useNavigateRegions() {
 
 /**
  * WordPress dependencies
+ */
+
+/**
+ * `withConstrainedTabbing` is a React [higher-order component](https://facebook.github.io/react/docs/higher-order-components.html)
+ * adding the ability to constrain keyboard navigation with the Tab key within a component.
+ * For accessibility reasons, some UI components need to constrain Tab navigation, for example
+ * modal dialogs or similar UI. Use of this component is recommended only in cases where a way to
+ * navigate away from the wrapped component is implemented by other means, usually by pressing
+ * the Escape key or using a specific UI control, e.g. a "Close" button.
  */
 
 const withConstrainedTabbing = (0,external_wp_compose_namespaceObject.createHigherOrderComponent)(WrappedComponent => function ComponentWithConstrainedTabbing(props) {
@@ -67432,8 +68022,8 @@ const withConstrainedTabbing = (0,external_wp_compose_namespaceObject.createHigh
 
 /* harmony default export */ var with_fallback_styles = (mapNodeToProps => (0,external_wp_compose_namespaceObject.createHigherOrderComponent)(WrappedComponent => {
   return class extends external_wp_element_namespaceObject.Component {
-    constructor() {
-      super(...arguments);
+    constructor(props) {
+      super(props);
       this.nodeRef = this.props.node;
       this.state = {
         fallbackStyles: undefined,
@@ -67504,9 +68094,35 @@ const ANIMATION_FRAME_PERIOD = 16;
  * to be mounted. When a filter is added or removed that matches the hook name,
  * the wrapped component re-renders.
  *
- * @param {string} hookName Hook name exposed to be used by filters.
+ * @param hookName Hook name exposed to be used by filters.
  *
- * @return {Function} Higher-order component factory.
+ * @return Higher-order component factory.
+ *
+ * ```jsx
+ * import { withFilters } from '@wordpress/components';
+ * import { addFilter } from '@wordpress/hooks';
+ *
+ * const MyComponent = ( { title } ) => <h1>{ title }</h1>;
+ *
+ * const ComponentToAppend = () => <div>Appended component</div>;
+ *
+ * function withComponentAppended( FilteredComponent ) {
+ * 	return ( props ) => (
+ * 		<>
+ * 			<FilteredComponent { ...props } />
+ * 			<ComponentToAppend />
+ * 		</>
+ * 	);
+ * }
+ *
+ * addFilter(
+ * 	'MyHookName',
+ * 	'my-plugin/with-component-appended',
+ * 	withComponentAppended
+ * );
+ *
+ * const MyComponentWithFilters = withFilters( 'MyHookName' )( MyComponent );
+ * ```
  */
 
 function withFilters(hookName) {
@@ -67516,8 +68132,6 @@ function withFilters(hookName) {
      * The component definition with current filters applied. Each instance
      * reuse this shared reference as an optimization to avoid excessive
      * calls to `applyFilters` when many instances exist.
-     *
-     * @type {?Component}
      */
 
     let FilteredComponent;
@@ -67533,8 +68147,8 @@ function withFilters(hookName) {
     }
 
     class FilteredComponentRenderer extends external_wp_element_namespaceObject.Component {
-      constructor() {
-        super(...arguments);
+      constructor(props) {
+        super(props);
         ensureFilteredComponent();
       }
 
@@ -67584,7 +68198,7 @@ function withFilters(hookName) {
      * mounted instance should re-render with the new filters having been
      * applied to the original component.
      *
-     * @param {string} updatedHookName Name of the hook that was updated.
+     * @param updatedHookName Name of the hook that was updated.
      */
 
     function onHooksUpdated(updatedHookName) {
@@ -67610,30 +68224,30 @@ function withFilters(hookName) {
  * Returns true if the given object is component-like. An object is component-
  * like if it is an instance of wp.element.Component, or is a function.
  *
- * @param {*} object Object to test.
+ * @param object Object to test.
  *
- * @return {boolean} Whether object is component-like.
+ * @return Whether object is component-like.
  */
 
 function isComponentLike(object) {
   return object instanceof external_wp_element_namespaceObject.Component || typeof object === 'function';
 }
+
 /**
  * Higher Order Component used to be used to wrap disposable elements like
  * sidebars, modals, dropdowns. When mounting the wrapped component, we track a
  * reference to the current active element so we know where to restore focus
  * when the component is unmounted.
  *
- * @param {(WPComponent|Object)} options The component to be enhanced with
- *                                       focus return behavior, or an object
- *                                       describing the component and the
- *                                       focus return characteristics.
+ * @param options The component to be enhanced with
+ *                focus return behavior, or an object
+ *                describing the component and the
+ *                focus return characteristics.
  *
- * @return {Function} Higher Order Component with the focus restauration behaviour.
+ * @return Higher Order Component with the focus restauration behaviour.
  */
-
-
-/* harmony default export */ var with_focus_return = ((0,external_wp_compose_namespaceObject.createHigherOrderComponent)(options => {
+/* harmony default export */ var with_focus_return = ((0,external_wp_compose_namespaceObject.createHigherOrderComponent)( // @ts-expect-error TODO: Reconcile with intended `createHigherOrderComponent` types
+options => {
   const HoC = function () {
     let {
       onFocusReturn
@@ -67687,23 +68301,40 @@ const with_focus_return_Provider = _ref => {
  */
 
 
+
 /**
  * Override the default edit UI to include notices if supported.
  *
- * @param {WPComponent} OriginalComponent Original component.
+ * Wrapping the original component with `withNotices` encapsulates the component
+ * with the additional props `noticeOperations` and `noticeUI`.
  *
- * @return {WPComponent} Wrapped component.
+ * ```jsx
+ * import { withNotices, Button } from '@wordpress/components';
+ *
+ * const MyComponentWithNotices = withNotices(
+ * 	( { noticeOperations, noticeUI } ) => {
+ * 		const addError = () =>
+ * 			noticeOperations.createErrorNotice( 'Error message' );
+ * 		return (
+ * 			<div>
+ * 				{ noticeUI }
+ * 				<Button variant="secondary" onClick={ addError }>
+ * 					Add error
+ * 				</Button>
+ * 			</div>
+ * 		);
+ * 	}
+ * );
+ * ```
+ *
+ * @param OriginalComponent Original component.
+ *
+ * @return Wrapped component.
  */
-
 /* harmony default export */ var with_notices = ((0,external_wp_compose_namespaceObject.createHigherOrderComponent)(OriginalComponent => {
   function Component(props, ref) {
     const [noticeList, setNoticeList] = (0,external_wp_element_namespaceObject.useState)([]);
     const noticeOperations = (0,external_wp_element_namespaceObject.useMemo)(() => {
-      /**
-       * Function passed down as a prop that adds a new notice.
-       *
-       * @param {Object} notice Notice to add.
-       */
       const createNotice = notice => {
         const noticeToAdd = notice.id ? notice : { ...notice,
           id: esm_browser_v4()
@@ -67713,31 +68344,16 @@ const with_focus_return_Provider = _ref => {
 
       return {
         createNotice,
-
-        /**
-         * Function passed as a prop that adds a new error notice.
-         *
-         * @param {string} msg Error message of the notice.
-         */
         createErrorNotice: msg => {
+          // @ts-expect-error TODO: Missing `id`, potentially a bug
           createNotice({
             status: 'error',
             content: msg
           });
         },
-
-        /**
-         * Removes a notice by id.
-         *
-         * @param {string} id Id of the notice to remove.
-         */
         removeNotice: id => {
           setNoticeList(current => current.filter(notice => notice.id !== id));
         },
-
-        /**
-         * Removes all notices
-         */
         removeAllNotices: () => {
           setNoticeList([]);
         }
@@ -67757,7 +68373,8 @@ const with_focus_return_Provider = _ref => {
     })) : (0,external_wp_element_namespaceObject.createElement)(OriginalComponent, propsOut);
   }
 
-  let isForwardRef;
+  let isForwardRef; // @ts-expect-error - `render` will only be present when OriginalComponent was wrapped with forwardRef().
+
   const {
     render
   } = OriginalComponent; // Returns a forwardRef if OriginalComponent appears to be a forwardRef.
@@ -67768,7 +68385,7 @@ const with_focus_return_Provider = _ref => {
   }
 
   return Component;
-}));
+}, 'withNotices'));
 
 ;// CONCATENATED MODULE: external ["wp","privateApis"]
 var external_wp_privateApis_namespaceObject = window["wp"]["privateApis"];
