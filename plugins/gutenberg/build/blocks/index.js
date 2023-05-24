@@ -6029,8 +6029,6 @@ __webpack_require__.d(actions_namespaceObject, {
 
 ;// CONCATENATED MODULE: external ["wp","data"]
 var external_wp_data_namespaceObject = window["wp"]["data"];
-;// CONCATENATED MODULE: external "lodash"
-var external_lodash_namespaceObject = window["lodash"];
 ;// CONCATENATED MODULE: external ["wp","i18n"]
 var external_wp_i18n_namespaceObject = window["wp"]["i18n"];
 ;// CONCATENATED MODULE: ./node_modules/colord/index.mjs
@@ -6881,7 +6879,8 @@ function getBlockSettingsFromMetadata(_ref3) {
  * behavior. Once registered, the block is made available as an option to any
  * editor interface where blocks are implemented.
  *
- * For more in-depth information on registering a custom block see the [Create a block tutorial](docs/how-to-guides/block-tutorial/README.md)
+ * For more in-depth information on registering a custom block see the
+ * [Create a block tutorial](https://developer.wordpress.org/block-editor/getting-started/create-block/).
  *
  * @param {string|Object} blockNameOrMetadata Block type name or its metadata.
  * @param {Object}        settings            Block settings.
@@ -7143,6 +7142,10 @@ function setDefaultBlockName(name) {
 /**
  * Assigns name of block for handling block grouping interactions.
  *
+ * This function lets you select a different block to group other blocks in instead of the
+ * default `core/group` block. This function must be used in a component or when the DOM is fully
+ * loaded. See https://developer.wordpress.org/block-editor/reference-guides/packages/packages-dom-ready/
+ *
  * @param {string} name Block name.
  *
  * @example
@@ -7153,7 +7156,7 @@ function setDefaultBlockName(name) {
  *
  *     return (
  *         <Button onClick={ () => setGroupingBlockName( 'core/columns' ) }>
- *             { __( 'Set the default block to Heading' ) }
+ *             { __( 'Wrap in columns' ) }
  *         </Button>
  *     );
  * };
@@ -7285,7 +7288,8 @@ const hasChildBlocksWithInserterSupport = blockName => {
 /**
  * Registers a new block style for the given block.
  *
- * For more information on connecting the styles with CSS [the official documentation](/docs/reference-guides/block-api/block-styles.md#styles)
+ * For more information on connecting the styles with CSS
+ * [the official documentation](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-styles/#styles).
  *
  * @param {string} blockName      Name of block (example: “core/latest-posts”).
  * @param {Object} styleVariation Object containing `name` which is the class name applied to the block and `label` which identifies the variation to the user.
@@ -7364,7 +7368,8 @@ const getBlockVariations = (blockName, scope) => {
 /**
  * Registers a new block variation for the given block type.
  *
- * For more information on block variations see [the official documentation ](/docs/reference-guides/block-api/block-variations.md)
+ * For more information on block variations see
+ * [the official documentation ](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-variations/).
  *
  * @param {string}           blockName Name of the block (example: “core/columns”).
  * @param {WPBlockVariation} variation Object describing a block variation.
@@ -8267,13 +8272,8 @@ function omit(object, keys) {
 
 ;// CONCATENATED MODULE: ./packages/blocks/build-module/store/reducer.js
 /**
- * External dependencies
- */
-
-/**
  * WordPress dependencies
  */
-
 
 
 /**
@@ -8397,30 +8397,37 @@ function blockTypes() {
  */
 
 function blockStyles() {
+  var _state$action$blockNa, _state$action$blockNa2;
+
   let state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   let action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
     case 'ADD_BLOCK_TYPES':
       return { ...state,
-        ...(0,external_lodash_namespaceObject.mapValues)(keyBlockTypesByName(action.blockTypes), blockType => getUniqueItemsByName([...(0,external_lodash_namespaceObject.get)(blockType, ['styles'], []).map(style => ({ ...style,
-          source: 'block'
-        })), ...(0,external_lodash_namespaceObject.get)(state, [blockType.name], []).filter(_ref => {
-          let {
-            source
-          } = _ref;
-          return 'block' !== source;
-        })]))
+        ...Object.fromEntries(Object.entries(keyBlockTypesByName(action.blockTypes)).map(_ref => {
+          var _blockType$styles, _state$blockType$name;
+
+          let [name, blockType] = _ref;
+          return [name, getUniqueItemsByName([...((_blockType$styles = blockType.styles) !== null && _blockType$styles !== void 0 ? _blockType$styles : []).map(style => ({ ...style,
+            source: 'block'
+          })), ...((_state$blockType$name = state[blockType.name]) !== null && _state$blockType$name !== void 0 ? _state$blockType$name : []).filter(_ref2 => {
+            let {
+              source
+            } = _ref2;
+            return 'block' !== source;
+          })])];
+        }))
       };
 
     case 'ADD_BLOCK_STYLES':
       return { ...state,
-        [action.blockName]: getUniqueItemsByName([...(0,external_lodash_namespaceObject.get)(state, [action.blockName], []), ...action.styles])
+        [action.blockName]: getUniqueItemsByName([...((_state$action$blockNa = state[action.blockName]) !== null && _state$action$blockNa !== void 0 ? _state$action$blockNa : []), ...action.styles])
       };
 
     case 'REMOVE_BLOCK_STYLES':
       return { ...state,
-        [action.blockName]: (0,external_lodash_namespaceObject.get)(state, [action.blockName], []).filter(style => action.styleNames.indexOf(style.name) === -1)
+        [action.blockName]: ((_state$action$blockNa2 = state[action.blockName]) !== null && _state$action$blockNa2 !== void 0 ? _state$action$blockNa2 : []).filter(style => action.styleNames.indexOf(style.name) === -1)
       };
   }
 
@@ -8436,32 +8443,37 @@ function blockStyles() {
  */
 
 function blockVariations() {
+  var _state$action$blockNa3, _state$action$blockNa4;
+
   let state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   let action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
     case 'ADD_BLOCK_TYPES':
       return { ...state,
-        ...(0,external_lodash_namespaceObject.mapValues)(keyBlockTypesByName(action.blockTypes), blockType => {
-          return getUniqueItemsByName([...(0,external_lodash_namespaceObject.get)(blockType, ['variations'], []).map(variation => ({ ...variation,
+        ...Object.fromEntries(Object.entries(keyBlockTypesByName(action.blockTypes)).map(_ref3 => {
+          var _blockType$variations, _state$blockType$name2;
+
+          let [name, blockType] = _ref3;
+          return [name, getUniqueItemsByName([...((_blockType$variations = blockType.variations) !== null && _blockType$variations !== void 0 ? _blockType$variations : []).map(variation => ({ ...variation,
             source: 'block'
-          })), ...(0,external_lodash_namespaceObject.get)(state, [blockType.name], []).filter(_ref2 => {
+          })), ...((_state$blockType$name2 = state[blockType.name]) !== null && _state$blockType$name2 !== void 0 ? _state$blockType$name2 : []).filter(_ref4 => {
             let {
               source
-            } = _ref2;
+            } = _ref4;
             return 'block' !== source;
-          })]);
-        })
+          })])];
+        }))
       };
 
     case 'ADD_BLOCK_VARIATIONS':
       return { ...state,
-        [action.blockName]: getUniqueItemsByName([...(0,external_lodash_namespaceObject.get)(state, [action.blockName], []), ...action.variations])
+        [action.blockName]: getUniqueItemsByName([...((_state$action$blockNa3 = state[action.blockName]) !== null && _state$action$blockNa3 !== void 0 ? _state$action$blockNa3 : []), ...action.variations])
       };
 
     case 'REMOVE_BLOCK_VARIATIONS':
       return { ...state,
-        [action.blockName]: (0,external_lodash_namespaceObject.get)(state, [action.blockName], []).filter(variation => action.variationNames.indexOf(variation.name) === -1)
+        [action.blockName]: ((_state$action$blockNa4 = state[action.blockName]) !== null && _state$action$blockNa4 !== void 0 ? _state$action$blockNa4 : []).filter(variation => action.variationNames.indexOf(variation.name) === -1)
       };
   }
 
@@ -8518,14 +8530,14 @@ function categories() {
 
     case 'UPDATE_CATEGORY':
       {
-        if (!action.category || (0,external_lodash_namespaceObject.isEmpty)(action.category)) {
+        if (!action.category || !Object.keys(action.category).length) {
           return state;
         }
 
-        const categoryToChange = state.find(_ref3 => {
+        const categoryToChange = state.find(_ref5 => {
           let {
             slug
-          } = _ref3;
+          } = _ref5;
           return slug === action.slug;
         });
 
@@ -8577,7 +8589,7 @@ function collections() {
   collections
 }));
 
-;// CONCATENATED MODULE: ./node_modules/rememo/es/rememo.js
+;// CONCATENATED MODULE: ./node_modules/rememo/rememo.js
 
 
 /** @typedef {(...args: any[]) => *[]} GetDependants */
@@ -8878,6 +8890,8 @@ function isShallowEqual(a, b, fromIndex) {
 // EXTERNAL MODULE: ./node_modules/remove-accents/index.js
 var remove_accents = __webpack_require__(4793);
 var remove_accents_default = /*#__PURE__*/__webpack_require__.n(remove_accents);
+;// CONCATENATED MODULE: external "lodash"
+var external_lodash_namespaceObject = window["lodash"];
 ;// CONCATENATED MODULE: external ["wp","compose"]
 var external_wp_compose_namespaceObject = window["wp"]["compose"];
 ;// CONCATENATED MODULE: ./packages/blocks/build-module/store/selectors.js
@@ -12778,7 +12792,6 @@ function children_matcher(selector) {
  */
 
 
-
 /**
  * WordPress dependencies
  */
@@ -12982,7 +12995,10 @@ const matcherFromSource = memize_default()(sourceConfig => {
       return node_matcher(sourceConfig.selector);
 
     case 'query':
-      const subMatchers = (0,external_lodash_namespaceObject.mapValues)(sourceConfig.query, matcherFromSource);
+      const subMatchers = Object.fromEntries(Object.entries(sourceConfig.query).map(_ref => {
+        let [key, subSourceConfig] = _ref;
+        return [key, matcherFromSource(subSourceConfig)];
+      }));
       return query(sourceConfig.selector, subMatchers);
 
     case 'tag':
@@ -13029,10 +13045,15 @@ function parseWithAttributeSchema(innerHTML, attributeSchema) {
  */
 
 function getBlockAttributes(blockTypeOrName, innerHTML) {
+  var _blockType$attributes;
+
   let attributes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
   const doc = parseHtml(innerHTML);
   const blockType = normalizeBlockType(blockTypeOrName);
-  const blockAttributes = (0,external_lodash_namespaceObject.mapValues)(blockType.attributes, (schema, key) => getBlockAttribute(key, schema, doc, attributes, innerHTML));
+  const blockAttributes = Object.fromEntries(Object.entries((_blockType$attributes = blockType.attributes) !== null && _blockType$attributes !== void 0 ? _blockType$attributes : {}).map(_ref2 => {
+    let [key, schema] = _ref2;
+    return [key, getBlockAttribute(key, schema, doc, attributes, innerHTML)];
+  }));
   return (0,external_wp_hooks_namespaceObject.applyFilters)('blocks.getBlockAttributes', blockAttributes, blockType, innerHTML, attributes);
 }
 
@@ -14085,18 +14106,23 @@ function getBlockContentSchemaFromTransforms(transforms, context) {
       return schema;
     }
 
-    return (0,external_lodash_namespaceObject.mapValues)(schema, value => {
+    if (!schema) {
+      return {};
+    }
+
+    return Object.fromEntries(Object.entries(schema).map(_ref2 => {
+      let [key, value] = _ref2;
       let attributes = value.attributes || []; // If the block supports the "anchor" functionality, it needs to keep its ID attribute.
 
       if (hasAnchorSupport) {
         attributes = [...attributes, 'id'];
       }
 
-      return { ...value,
+      return [key, { ...value,
         attributes,
         isMatch: isMatch ? isMatch : undefined
-      };
-    });
+      }];
+    }));
   });
   return (0,external_lodash_namespaceObject.mergeWith)({}, ...schemas, (objValue, srcValue, key) => {
     switch (key) {
