@@ -65,14 +65,12 @@ const bold = {
   tagName: 'strong',
   className: null,
 
-  edit(_ref) {
-    let {
-      isActive,
-      value,
-      onChange,
-      onFocus
-    } = _ref;
-
+  edit({
+    isActive,
+    value,
+    onChange,
+    onFocus
+  }) {
     function onToggle() {
       onChange((0,external_wp_richText_namespaceObject.toggleFormat)(value, {
         type: bold_name,
@@ -179,14 +177,12 @@ const code_code = {
     return value;
   },
 
-  edit(_ref) {
-    let {
-      value,
-      onChange,
-      onFocus,
-      isActive
-    } = _ref;
-
+  edit({
+    value,
+    onChange,
+    onFocus,
+    isActive
+  }) {
     function onClick() {
       onChange((0,external_wp_richText_namespaceObject.toggleFormat)(value, {
         type: code_name,
@@ -260,17 +256,16 @@ const image_image = {
   edit: Edit
 };
 
-function InlineUI(_ref) {
-  let {
-    value,
-    onChange,
-    activeObjectAttributes,
-    contentRef
-  } = _ref;
+function InlineUI({
+  value,
+  onChange,
+  activeObjectAttributes,
+  contentRef
+}) {
   const {
     style
   } = activeObjectAttributes;
-  const [width, setWidth] = (0,external_wp_element_namespaceObject.useState)(style === null || style === void 0 ? void 0 : style.replace(/\D/g, ''));
+  const [width, setWidth] = (0,external_wp_element_namespaceObject.useState)(style?.replace(/\D/g, ''));
   const popoverAnchor = (0,external_wp_richText_namespaceObject.useAnchor)({
     editableContentElement: contentRef.current,
     settings: image_image
@@ -312,15 +307,14 @@ function InlineUI(_ref) {
   }))));
 }
 
-function Edit(_ref2) {
-  let {
-    value,
-    onChange,
-    onFocus,
-    isObjectActive,
-    activeObjectAttributes,
-    contentRef
-  } = _ref2;
+function Edit({
+  value,
+  onChange,
+  onFocus,
+  isObjectActive,
+  activeObjectAttributes,
+  contentRef
+}) {
   const [isModalOpen, setIsModalOpen] = (0,external_wp_element_namespaceObject.useState)(false);
 
   function openModal() {
@@ -343,13 +337,12 @@ function Edit(_ref2) {
     isActive: isObjectActive
   }), isModalOpen && (0,external_wp_element_namespaceObject.createElement)(external_wp_blockEditor_namespaceObject.MediaUpload, {
     allowedTypes: ALLOWED_MEDIA_TYPES,
-    onSelect: _ref3 => {
-      let {
-        id,
-        url,
-        alt,
-        width: imgWidth
-      } = _ref3;
+    onSelect: ({
+      id,
+      url,
+      alt,
+      width: imgWidth
+    }) => {
       closeModal();
       onChange((0,external_wp_richText_namespaceObject.insertObject)(value, {
         type: image_name,
@@ -363,10 +356,9 @@ function Edit(_ref2) {
       onFocus();
     },
     onClose: closeModal,
-    render: _ref4 => {
-      let {
-        open
-      } = _ref4;
+    render: ({
+      open
+    }) => {
       open();
       return null;
     }
@@ -413,14 +405,12 @@ const italic = {
   tagName: 'em',
   className: null,
 
-  edit(_ref) {
-    let {
-      isActive,
-      value,
-      onChange,
-      onFocus
-    } = _ref;
-
+  edit({
+    isActive,
+    value,
+    onChange,
+    onFocus
+  }) {
     function onToggle() {
       onChange((0,external_wp_richText_namespaceObject.toggleFormat)(value, {
         type: italic_name,
@@ -470,7 +460,7 @@ const linkOff = (0,external_wp_element_namespaceObject.createElement)(external_w
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 24 24"
 }, (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
-  d: "M15.6 7.3h-.7l1.6-3.5-.9-.4-3.9 8.5H9v1.5h2l-1.3 2.8H8.4c-2 0-3.7-1.7-3.7-3.7s1.7-3.7 3.7-3.7H10V7.3H8.4c-2.9 0-5.2 2.3-5.2 5.2 0 2.9 2.3 5.2 5.2 5.2H9l-1.4 3.2.9.4 5.7-12.5h1.4c2 0 3.7 1.7 3.7 3.7s-1.7 3.7-3.7 3.7H14v1.5h1.6c2.9 0 5.2-2.3 5.2-5.2 0-2.9-2.4-5.2-5.2-5.2z"
+  d: "M17.031 4.703 15.576 4l-1.56 3H14v.03l-2.324 4.47H9.5V13h1.396l-1.502 2.889h-.95a3.694 3.694 0 0 1 0-7.389H10V7H8.444a5.194 5.194 0 1 0 0 10.389h.17L7.5 19.53l1.416.719L15.049 8.5h.507a3.694 3.694 0 0 1 0 7.39H14v1.5h1.556a5.194 5.194 0 0 0 .273-10.383l1.202-2.304Z"
 }));
 /* harmony default export */ const link_off = (linkOff);
 
@@ -485,7 +475,7 @@ const link_link = (0,external_wp_element_namespaceObject.createElement)(external
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 24 24"
 }, (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
-  d: "M15.6 7.2H14v1.5h1.6c2 0 3.7 1.7 3.7 3.7s-1.7 3.7-3.7 3.7H14v1.5h1.6c2.8 0 5.2-2.3 5.2-5.2 0-2.9-2.3-5.2-5.2-5.2zM4.7 12.4c0-2 1.7-3.7 3.7-3.7H10V7.2H8.4c-2.9 0-5.2 2.3-5.2 5.2 0 2.9 2.3 5.2 5.2 5.2H10v-1.5H8.4c-2 0-3.7-1.7-3.7-3.7zm4.6.9h5.3v-1.5H9.3v1.5z"
+  d: "M10 17.389H8.444A5.194 5.194 0 1 1 8.444 7H10v1.5H8.444a3.694 3.694 0 0 0 0 7.389H10v1.5ZM14 7h1.556a5.194 5.194 0 0 1 0 10.39H14v-1.5h1.556a3.694 3.694 0 0 0 0-7.39H14V7Zm-4.5 6h5v-1.5h-5V13Z"
 }));
 /* harmony default export */ const library_link = (link_link);
 
@@ -575,13 +565,12 @@ function isValidHref(href) {
  * @return {Object} The final format object.
  */
 
-function createLinkFormat(_ref) {
-  let {
-    url,
-    type,
-    id,
-    opensInNewWindow
-  } = _ref;
+function createLinkFormat({
+  url,
+  type,
+  id,
+  opensInNewWindow
+}) {
   const format = {
     type: 'core/link',
     attributes: {
@@ -613,11 +602,7 @@ function createLinkFormat(_ref) {
 
 /* eslint-enable jsdoc/no-undefined-types */
 
-function getFormatBoundary(value, format) {
-  var _newFormats$startInde, _newFormats$endIndex, _newFormats;
-
-  let startIndex = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : value.start;
-  let endIndex = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : value.end;
+function getFormatBoundary(value, format, startIndex = value.start, endIndex = value.end) {
   const EMPTY_BOUNDARIES = {
     start: null,
     end: null
@@ -628,30 +613,21 @@ function getFormatBoundary(value, format) {
   let targetFormat;
   let initialIndex;
 
-  if (!(formats !== null && formats !== void 0 && formats.length)) {
+  if (!formats?.length) {
     return EMPTY_BOUNDARIES;
   } // Clone formats to avoid modifying source formats.
 
 
   const newFormats = formats.slice();
-  const formatAtStart = (_newFormats$startInde = newFormats[startIndex]) === null || _newFormats$startInde === void 0 ? void 0 : _newFormats$startInde.find(_ref2 => {
-    let {
-      type
-    } = _ref2;
-    return type === format.type;
-  });
-  const formatAtEnd = (_newFormats$endIndex = newFormats[endIndex]) === null || _newFormats$endIndex === void 0 ? void 0 : _newFormats$endIndex.find(_ref3 => {
-    let {
-      type
-    } = _ref3;
-    return type === format.type;
-  });
-  const formatAtEndMinusOne = (_newFormats = newFormats[endIndex - 1]) === null || _newFormats === void 0 ? void 0 : _newFormats.find(_ref4 => {
-    let {
-      type
-    } = _ref4;
-    return type === format.type;
-  });
+  const formatAtStart = newFormats[startIndex]?.find(({
+    type
+  }) => type === format.type);
+  const formatAtEnd = newFormats[endIndex]?.find(({
+    type
+  }) => type === format.type);
+  const formatAtEndMinusOne = newFormats[endIndex - 1]?.find(({
+    type
+  }) => type === format.type);
 
   if (!!formatAtStart) {
     // Set values to conform to "start"
@@ -718,19 +694,7 @@ function walkToBoundary(formats, initialIndex, targetFormatRef, formatIndex, dir
   return index;
 }
 
-const partialRight = function (fn) {
-  for (var _len = arguments.length, partialArgs = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-    partialArgs[_key - 1] = arguments[_key];
-  }
-
-  return function () {
-    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-      args[_key2] = arguments[_key2];
-    }
-
-    return fn(...args, ...partialArgs);
-  };
-};
+const partialRight = (fn, ...partialArgs) => (...args) => fn(...args, ...partialArgs);
 
 const walkToStart = partialRight(walkToBoundary, 'backwards');
 const walkToEnd = partialRight(walkToBoundary, 'forwards');
@@ -790,17 +754,16 @@ function useLinkInstanceKey(instance) {
 
 
 
-function InlineLinkUI(_ref) {
-  let {
-    isActive,
-    activeAttributes,
-    addingLink,
-    value,
-    onChange,
-    speak,
-    stopAddingLink,
-    contentRef
-  } = _ref;
+function InlineLinkUI({
+  isActive,
+  activeAttributes,
+  addingLink,
+  value,
+  onChange,
+  speak,
+  stopAddingLink,
+  contentRef
+}) {
   const richLinkTextValue = getRichTextValueFromSelection(value, isActive); // Get the text content minus any HTML tags.
 
   const richTextText = richLinkTextValue.text;
@@ -981,6 +944,7 @@ function InlineLinkUI(_ref) {
     anchor: popoverAnchor,
     focusOnMount: focusOnMount.current,
     onClose: stopAddingLink,
+    onFocusOutside: () => stopAddingLink(false),
     placement: "bottom",
     shift: true
   }, (0,external_wp_element_namespaceObject.createElement)(external_wp_blockEditor_namespaceObject.__experimentalLinkControl, {
@@ -1044,15 +1008,14 @@ const link_name = 'core/link';
 
 const link_title = (0,external_wp_i18n_namespaceObject.__)('Link');
 
-function link_Edit(_ref) {
-  let {
-    isActive,
-    activeAttributes,
-    value,
-    onChange,
-    onFocus,
-    contentRef
-  } = _ref;
+function link_Edit({
+  isActive,
+  activeAttributes,
+  value,
+  onChange,
+  onFocus,
+  contentRef
+}) {
   const [addingLink, setAddingLink] = (0,external_wp_element_namespaceObject.useState)(false);
 
   function addLink() {
@@ -1077,9 +1040,12 @@ function link_Edit(_ref) {
     }
   }
 
-  function stopAddingLink() {
+  function stopAddingLink(returnFocus = true) {
     setAddingLink(false);
-    onFocus();
+
+    if (returnFocus) {
+      onFocus();
+    }
   }
 
   function onRemoveFormat() {
@@ -1134,12 +1100,10 @@ const build_module_link_link = {
     target: 'target'
   },
 
-  __unstablePasteRule(value, _ref2) {
-    let {
-      html,
-      plainText
-    } = _ref2;
-
+  __unstablePasteRule(value, {
+    html,
+    plainText
+  }) {
     if ((0,external_wp_richText_namespaceObject.isCollapsed)(value)) {
       return value;
     }
@@ -1198,14 +1162,12 @@ const strikethrough = {
   tagName: 's',
   className: null,
 
-  edit(_ref) {
-    let {
-      isActive,
-      value,
-      onChange,
-      onFocus
-    } = _ref;
-
+  edit({
+    isActive,
+    value,
+    onChange,
+    onFocus
+  }) {
     function onClick() {
       onChange((0,external_wp_richText_namespaceObject.toggleFormat)(value, {
         type: strikethrough_name,
@@ -1251,12 +1213,10 @@ const underline = {
     style: 'style'
   },
 
-  edit(_ref) {
-    let {
-      value,
-      onChange
-    } = _ref;
-
+  edit({
+    value,
+    onChange
+  }) {
     const onToggle = () => {
       onChange((0,external_wp_richText_namespaceObject.toggleFormat)(value, {
         type: underline_name,
@@ -1296,12 +1256,11 @@ const underline = {
  * @return {JSX.Element}  Icon component
  */
 
-function Icon(_ref) {
-  let {
-    icon,
-    size = 24,
-    ...props
-  } = _ref;
+function Icon({
+  icon,
+  size = 24,
+  ...props
+}) {
   return (0,external_wp_element_namespaceObject.cloneElement)(icon, {
     width: size,
     height: size,
@@ -1359,8 +1318,7 @@ const color = (0,external_wp_element_namespaceObject.createElement)(external_wp_
 
 
 
-function parseCSS() {
-  let css = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+function parseCSS(css = '') {
   return css.split(';').reduce((accumulator, rule) => {
     if (rule) {
       const [property, value] = rule.split(':');
@@ -1372,9 +1330,7 @@ function parseCSS() {
   }, {});
 }
 
-function parseClassName() {
-  let className = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-  let colorSettings = arguments.length > 1 ? arguments[1] : undefined;
+function parseClassName(className = '', colorSettings) {
   return className.split(' ').reduce((accumulator, name) => {
     // `colorSlug` could contain dashes, so simply match the start and end.
     if (name.startsWith('has-') && name.endsWith('-color')) {
@@ -1439,13 +1395,12 @@ function setColors(value, name, colorSettings, colors) {
   });
 }
 
-function ColorPicker(_ref) {
-  let {
-    name,
-    property,
-    value,
-    onChange
-  } = _ref;
+function ColorPicker({
+  name,
+  property,
+  value,
+  onChange
+}) {
   const colors = (0,external_wp_data_namespaceObject.useSelect)(select => {
     var _getSettings$colors;
 
@@ -1466,15 +1421,13 @@ function ColorPicker(_ref) {
   });
 }
 
-function InlineColorUI(_ref2) {
-  let {
-    name,
-    value,
-    onChange,
-    onClose,
-    contentRef
-  } = _ref2;
-
+function InlineColorUI({
+  name,
+  value,
+  onChange,
+  onClose,
+  contentRef
+}) {
   /*
    As you change the text color by typing a HEX value into a field,
    the return value of document.getSelection jumps to the field you're editing,
@@ -1546,12 +1499,10 @@ function getComputedStyleProperty(element, property) {
   return value;
 }
 
-function fillComputedColors(element, _ref) {
-  let {
-    color,
-    backgroundColor
-  } = _ref;
-
+function fillComputedColors(element, {
+  color,
+  backgroundColor
+}) {
   if (!color && !backgroundColor) {
     return;
   }
@@ -1562,14 +1513,13 @@ function fillComputedColors(element, _ref) {
   };
 }
 
-function TextColorEdit(_ref2) {
-  let {
-    value,
-    onChange,
-    isActive,
-    activeAttributes,
-    contentRef
-  } = _ref2;
+function TextColorEdit({
+  value,
+  onChange,
+  isActive,
+  activeAttributes,
+  contentRef
+}) {
   const allowCustomControl = (0,external_wp_blockEditor_namespaceObject.useSetting)('color.custom');
   const colors = (0,external_wp_blockEditor_namespaceObject.useSetting)('color.palette') || EMPTY_ARRAY;
   const [isAddingColor, setIsAddingColor] = (0,external_wp_element_namespaceObject.useState)(false);
@@ -1670,14 +1620,12 @@ const subscript_subscript = {
   tagName: 'sub',
   className: null,
 
-  edit(_ref) {
-    let {
-      isActive,
-      value,
-      onChange,
-      onFocus
-    } = _ref;
-
+  edit({
+    isActive,
+    value,
+    onChange,
+    onFocus
+  }) {
     function onToggle() {
       onChange((0,external_wp_richText_namespaceObject.toggleFormat)(value, {
         type: subscript_name,
@@ -1736,14 +1684,12 @@ const superscript_superscript = {
   tagName: 'sup',
   className: null,
 
-  edit(_ref) {
-    let {
-      isActive,
-      value,
-      onChange,
-      onFocus
-    } = _ref;
-
+  edit({
+    isActive,
+    value,
+    onChange,
+    onFocus
+  }) {
     function onToggle() {
       onChange((0,external_wp_richText_namespaceObject.toggleFormat)(value, {
         type: superscript_name,
@@ -1778,7 +1724,7 @@ const button_button = (0,external_wp_element_namespaceObject.createElement)(exte
   viewBox: "0 0 24 24",
   xmlns: "http://www.w3.org/2000/svg"
 }, (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
-  d: "M19 6.5H5c-1.1 0-2 .9-2 2v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7c0-1.1-.9-2-2-2zm.5 9c0 .3-.2.5-.5.5H5c-.3 0-.5-.2-.5-.5v-7c0-.3.2-.5.5-.5h14c.3 0 .5.2.5.5v7zM8 12.8h8v-1.5H8v1.5z"
+  d: "M8 12.5h8V11H8v1.5Z M19 6.5H5a2 2 0 0 0-2 2V15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5a2 2 0 0 0-2-2ZM5 8h14a.5.5 0 0 1 .5.5V15a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V8.5A.5.5 0 0 1 5 8Z"
 }));
 /* harmony default export */ const library_button = (button_button);
 
@@ -1802,14 +1748,12 @@ const keyboard = {
   tagName: 'kbd',
   className: null,
 
-  edit(_ref) {
-    let {
-      isActive,
-      value,
-      onChange,
-      onFocus
-    } = _ref;
-
+  edit({
+    isActive,
+    value,
+    onChange,
+    onFocus
+  }) {
     function onToggle() {
       onChange((0,external_wp_richText_namespaceObject.toggleFormat)(value, {
         type: keyboard_name,
@@ -1868,14 +1812,12 @@ const unknown = {
   tagName: '*',
   className: null,
 
-  edit(_ref) {
-    let {
-      isActive,
-      value,
-      onChange,
-      onFocus
-    } = _ref;
-
+  edit({
+    isActive,
+    value,
+    onChange,
+    onFocus
+  }) {
     function onClick() {
       onChange((0,external_wp_richText_namespaceObject.removeFormat)(value, unknown_name));
       onFocus();
@@ -1944,25 +1886,16 @@ const language_language = {
   title: language_title
 };
 
-function language_Edit(props) {
-  const {
-    contentRef,
-    isActive,
-    onChange,
-    value
-  } = props;
-  const popoverAnchor = (0,external_wp_richText_namespaceObject.useAnchor)({
-    editableContentElement: contentRef.current,
-    settings: language_language
-  });
-  const [lang, setLang] = (0,external_wp_element_namespaceObject.useState)('');
-  const [dir, setDir] = (0,external_wp_element_namespaceObject.useState)('ltr');
+function language_Edit({
+  isActive,
+  value,
+  onChange,
+  contentRef
+}) {
   const [isPopoverVisible, setIsPopoverVisible] = (0,external_wp_element_namespaceObject.useState)(false);
 
   const togglePopover = () => {
     setIsPopoverVisible(state => !state);
-    setLang('');
-    setDir('ltr');
   };
 
   return (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.Fragment, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_blockEditor_namespaceObject.RichTextToolbarButton, {
@@ -1978,14 +1911,35 @@ function language_Edit(props) {
     },
     isActive: isActive,
     role: "menuitemcheckbox"
-  }), isPopoverVisible && (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Popover, {
+  }), isPopoverVisible && (0,external_wp_element_namespaceObject.createElement)(InlineLanguageUI, {
+    value: value,
+    onChange: onChange,
+    onClose: togglePopover,
+    contentRef: contentRef
+  }));
+}
+
+function InlineLanguageUI({
+  value,
+  contentRef,
+  onChange,
+  onClose
+}) {
+  const popoverAnchor = (0,external_wp_richText_namespaceObject.useAnchor)({
+    editableContentElement: contentRef.current,
+    settings: language_language
+  });
+  const [lang, setLang] = (0,external_wp_element_namespaceObject.useState)('');
+  const [dir, setDir] = (0,external_wp_element_namespaceObject.useState)('ltr');
+  return (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Popover, {
     className: "block-editor-format-toolbar__language-popover",
     anchor: popoverAnchor,
     placement: "bottom",
-    onClose: togglePopover
+    onClose: onClose
   }, (0,external_wp_element_namespaceObject.createElement)("form", {
     className: "block-editor-format-toolbar__language-container-content",
     onSubmit: event => {
+      event.preventDefault();
       onChange((0,external_wp_richText_namespaceObject.applyFormat)(value, {
         type: language_name,
         attributes: {
@@ -1993,8 +1947,7 @@ function language_Edit(props) {
           dir
         }
       }));
-      togglePopover();
-      event.preventDefault();
+      onClose();
     }
   }, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.TextControl, {
     label: language_title,
@@ -2018,7 +1971,7 @@ function language_Edit(props) {
     variant: "primary",
     type: "submit",
     text: (0,external_wp_i18n_namespaceObject.__)('Apply')
-  })))));
+  }))));
 }
 
 ;// CONCATENATED MODULE: ./packages/format-library/build-module/default-formats.js
@@ -2050,13 +2003,10 @@ function language_Edit(props) {
  */
 
 
-default_formats.forEach(_ref => {
-  let {
-    name,
-    ...settings
-  } = _ref;
-  return (0,external_wp_richText_namespaceObject.registerFormatType)(name, settings);
-});
+default_formats.forEach(({
+  name,
+  ...settings
+}) => (0,external_wp_richText_namespaceObject.registerFormatType)(name, settings));
 
 (window.wp = window.wp || {}).formatLibrary = __webpack_exports__;
 /******/ })()
