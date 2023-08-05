@@ -144,7 +144,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.d(__webpack_exports__, {
   "initialize": () => (/* binding */ initialize),
   "initializeEditor": () => (/* binding */ initializeEditor),
-  "reinitializeEditor": () => (/* binding */ reinitializeEditor)
+  "reinitializeEditor": () => (/* binding */ reinitializeEditor),
+  "store": () => (/* reexport */ store_store)
 });
 
 // NAMESPACE OBJECT: ./packages/interface/build-module/store/actions.js
@@ -4852,6 +4853,8 @@ const registerBlock = block => {
 
   (0,external_wp_blocks_namespaceObject.registerBlockType)(name, settings);
 };
+
+
 
 })();
 

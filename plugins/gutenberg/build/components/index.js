@@ -32825,12 +32825,16 @@ const rangeHeight = () => /*#__PURE__*/emotion_react_browser_esm_css({
 },  true ? "" : 0,  true ? "" : 0);
 
 const thumbSize = 12;
+
+const deprecatedHeight = ({
+  __next40pxDefaultSize
+}) => !__next40pxDefaultSize && /*#__PURE__*/emotion_react_browser_esm_css({
+  minHeight: rangeHeightValue
+},  true ? "" : 0,  true ? "" : 0);
+
 const range_control_styles_Root = emotion_styled_base_browser_esm("div",  true ? {
   target: "e1epgpqk14"
-} : 0)( true ? {
-  name: "1se47kl",
-  styles: "-webkit-tap-highlight-color:transparent;align-items:flex-start;display:flex;justify-content:flex-start;padding:0;position:relative;touch-action:none;width:100%"
-} : 0);
+} : 0)("-webkit-tap-highlight-color:transparent;align-items:center;display:flex;justify-content:flex-start;padding:0;position:relative;touch-action:none;width:100%;min-height:40px;", deprecatedHeight, ";" + ( true ? "" : 0));
 
 const wrapperColor = ({
   color = COLORS.ui.borderFocus
@@ -33008,7 +33012,7 @@ const range_control_styles_Tooltip = emotion_styled_base_browser_esm("span",  tr
 
 const InputNumber = /*#__PURE__*/emotion_styled_base_browser_esm(number_control,  true ? {
   target: "e1epgpqk1"
-} : 0)("display:inline-block;font-size:13px;margin-top:0;width:", space(16), "!important;input[type='number']&{", rangeHeight, ";}", rtl({
+} : 0)("display:inline-block;font-size:13px;margin-top:0;input[type='number']&{", rangeHeight, ";}", rtl({
   marginLeft: `${space(4)} !important`
 }), ";" + ( true ? "" : 0));
 const ActionRightWrapper = emotion_styled_base_browser_esm("span",  true ? {
@@ -33290,6 +33294,7 @@ function useTooltipPosition({
 
 
 
+
 const range_control_noop = () => {};
 
 function UnforwardedRangeControl(props, forwardedRef) {
@@ -33318,6 +33323,7 @@ function UnforwardedRangeControl(props, forwardedRef) {
     railColor,
     renderTooltipContent = v => v,
     resetFallbackValue,
+    __next40pxDefaultSize = false,
     shiftStep = 10,
     showTooltip: showTooltipProp,
     step = 1,
@@ -33449,7 +33455,8 @@ function UnforwardedRangeControl(props, forwardedRef) {
     id: `${id}`,
     help: help
   }, (0,external_wp_element_namespaceObject.createElement)(range_control_styles_Root, {
-    className: "components-range-control__root"
+    className: "components-range-control__root",
+    __next40pxDefaultSize: __next40pxDefaultSize
   }, beforeIcon && (0,external_wp_element_namespaceObject.createElement)(BeforeIconWrapper, null, (0,external_wp_element_namespaceObject.createElement)(build_module_icon, {
     icon: beforeIcon
   })), (0,external_wp_element_namespaceObject.createElement)(range_control_styles_Wrapper, {
@@ -33519,6 +33526,8 @@ function UnforwardedRangeControl(props, forwardedRef) {
     onBlur: handleOnInputNumberBlur,
     onChange: handleOnChange,
     shiftStep: shiftStep,
+    size: __next40pxDefaultSize ? '__unstable-large' : 'default',
+    __unstableInputWidth: __next40pxDefaultSize ? space(20) : space(16),
     step: step // @ts-expect-error TODO: Investigate if the `null` value is necessary
     ,
     value: inputSliderValue
@@ -38703,6 +38712,7 @@ function UnitSelectControl({
 
 
 
+
 function UnforwardedUnitControl(unitControlProps, forwardedRef) {
   const {
     __unstableStateReducer,
@@ -38746,9 +38756,9 @@ function UnforwardedUnitControl(unitControlProps, forwardedRef) {
     const firstCharacters = rest.reduce((carry, {
       value
     }) => {
-      const first = value?.substring(0, 1) || '';
+      const first = escapeRegExp(value?.substring(0, 1) || '');
       return carry.includes(first) ? carry : `${carry}|${first}`;
-    }, firstUnitValue.substring(0, 1));
+    }, escapeRegExp(firstUnitValue.substring(0, 1)));
     return [list, new RegExp(`^(?:${firstCharacters})$`, 'i')];
   }, [nonNullValueProp, unitProp, unitsProp]);
   const [parsedQuantity, parsedUnit] = getParsedQuantityAndUnit(nonNullValueProp, unitProp, units);
@@ -42326,7 +42336,9 @@ function item_group_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have t
  */
 
 
-const unstyledButton = /*#__PURE__*/emotion_react_browser_esm_css("appearance:none;border:1px solid transparent;cursor:pointer;background:none;text-align:start;svg,path{fill:currentColor;}&:hover{color:", COLORS.ui.theme, ";}&:focus-visible{box-shadow:0 0 0 var( --wp-admin-border-width-focus ) var(\n\t\t\t\t--wp-components-color-accent,\n\t\t\t\tvar( --wp-admin-theme-color, ", COLORS.ui.theme, " )\n\t\t\t);outline:2px solid transparent;}" + ( true ? "" : 0),  true ? "" : 0);
+const unstyledButton = as => {
+  return /*#__PURE__*/emotion_react_browser_esm_css("font-size:", font('default.fontSize'), ";font-family:inherit;appearance:none;border:1px solid transparent;cursor:pointer;background:none;text-align:start;text-decoration:", as === 'a' ? 'none' : undefined, ";svg,path{fill:currentColor;}&:hover{color:", COLORS.ui.theme, ";}&:focus{box-shadow:none;outline:none;}&:focus-visible{box-shadow:0 0 0 var( --wp-admin-border-width-focus ) var(\n\t\t\t\t\t--wp-components-color-accent,\n\t\t\t\t\tvar( --wp-admin-theme-color, ", COLORS.ui.theme, " )\n\t\t\t\t);outline:2px solid transparent;outline-offset:0;}" + ( true ? "" : 0),  true ? "" : 0);
+};
 const itemWrapper =  true ? {
   name: "1bcj5ek",
   styles: "width:100%;display:block"
@@ -58305,6 +58317,7 @@ function Token({
 
 
 
+
 const deprecatedPaddings = ({
   __next40pxDefaultSize,
   hasTokens
@@ -58312,7 +58325,7 @@ const deprecatedPaddings = ({
 
 const TokensAndInputWrapperFlex = /*#__PURE__*/emotion_styled_base_browser_esm(flex_component,  true ? {
   target: "ehq8nmi0"
-} : 0)("padding:7px;", deprecatedPaddings, ";" + ( true ? "" : 0));
+} : 0)("padding:7px;", boxSizingReset, " ", deprecatedPaddings, ";" + ( true ? "" : 0));
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/form-token-field/index.js
 
@@ -58956,9 +58969,7 @@ function FormTokenField(props) {
  * WordPress dependencies
  */
 
-const PageControlIcon = ({
-  isSelected
-}) => (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.SVG, {
+const PageControlIcon = () => (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.SVG, {
   width: "8",
   height: "8",
   fill: "none",
@@ -58966,8 +58977,7 @@ const PageControlIcon = ({
 }, (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Circle, {
   cx: "4",
   cy: "4",
-  r: "4",
-  fill: isSelected ? '#419ECD' : '#E1E3E6'
+  r: "4"
 }));
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/guide/page-control.js
@@ -58999,9 +59009,7 @@ function PageControl({
     "aria-current": page === currentPage ? 'step' : undefined
   }, (0,external_wp_element_namespaceObject.createElement)(build_module_button, {
     key: page,
-    icon: (0,external_wp_element_namespaceObject.createElement)(PageControlIcon, {
-      isSelected: page === currentPage
-    }),
+    icon: (0,external_wp_element_namespaceObject.createElement)(PageControlIcon, null),
     "aria-label": (0,external_wp_i18n_namespaceObject.sprintf)(
     /* translators: 1: current page number 2: total number of pages */
     (0,external_wp_i18n_namespaceObject.__)('Page %1$d of %2$d'), page + 1, numberOfPages),
@@ -59019,7 +59027,6 @@ function PageControl({
 /**
  * WordPress dependencies
  */
-
 
 
 
@@ -59072,8 +59079,16 @@ function Guide({
   onFinish,
   pages = []
 }) {
-  const guideContainer = (0,external_wp_element_namespaceObject.useRef)(null);
+  const ref = (0,external_wp_element_namespaceObject.useRef)(null);
   const [currentPage, setCurrentPage] = (0,external_wp_element_namespaceObject.useState)(0);
+  (0,external_wp_element_namespaceObject.useEffect)(() => {
+    // Place focus at the top of the guide on mount and when the page changes.
+    const frame = ref.current?.querySelector('.components-guide');
+
+    if (frame instanceof HTMLElement) {
+      frame.focus();
+    }
+  }, [currentPage]);
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     if (external_wp_element_namespaceObject.Children.count(children)) {
       external_wp_deprecated_default()('Passing children to <Guide>', {
@@ -59082,13 +59097,6 @@ function Guide({
       });
     }
   }, [children]);
-  (0,external_wp_element_namespaceObject.useEffect)(() => {
-    // Each time we change the current page, start from the first element of the page.
-    // This also solves any focus loss that can happen.
-    if (guideContainer.current) {
-      external_wp_dom_namespaceObject.focus.tabbable.find(guideContainer.current)[0]?.focus();
-    }
-  }, [currentPage]);
 
   if (external_wp_element_namespaceObject.Children.count(children)) {
     var _Children$map;
@@ -59120,6 +59128,7 @@ function Guide({
   return (0,external_wp_element_namespaceObject.createElement)(modal, {
     className: classnames_default()('components-guide', className),
     contentLabel: contentLabel,
+    isDismissible: pages.length > 1,
     onRequestClose: onFinish,
     onKeyDown: event => {
       if (event.code === 'ArrowLeft') {
@@ -59132,7 +59141,7 @@ function Guide({
         event.preventDefault();
       }
     },
-    ref: guideContainer
+    ref: ref
   }, (0,external_wp_element_namespaceObject.createElement)("div", {
     className: "components-guide__container"
   }, (0,external_wp_element_namespaceObject.createElement)("div", {
@@ -59145,12 +59154,15 @@ function Guide({
     className: "components-guide__footer"
   }, canGoBack && (0,external_wp_element_namespaceObject.createElement)(build_module_button, {
     className: "components-guide__back-button",
+    variant: "tertiary",
     onClick: goBack
   }, (0,external_wp_i18n_namespaceObject.__)('Previous')), canGoForward && (0,external_wp_element_namespaceObject.createElement)(build_module_button, {
     className: "components-guide__forward-button",
+    variant: "primary",
     onClick: goForward
   }, (0,external_wp_i18n_namespaceObject.__)('Next')), !canGoForward && (0,external_wp_element_namespaceObject.createElement)(build_module_button, {
     className: "components-guide__finish-button",
+    variant: "primary",
     onClick: onFinish
   }, finishButtonText))));
 }
@@ -59254,7 +59266,7 @@ function hook_useItem(props) {
   const size = sizeProp || contextSize;
   const as = asProp || (typeof onClick !== 'undefined' ? 'button' : 'div');
   const cx = useCx();
-  const classes = (0,external_wp_element_namespaceObject.useMemo)(() => cx(as === 'button' && unstyledButton, itemSizes[size] || itemSizes.medium, item, spacedAround && styles_spacedAround, className), [as, className, cx, size, spacedAround]);
+  const classes = (0,external_wp_element_namespaceObject.useMemo)(() => cx((as === 'button' || as === 'a') && unstyledButton(as), itemSizes[size] || itemSizes.medium, item, spacedAround && styles_spacedAround, className), [as, className, cx, size, spacedAround]);
   const wrapperClassName = cx(itemWrapper);
   return {
     as,
@@ -61574,6 +61586,7 @@ function UnconnectedNavigatorProvider(props, forwardedRef) {
       focusTargetSelector,
       isBack = false,
       skipFocus = false,
+      replace = false,
       ...restOptions
     } = options;
     const isNavigatingToPreviousPath = isBack && currentLocationHistory.current.length > 1 && currentLocationHistory.current[currentLocationHistory.current.length - 2].path === path;
@@ -61591,18 +61604,25 @@ function UnconnectedNavigatorProvider(props, forwardedRef) {
         skipFocus
       };
 
-      if (prevLocationHistory.length < 1) {
-        return [newLocation];
+      if (prevLocationHistory.length === 0) {
+        return replace ? [] : [newLocation];
       }
 
-      return [...prevLocationHistory.slice(prevLocationHistory.length > MAX_HISTORY_LENGTH - 1 ? 1 : 0, -1), // Assign `focusTargetSelector` to the previous location in history
-      // (the one we just navigated from).
-      { ...prevLocationHistory[prevLocationHistory.length - 1],
-        focusTargetSelector
-      }, newLocation];
+      const newLocationHistory = prevLocationHistory.slice(prevLocationHistory.length > MAX_HISTORY_LENGTH - 1 ? 1 : 0, -1);
+
+      if (!replace) {
+        newLocationHistory.push( // Assign `focusTargetSelector` to the previous location in history
+        // (the one we just navigated from).
+        { ...prevLocationHistory[prevLocationHistory.length - 1],
+          focusTargetSelector
+        });
+      }
+
+      newLocationHistory.push(newLocation);
+      return newLocationHistory;
     });
   }, [goBack]);
-  const goToParent = (0,external_wp_element_namespaceObject.useCallback)(() => {
+  const goToParent = (0,external_wp_element_namespaceObject.useCallback)((options = {}) => {
     const currentPath = currentLocationHistory.current[currentLocationHistory.current.length - 1].path;
 
     if (currentPath === undefined) {
@@ -61615,7 +61635,7 @@ function UnconnectedNavigatorProvider(props, forwardedRef) {
       return;
     }
 
-    goTo(parentPath, {
+    goTo(parentPath, { ...options,
       isBack: true
     });
   }, [goTo]);
@@ -63055,6 +63075,7 @@ function QueryControls({
     onChange: onAuthorChange
   }), onNumberOfItemsChange && (0,external_wp_element_namespaceObject.createElement)(range_control, {
     __nextHasNoMarginBottom: true,
+    __next40pxDefaultSize: true,
     key: "query-controls-range-control",
     label: (0,external_wp_i18n_namespaceObject.__)('Number of items'),
     value: numberOfItems,
@@ -65479,13 +65500,13 @@ function UnforwardedTextControl(props, ref) {
     hideLabelFromVision,
     value,
     help,
+    id: idProp,
     className,
     onChange,
     type = 'text',
     ...additionalProps
   } = props;
-  const instanceId = (0,external_wp_compose_namespaceObject.useInstanceId)(TextControl);
-  const id = `inspector-text-control-${instanceId}`;
+  const id = (0,external_wp_compose_namespaceObject.useInstanceId)(TextControl, 'inspector-text-control', idProp);
 
   const onChangeValue = event => onChange(event.target.value);
 
@@ -65942,7 +65963,7 @@ var FocusableContext = (0,external_React_.createContext)(true);
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/4BKCJXBM.js
+;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/PNRLI7OV.js
 var __defProp = Object.defineProperty;
 var __defProps = Object.defineProperties;
 var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
@@ -65950,7 +65971,7 @@ var __getOwnPropSymbols = Object.getOwnPropertySymbols;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __propIsEnum = Object.prototype.propertyIsEnumerable;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var _4BKCJXBM_spreadValues = (a, b) => {
+var PNRLI7OV_spreadValues = (a, b) => {
   for (var prop in b || (b = {}))
     if (__hasOwnProp.call(b, prop))
       __defNormalProp(a, prop, b[prop]);
@@ -65961,7 +65982,7 @@ var _4BKCJXBM_spreadValues = (a, b) => {
     }
   return a;
 };
-var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
+var PNRLI7OV_spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 var __objRest = (source, exclude) => {
   var target = {};
   for (var prop in source)
@@ -65977,34 +65998,34 @@ var __objRest = (source, exclude) => {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/__chunks/4BKCJXBM.js
-var _4BKCJXBM_defProp = Object.defineProperty;
-var _4BKCJXBM_defProps = Object.defineProperties;
-var _4BKCJXBM_getOwnPropDescs = Object.getOwnPropertyDescriptors;
-var _4BKCJXBM_getOwnPropSymbols = Object.getOwnPropertySymbols;
-var _4BKCJXBM_hasOwnProp = Object.prototype.hasOwnProperty;
-var _4BKCJXBM_propIsEnum = Object.prototype.propertyIsEnumerable;
-var _4BKCJXBM_defNormalProp = (obj, key, value) => key in obj ? _4BKCJXBM_defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var _chunks_4BKCJXBM_spreadValues = (a, b) => {
+;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/__chunks/PNRLI7OV.js
+var PNRLI7OV_defProp = Object.defineProperty;
+var PNRLI7OV_defProps = Object.defineProperties;
+var PNRLI7OV_getOwnPropDescs = Object.getOwnPropertyDescriptors;
+var PNRLI7OV_getOwnPropSymbols = Object.getOwnPropertySymbols;
+var PNRLI7OV_hasOwnProp = Object.prototype.hasOwnProperty;
+var PNRLI7OV_propIsEnum = Object.prototype.propertyIsEnumerable;
+var PNRLI7OV_defNormalProp = (obj, key, value) => key in obj ? PNRLI7OV_defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var _chunks_PNRLI7OV_spreadValues = (a, b) => {
   for (var prop in b || (b = {}))
-    if (_4BKCJXBM_hasOwnProp.call(b, prop))
-      _4BKCJXBM_defNormalProp(a, prop, b[prop]);
-  if (_4BKCJXBM_getOwnPropSymbols)
-    for (var prop of _4BKCJXBM_getOwnPropSymbols(b)) {
-      if (_4BKCJXBM_propIsEnum.call(b, prop))
-        _4BKCJXBM_defNormalProp(a, prop, b[prop]);
+    if (PNRLI7OV_hasOwnProp.call(b, prop))
+      PNRLI7OV_defNormalProp(a, prop, b[prop]);
+  if (PNRLI7OV_getOwnPropSymbols)
+    for (var prop of PNRLI7OV_getOwnPropSymbols(b)) {
+      if (PNRLI7OV_propIsEnum.call(b, prop))
+        PNRLI7OV_defNormalProp(a, prop, b[prop]);
     }
   return a;
 };
-var _4BKCJXBM_spreadProps = (a, b) => _4BKCJXBM_defProps(a, _4BKCJXBM_getOwnPropDescs(b));
-var _4BKCJXBM_objRest = (source, exclude) => {
+var _chunks_PNRLI7OV_spreadProps = (a, b) => PNRLI7OV_defProps(a, PNRLI7OV_getOwnPropDescs(b));
+var PNRLI7OV_objRest = (source, exclude) => {
   var target = {};
   for (var prop in source)
-    if (_4BKCJXBM_hasOwnProp.call(source, prop) && exclude.indexOf(prop) < 0)
+    if (PNRLI7OV_hasOwnProp.call(source, prop) && exclude.indexOf(prop) < 0)
       target[prop] = source[prop];
-  if (source != null && _4BKCJXBM_getOwnPropSymbols)
-    for (var prop of _4BKCJXBM_getOwnPropSymbols(source)) {
-      if (exclude.indexOf(prop) < 0 && _4BKCJXBM_propIsEnum.call(source, prop))
+  if (source != null && PNRLI7OV_getOwnPropSymbols)
+    for (var prop of PNRLI7OV_getOwnPropSymbols(source)) {
+      if (exclude.indexOf(prop) < 0 && PNRLI7OV_propIsEnum.call(source, prop))
         target[prop] = source[prop];
     }
   return target;
@@ -66012,13 +66033,13 @@ var _4BKCJXBM_objRest = (source, exclude) => {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/__chunks/NWU4GBZ6.js
+;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/__chunks/WVTCK5PV.js
 
 
 // src/utils/misc.ts
-function NWU4GBZ6_noop(..._) {
+function WVTCK5PV_noop(..._) {
 }
-function NWU4GBZ6_shallowEqual(a, b) {
+function WVTCK5PV_shallowEqual(a, b) {
   if (a === b)
     return true;
   if (!a)
@@ -66041,26 +66062,26 @@ function NWU4GBZ6_shallowEqual(a, b) {
   }
   return true;
 }
-function NWU4GBZ6_applyState(argument, currentValue) {
-  if (NWU4GBZ6_isUpdater(argument)) {
+function WVTCK5PV_applyState(argument, currentValue) {
+  if (WVTCK5PV_isUpdater(argument)) {
     const value = isLazyValue(currentValue) ? currentValue() : currentValue;
     return argument(value);
   }
   return argument;
 }
-function NWU4GBZ6_isUpdater(argument) {
+function WVTCK5PV_isUpdater(argument) {
   return typeof argument === "function";
 }
 function isLazyValue(value) {
   return typeof value === "function";
 }
-function NWU4GBZ6_isObject(arg) {
+function WVTCK5PV_isObject(arg) {
   return typeof arg === "object" && arg != null;
 }
 function isEmpty(arg) {
   if (Array.isArray(arg))
     return !arg.length;
-  if (NWU4GBZ6_isObject(arg))
+  if (WVTCK5PV_isObject(arg))
     return !Object.keys(arg).length;
   if (arg == null)
     return true;
@@ -66074,10 +66095,10 @@ function isInteger(arg) {
   }
   return String(Math.floor(Number(arg))) === arg;
 }
-function NWU4GBZ6_hasOwnProperty(object, prop) {
+function WVTCK5PV_hasOwnProperty(object, prop) {
   return Object.prototype.hasOwnProperty.call(object, prop);
 }
-function NWU4GBZ6_chain(...fns) {
+function WVTCK5PV_chain(...fns) {
   return (...args) => {
     for (const fn of fns) {
       if (typeof fn === "function") {
@@ -66093,9 +66114,9 @@ function normalizeString(str) {
   return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 function omit(object, keys) {
-  const result = _chunks_4BKCJXBM_spreadValues({}, object);
+  const result = _chunks_PNRLI7OV_spreadValues({}, object);
   for (const key of keys) {
-    if (NWU4GBZ6_hasOwnProperty(result, key)) {
+    if (WVTCK5PV_hasOwnProperty(result, key)) {
       delete result[key];
     }
   }
@@ -66104,26 +66125,26 @@ function omit(object, keys) {
 function pick(object, paths) {
   const result = {};
   for (const key of paths) {
-    if (NWU4GBZ6_hasOwnProperty(object, key)) {
+    if (WVTCK5PV_hasOwnProperty(object, key)) {
       result[key] = object[key];
     }
   }
   return result;
 }
-function NWU4GBZ6_identity(value) {
+function WVTCK5PV_identity(value) {
   return value;
 }
-function beforePaint(cb = NWU4GBZ6_noop) {
+function beforePaint(cb = WVTCK5PV_noop) {
   const raf = requestAnimationFrame(cb);
   return () => cancelAnimationFrame(raf);
 }
-function afterPaint(cb = NWU4GBZ6_noop) {
+function afterPaint(cb = WVTCK5PV_noop) {
   let raf = requestAnimationFrame(() => {
     raf = requestAnimationFrame(cb);
   });
   return () => cancelAnimationFrame(raf);
 }
-function NWU4GBZ6_invariant(condition, message) {
+function WVTCK5PV_invariant(condition, message) {
   if (condition)
     return;
   if (typeof message !== "string")
@@ -66149,13 +66170,13 @@ function defaultValue(...values) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/UWUL6FFR.js
+;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/CP3U4HPL.js
 
 
 // src/utils/misc.ts
 
 
-function UWUL6FFR_setRef(ref, value) {
+function CP3U4HPL_setRef(ref, value) {
   if (typeof ref === "function") {
     ref(value);
   } else if (ref) {
@@ -66176,10 +66197,10 @@ function getRefProperty(element) {
     return null;
   return element.ref;
 }
-function UWUL6FFR_mergeProps(base, overrides) {
-  const props = _4BKCJXBM_spreadValues({}, base);
+function CP3U4HPL_mergeProps(base, overrides) {
+  const props = PNRLI7OV_spreadValues({}, base);
   for (const key in overrides) {
-    if (!NWU4GBZ6_hasOwnProperty(overrides, key))
+    if (!WVTCK5PV_hasOwnProperty(overrides, key))
       continue;
     if (key === "className") {
       const prop = "className";
@@ -66188,7 +66209,7 @@ function UWUL6FFR_mergeProps(base, overrides) {
     }
     if (key === "style") {
       const prop = "style";
-      props[prop] = base[prop] ? _4BKCJXBM_spreadValues(_4BKCJXBM_spreadValues({}, base[prop]), overrides[prop]) : overrides[prop];
+      props[prop] = base[prop] ? PNRLI7OV_spreadValues(PNRLI7OV_spreadValues({}, base[prop]), overrides[prop]) : overrides[prop];
       continue;
     }
     const overrideValue = overrides[key];
@@ -66382,7 +66403,7 @@ function isPartiallyHidden(element) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/SN2N5P2D.js
+;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/J7Q2EO23.js
 
 
 
@@ -66392,7 +66413,7 @@ function isPartiallyHidden(element) {
 
 
 
-var _React = _4BKCJXBM_spreadValues({}, external_React_namespaceObject);
+var _React = PNRLI7OV_spreadValues({}, external_React_namespaceObject);
 var useReactId = _React.useId;
 var useReactDeferredValue = _React.useDeferredValue;
 var useReactInsertionEffect = _React.useInsertionEffect;
@@ -66408,7 +66429,7 @@ function useLazyValue(init) {
   }
   return ref.current;
 }
-function SN2N5P2D_useLiveRef(value) {
+function J7Q2EO23_useLiveRef(value) {
   const ref = (0,external_React_.useRef)(value);
   useSafeLayoutEffect(() => {
     ref.current = value;
@@ -66443,7 +66464,7 @@ function useMergeRefs(...refs) {
     if (!refs.some(Boolean))
       return;
     return (value) => {
-      refs.forEach((ref) => UWUL6FFR_setRef(ref, value));
+      refs.forEach((ref) => CP3U4HPL_setRef(ref, value));
     };
   }, refs);
 }
@@ -66506,7 +66527,7 @@ function useAttribute(refOrElement, attributeName, defaultValue) {
   }, [refOrElement, attributeName]);
   return attribute;
 }
-function SN2N5P2D_useUpdateEffect(effect, deps) {
+function J7Q2EO23_useUpdateEffect(effect, deps) {
   const mounted = useRef(false);
   useEffect(() => {
     if (mounted.current) {
@@ -66536,12 +66557,12 @@ function useUpdateLayoutEffect(effect, deps) {
     []
   );
 }
-function SN2N5P2D_useControlledState(defaultState, state, setState) {
+function J7Q2EO23_useControlledState(defaultState, state, setState) {
   const [localState, setLocalState] = useState(defaultState);
   const nextState = state !== void 0 ? state : localState;
-  const stateRef = SN2N5P2D_useLiveRef(state);
-  const setStateRef = SN2N5P2D_useLiveRef(setState);
-  const nextStateRef = SN2N5P2D_useLiveRef(nextState);
+  const stateRef = J7Q2EO23_useLiveRef(state);
+  const setStateRef = J7Q2EO23_useLiveRef(setState);
+  const nextStateRef = J7Q2EO23_useLiveRef(nextState);
   const setNextState = useCallback((prevValue) => {
     const setStateProp = setStateRef.current;
     if (setStateProp) {
@@ -66569,7 +66590,7 @@ function defineSetNextState(arg) {
     Object.defineProperty(arg, SET_NEXT_STATE, { value: true });
   }
 }
-function SN2N5P2D_useForceUpdate() {
+function J7Q2EO23_useForceUpdate() {
   return useReducer(() => [], []);
 }
 function useBooleanEvent(booleanOrCallback) {
@@ -66587,7 +66608,7 @@ function useWrapElement(props, callback, deps = []) {
     },
     [...deps, props.wrapElement]
   );
-  return __spreadProps(_4BKCJXBM_spreadValues({}, props), { wrapElement });
+  return PNRLI7OV_spreadProps(PNRLI7OV_spreadValues({}, props), { wrapElement });
 }
 function usePortalRef(portalProp = false, portalRefProp) {
   const [portalNode, setPortalNode] = useState(null);
@@ -66629,7 +66650,7 @@ function resetMouseMoving() {
 
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
 var jsx_runtime = __webpack_require__(7557);
-;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/7GCARSHZ.js
+;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/NQJBHION.js
 
 
 
@@ -66638,47 +66659,57 @@ var jsx_runtime = __webpack_require__(7557);
 
 
 
-function _7GCARSHZ_isRenderProp(children) {
+function NQJBHION_isRenderProp(children) {
   return typeof children === "function";
 }
-function _7GCARSHZ_createComponent(render) {
-  const Role = (props, ref) => render(_4BKCJXBM_spreadValues({ ref }, props));
-  return (0,external_React_.forwardRef)(Role);
+function forwardRef2(render) {
+  const Role = React.forwardRef((props, ref) => render(__spreadProps(__spreadValues({}, props), { ref })));
+  Role.displayName = render.displayName || render.name;
+  return Role;
+}
+function memo2(Component, propsAreEqual) {
+  const Role = React.memo(Component, propsAreEqual);
+  Role.displayName = Component.displayName || Component.name;
+  return Role;
+}
+function NQJBHION_createComponent(render) {
+  const Role = (props, ref) => render(PNRLI7OV_spreadValues({ ref }, props));
+  return external_React_.forwardRef(Role);
 }
 function createMemoComponent(render) {
-  const Role = _7GCARSHZ_createComponent(render);
-  return (0,external_React_.memo)(Role);
+  const Role = NQJBHION_createComponent(render);
+  return external_React_.memo(Role);
 }
-function _7GCARSHZ_createElement(Type, props) {
+function NQJBHION_createElement(Type, props) {
   const _a = props, { as: As, wrapElement, render } = _a, rest = __objRest(_a, ["as", "wrapElement", "render"]);
   let element;
   const mergedRef = useMergeRefs(props.ref, getRefProperty(render));
   if (As && typeof As !== "string") {
-    element = /* @__PURE__ */ (0,jsx_runtime.jsx)(As, __spreadProps(_4BKCJXBM_spreadValues({}, rest), { render }));
-  } else if ((0,external_React_.isValidElement)(render)) {
-    const renderProps = __spreadProps(_4BKCJXBM_spreadValues({}, render.props), { ref: mergedRef });
-    element = (0,external_React_.cloneElement)(render, UWUL6FFR_mergeProps(rest, renderProps));
+    element = /* @__PURE__ */ (0,jsx_runtime.jsx)(As, PNRLI7OV_spreadProps(PNRLI7OV_spreadValues({}, rest), { render }));
+  } else if (external_React_.isValidElement(render)) {
+    const renderProps = PNRLI7OV_spreadProps(PNRLI7OV_spreadValues({}, render.props), { ref: mergedRef });
+    element = external_React_.cloneElement(render, CP3U4HPL_mergeProps(rest, renderProps));
   } else if (render) {
     element = render(rest);
-  } else if (_7GCARSHZ_isRenderProp(props.children)) {
+  } else if (NQJBHION_isRenderProp(props.children)) {
     const _b = rest, { children } = _b, otherProps = __objRest(_b, ["children"]);
     element = props.children(otherProps);
   } else if (As) {
-    element = /* @__PURE__ */ (0,jsx_runtime.jsx)(As, _4BKCJXBM_spreadValues({}, rest));
+    element = /* @__PURE__ */ (0,jsx_runtime.jsx)(As, PNRLI7OV_spreadValues({}, rest));
   } else {
-    element = /* @__PURE__ */ (0,jsx_runtime.jsx)(Type, _4BKCJXBM_spreadValues({}, rest));
+    element = /* @__PURE__ */ (0,jsx_runtime.jsx)(Type, PNRLI7OV_spreadValues({}, rest));
   }
   if (wrapElement) {
     return wrapElement(element);
   }
   return element;
 }
-function _7GCARSHZ_createHook(useProps) {
+function NQJBHION_createHook(useProps) {
   const useRole = (props = {}) => {
     const htmlProps = useProps(props);
     const copy = {};
     for (const prop in htmlProps) {
-      if (NWU4GBZ6_hasOwnProperty(htmlProps, prop) && htmlProps[prop] !== void 0) {
+      if (WVTCK5PV_hasOwnProperty(htmlProps, prop) && htmlProps[prop] !== void 0) {
         copy[prop] = htmlProps[prop];
       }
     }
@@ -66743,14 +66774,14 @@ function events_fireEvent(element, type, eventInit) {
 function events_fireBlurEvent(element, eventInit) {
   const event = new FocusEvent("blur", eventInit);
   const defaultAllowed = element.dispatchEvent(event);
-  const bubbleInit = _4BKCJXBM_spreadProps(_chunks_4BKCJXBM_spreadValues({}, eventInit), { bubbles: true });
+  const bubbleInit = _chunks_PNRLI7OV_spreadProps(_chunks_PNRLI7OV_spreadValues({}, eventInit), { bubbles: true });
   element.dispatchEvent(new FocusEvent("focusout", bubbleInit));
   return defaultAllowed;
 }
 function fireFocusEvent(element, eventInit) {
   const event = new FocusEvent("focus", eventInit);
   const defaultAllowed = element.dispatchEvent(event);
-  const bubbleInit = _4BKCJXBM_spreadProps(_chunks_4BKCJXBM_spreadValues({}, eventInit), { bubbles: true });
+  const bubbleInit = _chunks_PNRLI7OV_spreadProps(_chunks_PNRLI7OV_spreadValues({}, eventInit), { bubbles: true });
   element.dispatchEvent(new FocusEvent("focusin", bubbleInit));
   return defaultAllowed;
 }
@@ -67031,7 +67062,7 @@ function focusIntoView(element, options) {
     element.focus();
   } else {
     element.focus({ preventScroll: true });
-    element.scrollIntoView(_chunks_4BKCJXBM_spreadValues({ block: "nearest", inline: "nearest" }, options));
+    element.scrollIntoView(_chunks_PNRLI7OV_spreadValues({ block: "nearest", inline: "nearest" }, options));
   }
 }
 
@@ -67060,7 +67091,7 @@ function isMac() {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/YNUPNUID.js
+;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/MYID4V27.js
 
 
 
@@ -67120,17 +67151,17 @@ function isNativeCheckboxOrRadio(element) {
   }
   return false;
 }
-function YNUPNUID_isNativeTabbable(tagName) {
+function MYID4V27_isNativeTabbable(tagName) {
   if (!tagName)
     return true;
   return tagName === "button" || tagName === "input" || tagName === "select" || tagName === "textarea" || tagName === "a";
 }
-function YNUPNUID_supportsDisabledAttribute(tagName) {
+function MYID4V27_supportsDisabledAttribute(tagName) {
   if (!tagName)
     return true;
   return tagName === "button" || tagName === "input" || tagName === "select" || tagName === "textarea";
 }
-function YNUPNUID_getTabIndex(focusable, trulyDisabled, nativeTabbable, supportsDisabled, tabIndexProp) {
+function MYID4V27_getTabIndex(focusable, trulyDisabled, nativeTabbable, supportsDisabled, tabIndexProp) {
   if (!focusable) {
     return tabIndexProp;
   }
@@ -67145,7 +67176,7 @@ function YNUPNUID_getTabIndex(focusable, trulyDisabled, nativeTabbable, supports
   }
   return tabIndexProp || 0;
 }
-function YNUPNUID_useDisableEvent(onEvent, disabled) {
+function MYID4V27_useDisableEvent(onEvent, disabled) {
   return useEvent((event) => {
     onEvent == null ? void 0 : onEvent(event);
     if (event.defaultPrevented)
@@ -67174,7 +67205,7 @@ function onGlobalKeyDown(event) {
     return;
   isKeyboardModality = true;
 }
-var useFocusable = _7GCARSHZ_createHook(
+var useFocusable = NQJBHION_createHook(
   (_a) => {
     var _b = _a, {
       focusable = true,
@@ -67243,15 +67274,15 @@ var useFocusable = _7GCARSHZ_createHook(
       observer.observe(element);
       return () => observer.disconnect();
     }, [focusable, focusVisible]);
-    const onKeyPressCapture = YNUPNUID_useDisableEvent(
+    const onKeyPressCapture = MYID4V27_useDisableEvent(
       props.onKeyPressCapture,
       disabled
     );
-    const onMouseDownCapture = YNUPNUID_useDisableEvent(
+    const onMouseDownCapture = MYID4V27_useDisableEvent(
       props.onMouseDownCapture,
       disabled
     );
-    const onClickCapture = YNUPNUID_useDisableEvent(props.onClickCapture, disabled);
+    const onClickCapture = MYID4V27_useDisableEvent(props.onClickCapture, disabled);
     const onMouseDownProp = props.onMouseDown;
     const onMouseDown = useEvent((event) => {
       onMouseDownProp == null ? void 0 : onMouseDownProp(event);
@@ -67366,17 +67397,17 @@ var useFocusable = _7GCARSHZ_createHook(
       });
     });
     const tagName = useTagName(ref, props.as);
-    const nativeTabbable = focusable && YNUPNUID_isNativeTabbable(tagName);
-    const supportsDisabled = focusable && YNUPNUID_supportsDisabledAttribute(tagName);
-    const style = trulyDisabled ? _4BKCJXBM_spreadValues({ pointerEvents: "none" }, props.style) : props.style;
-    props = __spreadProps(_4BKCJXBM_spreadValues({
+    const nativeTabbable = focusable && MYID4V27_isNativeTabbable(tagName);
+    const supportsDisabled = focusable && MYID4V27_supportsDisabledAttribute(tagName);
+    const style = trulyDisabled ? PNRLI7OV_spreadValues({ pointerEvents: "none" }, props.style) : props.style;
+    props = PNRLI7OV_spreadProps(PNRLI7OV_spreadValues({
       "data-focus-visible": focusable && focusVisible ? "" : void 0,
       "data-autofocus": autoFocus ? true : void 0,
       "aria-disabled": disabled ? true : void 0
     }, props), {
       ref: useMergeRefs(ref, autoFocusRef, props.ref),
       style,
-      tabIndex: YNUPNUID_getTabIndex(
+      tabIndex: MYID4V27_getTabIndex(
         focusable,
         trulyDisabled,
         nativeTabbable,
@@ -67397,15 +67428,15 @@ var useFocusable = _7GCARSHZ_createHook(
     return props;
   }
 );
-var Focusable = _7GCARSHZ_createComponent((props) => {
+var Focusable = NQJBHION_createComponent((props) => {
   props = useFocusable(props);
-  return _7GCARSHZ_createElement("div", props);
+  return NQJBHION_createElement("div", props);
 });
 if (false) {}
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/WQIYBPAY.js
+;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/P4RGQGTG.js
 
 
 
@@ -67416,7 +67447,7 @@ if (false) {}
 
 
 
-function WQIYBPAY_isNativeClick(event) {
+function P4RGQGTG_isNativeClick(event) {
   if (!event.isTrusted)
     return false;
   const element = event.currentTarget;
@@ -67428,7 +67459,7 @@ function WQIYBPAY_isNativeClick(event) {
   }
   return false;
 }
-var useCommand = _7GCARSHZ_createHook(
+var useCommand = NQJBHION_createHook(
   (_a) => {
     var _b = _a, { clickOnEnter = true, clickOnSpace = true } = _b, props = __objRest(_b, ["clickOnEnter", "clickOnSpace"]);
     const ref = (0,external_React_.useRef)(null);
@@ -67470,7 +67501,7 @@ var useCommand = _7GCARSHZ_createHook(
         return;
       }
       if (isEnter || isSpace) {
-        const nativeClick = WQIYBPAY_isNativeClick(event);
+        const nativeClick = P4RGQGTG_isNativeClick(event);
         if (isEnter) {
           if (!nativeClick) {
             event.preventDefault();
@@ -67505,7 +67536,7 @@ var useCommand = _7GCARSHZ_createHook(
       const isSpace = clickOnSpace && event.key === " ";
       if (activeRef.current && isSpace) {
         activeRef.current = false;
-        if (!WQIYBPAY_isNativeClick(event)) {
+        if (!P4RGQGTG_isNativeClick(event)) {
           setActive(false);
           const element = event.currentTarget;
           const _a2 = event, { view } = _a2, eventInit = __objRest(_a2, ["view"]);
@@ -67513,7 +67544,7 @@ var useCommand = _7GCARSHZ_createHook(
         }
       }
     });
-    props = __spreadProps(_4BKCJXBM_spreadValues({
+    props = PNRLI7OV_spreadProps(PNRLI7OV_spreadValues({
       "data-command": "",
       "data-active": active ? "" : void 0,
       type: isNativeButton ? "button" : void 0
@@ -67526,9 +67557,9 @@ var useCommand = _7GCARSHZ_createHook(
     return props;
   }
 );
-var Command = _7GCARSHZ_createComponent((props) => {
+var Command = NQJBHION_createComponent((props) => {
   props = useCommand(props);
-  return _7GCARSHZ_createElement("button", props);
+  return NQJBHION_createElement("button", props);
 });
 if (false) {}
 
@@ -67543,7 +67574,7 @@ var CollectionContext = (0,external_React_.createContext)(
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/EJLZ2L22.js
+;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/HGFTMLQ7.js
 
 
 
@@ -67552,34 +67583,45 @@ var CollectionContext = (0,external_React_.createContext)(
 // src/collection/collection-item.ts
 
 
-var useCollectionItem = _7GCARSHZ_createHook(
+var useCollectionItem = NQJBHION_createHook(
   (_a) => {
-    var _b = _a, { store, shouldRegisterItem = true, getItem = NWU4GBZ6_identity } = _b, props = __objRest(_b, ["store", "shouldRegisterItem", "getItem"]);
+    var _b = _a, {
+      store,
+      shouldRegisterItem = true,
+      getItem = WVTCK5PV_identity,
+      element: element
+    } = _b, props = __objRest(_b, [
+      "store",
+      "shouldRegisterItem",
+      "getItem",
+      // @ts-expect-error This prop may come from a collection renderer.
+      "element"
+    ]);
     const context = (0,external_React_.useContext)(CollectionContext);
     store = store || context;
     const id = useId(props.id);
     const unrenderItem = (0,external_React_.useRef)();
     const ref = (0,external_React_.useCallback)(
-      (element) => {
+      (element2) => {
         var _a2;
-        if (!element || !id || !shouldRegisterItem) {
+        if (!element2 || !id || !shouldRegisterItem) {
           return (_a2 = unrenderItem.current) == null ? void 0 : _a2.call(unrenderItem);
         }
-        const item = getItem({ id, element });
+        const item = getItem({ id, element: element2 });
         unrenderItem.current = store == null ? void 0 : store.renderItem(item);
       },
       [id, shouldRegisterItem, getItem, store]
     );
-    props = __spreadProps(_4BKCJXBM_spreadValues({}, props), {
+    props = PNRLI7OV_spreadProps(PNRLI7OV_spreadValues({}, props), {
       ref: useMergeRefs(ref, props.ref)
     });
     return props;
   }
 );
-var CollectionItem = _7GCARSHZ_createComponent(
+var CollectionItem = NQJBHION_createComponent(
   (props) => {
     const htmlProps = useCollectionItem(props);
-    return _7GCARSHZ_createElement("div", htmlProps);
+    return NQJBHION_createElement("div", htmlProps);
   }
 );
 if (false) {}
@@ -67665,18 +67707,22 @@ function OXPV2NBK_isItem(store, element, exclude) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/Z3X3QN6P.js
+;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/WJ37OVG2.js
 // src/composite/composite-context.ts
 
-var CompositeRowContext = (0,external_React_.createContext)(void 0);
-var CompositeItemContext = (0,external_React_.createContext)(void 0);
+var CompositeItemContext = (0,external_React_.createContext)(
+  void 0
+);
+var CompositeRowContext = (0,external_React_.createContext)(
+  void 0
+);
 var CompositeContext = (0,external_React_.createContext)(
   void 0
 );
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/USB5JBON.js
+;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/FHQZ2KRN.js
 
 
 
@@ -67686,7 +67732,7 @@ var CompositeContext = (0,external_React_.createContext)(
 
 var noopSubscribe = () => () => {
 };
-function useStoreState(store, keyOrSelector = NWU4GBZ6_identity) {
+function useStoreState(store, keyOrSelector = WVTCK5PV_identity) {
   const getSnapshot = () => {
     if (!store)
       return;
@@ -67697,7 +67743,7 @@ function useStoreState(store, keyOrSelector = NWU4GBZ6_identity) {
       return selector(state);
     if (!key)
       return;
-    if (!NWU4GBZ6_hasOwnProperty(state, key))
+    if (!WVTCK5PV_hasOwnProperty(state, key))
       return;
     return state[key];
   };
@@ -67708,8 +67754,8 @@ function useStoreState(store, keyOrSelector = NWU4GBZ6_identity) {
   );
 }
 function useStoreProps(store, props, key, setKey) {
-  const value = NWU4GBZ6_hasOwnProperty(props, key) ? props[key] : void 0;
-  const propsRef = SN2N5P2D_useLiveRef({
+  const value = WVTCK5PV_hasOwnProperty(props, key) ? props[key] : void 0;
+  const propsRef = J7Q2EO23_useLiveRef({
     value,
     setValue: setKey ? props[setKey] : void 0
   });
@@ -67736,19 +67782,19 @@ function useStoreProps(store, props, key, setKey) {
     }, [key]);
   }, [store, key, value]);
 }
-function USB5JBON_useStore(createStore) {
+function FHQZ2KRN_useStore(createStore) {
   const store = useLazyValue(createStore);
   useSafeLayoutEffect(() => store.init(), [store]);
   const useState = (0,external_React_.useCallback)(
     (keyOrSelector) => useStoreState(store, keyOrSelector),
     [store]
   );
-  return (0,external_React_.useMemo)(() => __spreadProps(_4BKCJXBM_spreadValues({}, store), { useState }), [store, useState]);
+  return (0,external_React_.useMemo)(() => PNRLI7OV_spreadProps(PNRLI7OV_spreadValues({}, store), { useState }), [store, useState]);
 }
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/E32RAHMA.js
+;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/WFK3YK7D.js
 
 
 
@@ -67823,12 +67869,12 @@ function findNextPageItemId(element, store, next, pageUp = false) {
   }
   return id;
 }
-function E32RAHMA_targetIsAnotherItem(event, store) {
+function WFK3YK7D_targetIsAnotherItem(event, store) {
   if (events_isSelfTarget(event))
     return false;
   return OXPV2NBK_isItem(store, event.target);
 }
-function E32RAHMA_useRole(ref, props) {
+function WFK3YK7D_useRole(ref, props) {
   const roleProp = props.role;
   const [role, setRole] = (0,external_React_.useState)(roleProp);
   useSafeLayoutEffect(() => {
@@ -67859,21 +67905,26 @@ function supportsAriaSelected(role) {
     return true;
   return false;
 }
-var E32RAHMA_useCompositeItem = _7GCARSHZ_createHook(
+var WFK3YK7D_useCompositeItem = NQJBHION_createHook(
   (_a) => {
     var _b = _a, {
       store,
       rowId: rowIdProp,
       preventScrollOnKeyDown = false,
       moveOnKeyPress = true,
-      getItem: getItemProp
+      getItem: getItemProp,
+      "aria-setsize": ariaSetSizeProp,
+      "aria-posinset": ariaPosInSetProp
     } = _b, props = __objRest(_b, [
       "store",
       "rowId",
       "preventScrollOnKeyDown",
       "moveOnKeyPress",
-      "getItem"
+      "getItem",
+      "aria-setsize",
+      "aria-posinset"
     ]);
+    var _a2;
     const context = (0,external_React_.useContext)(CompositeContext);
     store = store || context;
     const id = useId(props.id);
@@ -67891,7 +67942,7 @@ var E32RAHMA_useCompositeItem = _7GCARSHZ_createHook(
     const trulyDisabled = props.disabled && !props.accessibleWhenDisabled;
     const getItem = (0,external_React_.useCallback)(
       (item) => {
-        const nextItem = __spreadProps(_4BKCJXBM_spreadValues({}, item), {
+        const nextItem = PNRLI7OV_spreadProps(PNRLI7OV_spreadValues({}, item), {
           id: id || item.id,
           rowId,
           disabled: !!trulyDisabled
@@ -67916,7 +67967,7 @@ var E32RAHMA_useCompositeItem = _7GCARSHZ_createHook(
       if (!store)
         return;
       const { activeId, virtualFocus: virtualFocus2, baseElement: baseElement2 } = store.getState();
-      if (E32RAHMA_targetIsAnotherItem(event, store))
+      if (WFK3YK7D_targetIsAnotherItem(event, store))
         return;
       if (activeId !== id) {
         store.setActiveId(id);
@@ -68015,8 +68066,8 @@ var E32RAHMA_useCompositeItem = _7GCARSHZ_createHook(
       [providerValue]
     );
     const isActiveItem = useStoreState(store, (state) => state.activeId === id);
-    const role = E32RAHMA_useRole(ref, props);
     const virtualFocus = useStoreState(store, "virtualFocus");
+    const role = WFK3YK7D_useRole(ref, props);
     let ariaSelected;
     if (isActiveItem) {
       if (requiresAriaSelected(role)) {
@@ -68025,57 +68076,82 @@ var E32RAHMA_useCompositeItem = _7GCARSHZ_createHook(
         ariaSelected = true;
       }
     }
-    const shouldTabIndex = useStoreState(
-      store,
-      (state) => !(store == null ? void 0 : store.item(id)) || !state.virtualFocus && isActiveItem
-    );
-    props = __spreadProps(_4BKCJXBM_spreadValues({
+    const ariaSetSize = useStoreState(store, (state) => {
+      if (ariaSetSizeProp != null)
+        return ariaSetSizeProp;
+      if (!(row == null ? void 0 : row.ariaSetSize))
+        return;
+      if (row.baseElement !== state.baseElement)
+        return;
+      return row.ariaSetSize;
+    });
+    const ariaPosInSet = useStoreState(store, (state) => {
+      if (ariaPosInSetProp != null)
+        return ariaPosInSetProp;
+      if (!(row == null ? void 0 : row.ariaPosInSet))
+        return;
+      if (row.baseElement !== state.baseElement)
+        return;
+      const itemsInRow = state.renderedItems.filter(
+        (item) => item.rowId === rowId
+      );
+      return row.ariaPosInSet + itemsInRow.findIndex((item) => item.id === id);
+    });
+    const isTabbable = (_a2 = useStoreState(store, (state) => {
+      if (!state.renderedItems.length)
+        return true;
+      return !state.virtualFocus && state.activeId === id;
+    })) != null ? _a2 : true;
+    props = PNRLI7OV_spreadProps(PNRLI7OV_spreadValues({
       id,
       "aria-selected": ariaSelected,
       "data-active-item": isActiveItem ? "" : void 0
     }, props), {
       ref: useMergeRefs(ref, props.ref),
-      tabIndex: shouldTabIndex !== false ? props.tabIndex : -1,
+      tabIndex: isTabbable ? props.tabIndex : -1,
       onFocus,
       onBlurCapture,
       onKeyDown
     });
     props = useCommand(props);
-    props = useCollectionItem(__spreadProps(_4BKCJXBM_spreadValues({
+    props = useCollectionItem(PNRLI7OV_spreadProps(PNRLI7OV_spreadValues({
       store
     }, props), {
       getItem,
       shouldRegisterItem: !!id ? props.shouldRegisterItem : false
     }));
-    return props;
+    return PNRLI7OV_spreadProps(PNRLI7OV_spreadValues({}, props), {
+      "aria-setsize": ariaSetSize,
+      "aria-posinset": ariaPosInSet
+    });
   }
 );
-var E32RAHMA_CompositeItem = createMemoComponent(
+var WFK3YK7D_CompositeItem = createMemoComponent(
   (props) => {
-    const htmlProps = E32RAHMA_useCompositeItem(props);
-    return _7GCARSHZ_createElement("button", htmlProps);
+    const htmlProps = WFK3YK7D_useCompositeItem(props);
+    return NQJBHION_createElement("button", htmlProps);
   }
 );
 if (false) {}
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/5AXDCOCY.js
+;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/6YH4Z35H.js
 
 
 
 
 // src/toolbar/toolbar-item.ts
-var useToolbarItem = _7GCARSHZ_createHook(
+var useToolbarItem = NQJBHION_createHook(
   (_a) => {
     var _b = _a, { store } = _b, props = __objRest(_b, ["store"]);
-    props = E32RAHMA_useCompositeItem(_4BKCJXBM_spreadValues({ store }, props));
+    props = WFK3YK7D_useCompositeItem(PNRLI7OV_spreadValues({ store }, props));
     return props;
   }
 );
 var ToolbarItem = createMemoComponent((props) => {
   const htmlProps = useToolbarItem(props);
-  return _7GCARSHZ_createElement("button", htmlProps);
+  return NQJBHION_createElement("button", htmlProps);
 });
 if (false) {}
 
@@ -68424,7 +68500,7 @@ function ToolbarGroup({
 
 /* harmony default export */ const toolbar_group = (ToolbarGroup);
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/KQUSQ6BH.js
+;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/6DS7ZDWX.js
 
 
 
@@ -68447,7 +68523,7 @@ function useCollectionStore(props = {}) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/ACET4OGQ.js
+;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/OK4RCQBZ.js
 
 
 
@@ -68479,7 +68555,7 @@ function useCompositeStore(props = {}) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/__chunks/LK6LFO7X.js
+;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/__chunks/FQL4TRMX.js
 
 
 
@@ -68501,18 +68577,18 @@ function createStore(initialState, ...stores) {
   };
   const init = () => {
     if (initialized)
-      return NWU4GBZ6_noop;
+      return WVTCK5PV_noop;
     if (!stores.length)
-      return NWU4GBZ6_noop;
+      return WVTCK5PV_noop;
     initialized = true;
     const desyncs = getKeys(state).map(
-      (key) => NWU4GBZ6_chain(
+      (key) => WVTCK5PV_chain(
         ...stores.map((store) => {
           var _a, _b;
           const storeState = (_a = store == null ? void 0 : store.getState) == null ? void 0 : _a.call(store);
           if (!storeState)
             return;
-          if (!NWU4GBZ6_hasOwnProperty(storeState, key))
+          if (!WVTCK5PV_hasOwnProperty(storeState, key))
             return;
           return (_b = store == null ? void 0 : store.sync) == null ? void 0 : _b.call(store, (state2) => setState(key, state2[key]), [key]);
         })
@@ -68524,7 +68600,7 @@ function createStore(initialState, ...stores) {
       var _a;
       return (_a = store == null ? void 0 : store.init) == null ? void 0 : _a.call(store);
     });
-    return NWU4GBZ6_chain(...desyncs, ...teardowns, ...cleanups, () => {
+    return WVTCK5PV_chain(...desyncs, ...teardowns, ...cleanups, () => {
       initialized = false;
     });
   };
@@ -68551,9 +68627,9 @@ function createStore(initialState, ...stores) {
   };
   const getState = () => state;
   const setState = (key, value) => {
-    if (!NWU4GBZ6_hasOwnProperty(state, key))
+    if (!WVTCK5PV_hasOwnProperty(state, key))
       return;
-    const nextValue = NWU4GBZ6_applyState(value, state[key]);
+    const nextValue = WVTCK5PV_applyState(value, state[key]);
     if (nextValue === state[key])
       return;
     stores.forEach((store) => {
@@ -68561,7 +68637,7 @@ function createStore(initialState, ...stores) {
       (_a = store == null ? void 0 : store.setState) == null ? void 0 : _a.call(store, key, nextValue);
     });
     const prevState = state;
-    state = _4BKCJXBM_spreadProps(_chunks_4BKCJXBM_spreadValues({}, state), { [key]: nextValue });
+    state = _chunks_PNRLI7OV_spreadProps(_chunks_PNRLI7OV_spreadValues({}, state), { [key]: nextValue });
     const thisUpdate = Symbol();
     lastUpdate = thisUpdate;
     updatedKeys.add(key);
@@ -68615,19 +68691,19 @@ function mergeStore(...stores) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/__chunks/QEFBF7I4.js
+;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/__chunks/SHUO6V52.js
 
 
 
 
 
 // src/collection/collection-store.ts
-function QEFBF7I4_isElementPreceding(a, b) {
+function SHUO6V52_isElementPreceding(a, b) {
   return Boolean(
     b.compareDocumentPosition(a) & Node.DOCUMENT_POSITION_PRECEDING
   );
 }
-function QEFBF7I4_sortBasedOnDOMPosition(items) {
+function SHUO6V52_sortBasedOnDOMPosition(items) {
   const pairs = items.map((item, index) => [index, item]);
   let isOrderDifferent = false;
   pairs.sort(([indexA, a], [indexB, b]) => {
@@ -68637,7 +68713,7 @@ function QEFBF7I4_sortBasedOnDOMPosition(items) {
       return 0;
     if (!elementA || !elementB)
       return 0;
-    if (QEFBF7I4_isElementPreceding(elementA, elementB)) {
+    if (SHUO6V52_isElementPreceding(elementA, elementB)) {
       if (indexA > indexB) {
         isOrderDifferent = true;
       }
@@ -68653,7 +68729,7 @@ function QEFBF7I4_sortBasedOnDOMPosition(items) {
   }
   return items;
 }
-function QEFBF7I4_getCommonParent(items) {
+function SHUO6V52_getCommonParent(items) {
   var _a;
   const firstItem = items.find((item) => !!item.element);
   const lastItem = [...items].reverse().find((item) => !!item.element);
@@ -68687,7 +68763,7 @@ function createCollectionStore(props = {}) {
   const collection = createStore(initialState, props.store);
   const sortItems = () => {
     const state = privateStore.getState();
-    const renderedItems = QEFBF7I4_sortBasedOnDOMPosition(state.renderedItems);
+    const renderedItems = SHUO6V52_sortBasedOnDOMPosition(state.renderedItems);
     privateStore.setState("renderedItems", renderedItems);
     collection.setState("renderedItems", renderedItems);
   };
@@ -68706,12 +68782,12 @@ function createCollectionStore(props = {}) {
           cancelAnimationFrame(raf);
           raf = requestAnimationFrame(sortItems);
         };
-        const root = QEFBF7I4_getCommonParent(state.renderedItems);
+        const root = SHUO6V52_getCommonParent(state.renderedItems);
         const observer = new IntersectionObserver(callback, { root });
         state.renderedItems.forEach((item) => {
-          if (item.element) {
-            observer.observe(item.element);
-          }
+          if (!item.element)
+            return;
+          observer.observe(item.element);
         });
         return () => {
           cancelAnimationFrame(raf);
@@ -68728,7 +68804,7 @@ function createCollectionStore(props = {}) {
       const nextItems = items2.slice();
       if (index !== -1) {
         prevItem = items2[index];
-        const nextItem = _chunks_4BKCJXBM_spreadValues(_chunks_4BKCJXBM_spreadValues({}, prevItem), item);
+        const nextItem = _chunks_PNRLI7OV_spreadValues(_chunks_PNRLI7OV_spreadValues({}, prevItem), item);
         nextItems[index] = nextItem;
         itemsMap.set(item.id, nextItem);
       } else {
@@ -68757,9 +68833,9 @@ function createCollectionStore(props = {}) {
     return unmergeItem;
   };
   const registerItem = (item) => mergeItem(item, (getItems) => collection.setState("items", getItems), true);
-  return _4BKCJXBM_spreadProps(_chunks_4BKCJXBM_spreadValues({}, collection), {
+  return _chunks_PNRLI7OV_spreadProps(_chunks_PNRLI7OV_spreadValues({}, collection), {
     registerItem,
-    renderItem: (item) => NWU4GBZ6_chain(
+    renderItem: (item) => WVTCK5PV_chain(
       registerItem(item),
       mergeItem(
         item,
@@ -68811,7 +68887,7 @@ function reverseArray(array) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/__chunks/WFO54Y6U.js
+;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/__chunks/NRXA5QTV.js
 
 
 
@@ -68819,8 +68895,8 @@ function reverseArray(array) {
 
 
 // src/composite/composite-store.ts
-var WFO54Y6U_NULL_ITEM = { id: null };
-function WFO54Y6U_findFirstEnabledItem(items, excludeId) {
+var NRXA5QTV_NULL_ITEM = { id: null };
+function NRXA5QTV_findFirstEnabledItem(items, excludeId) {
   return items.find((item) => {
     if (excludeId) {
       return !item.disabled && item.id !== excludeId;
@@ -68836,7 +68912,7 @@ function getEnabledItems(items, excludeId) {
     return !item.disabled;
   });
 }
-function WFO54Y6U_getOppositeOrientation(orientation) {
+function NRXA5QTV_getOppositeOrientation(orientation) {
   if (orientation === "vertical")
     return "horizontal";
   if (orientation === "horizontal")
@@ -68846,15 +68922,15 @@ function WFO54Y6U_getOppositeOrientation(orientation) {
 function getItemsInRow(items, rowId) {
   return items.filter((item) => item.rowId === rowId);
 }
-function WFO54Y6U_flipItems(items, activeId, shouldInsertNullItem = false) {
+function NRXA5QTV_flipItems(items, activeId, shouldInsertNullItem = false) {
   const index = items.findIndex((item) => item.id === activeId);
   return [
     ...items.slice(index + 1),
-    ...shouldInsertNullItem ? [WFO54Y6U_NULL_ITEM] : [],
+    ...shouldInsertNullItem ? [NRXA5QTV_NULL_ITEM] : [],
     ...items.slice(0, index)
   ];
 }
-function WFO54Y6U_groupItemsByRows(items) {
+function NRXA5QTV_groupItemsByRows(items) {
   const rows = [];
   for (const item of items) {
     const row = rows.find((currentRow) => {
@@ -68878,7 +68954,7 @@ function getMaxRowLength(array) {
   }
   return maxLength;
 }
-function WFO54Y6U_createEmptyItem(rowId) {
+function NRXA5QTV_createEmptyItem(rowId) {
   return {
     id: "__EMPTY_ITEM__",
     disabled: true,
@@ -68892,22 +68968,22 @@ function normalizeRows(rows, activeId, focusShift) {
       const item = row[i];
       if (!item || focusShift && item.disabled) {
         const isFirst = i === 0;
-        const previousItem = isFirst && focusShift ? WFO54Y6U_findFirstEnabledItem(row) : row[i - 1];
-        row[i] = previousItem && activeId !== previousItem.id && focusShift ? previousItem : WFO54Y6U_createEmptyItem(previousItem == null ? void 0 : previousItem.rowId);
+        const previousItem = isFirst && focusShift ? NRXA5QTV_findFirstEnabledItem(row) : row[i - 1];
+        row[i] = previousItem && activeId !== previousItem.id && focusShift ? previousItem : NRXA5QTV_createEmptyItem(previousItem == null ? void 0 : previousItem.rowId);
       }
     }
   }
   return rows;
 }
-function WFO54Y6U_verticalizeItems(items) {
-  const rows = WFO54Y6U_groupItemsByRows(items);
+function NRXA5QTV_verticalizeItems(items) {
+  const rows = NRXA5QTV_groupItemsByRows(items);
   const maxLength = getMaxRowLength(rows);
   const verticalized = [];
   for (let i = 0; i < maxLength; i += 1) {
     for (const row of rows) {
       const item = row[i];
       if (item) {
-        verticalized.push(_4BKCJXBM_spreadProps(_chunks_4BKCJXBM_spreadValues({}, item), {
+        verticalized.push(_chunks_PNRLI7OV_spreadProps(_chunks_PNRLI7OV_spreadValues({}, item), {
           // If there's no rowId, it means that it's not a grid composite, but
           // a single row instead. So, instead of verticalizing it, that is,
           // assigning a different rowId based on the column index, we keep it
@@ -68929,7 +69005,7 @@ function createCompositeStore(props = {}) {
     syncState == null ? void 0 : syncState.activeId,
     props.defaultActiveId
   );
-  const initialState = _4BKCJXBM_spreadProps(_chunks_4BKCJXBM_spreadValues({}, collection.getState()), {
+  const initialState = _chunks_PNRLI7OV_spreadProps(_chunks_PNRLI7OV_spreadValues({}, collection.getState()), {
     activeId,
     baseElement: defaultValue(syncState == null ? void 0 : syncState.baseElement, null),
     includesBaseElement: defaultValue(
@@ -68961,7 +69037,7 @@ function createCompositeStore(props = {}) {
           var _a2;
           if (activeId2 !== void 0)
             return activeId2;
-          return (_a2 = WFO54Y6U_findFirstEnabledItem(state.renderedItems)) == null ? void 0 : _a2.id;
+          return (_a2 = NRXA5QTV_findFirstEnabledItem(state.renderedItems)) == null ? void 0 : _a2.id;
         });
       },
       ["renderedItems", "activeId"]
@@ -68974,11 +69050,11 @@ function createCompositeStore(props = {}) {
     const isRTL = rtl && isHorizontal;
     const allItems = isRTL ? reverseArray(items) : items;
     if (activeId2 == null) {
-      return (_a2 = WFO54Y6U_findFirstEnabledItem(allItems)) == null ? void 0 : _a2.id;
+      return (_a2 = NRXA5QTV_findFirstEnabledItem(allItems)) == null ? void 0 : _a2.id;
     }
     const activeItem = allItems.find((item) => item.id === activeId2);
     if (!activeItem) {
-      return (_b = WFO54Y6U_findFirstEnabledItem(allItems)) == null ? void 0 : _b.id;
+      return (_b = NRXA5QTV_findFirstEnabledItem(allItems)) == null ? void 0 : _b.id;
     }
     const isGrid = !!activeItem.rowId;
     const activeIndex = allItems.indexOf(activeItem);
@@ -68990,7 +69066,7 @@ function createCompositeStore(props = {}) {
       nextEnabledItemsInRow[nextEnabledItemsInRow.length - 1];
       return nextItem2 == null ? void 0 : nextItem2.id;
     }
-    const oppositeOrientation = WFO54Y6U_getOppositeOrientation(
+    const oppositeOrientation = NRXA5QTV_getOppositeOrientation(
       // If it's a grid and orientation is not set, it's a next/previous call,
       // which is inherently horizontal. up/down will call next with orientation
       // set to vertical by default (see below on up/down methods).
@@ -69001,12 +69077,12 @@ function createCompositeStore(props = {}) {
     hasNullItem = hasNullItem || !isGrid && canLoop && includesBaseElement;
     if (canLoop) {
       const loopItems = canWrap && !hasNullItem ? allItems : getItemsInRow(allItems, activeItem.rowId);
-      const sortedItems = WFO54Y6U_flipItems(loopItems, activeId2, hasNullItem);
-      const nextItem2 = WFO54Y6U_findFirstEnabledItem(sortedItems, activeId2);
+      const sortedItems = NRXA5QTV_flipItems(loopItems, activeId2, hasNullItem);
+      const nextItem2 = NRXA5QTV_findFirstEnabledItem(sortedItems, activeId2);
       return nextItem2 == null ? void 0 : nextItem2.id;
     }
     if (canWrap) {
-      const nextItem2 = WFO54Y6U_findFirstEnabledItem(
+      const nextItem2 = NRXA5QTV_findFirstEnabledItem(
         // We can use nextItems, which contains all the next items, including
         // items from other rows, to wrap between rows. However, if there is a
         // null item (the composite container), we'll only use the next items in
@@ -69019,13 +69095,13 @@ function createCompositeStore(props = {}) {
       const nextId = hasNullItem ? (nextItem2 == null ? void 0 : nextItem2.id) || null : nextItem2 == null ? void 0 : nextItem2.id;
       return nextId;
     }
-    const nextItem = WFO54Y6U_findFirstEnabledItem(nextItemsInRow, activeId2);
+    const nextItem = NRXA5QTV_findFirstEnabledItem(nextItemsInRow, activeId2);
     if (!nextItem && hasNullItem) {
       return null;
     }
     return nextItem == null ? void 0 : nextItem.id;
   };
-  return _4BKCJXBM_spreadProps(_chunks_4BKCJXBM_spreadValues(_chunks_4BKCJXBM_spreadValues({}, collection), composite), {
+  return _chunks_PNRLI7OV_spreadProps(_chunks_PNRLI7OV_spreadValues(_chunks_PNRLI7OV_spreadValues({}, collection), composite), {
     setBaseElement: (element) => composite.setState("baseElement", element),
     setActiveId: (id) => composite.setState("activeId", id),
     move: (id) => {
@@ -69036,11 +69112,11 @@ function createCompositeStore(props = {}) {
     },
     first: () => {
       var _a2;
-      return (_a2 = WFO54Y6U_findFirstEnabledItem(composite.getState().renderedItems)) == null ? void 0 : _a2.id;
+      return (_a2 = NRXA5QTV_findFirstEnabledItem(composite.getState().renderedItems)) == null ? void 0 : _a2.id;
     },
     last: () => {
       var _a2;
-      return (_a2 = WFO54Y6U_findFirstEnabledItem(reverseArray(composite.getState().renderedItems))) == null ? void 0 : _a2.id;
+      return (_a2 = NRXA5QTV_findFirstEnabledItem(reverseArray(composite.getState().renderedItems))) == null ? void 0 : _a2.id;
     },
     next: (skip) => {
       const { renderedItems, orientation } = composite.getState();
@@ -69049,7 +69125,7 @@ function createCompositeStore(props = {}) {
     previous: (skip) => {
       var _a2;
       const { renderedItems, orientation, includesBaseElement } = composite.getState();
-      const isGrid = !!((_a2 = WFO54Y6U_findFirstEnabledItem(renderedItems)) == null ? void 0 : _a2.rowId);
+      const isGrid = !!((_a2 = NRXA5QTV_findFirstEnabledItem(renderedItems)) == null ? void 0 : _a2.rowId);
       const hasNullItem = !isGrid && includesBaseElement;
       return getNextId(
         reverseArray(renderedItems),
@@ -69067,9 +69143,9 @@ function createCompositeStore(props = {}) {
         includesBaseElement
       } = composite.getState();
       const shouldShift = focusShift && !skip;
-      const verticalItems = WFO54Y6U_verticalizeItems(
+      const verticalItems = NRXA5QTV_verticalizeItems(
         flatten2DArray(
-          normalizeRows(WFO54Y6U_groupItemsByRows(renderedItems), activeId2, shouldShift)
+          normalizeRows(NRXA5QTV_groupItemsByRows(renderedItems), activeId2, shouldShift)
         )
       );
       const canLoop = focusLoop && focusLoop !== "horizontal";
@@ -69079,11 +69155,11 @@ function createCompositeStore(props = {}) {
     up: (skip) => {
       const { activeId: activeId2, renderedItems, focusShift, includesBaseElement } = composite.getState();
       const shouldShift = focusShift && !skip;
-      const verticalItems = WFO54Y6U_verticalizeItems(
+      const verticalItems = NRXA5QTV_verticalizeItems(
         reverseArray(
           flatten2DArray(
             normalizeRows(
-              WFO54Y6U_groupItemsByRows(renderedItems),
+              NRXA5QTV_groupItemsByRows(renderedItems),
               activeId2,
               shouldShift
             )
@@ -69111,7 +69187,7 @@ function createCompositeStore(props = {}) {
 function createToolbarStore(props = {}) {
   var _a;
   const syncState = (_a = props.store) == null ? void 0 : _a.getState();
-  return createCompositeStore(_4BKCJXBM_spreadProps(_chunks_4BKCJXBM_spreadValues({}, props), {
+  return createCompositeStore(_chunks_PNRLI7OV_spreadProps(_chunks_PNRLI7OV_spreadValues({}, props), {
     orientation: defaultValue(
       props.orientation,
       syncState == null ? void 0 : syncState.orientation,
@@ -69140,8 +69216,8 @@ function useToolbarStoreProps(store, props) {
 }
 function useToolbarStore(props = {}) {
   const options = useToolbarStoreOptions(props);
-  const store = USB5JBON_useStore(
-    () => createToolbarStore(_4BKCJXBM_spreadValues(_4BKCJXBM_spreadValues({}, props), options))
+  const store = FHQZ2KRN_useStore(
+    () => createToolbarStore(PNRLI7OV_spreadValues(PNRLI7OV_spreadValues({}, props), options))
   );
   return useToolbarStoreProps(store, props);
 }
@@ -69156,7 +69232,7 @@ var DFUIIKXE_ToolbarContext = (0,external_React_.createContext)(
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/ZZBJOUY4.js
+;// CONCATENATED MODULE: ./node_modules/@ariakit/react-core/esm/__chunks/AAVDGJD5.js
 
 
 
@@ -69180,7 +69256,7 @@ function isPrintableKey(event) {
 function isModifierKey(event) {
   return event.key === "Shift" || event.key === "Control" || event.key === "Alt" || event.key === "Meta";
 }
-function ZZBJOUY4_canProxyKeyboardEvent(event, state) {
+function AAVDGJD5_canProxyKeyboardEvent(event, state) {
   if (!events_isSelfTarget(event))
     return false;
   if (isModifierKey(event))
@@ -69200,7 +69276,7 @@ function ZZBJOUY4_canProxyKeyboardEvent(event, state) {
   }
   return !event.isPropagationStopped();
 }
-function ZZBJOUY4_useKeyboardEventProxy(store, onKeyboardEvent, previousElementRef) {
+function AAVDGJD5_useKeyboardEventProxy(store, onKeyboardEvent, previousElementRef) {
   return useEvent((event) => {
     var _a;
     onKeyboardEvent == null ? void 0 : onKeyboardEvent(event);
@@ -69210,7 +69286,7 @@ function ZZBJOUY4_useKeyboardEventProxy(store, onKeyboardEvent, previousElementR
     const activeElement = (_a = getEnabledItem(store, state.activeId)) == null ? void 0 : _a.element;
     if (!activeElement)
       return;
-    if (!ZZBJOUY4_canProxyKeyboardEvent(event, state))
+    if (!AAVDGJD5_canProxyKeyboardEvent(event, state))
       return;
     const _b = event, { view } = _b, eventInit = __objRest(_b, ["view"]);
     const previousElement = previousElementRef == null ? void 0 : previousElementRef.current;
@@ -69225,7 +69301,7 @@ function ZZBJOUY4_useKeyboardEventProxy(store, onKeyboardEvent, previousElementR
     }
   });
 }
-function ZZBJOUY4_findFirstEnabledItemInTheLastRow(items) {
+function AAVDGJD5_findFirstEnabledItemInTheLastRow(items) {
   return OXPV2NBK_findFirstEnabledItem(
     flatten2DArray(reverseArray(groupItemsByRows(items)))
   );
@@ -69243,11 +69319,11 @@ function useScheduleFocus(store) {
     if (!activeElement)
       return;
     setScheduled(false);
-    focusIntoView(activeElement);
+    activeElement.focus({ preventScroll: true });
   }, [activeItem, scheduled]);
   return schedule;
 }
-var ZZBJOUY4_useComposite = _7GCARSHZ_createHook(
+var AAVDGJD5_useComposite = NQJBHION_createHook(
   (_a) => {
     var _b = _a, {
       store,
@@ -69263,19 +69339,19 @@ var ZZBJOUY4_useComposite = _7GCARSHZ_createHook(
     const previousElementRef = (0,external_React_.useRef)(null);
     const scheduleFocus = useScheduleFocus(store);
     const moves = store.useState("moves");
-    useSafeLayoutEffect(() => {
+    (0,external_React_.useEffect)(() => {
       var _a2;
+      if (!moves)
+        return;
       if (!composite)
         return;
       if (!focusOnMove)
-        return;
-      if (!moves)
         return;
       const { activeId: activeId2 } = store.getState();
       const itemElement = (_a2 = getEnabledItem(store, activeId2)) == null ? void 0 : _a2.element;
       if (!itemElement)
         return;
-      scheduleFocus();
+      focusIntoView(itemElement);
     }, [moves, composite, focusOnMove]);
     useSafeLayoutEffect(() => {
       if (!composite)
@@ -69315,12 +69391,12 @@ var ZZBJOUY4_useComposite = _7GCARSHZ_createHook(
       const relatedTarget = activeElement || O35LWD4W_getActiveElement(previousElement);
       events_fireBlurEvent(previousElement, { relatedTarget });
     }, [activeId, virtualFocus, composite]);
-    const onKeyDownCapture = ZZBJOUY4_useKeyboardEventProxy(
+    const onKeyDownCapture = AAVDGJD5_useKeyboardEventProxy(
       store,
       props.onKeyDownCapture,
       previousElementRef
     );
-    const onKeyUpCapture = ZZBJOUY4_useKeyboardEventProxy(
+    const onKeyUpCapture = AAVDGJD5_useKeyboardEventProxy(
       store,
       props.onKeyUpCapture,
       previousElementRef
@@ -69405,7 +69481,7 @@ var ZZBJOUY4_useComposite = _7GCARSHZ_createHook(
       const grid = isGrid(renderedItems);
       const up = () => {
         if (grid) {
-          const item = items && ZZBJOUY4_findFirstEnabledItemInTheLastRow(items);
+          const item = items && AAVDGJD5_findFirstEnabledItemInTheLastRow(items);
           return item == null ? void 0 : item.id;
         }
         return store.last();
@@ -69442,7 +69518,7 @@ var ZZBJOUY4_useComposite = _7GCARSHZ_createHook(
         return composite && state.virtualFocus ? (_a2 = getEnabledItem(store, state.activeId)) == null ? void 0 : _a2.id : void 0;
       }
     );
-    props = __spreadProps(_4BKCJXBM_spreadValues({
+    props = PNRLI7OV_spreadProps(PNRLI7OV_spreadValues({
       "aria-activedescendant": activeDescendant
     }, props), {
       ref: useMergeRefs(composite ? store.setBaseElement : null, props.ref),
@@ -69456,13 +69532,13 @@ var ZZBJOUY4_useComposite = _7GCARSHZ_createHook(
     const focusable = store.useState(
       (state) => composite && (state.virtualFocus || state.activeId === null)
     );
-    props = useFocusable(_4BKCJXBM_spreadValues({ focusable }, props));
+    props = useFocusable(PNRLI7OV_spreadValues({ focusable }, props));
     return props;
   }
 );
-var ZZBJOUY4_Composite = _7GCARSHZ_createComponent((props) => {
-  const htmlProps = ZZBJOUY4_useComposite(props);
-  return _7GCARSHZ_createElement("div", htmlProps);
+var AAVDGJD5_Composite = NQJBHION_createComponent((props) => {
+  const htmlProps = AAVDGJD5_useComposite(props);
+  return NQJBHION_createElement("div", htmlProps);
 });
 if (false) {}
 
@@ -69482,7 +69558,7 @@ if (false) {}
 
 // src/toolbar/toolbar.tsx
 
-var useToolbar = _7GCARSHZ_createHook((_a) => {
+var useToolbar = NQJBHION_createHook((_a) => {
   var _b = _a, { store } = _b, props = __objRest(_b, ["store"]);
   const orientation = store.useState(
     (state) => state.orientation === "both" ? void 0 : state.orientation
@@ -69492,16 +69568,16 @@ var useToolbar = _7GCARSHZ_createHook((_a) => {
     (element) => /* @__PURE__ */ (0,jsx_runtime.jsx)(DFUIIKXE_ToolbarContext.Provider, { value: store, children: element }),
     [store]
   );
-  props = _4BKCJXBM_spreadValues({
+  props = PNRLI7OV_spreadValues({
     role: "toolbar",
     "aria-orientation": orientation
   }, props);
-  props = ZZBJOUY4_useComposite(_4BKCJXBM_spreadValues({ store }, props));
+  props = AAVDGJD5_useComposite(PNRLI7OV_spreadValues({ store }, props));
   return props;
 });
-var Toolbar = _7GCARSHZ_createComponent((props) => {
+var Toolbar = NQJBHION_createComponent((props) => {
   const htmlProps = useToolbar(props);
-  return _7GCARSHZ_createElement("div", htmlProps);
+  return NQJBHION_createElement("div", htmlProps);
 });
 if (false) {}
 

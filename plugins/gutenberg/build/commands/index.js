@@ -3118,7 +3118,7 @@ function commandLoaders(state = {}, action) {
   return state;
 }
 /**
- * Reducer returning the command center open state.
+ * Reducer returning the command palette open state.
  *
  * @param {Object} state  Current state.
  * @param {Object} action Dispatched action.
@@ -3139,7 +3139,7 @@ function isOpen(state = false, action) {
   return state;
 }
 /**
- * Reducer returning the command center's active context.
+ * Reducer returning the command palette's active context.
  *
  * @param {Object} state  Current state.
  * @param {Object} action Dispatched action.
@@ -3251,7 +3251,7 @@ function unregisterCommandLoader(name) {
   };
 }
 /**
- * Opens the command center.
+ * Opens the command palette.
  *
  * @return {Object} action.
  */
@@ -3262,7 +3262,7 @@ function actions_open() {
   };
 }
 /**
- * Closes the command center.
+ * Closes the command palette.
  *
  * @return {Object} action.
  */
@@ -3809,7 +3809,7 @@ function CommandMenu() {
     registerShortcut({
       name: 'core/commands',
       category: 'global',
-      description: (0,external_wp_i18n_namespaceObject.__)('Open the global command menu'),
+      description: (0,external_wp_i18n_namespaceObject.__)('Open the command palette'),
       keyCombination: {
         modifier: 'primary',
         character: 'k'
@@ -3837,7 +3837,7 @@ function CommandMenu() {
   };
 
   (0,external_wp_element_namespaceObject.useEffect)(() => {
-    // Focus the command menu input when mounting the modal.
+    // Focus the command palette input when mounting the modal.
     if (isOpen) {
       commandMenuInput.current.focus();
     }
@@ -3856,7 +3856,7 @@ function CommandMenu() {
   }, (0,external_wp_element_namespaceObject.createElement)("div", {
     className: "commands-command-menu__container"
   }, (0,external_wp_element_namespaceObject.createElement)(Le, {
-    label: (0,external_wp_i18n_namespaceObject.__)('Global Command Menu')
+    label: (0,external_wp_i18n_namespaceObject.__)('Command palette')
   }, (0,external_wp_element_namespaceObject.createElement)("div", {
     className: "commands-command-menu__header"
   }, (0,external_wp_element_namespaceObject.createElement)(Le.Input, {
@@ -3889,7 +3889,7 @@ function CommandMenu() {
 
 
 /**
- * Sets the active context of the command center
+ * Sets the active context of the command palette
  *
  * @param {string} context Context to set.
  */
@@ -3936,7 +3936,7 @@ lock(privateApis, {
 
 
 /**
- * Attach a command to the Global command menu.
+ * Attach a command to the command palette.
  *
  * @param {import('../store/actions').WPCommandConfig} command command config.
  */
@@ -3977,7 +3977,7 @@ function useCommand(command) {
 
 
 /**
- * Attach a command loader to the Global command menu.
+ * Attach a command loader to the command palette.
  *
  * @param {import('../store/actions').WPCommandLoaderConfig} loader command loader config.
  */

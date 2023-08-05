@@ -222,7 +222,8 @@ __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  "initialize": () => (/* binding */ initialize)
+  "initialize": () => (/* binding */ initialize),
+  "store": () => (/* reexport */ store)
 });
 
 // NAMESPACE OBJECT: ./packages/customize-widgets/build-module/store/selectors.js
@@ -486,6 +487,24 @@ function blockInserterPanel(state = false, action) {
  *
  * @param {Object} state Global application state.
  *
+ * @example
+ * ```js
+ * import { store as customizeWidgetsStore } from '@wordpress/customize-widgets';
+ * import { __ } from '@wordpress/i18n';
+ * import { useSelect } from '@wordpress/data';
+ *
+ * const ExampleComponent = () => {
+ *    const { isInserterOpened } = useSelect(
+ *        ( select ) => select( customizeWidgetsStore ),
+ *        []
+ *    );
+ *
+ *    return isInserterOpened()
+ *        ? __( 'Inserter is open' )
+ *        : __( 'Inserter is closed.' );
+ * };
+ * ```
+ *
  * @return {boolean} Whether the inserter is opened.
  */
 function isInserterOpened(state) {
@@ -520,6 +539,31 @@ function __experimentalGetInsertionPoint(state) {
  *                                              use an object.
  * @param {string}         value.rootClientId   The root client ID to insert at.
  * @param {number}         value.insertionIndex The index to insert at.
+ *
+ * @example
+ * ```js
+ * import { store as customizeWidgetsStore } from '@wordpress/customize-widgets';
+ * import { __ } from '@wordpress/i18n';
+ * import { useDispatch } from '@wordpress/data';
+ * import { Button } from '@wordpress/components';
+ * import { useState } from '@wordpress/element';
+ *
+ * const ExampleComponent = () => {
+ *   const { setIsInserterOpened } = useDispatch( customizeWidgetsStore );
+ *   const [ isOpen, setIsOpen ] = useState( false );
+ *
+ *    return (
+ *        <Button
+ *            onClick={ () => {
+ *                setIsInserterOpened( ! isOpen );
+ *                setIsOpen( ! isOpen );
+ *            } }
+ *        >
+ *            { __( 'Open/close inserter' ) }
+ *        </Button>
+ *    );
+ * };
+ * ```
  *
  * @return {Object} Action object.
  */
@@ -3361,6 +3405,7 @@ function initialize(editorName, blockEditorSettings) {
     }));
   });
 }
+
 
 })();
 

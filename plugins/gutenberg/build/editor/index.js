@@ -1287,6 +1287,7 @@ __webpack_require__.d(__webpack_exports__, {
   "DocumentOutlineCheck": () => (/* reexport */ check),
   "EditorHistoryRedo": () => (/* reexport */ editor_history_redo),
   "EditorHistoryUndo": () => (/* reexport */ editor_history_undo),
+  "EditorKeyboardShortcuts": () => (/* reexport */ EditorKeyboardShortcuts),
   "EditorKeyboardShortcutsRegister": () => (/* reexport */ register_shortcuts),
   "EditorNotices": () => (/* reexport */ editor_notices),
   "EditorProvider": () => (/* reexport */ provider),
@@ -1326,7 +1327,7 @@ __webpack_require__.d(__webpack_exports__, {
   "PostPendingStatus": () => (/* reexport */ post_pending_status),
   "PostPendingStatusCheck": () => (/* reexport */ post_pending_status_check),
   "PostPingbacks": () => (/* reexport */ post_pingbacks),
-  "PostPreviewButton": () => (/* reexport */ post_preview_button),
+  "PostPreviewButton": () => (/* reexport */ PostPreviewButton),
   "PostPublishButton": () => (/* reexport */ post_publish_button),
   "PostPublishButtonLabel": () => (/* reexport */ label),
   "PostPublishPanel": () => (/* reexport */ post_publish_panel),
@@ -1340,6 +1341,7 @@ __webpack_require__.d(__webpack_exports__, {
   "PostStickyCheck": () => (/* reexport */ post_sticky_check),
   "PostSwitchToDraftButton": () => (/* reexport */ post_switch_to_draft_button),
   "PostSyncStatus": () => (/* reexport */ PostSyncStatus),
+  "PostSyncStatusModal": () => (/* reexport */ PostSyncStatusModal),
   "PostTaxonomies": () => (/* reexport */ post_taxonomies),
   "PostTaxonomiesCheck": () => (/* reexport */ post_taxonomies_check),
   "PostTaxonomiesFlatTermSelector": () => (/* reexport */ FlatTermSelector),
@@ -1368,7 +1370,7 @@ __webpack_require__.d(__webpack_exports__, {
   "URLInputButton": () => (/* reexport */ URLInputButton),
   "URLPopover": () => (/* reexport */ URLPopover),
   "UnsavedChangesWarning": () => (/* reexport */ UnsavedChangesWarning),
-  "VisualEditorGlobalKeyboardShortcuts": () => (/* reexport */ visual_editor_shortcuts),
+  "VisualEditorGlobalKeyboardShortcuts": () => (/* reexport */ VisualEditorGlobalKeyboardShortcuts),
   "Warning": () => (/* reexport */ Warning),
   "WordCount": () => (/* reexport */ WordCount),
   "WritingFlow": () => (/* reexport */ WritingFlow),
@@ -1520,6 +1522,7 @@ var actions_namespaceObject = {};
 __webpack_require__.r(actions_namespaceObject);
 __webpack_require__.d(actions_namespaceObject, {
   "__experimentalTearDownEditor": () => (__experimentalTearDownEditor),
+  "__unstableSaveForPreview": () => (__unstableSaveForPreview),
   "autosave": () => (autosave),
   "clearSelectedBlock": () => (clearSelectedBlock),
   "createUndoLevel": () => (createUndoLevel),
@@ -2385,15 +2388,6 @@ function getTemplatePartIcon(iconName) {
 
 const EMPTY_OBJECT = {};
 /**
- * Shared reference to an empty array for cases where it is important to avoid
- * returning a new array reference on every invocation, as in a connected or
- * other pure component which performs `shouldComponentUpdate` check on props.
- * This should be used as a last resort, since the normalized data should be
- * maintained by the reducer result in state.
- */
-
-const EMPTY_ARRAY = [];
-/**
  * Returns true if any past editor history snapshots exist, or false otherwise.
  *
  * @param {Object} state Global application state.
@@ -2802,43 +2796,53 @@ function isEditedPostSaveable(state) {
  * @return {boolean} Whether post has content.
  */
 
-function isEditedPostEmpty(state) {
+const isEditedPostEmpty = (0,external_wp_data_namespaceObject.createRegistrySelector)(select => state => {
   // While the condition of truthy content string is sufficient to determine
   // emptiness, testing saveable blocks length is a trivial operation. Since
   // this function can be called frequently, optimize for the fast case as a
   // condition of the mere existence of blocks. Note that the value of edited
   // content takes precedent over block content, and must fall through to the
   // default logic.
-  const blocks = getEditorBlocks(state);
+  const postId = getCurrentPostId(state);
+  const postType = getCurrentPostType(state);
+  const record = select(external_wp_coreData_namespaceObject.store).getEditedEntityRecord('postType', postType, postId);
 
-  if (blocks.length) {
-    // Pierce the abstraction of the serializer in knowing that blocks are
-    // joined with newlines such that even if every individual block
-    // produces an empty save result, the serialized content is non-empty.
-    if (blocks.length > 1) {
-      return false;
-    } // There are two conditions under which the optimization cannot be
-    // assumed, and a fallthrough to getEditedPostContent must occur:
-    //
-    // 1. getBlocksForSerialization has special treatment in omitting a
-    //    single unmodified default block.
-    // 2. Comment delimiters are omitted for a freeform or unregistered
-    //    block in its serialization. The freeform block specifically may
-    //    produce an empty string in its saved output.
-    //
-    // For all other content, the single block is assumed to make a post
-    // non-empty, if only by virtue of its own comment delimiters.
+  if (typeof record.content !== 'function') {
+    return !record.content;
+  }
+
+  const blocks = getEditedPostAttribute(state, 'blocks');
+
+  if (blocks.length === 0) {
+    return true;
+  } // Pierce the abstraction of the serializer in knowing that blocks are
+  // joined with newlines such that even if every individual block
+  // produces an empty save result, the serialized content is non-empty.
 
 
-    const blockName = blocks[0].name;
+  if (blocks.length > 1) {
+    return false;
+  } // There are two conditions under which the optimization cannot be
+  // assumed, and a fallthrough to getEditedPostContent must occur:
+  //
+  // 1. getBlocksForSerialization has special treatment in omitting a
+  //    single unmodified default block.
+  // 2. Comment delimiters are omitted for a freeform or unregistered
+  //    block in its serialization. The freeform block specifically may
+  //    produce an empty string in its saved output.
+  //
+  // For all other content, the single block is assumed to make a post
+  // non-empty, if only by virtue of its own comment delimiters.
 
-    if (blockName !== (0,external_wp_blocks_namespaceObject.getDefaultBlockName)() && blockName !== (0,external_wp_blocks_namespaceObject.getFreeformContentHandlerName)()) {
-      return false;
-    }
+
+  const blockName = blocks[0].name;
+
+  if (blockName !== (0,external_wp_blocks_namespaceObject.getDefaultBlockName)() && blockName !== (0,external_wp_blocks_namespaceObject.getFreeformContentHandlerName)()) {
+    return false;
   }
 
   return !getEditedPostContent(state);
-}
+});
 /**
  * Returns true if the post can be autosaved, or false otherwise.
  *
@@ -2953,11 +2957,9 @@ function isDeletingPost(state) {
  * @return {boolean} Whether post is being saved.
  */
 
-const isSavingPost = (0,external_wp_data_namespaceObject.createRegistrySelector)(select => state => {
-  const postType = getCurrentPostType(state);
-  const postId = getCurrentPostId(state);
-  return select(external_wp_coreData_namespaceObject.store).isSavingEntityRecord('postType', postType, postId);
-});
+function isSavingPost(state) {
+  return !!state.saving.pending;
+}
 /**
  * Returns true if non-post entities are currently being saved, or false otherwise.
  *
@@ -3012,11 +3014,7 @@ const didPostSaveRequestFail = (0,external_wp_data_namespaceObject.createRegistr
  */
 
 function isAutosavingPost(state) {
-  if (!isSavingPost(state)) {
-    return false;
-  }
-
-  return Boolean(state.saving.options?.isAutosave);
+  return isSavingPost(state) && Boolean(state.saving.options?.isAutosave);
 }
 /**
  * Returns true if the post is being previewed, or false otherwise.
@@ -3027,11 +3025,7 @@ function isAutosavingPost(state) {
  */
 
 function isPreviewingPost(state) {
-  if (!isSavingPost(state)) {
-    return false;
-  }
-
-  return Boolean(state.saving.options?.isPreview);
+  return isSavingPost(state) && Boolean(state.saving.options?.isPreview);
 }
 /**
  * Returns the post preview link
@@ -3335,9 +3329,9 @@ const isPublishSidebarEnabled = (0,external_wp_data_namespaceObject.createRegist
  * @return {Array} Block list.
  */
 
-function getEditorBlocks(state) {
-  return getEditedPostAttribute(state, 'blocks') || EMPTY_ARRAY;
-}
+const getEditorBlocks = rememo(state => {
+  return getEditedPostAttribute(state, 'blocks') || (0,external_wp_blocks_namespaceObject.parse)(getEditedPostContent(state));
+}, state => [getEditedPostAttribute(state, 'blocks'), getEditedPostContent(state)]);
 /**
  * A block selection object.
  *
@@ -3996,6 +3990,7 @@ function getNotificationArgumentsForTrashFail(data) {
 
 
 
+
 /**
  * Internal dependencies
  */
@@ -4161,11 +4156,18 @@ const savePost = (options = {}) => async ({
     options
   });
   await registry.dispatch(external_wp_coreData_namespaceObject.store).saveEntityRecord('postType', previousRecord.type, edits, options);
+  let error = registry.select(external_wp_coreData_namespaceObject.store).getLastEntitySaveError('postType', previousRecord.type, previousRecord.id);
+
+  if (!error) {
+    await (0,external_wp_hooks_namespaceObject.applyFilters)('editor.__unstableSavePost', Promise.resolve(), options).catch(err => {
+      error = err;
+    });
+  }
+
   dispatch({
     type: 'REQUEST_POST_UPDATE_FINISH',
     options
   });
-  const error = registry.select(external_wp_coreData_namespaceObject.store).getLastEntitySaveError('postType', previousRecord.type, previousRecord.id);
 
   if (error) {
     const args = getNotificationArgumentsForSaveFail({
@@ -4279,6 +4281,28 @@ const autosave = ({
       ...options
     });
   }
+};
+const __unstableSaveForPreview = ({
+  forceIsAutosaveable
+}) => async ({
+  select,
+  dispatch
+}) => {
+  if ((forceIsAutosaveable || select.isEditedPostAutosaveable()) && !select.isPostLocked()) {
+    const isDraft = ['draft', 'auto-draft'].includes(select.getEditedPostAttribute('status'));
+
+    if (isDraft) {
+      await dispatch.savePost({
+        isPreview: true
+      });
+    } else {
+      await dispatch.autosave({
+        isPreview: true
+      });
+    }
+  }
+
+  return select.getEditedPostPreviewLink();
 };
 /**
  * Action that restores last popped state in undo history.
@@ -4927,6 +4951,61 @@ function setDefaultCompleters(completers = []) {
 
 
 
+;// CONCATENATED MODULE: external ["wp","keyboardShortcuts"]
+const external_wp_keyboardShortcuts_namespaceObject = window["wp"]["keyboardShortcuts"];
+;// CONCATENATED MODULE: ./packages/editor/build-module/components/global-keyboard-shortcuts/index.js
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+function EditorKeyboardShortcuts() {
+  const {
+    redo,
+    undo,
+    savePost
+  } = (0,external_wp_data_namespaceObject.useDispatch)(store_store);
+  const {
+    isEditedPostDirty,
+    isPostSavingLocked
+  } = (0,external_wp_data_namespaceObject.useSelect)(store_store);
+  (0,external_wp_keyboardShortcuts_namespaceObject.useShortcut)('core/editor/undo', event => {
+    undo();
+    event.preventDefault();
+  });
+  (0,external_wp_keyboardShortcuts_namespaceObject.useShortcut)('core/editor/redo', event => {
+    redo();
+    event.preventDefault();
+  });
+  (0,external_wp_keyboardShortcuts_namespaceObject.useShortcut)('core/editor/save', event => {
+    event.preventDefault();
+    /**
+     * Do not save the post if post saving is locked.
+     */
+
+    if (isPostSavingLocked()) {
+      return;
+    } // TODO: This should be handled in the `savePost` effect in
+    // considering `isSaveable`. See note on `isEditedPostSaveable`
+    // selector about dirtiness and meta-boxes.
+    //
+    // See: `isEditedPostSaveable`
+
+
+    if (!isEditedPostDirty()) {
+      return;
+    }
+
+    savePost();
+  });
+  return null;
+}
+
 ;// CONCATENATED MODULE: ./packages/editor/build-module/components/autocompleters/index.js
 
 
@@ -5253,118 +5332,6 @@ function DocumentOutlineCheck({
   blocks: select(external_wp_blockEditor_namespaceObject.store).getBlocks()
 }))(DocumentOutlineCheck));
 
-;// CONCATENATED MODULE: external ["wp","keyboardShortcuts"]
-const external_wp_keyboardShortcuts_namespaceObject = window["wp"]["keyboardShortcuts"];
-;// CONCATENATED MODULE: ./packages/editor/build-module/components/global-keyboard-shortcuts/save-shortcut.js
-/**
- * WordPress dependencies
- */
-
-
-
-/**
- * Internal dependencies
- */
-
-
-
-function SaveShortcut({
-  resetBlocksOnSave
-}) {
-  const {
-    resetEditorBlocks,
-    savePost
-  } = (0,external_wp_data_namespaceObject.useDispatch)(store_store);
-  const {
-    isEditedPostDirty,
-    getPostEdits,
-    isPostSavingLocked
-  } = (0,external_wp_data_namespaceObject.useSelect)(store_store);
-  (0,external_wp_keyboardShortcuts_namespaceObject.useShortcut)('core/editor/save', event => {
-    event.preventDefault();
-    /**
-     * Do not save the post if post saving is locked.
-     */
-
-    if (isPostSavingLocked()) {
-      return;
-    } // TODO: This should be handled in the `savePost` effect in
-    // considering `isSaveable`. See note on `isEditedPostSaveable`
-    // selector about dirtiness and meta-boxes.
-    //
-    // See: `isEditedPostSaveable`
-
-
-    if (!isEditedPostDirty()) {
-      return;
-    } // The text editor requires that editor blocks are updated for a
-    // save to work correctly. Usually this happens when the textarea
-    // for the code editors blurs, but the shortcut can be used without
-    // blurring the textarea.
-
-
-    if (resetBlocksOnSave) {
-      const postEdits = getPostEdits();
-
-      if (postEdits.content && typeof postEdits.content === 'string') {
-        const blocks = (0,external_wp_blocks_namespaceObject.parse)(postEdits.content);
-        resetEditorBlocks(blocks);
-      }
-    }
-
-    savePost();
-  });
-  return null;
-}
-
-/* harmony default export */ const save_shortcut = (SaveShortcut);
-
-;// CONCATENATED MODULE: ./packages/editor/build-module/components/global-keyboard-shortcuts/visual-editor-shortcuts.js
-
-
-/**
- * WordPress dependencies
- */
-
-
-/**
- * Internal dependencies
- */
-
-
-
-
-function VisualEditorGlobalKeyboardShortcuts() {
-  const {
-    redo,
-    undo
-  } = (0,external_wp_data_namespaceObject.useDispatch)(store_store);
-  (0,external_wp_keyboardShortcuts_namespaceObject.useShortcut)('core/editor/undo', event => {
-    undo();
-    event.preventDefault();
-  });
-  (0,external_wp_keyboardShortcuts_namespaceObject.useShortcut)('core/editor/redo', event => {
-    redo();
-    event.preventDefault();
-  });
-  return (0,external_wp_element_namespaceObject.createElement)(save_shortcut, null);
-}
-
-/* harmony default export */ const visual_editor_shortcuts = (VisualEditorGlobalKeyboardShortcuts);
-
-;// CONCATENATED MODULE: ./packages/editor/build-module/components/global-keyboard-shortcuts/text-editor-shortcuts.js
-
-
-/**
- * Internal dependencies
- */
-
-function TextEditorGlobalKeyboardShortcuts() {
-  return (0,external_wp_element_namespaceObject.createElement)(save_shortcut, {
-    resetBlocksOnSave: true
-  });
-}
-
 ;// CONCATENATED MODULE: external ["wp","keycodes"]
 const external_wp_keycodes_namespaceObject = window["wp"]["keycodes"];
 ;// CONCATENATED MODULE: ./packages/editor/build-module/components/global-keyboard-shortcuts/register-shortcuts.js
@@ -5675,8 +5642,6 @@ const external_wp_htmlEntities_namespaceObject = window["wp"]["htmlEntities"];
 
 
 
-
-
 /**
  * Internal dependencies
  */
@@ -5685,25 +5650,14 @@ const external_wp_htmlEntities_namespaceObject = window["wp"]["htmlEntities"];
 function EntityRecordItem({
   record,
   checked,
-  onChange,
-  closePanel
+  onChange
 }) {
   const {
     name,
     kind,
     title,
     key
-  } = record;
-  const parentBlockId = (0,external_wp_data_namespaceObject.useSelect)(select => {
-    // Get entity's blocks.
-    const {
-      blocks = []
-    } = select(external_wp_coreData_namespaceObject.store).getEditedEntityRecord(kind, name, key); // Get parents of the entity's first block.
-
-    const parents = select(external_wp_blockEditor_namespaceObject.store).getBlockParents(blocks[0]?.clientId); // Return closest parent block's clientId.
-
-    return parents[parents.length - 1];
-  }, []); // Handle templates that might use default descriptive titles.
+  } = record; // Handle templates that might use default descriptive titles.
 
   const entityRecordTitle = (0,external_wp_data_namespaceObject.useSelect)(select => {
     if ('postType' !== kind || 'wp_template' !== name) {
@@ -5713,33 +5667,12 @@ function EntityRecordItem({
     const template = select(external_wp_coreData_namespaceObject.store).getEditedEntityRecord(kind, name, key);
     return select(store_store).__experimentalGetTemplateInfo(template).title;
   }, [name, kind, title, key]);
-  const isSelected = (0,external_wp_data_namespaceObject.useSelect)(select => {
-    const selectedBlockId = select(external_wp_blockEditor_namespaceObject.store).getSelectedBlockClientId();
-    return selectedBlockId === parentBlockId;
-  }, [parentBlockId]);
-  const isSelectedText = isSelected ? (0,external_wp_i18n_namespaceObject.__)('Selected') : (0,external_wp_i18n_namespaceObject.__)('Select');
-  const {
-    selectBlock
-  } = (0,external_wp_data_namespaceObject.useDispatch)(external_wp_blockEditor_namespaceObject.store);
-  const selectParentBlock = (0,external_wp_element_namespaceObject.useCallback)(() => selectBlock(parentBlockId), [parentBlockId]);
-  const selectAndDismiss = (0,external_wp_element_namespaceObject.useCallback)(() => {
-    selectBlock(parentBlockId);
-    closePanel();
-  }, [parentBlockId]);
   return (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.PanelRow, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.CheckboxControl, {
     __nextHasNoMarginBottom: true,
     label: (0,external_wp_element_namespaceObject.createElement)("strong", null, (0,external_wp_htmlEntities_namespaceObject.decodeEntities)(entityRecordTitle) || (0,external_wp_i18n_namespaceObject.__)('Untitled')),
     checked: checked,
     onChange: onChange
-  }), parentBlockId ? (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.Fragment, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
-    onClick: selectParentBlock,
-    className: "entities-saved-states__find-entity",
-    disabled: isSelected
-  }, isSelectedText), (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
-    onClick: selectAndDismiss,
-    className: "entities-saved-states__find-entity-small",
-    disabled: isSelected
-  }, isSelectedText)) : null);
+  }));
 }
 
 ;// CONCATENATED MODULE: ./packages/editor/build-module/components/entities-saved-states/entity-type-list.js
@@ -5775,8 +5708,7 @@ function getEntityDescription(entity, count) {
 function EntityTypeList({
   list,
   unselectedEntities,
-  setUnselectedEntities,
-  closePanel
+  setUnselectedEntities
 }) {
   const count = list.length;
   const firstRecord = list[0];
@@ -5800,8 +5732,7 @@ function EntityTypeList({
       key: record.key || record.property,
       record: record,
       checked: !unselectedEntities.some(elt => elt.kind === record.kind && elt.name === record.name && elt.key === record.key && elt.property === record.property),
-      onChange: value => setUnselectedEntities(record, value),
-      closePanel: closePanel
+      onChange: value => setUnselectedEntities(record, value)
     });
   }));
 }
@@ -6050,7 +5981,6 @@ function EntitiesSavedStatesExtensible({
     return (0,external_wp_element_namespaceObject.createElement)(EntityTypeList, {
       key: list[0].name,
       list: list,
-      closePanel: dismissPanel,
       unselectedEntities: unselectedEntities,
       setUnselectedEntities: setUnselectedEntities
     });
@@ -8045,14 +7975,8 @@ function PostPingbacks({
 
 
 /**
- * External dependencies
- */
-
-/**
  * WordPress dependencies
  */
-
-
 
 
 
@@ -8146,54 +8070,44 @@ function writeInterstitialMessage(targetDocument) {
   targetDocument.close();
 }
 
-class PostPreviewButton extends external_wp_element_namespaceObject.Component {
-  constructor() {
-    super(...arguments);
-    this.buttonRef = (0,external_wp_element_namespaceObject.createRef)();
-    this.openPreviewWindow = this.openPreviewWindow.bind(this);
+function PostPreviewButton({
+  className,
+  textContent,
+  forceIsAutosaveable,
+  role,
+  onPreview
+}) {
+  const {
+    postId,
+    currentPostLink,
+    previewLink,
+    isSaveable,
+    isViewable
+  } = (0,external_wp_data_namespaceObject.useSelect)(select => {
+    var _postType$viewable;
+
+    const editor = select(store_store);
+    const core = select(external_wp_coreData_namespaceObject.store);
+    const postType = core.getPostType(editor.getCurrentPostType('type'));
+    return {
+      postId: editor.getCurrentPostId(),
+      currentPostLink: editor.getCurrentPostAttribute('link'),
+      previewLink: editor.getEditedPostPreviewLink(),
+      isSaveable: editor.isEditedPostSaveable(),
+      isViewable: (_postType$viewable = postType?.viewable) !== null && _postType$viewable !== void 0 ? _postType$viewable : false
+    };
+  }, []);
+  const {
+    __unstableSaveForPreview
+  } = (0,external_wp_data_namespaceObject.useDispatch)(store_store);
+
+  if (!isViewable) {
+    return null;
   }
 
-  componentDidUpdate(prevProps) {
-    const {
-      previewLink
-    } = this.props; // This relies on the window being responsible to unset itself when
-    // navigation occurs or a new preview window is opened, to avoid
-    // unintentional forceful redirects.
+  const targetId = `wp-preview-${postId}`;
 
-    if (previewLink && !prevProps.previewLink) {
-      this.setPreviewWindowLink(previewLink);
-    }
-  }
-  /**
-   * Sets the preview window's location to the given URL, if a preview window
-   * exists and is not closed.
-   *
-   * @param {string} url URL to assign as preview window location.
-   */
-
-
-  setPreviewWindowLink(url) {
-    const {
-      previewWindow
-    } = this;
-
-    if (previewWindow && !previewWindow.closed) {
-      previewWindow.location = url;
-
-      if (this.buttonRef.current) {
-        this.buttonRef.current.focus();
-      }
-    }
-  }
-
-  getWindowTarget() {
-    const {
-      postId
-    } = this.props;
-    return `wp-preview-${postId}`;
-  }
-
-  openPreviewWindow(event) {
+  const openPreviewWindow = async event => {
     // Our Preview button has its 'href' and 'target' set correctly for a11y
     // purposes. Unfortunately, though, we can't rely on the default 'click'
     // handler since sometimes it incorrectly opens a new tab instead of reusing
@@ -8201,107 +8115,37 @@ class PostPreviewButton extends external_wp_element_namespaceObject.Component {
     // https://github.com/WordPress/gutenberg/pull/8330
     event.preventDefault(); // Open up a Preview tab if needed. This is where we'll show the preview.
 
-    if (!this.previewWindow || this.previewWindow.closed) {
-      this.previewWindow = window.open('', this.getWindowTarget());
-    } // Focus the Preview tab. This might not do anything, depending on the browser's
+    const previewWindow = window.open('', targetId); // Focus the Preview tab. This might not do anything, depending on the browser's
     // and user's preferences.
     // https://html.spec.whatwg.org/multipage/interaction.html#dom-window-focus
 
-
-    this.previewWindow.focus();
-
-    if ( // If we don't need to autosave the post before previewing, then we simply
-    // load the Preview URL in the Preview tab.
-    !this.props.isAutosaveable || // Do not save or overwrite the post, if the post is already locked.
-    this.props.isPostLocked) {
-      this.setPreviewWindowLink(event.target.href);
-      return;
-    } // Request an autosave. This happens asynchronously and causes the component
-    // to update when finished.
-
-
-    if (this.props.isDraft) {
-      this.props.savePost({
-        isPreview: true
-      });
-    } else {
-      this.props.autosave({
-        isPreview: true
-      });
-    } // Display a 'Generating preview' message in the Preview tab while we wait for the
-    // autosave to finish.
+    previewWindow.focus();
+    writeInterstitialMessage(previewWindow.document);
+    const link = await __unstableSaveForPreview({
+      forceIsAutosaveable
+    });
+    previewWindow.location = link;
+    onPreview?.();
+  }; // Link to the `?preview=true` URL if we have it, since this lets us see
+  // changes that were autosaved since the post was last published. Otherwise,
+  // just link to the post's URL.
 
 
-    writeInterstitialMessage(this.previewWindow.document);
-  }
-
-  render() {
-    const {
-      previewLink,
-      currentPostLink,
-      isSaveable,
-      role
-    } = this.props; // Link to the `?preview=true` URL if we have it, since this lets us see
-    // changes that were autosaved since the post was last published. Otherwise,
-    // just link to the post's URL.
-
-    const href = previewLink || currentPostLink;
-    const classNames = classnames_default()({
-      'editor-post-preview': !this.props.className
-    }, this.props.className);
-    return (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
-      variant: !this.props.className ? 'tertiary' : undefined,
-      className: classNames,
-      href: href,
-      target: this.getWindowTarget(),
-      disabled: !isSaveable,
-      onClick: this.openPreviewWindow,
-      ref: this.buttonRef,
-      role: role
-    }, this.props.textContent ? this.props.textContent : (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.Fragment, null, (0,external_wp_i18n_namespaceObject._x)('Preview', 'imperative verb'), (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.VisuallyHidden, {
-      as: "span"
-    },
-    /* translators: accessibility text */
-    (0,external_wp_i18n_namespaceObject.__)('(opens in a new tab)'))));
-  }
-
+  const href = previewLink || currentPostLink;
+  return (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
+    variant: !className ? 'tertiary' : undefined,
+    className: className || 'editor-post-preview',
+    href: href,
+    target: targetId,
+    disabled: !isSaveable,
+    onClick: openPreviewWindow,
+    role: role
+  }, textContent || (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.Fragment, null, (0,external_wp_i18n_namespaceObject._x)('Preview', 'imperative verb'), (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.VisuallyHidden, {
+    as: "span"
+  },
+  /* translators: accessibility text */
+  (0,external_wp_i18n_namespaceObject.__)('(opens in a new tab)'))));
 }
-/* harmony default export */ const post_preview_button = ((0,external_wp_compose_namespaceObject.compose)([(0,external_wp_data_namespaceObject.withSelect)((select, {
-  forcePreviewLink,
-  forceIsAutosaveable
-}) => {
-  var _postType$viewable;
-
-  const {
-    getCurrentPostId,
-    getCurrentPostAttribute,
-    getEditedPostAttribute,
-    isEditedPostSaveable,
-    isEditedPostAutosaveable,
-    getEditedPostPreviewLink,
-    isPostLocked
-  } = select(store_store);
-  const {
-    getPostType
-  } = select(external_wp_coreData_namespaceObject.store);
-  const previewLink = getEditedPostPreviewLink();
-  const postType = getPostType(getEditedPostAttribute('type'));
-  return {
-    postId: getCurrentPostId(),
-    currentPostLink: getCurrentPostAttribute('link'),
-    previewLink: forcePreviewLink !== undefined ? forcePreviewLink : previewLink,
-    isSaveable: isEditedPostSaveable(),
-    isAutosaveable: forceIsAutosaveable || isEditedPostAutosaveable(),
-    isViewable: (_postType$viewable = postType?.viewable) !== null && _postType$viewable !== void 0 ? _postType$viewable : false,
-    isDraft: ['draft', 'auto-draft'].indexOf(getEditedPostAttribute('status')) !== -1,
-    isPostLocked: isPostLocked()
-  };
-}), (0,external_wp_data_namespaceObject.withDispatch)(dispatch => ({
-  autosave: dispatch(store_store).autosave,
-  savePost: dispatch(store_store).savePost
-})), (0,external_wp_compose_namespaceObject.ifCondition)(({
-  isViewable
-}) => isViewable)])(PostPreviewButton));
 
 ;// CONCATENATED MODULE: ./packages/editor/build-module/components/post-publish-button/label.js
 /**
@@ -8345,9 +8189,7 @@ function PublishButtonLabel({
 
   return (0,external_wp_i18n_namespaceObject.__)('Publish');
 }
-/* harmony default export */ const label = ((0,external_wp_compose_namespaceObject.compose)([(0,external_wp_data_namespaceObject.withSelect)((select, {
-  forceIsSaving
-}) => {
+/* harmony default export */ const label = ((0,external_wp_compose_namespaceObject.compose)([(0,external_wp_data_namespaceObject.withSelect)(select => {
   var _getCurrentPost$_link;
 
   const {
@@ -8362,7 +8204,7 @@ function PublishButtonLabel({
   return {
     isPublished: isCurrentPostPublished(),
     isBeingScheduled: isEditedPostBeingScheduled(),
-    isSaving: forceIsSaving || isSavingPost(),
+    isSaving: isSavingPost(),
     isPublishing: isPublishingPost(),
     hasPublishAction: (_getCurrentPost$_link = getCurrentPost()._links?.['wp:action-publish']) !== null && _getCurrentPost$_link !== void 0 ? _getCurrentPost$_link : false,
     postType: getCurrentPostType(),
@@ -8472,7 +8314,6 @@ class PostPublishButton extends external_wp_element_namespaceObject.Component {
   render() {
     const {
       forceIsDirty,
-      forceIsSaving,
       hasPublishAction,
       isBeingScheduled,
       isOpen,
@@ -8491,8 +8332,8 @@ class PostPublishButton extends external_wp_element_namespaceObject.Component {
       hasNonPostEntityChanges,
       isSavingNonPostEntityChanges
     } = this.props;
-    const isButtonDisabled = (isSaving || forceIsSaving || !isSaveable || isPostSavingLocked || !isPublishable && !forceIsDirty) && (!hasNonPostEntityChanges || isSavingNonPostEntityChanges);
-    const isToggleDisabled = (isPublished || isSaving || forceIsSaving || !isSaveable || !isPublishable && !forceIsDirty) && (!hasNonPostEntityChanges || isSavingNonPostEntityChanges);
+    const isButtonDisabled = (isSaving || !isSaveable || isPostSavingLocked || !isPublishable && !forceIsDirty) && (!hasNonPostEntityChanges || isSavingNonPostEntityChanges);
+    const isToggleDisabled = (isPublished || isSaving || !isSaveable || !isPublishable && !forceIsDirty) && (!hasNonPostEntityChanges || isSavingNonPostEntityChanges);
     let publishStatus;
 
     if (!hasPublishAction) {
@@ -8540,7 +8381,6 @@ class PostPublishButton extends external_wp_element_namespaceObject.Component {
     };
     const toggleChildren = isBeingScheduled ? (0,external_wp_i18n_namespaceObject.__)('Schedule…') : (0,external_wp_i18n_namespaceObject.__)('Publish');
     const buttonChildren = (0,external_wp_element_namespaceObject.createElement)(label, {
-      forceIsSaving: forceIsSaving,
       hasNonPostEntityChanges: hasNonPostEntityChanges
     });
     const componentProps = isToggle ? toggleProps : buttonProps;
@@ -8573,12 +8413,9 @@ class PostPublishButton extends external_wp_element_namespaceObject.Component {
     hasNonPostEntityChanges,
     isSavingNonPostEntityChanges
   } = select(store_store);
-
-  const _isAutoSaving = isAutosavingPost();
-
   return {
-    isSaving: isSavingPost() || _isAutoSaving,
-    isAutoSaving: _isAutoSaving,
+    isSaving: isSavingPost(),
+    isAutoSaving: isAutosavingPost(),
     isBeingScheduled: isEditedPostBeingScheduled(),
     visibility: getEditedPostVisibility(),
     isSaveable: isEditedPostSaveable(),
@@ -9517,7 +9354,7 @@ function usePostScheduleLabel({
 function getFullPostScheduleLabel(dateAttribute) {
   const date = (0,external_wp_date_namespaceObject.getDate)(dateAttribute);
   const timezoneAbbreviation = getTimezoneAbbreviation();
-  const formattedDate = (0,external_wp_date_namespaceObject.dateI18n)( // translators: If using a space between 'g:i' and 'a', use a non-breaking sapce.
+  const formattedDate = (0,external_wp_date_namespaceObject.dateI18n)( // translators: If using a space between 'g:i' and 'a', use a non-breaking space.
   (0,external_wp_i18n_namespaceObject._x)('F j, Y g:i\xa0a', 'post schedule full date format'), date);
   return (0,external_wp_i18n_namespaceObject.isRTL)() ? `${timezoneAbbreviation} ${formattedDate}` : `${formattedDate} ${timezoneAbbreviation}`;
 }
@@ -9539,7 +9376,7 @@ function getPostScheduleLabel(dateAttribute, {
 
   if (isSameDay(date, now)) {
     return (0,external_wp_i18n_namespaceObject.sprintf)( // translators: %s: Time of day the post is scheduled for.
-    (0,external_wp_i18n_namespaceObject.__)('Today at %s'), // translators: If using a space between 'g:i' and 'a', use a non-breaking sapce.
+    (0,external_wp_i18n_namespaceObject.__)('Today at %s'), // translators: If using a space between 'g:i' and 'a', use a non-breaking space.
     (0,external_wp_date_namespaceObject.dateI18n)((0,external_wp_i18n_namespaceObject._x)('g:i\xa0a', 'post schedule time format'), date));
   }
 
@@ -9548,12 +9385,12 @@ function getPostScheduleLabel(dateAttribute, {
 
   if (isSameDay(date, tomorrow)) {
     return (0,external_wp_i18n_namespaceObject.sprintf)( // translators: %s: Time of day the post is scheduled for.
-    (0,external_wp_i18n_namespaceObject.__)('Tomorrow at %s'), // translators: If using a space between 'g:i' and 'a', use a non-breaking sapce.
+    (0,external_wp_i18n_namespaceObject.__)('Tomorrow at %s'), // translators: If using a space between 'g:i' and 'a', use a non-breaking space.
     (0,external_wp_date_namespaceObject.dateI18n)((0,external_wp_i18n_namespaceObject._x)('g:i\xa0a', 'post schedule time format'), date));
   }
 
   if (date.getFullYear() === now.getFullYear()) {
-    return (0,external_wp_date_namespaceObject.dateI18n)( // translators: If using a space between 'g:i' and 'a', use a non-breaking sapce.
+    return (0,external_wp_date_namespaceObject.dateI18n)( // translators: If using a space between 'g:i' and 'a', use a non-breaking space.
     (0,external_wp_i18n_namespaceObject._x)('F j g:i\xa0a', 'post schedule date format without year'), date);
   }
 
@@ -9675,7 +9512,7 @@ function MostUsedTerms({
  * @type {Array<any>}
  */
 
-const flat_term_selector_EMPTY_ARRAY = [];
+const EMPTY_ARRAY = [];
 /**
  * Module constants
  */
@@ -9724,7 +9561,7 @@ function FlatTermSelector({
 
     const _taxonomy = getTaxonomy(slug);
 
-    const _termIds = _taxonomy ? getEditedPostAttribute(_taxonomy.rest_base) : flat_term_selector_EMPTY_ARRAY;
+    const _termIds = _taxonomy ? getEditedPostAttribute(_taxonomy.rest_base) : EMPTY_ARRAY;
 
     const query = { ...flat_term_selector_DEFAULT_QUERY,
       include: _termIds.join(','),
@@ -9735,7 +9572,7 @@ function FlatTermSelector({
       hasAssignAction: _taxonomy ? (_post$_links2 = post._links?.['wp:action-assign-' + _taxonomy.rest_base]) !== null && _post$_links2 !== void 0 ? _post$_links2 : false : false,
       taxonomy: _taxonomy,
       termIds: _termIds,
-      terms: _termIds.length ? getEntityRecords('taxonomy', slug, query) : flat_term_selector_EMPTY_ARRAY,
+      terms: _termIds.length ? getEntityRecords('taxonomy', slug, query) : EMPTY_ARRAY,
       hasResolvedTerms: hasFinishedResolution('getEntityRecords', ['taxonomy', slug, query])
     };
   }, [slug]);
@@ -9748,7 +9585,7 @@ function FlatTermSelector({
     return {
       searchResults: !!search ? getEntityRecords('taxonomy', slug, { ...flat_term_selector_DEFAULT_QUERY,
         search
-      }) : flat_term_selector_EMPTY_ARRAY
+      }) : EMPTY_ARRAY
     };
   }, [search, slug]); // Update terms state only after the selectors are resolved.
   // We're using this to avoid terms temporarily disappearing on slow networks
@@ -10967,7 +10804,6 @@ class PostPublishPanel extends external_wp_element_namespaceObject.Component {
   render() {
     const {
       forceIsDirty,
-      forceIsSaving,
       isBeingScheduled,
       isPublished,
       isPublishSidebarEnabled,
@@ -11003,8 +10839,7 @@ class PostPublishPanel extends external_wp_element_namespaceObject.Component {
     }, (0,external_wp_element_namespaceObject.createElement)(post_publish_button, {
       focusOnMount: true,
       onSubmit: this.onSubmit,
-      forceIsDirty: forceIsDirty,
-      forceIsSaving: forceIsSaving
+      forceIsDirty: forceIsDirty
     })), (0,external_wp_element_namespaceObject.createElement)("div", {
       className: "editor-post-publish-panel__header-cancel-button"
     }, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
@@ -11039,6 +10874,7 @@ class PostPublishPanel extends external_wp_element_namespaceObject.Component {
     isCurrentPostScheduled,
     isEditedPostBeingScheduled,
     isEditedPostDirty,
+    isAutosavingPost,
     isSavingPost,
     isSavingNonPostEntityChanges
   } = select(store_store);
@@ -11053,7 +10889,7 @@ class PostPublishPanel extends external_wp_element_namespaceObject.Component {
     isDirty: isEditedPostDirty(),
     isPublished: isCurrentPostPublished(),
     isPublishSidebarEnabled: isPublishSidebarEnabled(),
-    isSaving: isSavingPost(),
+    isSaving: isSavingPost() && !isAutosavingPost(),
     isSavingNonPostEntityChanges: isSavingNonPostEntityChanges(),
     isScheduled: isCurrentPostScheduled()
   };
@@ -11181,15 +11017,12 @@ const cloud = (0,external_wp_element_namespaceObject.createElement)(external_wp_
  * @param {Object}   props                Component props.
  * @param {?boolean} props.forceIsDirty   Whether to force the post to be marked
  *                                        as dirty.
- * @param {?boolean} props.forceIsSaving  Whether to force the post to be marked
- *                                        as being saved.
  * @param {?boolean} props.showIconLabels Whether interface buttons show labels instead of icons
  * @return {import('@wordpress/element').WPComponent} The component.
  */
 
 function PostSavedState({
   forceIsDirty,
-  forceIsSaving,
   showIconLabels = false
 }) {
   const [forceSavedMessage, setForceSavedMessage] = (0,external_wp_element_namespaceObject.useState)(false);
@@ -11224,12 +11057,12 @@ function PostSavedState({
       isNew: isEditedPostNew(),
       isPending: 'pending' === getEditedPostAttribute('status'),
       isPublished: isCurrentPostPublished(),
-      isSaving: forceIsSaving || isSavingPost(),
+      isSaving: isSavingPost(),
       isSaveable: isEditedPostSaveable(),
       isScheduled: isCurrentPostScheduled(),
       hasPublishAction: (_getCurrentPost$_link = getCurrentPost()?._links?.['wp:action-publish']) !== null && _getCurrentPost$_link !== void 0 ? _getCurrentPost$_link : false
     };
-  }, [forceIsDirty, forceIsSaving]);
+  }, [forceIsDirty]);
   const {
     savePost
   } = (0,external_wp_data_namespaceObject.useDispatch)(store_store);
@@ -11575,9 +11408,7 @@ function PostSwitchToDraftButton({
     onClick();
   };
 
-  return (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.FlexItem, {
-    isBlock: true
-  }, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
+  return (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.Fragment, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
     className: "editor-post-switch-to-draft",
     onClick: () => {
       setShowConfirmDialog(true);
@@ -11585,8 +11416,8 @@ function PostSwitchToDraftButton({
     disabled: isSaving,
     variant: "secondary",
     style: {
-      width: '100%',
-      display: 'block'
+      flexGrow: '1',
+      justifyContent: 'center'
     }
   }, (0,external_wp_i18n_namespaceObject.__)('Switch to draft')), (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.__experimentalConfirmDialog, {
     isOpen: showConfirmDialog,
@@ -11621,6 +11452,18 @@ function PostSwitchToDraftButton({
   };
 })])(PostSwitchToDraftButton));
 
+;// CONCATENATED MODULE: external ["wp","privateApis"]
+const external_wp_privateApis_namespaceObject = window["wp"]["privateApis"];
+;// CONCATENATED MODULE: ./packages/editor/build-module/lock-unlock.js
+/**
+ * WordPress dependencies
+ */
+
+const {
+  lock,
+  unlock
+} = (0,external_wp_privateApis_namespaceObject.__dangerousOptInToUnstableAPIsOnlyForCoreModules)('I know using unstable features means my plugin or theme will inevitably break on the next WordPress release.', '@wordpress/editor');
+
 ;// CONCATENATED MODULE: ./packages/editor/build-module/components/post-sync-status/index.js
 
 
@@ -11630,52 +11473,109 @@ function PostSwitchToDraftButton({
 
 
 
+
+
 /**
  * Internal dependencies
  */
 
 
+
 function PostSyncStatus() {
   const {
-    editPost
-  } = (0,external_wp_data_namespaceObject.useDispatch)(store_store);
-  const {
-    meta,
-    postType
+    syncStatus,
+    postType,
+    meta
   } = (0,external_wp_data_namespaceObject.useSelect)(select => {
     const {
       getEditedPostAttribute
     } = select(store_store);
     return {
+      syncStatus: getEditedPostAttribute('wp_pattern_sync_status'),
       meta: getEditedPostAttribute('meta'),
       postType: getEditedPostAttribute('type')
     };
-  }, []);
+  });
 
   if (postType !== 'wp_block') {
     return null;
-  }
+  } // When the post is first created, the top level wp_pattern_sync_status is not set so get meta value instead.
 
-  const onUpdateSync = syncStatus => editPost({
-    meta: { ...meta,
-      wp_block: syncStatus === 'unsynced' ? {
-        sync_status: syncStatus
-      } : null
-    }
-  });
 
-  const syncStatus = meta?.wp_block?.sync_status;
-  const isFullySynced = !syncStatus;
+  const currentSyncStatus = meta?.wp_pattern_sync_status === 'unsynced' ? 'unsynced' : syncStatus;
   return (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.PanelRow, {
     className: "edit-post-sync-status"
-  }, (0,external_wp_element_namespaceObject.createElement)("span", null, (0,external_wp_i18n_namespaceObject.__)('Syncing')), (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.ToggleControl, {
-    __nextHasNoMarginBottom: true,
-    label: isFullySynced ? (0,external_wp_i18n_namespaceObject.__)('Fully synced') : (0,external_wp_i18n_namespaceObject.__)('Not synced'),
-    checked: isFullySynced,
-    onChange: () => {
-      onUpdateSync(syncStatus === 'unsynced' ? 'fully' : 'unsynced');
+  }, (0,external_wp_element_namespaceObject.createElement)("span", null, (0,external_wp_i18n_namespaceObject.__)('Sync status')), (0,external_wp_element_namespaceObject.createElement)("div", null, currentSyncStatus === 'unsynced' ? (0,external_wp_i18n_namespaceObject.__)('Not synced') : (0,external_wp_i18n_namespaceObject.__)('Fully synced')));
+}
+function PostSyncStatusModal() {
+  const {
+    editPost
+  } = (0,external_wp_data_namespaceObject.useDispatch)(store_store);
+  const [isModalOpen, setIsModalOpen] = (0,external_wp_element_namespaceObject.useState)(false);
+  const [syncType, setSyncType] = (0,external_wp_element_namespaceObject.useState)(undefined);
+  const {
+    postType,
+    isNewPost
+  } = (0,external_wp_data_namespaceObject.useSelect)(select => {
+    const {
+      getEditedPostAttribute,
+      isCleanNewPost
+    } = select(store_store);
+    return {
+      postType: getEditedPostAttribute('type'),
+      isNewPost: isCleanNewPost()
+    };
+  }, []);
+  (0,external_wp_element_namespaceObject.useEffect)(() => {
+    if (isNewPost && postType === 'wp_block') {
+      setIsModalOpen(true);
+    } // We only want the modal to open when the page is first loaded.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+
+  }, []);
+
+  const setSyncStatus = () => {
+    editPost({
+      meta: {
+        wp_pattern_sync_status: syncType
+      }
+    });
+  };
+
+  if (postType !== 'wp_block' || !isNewPost) {
+    return null;
+  }
+
+  const {
+    ReusableBlocksRenameHint
+  } = unlock(external_wp_blockEditor_namespaceObject.privateApis);
+  return (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.Fragment, null, isModalOpen && (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Modal, {
+    title: (0,external_wp_i18n_namespaceObject.__)('Set pattern sync status'),
+    onRequestClose: () => {
+      setIsModalOpen(false);
+    },
+    overlayClassName: "reusable-blocks-menu-items__convert-modal"
+  }, (0,external_wp_element_namespaceObject.createElement)("form", {
+    onSubmit: event => {
+      event.preventDefault();
+      setIsModalOpen(false);
+      setSyncStatus();
     }
-  }));
+  }, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.__experimentalVStack, {
+    spacing: "5"
+  }, (0,external_wp_element_namespaceObject.createElement)(ReusableBlocksRenameHint, null), (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.ToggleControl, {
+    label: (0,external_wp_i18n_namespaceObject.__)('Synced'),
+    help: (0,external_wp_i18n_namespaceObject.__)('Editing the pattern will update it anywhere it is used.'),
+    checked: !syncType,
+    onChange: () => {
+      setSyncType(!syncType ? 'unsynced' : undefined);
+    }
+  }), (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.__experimentalHStack, {
+    justify: "right"
+  }, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
+    variant: "primary",
+    type: "submit"
+  }, (0,external_wp_i18n_namespaceObject.__)('Create')))))));
 }
 
 ;// CONCATENATED MODULE: ./packages/editor/build-module/components/post-taxonomies/index.js
@@ -11778,71 +11678,58 @@ var lib = __webpack_require__(773);
 
 
 
+
 /**
  * Internal dependencies
  */
 
 
 function PostTextEditor() {
-  const postContent = (0,external_wp_data_namespaceObject.useSelect)(select => select(store_store).getEditedPostContent(), []);
-  const {
-    editPost,
-    resetEditorBlocks
-  } = (0,external_wp_data_namespaceObject.useDispatch)(store_store);
-  const [value, setValue] = (0,external_wp_element_namespaceObject.useState)(postContent);
-  const [isDirty, setIsDirty] = (0,external_wp_element_namespaceObject.useState)(false);
   const instanceId = (0,external_wp_compose_namespaceObject.useInstanceId)(PostTextEditor);
-  const valueRef = (0,external_wp_element_namespaceObject.useRef)();
+  const {
+    content,
+    blocks,
+    type,
+    id
+  } = (0,external_wp_data_namespaceObject.useSelect)(select => {
+    const {
+      getEditedEntityRecord
+    } = select(external_wp_coreData_namespaceObject.store);
+    const {
+      getCurrentPostType,
+      getCurrentPostId
+    } = select(store_store);
 
-  if (!isDirty && value !== postContent) {
-    setValue(postContent);
-  }
-  /**
-   * Handles a textarea change event to notify the onChange prop callback and
-   * reflect the new value in the component's own state. This marks the start
-   * of the user's edits, if not already changed, preventing future props
-   * changes to value from replacing the rendered value. This is expected to
-   * be followed by a reset to dirty state via `stopEditing`.
-   *
-   * @see stopEditing
-   *
-   * @param {Event} event Change event.
-   */
+    const _type = getCurrentPostType();
 
+    const _id = getCurrentPostId();
 
-  const onChange = event => {
-    const newValue = event.target.value;
-    editPost({
-      content: newValue
-    });
-    setValue(newValue);
-    setIsDirty(true);
-    valueRef.current = newValue;
-  };
-  /**
-   * Function called when the user has completed their edits, responsible for
-   * ensuring that changes, if made, are surfaced to the onPersist prop
-   * callback and resetting dirty state.
-   */
-
-
-  const stopEditing = () => {
-    if (isDirty) {
-      const blocks = (0,external_wp_blocks_namespaceObject.parse)(value);
-      resetEditorBlocks(blocks);
-      setIsDirty(false);
-    }
-  }; // Ensure changes aren't lost when component unmounts.
-
-
-  (0,external_wp_element_namespaceObject.useEffect)(() => {
-    return () => {
-      if (valueRef.current) {
-        const blocks = (0,external_wp_blocks_namespaceObject.parse)(valueRef.current);
-        resetEditorBlocks(blocks);
-      }
+    const editedRecord = getEditedEntityRecord('postType', _type, _id);
+    return {
+      content: editedRecord?.content,
+      blocks: editedRecord?.blocks,
+      type: _type,
+      id: _id
     };
   }, []);
+  const {
+    editEntityRecord
+  } = (0,external_wp_data_namespaceObject.useDispatch)(external_wp_coreData_namespaceObject.store); // Replicates the logic found in getEditedPostContent().
+
+  const value = (0,external_wp_element_namespaceObject.useMemo)(() => {
+    if (content instanceof Function) {
+      return content({
+        blocks
+      });
+    } else if (blocks) {
+      // If we have parsed blocks already, they should be our source of truth.
+      // Parsing applies block deprecations and legacy block conversions that
+      // unparsed content will not have.
+      return (0,external_wp_blocks_namespaceObject.__unstableSerializeAndClean)(blocks);
+    }
+
+    return content;
+  }, [content, blocks]);
   return (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.Fragment, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.VisuallyHidden, {
     as: "label",
     htmlFor: `post-content-${instanceId}`
@@ -11850,8 +11737,13 @@ function PostTextEditor() {
     autoComplete: "off",
     dir: "auto",
     value: value,
-    onChange: onChange,
-    onBlur: stopEditing,
+    onChange: event => {
+      editEntityRecord('postType', type, id, {
+        content: event.target.value,
+        blocks: undefined,
+        selection: undefined
+      });
+    },
     className: "editor-post-text-editor",
     id: `post-content-${instanceId}`,
     placeholder: (0,external_wp_i18n_namespaceObject.__)('Start writing with text or HTML')
@@ -12790,28 +12682,7 @@ const withRegistryProvider = (0,external_wp_compose_namespaceObject.createHigher
 
 /** @typedef {import('@wordpress/block-editor').InserterMediaItem} InserterMediaItem */
 
-/**
- * Interface for inserter media category labels.
- *
- * @typedef {Object} InserterMediaCategoryLabels
- * @property {string} name                    General name of the media category. It's used in the inserter media items list.
- * @property {string} [search_items='Search'] Label for searching items. Default is ‘Search Posts’ / ‘Search Pages’.
- */
-
-/**
- * Interface for inserter media category.
- *
- * @typedef {Object} InserterMediaCategory
- * @property {string}                                                 name                 The name of the media category, that should be unique among all media categories.
- * @property {InserterMediaCategoryLabels}                            labels               Labels for the media category.
- * @property {('image'|'audio'|'video')}                              mediaType            The media type of the media category.
- * @property {(InserterMediaRequest) => Promise<InserterMediaItem[]>} fetch                The function to fetch media items for the category.
- * @property {(InserterMediaItem) => string}                          [getReportUrl]       If the media category supports reporting media items, this function should return
- *                                                                                         the report url for the media item. It accepts the `InserterMediaItem` as an argument.
- * @property {boolean}                                                [isExternalResource] If the media category is an external resource, this should be set to true.
- *                                                                                         This is used to avoid making a request to the external resource when the user
- *                                                                                         opens the inserter for the first time.
- */
+/** @typedef {import('@wordpress/block-editor').InserterMediaCategory} InserterMediaCategory */
 
 const getExternalLink = (url, text) => `<a ${getExternalLinkAttributes(url)}>${text}</a>`;
 
@@ -13158,18 +13029,6 @@ function useBlockEditorSettings(settings, hasTemplate) {
 
 /* harmony default export */ const use_block_editor_settings = (useBlockEditorSettings);
 
-;// CONCATENATED MODULE: external ["wp","privateApis"]
-const external_wp_privateApis_namespaceObject = window["wp"]["privateApis"];
-;// CONCATENATED MODULE: ./packages/editor/build-module/lock-unlock.js
-/**
- * WordPress dependencies
- */
-
-const {
-  lock,
-  unlock
-} = (0,external_wp_privateApis_namespaceObject.__dangerousOptInToUnstableAPIsOnlyForCoreModules)('I know using unstable features means my plugin or theme will inevitably break on the next WordPress release.', '@wordpress/editor');
-
 ;// CONCATENATED MODULE: ./packages/editor/build-module/components/provider/index.js
 
 
@@ -13405,9 +13264,12 @@ const withColors = deprecateFunction('withColors', external_wp_blockEditor_names
 const withFontSizes = deprecateFunction('withFontSizes', external_wp_blockEditor_namespaceObject.withFontSizes);
 
 ;// CONCATENATED MODULE: ./packages/editor/build-module/components/index.js
-// Block Creation Components.
- // Post Related Components.
+/**
+ * Internal dependencies
+ */
+ // Block Creation Components.
 
+ // Post Related Components.
 
 
 
@@ -13479,6 +13341,8 @@ const withFontSizes = deprecateFunction('withFontSizes', external_wp_blockEditor
 
 
 
+const VisualEditorGlobalKeyboardShortcuts = EditorKeyboardShortcuts;
+const TextEditorGlobalKeyboardShortcuts = EditorKeyboardShortcuts;
 
 ;// CONCATENATED MODULE: ./packages/editor/build-module/utils/url.js
 /**
