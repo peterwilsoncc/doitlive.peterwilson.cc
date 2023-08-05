@@ -447,6 +447,32 @@ function isShallowEqual(a, b, fromIndex) {
  *
  * @param {Object} state Data state.
  *
+ * @example
+ * ```js
+ * import { __, sprintf } from '@wordpress/i18n';
+ * import { store as richTextStore } from '@wordpress/rich-text';
+ * import { useSelect } from '@wordpress/data';
+ *
+ * const ExampleComponent = () => {
+ *    const { getFormatTypes } = useSelect(
+ *        ( select ) => select( richTextStore ),
+ *        []
+ *    );
+ *
+ *    const availableFormats = getFormatTypes();
+ *
+ *    return availableFormats ? (
+ *        <ul>
+ *            { availableFormats?.map( ( format ) => (
+ *                <li>{ format.name }</li>
+ *           ) ) }
+ *        </ul>
+ *    ) : (
+ *        __( 'No Formats available' )
+ *    );
+ * };
+ * ```
+ *
  * @return {Array} Format types.
  */
 
@@ -456,6 +482,34 @@ const getFormatTypes = rememo(state => Object.values(state.formatTypes), state =
  *
  * @param {Object} state Data state.
  * @param {string} name  Format type name.
+ *
+ * @example
+ * ```js
+ * import { __, sprintf } from '@wordpress/i18n';
+ * import { store as richTextStore } from '@wordpress/rich-text';
+ * import { useSelect } from '@wordpress/data';
+ *
+ * const ExampleComponent = () => {
+ *    const { getFormatType } = useSelect(
+ *        ( select ) => select( richTextStore ),
+ *        []
+ *    );
+ *
+ *    const boldFormat = getFormatType( 'core/bold' );
+ *
+ *    return boldFormat ? (
+ *        <ul>
+ *            { Object.entries( boldFormat )?.map( ( [ key, value ] ) => (
+ *                <li>
+ *                    { key } : { value }
+ *                </li>
+ *           ) ) }
+ *       </ul>
+ *    ) : (
+ *        __( 'Not Found' )
+ *    ;
+ * };
+ * ```
  *
  * @return {Object?} Format type.
  */
@@ -470,6 +524,25 @@ function getFormatType(state, name) {
  * @param {Object} state              Data state.
  * @param {string} bareElementTagName The tag name of the element to find a
  *                                    format type for.
+ *
+ * @example
+ * ```js
+ * import { __, sprintf } from '@wordpress/i18n';
+ * import { store as richTextStore } from '@wordpress/rich-text';
+ * import { useSelect } from '@wordpress/data';
+ *
+ * const ExampleComponent = () => {
+ *    const { getFormatTypeForBareElement } = useSelect(
+ *        ( select ) => select( richTextStore ),
+ *        []
+ *    );
+ *
+ *    const format = getFormatTypeForBareElement( 'strong' );
+ *
+ *    return format && <p>{ sprintf( __( 'Format name: %s' ), format.name ) }</p>;
+ * }
+ * ```
+ *
  * @return {?Object} Format type.
  */
 
@@ -493,6 +566,25 @@ function getFormatTypeForBareElement(state, bareElementTagName) {
  * @param {Object} state            Data state.
  * @param {string} elementClassName The classes of the element to find a format
  *                                  type for.
+ *
+ * @example
+ * ```js
+ * import { __, sprintf } from '@wordpress/i18n';
+ * import { store as richTextStore } from '@wordpress/rich-text';
+ * import { useSelect } from '@wordpress/data';
+ *
+ * const ExampleComponent = () => {
+ *    const { getFormatTypeForClassName } = useSelect(
+ *        ( select ) => select( richTextStore ),
+ *        []
+ *    );
+ *
+ *    const format = getFormatTypeForClassName( 'has-inline-color' );
+ *
+ *    return format && <p>{ sprintf( __( 'Format name: %s' ), format.name ) }</p>;
+ * };
+ * ```
+ *
  * @return {?Object} Format type.
  */
 
@@ -512,6 +604,9 @@ function getFormatTypeForClassName(state, elementClassName) {
 /**
  * Returns an action object used in signalling that format types have been
  * added.
+ * Ignored from documentation as registerFormatType should be used instead from @wordpress/rich-text
+ *
+ * @ignore
  *
  * @param {Array|Object} formatTypes Format types received.
  *
@@ -525,6 +620,10 @@ function addFormatTypes(formatTypes) {
 }
 /**
  * Returns an action object used to remove a registered format type.
+ *
+ * Ignored from documentation as unregisterFormatType should be used instead from @wordpress/rich-text
+ *
+ * @ignore
  *
  * @param {string|Array} names Format name.
  *
@@ -2311,7 +2410,7 @@ function fromFormat({
   const formatType = get_format_type_getFormatType(type);
   let elementAttributes = {};
 
-  if (boundaryClass) {
+  if (boundaryClass && isEditableTree) {
     elementAttributes['data-rich-text-format-boundary'] = 'true';
   }
 
@@ -2358,7 +2457,7 @@ function fromFormat({
   }
 
   return {
-    type: formatType.tagName === '*' ? tagName : formatType.tagName,
+    type: tagName || formatType.tagName,
     object: formatType.object,
     attributes: restoreOnAttributes(elementAttributes, isEditableTree)
   };
@@ -2551,7 +2650,12 @@ function toTree({
           isEditableTree,
           boundaryClass: start === i && end === i + 1
         }));
-        if (innerHTML) append(pointer, innerHTML);
+
+        if (innerHTML) {
+          append(pointer, {
+            html: innerHTML
+          });
+        }
       } else {
         pointer = append(getParent(pointer), fromFormat({ ...replacement,
           object: true,
@@ -2685,6 +2789,10 @@ function getNodeByPath(node, path) {
 }
 
 function append(element, child) {
+  if (child.html !== undefined) {
+    return element.innerHTML += child.html;
+  }
+
   if (typeof child === 'string') {
     child = element.ownerDocument.createTextNode(child);
   }
@@ -3712,8 +3820,11 @@ function useSelectObject() {
       // happen. This means it's "click-through".
 
       if (selection.containsNode(target)) return;
-      const range = ownerDocument.createRange();
-      range.selectNode(target);
+      const range = ownerDocument.createRange(); // If the target is within a non editable element, select the non
+      // editable element.
+
+      const nodeToSelect = target.isContentEditable ? target : target.closest('[contenteditable]');
+      range.selectNode(nodeToSelect);
       selection.removeAllRanges();
       selection.addRange(range);
       event.preventDefault();

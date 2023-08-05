@@ -468,10 +468,12 @@ async function exportReusableBlock(id) {
   });
   const title = post.title.raw;
   const content = post.content.raw;
+  const syncStatus = post.wp_pattern_sync_status;
   const fileContent = JSON.stringify({
     __file: 'wp_block',
     title,
-    content
+    content,
+    syncStatus
   }, null, 2);
   const fileName = paramCase(title) + '.json';
   download(fileName, fileContent, 'application/json');
@@ -510,8 +512,8 @@ async function importReusableBlock(file) {
     throw new Error('Invalid JSON file');
   }
 
-  if (parsedContent.__file !== 'wp_block' || !parsedContent.title || !parsedContent.content || typeof parsedContent.title !== 'string' || typeof parsedContent.content !== 'string') {
-    throw new Error('Invalid Reusable block JSON file');
+  if (parsedContent.__file !== 'wp_block' || !parsedContent.title || !parsedContent.content || typeof parsedContent.title !== 'string' || typeof parsedContent.content !== 'string' || parsedContent.syncStatus && typeof parsedContent.syncStatus !== 'string') {
+    throw new Error('Invalid Pattern JSON file');
   }
 
   const postType = await external_wp_apiFetch_default()({
@@ -522,7 +524,10 @@ async function importReusableBlock(file) {
     data: {
       title: parsedContent.title,
       content: parsedContent.content,
-      status: 'publish'
+      status: 'publish',
+      meta: parsedContent.syncStatus === 'unsynced' ? {
+        wp_pattern_sync_status: parsedContent.syncStatus
+      } : undefined
     },
     method: 'POST'
   });
@@ -591,8 +596,8 @@ function ImportForm({
           uiMessage = (0,external_wp_i18n_namespaceObject.__)('Invalid JSON file');
           break;
 
-        case 'Invalid Reusable block JSON file':
-          uiMessage = (0,external_wp_i18n_namespaceObject.__)('Invalid Reusable block JSON file');
+        case 'Invalid Pattern JSON file':
+          uiMessage = (0,external_wp_i18n_namespaceObject.__)('Invalid Pattern JSON file');
           break;
 
         default:
@@ -708,7 +713,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const showNotice = () => {
     const notice = document.createElement('div');
     notice.className = 'notice notice-success is-dismissible';
-    notice.innerHTML = `<p>${(0,external_wp_i18n_namespaceObject.__)('Reusable block imported successfully!')}</p>`;
+    notice.innerHTML = `<p>${(0,external_wp_i18n_namespaceObject.__)('Pattern imported successfully!')}</p>`;
     const headerEnd = document.querySelector('.wp-header-end');
 
     if (!headerEnd) {

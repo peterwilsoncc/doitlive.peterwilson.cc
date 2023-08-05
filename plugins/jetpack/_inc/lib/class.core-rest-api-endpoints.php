@@ -9,6 +9,7 @@ use Automattic\Jetpack\Connection\Client;
 use Automattic\Jetpack\Connection\Manager as Connection_Manager;
 use Automattic\Jetpack\Connection\Rest_Authentication;
 use Automattic\Jetpack\Connection\REST_Connector;
+use Automattic\Jetpack\Current_Plan as Jetpack_Plan;
 use Automattic\Jetpack\Jetpack_CRM_Data;
 use Automattic\Jetpack\Plugins_Installer;
 use Automattic\Jetpack\Stats\Options as Stats_Options;
@@ -775,7 +776,7 @@ class Jetpack_Core_Json_Api_Endpoints {
 	public static function get_openai_jwt() {
 		$blog_id = \Jetpack_Options::get_option( 'id' );
 
-		$response = \Automattic\Jetpack\Connection\Client::wpcom_json_api_request_as_blog(
+		$response = \Automattic\Jetpack\Connection\Client::wpcom_json_api_request_as_user(
 			"/sites/$blog_id/jetpack-openai-query/jwt",
 			'2',
 			array(
@@ -2601,6 +2602,13 @@ class Jetpack_Core_Json_Api_Endpoints {
 				'description'       => esc_html__( "Show a <em>'follow comments'</em> option in the comment form", 'jetpack' ),
 				'type'              => 'boolean',
 				'default'           => 1,
+				'validate_callback' => __CLASS__ . '::validate_boolean',
+				'jp_group'          => 'subscriptions',
+			),
+			'sm_enabled'                           => array(
+				'description'       => esc_html__( 'Show popup Subscribe modal to readers.', 'jetpack' ),
+				'type'              => 'boolean',
+				'default'           => 0,
 				'validate_callback' => __CLASS__ . '::validate_boolean',
 				'jp_group'          => 'subscriptions',
 			),

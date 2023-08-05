@@ -6,6 +6,7 @@
  */
 
 use Automattic\Jetpack\Connection\REST_Connector;
+use Automattic\Jetpack\Current_Plan as Jetpack_Plan;
 use Automattic\Jetpack\Plugins_Installer;
 use Automattic\Jetpack\Stats\WPCOM_Stats;
 use Automattic\Jetpack\Stats_Admin\Main as Stats_Admin_Main;
@@ -196,9 +197,9 @@ class Jetpack_Core_API_Module_List_Endpoint {
 	 */
 	public function process( $request ) {
 		if ( 'GET' === $request->get_method() ) {
-			return $this->get_modules( $request );
+			return $this->get_modules();
 		} else {
-			return $this->activate_modules( $request );
+			return static::activate_modules( $request );
 		}
 	}
 
@@ -980,6 +981,7 @@ class Jetpack_Core_API_Data extends Jetpack_Core_API_XMLRPC_Consumer_Endpoint {
 
 				case 'stb_enabled':
 				case 'stc_enabled':
+				case 'sm_enabled':
 					// Convert the false value to 0. This allows the option to be updated if it doesn't exist yet.
 					$sub_value = $value ? $value : 0;
 					$updated   = (string) get_option( $option ) !== (string) $sub_value ? update_option( $option, $sub_value ) : true;
