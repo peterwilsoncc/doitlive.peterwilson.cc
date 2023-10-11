@@ -46,20 +46,17 @@ __webpack_require__.d(__webpack_exports__, {
 const external_wp_element_namespaceObject = window["wp"]["element"];
 ;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/extends.js
 function extends_extends() {
-  extends_extends = Object.assign || function (target) {
+  extends_extends = Object.assign ? Object.assign.bind() : function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
-
       for (var key in source) {
         if (Object.prototype.hasOwnProperty.call(source, key)) {
           target[key] = source[key];
         }
       }
     }
-
     return target;
   };
-
   return extends_extends.apply(this, arguments);
 }
 ;// CONCATENATED MODULE: ./node_modules/history/index.js
@@ -86,44 +83,40 @@ const external_wp_url_namespaceObject = window["wp"]["url"];
  * External dependencies
  */
 
+
 /**
  * WordPress dependencies
  */
 
-
 const history_history = createBrowserHistory();
 const originalHistoryPush = history_history.push;
 const originalHistoryReplace = history_history.replace;
-
 function push(params, state) {
   const currentArgs = (0,external_wp_url_namespaceObject.getQueryArgs)(window.location.href);
   const currentUrlWithoutArgs = (0,external_wp_url_namespaceObject.removeQueryArgs)(window.location.href, ...Object.keys(currentArgs));
   const newUrl = (0,external_wp_url_namespaceObject.addQueryArgs)(currentUrlWithoutArgs, params);
   return originalHistoryPush.call(history_history, newUrl, state);
 }
-
 function replace(params, state) {
   const currentArgs = (0,external_wp_url_namespaceObject.getQueryArgs)(window.location.href);
   const currentUrlWithoutArgs = (0,external_wp_url_namespaceObject.removeQueryArgs)(window.location.href, ...Object.keys(currentArgs));
   const newUrl = (0,external_wp_url_namespaceObject.addQueryArgs)(currentUrlWithoutArgs, params);
   return originalHistoryReplace.call(history_history, newUrl, state);
 }
-
 history_history.push = push;
 history_history.replace = replace;
 /* harmony default export */ const build_module_history = (history_history);
 
 ;// CONCATENATED MODULE: ./packages/router/build-module/router.js
 
-
 /**
  * WordPress dependencies
  */
 
+
 /**
  * Internal dependencies
  */
-
 
 const RoutesContext = (0,external_wp_element_namespaceObject.createContext)();
 const HistoryContext = (0,external_wp_element_namespaceObject.createContext)();
@@ -133,14 +126,13 @@ function useLocation() {
 function useHistory() {
   return (0,external_wp_element_namespaceObject.useContext)(HistoryContext);
 }
-
 function getLocationWithParams(location) {
   const searchParams = new URLSearchParams(location.search);
-  return { ...location,
+  return {
+    ...location,
     params: Object.fromEntries(searchParams.entries())
   };
 }
-
 function RouterProvider({
   children
 }) {

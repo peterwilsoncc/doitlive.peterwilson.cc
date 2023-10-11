@@ -6,6 +6,10 @@
  * @subpackage Interactivity API
  */
 
+if ( class_exists( 'WP_Directive_Processor' ) ) {
+	return;
+}
+
 /**
  * This processor is built on top of the HTML Tag Processor and augments its
  * capabilities to process the Interactivity API directives.
@@ -23,7 +27,7 @@ class WP_Directive_Processor extends WP_HTML_Tag_Processor {
 	 *
 	 * @var array
 	 */
-	static $root_blocks = array();
+	public static $root_blocks = array();
 
 	/**
 	 * Add a root block to the list.
@@ -74,7 +78,7 @@ class WP_Directive_Processor extends WP_HTML_Tag_Processor {
 			)
 		) ) {
 			if ( ! $this->is_tag_closer() ) {
-				$depth++;
+				++$depth;
 				continue;
 			}
 
@@ -82,7 +86,7 @@ class WP_Directive_Processor extends WP_HTML_Tag_Processor {
 				return true;
 			}
 
-			$depth--;
+			--$depth;
 		}
 
 		return false;
