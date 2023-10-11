@@ -6,6 +6,10 @@
  * @subpackage Interactivity API
  */
 
+if ( class_exists( 'WP_Directive_Context' ) ) {
+	return;
+}
+
 /**
  * This is a data structure to hold the current context.
  *
@@ -40,7 +44,7 @@ class WP_Directive_Context {
 	 *
 	 * @param array $context A context.
 	 */
-	function __construct( $context = array() ) {
+	public function __construct( $context = array() ) {
 		$this->set_context( $context );
 	}
 

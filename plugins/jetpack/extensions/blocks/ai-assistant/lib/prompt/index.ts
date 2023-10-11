@@ -20,6 +20,7 @@ export const PROMPT_TYPE_CHANGE_TONE = 'changeTone' as const;
 export const PROMPT_TYPE_SUMMARIZE = 'summarize' as const;
 export const PROMPT_TYPE_CHANGE_LANGUAGE = 'changeLanguage' as const;
 export const PROMPT_TYPE_USER_PROMPT = 'userPrompt' as const;
+export const PROMPT_TYPE_JETPACK_FORM_CUSTOM_PROMPT = 'jetpackFormCustomPrompt' as const;
 
 export const PROMPT_TYPE_LIST = [
 	PROMPT_TYPE_SUMMARY_BY_TITLE,
@@ -33,13 +34,15 @@ export const PROMPT_TYPE_LIST = [
 	PROMPT_TYPE_SUMMARIZE,
 	PROMPT_TYPE_CHANGE_LANGUAGE,
 	PROMPT_TYPE_USER_PROMPT,
+	PROMPT_TYPE_JETPACK_FORM_CUSTOM_PROMPT,
 ] as const;
 
 export type PromptTypeProp = ( typeof PROMPT_TYPE_LIST )[ number ];
 
 export type PromptItemProps = {
-	role: 'system' | 'user' | 'assistant';
-	content: string;
+	role: 'system' | 'user' | 'assistant' | 'jetpack-ai';
+	content?: string;
+	context?: object;
 };
 
 const debug = debugFactory( 'jetpack-ai-assistant:prompt' );
@@ -132,6 +135,11 @@ type PromptOptionsProps = {
 	 * The previous messages of the same prompt. Optional.
 	 */
 	prevMessages?: Array< PromptItemProps >;
+
+	/*
+	 * A custom request prompt. Optional.
+	 */
+	request?: string;
 };
 
 export function getDelimitedContent( content: string ): string {
@@ -220,6 +228,27 @@ function getTonePrompt( {
 			content: `Rewrite the text delimited with ${ delimiter }, with a ${ tone } tone, keeping the language of the text: ${ getDelimitedContent(
 				content
 			) }`,
+		},
+	];
+}
+
+function getJetpackFormCustomPrompt( {
+	content,
+	request,
+}: PromptOptionsProps ): Array< PromptItemProps > {
+	if ( ! request ) {
+		throw new Error( 'You must provide a custom prompt for the Jetpack Form Custom Prompt' );
+	}
+
+	// Use a jetpack-ai expandable message.
+	return [
+		{
+			role: 'jetpack-ai',
+			context: {
+				type: 'form-ai-extension',
+				content,
+				request,
+			},
 		},
 	];
 }
@@ -333,28 +362,34 @@ export function promptTextFor(
 		subject = isGenerated ? 'your last answer' : 'the content';
 	}
 
+	// https://github.com/Automattic/jetpack/pull/32814#issuecomment-1704873324
+	const languageReminder = `. Ensure that your response is in the same language as ${
+		isGeneratingTitle ? 'the title' : 'the post content'
+	}. Do not switch to any language other than the language of ${ subject } in your response`;
+
 	switch ( type ) {
 		case PROMPT_TYPE_SUMMARY_BY_TITLE:
-			return { request: `Write a short piece for a blog post based on ${ subject }.` };
+			return {
+				request: `Write a short piece for a blog post based on ${ subject }, keeping the same language`,
+			};
 		case PROMPT_TYPE_CONTINUE:
 			return {
-				request: `Continue writing from ${ subject }.`,
+				request: `Continue writing from ${ subject }${ languageReminder }.`,
 				rules: isGenerated
 					? []
 					: [ 'Only output the continuation of the content, without repeating it' ],
 			};
 		case PROMPT_TYPE_SIMPLIFY:
 			return {
-				request: `Simplify ${ subject }.`,
+				request: `Simplify ${ subject }${ languageReminder }.`,
 				rules: [
 					'Use words and phrases that are easier to understand for non-technical people',
-					'Output in the same language of the content',
 					'Use as much of the original language as possible',
 				],
 			};
 		case PROMPT_TYPE_CORRECT_SPELLING:
 			return {
-				request: `Repeat ${ subject }, correcting any spelling and grammar mistakes, and do not add new content.`,
+				request: `Repeat ${ subject }, correcting any spelling and grammar mistakes, and do not add new content${ languageReminder }.`,
 			};
 		case PROMPT_TYPE_GENERATE_TITLE:
 			return {
@@ -362,13 +397,23 @@ export function promptTextFor(
 				rules: [ 'Only output the raw title, without any prefix or quotes' ],
 			};
 		case PROMPT_TYPE_MAKE_LONGER:
-			return { request: `Make ${ subject } longer.` };
+			return {
+				request: `Make ${ subject } longer${ languageReminder }.`,
+			};
 		case PROMPT_TYPE_MAKE_SHORTER:
-			return { request: `Make ${ subject } shorter.` };
+			return {
+				request: `Make ${ subject } shorter${ languageReminder }.`,
+			};
 		case PROMPT_TYPE_CHANGE_TONE:
-			return { request: `Rewrite ${ subject } with a ${ options.tone } tone.` };
+			return {
+				request: `Rewrite ${ subject } with ${
+					/^[aeiou]/i.test( options.tone as string ) ? 'an' : 'a'
+				} ${ options.tone } tone${ languageReminder }.`,
+			};
 		case PROMPT_TYPE_SUMMARIZE:
-			return { request: `Summarize ${ subject }.` };
+			return {
+				request: `Summarize ${ subject }${ languageReminder }.`,
+			};
 		case PROMPT_TYPE_CHANGE_LANGUAGE:
 			return {
 				request: `Translate ${ subject } to the following language: ${ options.language }.`,
@@ -461,22 +506,18 @@ export function getPrompt(
 	debug( 'Addressing prompt type: %o %o', type, options );
 	const { prevMessages = [] } = options;
 
-	const context =
-		'You are an advanced polyglot ghostwriter.' +
-		'Your task is to help the user create and modify content based on their requests.';
-
 	const systemPrompt: PromptItemProps = {
 		role: 'system',
-		content: `${ context }
+		content: `You are an advanced polyglot ghostwriter. Your task is to help the user create and modify content based on their requests.
 Writing rules:
 - Execute the request without any acknowledgment or explanation to the user.
 - Avoid sensitive or controversial topics and ensure your responses are grammatically correct and coherent.
-- If you cannot generate a meaningful response to a user’s request, reply with “__JETPACK_AI_ERROR__“. This term should only be used in this context, it is used to generate user facing errors.
+- If you cannot generate a meaningful response to a user's request, reply with “__JETPACK_AI_ERROR__“. This term should only be used in this context, it is used to generate user facing errors.
 `,
 	};
 
 	// Prompt starts with the previous messages, if any.
-	const prompt: Array< PromptItemProps > = prevMessages;
+	const prompt: Array< PromptItemProps > = [ ...prevMessages ];
 
 	// Then, add the `system` prompt to clarify the context.
 	prompt.push( systemPrompt );
@@ -501,9 +542,11 @@ Writing rules:
 		case PROMPT_TYPE_CHANGE_TONE:
 			return [ ...prompt, ...getTonePrompt( options ) ];
 
+		case PROMPT_TYPE_JETPACK_FORM_CUSTOM_PROMPT:
+			// Does not use the default system prompt.
+			return [ ...prevMessages, ...getJetpackFormCustomPrompt( options ) ];
+
 		default:
 			throw new Error( `Unknown prompt type: ${ type }` );
 	}
-
-	return prompt;
 }
