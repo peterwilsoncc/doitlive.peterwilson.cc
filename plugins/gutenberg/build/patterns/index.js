@@ -1,36 +1,36 @@
-/******/ (() => { // webpackBootstrap
+/******/ (function() { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	// The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 		__webpack_require__.d = function(exports, definition) {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
 /******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
+/******/ 		__webpack_require__.r = function(exports) {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
@@ -39,29 +39,29 @@ __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  "privateApis": () => (/* reexport */ privateApis),
-  "store": () => (/* reexport */ store)
+  privateApis: function() { return /* reexport */ privateApis; },
+  store: function() { return /* reexport */ store; }
 });
 
 // NAMESPACE OBJECT: ./packages/patterns/build-module/store/actions.js
 var actions_namespaceObject = {};
 __webpack_require__.r(actions_namespaceObject);
 __webpack_require__.d(actions_namespaceObject, {
-  "convertSyncedPatternToStatic": () => (convertSyncedPatternToStatic),
-  "createPattern": () => (createPattern),
-  "createPatternFromFile": () => (createPatternFromFile),
-  "setEditingPattern": () => (setEditingPattern)
+  convertSyncedPatternToStatic: function() { return convertSyncedPatternToStatic; },
+  createPattern: function() { return createPattern; },
+  createPatternFromFile: function() { return createPatternFromFile; },
+  setEditingPattern: function() { return setEditingPattern; }
 });
 
 // NAMESPACE OBJECT: ./packages/patterns/build-module/store/selectors.js
 var selectors_namespaceObject = {};
 __webpack_require__.r(selectors_namespaceObject);
 __webpack_require__.d(selectors_namespaceObject, {
-  "isEditingPattern": () => (selectors_isEditingPattern)
+  isEditingPattern: function() { return selectors_isEditingPattern; }
 });
 
 ;// CONCATENATED MODULE: external ["wp","data"]
-const external_wp_data_namespaceObject = window["wp"]["data"];
+var external_wp_data_namespaceObject = window["wp"]["data"];
 ;// CONCATENATED MODULE: ./packages/patterns/build-module/store/reducer.js
 /**
  * WordPress dependencies
@@ -76,16 +76,16 @@ function isEditingPattern(state = {}, action) {
   }
   return state;
 }
-/* harmony default export */ const reducer = ((0,external_wp_data_namespaceObject.combineReducers)({
+/* harmony default export */ var reducer = ((0,external_wp_data_namespaceObject.combineReducers)({
   isEditingPattern
 }));
 
 ;// CONCATENATED MODULE: external ["wp","blocks"]
-const external_wp_blocks_namespaceObject = window["wp"]["blocks"];
+var external_wp_blocks_namespaceObject = window["wp"]["blocks"];
 ;// CONCATENATED MODULE: external ["wp","coreData"]
-const external_wp_coreData_namespaceObject = window["wp"]["coreData"];
+var external_wp_coreData_namespaceObject = window["wp"]["coreData"];
 ;// CONCATENATED MODULE: external ["wp","blockEditor"]
-const external_wp_blockEditor_namespaceObject = window["wp"]["blockEditor"];
+var external_wp_blockEditor_namespaceObject = window["wp"]["blockEditor"];
 ;// CONCATENATED MODULE: ./packages/patterns/build-module/constants.js
 const PATTERN_TYPES = {
   theme: 'pattern',
@@ -209,7 +209,7 @@ function selectors_isEditingPattern(state, clientId) {
 }
 
 ;// CONCATENATED MODULE: external ["wp","privateApis"]
-const external_wp_privateApis_namespaceObject = window["wp"]["privateApis"];
+var external_wp_privateApis_namespaceObject = window["wp"]["privateApis"];
 ;// CONCATENATED MODULE: ./packages/patterns/build-module/lock-unlock.js
 /**
  * WordPress dependencies
@@ -218,7 +218,7 @@ const external_wp_privateApis_namespaceObject = window["wp"]["privateApis"];
 const {
   lock,
   unlock
-} = (0,external_wp_privateApis_namespaceObject.__dangerousOptInToUnstableAPIsOnlyForCoreModules)('I know using unstable features means my plugin or theme will inevitably break on the next WordPress release.', '@wordpress/patterns');
+} = (0,external_wp_privateApis_namespaceObject.__dangerousOptInToUnstableAPIsOnlyForCoreModules)('I know using unstable features means my theme or plugin will inevitably break in the next version of WordPress.', '@wordpress/patterns');
 
 ;// CONCATENATED MODULE: ./packages/patterns/build-module/store/index.js
 /**
@@ -260,18 +260,20 @@ const store = (0,external_wp_data_namespaceObject.createReduxStore)(STORE_NAME, 
 unlock(store).registerPrivateActions(actions_namespaceObject);
 unlock(store).registerPrivateSelectors(selectors_namespaceObject);
 
-;// CONCATENATED MODULE: external ["wp","element"]
-const external_wp_element_namespaceObject = window["wp"]["element"];
+;// CONCATENATED MODULE: external "React"
+var external_React_namespaceObject = window["React"];
 ;// CONCATENATED MODULE: external ["wp","components"]
-const external_wp_components_namespaceObject = window["wp"]["components"];
+var external_wp_components_namespaceObject = window["wp"]["components"];
 ;// CONCATENATED MODULE: external ["wp","i18n"]
-const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
+var external_wp_i18n_namespaceObject = window["wp"]["i18n"];
+;// CONCATENATED MODULE: external ["wp","element"]
+var external_wp_element_namespaceObject = window["wp"]["element"];
 ;// CONCATENATED MODULE: external ["wp","notices"]
-const external_wp_notices_namespaceObject = window["wp"]["notices"];
+var external_wp_notices_namespaceObject = window["wp"]["notices"];
 ;// CONCATENATED MODULE: external ["wp","compose"]
-const external_wp_compose_namespaceObject = window["wp"]["compose"];
+var external_wp_compose_namespaceObject = window["wp"]["compose"];
 ;// CONCATENATED MODULE: external ["wp","htmlEntities"]
-const external_wp_htmlEntities_namespaceObject = window["wp"]["htmlEntities"];
+var external_wp_htmlEntities_namespaceObject = window["wp"]["htmlEntities"];
 ;// CONCATENATED MODULE: ./packages/patterns/build-module/components/category-selector.js
 
 /**
@@ -282,41 +284,25 @@ const external_wp_htmlEntities_namespaceObject = window["wp"]["htmlEntities"];
 
 
 
-
-
 const unescapeString = arg => {
   return (0,external_wp_htmlEntities_namespaceObject.decodeEntities)(arg);
 };
-const EMPTY_ARRAY = [];
-const MAX_TERMS_SUGGESTIONS = 20;
-const DEFAULT_QUERY = {
-  per_page: MAX_TERMS_SUGGESTIONS,
-  _fields: 'id,name',
-  context: 'view'
-};
 const CATEGORY_SLUG = 'wp_pattern_category';
 function CategorySelector({
-  values,
-  onChange
+  categoryTerms,
+  onChange,
+  categoryMap
 }) {
   const [search, setSearch] = (0,external_wp_element_namespaceObject.useState)('');
   const debouncedSearch = (0,external_wp_compose_namespaceObject.useDebounce)(setSearch, 500);
-  const {
-    searchResults
-  } = (0,external_wp_data_namespaceObject.useSelect)(select => {
-    const {
-      getEntityRecords
-    } = select(external_wp_coreData_namespaceObject.store);
-    return {
-      searchResults: !!search ? getEntityRecords('taxonomy', CATEGORY_SLUG, {
-        ...DEFAULT_QUERY,
-        search
-      }) : EMPTY_ARRAY
-    };
-  }, [search]);
   const suggestions = (0,external_wp_element_namespaceObject.useMemo)(() => {
-    return (searchResults !== null && searchResults !== void 0 ? searchResults : []).map(term => unescapeString(term.name));
-  }, [searchResults]);
+    return Array.from(categoryMap.values()).map(category => unescapeString(category.label)).filter(category => {
+      if (search !== '') {
+        return category.toLowerCase().includes(search.toLowerCase());
+      }
+      return true;
+    }).sort((a, b) => a.localeCompare(b));
+  }, [search, categoryMap]);
   function handleChange(termNames) {
     const uniqueTerms = termNames.reduce((terms, newTerm) => {
       if (!terms.some(term => term.toLowerCase() === newTerm.toLowerCase())) {
@@ -326,16 +312,17 @@ function CategorySelector({
     }, []);
     onChange(uniqueTerms);
   }
-  return (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.Fragment, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.FormTokenField, {
+  return (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.FormTokenField, {
     className: "patterns-menu-items__convert-modal-categories",
-    value: values,
+    value: categoryTerms,
     suggestions: suggestions,
     onChange: handleChange,
     onInputChange: debouncedSearch,
-    maxSuggestions: MAX_TERMS_SUGGESTIONS,
     label: (0,external_wp_i18n_namespaceObject.__)('Categories'),
-    tokenizeOnBlur: true
-  }));
+    tokenizeOnBlur: true,
+    __experimentalExpandOnFocus: true,
+    __next40pxDefaultSize: true
+  });
 }
 
 ;// CONCATENATED MODULE: ./packages/patterns/build-module/components/create-pattern-modal.js
@@ -362,15 +349,20 @@ function CategorySelector({
 
 
 function CreatePatternModal({
-  onSuccess,
-  onError,
+  confirmLabel = (0,external_wp_i18n_namespaceObject.__)('Create'),
+  defaultCategories = [],
+  className = 'patterns-menu-items__convert-modal',
   content,
+  modalTitle = (0,external_wp_i18n_namespaceObject.__)('Create pattern'),
   onClose,
-  className = 'patterns-menu-items__convert-modal'
+  onError,
+  onSuccess,
+  defaultSyncType = PATTERN_SYNC_TYPES.full,
+  defaultTitle = ''
 }) {
-  const [syncType, setSyncType] = (0,external_wp_element_namespaceObject.useState)(PATTERN_SYNC_TYPES.full);
-  const [categoryTerms, setCategoryTerms] = (0,external_wp_element_namespaceObject.useState)([]);
-  const [title, setTitle] = (0,external_wp_element_namespaceObject.useState)('');
+  const [syncType, setSyncType] = (0,external_wp_element_namespaceObject.useState)(defaultSyncType);
+  const [categoryTerms, setCategoryTerms] = (0,external_wp_element_namespaceObject.useState)(defaultCategories);
+  const [title, setTitle] = (0,external_wp_element_namespaceObject.useState)(defaultTitle);
   const [isSaving, setIsSaving] = (0,external_wp_element_namespaceObject.useState)(false);
   const {
     createPattern
@@ -382,6 +374,38 @@ function CreatePatternModal({
   const {
     createErrorNotice
   } = (0,external_wp_data_namespaceObject.useDispatch)(external_wp_notices_namespaceObject.store);
+  const {
+    corePatternCategories,
+    userPatternCategories
+  } = (0,external_wp_data_namespaceObject.useSelect)(select => {
+    const {
+      getUserPatternCategories,
+      getBlockPatternCategories
+    } = select(external_wp_coreData_namespaceObject.store);
+    return {
+      corePatternCategories: getBlockPatternCategories(),
+      userPatternCategories: getUserPatternCategories()
+    };
+  });
+  const categoryMap = (0,external_wp_element_namespaceObject.useMemo)(() => {
+    // Merge the user and core pattern categories and remove any duplicates.
+    const uniqueCategories = new Map();
+    [...userPatternCategories, ...corePatternCategories].forEach(category => {
+      if (!uniqueCategories.has(category.label) &&
+      // There are two core categories with `Post` label so explicitly remove the one with
+      // the `query` slug to avoid any confusion.
+      category.name !== 'query') {
+        // We need to store the name separately as this is used as the slug in the
+        // taxonomy and may vary from the label.
+        uniqueCategories.set(category.label, {
+          label: category.label,
+          value: category.label,
+          name: category.name
+        });
+      }
+    });
+    return uniqueCategories;
+  }, [userPatternCategories, corePatternCategories]);
   async function onCreate(patternTitle, sync) {
     if (!title || isSaving) {
       return;
@@ -397,9 +421,9 @@ function CreatePatternModal({
     } catch (error) {
       createErrorNotice(error.message, {
         type: 'snackbar',
-        id: 'convert-to-pattern-error'
+        id: 'pattern-create'
       });
-      onError();
+      onError?.();
     } finally {
       setIsSaving(false);
       setCategoryTerms([]);
@@ -413,9 +437,16 @@ function CreatePatternModal({
    */
   async function findOrCreateTerm(term) {
     try {
-      const newTerm = await saveEntityRecord('taxonomy', CATEGORY_SLUG, {
+      // We need to match any existing term to the correct slug to prevent duplicates, eg.
+      // the core `Headers` category uses the singular `header` as the slug.
+      const existingTerm = categoryMap.get(term);
+      const termData = existingTerm ? {
+        name: existingTerm.label,
+        slug: existingTerm.name
+      } : {
         name: term
-      }, {
+      };
+      const newTerm = await saveEntityRecord('taxonomy', CATEGORY_SLUG, termData, {
         throwOnError: true
       });
       invalidateResolution('getUserPatternCategories');
@@ -427,68 +458,234 @@ function CreatePatternModal({
       return error.data.term_id;
     }
   }
-  return (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Modal, {
-    title: (0,external_wp_i18n_namespaceObject.__)('Create pattern'),
+  return (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.Modal, {
+    title: modalTitle,
     onRequestClose: () => {
       onClose();
       setTitle('');
     },
     overlayClassName: className
-  }, (0,external_wp_element_namespaceObject.createElement)("form", {
+  }, (0,external_React_namespaceObject.createElement)("form", {
     onSubmit: event => {
       event.preventDefault();
       onCreate(title, syncType);
     }
-  }, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.__experimentalVStack, {
+  }, (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.__experimentalVStack, {
     spacing: "5"
-  }, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.TextControl, {
+  }, (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.TextControl, {
     __nextHasNoMarginBottom: true,
     label: (0,external_wp_i18n_namespaceObject.__)('Name'),
     value: title,
     onChange: setTitle,
     placeholder: (0,external_wp_i18n_namespaceObject.__)('My pattern'),
     className: "patterns-create-modal__name-input"
-  }), (0,external_wp_element_namespaceObject.createElement)(CategorySelector, {
-    values: categoryTerms,
-    onChange: setCategoryTerms
-  }), (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.ToggleControl, {
+  }), (0,external_React_namespaceObject.createElement)(CategorySelector, {
+    categoryTerms: categoryTerms,
+    onChange: setCategoryTerms,
+    categoryMap: categoryMap
+  }), (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.ToggleControl, {
     label: (0,external_wp_i18n_namespaceObject.__)('Synced'),
     help: (0,external_wp_i18n_namespaceObject.__)('Editing the pattern will update it anywhere it is used.'),
     checked: syncType === PATTERN_SYNC_TYPES.full,
     onChange: () => {
       setSyncType(syncType === PATTERN_SYNC_TYPES.full ? PATTERN_SYNC_TYPES.unsynced : PATTERN_SYNC_TYPES.full);
     }
-  }), (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.__experimentalHStack, {
+  }), (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.__experimentalHStack, {
     justify: "right"
-  }, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
+  }, (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
     variant: "tertiary",
     onClick: () => {
       onClose();
       setTitle('');
     }
-  }, (0,external_wp_i18n_namespaceObject.__)('Cancel')), (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
+  }, (0,external_wp_i18n_namespaceObject.__)('Cancel')), (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
     variant: "primary",
     type: "submit",
     "aria-disabled": !title || isSaving,
     isBusy: isSaving
-  }, (0,external_wp_i18n_namespaceObject.__)('Create'))))));
+  }, confirmLabel)))));
+}
+
+;// CONCATENATED MODULE: ./packages/patterns/build-module/components/duplicate-pattern-modal.js
+
+/**
+ * WordPress dependencies
+ */
+
+
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+function getTermLabels(pattern, categories) {
+  // Theme patterns don't have an id and rely on core pattern categories.
+  if (!pattern.id) {
+    return categories.core?.filter(category => pattern.categories.includes(category.name)).map(category => category.label);
+  }
+  return categories.user?.filter(category => pattern.wp_pattern_category.includes(category.id)).map(category => category.label);
+}
+function DuplicatePatternModal({
+  pattern,
+  onClose,
+  onSuccess
+}) {
+  const {
+    createSuccessNotice
+  } = (0,external_wp_data_namespaceObject.useDispatch)(external_wp_notices_namespaceObject.store);
+  const categories = (0,external_wp_data_namespaceObject.useSelect)(select => {
+    const {
+      getUserPatternCategories,
+      getBlockPatternCategories
+    } = select(external_wp_coreData_namespaceObject.store);
+    return {
+      core: getBlockPatternCategories(),
+      user: getUserPatternCategories()
+    };
+  });
+  if (!pattern) {
+    return null;
+  }
+  const duplicatedProps = {
+    content: pattern.content,
+    defaultCategories: getTermLabels(pattern, categories),
+    defaultSyncType: !pattern.id // Theme patterns don't have an ID.
+    ? PATTERN_SYNC_TYPES.unsynced : pattern.wp_pattern_sync_status || PATTERN_SYNC_TYPES.full,
+    defaultTitle: (0,external_wp_i18n_namespaceObject.sprintf)( /* translators: %s: Existing pattern title */
+    (0,external_wp_i18n_namespaceObject.__)('%s (Copy)'), typeof pattern.title === 'string' ? pattern.title : pattern.title.raw)
+  };
+  function handleOnSuccess({
+    pattern: newPattern
+  }) {
+    createSuccessNotice((0,external_wp_i18n_namespaceObject.sprintf)(
+    // translators: %s: The new pattern's title e.g. 'Call to action (copy)'.
+    (0,external_wp_i18n_namespaceObject.__)('"%s" duplicated.'), newPattern.title.raw), {
+      type: 'snackbar',
+      id: 'patterns-create'
+    });
+    onSuccess?.({
+      pattern: newPattern
+    });
+  }
+  return (0,external_React_namespaceObject.createElement)(CreatePatternModal, {
+    modalTitle: (0,external_wp_i18n_namespaceObject.__)('Duplicate pattern'),
+    confirmLabel: (0,external_wp_i18n_namespaceObject.__)('Duplicate'),
+    onClose: onClose,
+    onError: onClose,
+    onSuccess: handleOnSuccess,
+    ...duplicatedProps
+  });
+}
+
+;// CONCATENATED MODULE: ./packages/patterns/build-module/components/rename-pattern-modal.js
+
+/**
+ * WordPress dependencies
+ */
+
+
+
+
+
+
+
+function RenamePatternModal({
+  onClose,
+  onError,
+  onSuccess,
+  pattern,
+  ...props
+}) {
+  const originalName = (0,external_wp_htmlEntities_namespaceObject.decodeEntities)(pattern.title);
+  const [name, setName] = (0,external_wp_element_namespaceObject.useState)(originalName);
+  const [isSaving, setIsSaving] = (0,external_wp_element_namespaceObject.useState)(false);
+  const {
+    editEntityRecord,
+    __experimentalSaveSpecifiedEntityEdits: saveSpecifiedEntityEdits
+  } = (0,external_wp_data_namespaceObject.useDispatch)(external_wp_coreData_namespaceObject.store);
+  const {
+    createSuccessNotice,
+    createErrorNotice
+  } = (0,external_wp_data_namespaceObject.useDispatch)(external_wp_notices_namespaceObject.store);
+  const onRename = async event => {
+    event.preventDefault();
+    if (!name || name === pattern.title || isSaving) {
+      return;
+    }
+    try {
+      await editEntityRecord('postType', pattern.type, pattern.id, {
+        title: name
+      });
+      setIsSaving(true);
+      setName('');
+      onClose?.();
+      const savedRecord = await saveSpecifiedEntityEdits('postType', pattern.type, pattern.id, ['title'], {
+        throwOnError: true
+      });
+      onSuccess?.(savedRecord);
+      createSuccessNotice((0,external_wp_i18n_namespaceObject.__)('Pattern renamed'), {
+        type: 'snackbar',
+        id: 'pattern-update'
+      });
+    } catch (error) {
+      onError?.();
+      const errorMessage = error.message && error.code !== 'unknown_error' ? error.message : (0,external_wp_i18n_namespaceObject.__)('An error occurred while renaming the pattern.');
+      createErrorNotice(errorMessage, {
+        type: 'snackbar',
+        id: 'pattern-update'
+      });
+    } finally {
+      setIsSaving(false);
+      setName('');
+    }
+  };
+  const onRequestClose = () => {
+    onClose?.();
+    setName('');
+  };
+  return (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.Modal, {
+    title: (0,external_wp_i18n_namespaceObject.__)('Rename'),
+    ...props,
+    onRequestClose: onClose
+  }, (0,external_React_namespaceObject.createElement)("form", {
+    onSubmit: onRename
+  }, (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.__experimentalVStack, {
+    spacing: "5"
+  }, (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.TextControl, {
+    __nextHasNoMarginBottom: true,
+    label: (0,external_wp_i18n_namespaceObject.__)('Name'),
+    value: name,
+    onChange: setName,
+    required: true
+  }), (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.__experimentalHStack, {
+    justify: "right"
+  }, (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
+    variant: "tertiary",
+    onClick: onRequestClose
+  }, (0,external_wp_i18n_namespaceObject.__)('Cancel')), (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
+    variant: "primary",
+    type: "submit"
+  }, (0,external_wp_i18n_namespaceObject.__)('Save'))))));
 }
 
 ;// CONCATENATED MODULE: external ["wp","primitives"]
-const external_wp_primitives_namespaceObject = window["wp"]["primitives"];
+var external_wp_primitives_namespaceObject = window["wp"]["primitives"];
 ;// CONCATENATED MODULE: ./packages/icons/build-module/library/symbol.js
 
 /**
  * WordPress dependencies
  */
 
-const symbol = (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.SVG, {
+const symbol = (0,external_React_namespaceObject.createElement)(external_wp_primitives_namespaceObject.SVG, {
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 24 24"
-}, (0,external_wp_element_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
+}, (0,external_React_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M21.3 10.8l-5.6-5.6c-.7-.7-1.8-.7-2.5 0l-5.6 5.6c-.7.7-.7 1.8 0 2.5l5.6 5.6c.3.3.8.5 1.2.5s.9-.2 1.2-.5l5.6-5.6c.8-.7.8-1.9.1-2.5zm-1 1.4l-5.6 5.6c-.1.1-.3.1-.4 0l-5.6-5.6c-.1-.1-.1-.3 0-.4l5.6-5.6s.1-.1.2-.1.1 0 .2.1l5.6 5.6c.1.1.1.3 0 .4zm-16.6-.4L10 5.5l-1-1-6.3 6.3c-.7.7-.7 1.8 0 2.5L9 19.5l1.1-1.1-6.3-6.3c-.2 0-.2-.2-.1-.3z"
 }));
-/* harmony default export */ const library_symbol = (symbol);
+/* harmony default export */ var library_symbol = (symbol);
 
 ;// CONCATENATED MODULE: ./packages/patterns/build-module/components/pattern-convert-button.js
 
@@ -518,7 +715,7 @@ const symbol = (0,external_wp_element_namespaceObject.createElement)(external_wp
  * @param {Object}   props              Component props.
  * @param {string[]} props.clientIds    Client ids of selected blocks.
  * @param {string}   props.rootClientId ID of the currently selected top-level block.
- * @return {import('@wordpress/element').WPComponent} The menu control or null.
+ * @return {import('react').ComponentType} The menu control or null.
  */
 function PatternConvertButton({
   clientIds,
@@ -591,12 +788,12 @@ function PatternConvertButton({
     });
     setIsModalOpen(false);
   };
-  return (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.Fragment, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.MenuItem, {
+  return (0,external_React_namespaceObject.createElement)(external_React_namespaceObject.Fragment, null, (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.MenuItem, {
     icon: library_symbol,
     onClick: () => setIsModalOpen(true),
     "aria-expanded": isModalOpen,
     "aria-haspopup": "dialog"
-  }, (0,external_wp_i18n_namespaceObject.__)('Create pattern')), isModalOpen && (0,external_wp_element_namespaceObject.createElement)(CreatePatternModal, {
+  }, (0,external_wp_i18n_namespaceObject.__)('Create pattern')), isModalOpen && (0,external_React_namespaceObject.createElement)(CreatePatternModal, {
     content: getContent,
     onSuccess: pattern => {
       handleSuccess(pattern);
@@ -611,7 +808,7 @@ function PatternConvertButton({
 }
 
 ;// CONCATENATED MODULE: external ["wp","url"]
-const external_wp_url_namespaceObject = window["wp"]["url"];
+var external_wp_url_namespaceObject = window["wp"]["url"];
 ;// CONCATENATED MODULE: ./packages/patterns/build-module/components/patterns-manage-button.js
 
 /**
@@ -673,13 +870,13 @@ function PatternsManageButton({
   if (!isVisible) {
     return null;
   }
-  return (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.Fragment, null, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.MenuItem, {
+  return (0,external_React_namespaceObject.createElement)(external_React_namespaceObject.Fragment, null, (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.MenuItem, {
     href: managePatternsUrl
-  }, (0,external_wp_i18n_namespaceObject.__)('Manage patterns')), canRemove && (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.MenuItem, {
+  }, (0,external_wp_i18n_namespaceObject.__)('Manage patterns')), canRemove && (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.MenuItem, {
     onClick: () => convertSyncedPatternToStatic(clientId)
   }, innerBlockCount > 1 ? (0,external_wp_i18n_namespaceObject.__)('Detach patterns') : (0,external_wp_i18n_namespaceObject.__)('Detach pattern')));
 }
-/* harmony default export */ const patterns_manage_button = (PatternsManageButton);
+/* harmony default export */ var patterns_manage_button = (PatternsManageButton);
 
 ;// CONCATENATED MODULE: ./packages/patterns/build-module/components/index.js
 
@@ -696,14 +893,114 @@ function PatternsManageButton({
 function PatternsMenuItems({
   rootClientId
 }) {
-  return (0,external_wp_element_namespaceObject.createElement)(external_wp_blockEditor_namespaceObject.BlockSettingsMenuControls, null, ({
+  return (0,external_React_namespaceObject.createElement)(external_wp_blockEditor_namespaceObject.BlockSettingsMenuControls, null, ({
     selectedClientIds
-  }) => (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.Fragment, null, (0,external_wp_element_namespaceObject.createElement)(PatternConvertButton, {
+  }) => (0,external_React_namespaceObject.createElement)(external_React_namespaceObject.Fragment, null, (0,external_React_namespaceObject.createElement)(PatternConvertButton, {
     clientIds: selectedClientIds,
     rootClientId: rootClientId
-  }), selectedClientIds.length === 1 && (0,external_wp_element_namespaceObject.createElement)(patterns_manage_button, {
+  }), selectedClientIds.length === 1 && (0,external_React_namespaceObject.createElement)(patterns_manage_button, {
     clientId: selectedClientIds[0]
   })));
+}
+
+;// CONCATENATED MODULE: ./packages/patterns/build-module/components/rename-pattern-category-modal.js
+
+/**
+ * WordPress dependencies
+ */
+
+
+
+
+
+
+
+
+/**
+ * Internal dependencies
+ */
+
+function RenamePatternCategoryModal({
+  category,
+  onClose,
+  onError,
+  onSuccess,
+  ...props
+}) {
+  const [name, setName] = (0,external_wp_element_namespaceObject.useState)((0,external_wp_htmlEntities_namespaceObject.decodeEntities)(category.name));
+  const [isSaving, setIsSaving] = (0,external_wp_element_namespaceObject.useState)(false);
+  const {
+    saveEntityRecord,
+    invalidateResolution
+  } = (0,external_wp_data_namespaceObject.useDispatch)(external_wp_coreData_namespaceObject.store);
+  const {
+    createErrorNotice,
+    createSuccessNotice
+  } = (0,external_wp_data_namespaceObject.useDispatch)(external_wp_notices_namespaceObject.store);
+  const onRename = async event => {
+    event.preventDefault();
+    if (!name || name === category.name || isSaving) {
+      return;
+    }
+    try {
+      setIsSaving(true);
+
+      // User pattern category properties may differ as they can be
+      // normalized for use alongside template part areas, core pattern
+      // categories etc. As a result we won't just destructure the passed
+      // category object.
+      const savedRecord = await saveEntityRecord('taxonomy', CATEGORY_SLUG, {
+        id: category.id,
+        slug: category.slug,
+        name
+      });
+      invalidateResolution('getUserPatternCategories');
+      onSuccess?.(savedRecord);
+      onClose();
+      createSuccessNotice((0,external_wp_i18n_namespaceObject.__)('Pattern category renamed.'), {
+        type: 'snackbar',
+        id: 'pattern-category-update'
+      });
+    } catch (error) {
+      onError?.();
+      createErrorNotice(error.message, {
+        type: 'snackbar',
+        id: 'pattern-category-update'
+      });
+    } finally {
+      setIsSaving(false);
+      setName('');
+    }
+  };
+  const onRequestClose = () => {
+    onClose();
+    setName('');
+  };
+  return (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.Modal, {
+    title: (0,external_wp_i18n_namespaceObject.__)('Rename'),
+    onRequestClose: onRequestClose,
+    ...props
+  }, (0,external_React_namespaceObject.createElement)("form", {
+    onSubmit: onRename
+  }, (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.__experimentalVStack, {
+    spacing: "5"
+  }, (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.TextControl, {
+    __nextHasNoMarginBottom: true,
+    label: (0,external_wp_i18n_namespaceObject.__)('Name'),
+    value: name,
+    onChange: setName,
+    required: true
+  }), (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.__experimentalHStack, {
+    justify: "right"
+  }, (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
+    variant: "tertiary",
+    onClick: onRequestClose
+  }, (0,external_wp_i18n_namespaceObject.__)('Cancel')), (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
+    variant: "primary",
+    type: "submit",
+    "aria-disabled": !name || name === category.name || isSaving,
+    isBusy: isSaving
+  }, (0,external_wp_i18n_namespaceObject.__)('Save'))))));
 }
 
 ;// CONCATENATED MODULE: ./packages/patterns/build-module/private-apis.js
@@ -714,10 +1011,16 @@ function PatternsMenuItems({
 
 
 
+
+
+
 const privateApis = {};
 lock(privateApis, {
   CreatePatternModal: CreatePatternModal,
+  DuplicatePatternModal: DuplicatePatternModal,
+  RenamePatternModal: RenamePatternModal,
   PatternsMenuItems: PatternsMenuItems,
+  RenamePatternCategoryModal: RenamePatternCategoryModal,
   PATTERN_TYPES: PATTERN_TYPES,
   PATTERN_DEFAULT_CATEGORY: PATTERN_DEFAULT_CATEGORY,
   PATTERN_USER_CATEGORY: PATTERN_USER_CATEGORY,

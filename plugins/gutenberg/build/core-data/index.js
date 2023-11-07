@@ -1,8 +1,8 @@
-/******/ (() => { // webpackBootstrap
+/******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 2167:
-/***/ ((module) => {
+/***/ (function(module) {
 
 "use strict";
 
@@ -317,7 +317,7 @@ module.exports = EquivalentKeyMap;
 /***/ }),
 
 /***/ 5619:
-/***/ ((module) => {
+/***/ (function(module) {
 
 "use strict";
 
@@ -397,7 +397,7 @@ module.exports = function equal(a, b) {
 /***/ }),
 
 /***/ 2248:
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 (function(e){if(true)module.exports=e();else { var t; }})(function(){var t=Math.floor,n=Math.abs,r=Math.pow;return function(){function d(s,e,n){function t(o,i){if(!e[o]){if(!s[o]){var l=undefined;if(!i&&l)return require(o,!0);if(r)return r(o,!0);var c=new Error("Cannot find module '"+o+"'");throw c.code="MODULE_NOT_FOUND",c}var a=e[o]={exports:{}};s[o][0].call(a.exports,function(e){var r=s[o][1][e];return t(r||e)},a,a.exports,d,s,e,n)}return e[o].exports}for(var r=undefined,a=0;a<n.length;a++)t(n[a]);return t}return d}()({1:[function(e,t,n){'use strict';function r(e){var t=e.length;if(0<t%4)throw new Error("Invalid string. Length must be a multiple of 4");var n=e.indexOf("=");-1===n&&(n=t);var r=n===t?0:4-n%4;return[n,r]}function a(e,t,n){return 3*(t+n)/4-n}function o(e){var t,n,o=r(e),d=o[0],s=o[1],l=new p(a(e,d,s)),c=0,f=0<s?d-4:d;for(n=0;n<f;n+=4)t=u[e.charCodeAt(n)]<<18|u[e.charCodeAt(n+1)]<<12|u[e.charCodeAt(n+2)]<<6|u[e.charCodeAt(n+3)],l[c++]=255&t>>16,l[c++]=255&t>>8,l[c++]=255&t;return 2===s&&(t=u[e.charCodeAt(n)]<<2|u[e.charCodeAt(n+1)]>>4,l[c++]=255&t),1===s&&(t=u[e.charCodeAt(n)]<<10|u[e.charCodeAt(n+1)]<<4|u[e.charCodeAt(n+2)]>>2,l[c++]=255&t>>8,l[c++]=255&t),l}function d(e){return c[63&e>>18]+c[63&e>>12]+c[63&e>>6]+c[63&e]}function s(e,t,n){for(var r,a=[],o=t;o<n;o+=3)r=(16711680&e[o]<<16)+(65280&e[o+1]<<8)+(255&e[o+2]),a.push(d(r));return a.join("")}function l(e){for(var t,n=e.length,r=n%3,a=[],o=16383,d=0,l=n-r;d<l;d+=o)a.push(s(e,d,d+o>l?l:d+o));return 1===r?(t=e[n-1],a.push(c[t>>2]+c[63&t<<4]+"==")):2===r&&(t=(e[n-2]<<8)+e[n-1],a.push(c[t>>10]+c[63&t>>4]+c[63&t<<2]+"=")),a.join("")}n.byteLength=function(e){var t=r(e),n=t[0],a=t[1];return 3*(n+a)/4-a},n.toByteArray=o,n.fromByteArray=l;for(var c=[],u=[],p="undefined"==typeof Uint8Array?Array:Uint8Array,f="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",g=0,_=f.length;g<_;++g)c[g]=f[g],u[f.charCodeAt(g)]=g;u[45]=62,u[95]=63},{}],2:[function(){},{}],3:[function(e,t,n){(function(){(function(){/*!
  * The buffer module from node.js, for the browser.
@@ -436,31 +436,31 @@ module.exports = function equal(a, b) {
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
+/******/ 		__webpack_require__.n = function(module) {
 /******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
+/******/ 				function() { return module['default']; } :
+/******/ 				function() { return module; };
 /******/ 			__webpack_require__.d(getter, { a: getter });
 /******/ 			return getter;
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 		__webpack_require__.d = function(exports, definition) {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
 /******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		__webpack_require__.g = (function() {
 /******/ 			if (typeof globalThis === 'object') return globalThis;
 /******/ 			try {
@@ -469,176 +469,178 @@ module.exports = function equal(a, b) {
 /******/ 				if (typeof window === 'object') return window;
 /******/ 			}
 /******/ 		})();
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
+/******/ 		__webpack_require__.r = function(exports) {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
-(() => {
+!function() {
 "use strict";
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  "EntityProvider": () => (/* reexport */ EntityProvider),
-  "__experimentalFetchLinkSuggestions": () => (/* reexport */ _experimental_fetch_link_suggestions),
-  "__experimentalFetchUrlData": () => (/* reexport */ _experimental_fetch_url_data),
-  "__experimentalUseEntityRecord": () => (/* reexport */ __experimentalUseEntityRecord),
-  "__experimentalUseEntityRecords": () => (/* reexport */ __experimentalUseEntityRecords),
-  "__experimentalUseResourcePermissions": () => (/* reexport */ __experimentalUseResourcePermissions),
-  "store": () => (/* binding */ store),
-  "useEntityBlockEditor": () => (/* reexport */ useEntityBlockEditor),
-  "useEntityId": () => (/* reexport */ useEntityId),
-  "useEntityProp": () => (/* reexport */ useEntityProp),
-  "useEntityRecord": () => (/* reexport */ useEntityRecord),
-  "useEntityRecords": () => (/* reexport */ useEntityRecords),
-  "useResourcePermissions": () => (/* reexport */ useResourcePermissions)
+  EntityProvider: function() { return /* reexport */ EntityProvider; },
+  __experimentalFetchLinkSuggestions: function() { return /* reexport */ _experimental_fetch_link_suggestions; },
+  __experimentalFetchUrlData: function() { return /* reexport */ _experimental_fetch_url_data; },
+  __experimentalUseEntityRecord: function() { return /* reexport */ __experimentalUseEntityRecord; },
+  __experimentalUseEntityRecords: function() { return /* reexport */ __experimentalUseEntityRecords; },
+  __experimentalUseResourcePermissions: function() { return /* reexport */ __experimentalUseResourcePermissions; },
+  store: function() { return /* binding */ store; },
+  useEntityBlockEditor: function() { return /* reexport */ useEntityBlockEditor; },
+  useEntityId: function() { return /* reexport */ useEntityId; },
+  useEntityProp: function() { return /* reexport */ useEntityProp; },
+  useEntityRecord: function() { return /* reexport */ useEntityRecord; },
+  useEntityRecords: function() { return /* reexport */ useEntityRecords; },
+  useResourcePermissions: function() { return /* reexport */ useResourcePermissions; }
 });
 
 // NAMESPACE OBJECT: ./packages/core-data/build-module/actions.js
 var build_module_actions_namespaceObject = {};
 __webpack_require__.r(build_module_actions_namespaceObject);
 __webpack_require__.d(build_module_actions_namespaceObject, {
-  "__experimentalBatch": () => (__experimentalBatch),
-  "__experimentalReceiveCurrentGlobalStylesId": () => (__experimentalReceiveCurrentGlobalStylesId),
-  "__experimentalReceiveThemeBaseGlobalStyles": () => (__experimentalReceiveThemeBaseGlobalStyles),
-  "__experimentalReceiveThemeGlobalStyleVariations": () => (__experimentalReceiveThemeGlobalStyleVariations),
-  "__experimentalSaveSpecifiedEntityEdits": () => (__experimentalSaveSpecifiedEntityEdits),
-  "__unstableCreateUndoLevel": () => (__unstableCreateUndoLevel),
-  "addEntities": () => (addEntities),
-  "deleteEntityRecord": () => (deleteEntityRecord),
-  "editEntityRecord": () => (editEntityRecord),
-  "receiveAutosaves": () => (receiveAutosaves),
-  "receiveCurrentTheme": () => (receiveCurrentTheme),
-  "receiveCurrentUser": () => (receiveCurrentUser),
-  "receiveEmbedPreview": () => (receiveEmbedPreview),
-  "receiveEntityRecords": () => (receiveEntityRecords),
-  "receiveNavigationFallbackId": () => (receiveNavigationFallbackId),
-  "receiveThemeGlobalStyleRevisions": () => (receiveThemeGlobalStyleRevisions),
-  "receiveThemeSupports": () => (receiveThemeSupports),
-  "receiveUploadPermissions": () => (receiveUploadPermissions),
-  "receiveUserPermission": () => (receiveUserPermission),
-  "receiveUserQuery": () => (receiveUserQuery),
-  "redo": () => (redo),
-  "saveEditedEntityRecord": () => (saveEditedEntityRecord),
-  "saveEntityRecord": () => (saveEntityRecord),
-  "undo": () => (undo)
+  __experimentalBatch: function() { return __experimentalBatch; },
+  __experimentalReceiveCurrentGlobalStylesId: function() { return __experimentalReceiveCurrentGlobalStylesId; },
+  __experimentalReceiveThemeBaseGlobalStyles: function() { return __experimentalReceiveThemeBaseGlobalStyles; },
+  __experimentalReceiveThemeGlobalStyleVariations: function() { return __experimentalReceiveThemeGlobalStyleVariations; },
+  __experimentalSaveSpecifiedEntityEdits: function() { return __experimentalSaveSpecifiedEntityEdits; },
+  __unstableCreateUndoLevel: function() { return __unstableCreateUndoLevel; },
+  addEntities: function() { return addEntities; },
+  deleteEntityRecord: function() { return deleteEntityRecord; },
+  editEntityRecord: function() { return editEntityRecord; },
+  receiveAutosaves: function() { return receiveAutosaves; },
+  receiveCurrentTheme: function() { return receiveCurrentTheme; },
+  receiveCurrentUser: function() { return receiveCurrentUser; },
+  receiveEmbedPreview: function() { return receiveEmbedPreview; },
+  receiveEntityRecords: function() { return receiveEntityRecords; },
+  receiveNavigationFallbackId: function() { return receiveNavigationFallbackId; },
+  receiveThemeGlobalStyleRevisions: function() { return receiveThemeGlobalStyleRevisions; },
+  receiveThemeSupports: function() { return receiveThemeSupports; },
+  receiveUploadPermissions: function() { return receiveUploadPermissions; },
+  receiveUserPermission: function() { return receiveUserPermission; },
+  receiveUserQuery: function() { return receiveUserQuery; },
+  redo: function() { return redo; },
+  saveEditedEntityRecord: function() { return saveEditedEntityRecord; },
+  saveEntityRecord: function() { return saveEntityRecord; },
+  undo: function() { return undo; }
 });
 
 // NAMESPACE OBJECT: ./packages/core-data/build-module/selectors.js
 var build_module_selectors_namespaceObject = {};
 __webpack_require__.r(build_module_selectors_namespaceObject);
 __webpack_require__.d(build_module_selectors_namespaceObject, {
-  "__experimentalGetCurrentGlobalStylesId": () => (__experimentalGetCurrentGlobalStylesId),
-  "__experimentalGetCurrentThemeBaseGlobalStyles": () => (__experimentalGetCurrentThemeBaseGlobalStyles),
-  "__experimentalGetCurrentThemeGlobalStylesVariations": () => (__experimentalGetCurrentThemeGlobalStylesVariations),
-  "__experimentalGetDirtyEntityRecords": () => (__experimentalGetDirtyEntityRecords),
-  "__experimentalGetEntitiesBeingSaved": () => (__experimentalGetEntitiesBeingSaved),
-  "__experimentalGetEntityRecordNoResolver": () => (__experimentalGetEntityRecordNoResolver),
-  "__experimentalGetTemplateForLink": () => (__experimentalGetTemplateForLink),
-  "canUser": () => (canUser),
-  "canUserEditEntityRecord": () => (canUserEditEntityRecord),
-  "getAuthors": () => (getAuthors),
-  "getAutosave": () => (getAutosave),
-  "getAutosaves": () => (getAutosaves),
-  "getBlockPatternCategories": () => (getBlockPatternCategories),
-  "getBlockPatterns": () => (getBlockPatterns),
-  "getCurrentTheme": () => (getCurrentTheme),
-  "getCurrentThemeGlobalStylesRevisions": () => (getCurrentThemeGlobalStylesRevisions),
-  "getCurrentUser": () => (getCurrentUser),
-  "getEditedEntityRecord": () => (getEditedEntityRecord),
-  "getEmbedPreview": () => (getEmbedPreview),
-  "getEntitiesByKind": () => (getEntitiesByKind),
-  "getEntitiesConfig": () => (getEntitiesConfig),
-  "getEntity": () => (getEntity),
-  "getEntityConfig": () => (getEntityConfig),
-  "getEntityRecord": () => (getEntityRecord),
-  "getEntityRecordEdits": () => (getEntityRecordEdits),
-  "getEntityRecordNonTransientEdits": () => (getEntityRecordNonTransientEdits),
-  "getEntityRecords": () => (getEntityRecords),
-  "getLastEntityDeleteError": () => (getLastEntityDeleteError),
-  "getLastEntitySaveError": () => (getLastEntitySaveError),
-  "getRawEntityRecord": () => (getRawEntityRecord),
-  "getRedoEdit": () => (getRedoEdit),
-  "getReferenceByDistinctEdits": () => (getReferenceByDistinctEdits),
-  "getThemeSupports": () => (getThemeSupports),
-  "getUndoEdit": () => (getUndoEdit),
-  "getUserPatternCategories": () => (getUserPatternCategories),
-  "getUserQueryResults": () => (getUserQueryResults),
-  "hasEditsForEntityRecord": () => (hasEditsForEntityRecord),
-  "hasEntityRecords": () => (hasEntityRecords),
-  "hasFetchedAutosaves": () => (hasFetchedAutosaves),
-  "hasRedo": () => (hasRedo),
-  "hasUndo": () => (hasUndo),
-  "isAutosavingEntityRecord": () => (isAutosavingEntityRecord),
-  "isDeletingEntityRecord": () => (isDeletingEntityRecord),
-  "isPreviewEmbedFallback": () => (isPreviewEmbedFallback),
-  "isRequestingEmbedPreview": () => (isRequestingEmbedPreview),
-  "isSavingEntityRecord": () => (isSavingEntityRecord)
+  __experimentalGetCurrentGlobalStylesId: function() { return __experimentalGetCurrentGlobalStylesId; },
+  __experimentalGetCurrentThemeBaseGlobalStyles: function() { return __experimentalGetCurrentThemeBaseGlobalStyles; },
+  __experimentalGetCurrentThemeGlobalStylesVariations: function() { return __experimentalGetCurrentThemeGlobalStylesVariations; },
+  __experimentalGetDirtyEntityRecords: function() { return __experimentalGetDirtyEntityRecords; },
+  __experimentalGetEntitiesBeingSaved: function() { return __experimentalGetEntitiesBeingSaved; },
+  __experimentalGetEntityRecordNoResolver: function() { return __experimentalGetEntityRecordNoResolver; },
+  __experimentalGetTemplateForLink: function() { return __experimentalGetTemplateForLink; },
+  canUser: function() { return canUser; },
+  canUserEditEntityRecord: function() { return canUserEditEntityRecord; },
+  getAuthors: function() { return getAuthors; },
+  getAutosave: function() { return getAutosave; },
+  getAutosaves: function() { return getAutosaves; },
+  getBlockPatternCategories: function() { return getBlockPatternCategories; },
+  getBlockPatterns: function() { return getBlockPatterns; },
+  getCurrentTheme: function() { return getCurrentTheme; },
+  getCurrentThemeGlobalStylesRevisions: function() { return getCurrentThemeGlobalStylesRevisions; },
+  getCurrentUser: function() { return getCurrentUser; },
+  getEditedEntityRecord: function() { return getEditedEntityRecord; },
+  getEmbedPreview: function() { return getEmbedPreview; },
+  getEntitiesByKind: function() { return getEntitiesByKind; },
+  getEntitiesConfig: function() { return getEntitiesConfig; },
+  getEntity: function() { return getEntity; },
+  getEntityConfig: function() { return getEntityConfig; },
+  getEntityRecord: function() { return getEntityRecord; },
+  getEntityRecordEdits: function() { return getEntityRecordEdits; },
+  getEntityRecordNonTransientEdits: function() { return getEntityRecordNonTransientEdits; },
+  getEntityRecords: function() { return getEntityRecords; },
+  getEntityRecordsTotalItems: function() { return getEntityRecordsTotalItems; },
+  getEntityRecordsTotalPages: function() { return getEntityRecordsTotalPages; },
+  getLastEntityDeleteError: function() { return getLastEntityDeleteError; },
+  getLastEntitySaveError: function() { return getLastEntitySaveError; },
+  getRawEntityRecord: function() { return getRawEntityRecord; },
+  getRedoEdit: function() { return getRedoEdit; },
+  getReferenceByDistinctEdits: function() { return getReferenceByDistinctEdits; },
+  getThemeSupports: function() { return getThemeSupports; },
+  getUndoEdit: function() { return getUndoEdit; },
+  getUserPatternCategories: function() { return getUserPatternCategories; },
+  getUserQueryResults: function() { return getUserQueryResults; },
+  hasEditsForEntityRecord: function() { return hasEditsForEntityRecord; },
+  hasEntityRecords: function() { return hasEntityRecords; },
+  hasFetchedAutosaves: function() { return hasFetchedAutosaves; },
+  hasRedo: function() { return hasRedo; },
+  hasUndo: function() { return hasUndo; },
+  isAutosavingEntityRecord: function() { return isAutosavingEntityRecord; },
+  isDeletingEntityRecord: function() { return isDeletingEntityRecord; },
+  isPreviewEmbedFallback: function() { return isPreviewEmbedFallback; },
+  isRequestingEmbedPreview: function() { return isRequestingEmbedPreview; },
+  isSavingEntityRecord: function() { return isSavingEntityRecord; }
 });
 
 // NAMESPACE OBJECT: ./packages/core-data/build-module/private-selectors.js
 var private_selectors_namespaceObject = {};
 __webpack_require__.r(private_selectors_namespaceObject);
 __webpack_require__.d(private_selectors_namespaceObject, {
-  "getNavigationFallbackId": () => (getNavigationFallbackId),
-  "getUndoManager": () => (getUndoManager)
+  getNavigationFallbackId: function() { return getNavigationFallbackId; },
+  getUndoManager: function() { return getUndoManager; }
 });
 
 // NAMESPACE OBJECT: ./packages/core-data/build-module/resolvers.js
 var resolvers_namespaceObject = {};
 __webpack_require__.r(resolvers_namespaceObject);
 __webpack_require__.d(resolvers_namespaceObject, {
-  "__experimentalGetCurrentGlobalStylesId": () => (resolvers_experimentalGetCurrentGlobalStylesId),
-  "__experimentalGetCurrentThemeBaseGlobalStyles": () => (resolvers_experimentalGetCurrentThemeBaseGlobalStyles),
-  "__experimentalGetCurrentThemeGlobalStylesVariations": () => (resolvers_experimentalGetCurrentThemeGlobalStylesVariations),
-  "__experimentalGetTemplateForLink": () => (resolvers_experimentalGetTemplateForLink),
-  "canUser": () => (resolvers_canUser),
-  "canUserEditEntityRecord": () => (resolvers_canUserEditEntityRecord),
-  "getAuthors": () => (resolvers_getAuthors),
-  "getAutosave": () => (resolvers_getAutosave),
-  "getAutosaves": () => (resolvers_getAutosaves),
-  "getBlockPatternCategories": () => (resolvers_getBlockPatternCategories),
-  "getBlockPatterns": () => (resolvers_getBlockPatterns),
-  "getCurrentTheme": () => (resolvers_getCurrentTheme),
-  "getCurrentThemeGlobalStylesRevisions": () => (resolvers_getCurrentThemeGlobalStylesRevisions),
-  "getCurrentUser": () => (resolvers_getCurrentUser),
-  "getEditedEntityRecord": () => (resolvers_getEditedEntityRecord),
-  "getEmbedPreview": () => (resolvers_getEmbedPreview),
-  "getEntityRecord": () => (resolvers_getEntityRecord),
-  "getEntityRecords": () => (resolvers_getEntityRecords),
-  "getNavigationFallbackId": () => (resolvers_getNavigationFallbackId),
-  "getRawEntityRecord": () => (resolvers_getRawEntityRecord),
-  "getThemeSupports": () => (resolvers_getThemeSupports),
-  "getUserPatternCategories": () => (resolvers_getUserPatternCategories)
+  __experimentalGetCurrentGlobalStylesId: function() { return resolvers_experimentalGetCurrentGlobalStylesId; },
+  __experimentalGetCurrentThemeBaseGlobalStyles: function() { return resolvers_experimentalGetCurrentThemeBaseGlobalStyles; },
+  __experimentalGetCurrentThemeGlobalStylesVariations: function() { return resolvers_experimentalGetCurrentThemeGlobalStylesVariations; },
+  __experimentalGetTemplateForLink: function() { return resolvers_experimentalGetTemplateForLink; },
+  canUser: function() { return resolvers_canUser; },
+  canUserEditEntityRecord: function() { return resolvers_canUserEditEntityRecord; },
+  getAuthors: function() { return resolvers_getAuthors; },
+  getAutosave: function() { return resolvers_getAutosave; },
+  getAutosaves: function() { return resolvers_getAutosaves; },
+  getBlockPatternCategories: function() { return resolvers_getBlockPatternCategories; },
+  getBlockPatterns: function() { return resolvers_getBlockPatterns; },
+  getCurrentTheme: function() { return resolvers_getCurrentTheme; },
+  getCurrentThemeGlobalStylesRevisions: function() { return resolvers_getCurrentThemeGlobalStylesRevisions; },
+  getCurrentUser: function() { return resolvers_getCurrentUser; },
+  getEditedEntityRecord: function() { return resolvers_getEditedEntityRecord; },
+  getEmbedPreview: function() { return resolvers_getEmbedPreview; },
+  getEntityRecord: function() { return resolvers_getEntityRecord; },
+  getEntityRecords: function() { return resolvers_getEntityRecords; },
+  getNavigationFallbackId: function() { return resolvers_getNavigationFallbackId; },
+  getRawEntityRecord: function() { return resolvers_getRawEntityRecord; },
+  getThemeSupports: function() { return resolvers_getThemeSupports; },
+  getUserPatternCategories: function() { return resolvers_getUserPatternCategories; }
 });
 
 ;// CONCATENATED MODULE: external ["wp","data"]
-const external_wp_data_namespaceObject = window["wp"]["data"];
+var external_wp_data_namespaceObject = window["wp"]["data"];
 // EXTERNAL MODULE: ./node_modules/fast-deep-equal/es6/index.js
 var es6 = __webpack_require__(5619);
 var es6_default = /*#__PURE__*/__webpack_require__.n(es6);
 ;// CONCATENATED MODULE: external ["wp","compose"]
-const external_wp_compose_namespaceObject = window["wp"]["compose"];
+var external_wp_compose_namespaceObject = window["wp"]["compose"];
 ;// CONCATENATED MODULE: external ["wp","isShallowEqual"]
-const external_wp_isShallowEqual_namespaceObject = window["wp"]["isShallowEqual"];
+var external_wp_isShallowEqual_namespaceObject = window["wp"]["isShallowEqual"];
 var external_wp_isShallowEqual_default = /*#__PURE__*/__webpack_require__.n(external_wp_isShallowEqual_namespaceObject);
 ;// CONCATENATED MODULE: ./packages/undo-manager/build-module/index.js
 /**
@@ -830,7 +832,7 @@ const ifMatchingAction = isMatch => reducer => (state, action) => {
   }
   return state;
 };
-/* harmony default export */ const if_matching_action = (ifMatchingAction);
+/* harmony default export */ var if_matching_action = (ifMatchingAction);
 
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/utils/replace-action.js
 /** @typedef {import('../types').AnyFunction} AnyFunction */
@@ -846,7 +848,7 @@ const ifMatchingAction = isMatch => reducer => (state, action) => {
 const replaceAction = replacer => reducer => (state, action) => {
   return reducer(state, replacer(action));
 };
-/* harmony default export */ const replace_action = (replaceAction);
+/* harmony default export */ var replace_action = (replaceAction);
 
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/utils/conservative-map-item.js
 /**
@@ -924,7 +926,7 @@ const onSubKey = actionProperty => reducer => (state = {}, action) => {
     [key]: nextKeyState
   };
 };
-/* harmony default export */ const on_sub_key = (onSubKey);
+/* harmony default export */ var on_sub_key = (onSubKey);
 
 ;// CONCATENATED MODULE: ./node_modules/tslib/tslib.es6.mjs
 /******************************************************************************
@@ -1268,7 +1270,7 @@ function __disposeResources(env) {
   return next();
 }
 
-/* harmony default export */ const tslib_es6 = ({
+/* harmony default export */ var tslib_es6 = ({
   __extends,
   __assign,
   __rest,
@@ -1419,10 +1421,10 @@ function pascalCase(input, options) {
 }
 
 ;// CONCATENATED MODULE: external ["wp","apiFetch"]
-const external_wp_apiFetch_namespaceObject = window["wp"]["apiFetch"];
+var external_wp_apiFetch_namespaceObject = window["wp"]["apiFetch"];
 var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_wp_apiFetch_namespaceObject);
 ;// CONCATENATED MODULE: external ["wp","i18n"]
-const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
+var external_wp_i18n_namespaceObject = window["wp"]["i18n"];
 ;// CONCATENATED MODULE: ./packages/core-data/node_modules/uuid/dist/esm-browser/rng.js
 // Unique ID creation requires a high quality random # generator. In the browser we therefore
 // require the crypto API and do not support built-in fallback to lower quality random number
@@ -1444,7 +1446,7 @@ function rng() {
   return rng_getRandomValues(rnds8);
 }
 ;// CONCATENATED MODULE: ./packages/core-data/node_modules/uuid/dist/esm-browser/regex.js
-/* harmony default export */ const regex = (/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i);
+/* harmony default export */ var regex = (/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i);
 ;// CONCATENATED MODULE: ./packages/core-data/node_modules/uuid/dist/esm-browser/validate.js
 
 
@@ -1452,7 +1454,7 @@ function validate(uuid) {
   return typeof uuid === 'string' && regex.test(uuid);
 }
 
-/* harmony default export */ const esm_browser_validate = (validate);
+/* harmony default export */ var esm_browser_validate = (validate);
 ;// CONCATENATED MODULE: ./packages/core-data/node_modules/uuid/dist/esm-browser/stringify.js
 
 /**
@@ -1483,7 +1485,7 @@ function stringify(arr) {
   return uuid;
 }
 
-/* harmony default export */ const esm_browser_stringify = (stringify);
+/* harmony default export */ var esm_browser_stringify = (stringify);
 ;// CONCATENATED MODULE: ./packages/core-data/node_modules/uuid/dist/esm-browser/v4.js
 
 
@@ -1508,11 +1510,11 @@ function v4(options, buf, offset) {
   return esm_browser_stringify(rnds);
 }
 
-/* harmony default export */ const esm_browser_v4 = (v4);
+/* harmony default export */ var esm_browser_v4 = (v4);
 ;// CONCATENATED MODULE: external ["wp","url"]
-const external_wp_url_namespaceObject = window["wp"]["url"];
+var external_wp_url_namespaceObject = window["wp"]["url"];
 ;// CONCATENATED MODULE: external ["wp","deprecated"]
-const external_wp_deprecated_namespaceObject = window["wp"]["deprecated"];
+var external_wp_deprecated_namespaceObject = window["wp"]["deprecated"];
 var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_namespaceObject);
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/utils/set-nested-value.js
 /**
@@ -1589,14 +1591,16 @@ function getNestedValue(object, path, defaultValue) {
  *
  * @param {Array}   items Items received.
  * @param {?Object} edits Optional edits to reset.
+ * @param {?Object} meta  Meta information about pagination.
  *
  * @return {Object} Action object.
  */
-function receiveItems(items, edits) {
+function receiveItems(items, edits, meta) {
   return {
     type: 'RECEIVE_ITEMS',
     items: Array.isArray(items) ? items : [items],
-    persistedEdits: edits
+    persistedEdits: edits,
+    meta
   };
 }
 
@@ -1627,12 +1631,13 @@ function removeItems(kind, name, records, invalidateCache = false) {
  * @param {Array}   items Queried items received.
  * @param {?Object} query Optional query object.
  * @param {?Object} edits Optional edits to reset.
+ * @param {?Object} meta  Meta information about pagination.
  *
  * @return {Object} Action object.
  */
-function receiveQueriedItems(items, query = {}, edits) {
+function receiveQueriedItems(items, query = {}, edits, meta) {
   return {
-    ...receiveItems(items, edits),
+    ...receiveItems(items, edits, meta),
     query
   };
 }
@@ -3652,7 +3657,7 @@ const _writeVarStringPolyfill = (encoder, str) => {
  * @param {String} str The string that is to be encoded.
  */
 /* c8 ignore next */
-const writeVarString = (utf8TextEncoder && /** @type {any} */ utf8TextEncoder.encodeInto) ? _writeVarStringNative : _writeVarStringPolyfill
+const writeVarString = (utf8TextEncoder && /** @type {any} */ (utf8TextEncoder).encodeInto) ? _writeVarStringNative : _writeVarStringPolyfill
 
 /**
  * Write a string terminated by a special byte sequence. This is not very performant and is
@@ -4632,7 +4637,7 @@ const _readVarStringPolyfill = decoder => {
  * @return {String} The read String
  */
 const _readVarStringNative = decoder =>
-  /** @type any */ utf8TextDecoder.decode(readVarUint8Array(decoder))
+  /** @type any */ (utf8TextDecoder).decode(readVarUint8Array(decoder))
 
 /**
  * Read string of variable length
@@ -16734,8 +16739,8 @@ class IndexeddbPersistence extends observable_Observable {
  * @return {Promise<() => void>} Promise that resolves when the connection is established.
  */
 function connectIndexDb(objectId, objectType, doc) {
-  const docName = `${objectType}-${objectId}`;
-  const provider = new IndexeddbPersistence(docName, doc);
+  const roomName = `${objectType}-${objectId}`;
+  const provider = new IndexeddbPersistence(roomName, doc);
   return new Promise(resolve => {
     provider.on('synced', () => {
       resolve(() => provider.destroy());
@@ -18290,8 +18295,8 @@ class WebrtcProvider extends observable_Observable {
  * @return {Promise<() => void>} Promise that resolves when the connection is established.
  */
 function connectWebRTC(objectId, objectType, doc) {
-  const docName = `${objectType}-${objectId}`;
-  new WebrtcProvider(docName, doc, {
+  const roomName = `${objectType}-${objectId}`;
+  new WebrtcProvider(roomName, doc, {
     // @ts-ignore
     password: window.__experimentalCollaborativeEditingSecret
   });
@@ -18394,9 +18399,10 @@ function addEntities(entities) {
  * @param {?Object}      query           Query Object.
  * @param {?boolean}     invalidateCache Should invalidate query caches.
  * @param {?Object}      edits           Edits to reset.
+ * @param {?Object}      meta            Meta information about pagination.
  * @return {Object} Action object.
  */
-function receiveEntityRecords(kind, name, records, query, invalidateCache = false, edits) {
+function receiveEntityRecords(kind, name, records, query, invalidateCache = false, edits, meta) {
   // Auto drafts should not have titles, but some plugins rely on them so we can't filter this
   // on the server.
   if (kind === 'postType') {
@@ -18407,9 +18413,9 @@ function receiveEntityRecords(kind, name, records, query, invalidateCache = fals
   }
   let action;
   if (query) {
-    action = receiveQueriedItems(records, query, edits);
+    action = receiveQueriedItems(records, query, edits, meta);
   } else {
-    action = receiveItems(records, edits);
+    action = receiveItems(records, edits, meta);
   }
   return {
     ...action,
@@ -19188,7 +19194,8 @@ const rootEntitiesConfig = [{
   },
   plural: 'mediaItems',
   label: (0,external_wp_i18n_namespaceObject.__)('Media'),
-  rawAttributes: ['caption', 'title', 'description']
+  rawAttributes: ['caption', 'title', 'description'],
+  supportsPagination: true
 }, {
   name: 'taxonomy',
   kind: 'root',
@@ -19308,6 +19315,16 @@ const rootEntitiesConfig = [{
     context: 'edit'
   },
   key: 'plugin'
+}, {
+  label: (0,external_wp_i18n_namespaceObject.__)('Status'),
+  name: 'status',
+  kind: 'root',
+  baseURL: '/wp/v2/statuses',
+  baseURLParams: {
+    context: 'edit'
+  },
+  plural: 'statuses',
+  key: 'slug'
 }];
 const additionalEntityConfigLoaders = [{
   kind: 'postType',
@@ -19394,7 +19411,8 @@ async function loadPostTypeEntities() {
         }
       },
       syncObjectType: 'postType/' + postType.name,
-      getSyncObjectId: id => id
+      getSyncObjectId: id => id,
+      supportsPagination: true
     };
   });
 }
@@ -19515,7 +19533,7 @@ function getNormalizedCommaSeparable(value) {
   }
   return null;
 }
-/* harmony default export */ const get_normalized_comma_separable = (getNormalizedCommaSeparable);
+/* harmony default export */ var get_normalized_comma_separable = (getNormalizedCommaSeparable);
 
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/utils/with-weak-map-cache.js
 /**
@@ -19546,7 +19564,7 @@ function withWeakMapCache(fn) {
     return value;
   };
 }
-/* harmony default export */ const with_weak_map_cache = (withWeakMapCache);
+/* harmony default export */ var with_weak_map_cache = (withWeakMapCache);
 
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/queried-data/get-query-parts.js
 /**
@@ -19650,7 +19668,7 @@ function getQueryParts(query) {
   }
   return parts;
 }
-/* harmony default export */ const get_query_parts = (with_weak_map_cache(getQueryParts));
+/* harmony default export */ var get_query_parts = (with_weak_map_cache(getQueryParts));
 
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/queried-data/reducer.js
 /**
@@ -19839,7 +19857,7 @@ replace_action(action => {
 }), on_sub_key('context'),
 // Queries shape is shared, but keyed by query `stableKey` part. Original
 // reducer tracks only a single query object.
-on_sub_key('stableKey')])((state = null, action) => {
+on_sub_key('stableKey')])((state = {}, action) => {
   const {
     type,
     page,
@@ -19849,7 +19867,10 @@ on_sub_key('stableKey')])((state = null, action) => {
   if (type !== 'RECEIVE_ITEMS') {
     return state;
   }
-  return getMergedItemIds(state || [], action.items.map(item => item[key]), page, perPage);
+  return {
+    itemIds: getMergedItemIds(state?.itemIds || [], action.items.map(item => item[key]), page, perPage),
+    meta: action.meta
+  };
 });
 
 /**
@@ -19869,12 +19890,15 @@ const queries = (state = {}, action) => {
         result[itemId] = true;
         return result;
       }, {});
-      return Object.fromEntries(Object.entries(state).map(([queryGroup, contextQueries]) => [queryGroup, Object.fromEntries(Object.entries(contextQueries).map(([query, queryItems]) => [query, queryItems.filter(queryId => !removedItems[queryId])]))]));
+      return Object.fromEntries(Object.entries(state).map(([queryGroup, contextQueries]) => [queryGroup, Object.fromEntries(Object.entries(contextQueries).map(([query, queryItems]) => [query, {
+        ...queryItems,
+        itemIds: queryItems.itemIds.filter(queryId => !removedItems[queryId])
+      }]))]));
     default:
       return state;
   }
 };
-/* harmony default export */ const reducer = ((0,external_wp_data_namespaceObject.combineReducers)({
+/* harmony default export */ var reducer = ((0,external_wp_data_namespaceObject.combineReducers)({
   items,
   itemIsComplete,
   queries
@@ -20390,7 +20414,7 @@ function themeGlobalStyleRevisions(state = {}, action) {
   }
   return state;
 }
-/* harmony default export */ const build_module_reducer = ((0,external_wp_data_namespaceObject.combineReducers)({
+/* harmony default export */ var build_module_reducer = ((0,external_wp_data_namespaceObject.combineReducers)({
   terms,
   users,
   currentTheme,
@@ -20754,7 +20778,7 @@ function getQueriedItemsUncached(state, query) {
   } = get_query_parts(query);
   let itemIds;
   if (state.queries?.[context]?.[stableKey]) {
-    itemIds = state.queries[context][stableKey];
+    itemIds = state.queries[context][stableKey].itemIds;
   }
   if (!itemIds) {
     return null;
@@ -20825,6 +20849,26 @@ const getQueriedItems = rememo((state, query = {}) => {
   queriedItemsCache.set(query, items);
   return items;
 });
+function getQueriedTotalItems(state, query = {}) {
+  var _state$queries$contex;
+  const {
+    stableKey,
+    context
+  } = get_query_parts(query);
+  return (_state$queries$contex = state.queries?.[context]?.[stableKey]?.meta?.totalItems) !== null && _state$queries$contex !== void 0 ? _state$queries$contex : null;
+}
+
+;// CONCATENATED MODULE: ./packages/core-data/build-module/utils/is-numeric-id.js
+/**
+ * Checks argument to determine if it's a numeric ID.
+ * For example, '123' is a numeric ID, but '123abc' is not.
+ *
+ * @param {any} id the argument to determine if it's a numeric ID.
+ * @return {boolean} true if the string is a numeric ID, false otherwise.
+ */
+function isNumericID(id) {
+  return /^\s*\d+\s*$/.test(id);
+}
 
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/utils/is-raw-attribute.js
 /**
@@ -21061,6 +21105,21 @@ const getEntityRecord = rememo((state, kind, name, key, query) => {
 });
 
 /**
+ * Normalizes `recordKey`s that look like numeric IDs to numbers.
+ *
+ * @param args EntityRecordArgs the selector arguments.
+ * @return EntityRecordArgs the normalized arguments.
+ */
+getEntityRecord.__unstableNormalizeArgs = args => {
+  const newArgs = [...args];
+  const recordKey = newArgs?.[2];
+
+  // If recordKey looks to be a numeric ID then coerce to number.
+  newArgs[2] = isNumericID(recordKey) ? Number(recordKey) : recordKey;
+  return newArgs;
+};
+
+/**
  * Returns the Entity's record object by key. Doesn't trigger a resolver nor requests the entity records from the API if the entity record isn't available in the local state.
  *
  * @param state State tree
@@ -21148,6 +21207,51 @@ const getEntityRecords = (state, kind, name, query) => {
     return null;
   }
   return getQueriedItems(queriedState, query);
+};
+
+/**
+ * Returns the Entity's total available records for a given query (ignoring pagination).
+ *
+ * @param state State tree
+ * @param kind  Entity kind.
+ * @param name  Entity name.
+ * @param query Optional terms query. If requesting specific
+ *              fields, fields must always include the ID. For valid query parameters see the [Reference](https://developer.wordpress.org/rest-api/reference/) in the REST API Handbook and select the entity kind. Then see the arguments available for "List [Entity kind]s".
+ *
+ * @return number | null.
+ */
+const getEntityRecordsTotalItems = (state, kind, name, query) => {
+  // Queried data state is prepopulated for all known entities. If this is not
+  // assigned for the given parameters, then it is known to not exist.
+  const queriedState = state.entities.records?.[kind]?.[name]?.queriedData;
+  if (!queriedState) {
+    return null;
+  }
+  return getQueriedTotalItems(queriedState, query);
+};
+
+/**
+ * Returns the number of available pages for the given query.
+ *
+ * @param state State tree
+ * @param kind  Entity kind.
+ * @param name  Entity name.
+ * @param query Optional terms query. If requesting specific
+ *              fields, fields must always include the ID. For valid query parameters see the [Reference](https://developer.wordpress.org/rest-api/reference/) in the REST API Handbook and select the entity kind. Then see the arguments available for "List [Entity kind]s".
+ *
+ * @return number | null.
+ */
+const getEntityRecordsTotalPages = (state, kind, name, query) => {
+  // Queried data state is prepopulated for all known entities. If this is not
+  // assigned for the given parameters, then it is known to not exist.
+  const queriedState = state.entities.records?.[kind]?.[name]?.queriedData;
+  if (!queriedState) {
+    return null;
+  }
+  if (query.per_page === -1) return 1;
+  const totalItems = getQueriedTotalItems(queriedState, query);
+  if (!totalItems) return totalItems;
+  return Math.ceil(totalItems / query.per_page);
 };
 /**
  * Returns the list of dirty entity records.
@@ -21445,6 +21549,9 @@ function hasRedo(state) {
  * @return The current theme.
  */
 function getCurrentTheme(state) {
+  if (!state.currentTheme) {
+    return null;
+  }
   return getEntityRecord(state, 'root', 'theme', state.currentTheme);
 }
 
@@ -21761,6 +21868,8 @@ function camelCase(input, options) {
     return pascalCase(input, __assign({ transform: camelCaseTransform }, options));
 }
 
+;// CONCATENATED MODULE: external ["wp","htmlEntities"]
+var external_wp_htmlEntities_namespaceObject = window["wp"]["htmlEntities"];
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/utils/forward-resolver.js
 /**
  * Higher-order function which forward the resolution to another resolver with the same arguments.
@@ -21774,7 +21883,7 @@ const forwardResolver = resolverName => (...args) => async ({
 }) => {
   await resolveSelect[resolverName](...args);
 };
-/* harmony default export */ const forward_resolver = (forwardResolver);
+/* harmony default export */ var forward_resolver = (forwardResolver);
 
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/resolvers.js
 /**
@@ -21785,6 +21894,7 @@ const forwardResolver = resolverName => (...args) => async ({
 /**
  * WordPress dependencies
  */
+
 
 
 
@@ -21961,9 +22071,22 @@ const resolvers_getEntityRecords = (kind, name, query = {}) => async ({
       ...entityConfig.baseURLParams,
       ...query
     });
-    let records = Object.values(await external_wp_apiFetch_default()({
-      path
-    }));
+    let records, meta;
+    if (entityConfig.supportsPagination && query.per_page !== -1) {
+      const response = await external_wp_apiFetch_default()({
+        path,
+        parse: false
+      });
+      records = Object.values(await response.json());
+      meta = {
+        totalItems: parseInt(response.headers.get('X-WP-Total'))
+      };
+    } else {
+      records = Object.values(await external_wp_apiFetch_default()({
+        path
+      }));
+    }
+
     // If we request fields but the result doesn't contain the fields,
     // explicitly set these fields as "undefined"
     // that way we consider the query "fullfilled".
@@ -21977,7 +22100,7 @@ const resolvers_getEntityRecords = (kind, name, query = {}) => async ({
         return record;
       });
     }
-    dispatch.receiveEntityRecords(kind, name, records, query);
+    dispatch.receiveEntityRecords(kind, name, records, query, false, undefined, meta);
 
     // When requesting all fields, the list of results can be used to
     // resolve the `getEntityRecord` selector in addition to `getEntityRecords`.
@@ -22291,7 +22414,7 @@ const resolvers_getUserPatternCategories = () => async ({
   });
   const mappedPatternCategories = patternCategories?.map(userCategory => ({
     ...userCategory,
-    label: userCategory.name,
+    label: (0,external_wp_htmlEntities_namespaceObject.decodeEntities)(userCategory.name),
     name: userCategory.slug
   })) || [];
   dispatch({
@@ -22581,7 +22704,7 @@ function createLocksActions() {
 }
 
 ;// CONCATENATED MODULE: external ["wp","privateApis"]
-const external_wp_privateApis_namespaceObject = window["wp"]["privateApis"];
+var external_wp_privateApis_namespaceObject = window["wp"]["privateApis"];
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/private-apis.js
 /**
  * WordPress dependencies
@@ -22590,14 +22713,18 @@ const external_wp_privateApis_namespaceObject = window["wp"]["privateApis"];
 const {
   lock,
   unlock
-} = (0,external_wp_privateApis_namespaceObject.__dangerousOptInToUnstableAPIsOnlyForCoreModules)('I know using unstable features means my plugin or theme will inevitably break on the next WordPress release.', '@wordpress/core-data');
+} = (0,external_wp_privateApis_namespaceObject.__dangerousOptInToUnstableAPIsOnlyForCoreModules)('I know using unstable features means my theme or plugin will inevitably break in the next version of WordPress.', '@wordpress/core-data');
 
+;// CONCATENATED MODULE: external "React"
+var external_React_namespaceObject = window["React"];
 ;// CONCATENATED MODULE: external ["wp","element"]
-const external_wp_element_namespaceObject = window["wp"]["element"];
+var external_wp_element_namespaceObject = window["wp"]["element"];
 ;// CONCATENATED MODULE: external ["wp","blocks"]
-const external_wp_blocks_namespaceObject = window["wp"]["blocks"];
+var external_wp_blocks_namespaceObject = window["wp"]["blocks"];
+;// CONCATENATED MODULE: external ["wp","richText"]
+var external_wp_richText_namespaceObject = window["wp"]["richText"];
 ;// CONCATENATED MODULE: external ["wp","blockEditor"]
-const external_wp_blockEditor_namespaceObject = window["wp"]["blockEditor"];
+var external_wp_blockEditor_namespaceObject = window["wp"]["blockEditor"];
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/footnotes/get-rich-text-values-cached.js
 /**
  * WordPress dependencies
@@ -22634,33 +22761,53 @@ function getRichTextValuesCached(block) {
 
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/footnotes/get-footnotes-order.js
 /**
+ * WordPress dependencies
+ */
+
+
+/**
  * Internal dependencies
  */
 
 const get_footnotes_order_cache = new WeakMap();
 function getBlockFootnotesOrder(block) {
   if (!get_footnotes_order_cache.has(block)) {
-    const content = getRichTextValuesCached(block).join('');
-    const newOrder = [];
-
-    // https://github.com/WordPress/gutenberg/pull/43204 lands. We can then
-    // get the order directly from the rich text values.
-    if (content.indexOf('data-fn') !== -1) {
-      const regex = /data-fn="([^"]+)"/g;
-      let match;
-      while ((match = regex.exec(content)) !== null) {
-        newOrder.push(match[1]);
+    const order = [];
+    for (const value of getRichTextValuesCached(block)) {
+      if (!value || !value.includes('data-fn')) {
+        continue;
       }
+
+      // replacements is a sparse array, use forEach to skip empty slots.
+      (0,external_wp_richText_namespaceObject.create)({
+        html: value
+      }).replacements.forEach(({
+        type,
+        attributes
+      }) => {
+        if (type === 'core/footnote') {
+          order.push(attributes['data-fn']);
+        }
+      });
     }
-    get_footnotes_order_cache.set(block, newOrder);
+    get_footnotes_order_cache.set(block, order);
   }
   return get_footnotes_order_cache.get(block);
 }
 function getFootnotesOrder(blocks) {
+  // We can only separate getting order from blocks at the root level. For
+  // deeper inner blocks, this will not work since it's possible to have both
+  // inner blocks and block attributes, so order needs to be computed from the
+  // Edit functions as a whole.
   return blocks.flatMap(getBlockFootnotesOrder);
 }
 
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/footnotes/index.js
+/**
+ * WordPress dependencies
+ */
+
+
 /**
  * Internal dependencies
  */
@@ -22702,18 +22849,25 @@ function updateFootnotesFromMeta(blocks, meta) {
       if (value.indexOf('data-fn') === -1) {
         continue;
       }
-
-      // When we store rich text values, this would no longer
-      // require a regex.
-      const regex = /(<sup[^>]+data-fn="([^"]+)"[^>]*><a[^>]*>)[\d*]*<\/a><\/sup>/g;
-      attributes[key] = value.replace(regex, (match, opening, fnId) => {
-        const index = newOrder.indexOf(fnId);
-        return `${opening}${index + 1}</a></sup>`;
+      const richTextValue = (0,external_wp_richText_namespaceObject.create)({
+        html: value
       });
-      const compatRegex = /<a[^>]+data-fn="([^"]+)"[^>]*>\*<\/a>/g;
-      attributes[key] = attributes[key].replace(compatRegex, (match, fnId) => {
-        const index = newOrder.indexOf(fnId);
-        return `<sup data-fn="${fnId}" class="fn"><a href="#${fnId}" id="${fnId}-link">${index + 1}</a></sup>`;
+      richTextValue.replacements.forEach(replacement => {
+        if (replacement.type === 'core/footnote') {
+          const id = replacement.attributes['data-fn'];
+          const index = newOrder.indexOf(id);
+          // The innerHTML contains the count wrapped in a link.
+          const countValue = (0,external_wp_richText_namespaceObject.create)({
+            html: replacement.innerHTML
+          });
+          countValue.text = String(index + 1);
+          replacement.innerHTML = (0,external_wp_richText_namespaceObject.toHTMLString)({
+            value: countValue
+          });
+        }
+      });
+      attributes[key] = (0,external_wp_richText_namespaceObject.toHTMLString)({
+        value: richTextValue
       });
     }
     return attributes;
@@ -22819,7 +22973,7 @@ function EntityProvider({
   children
 }) {
   const Provider = getEntityContext(kind, name).Provider;
-  return (0,external_wp_element_namespaceObject.createElement)(Provider, {
+  return (0,external_React_namespaceObject.createElement)(Provider, {
     value: id
   }, children);
 }
@@ -22969,8 +23123,6 @@ function useEntityBlockEditor(kind, name, {
   return [blocks, onInput, onChange];
 }
 
-;// CONCATENATED MODULE: external ["wp","htmlEntities"]
-const external_wp_htmlEntities_namespaceObject = window["wp"]["htmlEntities"];
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/fetch/__experimental-fetch-link-suggestions.js
 /**
  * WordPress dependencies
@@ -23055,17 +23207,26 @@ const external_wp_htmlEntities_namespaceObject = window["wp"]["htmlEntities"];
 const fetchLinkSuggestions = async (search, searchOptions = {}, settings = {}) => {
   const {
     isInitialSuggestions = false,
+    initialSuggestionsSearchOptions = undefined
+  } = searchOptions;
+  const {
+    disablePostFormats = false
+  } = settings;
+  let {
     type = undefined,
     subtype = undefined,
     page = undefined,
     perPage = isInitialSuggestions ? 3 : 20
   } = searchOptions;
-  const {
-    disablePostFormats = false
-  } = settings;
 
   /** @type {Promise<WPLinkSearchResult>[]} */
   const queries = [];
+  if (isInitialSuggestions && initialSuggestionsSearchOptions) {
+    type = initialSuggestionsSearchOptions.type || type;
+    subtype = initialSuggestionsSearchOptions.subtype || subtype;
+    page = initialSuggestionsSearchOptions.page || page;
+    perPage = initialSuggestionsSearchOptions.perPage || perPage;
+  }
   if (!type || type === 'post') {
     queries.push(external_wp_apiFetch_default()({
       path: (0,external_wp_url_namespaceObject.addQueryArgs)('/wp/v2/search', {
@@ -23179,7 +23340,7 @@ const fetchLinkSuggestions = async (search, searchOptions = {}, settings = {}) =
     });
   });
 };
-/* harmony default export */ const _experimental_fetch_link_suggestions = (fetchLinkSuggestions);
+/* harmony default export */ var _experimental_fetch_link_suggestions = (fetchLinkSuggestions);
 
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/fetch/__experimental-fetch-url-data.js
 /**
@@ -23248,7 +23409,7 @@ const fetchUrlData = async (url, options = {}) => {
     return res;
   });
 };
-/* harmony default export */ const _experimental_fetch_url_data = (fetchUrlData);
+/* harmony default export */ var _experimental_fetch_url_data = (fetchUrlData);
 
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/fetch/index.js
 
@@ -23423,7 +23584,7 @@ function memize(fn, options) {
 
 
 // re-export due to restrictive esModuleInterop setting
-/* harmony default export */ const memoize = (memize);
+/* harmony default export */ var memoize = (memize);
 
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/hooks/constants.js
 let Status = /*#__PURE__*/function (Status) {
@@ -23587,8 +23748,8 @@ const enrichSelectors = memoize(selectors => {
  *
  * @example
  * ```js
+ * import { useCallback } from 'react';
  * import { useDispatch } from '@wordpress/data';
- * import { useCallback } from '@wordpress/element';
  * import { __ } from '@wordpress/i18n';
  * import { TextControl } from '@wordpress/components';
  * import { store as noticeStore } from '@wordpress/notices';
@@ -23700,6 +23861,7 @@ function __experimentalUseEntityRecord(kind, name, recordId, options) {
 
 
 
+
 /**
  * Internal dependencies
  */
@@ -23767,8 +23929,25 @@ function useEntityRecords(kind, name, queryArgs = {}, options = {
     }
     return query(store).getEntityRecords(kind, name, queryArgs);
   }, [kind, name, queryAsString, options.enabled]);
+  const {
+    totalItems,
+    totalPages
+  } = (0,external_wp_data_namespaceObject.useSelect)(select => {
+    if (!options.enabled) {
+      return {
+        totalItems: null,
+        totalPages: null
+      };
+    }
+    return {
+      totalItems: select(store).getEntityRecordsTotalItems(kind, name, queryArgs),
+      totalPages: select(store).getEntityRecordsTotalPages(kind, name, queryArgs)
+    };
+  }, [kind, name, queryAsString, options.enabled]);
   return {
     records,
+    totalItems,
+    totalPages,
     ...rest
   };
 }
@@ -24004,8 +24183,7 @@ unlock(store).registerPrivateSelectors(private_selectors_namespaceObject);
 
 
 
-})();
-
+}();
 (window.wp = window.wp || {}).coreData = __webpack_exports__;
 /******/ })()
 ;
