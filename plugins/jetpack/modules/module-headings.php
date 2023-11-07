@@ -96,11 +96,6 @@ function jetpack_get_module_i18n( $key ) {
 				'description' => _x( 'Use the LaTeX markup language to write mathematical equations and formulas', 'Module Description', 'jetpack' ),
 			),
 
-			'lazy-images' => array(
-				'name' => _x( 'Lazy Images', 'Module Name', 'jetpack' ),
-				'description' => _x( 'Most modern browsers already support lazy loading. With over 90% of current browsers offering native support, enabling this feature may be unnecessary.', 'Module Description', 'jetpack' ),
-			),
-
 			'likes' => array(
 				'name' => _x( 'Likes', 'Module Name', 'jetpack' ),
 				'description' => _x( 'Give visitors an easy way to show they appreciate your content.', 'Module Description', 'jetpack' ),
@@ -173,7 +168,7 @@ function jetpack_get_module_i18n( $key ) {
 
 			'sharedaddy' => array(
 				'name' => _x( 'Sharing', 'Module Name', 'jetpack' ),
-				'description' => _x( 'Add Twitter and Facebook buttons at the bottom of each post, making it easy for visitors to share your content.', 'Module Description', 'jetpack' ),
+				'description' => _x( 'Add sharing buttons at the bottom of each post, making it easy for visitors to share your content.', 'Module Description', 'jetpack' ),
 			),
 
 			'shortcodes' => array(
@@ -318,7 +313,6 @@ function jetpack_get_module_i18n_tag( $key ) {
 			// - modules/custom-css.php
 			// - modules/gravatar-hovercards.php
 			// - modules/infinite-scroll.php
-			// - modules/lazy-images.php
 			// - modules/photon-cdn.php
 			// - modules/photon.php
 			// - modules/seo-tools.php
@@ -334,7 +328,6 @@ function jetpack_get_module_i18n_tag( $key ) {
 
 			// Modules with `Recommended` tag:
 			// - modules/google-fonts.php
-			// - modules/lazy-images.php
 			// - modules/monitor.php
 			// - modules/photon-cdn.php
 			// - modules/photon.php
@@ -677,24 +670,6 @@ function jetpack_get_module_info( $key ) {
 	    'additional_search_queries' => 'latex, math, equation, equations, formula, code',
 	    'plan_classes' => '',
 	  ),
-	  'lazy-images' => 
-	  array (
-	    'name' => 'Lazy Images',
-	    'description' => 'Most modern browsers already support lazy loading. With over 90% of current browsers offering native support, enabling this feature may be unnecessary.',
-	    'sort' => '24',
-	    'recommendation_order' => '14',
-	    'introduced' => '5.6.0',
-	    'changed' => '',
-	    'deactivate' => '',
-	    'free' => '',
-	    'requires_connection' => 'No',
-	    'requires_user_connection' => '',
-	    'auto_activate' => 'No',
-	    'module_tags' => 'Appearance, Recommended',
-	    'feature' => 'Appearance',
-	    'additional_search_queries' => 'mobile, theme, fast images, fast image, image, lazy, lazy load, lazyload, images, lazy images, thumbnail, image lazy load, lazy loading, load, loading',
-	    'plan_classes' => '',
-	  ),
 	  'likes' => 
 	  array (
 	    'name' => 'Likes',
@@ -950,7 +925,7 @@ function jetpack_get_module_info( $key ) {
 	  'sharedaddy' => 
 	  array (
 	    'name' => 'Sharing',
-	    'description' => 'Add Twitter and Facebook buttons at the bottom of each post, making it easy for visitors to share your content.',
+	    'description' => 'Add sharing buttons at the bottom of each post, making it easy for visitors to share your content.',
 	    'sort' => '7',
 	    'recommendation_order' => '6',
 	    'introduced' => '1.1',
@@ -1274,10 +1249,11 @@ function jetpack_get_all_module_header_names() {
 function jetpack_has_no_module_info( $slug ) {
 	$no_info_slugs = array (
 	  0 => 'geo-location',
-	  1 => 'module-extras',
-	  2 => 'module-info',
-	  3 => 'plugin-search',
-	  4 => 'theme-tools',
+	  1 => 'lazy-images',
+	  2 => 'module-extras',
+	  3 => 'module-info',
+	  4 => 'plugin-search',
+	  5 => 'theme-tools',
 	);
 
 	return in_array( $slug, $no_info_slugs, true );

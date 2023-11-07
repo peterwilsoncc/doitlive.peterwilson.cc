@@ -1,15 +1,75 @@
-/******/ (() => { // webpackBootstrap
+/******/ (function() { // webpackBootstrap
 /******/ 	"use strict";
 var __webpack_exports__ = {};
 
 ;// CONCATENATED MODULE: external ["wp","interactivity"]
-const external_wp_interactivity_namespaceObject = window["wp"]["interactivity"];
+var external_wp_interactivity_namespaceObject = window["wp"]["interactivity"];
 ;// CONCATENATED MODULE: ./packages/block-library/build-module/image/view.js
 /**
  * WordPress dependencies
  */
 
 const focusableSelectors = ['a[href]', 'area[href]', 'input:not([disabled]):not([type="hidden"]):not([aria-hidden])', 'select:not([disabled]):not([aria-hidden])', 'textarea:not([disabled]):not([aria-hidden])', 'button:not([disabled]):not([aria-hidden])', 'iframe', 'object', 'embed', '[contenteditable]', '[tabindex]:not([tabindex^="-"])'];
+
+/*
+ * Stores a context-bound scroll handler.
+ *
+ * This callback could be defined inline inside of the store
+ * object but it's created externally to avoid confusion about
+ * how its logic is called. This logic is not referenced directly
+ * by the directives in the markup because the scroll event we
+ * need to listen to is triggered on the window; so by defining it
+ * outside of the store, we signal that the behavior here is different.
+ * If we find a compelling reason to move it to the store, feel free.
+ *
+ * @type {Function}
+ */
+let scrollCallback;
+
+/*
+ * Tracks whether user is touching screen; used to
+ * differentiate behavior for touch and mouse input.
+ *
+ * @type {boolean}
+ */
+let isTouching = false;
+
+/*
+ * Tracks the last time the screen was touched; used to
+ * differentiate behavior for touch and mouse input.
+ *
+ * @type {number}
+ */
+let lastTouchTime = 0;
+
+/*
+ * Lightbox page-scroll handler: prevents scrolling.
+ *
+ * This handler is added to prevent scrolling behaviors that
+ * trigger content shift while the lightbox is open.
+ *
+ * It would be better to accomplish this through CSS alone, but
+ * using overflow: hidden is currently the only way to do so, and
+ * that causes the layout to shift and prevents the zoom animation
+ * from working in some cases because we're unable to account for
+ * the layout shift when doing the animation calculations. Instead,
+ * here we use JavaScript to prevent and reset the scrolling
+ * behavior. In the future, we may be able to use CSS or overflow: hidden
+ * instead to not rely on JavaScript, but this seems to be the best approach
+ * for now that provides the best visual experience.
+ *
+ * @param {Object} context Interactivity page context?
+ */
+function handleScroll(context) {
+  // We can't override the scroll behavior on mobile devices
+  // because doing so breaks the pinch to zoom functionality, and we
+  // want to allow users to zoom in further on the high-res image.
+  if (!isTouching && Date.now() - lastTouchTime > 450) {
+    // We are unable to use event.preventDefault() to prevent scrolling
+    // because the scroll event can't be canceled, so we reset the position instead.
+    window.scrollTo(context.core.image.scrollLeftReset, context.core.image.scrollTopReset);
+  }
+}
 (0,external_wp_interactivity_namespaceObject.store)({
   state: {
     core: {
@@ -34,12 +94,27 @@ const focusableSelectors = ['a[href]', 'area[href]', 'input:not([disabled]):not(
           context.core.image.initialized = true;
           context.core.image.lastFocusedElement = window.document.activeElement;
           context.core.image.scrollDelta = 0;
+          context.core.image.pointerType = event.pointerType;
           context.core.image.lightboxEnabled = true;
-          setStyles(context, event);
-          // Hide overflow only when the animation is in progress,
-          // otherwise the removal of the scrollbars will draw attention
-          // to itself and look like an error
-          document.documentElement.classList.add('wp-has-lightbox-open');
+          setStyles(context, context.core.image.imageRef);
+          context.core.image.scrollTopReset = window.pageYOffset || document.documentElement.scrollTop;
+
+          // In most cases, this value will be 0, but this is included
+          // in case a user has created a page with horizontal scrolling.
+          context.core.image.scrollLeftReset = window.pageXOffset || document.documentElement.scrollLeft;
+
+          // We define and bind the scroll callback here so
+          // that we can pass the context and as an argument.
+          // We may be able to change this in the future if we
+          // define the scroll callback in the store instead, but
+          // this approach seems to tbe clearest for now.
+          scrollCallback = handleScroll.bind(null, context);
+
+          // We need to add a scroll event listener to the window
+          // here because we are unable to otherwise access it via
+          // the Interactivity API directives. If we add a native way
+          // to access the window, we can remove this.
+          window.addEventListener('scroll', scrollCallback, false);
         },
         hideLightbox: async ({
           context,
@@ -47,31 +122,26 @@ const focusableSelectors = ['a[href]', 'area[href]', 'input:not([disabled]):not(
         }) => {
           context.core.image.hideAnimationEnabled = true;
           if (context.core.image.lightboxEnabled) {
-            // If scrolling, wait a moment before closing the lightbox.
-            if (context.core.image.lightboxAnimation === 'fade') {
-              context.core.image.scrollDelta += event.deltaY;
-              if (event.type === 'mousewheel' && Math.abs(window.scrollY - context.core.image.scrollDelta) < 10) {
-                return;
-              }
-            } else if (context.core.image.lightboxAnimation === 'zoom') {
-              // Disable scroll until the zoom animation ends.
-              // Get the current page scroll position
-              const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-              const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-              // if any scroll is attempted, set this to the previous value.
-              window.onscroll = function () {
-                window.scrollTo(scrollLeft, scrollTop);
-              };
-              // Enable scrolling after the animation finishes
-              setTimeout(function () {
-                window.onscroll = function () {};
-              }, 400);
-            }
-            document.documentElement.classList.remove('wp-has-lightbox-open');
+            // We want to wait until the close animation is completed
+            // before allowing a user to scroll again. The duration of this
+            // animation is defined in the styles.scss and depends on if the
+            // animation is 'zoom' or 'fade', but in any case we should wait
+            // a few milliseconds longer than the duration, otherwise a user
+            // may scroll too soon and cause the animation to look sloppy.
+            setTimeout(function () {
+              window.removeEventListener('scroll', scrollCallback);
+            }, 450);
             context.core.image.lightboxEnabled = false;
-            context.core.image.lastFocusedElement.focus({
-              preventScroll: true
-            });
+
+            // We want to avoid drawing attention to the button
+            // after the lightbox closes for mouse and touch users.
+            // Note that the `event.pointerType` property returns
+            // as an empty string if a keyboard fired the event.
+            if (event.pointerType === '') {
+              context.core.image.lastFocusedElement.focus({
+                preventScroll: true
+              });
+            }
           }
         },
         handleKeydown: ({
@@ -98,8 +168,9 @@ const focusableSelectors = ['a[href]', 'area[href]', 'input:not([disabled]):not(
             }
           }
         },
+        // This is fired just by lazily loaded
+        // images on the page, not all images.
         handleLoad: ({
-          state,
           context,
           effects,
           ref
@@ -107,10 +178,33 @@ const focusableSelectors = ['a[href]', 'area[href]', 'input:not([disabled]):not(
           context.core.image.imageLoaded = true;
           context.core.image.imageCurrentSrc = ref.currentSrc;
           effects.core.image.setButtonStyles({
-            state,
             context,
             ref
           });
+        },
+        handleTouchStart: () => {
+          isTouching = true;
+        },
+        handleTouchMove: ({
+          context,
+          event
+        }) => {
+          // On mobile devices, we want to prevent triggering the
+          // scroll event because otherwise the page jumps around as
+          // we reset the scroll position. This also means that closing
+          // the lightbox requires that a user perform a simple tap. This
+          // may be changed in the future if we find a better alternative
+          // to override or reset the scroll position during swipe actions.
+          if (context.core.image.lightboxEnabled) {
+            event.preventDefault();
+          }
+        },
+        handleTouchEnd: () => {
+          // We need to wait a few milliseconds before resetting
+          // to ensure that pinch to zoom works consistently
+          // on mobile devices when the lightbox is open.
+          lastTouchTime = Date.now();
+          isTouching = false;
         }
       }
     }
@@ -121,7 +215,17 @@ const focusableSelectors = ['a[href]', 'area[href]', 'input:not([disabled]):not(
         roleAttribute: ({
           context
         }) => {
-          return context.core.image.lightboxEnabled ? 'dialog' : '';
+          return context.core.image.lightboxEnabled ? 'dialog' : null;
+        },
+        ariaModal: ({
+          context
+        }) => {
+          return context.core.image.lightboxEnabled ? 'true' : null;
+        },
+        dialogLabel: ({
+          context
+        }) => {
+          return context.core.image.lightboxEnabled ? context.core.image.dialogLabel : null;
         },
         lightboxObjectFit: ({
           context
@@ -133,7 +237,7 @@ const focusableSelectors = ['a[href]', 'area[href]', 'input:not([disabled]):not(
         enlargedImgSrc: ({
           context
         }) => {
-          return context.core.image.initialized ? context.core.image.imageUploadedSrc : '';
+          return context.core.image.initialized ? context.core.image.imageUploadedSrc : 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
         }
       }
     }
@@ -141,10 +245,11 @@ const focusableSelectors = ['a[href]', 'area[href]', 'input:not([disabled]):not(
   effects: {
     core: {
       image: {
-        setCurrentSrc: ({
+        initOriginImage: ({
           context,
           ref
         }) => {
+          context.core.image.imageRef = ref;
           if (ref.complete) {
             context.core.image.imageLoaded = true;
             context.core.image.imageCurrentSrc = ref.currentSrc;
@@ -154,17 +259,22 @@ const focusableSelectors = ['a[href]', 'area[href]', 'input:not([disabled]):not(
           context,
           ref
         }) => {
-          context.core.image.figureRef = ref.querySelector('figure');
-          context.core.image.imageRef = ref.querySelector('img');
           if (context.core.image.lightboxEnabled) {
             const focusableElements = ref.querySelectorAll(focusableSelectors);
             context.core.image.firstFocusableElement = focusableElements[0];
             context.core.image.lastFocusableElement = focusableElements[focusableElements.length - 1];
-            ref.querySelector('.close-button').focus();
+
+            // We want to avoid drawing unnecessary attention to the close
+            // button for mouse and touch users. Note that even if opening
+            // the lightbox via keyboard, the event fired is of type
+            // `pointerEvent`, so we need to rely on the `event.pointerType`
+            // property, which returns an empty string for keyboard events.
+            if (context.core.image.pointerType === '') {
+              ref.querySelector('.close-button').focus();
+            }
           }
         },
         setButtonStyles: ({
-          state,
           context,
           ref
         }) => {
@@ -176,43 +286,60 @@ const focusableSelectors = ['a[href]', 'area[href]', 'input:not([disabled]):not(
           } = ref;
 
           // If the image isn't loaded yet, we can't
-          // calculate how big the button should be.
+          // calculate where the button should be.
           if (naturalWidth === 0 || naturalHeight === 0) {
             return;
           }
+          const figure = ref.parentElement;
+          const figureWidth = ref.parentElement.clientWidth;
 
-          // Subscribe to the window dimensions so we can
-          // recalculate the styles if the window is resized.
-          if ((state.core.image.windowWidth || state.core.image.windowHeight) && context.core.image.scaleAttr === 'contain') {
-            // In the case of an image with object-fit: contain, the
-            // size of the img element can be larger than the image itself,
-            // so we need to calculate the size of the button to match.
+          // We need special handling for the height because
+          // a caption will cause the figure to be taller than
+          // the image, which means we need to account for that
+          // when calculating the placement of the button in the
+          // top right corner of the image.
+          let figureHeight = ref.parentElement.clientHeight;
+          const caption = figure.querySelector('figcaption');
+          if (caption) {
+            const captionComputedStyle = window.getComputedStyle(caption);
+            figureHeight = figureHeight - caption.offsetHeight - parseFloat(captionComputedStyle.marginTop) - parseFloat(captionComputedStyle.marginBottom);
+          }
+          const buttonOffsetTop = figureHeight - offsetHeight;
+          const buttonOffsetRight = figureWidth - offsetWidth;
 
+          // In the case of an image with object-fit: contain, the
+          // size of the <img> element can be larger than the image itself,
+          // so we need to calculate where to place the button.
+          if (context.core.image.scaleAttr === 'contain') {
             // Natural ratio of the image.
             const naturalRatio = naturalWidth / naturalHeight;
             // Offset ratio of the image.
             const offsetRatio = offsetWidth / offsetHeight;
-            if (naturalRatio > offsetRatio) {
+            if (naturalRatio >= offsetRatio) {
               // If it reaches the width first, keep
-              // the width and recalculate the height.
-              context.core.image.imageButtonWidth = offsetWidth;
-              const buttonHeight = offsetWidth / naturalRatio;
-              context.core.image.imageButtonHeight = buttonHeight;
-              context.core.image.imageButtonTop = (offsetHeight - buttonHeight) / 2;
+              // the width and compute the height.
+              const referenceHeight = offsetWidth / naturalRatio;
+              context.core.image.imageButtonTop = (offsetHeight - referenceHeight) / 2 + buttonOffsetTop + 10;
+              context.core.image.imageButtonRight = buttonOffsetRight + 10;
             } else {
               // If it reaches the height first, keep
-              // the height and recalculate the width.
-              context.core.image.imageButtonHeight = offsetHeight;
-              const buttonWidth = offsetHeight * naturalRatio;
-              context.core.image.imageButtonWidth = buttonWidth;
-              context.core.image.imageButtonLeft = (offsetWidth - buttonWidth) / 2;
+              // the height and compute the width.
+              const referenceWidth = offsetHeight * naturalRatio;
+              context.core.image.imageButtonTop = buttonOffsetTop + 10;
+              context.core.image.imageButtonRight = (offsetWidth - referenceWidth) / 2 + buttonOffsetRight + 10;
             }
           } else {
-            // In all other cases, we can trust that the size of
-            // the image is the right size for the button as well.
-
-            context.core.image.imageButtonWidth = offsetWidth;
-            context.core.image.imageButtonHeight = offsetHeight;
+            context.core.image.imageButtonTop = buttonOffsetTop + 10;
+            context.core.image.imageButtonRight = buttonOffsetRight + 10;
+          }
+        },
+        setStylesOnResize: ({
+          state,
+          context,
+          ref
+        }) => {
+          if (context.core.image.lightboxEnabled && (state.core.image.windowWidth || state.core.image.windowHeight)) {
+            setStyles(context, ref);
           }
         }
       }
@@ -228,7 +355,15 @@ const focusableSelectors = ['a[href]', 'area[href]', 'input:not([disabled]):not(
     }));
   }
 });
-function setStyles(context, event) {
+
+/*
+ * Computes styles for the lightbox and adds them to the document.
+ *
+ * @function
+ * @param {Object} context - An Interactivity API context
+ * @param {Object} event - A triggering event
+ */
+function setStyles(context, ref) {
   // The reference img element lies adjacent
   // to the event target button in the DOM.
   let {
@@ -236,11 +371,11 @@ function setStyles(context, event) {
     naturalHeight,
     offsetWidth: originalWidth,
     offsetHeight: originalHeight
-  } = event.target.nextElementSibling;
+  } = ref;
   let {
     x: screenPosX,
     y: screenPosY
-  } = event.target.nextElementSibling.getBoundingClientRect();
+  } = ref.getBoundingClientRect();
 
   // Natural ratio of the image clicked to open the lightbox.
   const naturalRatio = naturalWidth / naturalHeight;
@@ -378,6 +513,14 @@ function setStyles(context, event) {
 		}
 	`;
 }
+
+/*
+ * Debounces a function call.
+ *
+ * @function
+ * @param {Function} func - A function to be called
+ * @param {number} wait - The time to wait before calling the function
+ */
 function debounce(func, wait = 50) {
   let timeout;
   return () => {
