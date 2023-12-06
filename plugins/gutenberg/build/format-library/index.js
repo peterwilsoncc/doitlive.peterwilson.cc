@@ -1411,8 +1411,7 @@ function TextColorEdit({
   activeAttributes,
   contentRef
 }) {
-  const allowCustomControl = (0,external_wp_blockEditor_namespaceObject.useSetting)('color.custom');
-  const colors = (0,external_wp_blockEditor_namespaceObject.useSetting)('color.palette') || EMPTY_ARRAY;
+  const [allowCustomControl, colors = EMPTY_ARRAY] = (0,external_wp_blockEditor_namespaceObject.useSettings)('color.custom', 'color.palette');
   const [isAddingColor, setIsAddingColor] = (0,external_wp_element_namespaceObject.useState)(false);
   const enableIsAddingColor = (0,external_wp_element_namespaceObject.useCallback)(() => setIsAddingColor(true), [setIsAddingColor]);
   const disableIsAddingColor = (0,external_wp_element_namespaceObject.useCallback)(() => setIsAddingColor(false), [setIsAddingColor]);
@@ -1450,24 +1449,6 @@ const text_color_textColor = {
   attributes: {
     style: 'style',
     class: 'class'
-  },
-  /*
-   * Since this format relies on the <mark> tag, it's important to
-   * prevent the default yellow background color applied by most
-   * browsers. The solution is to detect when this format is used with a
-   * text color but no background color, and in such cases to override
-   * the default styling with a transparent background.
-   *
-   * @see https://github.com/WordPress/gutenberg/pull/35516
-   */
-  __unstableFilterAttributeValue(key, value) {
-    if (key !== 'style') return value;
-    // We should not add a background-color if it's already set.
-    if (value && value.includes('background-color')) return value;
-    const addedCSS = ['background-color', transparentValue].join(':');
-    // Prepend `addedCSS` to avoid a double `;;` as any the existing CSS
-    // rules will already include a `;`.
-    return value ? [addedCSS, value].join(';') : addedCSS;
   },
   edit: TextColorEdit
 };

@@ -93,7 +93,7 @@ const PATTERN_TYPES = {
 };
 const PATTERN_DEFAULT_CATEGORY = 'all-patterns';
 const PATTERN_USER_CATEGORY = 'my-patterns';
-const PATTERN_CORE_SOURCES = ['core', 'pattern-directory/core', 'pattern-directory/featured', 'pattern-directory/theme'];
+const EXCLUDED_PATTERN_SOURCES = ['core', 'pattern-directory/core', 'pattern-directory/featured'];
 const PATTERN_SYNC_TYPES = {
   full: 'fully',
   unsynced: 'unsynced'
@@ -321,7 +321,8 @@ function CategorySelector({
     label: (0,external_wp_i18n_namespaceObject.__)('Categories'),
     tokenizeOnBlur: true,
     __experimentalExpandOnFocus: true,
-    __next40pxDefaultSize: true
+    __next40pxDefaultSize: true,
+    __nextHasNoMarginBottom: true
   });
 }
 
@@ -473,19 +474,20 @@ function CreatePatternModal({
   }, (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.__experimentalVStack, {
     spacing: "5"
   }, (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.TextControl, {
-    __nextHasNoMarginBottom: true,
     label: (0,external_wp_i18n_namespaceObject.__)('Name'),
     value: title,
     onChange: setTitle,
     placeholder: (0,external_wp_i18n_namespaceObject.__)('My pattern'),
-    className: "patterns-create-modal__name-input"
+    className: "patterns-create-modal__name-input",
+    __nextHasNoMarginBottom: true,
+    __next40pxDefaultSize: true
   }), (0,external_React_namespaceObject.createElement)(CategorySelector, {
     categoryTerms: categoryTerms,
     onChange: setCategoryTerms,
     categoryMap: categoryMap
   }), (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.ToggleControl, {
-    label: (0,external_wp_i18n_namespaceObject.__)('Synced'),
-    help: (0,external_wp_i18n_namespaceObject.__)('Editing the pattern will update it anywhere it is used.'),
+    label: (0,external_wp_i18n_namespaceObject._x)('Synced', 'Option that makes an individual pattern synchronized'),
+    help: (0,external_wp_i18n_namespaceObject.__)('Sync this pattern across multiple locations.'),
     checked: syncType === PATTERN_SYNC_TYPES.full,
     onChange: () => {
       setSyncType(syncType === PATTERN_SYNC_TYPES.full ? PATTERN_SYNC_TYPES.unsynced : PATTERN_SYNC_TYPES.full);
@@ -493,12 +495,14 @@ function CreatePatternModal({
   }), (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.__experimentalHStack, {
     justify: "right"
   }, (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
+    __next40pxDefaultSize: true,
     variant: "tertiary",
     onClick: () => {
       onClose();
       setTitle('');
     }
   }, (0,external_wp_i18n_namespaceObject.__)('Cancel')), (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
+    __next40pxDefaultSize: true,
     variant: "primary",
     type: "submit",
     "aria-disabled": !title || isSaving,
@@ -522,8 +526,8 @@ function CreatePatternModal({
 
 
 function getTermLabels(pattern, categories) {
-  // Theme patterns don't have an id and rely on core pattern categories.
-  if (!pattern.id) {
+  // Theme patterns rely on core pattern categories.
+  if (pattern.type !== PATTERN_TYPES.user) {
     return categories.core?.filter(category => pattern.categories.includes(category.name)).map(category => category.label);
   }
   return categories.user?.filter(category => pattern.wp_pattern_category.includes(category.id)).map(category => category.label);
@@ -552,7 +556,7 @@ function DuplicatePatternModal({
   const duplicatedProps = {
     content: pattern.content,
     defaultCategories: getTermLabels(pattern, categories),
-    defaultSyncType: !pattern.id // Theme patterns don't have an ID.
+    defaultSyncType: pattern.type !== PATTERN_TYPES.user // Theme patterns are unsynced by default.
     ? PATTERN_SYNC_TYPES.unsynced : pattern.wp_pattern_sync_status || PATTERN_SYNC_TYPES.full,
     defaultTitle: (0,external_wp_i18n_namespaceObject.sprintf)( /* translators: %s: Existing pattern title */
     (0,external_wp_i18n_namespaceObject.__)('%s (Copy)'), typeof pattern.title === 'string' ? pattern.title : pattern.title.raw)
@@ -712,14 +716,16 @@ const symbol = (0,external_React_namespaceObject.createElement)(external_wp_prim
 /**
  * Menu control to convert block(s) to a pattern block.
  *
- * @param {Object}   props              Component props.
- * @param {string[]} props.clientIds    Client ids of selected blocks.
- * @param {string}   props.rootClientId ID of the currently selected top-level block.
+ * @param {Object}   props                        Component props.
+ * @param {string[]} props.clientIds              Client ids of selected blocks.
+ * @param {string}   props.rootClientId           ID of the currently selected top-level block.
+ * @param {()=>void} props.closeBlockSettingsMenu Callback to close the block settings menu dropdown.
  * @return {import('react').ComponentType} The menu control or null.
  */
 function PatternConvertButton({
   clientIds,
-  rootClientId
+  rootClientId,
+  closeBlockSettingsMenu
 }) {
   const {
     createSuccessNotice
@@ -777,6 +783,7 @@ function PatternConvertButton({
       });
       replaceBlocks(clientIds, newBlock);
       setEditingPattern(newBlock.clientId, true);
+      closeBlockSettingsMenu();
     }
     createSuccessNotice(pattern.wp_pattern_sync_status === PATTERN_SYNC_TYPES.unsynced ? (0,external_wp_i18n_namespaceObject.sprintf)(
     // translators: %s: the name the user has given to the pattern.
@@ -833,7 +840,6 @@ function PatternsManageButton({
   const {
     canRemove,
     isVisible,
-    innerBlockCount,
     managePatternsUrl
   } = (0,external_wp_data_namespaceObject.useSelect)(select => {
     const {
@@ -870,11 +876,11 @@ function PatternsManageButton({
   if (!isVisible) {
     return null;
   }
-  return (0,external_React_namespaceObject.createElement)(external_React_namespaceObject.Fragment, null, (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.MenuItem, {
-    href: managePatternsUrl
-  }, (0,external_wp_i18n_namespaceObject.__)('Manage patterns')), canRemove && (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.MenuItem, {
+  return (0,external_React_namespaceObject.createElement)(external_React_namespaceObject.Fragment, null, canRemove && (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.MenuItem, {
     onClick: () => convertSyncedPatternToStatic(clientId)
-  }, innerBlockCount > 1 ? (0,external_wp_i18n_namespaceObject.__)('Detach patterns') : (0,external_wp_i18n_namespaceObject.__)('Detach pattern')));
+  }, (0,external_wp_i18n_namespaceObject.__)('Detach')), (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.MenuItem, {
+    href: managePatternsUrl
+  }, (0,external_wp_i18n_namespaceObject.__)('Manage patterns')));
 }
 /* harmony default export */ var patterns_manage_button = (PatternsManageButton);
 
@@ -894,20 +900,25 @@ function PatternsMenuItems({
   rootClientId
 }) {
   return (0,external_React_namespaceObject.createElement)(external_wp_blockEditor_namespaceObject.BlockSettingsMenuControls, null, ({
-    selectedClientIds
+    selectedClientIds,
+    onClose
   }) => (0,external_React_namespaceObject.createElement)(external_React_namespaceObject.Fragment, null, (0,external_React_namespaceObject.createElement)(PatternConvertButton, {
     clientIds: selectedClientIds,
-    rootClientId: rootClientId
+    rootClientId: rootClientId,
+    closeBlockSettingsMenu: onClose
   }), selectedClientIds.length === 1 && (0,external_React_namespaceObject.createElement)(patterns_manage_button, {
     clientId: selectedClientIds[0]
   })));
 }
 
+;// CONCATENATED MODULE: external ["wp","a11y"]
+var external_wp_a11y_namespaceObject = window["wp"]["a11y"];
 ;// CONCATENATED MODULE: ./packages/patterns/build-module/components/rename-pattern-category-modal.js
 
 /**
  * WordPress dependencies
  */
+
 
 
 
@@ -922,13 +933,18 @@ function PatternsMenuItems({
 
 function RenamePatternCategoryModal({
   category,
+  existingCategories,
   onClose,
   onError,
   onSuccess,
   ...props
 }) {
+  const id = (0,external_wp_element_namespaceObject.useId)();
+  const textControlRef = (0,external_wp_element_namespaceObject.useRef)();
   const [name, setName] = (0,external_wp_element_namespaceObject.useState)((0,external_wp_htmlEntities_namespaceObject.decodeEntities)(category.name));
   const [isSaving, setIsSaving] = (0,external_wp_element_namespaceObject.useState)(false);
+  const [validationMessage, setValidationMessage] = (0,external_wp_element_namespaceObject.useState)(false);
+  const validationMessageId = validationMessage ? `patterns-rename-pattern-category-modal__validation-message-${id}` : undefined;
   const {
     saveEntityRecord,
     invalidateResolution
@@ -937,9 +953,35 @@ function RenamePatternCategoryModal({
     createErrorNotice,
     createSuccessNotice
   } = (0,external_wp_data_namespaceObject.useDispatch)(external_wp_notices_namespaceObject.store);
-  const onRename = async event => {
+  const onChange = newName => {
+    if (validationMessage) {
+      setValidationMessage(undefined);
+    }
+    setName(newName);
+  };
+  const onSave = async event => {
     event.preventDefault();
-    if (!name || name === category.name || isSaving) {
+    if (isSaving) {
+      return;
+    }
+    if (!name || name === category.name) {
+      const message = (0,external_wp_i18n_namespaceObject.__)('Please enter a new name for this category.');
+      (0,external_wp_a11y_namespaceObject.speak)(message, 'assertive');
+      setValidationMessage(message);
+      textControlRef.current?.focus();
+      return;
+    }
+
+    // Check existing categories to avoid creating duplicates.
+    if (existingCategories.patternCategories.find(existingCategory => {
+      // Compare the id so that the we don't disallow the user changing the case of their current category
+      // (i.e. renaming 'test' to 'Test').
+      return existingCategory.id !== category.id && existingCategory.label.toLowerCase() === name.toLowerCase();
+    })) {
+      const message = (0,external_wp_i18n_namespaceObject.__)('This category already exists. Please use a different name.');
+      (0,external_wp_a11y_namespaceObject.speak)(message, 'assertive');
+      setValidationMessage(message);
+      textControlRef.current?.focus();
       return;
     }
     try {
@@ -981,16 +1023,23 @@ function RenamePatternCategoryModal({
     onRequestClose: onRequestClose,
     ...props
   }, (0,external_React_namespaceObject.createElement)("form", {
-    onSubmit: onRename
+    onSubmit: onSave
   }, (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.__experimentalVStack, {
     spacing: "5"
+  }, (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.__experimentalVStack, {
+    spacing: "2"
   }, (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.TextControl, {
+    ref: textControlRef,
     __nextHasNoMarginBottom: true,
     label: (0,external_wp_i18n_namespaceObject.__)('Name'),
     value: name,
-    onChange: setName,
+    onChange: onChange,
+    "aria-describedby": validationMessageId,
     required: true
-  }), (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.__experimentalHStack, {
+  }), validationMessage && (0,external_React_namespaceObject.createElement)("span", {
+    className: "patterns-rename-pattern-category-modal__validation-message",
+    id: validationMessageId
+  }, validationMessage)), (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.__experimentalHStack, {
     justify: "right"
   }, (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.Button, {
     variant: "tertiary",
@@ -1024,7 +1073,7 @@ lock(privateApis, {
   PATTERN_TYPES: PATTERN_TYPES,
   PATTERN_DEFAULT_CATEGORY: PATTERN_DEFAULT_CATEGORY,
   PATTERN_USER_CATEGORY: PATTERN_USER_CATEGORY,
-  PATTERN_CORE_SOURCES: PATTERN_CORE_SOURCES,
+  EXCLUDED_PATTERN_SOURCES: EXCLUDED_PATTERN_SOURCES,
   PATTERN_SYNC_TYPES: PATTERN_SYNC_TYPES
 });
 

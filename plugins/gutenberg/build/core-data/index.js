@@ -528,9 +528,11 @@ __webpack_require__.d(build_module_actions_namespaceObject, {
   receiveAutosaves: function() { return receiveAutosaves; },
   receiveCurrentTheme: function() { return receiveCurrentTheme; },
   receiveCurrentUser: function() { return receiveCurrentUser; },
+  receiveDefaultTemplateId: function() { return receiveDefaultTemplateId; },
   receiveEmbedPreview: function() { return receiveEmbedPreview; },
   receiveEntityRecords: function() { return receiveEntityRecords; },
   receiveNavigationFallbackId: function() { return receiveNavigationFallbackId; },
+  receiveRevisions: function() { return receiveRevisions; },
   receiveThemeGlobalStyleRevisions: function() { return receiveThemeGlobalStyleRevisions; },
   receiveThemeSupports: function() { return receiveThemeSupports; },
   receiveUploadPermissions: function() { return receiveUploadPermissions; },
@@ -563,6 +565,7 @@ __webpack_require__.d(build_module_selectors_namespaceObject, {
   getCurrentTheme: function() { return getCurrentTheme; },
   getCurrentThemeGlobalStylesRevisions: function() { return getCurrentThemeGlobalStylesRevisions; },
   getCurrentUser: function() { return getCurrentUser; },
+  getDefaultTemplateId: function() { return getDefaultTemplateId; },
   getEditedEntityRecord: function() { return getEditedEntityRecord; },
   getEmbedPreview: function() { return getEmbedPreview; },
   getEntitiesByKind: function() { return getEntitiesByKind; },
@@ -580,6 +583,8 @@ __webpack_require__.d(build_module_selectors_namespaceObject, {
   getRawEntityRecord: function() { return getRawEntityRecord; },
   getRedoEdit: function() { return getRedoEdit; },
   getReferenceByDistinctEdits: function() { return getReferenceByDistinctEdits; },
+  getRevision: function() { return getRevision; },
+  getRevisions: function() { return getRevisions; },
   getThemeSupports: function() { return getThemeSupports; },
   getUndoEdit: function() { return getUndoEdit; },
   getUserPatternCategories: function() { return getUserPatternCategories; },
@@ -622,12 +627,15 @@ __webpack_require__.d(resolvers_namespaceObject, {
   getCurrentTheme: function() { return resolvers_getCurrentTheme; },
   getCurrentThemeGlobalStylesRevisions: function() { return resolvers_getCurrentThemeGlobalStylesRevisions; },
   getCurrentUser: function() { return resolvers_getCurrentUser; },
+  getDefaultTemplateId: function() { return resolvers_getDefaultTemplateId; },
   getEditedEntityRecord: function() { return resolvers_getEditedEntityRecord; },
   getEmbedPreview: function() { return resolvers_getEmbedPreview; },
   getEntityRecord: function() { return resolvers_getEntityRecord; },
   getEntityRecords: function() { return resolvers_getEntityRecords; },
   getNavigationFallbackId: function() { return resolvers_getNavigationFallbackId; },
   getRawEntityRecord: function() { return resolvers_getRawEntityRecord; },
+  getRevision: function() { return resolvers_getRevision; },
+  getRevisions: function() { return resolvers_getRevisions; },
   getThemeSupports: function() { return resolvers_getThemeSupports; },
   getUserPatternCategories: function() { return resolvers_getUserPatternCategories; }
 });
@@ -17082,6 +17090,7 @@ const createMutex = () => {
 
 // EXTERNAL MODULE: ./node_modules/simple-peer/simplepeer.min.js
 var simplepeer_min = __webpack_require__(2248);
+var simplepeer_min_default = /*#__PURE__*/__webpack_require__.n(simplepeer_min);
 ;// CONCATENATED MODULE: ./node_modules/y-protocols/sync.js
 /**
  * @module sync-protocol
@@ -17511,7 +17520,12 @@ const applyAwarenessUpdate = (awareness, update, origin) => {
   }
 }
 
-;// CONCATENATED MODULE: ./node_modules/y-webrtc/src/crypto.js
+;// CONCATENATED MODULE: ./packages/sync/build-module/y-webrtc/crypto.js
+// File copied as is from the y-webrtc package.
+/* eslint-disable eslint-comments/disable-enable-pair */
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
 /* eslint-env browser */
 
 
@@ -17526,32 +17540,18 @@ const applyAwarenessUpdate = (awareness, update, origin) => {
  * @return {PromiseLike<CryptoKey>}
  */
 const deriveKey = (secret, roomName) => {
-  const secretBuffer = encodeUtf8(secret).buffer
-  const salt = encodeUtf8(roomName).buffer
-  return crypto.subtle.importKey(
-    'raw',
-    secretBuffer,
-    'PBKDF2',
-    false,
-    ['deriveKey']
-  ).then(keyMaterial =>
-    crypto.subtle.deriveKey(
-      {
-        name: 'PBKDF2',
-        salt,
-        iterations: 100000,
-        hash: 'SHA-256'
-      },
-      keyMaterial,
-      {
-        name: 'AES-GCM',
-        length: 256
-      },
-      true,
-      ['encrypt', 'decrypt']
-    )
-  )
-}
+  const secretBuffer = encodeUtf8(secret).buffer;
+  const salt = encodeUtf8(roomName).buffer;
+  return crypto.subtle.importKey('raw', secretBuffer, 'PBKDF2', false, ['deriveKey']).then(keyMaterial => crypto.subtle.deriveKey({
+    name: 'PBKDF2',
+    salt,
+    iterations: 100000,
+    hash: 'SHA-256'
+  }, keyMaterial, {
+    name: 'AES-GCM',
+    length: 256
+  }, true, ['encrypt', 'decrypt']));
+};
 
 /**
  * @param {Uint8Array} data data to be encrypted
@@ -17560,24 +17560,22 @@ const deriveKey = (secret, roomName) => {
  */
 const encrypt = (data, key) => {
   if (!key) {
-    return /** @type {PromiseLike<Uint8Array>} */ (resolve(data))
+    return (/** @type {PromiseLike<Uint8Array>} */
+      resolve(data)
+    );
   }
-  const iv = crypto.getRandomValues(new Uint8Array(12))
-  return crypto.subtle.encrypt(
-    {
-      name: 'AES-GCM',
-      iv
-    },
-    key,
-    data
-  ).then(cipher => {
-    const encryptedDataEncoder = createEncoder()
-    writeVarString(encryptedDataEncoder, 'AES-GCM')
-    writeVarUint8Array(encryptedDataEncoder, iv)
-    writeVarUint8Array(encryptedDataEncoder, new Uint8Array(cipher))
-    return toUint8Array(encryptedDataEncoder)
-  })
-}
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  return crypto.subtle.encrypt({
+    name: 'AES-GCM',
+    iv
+  }, key, data).then(cipher => {
+    const encryptedDataEncoder = createEncoder();
+    writeVarString(encryptedDataEncoder, 'AES-GCM');
+    writeVarUint8Array(encryptedDataEncoder, iv);
+    writeVarUint8Array(encryptedDataEncoder, new Uint8Array(cipher));
+    return toUint8Array(encryptedDataEncoder);
+  });
+};
 
 /**
  * @param {Object} data data to be encrypted
@@ -17585,10 +17583,10 @@ const encrypt = (data, key) => {
  * @return {PromiseLike<Uint8Array>} encrypted data, if key is provided
  */
 const encryptJson = (data, key) => {
-  const dataEncoder = createEncoder()
-  writeAny(dataEncoder, data)
-  return encrypt(toUint8Array(dataEncoder), key)
-}
+  const dataEncoder = createEncoder();
+  writeAny(dataEncoder, data);
+  return encrypt(toUint8Array(dataEncoder), key);
+};
 
 /**
  * @param {Uint8Array} data
@@ -17597,36 +17595,37 @@ const encryptJson = (data, key) => {
  */
 const decrypt = (data, key) => {
   if (!key) {
-    return /** @type {PromiseLike<Uint8Array>} */ (resolve(data))
+    return (/** @type {PromiseLike<Uint8Array>} */
+      resolve(data)
+    );
   }
-  const dataDecoder = createDecoder(data)
-  const algorithm = readVarString(dataDecoder)
+  const dataDecoder = createDecoder(data);
+  const algorithm = readVarString(dataDecoder);
   if (algorithm !== 'AES-GCM') {
-    reject(error_create('Unknown encryption algorithm'))
+    reject(error_create('Unknown encryption algorithm'));
   }
-  const iv = readVarUint8Array(dataDecoder)
-  const cipher = readVarUint8Array(dataDecoder)
-  return crypto.subtle.decrypt(
-    {
-      name: 'AES-GCM',
-      iv
-    },
-    key,
-    cipher
-  ).then(data => new Uint8Array(data))
-}
+  const iv = readVarUint8Array(dataDecoder);
+  const cipher = readVarUint8Array(dataDecoder);
+  return crypto.subtle.decrypt({
+    name: 'AES-GCM',
+    iv
+  }, key, cipher).then(data => new Uint8Array(data));
+};
 
 /**
  * @param {Uint8Array} data
  * @param {CryptoKey?} key
  * @return {PromiseLike<Object>} decrypted object
  */
-const decryptJson = (data, key) =>
-  decrypt(data, key).then(decryptedValue =>
-    readAny(createDecoder(new Uint8Array(decryptedValue)))
-  )
+const decryptJson = (data, key) => decrypt(data, key).then(decryptedValue => readAny(createDecoder(new Uint8Array(decryptedValue))));
 
-;// CONCATENATED MODULE: ./node_modules/y-webrtc/src/y-webrtc.js
+;// CONCATENATED MODULE: ./packages/sync/build-module/y-webrtc/y-webrtc.js
+// File copied as is from the y-webrtc package with only exports
+// added to the following vars/functions: signalingConns,rooms, publishSignalingMessage, log.
+/* eslint-disable eslint-comments/disable-enable-pair */
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
 
 
 
@@ -17646,42 +17645,40 @@ const decryptJson = (data, key) =>
 
 
 
-
-
-
-const y_webrtc_log = logging_createModuleLogger('y-webrtc')
-
-const messageSync = 0
-const messageQueryAwareness = 3
-const messageAwareness = 1
-const messageBcPeerId = 4
+const y_webrtc_log = logging_createModuleLogger('y-webrtc');
+const messageSync = 0;
+const messageQueryAwareness = 3;
+const messageAwareness = 1;
+const messageBcPeerId = 4;
 
 /**
  * @type {Map<string, SignalingConn>}
  */
-const signalingConns = new Map()
+const signalingConns = new Map();
 
 /**
  * @type {Map<string,Room>}
  */
-const rooms = new Map()
+const rooms = new Map();
 
 /**
  * @param {Room} room
  */
 const checkIsSynced = room => {
-  let synced = true
+  let synced = true;
   room.webrtcConns.forEach(peer => {
     if (!peer.synced) {
-      synced = false
+      synced = false;
     }
-  })
-  if ((!synced && room.synced) || (synced && !room.synced)) {
-    room.synced = synced
-    room.provider.emit('synced', [{ synced }])
-    y_webrtc_log('synced ', BOLD, room.name, UNBOLD, ' with all peers')
+  });
+  if (!synced && room.synced || synced && !room.synced) {
+    room.synced = synced;
+    room.provider.emit('synced', [{
+      synced
+    }]);
+    y_webrtc_log('synced ', BOLD, room.name, UNBOLD, ' with all peers');
   }
-}
+};
 
 /**
  * @param {Room} room
@@ -17690,68 +17687,70 @@ const checkIsSynced = room => {
  * @return {encoding.Encoder?}
  */
 const readMessage = (room, buf, syncedCallback) => {
-  const decoder = createDecoder(buf)
-  const encoder = createEncoder()
-  const messageType = readVarUint(decoder)
+  const decoder = createDecoder(buf);
+  const encoder = createEncoder();
+  const messageType = readVarUint(decoder);
   if (room === undefined) {
-    return null
+    return null;
   }
-  const awareness = room.awareness
-  const doc = room.doc
-  let sendReply = false
+  const awareness = room.awareness;
+  const doc = room.doc;
+  let sendReply = false;
   switch (messageType) {
-    case messageSync: {
-      writeVarUint(encoder, messageSync)
-      const syncMessageType = readSyncMessage(decoder, encoder, doc, room)
-      if (syncMessageType === messageYjsSyncStep2 && !room.synced) {
-        syncedCallback()
-      }
-      if (syncMessageType === messageYjsSyncStep1) {
-        sendReply = true
-      }
-      break
-    }
-    case messageQueryAwareness:
-      writeVarUint(encoder, messageAwareness)
-      writeVarUint8Array(encoder, encodeAwarenessUpdate(awareness, Array.from(awareness.getStates().keys())))
-      sendReply = true
-      break
-    case messageAwareness:
-      applyAwarenessUpdate(awareness, readVarUint8Array(decoder), room)
-      break
-    case messageBcPeerId: {
-      const add = readUint8(decoder) === 1
-      const peerName = readVarString(decoder)
-      if (peerName !== room.peerId && ((room.bcConns.has(peerName) && !add) || (!room.bcConns.has(peerName) && add))) {
-        const removed = []
-        const added = []
-        if (add) {
-          room.bcConns.add(peerName)
-          added.push(peerName)
-        } else {
-          room.bcConns.delete(peerName)
-          removed.push(peerName)
+    case messageSync:
+      {
+        writeVarUint(encoder, messageSync);
+        const syncMessageType = readSyncMessage(decoder, encoder, doc, room);
+        if (syncMessageType === messageYjsSyncStep2 && !room.synced) {
+          syncedCallback();
         }
-        room.provider.emit('peers', [{
-          added,
-          removed,
-          webrtcPeers: Array.from(room.webrtcConns.keys()),
-          bcPeers: Array.from(room.bcConns)
-        }])
-        broadcastBcPeerId(room)
+        if (syncMessageType === messageYjsSyncStep1) {
+          sendReply = true;
+        }
+        break;
       }
-      break
-    }
+    case messageQueryAwareness:
+      writeVarUint(encoder, messageAwareness);
+      writeVarUint8Array(encoder, encodeAwarenessUpdate(awareness, Array.from(awareness.getStates().keys())));
+      sendReply = true;
+      break;
+    case messageAwareness:
+      applyAwarenessUpdate(awareness, readVarUint8Array(decoder), room);
+      break;
+    case messageBcPeerId:
+      {
+        const add = readUint8(decoder) === 1;
+        const peerName = readVarString(decoder);
+        if (peerName !== room.peerId && (room.bcConns.has(peerName) && !add || !room.bcConns.has(peerName) && add)) {
+          const removed = [];
+          const added = [];
+          if (add) {
+            room.bcConns.add(peerName);
+            added.push(peerName);
+          } else {
+            room.bcConns.delete(peerName);
+            removed.push(peerName);
+          }
+          room.provider.emit('peers', [{
+            added,
+            removed,
+            webrtcPeers: Array.from(room.webrtcConns.keys()),
+            bcPeers: Array.from(room.bcConns)
+          }]);
+          broadcastBcPeerId(room);
+        }
+        break;
+      }
     default:
-      console.error('Unable to compute message')
-      return encoder
+      console.error('Unable to compute message');
+      return encoder;
   }
   if (!sendReply) {
     // nothing has been written, no answer created
-    return null
+    return null;
   }
-  return encoder
-}
+  return encoder;
+};
 
 /**
  * @param {WebrtcConn} peerConn
@@ -17759,39 +17758,38 @@ const readMessage = (room, buf, syncedCallback) => {
  * @return {encoding.Encoder?}
  */
 const readPeerMessage = (peerConn, buf) => {
-  const room = peerConn.room
-  y_webrtc_log('received message from ', BOLD, peerConn.remotePeerId, GREY, ' (', room.name, ')', UNBOLD, UNCOLOR)
+  const room = peerConn.room;
+  y_webrtc_log('received message from ', BOLD, peerConn.remotePeerId, GREY, ' (', room.name, ')', UNBOLD, UNCOLOR);
   return readMessage(room, buf, () => {
-    peerConn.synced = true
-    y_webrtc_log('synced ', BOLD, room.name, UNBOLD, ' with ', BOLD, peerConn.remotePeerId)
-    checkIsSynced(room)
-  })
-}
+    peerConn.synced = true;
+    y_webrtc_log('synced ', BOLD, room.name, UNBOLD, ' with ', BOLD, peerConn.remotePeerId);
+    checkIsSynced(room);
+  });
+};
 
 /**
  * @param {WebrtcConn} webrtcConn
  * @param {encoding.Encoder} encoder
  */
 const sendWebrtcConn = (webrtcConn, encoder) => {
-  y_webrtc_log('send message to ', BOLD, webrtcConn.remotePeerId, UNBOLD, GREY, ' (', webrtcConn.room.name, ')', UNCOLOR)
+  y_webrtc_log('send message to ', BOLD, webrtcConn.remotePeerId, UNBOLD, GREY, ' (', webrtcConn.room.name, ')', UNCOLOR);
   try {
-    webrtcConn.peer.send(toUint8Array(encoder))
+    webrtcConn.peer.send(toUint8Array(encoder));
   } catch (e) {}
-}
+};
 
 /**
  * @param {Room} room
  * @param {Uint8Array} m
  */
 const broadcastWebrtcConn = (room, m) => {
-  y_webrtc_log('broadcast message in ', BOLD, room.name, UNBOLD)
+  y_webrtc_log('broadcast message in ', BOLD, room.name, UNBOLD);
   room.webrtcConns.forEach(conn => {
     try {
-      conn.peer.send(m)
+      conn.peer.send(m);
     } catch (e) {}
-  })
-}
-
+  });
+};
 class WebrtcConn {
   /**
    * @param {SignalingConn} signalingConn
@@ -17799,70 +17797,83 @@ class WebrtcConn {
    * @param {string} remotePeerId
    * @param {Room} room
    */
-  constructor (signalingConn, initiator, remotePeerId, room) {
-    y_webrtc_log('establishing connection to ', BOLD, remotePeerId)
-    this.room = room
-    this.remotePeerId = remotePeerId
-    this.closed = false
-    this.connected = false
-    this.synced = false
+  constructor(signalingConn, initiator, remotePeerId, room) {
+    y_webrtc_log('establishing connection to ', BOLD, remotePeerId);
+    this.room = room;
+    this.remotePeerId = remotePeerId;
+    this.glareToken = undefined;
+    this.closed = false;
+    this.connected = false;
+    this.synced = false;
     /**
      * @type {any}
      */
-    this.peer = new simplepeer_min({ initiator, ...room.provider.peerOpts })
+    this.peer = new (simplepeer_min_default())({
+      initiator,
+      ...room.provider.peerOpts
+    });
     this.peer.on('signal', signal => {
-      publishSignalingMessage(signalingConn, room, { to: remotePeerId, from: room.peerId, type: 'signal', signal })
-    })
-    this.peer.on('connect', () => {
-      y_webrtc_log('connected to ', BOLD, remotePeerId)
-      this.connected = true
-      // send sync step 1
-      const provider = room.provider
-      const doc = provider.doc
-      const awareness = room.awareness
-      const encoder = createEncoder()
-      writeVarUint(encoder, messageSync)
-      writeSyncStep1(encoder, doc)
-      sendWebrtcConn(this, encoder)
-      const awarenessStates = awareness.getStates()
-      if (awarenessStates.size > 0) {
-        const encoder = createEncoder()
-        writeVarUint(encoder, messageAwareness)
-        writeVarUint8Array(encoder, encodeAwarenessUpdate(awareness, Array.from(awarenessStates.keys())))
-        sendWebrtcConn(this, encoder)
+      if (this.glareToken === undefined) {
+        // add some randomness to the timestamp of the offer
+        this.glareToken = Date.now() + Math.random();
       }
-    })
+      publishSignalingMessage(signalingConn, room, {
+        to: remotePeerId,
+        from: room.peerId,
+        type: 'signal',
+        token: this.glareToken,
+        signal
+      });
+    });
+    this.peer.on('connect', () => {
+      y_webrtc_log('connected to ', BOLD, remotePeerId);
+      this.connected = true;
+      // send sync step 1
+      const provider = room.provider;
+      const doc = provider.doc;
+      const awareness = room.awareness;
+      const encoder = createEncoder();
+      writeVarUint(encoder, messageSync);
+      writeSyncStep1(encoder, doc);
+      sendWebrtcConn(this, encoder);
+      const awarenessStates = awareness.getStates();
+      if (awarenessStates.size > 0) {
+        const encoder = createEncoder();
+        writeVarUint(encoder, messageAwareness);
+        writeVarUint8Array(encoder, encodeAwarenessUpdate(awareness, Array.from(awarenessStates.keys())));
+        sendWebrtcConn(this, encoder);
+      }
+    });
     this.peer.on('close', () => {
-      this.connected = false
-      this.closed = true
+      this.connected = false;
+      this.closed = true;
       if (room.webrtcConns.has(this.remotePeerId)) {
-        room.webrtcConns.delete(this.remotePeerId)
+        room.webrtcConns.delete(this.remotePeerId);
         room.provider.emit('peers', [{
           removed: [this.remotePeerId],
           added: [],
           webrtcPeers: Array.from(room.webrtcConns.keys()),
           bcPeers: Array.from(room.bcConns)
-        }])
+        }]);
       }
-      checkIsSynced(room)
-      this.peer.destroy()
-      y_webrtc_log('closed connection to ', BOLD, remotePeerId)
-      announceSignalingInfo(room)
-    })
+      checkIsSynced(room);
+      this.peer.destroy();
+      y_webrtc_log('closed connection to ', BOLD, remotePeerId);
+      announceSignalingInfo(room);
+    });
     this.peer.on('error', err => {
-      y_webrtc_log('Error in connection to ', BOLD, remotePeerId, ': ', err)
-      announceSignalingInfo(room)
-    })
+      y_webrtc_log('Error in connection to ', BOLD, remotePeerId, ': ', err);
+      announceSignalingInfo(room);
+    });
     this.peer.on('data', data => {
-      const answer = readPeerMessage(this, data)
+      const answer = readPeerMessage(this, data);
       if (answer !== null) {
-        sendWebrtcConn(this, answer)
+        sendWebrtcConn(this, answer);
       }
-    })
+    });
   }
-
-  destroy () {
-    this.peer.destroy()
+  destroy() {
+    this.peer.destroy();
   }
 }
 
@@ -17870,11 +17881,7 @@ class WebrtcConn {
  * @param {Room} room
  * @param {Uint8Array} m
  */
-const broadcastBcMessage = (room, m) => encrypt(m, room.key).then(data =>
-  room.mux(() =>
-    publish(room.name, data)
-  )
-)
+const broadcastBcMessage = (room, m) => encrypt(m, room.key).then(data => room.mux(() => publish(room.name, data)));
 
 /**
  * @param {Room} room
@@ -17882,25 +17889,31 @@ const broadcastBcMessage = (room, m) => encrypt(m, room.key).then(data =>
  */
 const broadcastRoomMessage = (room, m) => {
   if (room.bcconnected) {
-    broadcastBcMessage(room, m)
+    broadcastBcMessage(room, m);
   }
-  broadcastWebrtcConn(room, m)
-}
+  broadcastWebrtcConn(room, m);
+};
 
 /**
  * @param {Room} room
  */
 const announceSignalingInfo = room => {
   signalingConns.forEach(conn => {
-    // only subcribe if connection is established, otherwise the conn automatically subscribes to all rooms
+    // only subscribe if connection is established, otherwise the conn automatically subscribes to all rooms
     if (conn.connected) {
-      conn.send({ type: 'subscribe', topics: [room.name] })
+      conn.send({
+        type: 'subscribe',
+        topics: [room.name]
+      });
       if (room.webrtcConns.size < room.provider.maxConns) {
-        publishSignalingMessage(conn, room, { type: 'announce', from: room.peerId })
+        publishSignalingMessage(conn, room, {
+          type: 'announce',
+          from: room.peerId
+        });
       }
     }
-  })
-}
+  });
+};
 
 /**
  * @param {Room} room
@@ -17908,14 +17921,13 @@ const announceSignalingInfo = room => {
 const broadcastBcPeerId = room => {
   if (room.provider.filterBcConns) {
     // broadcast peerId via broadcastchannel
-    const encoderPeerIdBc = createEncoder()
-    writeVarUint(encoderPeerIdBc, messageBcPeerId)
-    writeUint8(encoderPeerIdBc, 1)
-    writeVarString(encoderPeerIdBc, room.peerId)
-    broadcastBcMessage(room, toUint8Array(encoderPeerIdBc))
+    const encoderPeerIdBc = createEncoder();
+    writeVarUint(encoderPeerIdBc, messageBcPeerId);
+    writeUint8(encoderPeerIdBc, 1);
+    writeVarString(encoderPeerIdBc, room.peerId);
+    broadcastBcMessage(room, toUint8Array(encoderPeerIdBc));
   }
-}
-
+};
 class Room {
   /**
    * @param {Y.Doc} doc
@@ -17923,45 +17935,42 @@ class Room {
    * @param {string} name
    * @param {CryptoKey|null} key
    */
-  constructor (doc, provider, name, key) {
+  constructor(doc, provider, name, key) {
     /**
      * Do not assume that peerId is unique. This is only meant for sending signaling messages.
      *
      * @type {string}
      */
-    this.peerId = uuidv4()
-    this.doc = doc
+    this.peerId = uuidv4();
+    this.doc = doc;
     /**
      * @type {awarenessProtocol.Awareness}
      */
-    this.awareness = provider.awareness
-    this.provider = provider
-    this.synced = false
-    this.name = name
+    this.awareness = provider.awareness;
+    this.provider = provider;
+    this.synced = false;
+    this.name = name;
     // @todo make key secret by scoping
-    this.key = key
+    this.key = key;
     /**
      * @type {Map<string, WebrtcConn>}
      */
-    this.webrtcConns = new Map()
+    this.webrtcConns = new Map();
     /**
      * @type {Set<string>}
      */
-    this.bcConns = new Set()
-    this.mux = createMutex()
-    this.bcconnected = false
+    this.bcConns = new Set();
+    this.mux = createMutex();
+    this.bcconnected = false;
     /**
      * @param {ArrayBuffer} data
      */
-    this._bcSubscriber = data =>
-      decrypt(new Uint8Array(data), key).then(m =>
-        this.mux(() => {
-          const reply = readMessage(this, m, () => {})
-          if (reply) {
-            broadcastBcMessage(this, toUint8Array(reply))
-          }
-        })
-      )
+    this._bcSubscriber = data => decrypt(new Uint8Array(data), key).then(m => this.mux(() => {
+      const reply = readMessage(this, m, () => {});
+      if (reply) {
+        broadcastBcMessage(this, toUint8Array(reply));
+      }
+    }));
     /**
      * Listens to Yjs updates and sends them to remote peers
      *
@@ -17969,98 +17978,99 @@ class Room {
      * @param {any} origin
      */
     this._docUpdateHandler = (update, origin) => {
-      const encoder = createEncoder()
-      writeVarUint(encoder, messageSync)
-      writeUpdate(encoder, update)
-      broadcastRoomMessage(this, toUint8Array(encoder))
-    }
+      const encoder = createEncoder();
+      writeVarUint(encoder, messageSync);
+      writeUpdate(encoder, update);
+      broadcastRoomMessage(this, toUint8Array(encoder));
+    };
     /**
      * Listens to Awareness updates and sends them to remote peers
      *
      * @param {any} changed
      * @param {any} origin
      */
-    this._awarenessUpdateHandler = ({ added, updated, removed }, origin) => {
-      const changedClients = added.concat(updated).concat(removed)
-      const encoderAwareness = createEncoder()
-      writeVarUint(encoderAwareness, messageAwareness)
-      writeVarUint8Array(encoderAwareness, encodeAwarenessUpdate(this.awareness, changedClients))
-      broadcastRoomMessage(this, toUint8Array(encoderAwareness))
-    }
-
+    this._awarenessUpdateHandler = ({
+      added,
+      updated,
+      removed
+    }, origin) => {
+      const changedClients = added.concat(updated).concat(removed);
+      const encoderAwareness = createEncoder();
+      writeVarUint(encoderAwareness, messageAwareness);
+      writeVarUint8Array(encoderAwareness, encodeAwarenessUpdate(this.awareness, changedClients));
+      broadcastRoomMessage(this, toUint8Array(encoderAwareness));
+    };
     this._beforeUnloadHandler = () => {
-      removeAwarenessStates(this.awareness, [doc.clientID], 'window unload')
+      removeAwarenessStates(this.awareness, [doc.clientID], 'window unload');
       rooms.forEach(room => {
-        room.disconnect()
-      })
-    }
-
+        room.disconnect();
+      });
+    };
     if (typeof window !== 'undefined') {
-      window.addEventListener('beforeunload', this._beforeUnloadHandler)
+      window.addEventListener('beforeunload', this._beforeUnloadHandler);
     } else if (typeof process !== 'undefined') {
-      process.on('exit', this._beforeUnloadHandler)
+      process.on('exit', this._beforeUnloadHandler);
     }
   }
-
-  connect () {
-    this.doc.on('update', this._docUpdateHandler)
-    this.awareness.on('update', this._awarenessUpdateHandler)
+  connect() {
+    this.doc.on('update', this._docUpdateHandler);
+    this.awareness.on('update', this._awarenessUpdateHandler);
     // signal through all available signaling connections
-    announceSignalingInfo(this)
-    const roomName = this.name
-    subscribe(roomName, this._bcSubscriber)
-    this.bcconnected = true
+    announceSignalingInfo(this);
+    const roomName = this.name;
+    subscribe(roomName, this._bcSubscriber);
+    this.bcconnected = true;
     // broadcast peerId via broadcastchannel
-    broadcastBcPeerId(this)
+    broadcastBcPeerId(this);
     // write sync step 1
-    const encoderSync = createEncoder()
-    writeVarUint(encoderSync, messageSync)
-    writeSyncStep1(encoderSync, this.doc)
-    broadcastBcMessage(this, toUint8Array(encoderSync))
+    const encoderSync = createEncoder();
+    writeVarUint(encoderSync, messageSync);
+    writeSyncStep1(encoderSync, this.doc);
+    broadcastBcMessage(this, toUint8Array(encoderSync));
     // broadcast local state
-    const encoderState = createEncoder()
-    writeVarUint(encoderState, messageSync)
-    writeSyncStep2(encoderState, this.doc)
-    broadcastBcMessage(this, toUint8Array(encoderState))
+    const encoderState = createEncoder();
+    writeVarUint(encoderState, messageSync);
+    writeSyncStep2(encoderState, this.doc);
+    broadcastBcMessage(this, toUint8Array(encoderState));
     // write queryAwareness
-    const encoderAwarenessQuery = createEncoder()
-    writeVarUint(encoderAwarenessQuery, messageQueryAwareness)
-    broadcastBcMessage(this, toUint8Array(encoderAwarenessQuery))
+    const encoderAwarenessQuery = createEncoder();
+    writeVarUint(encoderAwarenessQuery, messageQueryAwareness);
+    broadcastBcMessage(this, toUint8Array(encoderAwarenessQuery));
     // broadcast local awareness state
-    const encoderAwarenessState = createEncoder()
-    writeVarUint(encoderAwarenessState, messageAwareness)
-    writeVarUint8Array(encoderAwarenessState, encodeAwarenessUpdate(this.awareness, [this.doc.clientID]))
-    broadcastBcMessage(this, toUint8Array(encoderAwarenessState))
+    const encoderAwarenessState = createEncoder();
+    writeVarUint(encoderAwarenessState, messageAwareness);
+    writeVarUint8Array(encoderAwarenessState, encodeAwarenessUpdate(this.awareness, [this.doc.clientID]));
+    broadcastBcMessage(this, toUint8Array(encoderAwarenessState));
   }
-
-  disconnect () {
+  disconnect() {
     // signal through all available signaling connections
     signalingConns.forEach(conn => {
       if (conn.connected) {
-        conn.send({ type: 'unsubscribe', topics: [this.name] })
+        conn.send({
+          type: 'unsubscribe',
+          topics: [this.name]
+        });
       }
-    })
-    removeAwarenessStates(this.awareness, [this.doc.clientID], 'disconnect')
+    });
+    removeAwarenessStates(this.awareness, [this.doc.clientID], 'disconnect');
     // broadcast peerId removal via broadcastchannel
-    const encoderPeerIdBc = createEncoder()
-    writeVarUint(encoderPeerIdBc, messageBcPeerId)
-    writeUint8(encoderPeerIdBc, 0) // remove peerId from other bc peers
-    writeVarString(encoderPeerIdBc, this.peerId)
-    broadcastBcMessage(this, toUint8Array(encoderPeerIdBc))
-
-    unsubscribe(this.name, this._bcSubscriber)
-    this.bcconnected = false
-    this.doc.off('update', this._docUpdateHandler)
-    this.awareness.off('update', this._awarenessUpdateHandler)
-    this.webrtcConns.forEach(conn => conn.destroy())
+    const encoderPeerIdBc = createEncoder();
+    writeVarUint(encoderPeerIdBc, messageBcPeerId);
+    writeUint8(encoderPeerIdBc, 0); // remove peerId from other bc peers
+    writeVarString(encoderPeerIdBc, this.peerId);
+    broadcastBcMessage(this, toUint8Array(encoderPeerIdBc));
+    unsubscribe(this.name, this._bcSubscriber);
+    this.bcconnected = false;
+    this.doc.off('update', this._docUpdateHandler);
+    this.awareness.off('update', this._awarenessUpdateHandler);
+    this.webrtcConns.forEach(conn => conn.destroy());
   }
-
-  destroy () {
-    this.disconnect()
+  destroy() {
+    this.disconnect();
     if (typeof window !== 'undefined') {
-      window.removeEventListener('beforeunload', this._beforeUnloadHandler)
+      window.removeEventListener('beforeunload', this._beforeUnloadHandler);
     } else if (typeof process !== 'undefined') {
-      process.off('exit', this._beforeUnloadHandler)
+      process.off('exit', this._beforeUnloadHandler);
     }
   }
 }
@@ -18075,12 +18085,12 @@ class Room {
 const openRoom = (doc, provider, name, key) => {
   // there must only be one room
   if (rooms.has(name)) {
-    throw error_create(`A Yjs Doc connected to room "${name}" already exists!`)
+    throw error_create(`A Yjs Doc connected to room "${name}" already exists!`);
   }
-  const room = new Room(doc, provider, name, key)
-  rooms.set(name, /** @type {Room} */ (room))
-  return room
-}
+  const room = new Room(doc, provider, name, key);
+  rooms.set(name, /** @type {Room} */room);
+  return room;
+};
 
 /**
  * @param {SignalingConn} conn
@@ -18090,78 +18100,105 @@ const openRoom = (doc, provider, name, key) => {
 const publishSignalingMessage = (conn, room, data) => {
   if (room.key) {
     encryptJson(data, room.key).then(data => {
-      conn.send({ type: 'publish', topic: room.name, data: toBase64(data) })
-    })
+      conn.send({
+        type: 'publish',
+        topic: room.name,
+        data: toBase64(data)
+      });
+    });
   } else {
-    conn.send({ type: 'publish', topic: room.name, data })
+    conn.send({
+      type: 'publish',
+      topic: room.name,
+      data
+    });
   }
-}
-
+};
 class SignalingConn extends WebsocketClient {
-  constructor (url) {
-    super(url)
+  constructor(url) {
+    super(url);
     /**
      * @type {Set<WebrtcProvider>}
      */
-    this.providers = new Set()
+    this.providers = new Set();
     this.on('connect', () => {
-      y_webrtc_log(`connected (${url})`)
-      const topics = Array.from(rooms.keys())
-      this.send({ type: 'subscribe', topics })
-      rooms.forEach(room =>
-        publishSignalingMessage(this, room, { type: 'announce', from: room.peerId })
-      )
-    })
+      y_webrtc_log(`connected (${url})`);
+      const topics = Array.from(rooms.keys());
+      this.send({
+        type: 'subscribe',
+        topics
+      });
+      rooms.forEach(room => publishSignalingMessage(this, room, {
+        type: 'announce',
+        from: room.peerId
+      }));
+    });
     this.on('message', m => {
       switch (m.type) {
-        case 'publish': {
-          const roomName = m.topic
-          const room = rooms.get(roomName)
-          if (room == null || typeof roomName !== 'string') {
-            return
-          }
-          const execMessage = data => {
-            const webrtcConns = room.webrtcConns
-            const peerId = room.peerId
-            if (data == null || data.from === peerId || (data.to !== undefined && data.to !== peerId) || room.bcConns.has(data.from)) {
-              // ignore messages that are not addressed to this conn, or from clients that are connected via broadcastchannel
-              return
+        case 'publish':
+          {
+            const roomName = m.topic;
+            const room = rooms.get(roomName);
+            if (room == null || typeof roomName !== 'string') {
+              return;
             }
-            const emitPeerChange = webrtcConns.has(data.from)
-              ? () => {}
-              : () =>
-                room.provider.emit('peers', [{
-                  removed: [],
-                  added: [data.from],
-                  webrtcPeers: Array.from(room.webrtcConns.keys()),
-                  bcPeers: Array.from(room.bcConns)
-                }])
-            switch (data.type) {
-              case 'announce':
-                if (webrtcConns.size < room.provider.maxConns) {
-                  setIfUndefined(webrtcConns, data.from, () => new WebrtcConn(this, true, data.from, room))
-                  emitPeerChange()
-                }
-                break
-              case 'signal':
-                if (data.to === peerId) {
-                  setIfUndefined(webrtcConns, data.from, () => new WebrtcConn(this, false, data.from, room)).peer.signal(data.signal)
-                  emitPeerChange()
-                }
-                break
+            const execMessage = data => {
+              const webrtcConns = room.webrtcConns;
+              const peerId = room.peerId;
+              if (data == null || data.from === peerId || data.to !== undefined && data.to !== peerId || room.bcConns.has(data.from)) {
+                // ignore messages that are not addressed to this conn, or from clients that are connected via broadcastchannel
+                return;
+              }
+              const emitPeerChange = webrtcConns.has(data.from) ? () => {} : () => room.provider.emit('peers', [{
+                removed: [],
+                added: [data.from],
+                webrtcPeers: Array.from(room.webrtcConns.keys()),
+                bcPeers: Array.from(room.bcConns)
+              }]);
+              switch (data.type) {
+                case 'announce':
+                  if (webrtcConns.size < room.provider.maxConns) {
+                    setIfUndefined(webrtcConns, data.from, () => new WebrtcConn(this, true, data.from, room));
+                    emitPeerChange();
+                  }
+                  break;
+                case 'signal':
+                  if (data.signal.type === 'offer') {
+                    const existingConn = webrtcConns.get(data.from);
+                    if (existingConn) {
+                      const remoteToken = data.token;
+                      const localToken = existingConn.glareToken;
+                      if (localToken && localToken > remoteToken) {
+                        y_webrtc_log('offer rejected: ', data.from);
+                        return;
+                      }
+                      // if we don't reject the offer, we will be accepting it and answering it
+                      existingConn.glareToken = undefined;
+                    }
+                  }
+                  if (data.signal.type === 'answer') {
+                    y_webrtc_log('offer answered by: ', data.from);
+                    const existingConn = webrtcConns.get(data.from);
+                    existingConn.glareToken = undefined;
+                  }
+                  if (data.to === peerId) {
+                    setIfUndefined(webrtcConns, data.from, () => new WebrtcConn(this, false, data.from, room)).peer.signal(data.signal);
+                    emitPeerChange();
+                  }
+                  break;
+              }
+            };
+            if (room.key) {
+              if (typeof m.data === 'string') {
+                decryptJson(fromBase64(m.data), room.key).then(execMessage);
+              }
+            } else {
+              execMessage(m.data);
             }
           }
-          if (room.key) {
-            if (typeof m.data === 'string') {
-              decryptJson(fromBase64(m.data), room.key).then(execMessage)
-            }
-          } else {
-            execMessage(m.data)
-          }
-        }
       }
-    })
-    this.on('disconnect', () => y_webrtc_log(`disconnect (${url})`))
+    });
+    this.on('disconnect', () => y_webrtc_log(`disconnect (${url})`));
   }
 }
 
@@ -18184,101 +18221,406 @@ class WebrtcProvider extends observable_Observable {
    * @param {Y.Doc} doc
    * @param {ProviderOptions?} opts
    */
-  constructor (
-    roomName,
-    doc,
-    {
-      signaling = ['wss://y-webrtc-eu.fly.dev'],
-      password = null,
-      awareness = new Awareness(doc),
-      maxConns = 20 + floor(rand() * 15), // the random factor reduces the chance that n clients form a cluster
-      filterBcConns = true,
-      peerOpts = {} // simple-peer options. See https://github.com/feross/simple-peer#peer--new-peeropts
-    } = {}
-  ) {
-    super()
-    this.roomName = roomName
-    this.doc = doc
-    this.filterBcConns = filterBcConns
+  constructor(roomName, doc, {
+    signaling = ['wss://y-webrtc-eu.fly.dev'],
+    password = null,
+    awareness = new Awareness(doc),
+    maxConns = 20 + floor(rand() * 15),
+    // the random factor reduces the chance that n clients form a cluster
+    filterBcConns = true,
+    peerOpts = {} // simple-peer options. See https://github.com/feross/simple-peer#peer--new-peeropts
+  } = {}) {
+    super();
+    this.roomName = roomName;
+    this.doc = doc;
+    this.filterBcConns = filterBcConns;
     /**
      * @type {awarenessProtocol.Awareness}
      */
-    this.awareness = awareness
-    this.shouldConnect = false
-    this.signalingUrls = signaling
-    this.signalingConns = []
-    this.maxConns = maxConns
-    this.peerOpts = peerOpts
+    this.awareness = awareness;
+    this.shouldConnect = false;
+    this.signalingUrls = signaling;
+    this.signalingConns = [];
+    this.maxConns = maxConns;
+    this.peerOpts = peerOpts;
     /**
      * @type {PromiseLike<CryptoKey | null>}
      */
-    this.key = password ? deriveKey(password, roomName) : /** @type {PromiseLike<null>} */ (resolve(null))
+    this.key = password ? deriveKey(password, roomName) : /** @type {PromiseLike<null>} */resolve(null);
     /**
      * @type {Room|null}
      */
-    this.room = null
+    this.room = null;
     this.key.then(key => {
-      this.room = openRoom(doc, this, roomName, key)
+      this.room = openRoom(doc, this, roomName, key);
       if (this.shouldConnect) {
-        this.room.connect()
+        this.room.connect();
       } else {
-        this.room.disconnect()
+        this.room.disconnect();
       }
-    })
-    this.connect()
-    this.destroy = this.destroy.bind(this)
-    doc.on('destroy', this.destroy)
+    });
+    this.connect();
+    this.destroy = this.destroy.bind(this);
+    doc.on('destroy', this.destroy);
   }
 
   /**
    * @type {boolean}
    */
-  get connected () {
-    return this.room !== null && this.shouldConnect
+  get connected() {
+    return this.room !== null && this.shouldConnect;
   }
-
-  connect () {
-    this.shouldConnect = true
+  connect() {
+    this.shouldConnect = true;
     this.signalingUrls.forEach(url => {
-      const signalingConn = setIfUndefined(signalingConns, url, () => new SignalingConn(url))
-      this.signalingConns.push(signalingConn)
-      signalingConn.providers.add(this)
-    })
+      const signalingConn = setIfUndefined(signalingConns, url, () => new SignalingConn(url));
+      this.signalingConns.push(signalingConn);
+      signalingConn.providers.add(this);
+    });
     if (this.room) {
-      this.room.connect()
+      this.room.connect();
     }
   }
-
-  disconnect () {
-    this.shouldConnect = false
+  disconnect() {
+    this.shouldConnect = false;
     this.signalingConns.forEach(conn => {
-      conn.providers.delete(this)
+      conn.providers.delete(this);
       if (conn.providers.size === 0) {
-        conn.destroy()
-        signalingConns.delete(conn.url)
+        conn.destroy();
+        signalingConns.delete(conn.url);
       }
-    })
+    });
     if (this.room) {
-      this.room.disconnect()
+      this.room.disconnect();
     }
   }
-
-  destroy () {
-    this.doc.off('destroy', this.destroy)
+  destroy() {
+    this.doc.off('destroy', this.destroy);
     // need to wait for key before deleting room
     this.key.then(() => {
-      /** @type {Room} */ (this.room).destroy()
-      rooms.delete(this.roomName)
-    })
-    super.destroy()
+      /** @type {Room} */this.room.destroy();
+      rooms.delete(this.roomName);
+    });
+    super.destroy();
   }
 }
 
-;// CONCATENATED MODULE: ./packages/sync/build-module/connect-webrtc.js
+;// CONCATENATED MODULE: ./packages/sync/build-module/webrtc-http-stream-signaling.js
 /**
  * External dependencies
  */
-// @ts-ignore
+/**
+ * Internal dependencies
+ */
+
+
+
+
+
+
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Method copied as is from the SignalingConn constructor.
+ * Setups the needed event handlers for an http signaling connection.
+ *
+ * @param {HttpSignalingConn} signalCon The signaling connection.
+ * @param {string}            url       The url.
+ */
+function setupSignalEventHandlers(signalCon, url) {
+  signalCon.on('connect', () => {
+    y_webrtc_log(`connected (${url})`);
+    const topics = Array.from(rooms.keys());
+    signalCon.send({
+      type: 'subscribe',
+      topics
+    });
+    rooms.forEach(room => publishSignalingMessage(signalCon, room, {
+      type: 'announce',
+      from: room.peerId
+    }));
+  });
+  signalCon.on('message', ( /** @type {{ type: any; topic: any; data: string; }} */m) => {
+    switch (m.type) {
+      case 'publish':
+        {
+          const roomName = m.topic;
+          const room = rooms.get(roomName);
+          if (room === null || typeof roomName !== 'string' || room === undefined) {
+            return;
+          }
+          const execMessage = ( /** @type {any} */data) => {
+            const webrtcConns = room.webrtcConns;
+            const peerId = room.peerId;
+            if (data === null || data.from === peerId || data.to !== undefined && data.to !== peerId || room.bcConns.has(data.from)) {
+              // ignore messages that are not addressed to this conn, or from clients that are connected via broadcastchannel
+              return;
+            }
+            const emitPeerChange = webrtcConns.has(data.from) ? () => {} : () => room.provider.emit('peers', [{
+              removed: [],
+              added: [data.from],
+              webrtcPeers: Array.from(room.webrtcConns.keys()),
+              bcPeers: Array.from(room.bcConns)
+            }]);
+            switch (data.type) {
+              case 'announce':
+                if (webrtcConns.size < room.provider.maxConns) {
+                  setIfUndefined(webrtcConns, data.from, () => new WebrtcConn(signalCon, true, data.from, room));
+                  emitPeerChange();
+                }
+                break;
+              case 'signal':
+                if (data.signal.type === 'offer') {
+                  const existingConn = webrtcConns.get(data.from);
+                  if (existingConn) {
+                    const remoteToken = data.token;
+                    const localToken = existingConn.glareToken;
+                    if (localToken && localToken > remoteToken) {
+                      y_webrtc_log('offer rejected: ', data.from);
+                      return;
+                    }
+                    // if we don't reject the offer, we will be accepting it and answering it
+                    existingConn.glareToken = undefined;
+                  }
+                }
+                if (data.signal.type === 'answer') {
+                  y_webrtc_log('offer answered by: ', data.from);
+                  const existingConn = webrtcConns.get(data.from);
+                  if (existingConn) {
+                    existingConn.glareToken = undefined;
+                  }
+                }
+                if (data.to === peerId) {
+                  setIfUndefined(webrtcConns, data.from, () => new WebrtcConn(signalCon, false, data.from, room)).peer.signal(data.signal);
+                  emitPeerChange();
+                }
+                break;
+            }
+          };
+          if (room.key) {
+            if (typeof m.data === 'string') {
+              decryptJson(fromBase64(m.data), room.key).then(execMessage);
+            }
+          } else {
+            execMessage(m.data);
+          }
+        }
+    }
+  });
+  signalCon.on('disconnect', () => y_webrtc_log(`disconnect (${url})`));
+}
+
+/**
+ * Method that instantiates the http signaling connection.
+ * Tries to implement the same methods a websocket provides using ajax requests
+ * to send messages and EventSource to retrieve messages.
+ *
+ * @param {HttpSignalingConn} httpClient The signaling connection.
+ */
+function setupHttpSignal(httpClient) {
+  if (httpClient.shouldConnect && httpClient.ws === null) {
+    // eslint-disable-next-line no-restricted-syntax
+    const subscriberId = Math.floor(100000 + Math.random() * 900000);
+    const url = httpClient.url;
+    const eventSource = new window.EventSource((0,external_wp_url_namespaceObject.addQueryArgs)(url, {
+      subscriber_id: subscriberId,
+      action: 'gutenberg_signaling_server'
+    }));
+    /**
+     * @type {any}
+     */
+    let pingTimeout = null;
+    eventSource.onmessage = event => {
+      httpClient.lastMessageReceived = Date.now();
+      const data = event.data;
+      if (data) {
+        const messages = JSON.parse(data);
+        if (Array.isArray(messages)) {
+          messages.forEach(onSingleMessage);
+        }
+      }
+    };
+    // @ts-ignore
+    httpClient.ws = eventSource;
+    httpClient.connecting = true;
+    httpClient.connected = false;
+    const onSingleMessage = ( /** @type {any} */message) => {
+      if (message && message.type === 'pong') {
+        clearTimeout(pingTimeout);
+        pingTimeout = setTimeout(sendPing, webrtc_http_stream_signaling_messageReconnectTimeout / 2);
+      }
+      httpClient.emit('message', [message, httpClient]);
+    };
+
+    /**
+     * @param {any} error
+     */
+    const onclose = error => {
+      if (httpClient.ws !== null) {
+        httpClient.ws.close();
+        httpClient.ws = null;
+        httpClient.connecting = false;
+        if (httpClient.connected) {
+          httpClient.connected = false;
+          httpClient.emit('disconnect', [{
+            type: 'disconnect',
+            error
+          }, httpClient]);
+        } else {
+          httpClient.unsuccessfulReconnects++;
+        }
+      }
+      clearTimeout(pingTimeout);
+    };
+    const sendPing = () => {
+      if (httpClient.ws && httpClient.ws.readyState === window.EventSource.OPEN) {
+        httpClient.send({
+          type: 'ping'
+        });
+      }
+    };
+    if (httpClient.ws) {
+      httpClient.ws.onclose = () => {
+        onclose(null);
+      };
+      httpClient.ws.send = function send( /** @type {string} */message) {
+        window.fetch(url, {
+          body: new URLSearchParams({
+            subscriber_id: subscriberId.toString(),
+            action: 'gutenberg_signaling_server',
+            message
+          }),
+          method: 'POST'
+        }).catch(() => {
+          y_webrtc_log('Error sending to server with message: ' + message);
+        });
+      };
+    }
+    eventSource.onerror = () => {
+      // Todo: add an error handler
+    };
+    eventSource.onopen = () => {
+      if (httpClient.connected) {
+        return;
+      }
+      if (eventSource.readyState === window.EventSource.OPEN) {
+        httpClient.lastMessageReceived = Date.now();
+        httpClient.connecting = false;
+        httpClient.connected = true;
+        httpClient.unsuccessfulReconnects = 0;
+        httpClient.emit('connect', [{
+          type: 'connect'
+        }, httpClient]);
+        // set ping
+        pingTimeout = setTimeout(sendPing, webrtc_http_stream_signaling_messageReconnectTimeout / 2);
+      }
+    };
+  }
+}
+const webrtc_http_stream_signaling_messageReconnectTimeout = 30000;
+
+/**
+ * @augments Observable<string>
+ */
+class HttpSignalingConn extends observable_Observable {
+  /**
+   * @param {string} url
+   */
+  constructor(url) {
+    super();
+
+    //WebsocketClient from lib0/websocket.js
+    this.url = url;
+    /**
+     * @type {WebSocket?}
+     */
+    this.ws = null;
+    // @ts-ignore
+    this.binaryType = null; // this.binaryType = binaryType
+    this.connected = false;
+    this.connecting = false;
+    this.unsuccessfulReconnects = 0;
+    this.lastMessageReceived = 0;
+    /**
+     * Whether to connect to other peers or not
+     *
+     * @type {boolean}
+     */
+    this.shouldConnect = true;
+    this._checkInterval = setInterval(() => {
+      if (this.connected && webrtc_http_stream_signaling_messageReconnectTimeout < Date.now() - this.lastMessageReceived && this.ws) {
+        // no message received in a long time - not even your own awareness
+        // updates (which are updated every 15 seconds)
+        this.ws.close();
+      }
+    }, webrtc_http_stream_signaling_messageReconnectTimeout / 2);
+    //setupWS( this );
+    setupHttpSignal(this);
+
+    // From SignalingConn
+    /**
+     * @type {Set<WebrtcProvider>}
+     */
+    this.providers = new Set();
+    setupSignalEventHandlers(this, url);
+  }
+
+  /**
+   * @param {any} message
+   */
+  send(message) {
+    if (this.ws) {
+      this.ws.send(JSON.stringify(message));
+    }
+  }
+  destroy() {
+    clearInterval(this._checkInterval);
+    this.disconnect();
+    super.destroy();
+  }
+  disconnect() {
+    this.shouldConnect = false;
+    if (this.ws !== null) {
+      this.ws.close();
+    }
+  }
+  connect() {
+    this.shouldConnect = true;
+    if (!this.connected && this.ws === null) {
+      setupHttpSignal(this);
+    }
+  }
+}
+class WebrtcProviderWithHttpSignaling extends WebrtcProvider {
+  connect() {
+    this.shouldConnect = true;
+    this.signalingUrls.forEach(( /** @type {string} */url) => {
+      const signalingConn = setIfUndefined(signalingConns, url,
+      // Only this conditional logic to create a normal websocket connection or
+      // an http signaling connection was added to the constructor when compared
+      // with the base class.
+      url.startsWith('ws://') || url.startsWith('wss://') ? () => new SignalingConn(url) : () => new HttpSignalingConn(url));
+      this.signalingConns.push(signalingConn);
+      signalingConn.providers.add(this);
+    });
+    if (this.room) {
+      this.room.connect();
+    }
+  }
+}
+
+;// CONCATENATED MODULE: ./packages/sync/build-module/create-webrtc-connection.js
+/**
+ * External dependencies
+ */
+// import { WebrtcProvider } from 'y-webrtc';
+
+/**
+ * Internal dependencies
+ */
 
 
 /** @typedef {import('./types').ObjectType} ObjectType */
@@ -18286,21 +18628,27 @@ class WebrtcProvider extends observable_Observable {
 /** @typedef {import('./types').CRDTDoc} CRDTDoc */
 
 /**
- * Connect function to the WebRTC provider.
+ * Function that creates a new WebRTC Connection.
  *
- * @param {ObjectID}   objectId   The object ID.
- * @param {ObjectType} objectType The object type.
- * @param {CRDTDoc}    doc        The CRDT document.
+ * @param {Object}        config           The object ID.
  *
- * @return {Promise<() => void>} Promise that resolves when the connection is established.
+ * @param {Array<string>} config.signaling
+ * @param {string}        config.password
+ * @return {Function} Promise that resolves when the connection is established.
  */
-function connectWebRTC(objectId, objectType, doc) {
-  const roomName = `${objectType}-${objectId}`;
-  new WebrtcProvider(roomName, doc, {
-    // @ts-ignore
-    password: window.__experimentalCollaborativeEditingSecret
-  });
-  return Promise.resolve(() => true);
+function createWebRTCConnection({
+  signaling,
+  password
+}) {
+  return function ( /** @type {string} */objectId, /** @type {string} */objectType, /** @type {import("yjs").Doc} */doc) {
+    const roomName = `${objectType}-${objectId}`;
+    new WebrtcProviderWithHttpSignaling(roomName, doc, {
+      signaling,
+      // @ts-ignore
+      password
+    });
+    return Promise.resolve(() => true);
+  };
 }
 
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/sync.js
@@ -18311,7 +18659,12 @@ function connectWebRTC(objectId, objectType, doc) {
 let syncProvider;
 function getSyncProvider() {
   if (!syncProvider) {
-    syncProvider = createSyncProvider(connectIndexDb, connectWebRTC);
+    syncProvider = createSyncProvider(connectIndexDb, createWebRTCConnection({
+      signaling: [
+      //'ws://localhost:4444',
+      window?.wp?.ajax?.settings?.url],
+      password: window?.__experimentalCollaborativeEditingSecret
+    }));
   }
   return syncProvider;
 }
@@ -18517,6 +18870,8 @@ function receiveThemeSupports() {
  * Returns an action object used in signalling that the theme global styles CPT post revisions have been received.
  * Ignored from documentation as it's internal to the data store.
  *
+ * @deprecated since WordPress 6.5.0. Callers should use `dispatch( 'core' ).receiveRevision` instead.
+ *
  * @ignore
  *
  * @param {number} currentId The post id.
@@ -18525,6 +18880,10 @@ function receiveThemeSupports() {
  * @return {Object} Action object.
  */
 function receiveThemeGlobalStyleRevisions(currentId, revisions) {
+  external_wp_deprecated_default()("wp.data.dispatch( 'core' ).receiveThemeGlobalStyleRevisions()", {
+    since: '6.5.0',
+    alternative: "wp.data.dispatch( 'core' ).receiveRevisions"
+  });
   return {
     type: 'RECEIVE_THEME_GLOBAL_STYLE_REVISIONS',
     currentId,
@@ -19080,6 +19439,52 @@ function receiveNavigationFallbackId(fallbackId) {
   };
 }
 
+/**
+ * Returns an action object used to set the template for a given query.
+ *
+ * @param {Object} query      The lookup query.
+ * @param {string} templateId The resolved template id.
+ *
+ * @return {Object} Action object.
+ */
+function receiveDefaultTemplateId(query, templateId) {
+  return {
+    type: 'RECEIVE_DEFAULT_TEMPLATE',
+    query,
+    templateId
+  };
+}
+
+/**
+ * Action triggered to receive revision items.
+ *
+ * @param {string}        kind            Kind of the received entity record revisions.
+ * @param {string}        name            Name of the received entity record revisions.
+ * @param {number|string} recordKey       The key of the entity record whose revisions you want to fetch.
+ * @param {Array|Object}  records         Revisions received.
+ * @param {?Object}       query           Query Object.
+ * @param {?boolean}      invalidateCache Should invalidate query caches.
+ * @param {?Object}       meta            Meta information about pagination.
+ */
+const receiveRevisions = (kind, name, recordKey, records, query, invalidateCache = false, meta) => async ({
+  dispatch
+}) => {
+  const configs = await dispatch(getOrLoadEntitiesConfig(kind));
+  const entityConfig = configs.find(config => config.kind === kind && config.name === name);
+  const key = entityConfig && entityConfig?.revisionKey ? entityConfig.revisionKey : DEFAULT_ENTITY_KEY;
+  dispatch({
+    type: 'RECEIVE_ITEM_REVISIONS',
+    key,
+    items: Array.isArray(records) ? records : [records],
+    recordKey,
+    meta,
+    query,
+    kind,
+    name,
+    invalidateCache
+  });
+};
+
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/entities.js
 /**
  * External dependencies
@@ -19099,6 +19504,11 @@ function receiveNavigationFallbackId(fallbackId) {
 
 const DEFAULT_ENTITY_KEY = 'id';
 const POST_RAW_ATTRIBUTES = ['title', 'excerpt', 'content'];
+
+// A hardcoded list of post types that support revisions.
+// Reflects post types in Core's src/wp-includes/post.php.
+// @TODO: Ideally this should be fetched from the  `/types` REST API's view context.
+const POST_TYPE_ENTITIES_WITH_REVISIONS_SUPPORT = ['post', 'page', 'wp_block', 'wp_navigation', 'wp_template', 'wp_template_part'];
 const rootEntitiesConfig = [{
   label: (0,external_wp_i18n_namespaceObject.__)('Base'),
   kind: 'root',
@@ -19295,8 +19705,13 @@ const rootEntitiesConfig = [{
     context: 'edit'
   },
   plural: 'globalStylesVariations',
-  // Should be different than name.
-  getTitle: record => record?.title?.rendered || record?.title
+  // Should be different from name.
+  getTitle: record => record?.title?.rendered || record?.title,
+  getRevisionsUrl: (parentId, revisionId) => `/wp/v2/global-styles/${parentId}/revisions${revisionId ? '/' + revisionId : ''}`,
+  supports: {
+    revisions: true
+  },
+  supportsPagination: true
 }, {
   label: (0,external_wp_i18n_namespaceObject.__)('Themes'),
   name: 'theme',
@@ -19385,6 +19800,9 @@ async function loadPostTypeEntities() {
       mergedEdits: {
         meta: true
       },
+      supports: {
+        revisions: POST_TYPE_ENTITIES_WITH_REVISIONS_SUPPORT.includes(postType?.slug)
+      },
       rawAttributes: POST_RAW_ATTRIBUTES,
       getTitle: record => {
         var _record$slug;
@@ -19412,7 +19830,9 @@ async function loadPostTypeEntities() {
       },
       syncObjectType: 'postType/' + postType.name,
       getSyncObjectId: id => id,
-      supportsPagination: true
+      supportsPagination: true,
+      getRevisionsUrl: (parentId, revisionId) => `/${namespace}/${postType.rest_base}/${parentId}/revisions${revisionId ? '/' + revisionId : ''}`,
+      revisionKey: isTemplate ? 'wp_id' : DEFAULT_ENTITY_KEY
     };
   });
 }
@@ -19721,7 +20141,9 @@ function getMergedItemIds(itemIds, nextItemIds, page, perPage) {
   const mergedItemIds = new Array(size);
   for (let i = 0; i < size; i++) {
     // Preserve existing item ID except for subset of range of next items.
-    const isInNextItemsRange = i >= nextItemIdsStartIndex && i < nextItemIdsStartIndex + nextItemIds.length;
+    // We need to check against the possible maximum upper boundary because
+    // a page could receive fewer than what was previously stored.
+    const isInNextItemsRange = i >= nextItemIdsStartIndex && i < nextItemIdsStartIndex + perPage;
     mergedItemIds[i] = isInNextItemsRange ? nextItemIds[i - nextItemIdsStartIndex] : itemIds?.[i];
   }
   return mergedItemIds;
@@ -20130,8 +20552,8 @@ function entity(entityConfig) {
   // Inject the entity config into the action.
   replace_action(action => {
     return {
-      ...action,
-      key: entityConfig.key || DEFAULT_ENTITY_KEY
+      key: entityConfig.key || DEFAULT_ENTITY_KEY,
+      ...action
     };
   })])((0,external_wp_data_namespaceObject.combineReducers)({
     queriedData: reducer,
@@ -20222,7 +20644,34 @@ function entity(entityConfig) {
           };
       }
       return state;
-    }
+    },
+    // Add revisions to the state tree if the post type supports it.
+    ...(entityConfig?.supports?.revisions ? {
+      revisions: (state = {}, action) => {
+        // Use the same queriedDataReducer shape for revisions.
+        if (action.type === 'RECEIVE_ITEM_REVISIONS') {
+          const recordKey = action.recordKey;
+          delete action.recordKey;
+          const newState = reducer(state[recordKey], {
+            ...action,
+            type: 'RECEIVE_ITEMS'
+          });
+          return {
+            ...state,
+            [recordKey]: newState
+          };
+        }
+        if (action.type === 'REMOVE_ITEMS') {
+          return Object.fromEntries(Object.entries(state).filter(([id]) => !action.itemIds.some(itemId => {
+            if (Number.isInteger(itemId)) {
+              return itemId === +id;
+            }
+            return itemId === id;
+          })));
+        }
+        return state;
+      }
+    } : {})
   }));
 }
 
@@ -20414,6 +20863,25 @@ function themeGlobalStyleRevisions(state = {}, action) {
   }
   return state;
 }
+
+/**
+ * Reducer managing the template lookup per query.
+ *
+ * @param {Record<string, string>} state  Current state.
+ * @param {Object}                 action Dispatched action.
+ *
+ * @return {Record<string, string>} Updated state.
+ */
+function defaultTemplates(state = {}, action) {
+  switch (action.type) {
+    case 'RECEIVE_DEFAULT_TEMPLATE':
+      return {
+        ...state,
+        [JSON.stringify(action.query)]: action.templateId
+      };
+  }
+  return state;
+}
 /* harmony default export */ var build_module_reducer = ((0,external_wp_data_namespaceObject.combineReducers)({
   terms,
   users,
@@ -20433,7 +20901,8 @@ function themeGlobalStyleRevisions(state = {}, action) {
   blockPatterns,
   blockPatternCategories,
   userPatternCategories,
-  navigationFallbackId
+  navigationFallbackId,
+  defaultTemplates
 }));
 
 ;// CONCATENATED MODULE: ./node_modules/rememo/rememo.js
@@ -20791,7 +21260,9 @@ function getQueriedItemsUncached(state, query) {
     if (Array.isArray(include) && !include.includes(itemId)) {
       continue;
     }
-
+    if (itemId === undefined) {
+      continue;
+    }
     // Having a target item ID doesn't guarantee that this object has been queried.
     if (!state.items[context]?.hasOwnProperty(itemId)) {
       return null;
@@ -21811,17 +22282,104 @@ function getUserPatternCategories(state) {
 /**
  * Returns the revisions of the current global styles theme.
  *
- * @param state Data state.
+ * @deprecated since WordPress 6.5.0. Callers should use `select( 'core' ).getRevisions( 'root', 'globalStyles', ${ recordKey } )` instead, where `recordKey` is the id of the global styles parent post.
+ *
+ * @param      state Data state.
  *
  * @return The current global styles.
  */
 function getCurrentThemeGlobalStylesRevisions(state) {
+  external_wp_deprecated_default()("select( 'core' ).getCurrentThemeGlobalStylesRevisions()", {
+    since: '6.5.0',
+    alternative: "select( 'core' ).getRevisions( 'root', 'globalStyles', ${ recordKey } )"
+  });
   const currentGlobalStylesId = __experimentalGetCurrentGlobalStylesId(state);
   if (!currentGlobalStylesId) {
     return null;
   }
   return state.themeGlobalStyleRevisions[currentGlobalStylesId];
 }
+
+/**
+ * Returns the default template use to render a given query.
+ *
+ * @param state Data state.
+ * @param query Query.
+ *
+ * @return The default template id for the given query.
+ */
+function getDefaultTemplateId(state, query) {
+  return state.defaultTemplates[JSON.stringify(query)];
+}
+
+/**
+ * Returns an entity's revisions.
+ *
+ * @param state     State tree
+ * @param kind      Entity kind.
+ * @param name      Entity name.
+ * @param recordKey The key of the entity record whose revisions you want to fetch.
+ * @param query     Optional query. If requesting specific
+ *                  fields, fields must always include the ID. For valid query parameters see revisions schema in [the REST API Handbook](https://developer.wordpress.org/rest-api/reference/). Then see the arguments available "Retrieve a [Entity kind]".
+ *
+ * @return Record.
+ */
+const getRevisions = (state, kind, name, recordKey, query) => {
+  const queriedStateRevisions = state.entities.records?.[kind]?.[name]?.revisions?.[recordKey];
+  if (!queriedStateRevisions) {
+    return null;
+  }
+  return getQueriedItems(queriedStateRevisions, query);
+};
+
+/**
+ * Returns a single, specific revision of a parent entity.
+ *
+ * @param state       State tree
+ * @param kind        Entity kind.
+ * @param name        Entity name.
+ * @param recordKey   The key of the entity record whose revisions you want to fetch.
+ * @param revisionKey The revision's key.
+ * @param query       Optional query. If requesting specific
+ *                    fields, fields must always include the ID. For valid query parameters see revisions schema in [the REST API Handbook](https://developer.wordpress.org/rest-api/reference/). Then see the arguments available "Retrieve a [entity kind]".
+ *
+ * @return Record.
+ */
+const getRevision = rememo((state, kind, name, recordKey, revisionKey, query) => {
+  var _query$context5;
+  const queriedState = state.entities.records?.[kind]?.[name]?.revisions?.[recordKey];
+  if (!queriedState) {
+    return undefined;
+  }
+  const context = (_query$context5 = query?.context) !== null && _query$context5 !== void 0 ? _query$context5 : 'default';
+  if (query === undefined) {
+    // If expecting a complete item, validate that completeness.
+    if (!queriedState.itemIsComplete[context]?.[revisionKey]) {
+      return undefined;
+    }
+    return queriedState.items[context][revisionKey];
+  }
+  const item = queriedState.items[context]?.[revisionKey];
+  if (item && query._fields) {
+    var _getNormalizedCommaSe2;
+    const filteredItem = {};
+    const fields = (_getNormalizedCommaSe2 = get_normalized_comma_separable(query._fields)) !== null && _getNormalizedCommaSe2 !== void 0 ? _getNormalizedCommaSe2 : [];
+    for (let f = 0; f < fields.length; f++) {
+      const field = fields[f].split('.');
+      let value = item;
+      field.forEach(fieldName => {
+        value = value?.[fieldName];
+      });
+      setNestedValue(filteredItem, field, value);
+    }
+    return filteredItem;
+  }
+  return item;
+}, (state, kind, name, recordKey, revisionKey, query) => {
+  var _query$context6;
+  const context = (_query$context6 = query?.context) !== null && _query$context6 !== void 0 ? _query$context6 : 'default';
+  return [state.entities.records?.[kind]?.[name]?.revisions?.[recordKey]?.items?.[context]?.[revisionKey], state.entities.records?.[kind]?.[name]?.revisions?.[recordKey]?.itemIsComplete?.[context]?.[revisionKey]];
+});
 
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/private-selectors.js
 /**
@@ -22089,7 +22647,7 @@ const resolvers_getEntityRecords = (kind, name, query = {}) => async ({
 
     // If we request fields but the result doesn't contain the fields,
     // explicitly set these fields as "undefined"
-    // that way we consider the query "fullfilled".
+    // that way we consider the query "fulfilled".
     if (query._fields) {
       records = records.map(record => {
         query._fields.split(',').forEach(field => {
@@ -22146,7 +22704,7 @@ const resolvers_getCurrentTheme = () => async ({
 const resolvers_getThemeSupports = forward_resolver('getCurrentTheme');
 
 /**
- * Requests a preview from the from the Embed API.
+ * Requests a preview from the Embed API.
  *
  * @param {string} url URL to get the preview for.
  */
@@ -22410,7 +22968,8 @@ const resolvers_getUserPatternCategories = () => async ({
 }) => {
   const patternCategories = await resolveSelect.getEntityRecords('taxonomy', 'wp_pattern_category', {
     per_page: -1,
-    _fields: 'id,name,description,slug'
+    _fields: 'id,name,description,slug',
+    context: 'view'
   });
   const mappedPatternCategories = patternCategories?.map(userCategory => ({
     ...userCategory,
@@ -22444,6 +23003,131 @@ const resolvers_getNavigationFallbackId = () => async ({
     // Resolve to avoid further network requests.
     dispatch.finishResolution('getEntityRecord', ['postType', 'wp_navigation', fallback?.id]);
   }
+};
+const resolvers_getDefaultTemplateId = query => async ({
+  dispatch
+}) => {
+  const template = await external_wp_apiFetch_default()({
+    path: (0,external_wp_url_namespaceObject.addQueryArgs)('/wp/v2/templates/lookup', query)
+  });
+  if (template) {
+    dispatch.receiveDefaultTemplateId(query, template.id);
+  }
+};
+
+/**
+ * Requests an entity's revisions from the REST API.
+ *
+ * @param {string}           kind      Entity kind.
+ * @param {string}           name      Entity name.
+ * @param {number|string}    recordKey The key of the entity record whose revisions you want to fetch.
+ * @param {Object|undefined} query     Optional object of query parameters to
+ *                                     include with request. If requesting specific
+ *                                     fields, fields must always include the ID.
+ */
+const resolvers_getRevisions = (kind, name, recordKey, query = {}) => async ({
+  dispatch
+}) => {
+  const configs = await dispatch(getOrLoadEntitiesConfig(kind));
+  const entityConfig = configs.find(config => config.name === name && config.kind === kind);
+  if (!entityConfig || entityConfig?.__experimentalNoFetch || !entityConfig?.supports?.revisions) {
+    return;
+  }
+  if (query._fields) {
+    // If requesting specific fields, items and query association to said
+    // records are stored by ID reference. Thus, fields must always include
+    // the ID.
+    query = {
+      ...query,
+      _fields: [...new Set([...(get_normalized_comma_separable(query._fields) || []), entityConfig.revisionKey || DEFAULT_ENTITY_KEY])].join()
+    };
+  }
+  const path = (0,external_wp_url_namespaceObject.addQueryArgs)(entityConfig.getRevisionsUrl(recordKey), query);
+  let records, meta;
+  if (entityConfig.supportsPagination && query.per_page !== -1) {
+    const response = await external_wp_apiFetch_default()({
+      path,
+      parse: false
+    });
+    records = Object.values(await response.json());
+    meta = {
+      totalItems: parseInt(response.headers.get('X-WP-Total'))
+    };
+  } else {
+    records = Object.values(await external_wp_apiFetch_default()({
+      path
+    }));
+  }
+
+  // If we request fields but the result doesn't contain the fields,
+  // explicitly set these fields as "undefined"
+  // that way we consider the query "fulfilled".
+  if (query._fields) {
+    records = records.map(record => {
+      query._fields.split(',').forEach(field => {
+        if (!record.hasOwnProperty(field)) {
+          record[field] = undefined;
+        }
+      });
+      return record;
+    });
+  }
+  dispatch.receiveRevisions(kind, name, recordKey, records, query, false, meta);
+
+  // When requesting all fields, the list of results can be used to
+  // resolve the `getRevision` selector in addition to `getRevisions`.
+  if (!query?._fields && !query.context) {
+    const key = entityConfig.key || DEFAULT_ENTITY_KEY;
+    const resolutionsArgs = records.filter(record => record[key]).map(record => [kind, name, recordKey, record[key]]);
+    dispatch({
+      type: 'START_RESOLUTIONS',
+      selectorName: 'getRevision',
+      args: resolutionsArgs
+    });
+    dispatch({
+      type: 'FINISH_RESOLUTIONS',
+      selectorName: 'getRevision',
+      args: resolutionsArgs
+    });
+  }
+};
+
+// Invalidate cache when a new revision is created.
+resolvers_getRevisions.shouldInvalidate = (action, kind, name, recordKey) => action.type === 'SAVE_ENTITY_RECORD_FINISH' && name === action.name && kind === action.kind && !action.error && recordKey === action.recordId;
+
+/**
+ * Requests a specific Entity revision from the REST API.
+ *
+ * @param {string}           kind        Entity kind.
+ * @param {string}           name        Entity name.
+ * @param {number|string}    recordKey   The key of the entity record whose revisions you want to fetch.
+ * @param {number|string}    revisionKey The revision's key.
+ * @param {Object|undefined} query       Optional object of query parameters to
+ *                                       include with request. If requesting specific
+ *                                       fields, fields must always include the ID.
+ */
+const resolvers_getRevision = (kind, name, recordKey, revisionKey, query) => async ({
+  dispatch
+}) => {
+  const configs = await dispatch(getOrLoadEntitiesConfig(kind));
+  const entityConfig = configs.find(config => config.name === name && config.kind === kind);
+  if (!entityConfig || entityConfig?.__experimentalNoFetch || !entityConfig?.supports?.revisions) {
+    return;
+  }
+  if (query !== undefined && query._fields) {
+    // If requesting specific fields, items and query association to said
+    // records are stored by ID reference. Thus, fields must always include
+    // the ID.
+    query = {
+      ...query,
+      _fields: [...new Set([...(get_normalized_comma_separable(query._fields) || []), entityConfig.revisionKey || DEFAULT_ENTITY_KEY])].join()
+    };
+  }
+  const path = (0,external_wp_url_namespaceObject.addQueryArgs)(entityConfig.getRevisionsUrl(recordKey, revisionKey), query);
+  const record = await external_wp_apiFetch_default()({
+    path
+  });
+  dispatch.receiveRevisions(kind, name, recordKey, record, query);
 };
 
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/locks/utils.js
@@ -23063,6 +23747,9 @@ function useEntityBlockEditor(kind, name, {
     editedBlocks,
     meta
   } = (0,external_wp_data_namespaceObject.useSelect)(select => {
+    if (!id) {
+      return {};
+    }
     const {
       getEditedEntityRecord
     } = select(STORE_NAME);
@@ -23078,11 +23765,14 @@ function useEntityBlockEditor(kind, name, {
     editEntityRecord
   } = (0,external_wp_data_namespaceObject.useDispatch)(STORE_NAME);
   const blocks = (0,external_wp_element_namespaceObject.useMemo)(() => {
+    if (!id) {
+      return undefined;
+    }
     if (editedBlocks) {
       return editedBlocks;
     }
     return content && typeof content !== 'function' ? (0,external_wp_blocks_namespaceObject.parse)(content) : EMPTY_ARRAY;
-  }, [editedBlocks, content]);
+  }, [id, editedBlocks, content]);
   const updateFootnotes = (0,external_wp_element_namespaceObject.useCallback)(_blocks => updateFootnotesFromMeta(_blocks, meta), [meta]);
   const onChange = (0,external_wp_element_namespaceObject.useCallback)((newBlocks, options) => {
     const noChange = blocks === newBlocks;
@@ -23715,6 +24405,8 @@ const enrichSelectors = memoize(selectors => {
  */
 
 
+const use_entity_record_EMPTY_OBJECT = {};
+
 /**
  * Resolves the specified entity record.
  *
@@ -23821,11 +24513,20 @@ function useEntityRecord(kind, name, recordId, options = {
     editedRecord,
     hasEdits,
     edits
-  } = (0,external_wp_data_namespaceObject.useSelect)(select => ({
-    editedRecord: select(store).getEditedEntityRecord(kind, name, recordId),
-    hasEdits: select(store).hasEditsForEntityRecord(kind, name, recordId),
-    edits: select(store).getEntityRecordNonTransientEdits(kind, name, recordId)
-  }), [kind, name, recordId]);
+  } = (0,external_wp_data_namespaceObject.useSelect)(select => {
+    if (!options.enabled) {
+      return {
+        editedRecord: use_entity_record_EMPTY_OBJECT,
+        hasEdits: false,
+        edits: use_entity_record_EMPTY_OBJECT
+      };
+    }
+    return {
+      editedRecord: select(store).getEditedEntityRecord(kind, name, recordId),
+      hasEdits: select(store).hasEditsForEntityRecord(kind, name, recordId),
+      edits: select(store).getEntityRecordNonTransientEdits(kind, name, recordId)
+    };
+  }, [kind, name, recordId, options.enabled]);
   const {
     data: record,
     ...querySelectRest

@@ -1,10 +1,12 @@
 === Jetpack - WP Security, Backup, Speed, & Growth ===
 Contributors: automattic, adamkheckler, adrianmoldovanwp, aduth, akirk, allendav, alternatekev, andy, annamcphee, annezazu, apeatling, arcangelini, azaozz, barry, batmoo, beaulebens, bindlegirl, biskobe, bjorsch, blobaugh, brbrr, cainm, cena, cfinke, cgastrell, chaselivingston, chellycat, clickysteve, csonnek, danielbachhuber, daniloercoli, davoraltman, delawski, designsimply, dllh, drawmyface, dsmart, dzver, ebinnion, egregor, eliorivero, enej, eoigal, erania-pinnera, ethitter, fgiannar, gcorne, georgestephanis, gibrown, goldsounds, hew, hugobaeta, hypertextranch, iammattthomas, iandunn, jasmussen, jblz, jeffgolenski, jeherve, jenhooks, jenia, jessefriedman, jgs, jkudish, jmdodd, joanrho, johnjamesjacoby, jshreve, kbrownkd, keoshi, koke, kraftbj, lancewillett, leogermani, lhkowalski, lschuyler, macmanx, martinremy, matt, mattwiebe, matveb, maverick3x6, mcsf, mdawaffe, mdbitz, MichaelArestad, migueluy, mikeyarce, mkaz, nancythanki, nickmomrik, nunyvega, obenland, oskosk, pento, professor44, rachelsquirrel, rdcoll, renatoagds, retrofox, richardmtl, richardmuscat, robertbpugh, roccotripaldi, ryancowles, samhotchkiss, samiff, scarstocea, scottsweb, sdixon194, sdquirk, sermitr, simison, stephdau, thehenridev, tmoorewp, tyxla, Viper007Bond, westi, williamvianas, wpkaren, yoavf, zinigor
 Tags: Security, backup, Woo, malware, scan, spam, CDN, search, social
-Stable tag: 12.8
-Requires at least: 6.2
-Requires PHP: 5.6
+Stable tag: 12.9
+Requires at least: 6.3
+Requires PHP: 7.0
 Tested up to: 6.4
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Improve your WP security with powerful one-click tools like backup, WAF, and malware scan. Get essential free tools including stats, CDN and social sharing.
 
@@ -268,7 +270,7 @@ Jetpack has an image CDN that works by caching and serving your WordPress images
 
 = What version of PHP do I need? =
 
-Sites must be built on PHP 5.6 or greater, but Jetpack always supports the latest version of PHP.
+Sites must be built on PHP 7.0 or greater, but Jetpack always supports the latest version of PHP.
 
 = Can Jetpack help my site comply with GDPR? =
 
@@ -291,113 +293,41 @@ Jetpack Backup can do a full website migration to a new host, migrate theme file
 
 
 == Changelog ==
-### 12.8 - 2023-11-06
+### 12.9 - 2023-12-05
 #### Enhancements
-- Add a filter that allows disabling Scan module.
-- Add a new block for supporting Nextdoor embeds.
-- Added a notice for wp-admin settings pages when the wpcom_admin_interface option is set to wp-admin.
-- Added nextdoor block to production blocks.
-- Adds new modifications for the admin menu on Atomic sites that ensures that all links go to wp-admin except those that are only available in Calypso.
-- Add support for welcome message inside WP Admin.
-- AI Assistant: Add scaffolding for the Usage Panel.
-- AI Assistant: Add strikethrough Markdown syntax to Markdown generator.
-- AI Assistant: Add Upgrade button component on the UsagePanel.
-- AI Assistant: Add UsageBar component and add a sample of it to the Usage Panel.
-- AI Assistant: Connect real usage data on the UsagePanel.
-- AI Assistant: Enable backend prompts.
-- AI Assistant: Enhance toolbar UX.
-- AI Assistant: Expose current period start in the ai-assistant-feature endpoint.
-- AI Assistant: Register ai-assistant-usage-panel beta extension.
-- AI Extension: Change the filter to populate the Jetpack Form block with AI components.
-- AI Extension: Consolidate upgrade section of proofread and usage sections.
-- AI Extension: Do not skip React hook instances.
-- AI Extension: Enable Form extension inside query loops.
-- AI Extension: Implement usage message in the UsageBar component.
-- AI Extension: Improve info message when selected blocks don't have content to modify.
-- AI Extension: Show "no content" notice when the extended block content is empty.
-- AI Extension: Use registerBlockType filter to extend Jetpack Form / children block instances.
-- AI Extension: Use registerBlockType to connect components with AI Data and UI Handler.
-- AI Tiered Plans: Pick and expose tier plan data.
-- Allow users to retrieve subscriptions on self-hosted.
-- Alter the admin toolbar when the wpcom-admin-interface setting is set to wp-admin (fall back to the original WordPress menu).
-- Always links 'My Sites' to the Sites page when 'wp-admin' is the admin interface.
-- Cache the remote google fonts JSON data.
-- Change links for 'Appearance > Themes' on Atomic sites with wpcom_admin_interface option set to wp-admin to point to WP.com Marketplace.
-- Change WordAds and Simple Payments upsell CTAs to JP Creator redirect.
-- Display SSO form for user who has wpcom-admin-interface setting set to wp-admin (fall back to the original WordPress menu).
-- Earn: Rename Earn to Monetize.
-- Jetpack: Add @wordpress/wordcount dependency.
-- Jetpack: Add UsagePanel story.
-- Jetpack: Handle Proofread feature availability via jetpack_ai_enabled filter.
-- Jetpack: Improve process to extend paid blocks with upgrade banner.
-- Jetpack AI: Cache the AI assistant feature data for Jetpack sites.
-- Jetpack AI: Expose current period usage data on feature endpoint.
-- Jetpack AI: Expose current plan tier information on feature endpoint.
-- Jetpack AI: Temporarely remove performance sensitive function calls to solve loading issue.
-- Jetpack AI: Use Jetpack AI Usage Helper to set current plan tier information on feature endpoint.
-- Jetpack Dashboard: improve Akismet tooltip.
-- Link plugins to WP.com Marketplace on Atomic sites.
-- Metered billing: Hide usage bar when site has AI plan.
-- Newsletters: Add level for all paid subscribers.
-- Paywall: Improve already subscriber experience.
-- Refactor blocks registration.
-- Register WordAds block earlier to make it more discoverable.
-- Remove Jetpack option jetpack-memberships-connected-account-id.
-- SEO Title & Description: Display the current nucount of characters, even when over the suggested limit.
-- Sitemaps: Update the colors used on the sitemap page to match updated Jetpack branding colors.
-- Subscribe Block: Add subscribed status.
-- Subscribe block: Change "followers" term to "subscribers".
-- Subscribers: Allow admins to see subscribe modal.
-- Subscription block: Improve wording to get access to content.
-- Subscriptions: Add blog_id param to login link.
-- Subscriptions: Do not display token in URL.
-- Update classic Jetpack widget to not show up if user is subscribed.
-- Utilize the Jetpack Admin UI package for handling the Akismet menu.
+- Blogroll Block: Allowed non-WP.com sites to be suggested in the blogroll.
+- CSS Concatenation: Optimized concatenation to avoid loading CSS with less than two modules requiring it active.
+- Likes: Updated the likes popover design and added RTL support.
+- My Jetpack: Added Creator to My Jetpack overview.
+- Newsletters: Updated the pre- and post-publish panels to display the selected newsletter categories an subscriber count.
+- Paid Content Block: Added support for selecting multiple plans.
+- Subscribe Block: Added support for editing placeholder text and button label.
+- Subscribe Modal: Added the subscribe modal feature that can be enabled from the Newsletter settings.
+- VideoPress: Added support for gated content.
 
 #### Improved compatibility
-- Add NL tier type.
-- Connection: added protection for wpcom urls stored in the database during identity crisis.
-- Donations Block: Update to be compatible with the upcoming version of WordPress, 6.4.
-- General: Indicate full compatibility with the latest version of WordPress, 6.4.
-- Lazy Images: Remove the feature from the plugin. You can now rely on WordPress' own Lazy Image features on your site.
-- Make the jetpack_ai_enabled filter decide whether to register AI editor extensions.
-- Memberships: Prevent data to be retrieved from cache sites on WP.com.
-- Nextdoor: Fix the embed resizing.
-- Social: Remove the tweetstorm editor components.
+- Block Editor: Dequeued editor assets when they aren't in use.
+- Dashboard: Improved the display of controls and toggles for WordPress.com Toolbar, Auto-sharing and Markdown for comments.
+- Plugin Connection: Added a check for connected plugins before cleaning up plugin options or uninstalling Jetpack.
+- Updated PHP version requirements to PHP 7.0 or newer.
+- Updated WordPress version requirements to WordPress 6.3.
 
 #### Bug fixes
-- AI Assistant: Fix issue when getting AI assistant block instance.
-- AI Extension: Fix undefined 'disabled' I18nMenuDropdown prop bug.
-- AI Extension: Improve performance bug when extending blocks with AI Assistant.
-- Block Editor: Disable some of Twitter's Thread publishing tools since the feature is no longer accessible.
-- Blogging prompts block: Add default gravatar attribute to prevent js error.
-- Carousel: Resolve warning with AMP plugin.
-- Comments: Improve compatibility with WordPress 6.4 and drop IE support.
-- Do not list one-time interval payment plans as newsletter plans.
-- Fix Assistant not showing Jetpack header on some Assistant routes.
-- Fix block paid icon rendering error on simple sites.
-- Fix Cookie Consent block icon.
-- Fixed a bug that prevent customers from downloading invoices from the my account page in WooCommerce.
-- Fixed an issue where initial state is not in sync.
-- Fixes style for multiple choice checkbox in Froms block.
-- Fix issue in tier selector when tier is null.
-- Fix issue when email was double encoded.
-- Fix Map block not rendering.
-- Fix missing block translations.
-- Fix the google fonts module is not loaded after the late initialization.
-- Fix unresponsive Simple Payment block.
-- Jetpack: Fix performance issues by not calling useAnalytics hook for all paragraphs.
-- Newsletter: If site has no plan, downgrade post access to subscribers-only.
-- Prevent a PHP Warning when accessing inner blocks on cart and checkout pages.
-- Prevent issue on jetpack proxy when tier is added.
-- Require login on wpcom for paid content access without cookie or token.
-- Respect the user's view setting when wpcom_admin_interface is wp-admin.
-- REST API: Fix GA settings field, wga, for settings endpoints on API version 1.3 and 1.4.
-- REST API settings endpoint: Fix google analytics option handling for Jetpack sites.
-- Subscribe modal: Match block markup with params.
-- The Google Photos media inserter only checks for the connection status when needed.
-- VideoPress: Avoid performance issues by calling useEffect for every block on typing.
-- YouTube embeds: Avoid errors when opening YouTube in a new window from a YouTube embed.
+- AI Assistant: Fixed an AI error sometimes being rendered for prompts marked as unclear.
+- Contact Form: Prevented errors when a saved submitted contact form is requested but does not exist anymore.
+- Contact Info Block: Ensured text is always visible in the Contact Info Block on mobile.
+- Custom-CSS: Disabled loading `@import` directives from the filesystem. `@import` of CSS from URLs can still be done.
+- Likes: Fixed wrong like count in the like dialog after liking.
+- Media: Fixed VideoPress videos and media length not being displayed when available.
+- Newsletters: Fixed email preview when content in the editor is different from the latest version in the database.
+- Paywall Block: Fixed lack of spacing in some themes.
+- Performance: Fixed all Google font definitions being printed in the head and resolved compatibility issues with PHP 8.
+- Shortcode Embeds: Fixed and updated the display of Gravatars and Gravatar profiles.
+- Subscribe Block: Fixed style and rendering issues.
+- Subscribe Block: Fixed incorrect redirects from the block when shown outside of a post page.
+- Subscribe Block: Fixed the button in a new line option not working.
+- Subscribe Widget: Fixed subscribe widget not working.
+- VaultPress: Fixed the VaultPress submenu sometimes not being registered correctly.
 
 --------
 
