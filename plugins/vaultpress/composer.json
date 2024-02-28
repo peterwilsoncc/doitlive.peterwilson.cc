@@ -8,12 +8,12 @@
 		"issues": "https://github.com/Automattic/jetpack/issues"
 	},
 	"require": {
-		"automattic/jetpack-logo": "^1.6.1",
-		"automattic/jetpack-autoloader": "^2.11.21"
+		"automattic/jetpack-logo": "^2.0.0",
+		"automattic/jetpack-autoloader": "^3.0.2"
 	},
 	"require-dev": {
-		"yoast/phpunit-polyfills": "1.0.4",
-		"automattic/jetpack-changelogger": "^3.3.5"
+		"yoast/phpunit-polyfills": "1.1.0",
+		"automattic/jetpack-changelogger": "^4.1.0"
 	},
 	"scripts": {
 		"phpunit": [
@@ -27,12 +27,16 @@
 	"minimum-stability": "dev",
 	"prefer-stable": true,
 	"config": {
-		"autoloader-suffix": "9559eef123208b7d1b9c15b978567267_vaultpressⓥ2_2_4",
+		"autoloader-suffix": "9559eef123208b7d1b9c15b978567267_vaultpressⓥ3_0_0",
 		"allow-plugins": {
 			"automattic/jetpack-autoloader": true
 		}
 	},
 	"extra": {
+		"autorelease": true,
+		"autotagger": {
+			"v": false
+		},
 		"mirror-repo": "Automattic/vaultpress",
 		"release-branch-prefix": "vaultpress",
 		"version-constants": {

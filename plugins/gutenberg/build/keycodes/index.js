@@ -1,36 +1,36 @@
-/******/ (function() { // webpackBootstrap
+/******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	// The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
-/******/ 	!function() {
+/******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = function(exports, definition) {
+/******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
 /******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
-/******/ 	}();
+/******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	!function() {
-/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
-/******/ 	}();
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
-/******/ 	!function() {
+/******/ 	(() => {
 /******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = function(exports) {
+/******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
-/******/ 	}();
+/******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
@@ -39,37 +39,37 @@ __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  ALT: function() { return /* binding */ ALT; },
-  BACKSPACE: function() { return /* binding */ BACKSPACE; },
-  COMMAND: function() { return /* binding */ COMMAND; },
-  CTRL: function() { return /* binding */ CTRL; },
-  DELETE: function() { return /* binding */ DELETE; },
-  DOWN: function() { return /* binding */ DOWN; },
-  END: function() { return /* binding */ END; },
-  ENTER: function() { return /* binding */ ENTER; },
-  ESCAPE: function() { return /* binding */ ESCAPE; },
-  F10: function() { return /* binding */ F10; },
-  HOME: function() { return /* binding */ HOME; },
-  LEFT: function() { return /* binding */ LEFT; },
-  PAGEDOWN: function() { return /* binding */ PAGEDOWN; },
-  PAGEUP: function() { return /* binding */ PAGEUP; },
-  RIGHT: function() { return /* binding */ RIGHT; },
-  SHIFT: function() { return /* binding */ SHIFT; },
-  SPACE: function() { return /* binding */ SPACE; },
-  TAB: function() { return /* binding */ TAB; },
-  UP: function() { return /* binding */ UP; },
-  ZERO: function() { return /* binding */ ZERO; },
-  displayShortcut: function() { return /* binding */ displayShortcut; },
-  displayShortcutList: function() { return /* binding */ displayShortcutList; },
-  isAppleOS: function() { return /* reexport */ isAppleOS; },
-  isKeyboardEvent: function() { return /* binding */ isKeyboardEvent; },
-  modifiers: function() { return /* binding */ modifiers; },
-  rawShortcut: function() { return /* binding */ rawShortcut; },
-  shortcutAriaLabel: function() { return /* binding */ shortcutAriaLabel; }
+  ALT: () => (/* binding */ ALT),
+  BACKSPACE: () => (/* binding */ BACKSPACE),
+  COMMAND: () => (/* binding */ COMMAND),
+  CTRL: () => (/* binding */ CTRL),
+  DELETE: () => (/* binding */ DELETE),
+  DOWN: () => (/* binding */ DOWN),
+  END: () => (/* binding */ END),
+  ENTER: () => (/* binding */ ENTER),
+  ESCAPE: () => (/* binding */ ESCAPE),
+  F10: () => (/* binding */ F10),
+  HOME: () => (/* binding */ HOME),
+  LEFT: () => (/* binding */ LEFT),
+  PAGEDOWN: () => (/* binding */ PAGEDOWN),
+  PAGEUP: () => (/* binding */ PAGEUP),
+  RIGHT: () => (/* binding */ RIGHT),
+  SHIFT: () => (/* binding */ SHIFT),
+  SPACE: () => (/* binding */ SPACE),
+  TAB: () => (/* binding */ TAB),
+  UP: () => (/* binding */ UP),
+  ZERO: () => (/* binding */ ZERO),
+  displayShortcut: () => (/* binding */ displayShortcut),
+  displayShortcutList: () => (/* binding */ displayShortcutList),
+  isAppleOS: () => (/* reexport */ isAppleOS),
+  isKeyboardEvent: () => (/* binding */ isKeyboardEvent),
+  modifiers: () => (/* binding */ modifiers),
+  rawShortcut: () => (/* binding */ rawShortcut),
+  shortcutAriaLabel: () => (/* binding */ shortcutAriaLabel)
 });
 
 ;// CONCATENATED MODULE: external ["wp","i18n"]
-var external_wp_i18n_namespaceObject = window["wp"]["i18n"];
+const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
 ;// CONCATENATED MODULE: ./packages/keycodes/build-module/platform.js
 /**
  * Return true if platform is MacOS.
@@ -295,10 +295,9 @@ const modifiers = {
  *                                                 shortcuts.
  */
 const rawShortcut = mapValues(modifiers, ( /** @type {WPModifier} */modifier) => {
-  return (/** @type {WPKeyHandler<string>} */(character, _isApple = isAppleOS) => {
-      return [...modifier(_isApple), character.toLowerCase()].join('+');
-    }
-  );
+  return /** @type {WPKeyHandler<string>} */(character, _isApple = isAppleOS) => {
+    return [...modifier(_isApple), character.toLowerCase()].join('+');
+  };
 });
 
 /**
@@ -315,27 +314,26 @@ const rawShortcut = mapValues(modifiers, ( /** @type {WPModifier} */modifier) =>
  *                                                   shortcut sequences.
  */
 const displayShortcutList = mapValues(modifiers, ( /** @type {WPModifier} */modifier) => {
-  return (/** @type {WPKeyHandler<string[]>} */(character, _isApple = isAppleOS) => {
-      const isApple = _isApple();
-      const replacementKeyMap = {
-        [ALT]: isApple ? '⌥' : 'Alt',
-        [CTRL]: isApple ? '⌃' : 'Ctrl',
-        // Make sure ⌃ is the U+2303 UP ARROWHEAD unicode character and not the caret character.
-        [COMMAND]: '⌘',
-        [SHIFT]: isApple ? '⇧' : 'Shift'
-      };
-      const modifierKeys = modifier(_isApple).reduce((accumulator, key) => {
-        var _replacementKeyMap$ke;
-        const replacementKey = (_replacementKeyMap$ke = replacementKeyMap[key]) !== null && _replacementKeyMap$ke !== void 0 ? _replacementKeyMap$ke : key;
-        // If on the Mac, adhere to platform convention and don't show plus between keys.
-        if (isApple) {
-          return [...accumulator, replacementKey];
-        }
-        return [...accumulator, replacementKey, '+'];
-      }, /** @type {string[]} */[]);
-      return [...modifierKeys, capitaliseFirstCharacter(character)];
-    }
-  );
+  return /** @type {WPKeyHandler<string[]>} */(character, _isApple = isAppleOS) => {
+    const isApple = _isApple();
+    const replacementKeyMap = {
+      [ALT]: isApple ? '⌥' : 'Alt',
+      [CTRL]: isApple ? '⌃' : 'Ctrl',
+      // Make sure ⌃ is the U+2303 UP ARROWHEAD unicode character and not the caret character.
+      [COMMAND]: '⌘',
+      [SHIFT]: isApple ? '⇧' : 'Shift'
+    };
+    const modifierKeys = modifier(_isApple).reduce((accumulator, key) => {
+      var _replacementKeyMap$ke;
+      const replacementKey = (_replacementKeyMap$ke = replacementKeyMap[key]) !== null && _replacementKeyMap$ke !== void 0 ? _replacementKeyMap$ke : key;
+      // If on the Mac, adhere to platform convention and don't show plus between keys.
+      if (isApple) {
+        return [...accumulator, replacementKey];
+      }
+      return [...accumulator, replacementKey, '+'];
+    }, /** @type {string[]} */[]);
+    return [...modifierKeys, capitaliseFirstCharacter(character)];
+  };
 });
 
 /**
@@ -352,8 +350,7 @@ const displayShortcutList = mapValues(modifiers, ( /** @type {WPModifier} */modi
  *                                                 display shortcuts.
  */
 const displayShortcut = mapValues(displayShortcutList, ( /** @type {WPKeyHandler<string[]>} */shortcutList) => {
-  return (/** @type {WPKeyHandler<string>} */(character, _isApple = isAppleOS) => shortcutList(character, _isApple).join('')
-  );
+  return /** @type {WPKeyHandler<string>} */(character, _isApple = isAppleOS) => shortcutList(character, _isApple).join('');
 });
 
 /**
@@ -371,29 +368,28 @@ const displayShortcut = mapValues(displayShortcutList, ( /** @type {WPKeyHandler
  *                                                 shortcut ARIA labels.
  */
 const shortcutAriaLabel = mapValues(modifiers, ( /** @type {WPModifier} */modifier) => {
-  return (/** @type {WPKeyHandler<string>} */(character, _isApple = isAppleOS) => {
-      const isApple = _isApple();
-      /** @type {Record<string,string>} */
-      const replacementKeyMap = {
-        [SHIFT]: 'Shift',
-        [COMMAND]: isApple ? 'Command' : 'Control',
-        [CTRL]: 'Control',
-        [ALT]: isApple ? 'Option' : 'Alt',
-        /* translators: comma as in the character ',' */
-        ',': (0,external_wp_i18n_namespaceObject.__)('Comma'),
-        /* translators: period as in the character '.' */
-        '.': (0,external_wp_i18n_namespaceObject.__)('Period'),
-        /* translators: backtick as in the character '`' */
-        '`': (0,external_wp_i18n_namespaceObject.__)('Backtick'),
-        /* translators: tilde as in the character '~' */
-        '~': (0,external_wp_i18n_namespaceObject.__)('Tilde')
-      };
-      return [...modifier(_isApple), character].map(key => {
-        var _replacementKeyMap$ke2;
-        return capitaliseFirstCharacter((_replacementKeyMap$ke2 = replacementKeyMap[key]) !== null && _replacementKeyMap$ke2 !== void 0 ? _replacementKeyMap$ke2 : key);
-      }).join(isApple ? ' ' : ' + ');
-    }
-  );
+  return /** @type {WPKeyHandler<string>} */(character, _isApple = isAppleOS) => {
+    const isApple = _isApple();
+    /** @type {Record<string,string>} */
+    const replacementKeyMap = {
+      [SHIFT]: 'Shift',
+      [COMMAND]: isApple ? 'Command' : 'Control',
+      [CTRL]: 'Control',
+      [ALT]: isApple ? 'Option' : 'Alt',
+      /* translators: comma as in the character ',' */
+      ',': (0,external_wp_i18n_namespaceObject.__)('Comma'),
+      /* translators: period as in the character '.' */
+      '.': (0,external_wp_i18n_namespaceObject.__)('Period'),
+      /* translators: backtick as in the character '`' */
+      '`': (0,external_wp_i18n_namespaceObject.__)('Backtick'),
+      /* translators: tilde as in the character '~' */
+      '~': (0,external_wp_i18n_namespaceObject.__)('Tilde')
+    };
+    return [...modifier(_isApple), character].map(key => {
+      var _replacementKeyMap$ke2;
+      return capitaliseFirstCharacter((_replacementKeyMap$ke2 = replacementKeyMap[key]) !== null && _replacementKeyMap$ke2 !== void 0 ? _replacementKeyMap$ke2 : key);
+    }).join(isApple ? ' ' : ' + ');
+  };
 });
 
 /**
@@ -405,9 +401,8 @@ const shortcutAriaLabel = mapValues(modifiers, ( /** @type {WPModifier} */modifi
  * @return {Array<WPModifierPart>} Active modifier constants.
  */
 function getEventModifiers(event) {
-  return (/** @type {WPModifierPart[]} */[ALT, CTRL, COMMAND, SHIFT].filter(key => event[/** @type {'altKey' | 'ctrlKey' | 'metaKey' | 'shiftKey'} */
-    `${key}Key`])
-  );
+  return /** @type {WPModifierPart[]} */[ALT, CTRL, COMMAND, SHIFT].filter(key => event[( /** @type {'altKey' | 'ctrlKey' | 'metaKey' | 'shiftKey'} */
+  `${key}Key`)]);
 }
 
 /**
@@ -425,46 +420,45 @@ function getEventModifiers(event) {
  *                                                       to match events.
  */
 const isKeyboardEvent = mapValues(modifiers, ( /** @type {WPModifier} */getModifiers) => {
-  return (/** @type {WPEventKeyHandler} */(event, character, _isApple = isAppleOS) => {
-      const mods = getModifiers(_isApple);
-      const eventMods = getEventModifiers(event);
-      /** @type {Record<string,string>} */
-      const replacementWithShiftKeyMap = {
-        Comma: ',',
-        Backslash: '\\',
-        // Windows returns `\` for both IntlRo and IntlYen.
-        IntlRo: '\\',
-        IntlYen: '\\'
-      };
-      const modsDiff = mods.filter(mod => !eventMods.includes(mod));
-      const eventModsDiff = eventMods.filter(mod => !mods.includes(mod));
-      if (modsDiff.length > 0 || eventModsDiff.length > 0) {
-        return false;
-      }
-      let key = event.key.toLowerCase();
-      if (!character) {
-        return mods.includes( /** @type {WPModifierPart} */key);
-      }
-      if (event.altKey && character.length === 1) {
-        key = String.fromCharCode(event.keyCode).toLowerCase();
-      }
-
-      // `event.key` returns the value of the key pressed, taking into the state of
-      // modifier keys such as `Shift`. If the shift key is pressed, a different
-      // value may be returned depending on the keyboard layout. It is necessary to
-      // convert to the physical key value that don't take into account keyboard
-      // layout or modifier key state.
-      if (event.shiftKey && character.length === 1 && replacementWithShiftKeyMap[event.code]) {
-        key = replacementWithShiftKeyMap[event.code];
-      }
-
-      // For backwards compatibility.
-      if (character === 'del') {
-        character = 'delete';
-      }
-      return key === character.toLowerCase();
+  return /** @type {WPEventKeyHandler} */(event, character, _isApple = isAppleOS) => {
+    const mods = getModifiers(_isApple);
+    const eventMods = getEventModifiers(event);
+    /** @type {Record<string,string>} */
+    const replacementWithShiftKeyMap = {
+      Comma: ',',
+      Backslash: '\\',
+      // Windows returns `\` for both IntlRo and IntlYen.
+      IntlRo: '\\',
+      IntlYen: '\\'
+    };
+    const modsDiff = mods.filter(mod => !eventMods.includes(mod));
+    const eventModsDiff = eventMods.filter(mod => !mods.includes(mod));
+    if (modsDiff.length > 0 || eventModsDiff.length > 0) {
+      return false;
     }
-  );
+    let key = event.key.toLowerCase();
+    if (!character) {
+      return mods.includes( /** @type {WPModifierPart} */key);
+    }
+    if (event.altKey && character.length === 1) {
+      key = String.fromCharCode(event.keyCode).toLowerCase();
+    }
+
+    // `event.key` returns the value of the key pressed, taking into the state of
+    // modifier keys such as `Shift`. If the shift key is pressed, a different
+    // value may be returned depending on the keyboard layout. It is necessary to
+    // convert to the physical key value that don't take into account keyboard
+    // layout or modifier key state.
+    if (event.shiftKey && character.length === 1 && replacementWithShiftKeyMap[event.code]) {
+      key = replacementWithShiftKeyMap[event.code];
+    }
+
+    // For backwards compatibility.
+    if (character === 'del') {
+      character = 'delete';
+    }
+    return key === character.toLowerCase();
+  };
 });
 
 (window.wp = window.wp || {}).keycodes = __webpack_exports__;
