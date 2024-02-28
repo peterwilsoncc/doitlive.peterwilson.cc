@@ -1,19 +1,19 @@
-/******/ (function() { // webpackBootstrap
+/******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	// The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/make namespace object */
-/******/ 	!function() {
+/******/ 	(() => {
 /******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = function(exports) {
+/******/ 		__webpack_require__.r = (exports) => {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
-/******/ 	}();
+/******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
@@ -21,15 +21,15 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 
 ;// CONCATENATED MODULE: external ["wp","richText"]
-var external_wp_richText_namespaceObject = window["wp"]["richText"];
+const external_wp_richText_namespaceObject = window["wp"]["richText"];
 ;// CONCATENATED MODULE: external "React"
-var external_React_namespaceObject = window["React"];
+const external_React_namespaceObject = window["React"];
 ;// CONCATENATED MODULE: external ["wp","i18n"]
-var external_wp_i18n_namespaceObject = window["wp"]["i18n"];
+const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
 ;// CONCATENATED MODULE: external ["wp","blockEditor"]
-var external_wp_blockEditor_namespaceObject = window["wp"]["blockEditor"];
+const external_wp_blockEditor_namespaceObject = window["wp"]["blockEditor"];
 ;// CONCATENATED MODULE: external ["wp","primitives"]
-var external_wp_primitives_namespaceObject = window["wp"]["primitives"];
+const external_wp_primitives_namespaceObject = window["wp"]["primitives"];
 ;// CONCATENATED MODULE: ./packages/icons/build-module/library/format-bold.js
 
 /**
@@ -42,7 +42,7 @@ const formatBold = (0,external_React_namespaceObject.createElement)(external_wp_
 }, (0,external_React_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M14.7 11.3c1-.6 1.5-1.6 1.5-3 0-2.3-1.3-3.4-4-3.4H7v14h5.8c1.4 0 2.5-.3 3.3-1 .8-.7 1.2-1.7 1.2-2.9.1-1.9-.8-3.1-2.6-3.7zm-5.1-4h2.3c.6 0 1.1.1 1.4.4.3.3.5.7.5 1.2s-.2 1-.5 1.2c-.3.3-.8.4-1.4.4H9.6V7.3zm4.6 9c-.4.3-1 .4-1.7.4H9.6v-3.9h2.9c.7 0 1.3.2 1.7.5.4.3.6.8.6 1.5s-.2 1.2-.6 1.5z"
 }));
-/* harmony default export */ var format_bold = (formatBold);
+/* harmony default export */ const format_bold = (formatBold);
 
 ;// CONCATENATED MODULE: ./packages/format-library/build-module/bold/index.js
 
@@ -109,7 +109,7 @@ const code = (0,external_React_namespaceObject.createElement)(external_wp_primit
 }, (0,external_React_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M20.8 10.7l-4.3-4.3-1.1 1.1 4.3 4.3c.1.1.1.3 0 .4l-4.3 4.3 1.1 1.1 4.3-4.3c.7-.8.7-1.9 0-2.6zM4.2 11.8l4.3-4.3-1-1-4.3 4.3c-.7.7-.7 1.8 0 2.5l4.3 4.3 1.1-1.1-4.3-4.3c-.2-.1-.2-.3-.1-.4z"
 }));
-/* harmony default export */ var library_code = (code);
+/* harmony default export */ const library_code = (code);
 
 ;// CONCATENATED MODULE: ./packages/format-library/build-module/code/index.js
 
@@ -186,9 +186,9 @@ const code_code = {
 };
 
 ;// CONCATENATED MODULE: external ["wp","components"]
-var external_wp_components_namespaceObject = window["wp"]["components"];
+const external_wp_components_namespaceObject = window["wp"]["components"];
 ;// CONCATENATED MODULE: external ["wp","element"]
-var external_wp_element_namespaceObject = window["wp"]["element"];
+const external_wp_element_namespaceObject = window["wp"]["element"];
 ;// CONCATENATED MODULE: ./packages/icons/build-module/library/keyboard-return.js
 
 /**
@@ -201,7 +201,7 @@ const keyboardReturn = (0,external_React_namespaceObject.createElement)(external
 }, (0,external_React_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M6.734 16.106l2.176-2.38-1.093-1.028-3.846 4.158 3.846 4.157 1.093-1.027-2.176-2.38h2.811c1.125 0 2.25.03 3.374 0 1.428-.001 3.362-.25 4.963-1.277 1.66-1.065 2.868-2.906 2.868-5.859 0-2.479-1.327-4.896-3.65-5.93-1.82-.813-3.044-.8-4.806-.788l-.567.002v1.5c.184 0 .368 0 .553-.002 1.82-.007 2.704-.014 4.21.657 1.854.827 2.76 2.657 2.76 4.561 0 2.472-.973 3.824-2.178 4.596-1.258.807-2.864 1.04-4.163 1.04h-.02c-1.115.03-2.229 0-3.344 0H6.734z"
 }));
-/* harmony default export */ var keyboard_return = (keyboardReturn);
+/* harmony default export */ const keyboard_return = (keyboardReturn);
 
 ;// CONCATENATED MODULE: ./packages/format-library/build-module/image/index.js
 
@@ -356,7 +356,7 @@ const formatItalic = (0,external_React_namespaceObject.createElement)(external_w
 }, (0,external_React_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M12.5 5L10 19h1.9l2.5-14z"
 }));
-/* harmony default export */ var format_italic = (formatItalic);
+/* harmony default export */ const format_italic = (formatItalic);
 
 ;// CONCATENATED MODULE: ./packages/format-library/build-module/italic/index.js
 
@@ -412,23 +412,9 @@ const italic = {
 };
 
 ;// CONCATENATED MODULE: external ["wp","url"]
-var external_wp_url_namespaceObject = window["wp"]["url"];
+const external_wp_url_namespaceObject = window["wp"]["url"];
 ;// CONCATENATED MODULE: external ["wp","htmlEntities"]
-var external_wp_htmlEntities_namespaceObject = window["wp"]["htmlEntities"];
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/link-off.js
-
-/**
- * WordPress dependencies
- */
-
-const linkOff = (0,external_React_namespaceObject.createElement)(external_wp_primitives_namespaceObject.SVG, {
-  xmlns: "http://www.w3.org/2000/svg",
-  viewBox: "0 0 24 24"
-}, (0,external_React_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
-  d: "M17.031 4.703 15.576 4l-1.56 3H14v.03l-2.324 4.47H9.5V13h1.396l-1.502 2.889h-.95a3.694 3.694 0 0 1 0-7.389H10V7H8.444a5.194 5.194 0 1 0 0 10.389h.17L7.5 19.53l1.416.719L15.049 8.5h.507a3.694 3.694 0 0 1 0 7.39H14v1.5h1.556a5.194 5.194 0 0 0 .273-10.383l1.202-2.304Z"
-}));
-/* harmony default export */ var link_off = (linkOff);
-
+const external_wp_htmlEntities_namespaceObject = window["wp"]["htmlEntities"];
 ;// CONCATENATED MODULE: ./packages/icons/build-module/library/link.js
 
 /**
@@ -441,12 +427,12 @@ const link_link = (0,external_React_namespaceObject.createElement)(external_wp_p
 }, (0,external_React_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M10 17.389H8.444A5.194 5.194 0 1 1 8.444 7H10v1.5H8.444a3.694 3.694 0 0 0 0 7.389H10v1.5ZM14 7h1.556a5.194 5.194 0 0 1 0 10.39H14v-1.5h1.556a3.694 3.694 0 0 0 0-7.39H14V7Zm-4.5 6h5v-1.5h-5V13Z"
 }));
-/* harmony default export */ var library_link = (link_link);
+/* harmony default export */ const library_link = (link_link);
 
 ;// CONCATENATED MODULE: external ["wp","a11y"]
-var external_wp_a11y_namespaceObject = window["wp"]["a11y"];
+const external_wp_a11y_namespaceObject = window["wp"]["a11y"];
 ;// CONCATENATED MODULE: external ["wp","data"]
-var external_wp_data_namespaceObject = window["wp"]["data"];
+const external_wp_data_namespaceObject = window["wp"]["data"];
 ;// CONCATENATED MODULE: ./packages/format-library/build-module/link/utils.js
 /**
  * WordPress dependencies
@@ -648,36 +634,6 @@ const partialRight = (fn, ...partialArgs) => (...args) => fn(...args, ...partial
 const walkToStart = partialRight(walkToBoundary, 'backwards');
 const walkToEnd = partialRight(walkToBoundary, 'forwards');
 
-;// CONCATENATED MODULE: ./packages/format-library/build-module/link/use-link-instance-key.js
-// Weakly referenced map allows unused ids to be garbage collected.
-const weakMap = new WeakMap();
-
-// Incrementing zero-based ID value.
-let id = -1;
-const prefix = 'link-control-instance';
-function getKey(_id) {
-  return `${prefix}-${_id}`;
-}
-
-/**
- * Builds a unique link control key for the given object reference.
- *
- * @param {Object} instance an unique object reference specific to this link control instance.
- * @return {string | undefined} the unique key to use for this link control.
- */
-function useLinkInstanceKey(instance) {
-  if (!instance) {
-    return;
-  }
-  if (weakMap.has(instance)) {
-    return getKey(weakMap.get(instance));
-  }
-  id += 1;
-  weakMap.set(instance, id);
-  return getKey(id);
-}
-/* harmony default export */ var use_link_instance_key = (useLinkInstanceKey);
-
 ;// CONCATENATED MODULE: ./packages/format-library/build-module/link/inline.js
 
 /**
@@ -697,7 +653,6 @@ function useLinkInstanceKey(instance) {
  */
 
 
-
 const LINK_SETTINGS = [...external_wp_blockEditor_namespaceObject.__experimentalLinkControl.DEFAULT_LINK_SETTINGS, {
   id: 'nofollow',
   title: (0,external_wp_i18n_namespaceObject.__)('Mark as nofollow')
@@ -705,9 +660,9 @@ const LINK_SETTINGS = [...external_wp_blockEditor_namespaceObject.__experimental
 function InlineLinkUI({
   isActive,
   activeAttributes,
-  addingLink,
   value,
   onChange,
+  onFocusOutside,
   stopAddingLink,
   contentRef
 }) {
@@ -716,16 +671,22 @@ function InlineLinkUI({
   // Get the text content minus any HTML tags.
   const richTextText = richLinkTextValue.text;
   const {
+    selectionChange
+  } = (0,external_wp_data_namespaceObject.useDispatch)(external_wp_blockEditor_namespaceObject.store);
+  const {
     createPageEntity,
-    userCanCreatePages
+    userCanCreatePages,
+    selectionStart
   } = (0,external_wp_data_namespaceObject.useSelect)(select => {
     const {
-      getSettings
+      getSettings,
+      getSelectionStart
     } = select(external_wp_blockEditor_namespaceObject.store);
     const _settings = getSettings();
     return {
       createPageEntity: _settings.__experimentalCreatePageEntity,
-      userCanCreatePages: _settings.__experimentalUserCanCreatePages
+      userCanCreatePages: _settings.__experimentalUserCanCreatePages,
+      selectionStart: getSelectionStart()
     };
   }, []);
   const linkValue = (0,external_wp_element_namespaceObject.useMemo)(() => ({
@@ -743,10 +704,9 @@ function InlineLinkUI({
     (0,external_wp_a11y_namespaceObject.speak)((0,external_wp_i18n_namespaceObject.__)('Link removed.'), 'assertive');
   }
   function onChangeLink(nextValue) {
-    // LinkControl calls `onChange` immediately upon the toggling a setting.
-    // Before merging the next value with the current link value, check if
-    // the setting was toggled.
-    const didToggleSetting = linkValue.opensInNewTab !== nextValue.opensInNewTab && nextValue.url === undefined;
+    const hasLink = linkValue?.url;
+    const isNewLink = !hasLink;
+
     // Merge the next value with the current link value.
     nextValue = {
       ...linkValue,
@@ -761,65 +721,73 @@ function InlineLinkUI({
       nofollow: nextValue.nofollow
     });
     const newText = nextValue.title || newUrl;
+
+    // Scenario: we have any active text selection or an active format.
+    let newValue;
     if ((0,external_wp_richText_namespaceObject.isCollapsed)(value) && !isActive) {
       // Scenario: we don't have any actively selected text or formats.
-      const toInsert = (0,external_wp_richText_namespaceObject.applyFormat)((0,external_wp_richText_namespaceObject.create)({
-        text: newText
-      }), linkFormat, 0, newText.length);
-      onChange((0,external_wp_richText_namespaceObject.insert)(value, toInsert));
-    } else {
-      // Scenario: we have any active text selection or an active format.
-      let newValue;
-      if (newText === richTextText) {
-        // If we're not updating the text then ignore.
-        newValue = (0,external_wp_richText_namespaceObject.applyFormat)(value, linkFormat);
-      } else {
-        // Create new RichText value for the new text in order that we
-        // can apply formats to it.
-        newValue = (0,external_wp_richText_namespaceObject.create)({
-          text: newText
-        });
-
-        // Apply the new Link format to this new text value.
-        newValue = (0,external_wp_richText_namespaceObject.applyFormat)(newValue, linkFormat, 0, newText.length);
-
-        // Get the boundaries of the active link format.
-        const boundary = getFormatBoundary(value, {
-          type: 'core/link'
-        });
-
-        // Split the value at the start of the active link format.
-        // Passing "start" as the 3rd parameter is required to ensure
-        // the second half of the split value is split at the format's
-        // start boundary and avoids relying on the value's "end" property
-        // which may not correspond correctly.
-        const [valBefore, valAfter] = (0,external_wp_richText_namespaceObject.split)(value, boundary.start, boundary.start);
-
-        // Update the original (full) RichTextValue replacing the
-        // target text with the *new* RichTextValue containing:
-        // 1. The new text content.
-        // 2. The new link format.
-        // As "replace" will operate on the first match only, it is
-        // run only against the second half of the value which was
-        // split at the active format's boundary. This avoids a bug
-        // with incorrectly targetted replacements.
-        // See: https://github.com/WordPress/gutenberg/issues/41771.
-        // Note original formats will be lost when applying this change.
-        // That is expected behaviour.
-        // See: https://github.com/WordPress/gutenberg/pull/33849#issuecomment-936134179.
-        const newValAfter = (0,external_wp_richText_namespaceObject.replace)(valAfter, richTextText, newValue);
-        newValue = (0,external_wp_richText_namespaceObject.concat)(valBefore, newValAfter);
-      }
-      newValue.start = newValue.end;
-
-      // Hides the Link UI.
-      newValue.activeFormats = [];
+      const inserted = (0,external_wp_richText_namespaceObject.insert)(value, newText);
+      newValue = (0,external_wp_richText_namespaceObject.applyFormat)(inserted, linkFormat, value.start, value.start + newText.length);
       onChange(newValue);
-    }
 
-    // Focus should only be shifted back to the formatted segment when the
-    // URL is submitted.
-    if (!didToggleSetting) {
+      // Close the Link UI.
+      stopAddingLink();
+
+      // Move the selection to the end of the inserted link outside of the format boundary
+      // so the user can continue typing after the link.
+      selectionChange({
+        clientId: selectionStart.clientId,
+        identifier: selectionStart.attributeKey,
+        start: value.start + newText.length + 1
+      });
+      return;
+    } else if (newText === richTextText) {
+      newValue = (0,external_wp_richText_namespaceObject.applyFormat)(value, linkFormat);
+    } else {
+      // Scenario: Editing an existing link.
+
+      // Create new RichText value for the new text in order that we
+      // can apply formats to it.
+      newValue = (0,external_wp_richText_namespaceObject.create)({
+        text: newText
+      });
+      // Apply the new Link format to this new text value.
+      newValue = (0,external_wp_richText_namespaceObject.applyFormat)(newValue, linkFormat, 0, newText.length);
+
+      // Get the boundaries of the active link format.
+      const boundary = getFormatBoundary(value, {
+        type: 'core/link'
+      });
+
+      // Split the value at the start of the active link format.
+      // Passing "start" as the 3rd parameter is required to ensure
+      // the second half of the split value is split at the format's
+      // start boundary and avoids relying on the value's "end" property
+      // which may not correspond correctly.
+      const [valBefore, valAfter] = (0,external_wp_richText_namespaceObject.split)(value, boundary.start, boundary.start);
+
+      // Update the original (full) RichTextValue replacing the
+      // target text with the *new* RichTextValue containing:
+      // 1. The new text content.
+      // 2. The new link format.
+      // As "replace" will operate on the first match only, it is
+      // run only against the second half of the value which was
+      // split at the active format's boundary. This avoids a bug
+      // with incorrectly targetted replacements.
+      // See: https://github.com/WordPress/gutenberg/issues/41771.
+      // Note original formats will be lost when applying this change.
+      // That is expected behaviour.
+      // See: https://github.com/WordPress/gutenberg/pull/33849#issuecomment-936134179.
+      const newValAfter = (0,external_wp_richText_namespaceObject.replace)(valAfter, richTextText, newValue);
+      newValue = (0,external_wp_richText_namespaceObject.concat)(valBefore, newValAfter);
+    }
+    onChange(newValue);
+
+    // Focus should only be returned to the rich text on submit if this link is not
+    // being created for the first time. If it is then focus should remain within the
+    // Link UI because it should remain open for the user to modify the link they have
+    // just created.
+    if (!isNewLink) {
       stopAddingLink();
     }
     if (!isValidHref(newUrl)) {
@@ -832,22 +800,11 @@ function InlineLinkUI({
   }
   const popoverAnchor = (0,external_wp_richText_namespaceObject.useAnchor)({
     editableContentElement: contentRef.current,
-    settings: build_module_link_link
+    settings: {
+      ...build_module_link_link,
+      isActive
+    }
   });
-
-  // Generate a string based key that is unique to this anchor reference.
-  // This is used to force re-mount the LinkControl component to avoid
-  // potential stale state bugs caused by the component not being remounted
-  // See https://github.com/WordPress/gutenberg/pull/34742.
-  const forceRemountKey = use_link_instance_key(popoverAnchor);
-
-  // Focus should only be moved into the Popover when the Link is being created or edited.
-  // When the Link is in "preview" mode focus should remain on the rich text because at
-  // this point the Link dialog is informational only and thus the user should be able to
-  // continue editing the rich text.
-  // Ref used because the focusOnMount prop shouldn't evolve during render of a Popover
-  // otherwise it causes a render of the content.
-  const focusOnMount = (0,external_wp_element_namespaceObject.useRef)(addingLink ? 'firstElement' : false);
   async function handleCreate(pageTitle) {
     const page = await createPageEntity({
       title: pageTitle,
@@ -869,23 +826,30 @@ function InlineLinkUI({
   }
   return (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.Popover, {
     anchor: popoverAnchor,
-    focusOnMount: focusOnMount.current,
     onClose: stopAddingLink,
-    onFocusOutside: () => stopAddingLink(false),
+    onFocusOutside: onFocusOutside,
     placement: "bottom",
+    offset: 10,
     shift: true
   }, (0,external_React_namespaceObject.createElement)(external_wp_blockEditor_namespaceObject.__experimentalLinkControl, {
-    key: forceRemountKey,
     value: linkValue,
     onChange: onChangeLink,
     onRemove: removeLink,
-    forceIsEditingLink: addingLink,
     hasRichPreviews: true,
     createSuggestion: createPageEntity && handleCreate,
     withCreateSuggestion: userCanCreatePages,
     createSuggestionButtonText: createButtonText,
     hasTextControl: true,
-    settings: LINK_SETTINGS
+    settings: LINK_SETTINGS,
+    showInitialSuggestions: true,
+    suggestionsQuery: {
+      // always show Pages as initial suggestions
+      initialSuggestionsSearchOptions: {
+        type: 'post',
+        subtype: 'page',
+        perPage: 20
+      }
+    }
   }));
 }
 function getRichTextValueFromSelection(value, isActive) {
@@ -910,7 +874,7 @@ function getRichTextValueFromSelection(value, isActive) {
   // Get a RichTextValue containing the selected text content.
   return (0,external_wp_richText_namespaceObject.slice)(value, textStart, textEnd);
 }
-/* harmony default export */ var inline = (InlineLinkUI);
+/* harmony default export */ const inline = (InlineLinkUI);
 
 ;// CONCATENATED MODULE: ./packages/format-library/build-module/link/index.js
 
@@ -942,16 +906,40 @@ function link_Edit({
   contentRef
 }) {
   const [addingLink, setAddingLink] = (0,external_wp_element_namespaceObject.useState)(false);
-  function addLink() {
+  // We only need to store the button element that opened the popover. We can ignore the other states, as they will be handled by the onFocus prop to return to the rich text field.
+  const [openedBy, setOpenedBy] = (0,external_wp_element_namespaceObject.useState)(null);
+  (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
+    const editableContentElement = contentRef.current;
+    if (!editableContentElement) {
+      return;
+    }
+    function handleClick(event) {
+      // There is a situation whereby there is an existing link in the rich text
+      // and the user clicks on the leftmost edge of that link and fails to activate
+      // the link format, but the click event still fires on the `<a>` element.
+      // This causes the `addingLink` state to be set to `true` and the link UI
+      // to be rendered in "creating" mode. We need to check isActive to see if
+      // we have an active link format.
+      if (event.target.tagName !== 'A' || !isActive) {
+        return;
+      }
+      setAddingLink(true);
+    }
+    editableContentElement.addEventListener('click', handleClick);
+    return () => {
+      editableContentElement.removeEventListener('click', handleClick);
+    };
+  }, [contentRef, isActive]);
+  function addLink(target) {
     const text = (0,external_wp_richText_namespaceObject.getTextContent)((0,external_wp_richText_namespaceObject.slice)(value));
-    if (text && (0,external_wp_url_namespaceObject.isURL)(text) && isValidHref(text)) {
+    if (!isActive && text && (0,external_wp_url_namespaceObject.isURL)(text) && isValidHref(text)) {
       onChange((0,external_wp_richText_namespaceObject.applyFormat)(value, {
         type: link_name,
         attributes: {
           url: text
         }
       }));
-    } else if (text && (0,external_wp_url_namespaceObject.isEmail)(text)) {
+    } else if (!isActive && text && (0,external_wp_url_namespaceObject.isEmail)(text)) {
       onChange((0,external_wp_richText_namespaceObject.applyFormat)(value, {
         type: link_name,
         attributes: {
@@ -959,14 +947,48 @@ function link_Edit({
         }
       }));
     } else {
+      if (target) {
+        setOpenedBy(target);
+      }
       setAddingLink(true);
     }
   }
-  function stopAddingLink(returnFocus = true) {
+
+  /**
+   * Runs when the popover is closed via escape keypress, unlinking the selected text,
+   * but _not_ on a click outside the popover. onFocusOutside handles that.
+   */
+  function stopAddingLink() {
+    // Don't let the click handler on the toolbar button trigger again.
+
+    // There are two places for us to return focus to on Escape keypress:
+    // 1. The rich text field.
+    // 2. The toolbar button.
+
+    // The toolbar button is the only one we need to handle returning focus to.
+    // Otherwise, we rely on the passed in onFocus to return focus to the rich text field.
+
+    // Close the popover
     setAddingLink(false);
-    if (returnFocus) {
+    // Return focus to the toolbar button or the rich text field
+    if (openedBy?.tagName === 'BUTTON') {
+      openedBy.focus();
+    } else {
       onFocus();
     }
+    // Remove the openedBy state
+    setOpenedBy(null);
+  }
+
+  // Test for this:
+  // 1. Click on the link button
+  // 2. Click the Options button in the top right of header
+  // 3. Focus should be in the dropdown of the Options button
+  // 4. Press Escape
+  // 5. Focus should be on the Options button
+  function onFocusOutside() {
+    setAddingLink(false);
+    setOpenedBy(null);
   }
   function onRemoveFormat() {
     onChange((0,external_wp_richText_namespaceObject.removeFormat)(value, link_name));
@@ -980,29 +1002,21 @@ function link_Edit({
     type: "primaryShift",
     character: "k",
     onUse: onRemoveFormat
-  }), isActive && (0,external_React_namespaceObject.createElement)(external_wp_blockEditor_namespaceObject.RichTextToolbarButton, {
-    name: "link",
-    icon: link_off,
-    title: (0,external_wp_i18n_namespaceObject.__)('Unlink'),
-    onClick: onRemoveFormat,
-    isActive: isActive,
-    shortcutType: "primaryShift",
-    shortcutCharacter: "k",
-    "aria-haspopup": "true",
-    "aria-expanded": addingLink || isActive
-  }), !isActive && (0,external_React_namespaceObject.createElement)(external_wp_blockEditor_namespaceObject.RichTextToolbarButton, {
+  }), (0,external_React_namespaceObject.createElement)(external_wp_blockEditor_namespaceObject.RichTextToolbarButton, {
     name: "link",
     icon: library_link,
-    title: link_title,
-    onClick: addLink,
-    isActive: isActive,
+    title: isActive ? (0,external_wp_i18n_namespaceObject.__)('Link') : link_title,
+    onClick: event => {
+      addLink(event.currentTarget);
+    },
+    isActive: isActive || addingLink,
     shortcutType: "primary",
     shortcutCharacter: "k",
     "aria-haspopup": "true",
-    "aria-expanded": addingLink || isActive
-  }), (addingLink || isActive) && (0,external_React_namespaceObject.createElement)(inline, {
-    addingLink: addingLink,
+    "aria-expanded": addingLink
+  }), addingLink && (0,external_React_namespaceObject.createElement)(inline, {
     stopAddingLink: stopAddingLink,
+    onFocusOutside: onFocusOutside,
     isActive: isActive,
     activeAttributes: activeAttributes,
     value: value,
@@ -1065,7 +1079,7 @@ const formatStrikethrough = (0,external_React_namespaceObject.createElement)(ext
 }, (0,external_React_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M9.1 9v-.5c0-.6.2-1.1.7-1.4.5-.3 1.2-.5 2-.5.7 0 1.4.1 2.1.3.7.2 1.4.5 2.1.9l.2-1.9c-.6-.3-1.2-.5-1.9-.7-.8-.1-1.6-.2-2.4-.2-1.5 0-2.7.3-3.6 1-.8.7-1.2 1.5-1.2 2.6V9h2zM20 12H4v1h8.3c.3.1.6.2.8.3.5.2.9.5 1.1.8.3.3.4.7.4 1.2 0 .7-.2 1.1-.8 1.5-.5.3-1.2.5-2.1.5-.8 0-1.6-.1-2.4-.3-.8-.2-1.5-.5-2.2-.8L7 18.1c.5.2 1.2.4 2 .6.8.2 1.6.3 2.4.3 1.7 0 3-.3 3.9-1 .9-.7 1.3-1.6 1.3-2.8 0-.9-.2-1.7-.7-2.2H20v-1z"
 }));
-/* harmony default export */ var format_strikethrough = (formatStrikethrough);
+/* harmony default export */ const format_strikethrough = (formatStrikethrough);
 
 ;// CONCATENATED MODULE: ./packages/format-library/build-module/strikethrough/index.js
 
@@ -1182,7 +1196,7 @@ function Icon({
     ref
   });
 }
-/* harmony default export */ var icon = ((0,external_wp_element_namespaceObject.forwardRef)(Icon));
+/* harmony default export */ const icon = ((0,external_wp_element_namespaceObject.forwardRef)(Icon));
 
 ;// CONCATENATED MODULE: ./packages/icons/build-module/library/text-color.js
 
@@ -1196,7 +1210,7 @@ const textColor = (0,external_React_namespaceObject.createElement)(external_wp_p
 }, (0,external_React_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M12.9 6h-2l-4 11h1.9l1.1-3h4.2l1.1 3h1.9L12.9 6zm-2.5 6.5l1.5-4.9 1.7 4.9h-3.2z"
 }));
-/* harmony default export */ var text_color = (textColor);
+/* harmony default export */ const text_color = (textColor);
 
 ;// CONCATENATED MODULE: ./packages/icons/build-module/library/color.js
 
@@ -1210,10 +1224,10 @@ const color = (0,external_React_namespaceObject.createElement)(external_wp_primi
 }, (0,external_React_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M17.2 10.9c-.5-1-1.2-2.1-2.1-3.2-.6-.9-1.3-1.7-2.1-2.6L12 4l-1 1.1c-.6.9-1.3 1.7-2 2.6-.8 1.2-1.5 2.3-2 3.2-.6 1.2-1 2.2-1 3 0 3.4 2.7 6.1 6.1 6.1s6.1-2.7 6.1-6.1c0-.8-.3-1.8-1-3zm-5.1 7.6c-2.5 0-4.6-2.1-4.6-4.6 0-.3.1-1 .8-2.3.5-.9 1.1-1.9 2-3.1.7-.9 1.3-1.7 1.8-2.3.7.8 1.3 1.6 1.8 2.3.8 1.1 1.5 2.2 2 3.1.7 1.3.8 2 .8 2.3 0 2.5-2.1 4.6-4.6 4.6z"
 }));
-/* harmony default export */ var library_color = (color);
+/* harmony default export */ const library_color = (color);
 
 ;// CONCATENATED MODULE: external ["wp","privateApis"]
-var external_wp_privateApis_namespaceObject = window["wp"]["privateApis"];
+const external_wp_privateApis_namespaceObject = window["wp"]["privateApis"];
 ;// CONCATENATED MODULE: ./packages/format-library/build-module/lock-unlock.js
 /**
  * WordPress dependencies
@@ -1346,22 +1360,16 @@ function InlineColorUI({
   value,
   onChange,
   onClose,
-  contentRef
+  contentRef,
+  isActive
 }) {
   const popoverAnchor = (0,external_wp_richText_namespaceObject.useAnchor)({
     editableContentElement: contentRef.current,
-    settings: text_color_textColor
+    settings: {
+      ...text_color_textColor,
+      isActive
+    }
   });
-
-  /*
-   As you change the text color by typing a HEX value into a field,
-   the return value of document.getSelection jumps to the field you're editing,
-   not the highlighted text. Given that useAnchor uses document.getSelection,
-   it will return null, since it can't find the <mark> element within the HEX input.
-   This caches the last truthy value of the selection anchor reference.
-   */
-  const cachedRect = (0,external_wp_blockEditor_namespaceObject.useCachedTruthy)(popoverAnchor.getBoundingClientRect());
-  popoverAnchor.getBoundingClientRect = () => cachedRect;
   return (0,external_React_namespaceObject.createElement)(external_wp_components_namespaceObject.Popover, {
     onClose: onClose,
     className: "format-library__inline-color-popover",
@@ -1460,7 +1468,8 @@ function TextColorEdit({
     activeAttributes: activeAttributes,
     value: value,
     onChange: onChange,
-    contentRef: contentRef
+    contentRef: contentRef,
+    isActive: isActive
   }));
 }
 const text_color_textColor = {
@@ -1487,7 +1496,7 @@ const subscript = (0,external_React_namespaceObject.createElement)(external_wp_p
 }, (0,external_React_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M16.9 18.3l.8-1.2c.4-.6.7-1.2.9-1.6.2-.4.3-.8.3-1.2 0-.3-.1-.7-.2-1-.1-.3-.4-.5-.6-.7-.3-.2-.6-.3-1-.3s-.8.1-1.1.2c-.3.1-.7.3-1 .6l.2 1.3c.3-.3.5-.5.8-.6s.6-.2.9-.2c.3 0 .5.1.7.2.2.2.2.4.2.7 0 .3-.1.5-.2.8-.1.3-.4.7-.8 1.3L15 19.4h4.3v-1.2h-2.4zM14.1 7.2h-2L9.5 11 6.9 7.2h-2l3.6 5.3L4.7 18h2l2.7-4 2.7 4h2l-3.8-5.5 3.8-5.3z"
 }));
-/* harmony default export */ var library_subscript = (subscript);
+/* harmony default export */ const library_subscript = (subscript);
 
 ;// CONCATENATED MODULE: ./packages/format-library/build-module/subscript/index.js
 
@@ -1543,7 +1552,7 @@ const superscript = (0,external_React_namespaceObject.createElement)(external_wp
 }, (0,external_React_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M16.9 10.3l.8-1.3c.4-.6.7-1.2.9-1.6.2-.4.3-.8.3-1.2 0-.3-.1-.7-.2-1-.2-.2-.4-.4-.7-.6-.3-.2-.6-.3-1-.3s-.8.1-1.1.2c-.3.1-.7.3-1 .6l.1 1.3c.3-.3.5-.5.8-.6s.6-.2.9-.2c.3 0 .5.1.7.2.2.2.2.4.2.7 0 .3-.1.5-.2.8-.1.3-.4.7-.8 1.3l-1.8 2.8h4.3v-1.2h-2.2zm-2.8-3.1h-2L9.5 11 6.9 7.2h-2l3.6 5.3L4.7 18h2l2.7-4 2.7 4h2l-3.8-5.5 3.8-5.3z"
 }));
-/* harmony default export */ var library_superscript = (superscript);
+/* harmony default export */ const library_superscript = (superscript);
 
 ;// CONCATENATED MODULE: ./packages/format-library/build-module/superscript/index.js
 
@@ -1599,7 +1608,7 @@ const button_button = (0,external_React_namespaceObject.createElement)(external_
 }, (0,external_React_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M8 12.5h8V11H8v1.5Z M19 6.5H5a2 2 0 0 0-2 2V15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5a2 2 0 0 0-2-2ZM5 8h14a.5.5 0 0 1 .5.5V15a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V8.5A.5.5 0 0 1 5 8Z"
 }));
-/* harmony default export */ var library_button = (button_button);
+/* harmony default export */ const library_button = (button_button);
 
 ;// CONCATENATED MODULE: ./packages/format-library/build-module/keyboard/index.js
 
@@ -1655,7 +1664,7 @@ const help = (0,external_React_namespaceObject.createElement)(external_wp_primit
 }, (0,external_React_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M12 4.75a7.25 7.25 0 100 14.5 7.25 7.25 0 000-14.5zM3.25 12a8.75 8.75 0 1117.5 0 8.75 8.75 0 01-17.5 0zM12 8.75a1.5 1.5 0 01.167 2.99c-.465.052-.917.44-.917 1.01V14h1.5v-.845A3 3 0 109 10.25h1.5a1.5 1.5 0 011.5-1.5zM11.25 15v1.5h1.5V15h-1.5z"
 }));
-/* harmony default export */ var library_help = (help);
+/* harmony default export */ const library_help = (help);
 
 ;// CONCATENATED MODULE: ./packages/format-library/build-module/unknown/index.js
 
@@ -1712,7 +1721,7 @@ const language = (0,external_React_namespaceObject.createElement)(external_wp_pr
 }, (0,external_React_namespaceObject.createElement)(external_wp_primitives_namespaceObject.Path, {
   d: "M17.5 10h-1.7l-3.7 10.5h1.7l.9-2.6h3.9l.9 2.6h1.7L17.5 10zm-2.2 6.3 1.4-4 1.4 4h-2.8zm-4.8-3.8c1.6-1.8 2.9-3.6 3.7-5.7H16V5.2h-5.8V3H8.8v2.2H3v1.5h9.6c-.7 1.6-1.8 3.1-3.1 4.6C8.6 10.2 7.8 9 7.2 8H5.6c.6 1.4 1.7 2.9 2.9 4.4l-2.4 2.4c-.3.4-.7.8-1.1 1.2l1 1 1.2-1.2c.8-.8 1.6-1.5 2.3-2.3.8.9 1.7 1.7 2.5 2.5l.6-1.5c-.7-.6-1.4-1.3-2.1-2z"
 }));
-/* harmony default export */ var library_language = (language);
+/* harmony default export */ const library_language = (language);
 
 ;// CONCATENATED MODULE: ./packages/format-library/build-module/language/index.js
 
@@ -1839,7 +1848,7 @@ function InlineLanguageUI({
 
 
 
-/* harmony default export */ var default_formats = ([bold, code_code, image_image, italic, build_module_link_link, strikethrough, underline, text_color_textColor, subscript_subscript, superscript_superscript, keyboard, unknown, language_language]);
+/* harmony default export */ const default_formats = ([bold, code_code, image_image, italic, build_module_link_link, strikethrough, underline, text_color_textColor, subscript_subscript, superscript_superscript, keyboard, unknown, language_language]);
 
 ;// CONCATENATED MODULE: ./packages/format-library/build-module/index.js
 /**
