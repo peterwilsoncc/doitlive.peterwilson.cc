@@ -1233,6 +1233,7 @@ module.exports = function() {
   // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
   var ReactPropTypes = {
     array: shim,
+    bigint: shim,
     bool: shim,
     func: shim,
     number: shim,
@@ -7274,11 +7275,6 @@ if (false) {}
 
 
 ;// CONCATENATED MODULE: ./node_modules/@floating-ui/utils/dist/floating-ui.utils.mjs
-/**
- * Custom positioning reference element.
- * @see https://floating-ui.com/docs/virtual-elements
- */
-
 const floating_ui_utils_sides = (/* unused pure expression or super */ null && (['top', 'right', 'bottom', 'left']));
 const alignments = (/* unused pure expression or super */ null && (['start', 'end']));
 const floating_ui_utils_placements = /*#__PURE__*/(/* unused pure expression or super */ null && (floating_ui_utils_sides.reduce((acc, side) => acc.concat(side, side + "-" + alignments[0], side + "-" + alignments[1]), [])));
@@ -7466,7 +7462,7 @@ function computeCoordsFromPlacement(_ref, placement, rtl) {
 
 /**
  * Computes the `x` and `y` coordinates that will place the floating element
- * next to a given reference element.
+ * next to a reference element when it is given a certain positioning strategy.
  *
  * This export does not have any `platform` interface logic. You will need to
  * write one for the platform you are using Floating UI with.
@@ -7544,6 +7540,7 @@ const computePosition = async (reference, floating, config) => {
         } = computeCoordsFromPlacement(rects, statefulPlacement, rtl));
       }
       i = -1;
+      continue;
     }
   }
   return {
@@ -7606,7 +7603,6 @@ async function detectOverflow(state, options) {
     y: 1
   };
   const elementClientRect = floating_ui_utils_rectToClientRect(platform.convertOffsetParentRelativeRectToViewportRelativeRect ? await platform.convertOffsetParentRelativeRectToViewportRelativeRect({
-    elements,
     rect,
     offsetParent,
     strategy
@@ -7634,8 +7630,7 @@ const arrow = options => ({
       placement,
       rects,
       platform,
-      elements,
-      middlewareData
+      elements
     } = state;
     // Since `element` is required, we don't Partial<> the type.
     const {
@@ -7683,20 +7678,16 @@ const arrow = options => ({
 
     // If the reference is small enough that the arrow's padding causes it to
     // to point to nothing for an aligned placement, adjust the offset of the
-    // floating element itself. To ensure `shift()` continues to take action,
-    // a single reset is performed when this is true.
-    const shouldAddOffset = !middlewareData.arrow && floating_ui_utils_getAlignment(placement) != null && center !== offset && rects.reference[length] / 2 - (center < min$1 ? minPadding : maxPadding) - arrowDimensions[length] / 2 < 0;
-    const alignmentOffset = shouldAddOffset ? center < min$1 ? center - min$1 : center - max : 0;
+    // floating element itself. This stops `shift()` from taking action, but can
+    // be worked around by calling it again after the `arrow()` if desired.
+    const shouldAddOffset = floating_ui_utils_getAlignment(placement) != null && center != offset && rects.reference[length] / 2 - (center < min$1 ? minPadding : maxPadding) - arrowDimensions[length] / 2 < 0;
+    const alignmentOffset = shouldAddOffset ? center < min$1 ? min$1 - center : max - center : 0;
     return {
-      [axis]: coords[axis] + alignmentOffset,
+      [axis]: coords[axis] - alignmentOffset,
       data: {
         [axis]: offset,
-        centerOffset: center - offset - alignmentOffset,
-        ...(shouldAddOffset && {
-          alignmentOffset
-        })
-      },
-      reset: shouldAddOffset
+        centerOffset: center - offset + alignmentOffset
+      }
     };
   }
 });
@@ -7818,7 +7809,7 @@ const flip = function (options) {
     name: 'flip',
     options,
     async fn(state) {
-      var _middlewareData$arrow, _middlewareData$flip;
+      var _middlewareData$flip;
       const {
         placement,
         middlewareData,
@@ -7836,14 +7827,6 @@ const flip = function (options) {
         flipAlignment = true,
         ...detectOverflowOptions
       } = floating_ui_utils_evaluate(options, state);
-
-      // If a reset by the arrow was caused due to an alignment offset being
-      // added, we should skip any logic now since `flip()` has already done its
-      // work.
-      // https://github.com/floating-ui/floating-ui/issues/2549#issuecomment-1719601643
-      if ((_middlewareData$arrow = middlewareData.arrow) != null && _middlewareData$arrow.alignmentOffset) {
-        return {};
-      }
       const side = floating_ui_utils_getSide(placement);
       const isBasePlacement = floating_ui_utils_getSide(initialPlacement) === initialPlacement;
       const rtl = await (platform.isRTL == null ? void 0 : platform.isRTL(elements.floating));
@@ -8121,7 +8104,6 @@ const inline = function (options) {
 
 // For type backwards-compatibility, the `OffsetOptions` type was also
 // Derivable.
-
 async function convertValueToCoords(state, options) {
   const {
     placement,
@@ -8135,6 +8117,8 @@ async function convertValueToCoords(state, options) {
   const mainAxisMulti = ['left', 'top'].includes(side) ? -1 : 1;
   const crossAxisMulti = rtl && isVertical ? -1 : 1;
   const rawValue = floating_ui_utils_evaluate(options, state);
+
+  // eslint-disable-next-line prefer-const
   let {
     mainAxis,
     crossAxis,
@@ -8176,27 +8160,15 @@ const offset = function (options) {
     name: 'offset',
     options,
     async fn(state) {
-      var _middlewareData$offse, _middlewareData$arrow;
       const {
         x,
-        y,
-        placement,
-        middlewareData
+        y
       } = state;
       const diffCoords = await convertValueToCoords(state, options);
-
-      // If the placement is the same and the arrow caused an alignment offset
-      // then we don't need to change the positioning coordinates.
-      if (placement === ((_middlewareData$offse = middlewareData.offset) == null ? void 0 : _middlewareData$offse.placement) && (_middlewareData$arrow = middlewareData.arrow) != null && _middlewareData$arrow.alignmentOffset) {
-        return {};
-      }
       return {
         x: x + diffCoords.x,
         y: y + diffCoords.y,
-        data: {
-          ...diffCoords,
-          placement
-        }
+        data: diffCoords
       };
     }
   };
@@ -8428,7 +8400,138 @@ const size = function (options) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@floating-ui/utils/dist/floating-ui.utils.dom.mjs
+;// CONCATENATED MODULE: ./node_modules/@floating-ui/dom/node_modules/@floating-ui/utils/dist/floating-ui.utils.mjs
+/**
+ * Custom positioning reference element.
+ * @see https://floating-ui.com/docs/virtual-elements
+ */
+
+const dist_floating_ui_utils_sides = (/* unused pure expression or super */ null && (['top', 'right', 'bottom', 'left']));
+const floating_ui_utils_alignments = (/* unused pure expression or super */ null && (['start', 'end']));
+const dist_floating_ui_utils_placements = /*#__PURE__*/(/* unused pure expression or super */ null && (dist_floating_ui_utils_sides.reduce((acc, side) => acc.concat(side, side + "-" + floating_ui_utils_alignments[0], side + "-" + floating_ui_utils_alignments[1]), [])));
+const dist_floating_ui_utils_min = Math.min;
+const dist_floating_ui_utils_max = Math.max;
+const floating_ui_utils_round = Math.round;
+const floating_ui_utils_floor = Math.floor;
+const floating_ui_utils_createCoords = v => ({
+  x: v,
+  y: v
+});
+const floating_ui_utils_oppositeSideMap = {
+  left: 'right',
+  right: 'left',
+  bottom: 'top',
+  top: 'bottom'
+};
+const floating_ui_utils_oppositeAlignmentMap = {
+  start: 'end',
+  end: 'start'
+};
+function floating_ui_utils_clamp(start, value, end) {
+  return dist_floating_ui_utils_max(start, dist_floating_ui_utils_min(value, end));
+}
+function dist_floating_ui_utils_evaluate(value, param) {
+  return typeof value === 'function' ? value(param) : value;
+}
+function dist_floating_ui_utils_getSide(placement) {
+  return placement.split('-')[0];
+}
+function dist_floating_ui_utils_getAlignment(placement) {
+  return placement.split('-')[1];
+}
+function floating_ui_utils_getOppositeAxis(axis) {
+  return axis === 'x' ? 'y' : 'x';
+}
+function floating_ui_utils_getAxisLength(axis) {
+  return axis === 'y' ? 'height' : 'width';
+}
+function dist_floating_ui_utils_getSideAxis(placement) {
+  return ['top', 'bottom'].includes(dist_floating_ui_utils_getSide(placement)) ? 'y' : 'x';
+}
+function floating_ui_utils_getAlignmentAxis(placement) {
+  return floating_ui_utils_getOppositeAxis(dist_floating_ui_utils_getSideAxis(placement));
+}
+function dist_floating_ui_utils_getAlignmentSides(placement, rects, rtl) {
+  if (rtl === void 0) {
+    rtl = false;
+  }
+  const alignment = dist_floating_ui_utils_getAlignment(placement);
+  const alignmentAxis = floating_ui_utils_getAlignmentAxis(placement);
+  const length = floating_ui_utils_getAxisLength(alignmentAxis);
+  let mainAlignmentSide = alignmentAxis === 'x' ? alignment === (rtl ? 'end' : 'start') ? 'right' : 'left' : alignment === 'start' ? 'bottom' : 'top';
+  if (rects.reference[length] > rects.floating[length]) {
+    mainAlignmentSide = floating_ui_utils_getOppositePlacement(mainAlignmentSide);
+  }
+  return [mainAlignmentSide, floating_ui_utils_getOppositePlacement(mainAlignmentSide)];
+}
+function floating_ui_utils_getExpandedPlacements(placement) {
+  const oppositePlacement = floating_ui_utils_getOppositePlacement(placement);
+  return [dist_floating_ui_utils_getOppositeAlignmentPlacement(placement), oppositePlacement, dist_floating_ui_utils_getOppositeAlignmentPlacement(oppositePlacement)];
+}
+function dist_floating_ui_utils_getOppositeAlignmentPlacement(placement) {
+  return placement.replace(/start|end/g, alignment => floating_ui_utils_oppositeAlignmentMap[alignment]);
+}
+function floating_ui_utils_getSideList(side, isStart, rtl) {
+  const lr = ['left', 'right'];
+  const rl = ['right', 'left'];
+  const tb = ['top', 'bottom'];
+  const bt = ['bottom', 'top'];
+  switch (side) {
+    case 'top':
+    case 'bottom':
+      if (rtl) return isStart ? rl : lr;
+      return isStart ? lr : rl;
+    case 'left':
+    case 'right':
+      return isStart ? tb : bt;
+    default:
+      return [];
+  }
+}
+function floating_ui_utils_getOppositeAxisPlacements(placement, flipAlignment, direction, rtl) {
+  const alignment = dist_floating_ui_utils_getAlignment(placement);
+  let list = floating_ui_utils_getSideList(dist_floating_ui_utils_getSide(placement), direction === 'start', rtl);
+  if (alignment) {
+    list = list.map(side => side + "-" + alignment);
+    if (flipAlignment) {
+      list = list.concat(list.map(dist_floating_ui_utils_getOppositeAlignmentPlacement));
+    }
+  }
+  return list;
+}
+function floating_ui_utils_getOppositePlacement(placement) {
+  return placement.replace(/left|right|bottom|top/g, side => floating_ui_utils_oppositeSideMap[side]);
+}
+function floating_ui_utils_expandPaddingObject(padding) {
+  return {
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    ...padding
+  };
+}
+function dist_floating_ui_utils_getPaddingObject(padding) {
+  return typeof padding !== 'number' ? floating_ui_utils_expandPaddingObject(padding) : {
+    top: padding,
+    right: padding,
+    bottom: padding,
+    left: padding
+  };
+}
+function dist_floating_ui_utils_rectToClientRect(rect) {
+  return {
+    ...rect,
+    top: rect.y,
+    left: rect.x,
+    right: rect.x + rect.width,
+    bottom: rect.y + rect.height
+  };
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/@floating-ui/dom/node_modules/@floating-ui/utils/dist/floating-ui.utils.dom.mjs
 function getNodeName(node) {
   if (isNode(node)) {
     return (node.nodeName || '').toLowerCase();
@@ -8574,7 +8677,7 @@ function getCssDimensions(element) {
   const hasOffset = isHTMLElement(element);
   const offsetWidth = hasOffset ? element.offsetWidth : width;
   const offsetHeight = hasOffset ? element.offsetHeight : height;
-  const shouldFallback = round(width) !== offsetWidth || round(height) !== offsetHeight;
+  const shouldFallback = floating_ui_utils_round(width) !== offsetWidth || floating_ui_utils_round(height) !== offsetHeight;
   if (shouldFallback) {
     width = offsetWidth;
     height = offsetHeight;
@@ -8593,7 +8696,7 @@ function unwrapElement(element) {
 function getScale(element) {
   const domElement = unwrapElement(element);
   if (!isHTMLElement(domElement)) {
-    return createCoords(1);
+    return floating_ui_utils_createCoords(1);
   }
   const rect = domElement.getBoundingClientRect();
   const {
@@ -8601,8 +8704,8 @@ function getScale(element) {
     height,
     $
   } = getCssDimensions(domElement);
-  let x = ($ ? round(rect.width) : rect.width) / width;
-  let y = ($ ? round(rect.height) : rect.height) / height;
+  let x = ($ ? floating_ui_utils_round(rect.width) : rect.width) / width;
+  let y = ($ ? floating_ui_utils_round(rect.height) : rect.height) / height;
 
   // 0, NaN, or Infinity should always fallback to 1.
 
@@ -8618,7 +8721,7 @@ function getScale(element) {
   };
 }
 
-const noOffsets = /*#__PURE__*/createCoords(0);
+const noOffsets = /*#__PURE__*/floating_ui_utils_createCoords(0);
 function getVisualOffsets(element) {
   const win = floating_ui_utils_dom_getWindow(element);
   if (!isWebKit() || !win.visualViewport) {
@@ -8648,7 +8751,7 @@ function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetPar
   }
   const clientRect = element.getBoundingClientRect();
   const domElement = unwrapElement(element);
-  let scale = createCoords(1);
+  let scale = floating_ui_utils_createCoords(1);
   if (includeScale) {
     if (offsetParent) {
       if (isElement(offsetParent)) {
@@ -8658,7 +8761,7 @@ function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetPar
       scale = getScale(element);
     }
   }
-  const visualOffsets = shouldAddVisualOffsets(domElement, isFixedStrategy, offsetParent) ? getVisualOffsets(domElement) : createCoords(0);
+  const visualOffsets = shouldAddVisualOffsets(domElement, isFixedStrategy, offsetParent) ? getVisualOffsets(domElement) : floating_ui_utils_createCoords(0);
   let x = (clientRect.left + visualOffsets.x) / scale.x;
   let y = (clientRect.top + visualOffsets.y) / scale.y;
   let width = clientRect.width / scale.x;
@@ -8720,8 +8823,8 @@ function convertOffsetParentRelativeRectToViewportRelativeRect(_ref) {
     scrollLeft: 0,
     scrollTop: 0
   };
-  let scale = createCoords(1);
-  const offsets = createCoords(0);
+  let scale = floating_ui_utils_createCoords(1);
+  const offsets = floating_ui_utils_createCoords(0);
   const isOffsetParentAnElement = isHTMLElement(offsetParent);
   if (isOffsetParentAnElement || !isOffsetParentAnElement && !isFixed) {
     if (getNodeName(offsetParent) !== 'body' || isOverflowElement(documentElement)) {
@@ -8758,12 +8861,12 @@ function getDocumentRect(element) {
   const html = getDocumentElement(element);
   const scroll = getNodeScroll(element);
   const body = element.ownerDocument.body;
-  const width = floating_ui_utils_max(html.scrollWidth, html.clientWidth, body.scrollWidth, body.clientWidth);
-  const height = floating_ui_utils_max(html.scrollHeight, html.clientHeight, body.scrollHeight, body.clientHeight);
+  const width = dist_floating_ui_utils_max(html.scrollWidth, html.clientWidth, body.scrollWidth, body.clientWidth);
+  const height = dist_floating_ui_utils_max(html.scrollHeight, html.clientHeight, body.scrollHeight, body.clientHeight);
   let x = -scroll.scrollLeft + getWindowScrollBarX(element);
   const y = -scroll.scrollTop;
   if (floating_ui_utils_dom_getComputedStyle(body).direction === 'rtl') {
-    x += floating_ui_utils_max(html.clientWidth, body.clientWidth) - width;
+    x += dist_floating_ui_utils_max(html.clientWidth, body.clientWidth) - width;
   }
   return {
     width,
@@ -8803,7 +8906,7 @@ function getInnerBoundingClientRect(element, strategy) {
   const clientRect = getBoundingClientRect(element, true, strategy === 'fixed');
   const top = clientRect.top + element.clientTop;
   const left = clientRect.left + element.clientLeft;
-  const scale = isHTMLElement(element) ? getScale(element) : createCoords(1);
+  const scale = isHTMLElement(element) ? getScale(element) : floating_ui_utils_createCoords(1);
   const width = element.clientWidth * scale.x;
   const height = element.clientHeight * scale.y;
   const x = left * scale.x;
@@ -8889,10 +8992,10 @@ function getClippingRect(_ref) {
   const firstClippingAncestor = clippingAncestors[0];
   const clippingRect = clippingAncestors.reduce((accRect, clippingAncestor) => {
     const rect = getClientRectFromClippingAncestor(element, clippingAncestor, strategy);
-    accRect.top = floating_ui_utils_max(rect.top, accRect.top);
-    accRect.right = floating_ui_utils_min(rect.right, accRect.right);
-    accRect.bottom = floating_ui_utils_min(rect.bottom, accRect.bottom);
-    accRect.left = floating_ui_utils_max(rect.left, accRect.left);
+    accRect.top = dist_floating_ui_utils_max(rect.top, accRect.top);
+    accRect.right = dist_floating_ui_utils_min(rect.right, accRect.right);
+    accRect.bottom = dist_floating_ui_utils_min(rect.bottom, accRect.bottom);
+    accRect.left = dist_floating_ui_utils_max(rect.left, accRect.left);
     return accRect;
   }, getClientRectFromClippingAncestor(element, firstClippingAncestor, strategy));
   return {
@@ -8923,7 +9026,7 @@ function getRectRelativeToOffsetParent(element, offsetParent, strategy) {
     scrollLeft: 0,
     scrollTop: 0
   };
-  const offsets = createCoords(0);
+  const offsets = floating_ui_utils_createCoords(0);
   if (isOffsetParentAnElement || !isOffsetParentAnElement && !isFixed) {
     if (getNodeName(offsetParent) !== 'body' || isOverflowElement(documentElement)) {
       scroll = getNodeScroll(offsetParent);
@@ -9034,14 +9137,14 @@ function observeMove(element, onMove) {
     if (!width || !height) {
       return;
     }
-    const insetTop = floor(top);
-    const insetRight = floor(root.clientWidth - (left + width));
-    const insetBottom = floor(root.clientHeight - (top + height));
-    const insetLeft = floor(left);
+    const insetTop = floating_ui_utils_floor(top);
+    const insetRight = floating_ui_utils_floor(root.clientWidth - (left + width));
+    const insetBottom = floating_ui_utils_floor(root.clientHeight - (top + height));
+    const insetLeft = floating_ui_utils_floor(left);
     const rootMargin = -insetTop + "px " + -insetRight + "px " + -insetBottom + "px " + -insetLeft + "px";
     const options = {
       rootMargin,
-      threshold: floating_ui_utils_max(0, floating_ui_utils_min(1, threshold)) || 1
+      threshold: dist_floating_ui_utils_max(0, dist_floating_ui_utils_min(1, threshold)) || 1
     };
     let isFirstUpdate = true;
     function handleObserve(entries) {
@@ -13641,7 +13744,7 @@ function emotion_memoize_esm_memoize(fn) {
 ;// CONCATENATED MODULE: ./node_modules/@emotion/styled/node_modules/@emotion/is-prop-valid/dist/emotion-is-prop-valid.esm.js
 
 
-var reactPropsRegex = /^((children|dangerouslySetInnerHTML|key|ref|autoFocus|defaultValue|defaultChecked|innerHTML|suppressContentEditableWarning|suppressHydrationWarning|valueLink|abbr|accept|acceptCharset|accessKey|action|allow|allowUserMedia|allowPaymentRequest|allowFullScreen|allowTransparency|alt|async|autoComplete|autoPlay|capture|cellPadding|cellSpacing|challenge|charSet|checked|cite|classID|className|cols|colSpan|content|contentEditable|contextMenu|controls|controlsList|coords|crossOrigin|data|dateTime|decoding|default|defer|dir|disabled|disablePictureInPicture|download|draggable|encType|enterKeyHint|form|formAction|formEncType|formMethod|formNoValidate|formTarget|frameBorder|headers|height|hidden|high|href|hrefLang|htmlFor|httpEquiv|id|inputMode|integrity|is|keyParams|keyType|kind|label|lang|list|loading|loop|low|marginHeight|marginWidth|max|maxLength|media|mediaGroup|method|min|minLength|multiple|muted|name|nonce|noValidate|open|optimum|pattern|placeholder|playsInline|poster|preload|profile|radioGroup|readOnly|referrerPolicy|rel|required|reversed|role|rows|rowSpan|sandbox|scope|scoped|scrolling|seamless|selected|shape|size|sizes|slot|span|spellCheck|src|srcDoc|srcLang|srcSet|start|step|style|summary|tabIndex|target|title|translate|type|useMap|value|width|wmode|wrap|about|datatype|inlist|prefix|property|resource|typeof|vocab|autoCapitalize|autoCorrect|autoSave|color|incremental|fallback|inert|itemProp|itemScope|itemType|itemID|itemRef|on|option|results|security|unselectable|accentHeight|accumulate|additive|alignmentBaseline|allowReorder|alphabetic|amplitude|arabicForm|ascent|attributeName|attributeType|autoReverse|azimuth|baseFrequency|baselineShift|baseProfile|bbox|begin|bias|by|calcMode|capHeight|clip|clipPathUnits|clipPath|clipRule|colorInterpolation|colorInterpolationFilters|colorProfile|colorRendering|contentScriptType|contentStyleType|cursor|cx|cy|d|decelerate|descent|diffuseConstant|direction|display|divisor|dominantBaseline|dur|dx|dy|edgeMode|elevation|enableBackground|end|exponent|externalResourcesRequired|fill|fillOpacity|fillRule|filter|filterRes|filterUnits|floodColor|floodOpacity|focusable|fontFamily|fontSize|fontSizeAdjust|fontStretch|fontStyle|fontVariant|fontWeight|format|from|fr|fx|fy|g1|g2|glyphName|glyphOrientationHorizontal|glyphOrientationVertical|glyphRef|gradientTransform|gradientUnits|hanging|horizAdvX|horizOriginX|ideographic|imageRendering|in|in2|intercept|k|k1|k2|k3|k4|kernelMatrix|kernelUnitLength|kerning|keyPoints|keySplines|keyTimes|lengthAdjust|letterSpacing|lightingColor|limitingConeAngle|local|markerEnd|markerMid|markerStart|markerHeight|markerUnits|markerWidth|mask|maskContentUnits|maskUnits|mathematical|mode|numOctaves|offset|opacity|operator|order|orient|orientation|origin|overflow|overlinePosition|overlineThickness|panose1|paintOrder|pathLength|patternContentUnits|patternTransform|patternUnits|pointerEvents|points|pointsAtX|pointsAtY|pointsAtZ|preserveAlpha|preserveAspectRatio|primitiveUnits|r|radius|refX|refY|renderingIntent|repeatCount|repeatDur|requiredExtensions|requiredFeatures|restart|result|rotate|rx|ry|scale|seed|shapeRendering|slope|spacing|specularConstant|specularExponent|speed|spreadMethod|startOffset|stdDeviation|stemh|stemv|stitchTiles|stopColor|stopOpacity|strikethroughPosition|strikethroughThickness|string|stroke|strokeDasharray|strokeDashoffset|strokeLinecap|strokeLinejoin|strokeMiterlimit|strokeOpacity|strokeWidth|surfaceScale|systemLanguage|tableValues|targetX|targetY|textAnchor|textDecoration|textRendering|textLength|to|transform|u1|u2|underlinePosition|underlineThickness|unicode|unicodeBidi|unicodeRange|unitsPerEm|vAlphabetic|vHanging|vIdeographic|vMathematical|values|vectorEffect|version|vertAdvY|vertOriginX|vertOriginY|viewBox|viewTarget|visibility|widths|wordSpacing|writingMode|x|xHeight|x1|x2|xChannelSelector|xlinkActuate|xlinkArcrole|xlinkHref|xlinkRole|xlinkShow|xlinkTitle|xlinkType|xmlBase|xmlns|xmlnsXlink|xmlLang|xmlSpace|y|y1|y2|yChannelSelector|z|zoomAndPan|for|class|autofocus)|(([Dd][Aa][Tt][Aa]|[Aa][Rr][Ii][Aa]|x)-.*))$/; // https://esbench.com/bench/5bfee68a4cd7e6009ef61d23
+var reactPropsRegex = /^((children|dangerouslySetInnerHTML|key|ref|autoFocus|defaultValue|defaultChecked|innerHTML|suppressContentEditableWarning|suppressHydrationWarning|valueLink|abbr|accept|acceptCharset|accessKey|action|allow|allowUserMedia|allowPaymentRequest|allowFullScreen|allowTransparency|alt|async|autoComplete|autoPlay|capture|cellPadding|cellSpacing|challenge|charSet|checked|cite|classID|className|cols|colSpan|content|contentEditable|contextMenu|controls|controlsList|coords|crossOrigin|data|dateTime|decoding|default|defer|dir|disabled|disablePictureInPicture|disableRemotePlayback|download|draggable|encType|enterKeyHint|form|formAction|formEncType|formMethod|formNoValidate|formTarget|frameBorder|headers|height|hidden|high|href|hrefLang|htmlFor|httpEquiv|id|inputMode|integrity|is|keyParams|keyType|kind|label|lang|list|loading|loop|low|marginHeight|marginWidth|max|maxLength|media|mediaGroup|method|min|minLength|multiple|muted|name|nonce|noValidate|open|optimum|pattern|placeholder|playsInline|poster|preload|profile|radioGroup|readOnly|referrerPolicy|rel|required|reversed|role|rows|rowSpan|sandbox|scope|scoped|scrolling|seamless|selected|shape|size|sizes|slot|span|spellCheck|src|srcDoc|srcLang|srcSet|start|step|style|summary|tabIndex|target|title|translate|type|useMap|value|width|wmode|wrap|about|datatype|inlist|prefix|property|resource|typeof|vocab|autoCapitalize|autoCorrect|autoSave|color|incremental|fallback|inert|itemProp|itemScope|itemType|itemID|itemRef|on|option|results|security|unselectable|accentHeight|accumulate|additive|alignmentBaseline|allowReorder|alphabetic|amplitude|arabicForm|ascent|attributeName|attributeType|autoReverse|azimuth|baseFrequency|baselineShift|baseProfile|bbox|begin|bias|by|calcMode|capHeight|clip|clipPathUnits|clipPath|clipRule|colorInterpolation|colorInterpolationFilters|colorProfile|colorRendering|contentScriptType|contentStyleType|cursor|cx|cy|d|decelerate|descent|diffuseConstant|direction|display|divisor|dominantBaseline|dur|dx|dy|edgeMode|elevation|enableBackground|end|exponent|externalResourcesRequired|fill|fillOpacity|fillRule|filter|filterRes|filterUnits|floodColor|floodOpacity|focusable|fontFamily|fontSize|fontSizeAdjust|fontStretch|fontStyle|fontVariant|fontWeight|format|from|fr|fx|fy|g1|g2|glyphName|glyphOrientationHorizontal|glyphOrientationVertical|glyphRef|gradientTransform|gradientUnits|hanging|horizAdvX|horizOriginX|ideographic|imageRendering|in|in2|intercept|k|k1|k2|k3|k4|kernelMatrix|kernelUnitLength|kerning|keyPoints|keySplines|keyTimes|lengthAdjust|letterSpacing|lightingColor|limitingConeAngle|local|markerEnd|markerMid|markerStart|markerHeight|markerUnits|markerWidth|mask|maskContentUnits|maskUnits|mathematical|mode|numOctaves|offset|opacity|operator|order|orient|orientation|origin|overflow|overlinePosition|overlineThickness|panose1|paintOrder|pathLength|patternContentUnits|patternTransform|patternUnits|pointerEvents|points|pointsAtX|pointsAtY|pointsAtZ|preserveAlpha|preserveAspectRatio|primitiveUnits|r|radius|refX|refY|renderingIntent|repeatCount|repeatDur|requiredExtensions|requiredFeatures|restart|result|rotate|rx|ry|scale|seed|shapeRendering|slope|spacing|specularConstant|specularExponent|speed|spreadMethod|startOffset|stdDeviation|stemh|stemv|stitchTiles|stopColor|stopOpacity|strikethroughPosition|strikethroughThickness|string|stroke|strokeDasharray|strokeDashoffset|strokeLinecap|strokeLinejoin|strokeMiterlimit|strokeOpacity|strokeWidth|surfaceScale|systemLanguage|tableValues|targetX|targetY|textAnchor|textDecoration|textRendering|textLength|to|transform|u1|u2|underlinePosition|underlineThickness|unicode|unicodeBidi|unicodeRange|unitsPerEm|vAlphabetic|vHanging|vIdeographic|vMathematical|values|vectorEffect|version|vertAdvY|vertOriginX|vertOriginY|viewBox|viewTarget|visibility|widths|wordSpacing|writingMode|x|xHeight|x1|x2|xChannelSelector|xlinkActuate|xlinkArcrole|xlinkHref|xlinkRole|xlinkShow|xlinkTitle|xlinkType|xmlBase|xmlns|xmlnsXlink|xmlLang|xmlSpace|y|y1|y2|yChannelSelector|z|zoomAndPan|for|class|autofocus)|(([Dd][Aa][Tt][Aa]|[Aa][Rr][Ii][Aa]|x)-.*))$/; // https://esbench.com/bench/5bfee68a4cd7e6009ef61d23
 
 var isPropValid = /* #__PURE__ */emotion_memoize_esm_memoize(function (prop) {
   return reactPropsRegex.test(prop) || prop.charCodeAt(0) === 111
@@ -27133,7 +27236,7 @@ const TOGGLE_GROUP_CONTROL_PROPS = {
   fontSizeMobile: '15px',
   fontSizeSmall: 'calc(0.92 * 13px)',
   fontSizeXSmall: 'calc(0.75 * 13px)',
-  fontLineHeightBase: '1.2',
+  fontLineHeightBase: '1.4',
   fontWeight: 'normal',
   fontWeightHeading: '600',
   gridBase: '4px',
@@ -30681,7 +30784,7 @@ function UnforwardedInputControl(props, ref) {
  *
  * ```jsx
  * import { __experimentalInputControl as InputControl } from '@wordpress/components';
- * import { useState } from '@wordpress/compose';
+ * import { useState } from 'react';
  *
  * const Example = () => {
  *   const [ value, setValue ] = useState( '' );
@@ -30859,10 +30962,9 @@ function button_useDeprecatedProps({
   }
   if (isDefault) {
     var _computedVariant4;
-    external_wp_deprecated_default()('Button isDefault prop', {
+    external_wp_deprecated_default()('wp.components.Button `isDefault` prop', {
       since: '5.4',
-      alternative: 'variant="secondary"',
-      version: '6.2'
+      alternative: 'variant="secondary"'
     });
     (_computedVariant4 = computedVariant) !== null && _computedVariant4 !== void 0 ? _computedVariant4 : computedVariant = 'secondary';
   }
@@ -30982,10 +31084,10 @@ function UnforwardedButton(props, ref) {
   const elementChildren = (0,external_React_.createElement)(external_React_.Fragment, null, icon && iconPosition === 'left' && (0,external_React_.createElement)(build_module_icon, {
     icon: icon,
     size: iconSize
-  }), text && (0,external_React_.createElement)(external_React_.Fragment, null, text), icon && iconPosition === 'right' && (0,external_React_.createElement)(build_module_icon, {
+  }), text && (0,external_React_.createElement)(external_React_.Fragment, null, text), children, icon && iconPosition === 'right' && (0,external_React_.createElement)(build_module_icon, {
     icon: icon,
     size: iconSize
-  }), children);
+  }));
   const element = Tag === 'a' ? (0,external_React_.createElement)("a", {
     ...anchorProps,
     ...additionalProps,
@@ -31333,7 +31435,12 @@ function useHStack(props) {
     ...otherProps,
     gap: spacing
   };
-  const flexProps = useFlex(propsForFlex);
+
+  // Omit `isColumn` because it's not used in HStack.
+  const {
+    isColumn,
+    ...flexProps
+  } = useFlex(propsForFlex);
   return flexProps;
 }
 
@@ -32019,7 +32126,7 @@ function getDefaultUseItems(autocompleter) {
   };
 }
 
-;// CONCATENATED MODULE: ./node_modules/@floating-ui/react-dom/dist/floating-ui.react-dom.mjs
+;// CONCATENATED MODULE: ./packages/components/node_modules/@floating-ui/react-dom/dist/floating-ui.react-dom.esm.js
 
 
 
@@ -32032,7 +32139,7 @@ function getDefaultUseItems(autocompleter) {
  * This wraps the core `arrow` middleware to allow React refs as the element.
  * @see https://floating-ui.com/docs/arrow
  */
-const floating_ui_react_dom_arrow = options => {
+const floating_ui_react_dom_esm_arrow = options => {
   function isRef(value) {
     return {}.hasOwnProperty.call(value, 'current');
   }
@@ -32052,8 +32159,7 @@ const floating_ui_react_dom_arrow = options => {
           }).fn(state);
         }
         return {};
-      }
-      if (element) {
+      } else if (element) {
         return floating_ui_dom_arrow({
           element,
           padding
@@ -32078,13 +32184,11 @@ function deepEqual(a, b) {
   if (typeof a === 'function' && a.toString() === b.toString()) {
     return true;
   }
-  let length;
-  let i;
-  let keys;
-  if (a && b && typeof a === 'object') {
+  let length, i, keys;
+  if (a && b && typeof a == 'object') {
     if (Array.isArray(a)) {
       length = a.length;
-      if (length !== b.length) return false;
+      if (length != b.length) return false;
       for (i = length; i-- !== 0;) {
         if (!deepEqual(a[i], b[i])) {
           return false;
@@ -32113,8 +32217,6 @@ function deepEqual(a, b) {
     }
     return true;
   }
-
-  // biome-ignore lint/suspicious/noSelfCompare: in source
   return a !== a && b !== b;
 }
 
@@ -32126,7 +32228,7 @@ function getDPR(element) {
   return win.devicePixelRatio || 1;
 }
 
-function floating_ui_react_dom_roundByDPR(element, value) {
+function floating_ui_react_dom_esm_roundByDPR(element, value) {
   const dpr = getDPR(element);
   return Math.round(value * dpr) / dpr;
 }
@@ -32141,7 +32243,7 @@ function useLatestRef(value) {
 
 /**
  * Provides data to position a floating element.
- * @see https://floating-ui.com/docs/useFloating
+ * @see https://floating-ui.com/docs/react
  */
 function useFloating(options) {
   if (options === void 0) {
@@ -32175,23 +32277,22 @@ function useFloating(options) {
   const [_reference, _setReference] = external_React_.useState(null);
   const [_floating, _setFloating] = external_React_.useState(null);
   const setReference = external_React_.useCallback(node => {
-    if (node !== referenceRef.current) {
+    if (node != referenceRef.current) {
       referenceRef.current = node;
       _setReference(node);
     }
-  }, []);
+  }, [_setReference]);
   const setFloating = external_React_.useCallback(node => {
     if (node !== floatingRef.current) {
       floatingRef.current = node;
       _setFloating(node);
     }
-  }, []);
+  }, [_setFloating]);
   const referenceEl = externalReference || _reference;
   const floatingEl = externalFloating || _floating;
   const referenceRef = external_React_.useRef(null);
   const floatingRef = external_React_.useRef(null);
   const dataRef = external_React_.useRef(data);
-  const hasWhileElementsMounted = whileElementsMounted != null;
   const whileElementsMountedRef = useLatestRef(whileElementsMounted);
   const platformRef = useLatestRef(platform);
   const update = external_React_.useCallback(() => {
@@ -32235,18 +32336,17 @@ function useFloating(options) {
       isMountedRef.current = false;
     };
   }, []);
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: `hasWhileElementsMounted` is intentionally included.
   index(() => {
     if (referenceEl) referenceRef.current = referenceEl;
     if (floatingEl) floatingRef.current = floatingEl;
     if (referenceEl && floatingEl) {
       if (whileElementsMountedRef.current) {
         return whileElementsMountedRef.current(referenceEl, floatingEl, update);
+      } else {
+        update();
       }
-      update();
     }
-  }, [referenceEl, floatingEl, update, whileElementsMountedRef, hasWhileElementsMounted]);
+  }, [referenceEl, floatingEl, update, whileElementsMountedRef]);
   const refs = external_React_.useMemo(() => ({
     reference: referenceRef,
     floating: floatingRef,
@@ -32266,8 +32366,8 @@ function useFloating(options) {
     if (!elements.floating) {
       return initialStyles;
     }
-    const x = floating_ui_react_dom_roundByDPR(elements.floating, data.x);
-    const y = floating_ui_react_dom_roundByDPR(elements.floating, data.y);
+    const x = floating_ui_react_dom_esm_roundByDPR(elements.floating, data.x);
+    const y = floating_ui_react_dom_esm_roundByDPR(elements.floating, data.y);
     if (transform) {
       return {
         ...initialStyles,
@@ -34295,7 +34395,7 @@ const UnconnectedPopover = (props, forwardedRef) => {
     crossAxis: true,
     limiter: floating_ui_dom_limitShift(),
     padding: 1 // Necessary to avoid flickering at the edge of the viewport.
-  }), floating_ui_react_dom_arrow({
+  }), floating_ui_react_dom_esm_arrow({
     element: arrowRef
   })];
   const slotName = (0,external_wp_element_namespaceObject.useContext)(slotNameContext) || __unstableSlotName;
@@ -36195,11 +36295,14 @@ function ToggleGroupControlOptionBase(props, forwardedRef) {
     }),
     value: value
   }, (0,external_React_.createElement)(component_ButtonContentView, null, children))), isPressed ? (0,external_React_.createElement)(motion.div, {
+    layout: true,
+    layoutRoot: true
+  }, (0,external_React_.createElement)(motion.div, {
     className: backdropClasses,
     transition: shouldReduceMotion ? REDUCED_MOTION_TRANSITION_CONFIG : undefined,
     role: "presentation",
     layoutId: LAYOUT_ID
-  }) : null);
+  })) : null);
 }
 
 /**
@@ -45787,7 +45890,7 @@ function NameInput({
 }
 
 /**
- * Returns a name for a palette item in the format "Color + id".
+ * Returns a name and slug for a palette item. The name takes the format "Color + id".
  * To ensure there are no duplicate ids, this function checks all slugs.
  * It expects slugs to be in the format: slugPrefix + color- + number.
  * It then sets the id component of the new name based on the incremented id of the highest existing slug id.
@@ -45795,9 +45898,9 @@ function NameInput({
  * @param elements   An array of color palette items.
  * @param slugPrefix The slug prefix used to match the element slug.
  *
- * @return A unique name for a palette item.
+ * @return A name and slug for the new palette item.
  */
-function getNameForPosition(elements, slugPrefix) {
+function getNameAndSlugForPosition(elements, slugPrefix) {
   const nameRegex = new RegExp(`^${slugPrefix}color-([\\d]+)$`);
   const position = elements.reduce((previousValue, currentValue) => {
     if (typeof currentValue?.slug === 'string') {
@@ -45811,8 +45914,11 @@ function getNameForPosition(elements, slugPrefix) {
     }
     return previousValue;
   }, 1);
-  return (0,external_wp_i18n_namespaceObject.sprintf)( /* translators: %s: is an id for a custom color */
-  (0,external_wp_i18n_namespaceObject.__)('Color %s'), position);
+  return {
+    name: (0,external_wp_i18n_namespaceObject.sprintf)( /* translators: %s: is an id for a custom color */
+    (0,external_wp_i18n_namespaceObject.__)('Color %s'), position),
+    slug: `${slugPrefix}color-${position}`
+  };
 }
 function ColorPickerPopover({
   isGradient,
@@ -46040,18 +46146,21 @@ function PaletteEdit({
     icon: library_plus,
     label: isGradient ? (0,external_wp_i18n_namespaceObject.__)('Add gradient') : (0,external_wp_i18n_namespaceObject.__)('Add color'),
     onClick: () => {
-      const optionName = getNameForPosition(elements, slugPrefix);
+      const {
+        name,
+        slug
+      } = getNameAndSlugForPosition(elements, slugPrefix);
       if (!!gradients) {
         onChange([...gradients, {
           gradient: DEFAULT_GRADIENT,
-          name: optionName,
-          slug: slugPrefix + kebabCase(optionName)
+          name,
+          slug
         }]);
       } else {
         onChange([...colors, {
           color: DEFAULT_COLOR,
-          name: optionName,
-          slug: slugPrefix + kebabCase(optionName)
+          name,
+          slug
         }]);
       }
       setIsEditing(true);
@@ -46061,7 +46170,7 @@ function PaletteEdit({
     icon: more_vertical,
     label: isGradient ? (0,external_wp_i18n_namespaceObject.__)('Gradient options') : (0,external_wp_i18n_namespaceObject.__)('Color options'),
     toggleProps: {
-      isSmall: true
+      size: 'small'
     }
   }, ({
     onClose
@@ -55504,7 +55613,7 @@ const DayButton = /*#__PURE__*/emotion_styled_base_browser_esm(build_module_butt
 		justify-self: end;
 		`, " ", props => props.disabled && `
 		pointer-events: none;
-		`, " &&&{border-radius:100%;height:", space(8), ";width:", space(8), ";", props => props.isSelected && `
+		`, " &&&{border-radius:100%;height:", space(7), ";width:", space(7), ";", props => props.isSelected && `
 			background: ${COLORS.theme.accent};
 			color: ${COLORS.white};
 			`, " ", props => !props.isSelected && props.isToday && `
@@ -59046,7 +59155,7 @@ const form_token_field_identity = value => value;
  * Tokens are separated by the "," character. Suggestions can be selected with the up or down arrows and added with the tab or enter key.
  *
  * The `value` property is handled in a manner similar to controlled form components.
- * See [Forms](http://facebook.github.io/react/docs/forms.html) in the React Documentation for more information.
+ * See [Forms](https://react.dev/reference/react-dom/components#form-components) in the React Documentation for more information.
  */
 function FormTokenField(props) {
   const {
@@ -65520,9 +65629,10 @@ function UnforwardedSnackbar({
     className: classes,
     onClick: !explicitDismiss ? dismissMe : undefined,
     tabIndex: 0,
-    role: !explicitDismiss ? 'button' : '',
+    role: !explicitDismiss ? 'button' : undefined,
     onKeyPress: !explicitDismiss ? dismissMe : undefined,
-    "aria-label": !explicitDismiss ? (0,external_wp_i18n_namespaceObject.__)('Dismiss this notice') : ''
+    "aria-label": !explicitDismiss ? (0,external_wp_i18n_namespaceObject.__)('Dismiss this notice') : undefined,
+    "data-testid": "snackbar"
   }, (0,external_React_.createElement)("div", {
     className: snackbarContentClassnames
   }, icon && (0,external_React_.createElement)("div", {
@@ -65639,7 +65749,8 @@ function SnackbarList({
   return (0,external_React_.createElement)("div", {
     className: className,
     tabIndex: -1,
-    ref: listRef
+    ref: listRef,
+    "data-testid": "snackbar-list"
   }, children, (0,external_React_.createElement)(AnimatePresence, null, notices.map(notice => {
     const {
       content,
@@ -66451,7 +66562,7 @@ const TextControl = (0,external_wp_element_namespaceObject.forwardRef)(Unforward
 
 
 
-const inputStyleNeutral = /*#__PURE__*/emotion_react_browser_esm_css("box-shadow:0 0 0 transparent;transition:box-shadow 0.1s linear;border-radius:", config_values.radiusBlockUi, ";border:", config_values.borderWidth, " solid ", COLORS.ui.border, ";" + ( true ? "" : 0),  true ? "" : 0);
+const inputStyleNeutral = /*#__PURE__*/emotion_react_browser_esm_css("box-shadow:0 0 0 transparent;transition:box-shadow 0.1s linear;border-radius:", config_values.radiusBlockUi, ";border:", config_values.borderWidth, " solid ", COLORS.ui.border, ";", reduceMotion('transition'), ";" + ( true ? "" : 0),  true ? "" : 0);
 const inputStyleFocus = /*#__PURE__*/emotion_react_browser_esm_css("border-color:", COLORS.theme.accent, ";box-shadow:0 0 0 calc( ", config_values.borderWidthFocus, " - ", config_values.borderWidth, " ) ", COLORS.theme.accent, ";outline:2px solid transparent;" + ( true ? "" : 0),  true ? "" : 0);
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/utils/breakpoint-values.js
@@ -67687,7 +67798,7 @@ const component_ToolsPanelHeader = (props, forwardedRef) => {
       className: dropdownMenuClassName
     },
     toggleProps: {
-      isSmall: true,
+      size: 'small',
       describedBy: dropdownMenuDescriptionText
     }
   }, () => (0,external_React_.createElement)(external_React_.Fragment, null, (0,external_React_.createElement)(menu_group, {
@@ -72345,7 +72456,7 @@ const tabpanel_TabPanel = (0,external_wp_element_namespaceObject.forwardRef)(fun
 
 function Tabs({
   selectOnMove = true,
-  initialTabId,
+  defaultTabId,
   orientation = 'horizontal',
   onSelect,
   children,
@@ -72355,7 +72466,7 @@ function Tabs({
   const store = useTabStore({
     selectOnMove,
     orientation,
-    defaultSelectedId: initialTabId && `${instanceId}-${initialTabId}`,
+    defaultSelectedId: defaultTabId && `${instanceId}-${defaultTabId}`,
     setSelectedId: selectedId => {
       const strippedDownId = typeof selectedId === 'string' ? selectedId.replace(`${instanceId}-`, '') : selectedId;
       onSelect?.(strippedDownId);
@@ -72385,7 +72496,7 @@ function Tabs({
     // Ariakit internally refers to disabled tabs as `dimmed`.
     return !item.dimmed;
   });
-  const initialTab = items.find(item => item.id === `${instanceId}-${initialTabId}`);
+  const initialTab = items.find(item => item.id === `${instanceId}-${defaultTabId}`);
 
   // Handle selecting the initial tab.
   (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
@@ -72396,8 +72507,8 @@ function Tabs({
     // Wait for the denoted initial tab to be declared before making a
     // selection. This ensures that if a tab is declared lazily it can
     // still receive initial selection, as well as ensuring no tab is
-    // selected if an invalid `initialTabId` is provided.
-    if (initialTabId && !initialTab) {
+    // selected if an invalid `defaultTabId` is provided.
+    if (defaultTabId && !initialTab) {
       return;
     }
 
@@ -72415,7 +72526,7 @@ function Tabs({
         setSelectedId(null);
       }
     }
-  }, [firstEnabledTab, initialTab, initialTabId, isControlled, items, selectedId, setSelectedId]);
+  }, [firstEnabledTab, initialTab, defaultTabId, isControlled, items, selectedId, setSelectedId]);
 
   // Handle the currently selected tab becoming disabled.
   (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
@@ -72431,7 +72542,7 @@ function Tabs({
     }
 
     // If the currently selected tab becomes disabled, fall back to the
-    // `initialTabId` if possible. Otherwise select the first
+    // `defaultTabId` if possible. Otherwise select the first
     // enabled tab (if there is one).
     if (initialTab && !initialTab.dimmed) {
       setSelectedId(initialTab.id);
