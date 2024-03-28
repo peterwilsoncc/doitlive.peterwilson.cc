@@ -5931,6 +5931,8 @@ __webpack_require__.d(selectors_namespaceObject, {
 var private_selectors_namespaceObject = {};
 __webpack_require__.r(private_selectors_namespaceObject);
 __webpack_require__.d(private_selectors_namespaceObject, {
+  getAllBlockBindingsSources: () => (getAllBlockBindingsSources),
+  getBlockBindingsSource: () => (getBlockBindingsSource),
   getBootstrappedBlockType: () => (getBootstrappedBlockType),
   getSupportedStyles: () => (getSupportedStyles),
   getUnprocessedBlockTypes: () => (getUnprocessedBlockTypes)
@@ -5963,7 +5965,8 @@ var private_actions_namespaceObject = {};
 __webpack_require__.r(private_actions_namespaceObject);
 __webpack_require__.d(private_actions_namespaceObject, {
   addBootstrappedBlockType: () => (addBootstrappedBlockType),
-  addUnprocessedBlockType: () => (addUnprocessedBlockType)
+  addUnprocessedBlockType: () => (addUnprocessedBlockType),
+  registerBlockBindingsSource: () => (registerBlockBindingsSource)
 });
 
 ;// CONCATENATED MODULE: external ["wp","data"]
@@ -6504,6 +6507,11 @@ const __EXPERIMENTAL_STYLE_PROPERTY = {
     value: ['color', 'background'],
     support: ['color', 'background'],
     requiresOptOut: true,
+    useEngine: true
+  },
+  backgroundImage: {
+    value: ['background', 'backgroundImage'],
+    support: ['background', 'backgroundImage'],
     useEngine: true
   },
   backgroundRepeat: {
@@ -7624,6 +7632,9 @@ function getBlockLabel(blockType, attributes, context = 'visual') {
   if (!label) {
     return title;
   }
+  if (label.toPlainText) {
+    return label.toPlainText();
+  }
 
   // Strip any HTML (i.e. RichText formatting) before returning.
   return (0,external_wp_dom_namespaceObject.__unstableStripHTML)(label);
@@ -8084,6 +8095,20 @@ function collections(state = {}, action) {
   }
   return state;
 }
+function blockBindingsSources(state = {}, action) {
+  if (action.type === 'REGISTER_BLOCK_BINDINGS_SOURCE') {
+    var _action$lockAttribute;
+    return {
+      ...state,
+      [action.sourceName]: {
+        label: action.sourceLabel,
+        useSource: action.useSource,
+        lockAttributesEditing: (_action$lockAttribute = action.lockAttributesEditing) !== null && _action$lockAttribute !== void 0 ? _action$lockAttribute : true
+      }
+    };
+  }
+  return state;
+}
 /* harmony default export */ const reducer = ((0,external_wp_data_namespaceObject.combineReducers)({
   bootstrappedBlockTypes,
   unprocessedBlockTypes,
@@ -8095,7 +8120,8 @@ function collections(state = {}, action) {
   unregisteredFallbackBlockName,
   groupingBlockName,
   categories,
-  collections
+  collections,
+  blockBindingsSources
 }));
 
 ;// CONCATENATED MODULE: ./node_modules/rememo/rememo.js
@@ -9303,6 +9329,29 @@ function getUnprocessedBlockTypes(state) {
   return state.unprocessedBlockTypes;
 }
 
+/**
+ * Returns all the block bindings sources registered.
+ *
+ * @param {Object} state Data state.
+ *
+ * @return {Object} All the registered sources and their properties.
+ */
+function getAllBlockBindingsSources(state) {
+  return state.blockBindingsSources;
+}
+
+/**
+ * Returns a specific block bindings source.
+ *
+ * @param {Object} state      Data state.
+ * @param {string} sourceName Name of the source to get.
+ *
+ * @return {Object} The specific block binding source and its properties.
+ */
+function getBlockBindingsSource(state, sourceName) {
+  return state.blockBindingsSources[sourceName];
+}
+
 ;// CONCATENATED MODULE: external ["wp","deprecated"]
 const external_wp_deprecated_namespaceObject = window["wp"]["deprecated"];
 var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_namespaceObject);
@@ -9828,6 +9877,21 @@ function addUnprocessedBlockType(name, blockType) {
       return;
     }
     dispatch.addBlockTypes(processedBlockType);
+  };
+}
+
+/**
+ * Register new block bindings source.
+ *
+ * @param {string} source Name of the source to register.
+ */
+function registerBlockBindingsSource(source) {
+  return {
+    type: 'REGISTER_BLOCK_BINDINGS_SOURCE',
+    sourceName: source.name,
+    sourceLabel: source.label,
+    useSource: source.useSource,
+    lockAttributesEditing: source.lockAttributesEditing
   };
 }
 
@@ -15201,6 +15265,28 @@ function doBlocksMatchTemplate(blocks = [], template = []) {
     return name === block.name && doBlocksMatchTemplate(block.innerBlocks, innerBlocksTemplate);
   });
 }
+const isHTMLAttribute = attributeDefinition => attributeDefinition?.source === 'html';
+const isQueryAttribute = attributeDefinition => attributeDefinition?.source === 'query';
+function normalizeAttributes(schema, values) {
+  if (!values) {
+    return {};
+  }
+  return Object.fromEntries(Object.entries(values).map(([key, value]) => [key, normalizeAttribute(schema[key], value)]));
+}
+function normalizeAttribute(definition, value) {
+  if (isHTMLAttribute(definition) && Array.isArray(value)) {
+    // Introduce a deprecated call at this point
+    // When we're confident that "children" format should be removed from the templates.
+
+    return (0,external_wp_element_namespaceObject.renderToString)(value);
+  }
+  if (isQueryAttribute(definition) && value) {
+    return value.map(subValues => {
+      return normalizeAttributes(definition.query, subValues);
+    });
+  }
+  return value;
+}
 
 /**
  * Synchronize a block list with a block template.
@@ -15236,28 +15322,6 @@ function synchronizeBlocksWithTemplate(blocks = [], template) {
     // before creating the blocks.
 
     const blockType = getBlockType(name);
-    const isHTMLAttribute = attributeDefinition => attributeDefinition?.source === 'html';
-    const isQueryAttribute = attributeDefinition => attributeDefinition?.source === 'query';
-    const normalizeAttributes = (schema, values) => {
-      if (!values) {
-        return {};
-      }
-      return Object.fromEntries(Object.entries(values).map(([key, value]) => [key, normalizeAttribute(schema[key], value)]));
-    };
-    const normalizeAttribute = (definition, value) => {
-      if (isHTMLAttribute(definition) && Array.isArray(value)) {
-        // Introduce a deprecated call at this point
-        // When we're confident that "children" format should be removed from the templates.
-
-        return (0,external_wp_element_namespaceObject.renderToString)(value);
-      }
-      if (isQueryAttribute(definition) && value) {
-        return value.map(subValues => {
-          return normalizeAttributes(definition.query, subValues);
-        });
-      }
-      return value;
-    };
     const normalizedAttributes = normalizeAttributes((_blockType$attributes = blockType?.attributes) !== null && _blockType$attributes !== void 0 ? _blockType$attributes : {}, attributes);
     let [blockName, blockAttributes] = convertLegacyBlockNameAndAttributes(name, normalizedAttributes);
 
