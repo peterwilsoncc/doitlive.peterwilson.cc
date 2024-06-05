@@ -5,6 +5,10 @@
 
 namespace Automattic\Jetpack_Boost\Modules\Optimizations\Page_Cache\Pre_WordPress;
 
+use WP_Comment;
+use WP_Error;
+use WP_Post;
+
 /*
  * Require all pre-wordpress files here. These files aren't autoloaded as they are loaded before WordPress is fully initialized.
  * pre-wordpress files assume all other pre-wordpress files are loaded here.
@@ -41,7 +45,12 @@ class Boost_Cache {
 	private $request = null;
 
 	/**
-	 * @param $storage - Optionally provide a Boost_Cache_Storage subclass to handle actually storing and retrieving cached content. Defaults to a new instance of File_Storage.
+	 * @var bool - Indicates whether the cache engine has been loaded.
+	 */
+	private static $cache_engine_loaded = false;
+
+	/**
+	 * @param ?Storage\Storage $storage - Optionally provide a Storage subclass to handle actually storing and retrieving cached content. Defaults to a new instance of File_Storage.
 	 */
 	public function __construct( $storage = null ) {
 		$this->settings = Boost_Cache_Settings::get_instance();
@@ -67,13 +76,29 @@ class Boost_Cache {
 	 * Serve the cached page if it exists, otherwise start output buffering.
 	 */
 	public function serve() {
-		if ( ! $this->settings->get_enabled() || ! $this->request->is_cacheable() ) {
+		if ( ! $this->settings->get_enabled() ) {
+			return;
+		}
+
+		// Indicate that the cache engine has been loaded.
+		self::$cache_engine_loaded = true;
+
+		if ( ! $this->request->is_cacheable() ) {
 			return;
 		}
 
 		if ( ! $this->serve_cached() ) {
 			$this->ob_start();
 		}
+	}
+
+	/**
+	 * Check if the cache engine has been loaded.
+	 *
+	 * @return bool - True if the cache engine has been loaded, false otherwise.
+	 */
+	public static function is_loaded() {
+		return self::$cache_engine_loaded;
 	}
 
 	/**
@@ -157,8 +182,6 @@ class Boost_Cache {
 	/**
 	 * Delete the cache for the front page and paged archives.
 	 * This is called when a post is edited, deleted, or published.
-	 *
-	 * @param WP_Post $post - The post that should be deleted.
 	 */
 	public function delete_cache_for_front_page() {
 		if ( get_option( 'show_on_front' ) === 'page' ) {
@@ -193,8 +216,8 @@ class Boost_Cache {
 	/**
 	 * Delete the cache for the post if the comment transitioned from one state to another.
 	 *
-	 * @param string $new_status - The new status of the comment.
-	 * @param string $old_status - The old status of the comment.
+	 * @param string     $new_status - The new status of the comment.
+	 * @param string     $old_status - The old status of the comment.
 	 * @param WP_Comment $comment - The comment that transitioned.
 	 */
 	public function delete_on_comment_transition( $new_status, $old_status, $comment ) {
@@ -216,7 +239,7 @@ class Boost_Cache {
 	 * After editing a comment, delete the cache for the post if the comment is approved.
 	 * If changing state and editing, both actions will be called, but the cache will only be deleted once.
 	 *
-	 * @param int $comment_id - The id of the comment.
+	 * @param int   $comment_id - The id of the comment.
 	 * @param array $commentdata - The comment data.
 	 */
 	public function delete_on_comment_edit( $comment_id, $commentdata ) {
@@ -231,8 +254,8 @@ class Boost_Cache {
 	 * After a comment is posted, delete the cache for the post if the comment is approved.
 	 * If the comment is not approved, only delete the cache for this post for this visitor.
 	 *
-	 * @param int $comment_id - The id of the comment.
-	 * @param int $comment_approved - The approval status of the comment.
+	 * @param int   $comment_id - The id of the comment.
+	 * @param int   $comment_approved - The approval status of the comment.
 	 * @param array $commentdata - The comment data.
 	 */
 	public function delete_on_comment_post( $comment_id, $comment_approved, $commentdata ) {
@@ -244,7 +267,8 @@ class Boost_Cache {
 		 */
 		if ( $comment_approved !== 1 ) {
 			$parameters = $this->request->get_parameters();
-			/**
+
+			/*
 			 * if there are no cookies, then visitor did not click "remember me".
 			 * No need to delete the cache for this visitor as they'll be
 			 * redirected to a page with a hash in the URL for the moderation
@@ -273,8 +297,8 @@ class Boost_Cache {
 	/**
 	 * Delete the cached post if it transitioned from one state to another.
 	 *
-	 * @param string $new_status - The new status of the post.
-	 * @param string $old_status - The old status of the post.
+	 * @param string  $new_status - The new status of the post.
+	 * @param string  $old_status - The old status of the post.
 	 * @param WP_Post $post - The post that transitioned.
 	 */
 	public function delete_on_post_transition( $new_status, $old_status, $post ) {
@@ -313,7 +337,7 @@ class Boost_Cache {
 	/**
 	 * Delete the cache for the post if it was trashed.
 	 *
-	 * @param int $post_id - The id of the post.
+	 * @param int    $post_id - The id of the post.
 	 * @param string $old_status - The old status of the post.
 	 */
 	public function delete_on_post_trash( $post_id, $old_status ) {

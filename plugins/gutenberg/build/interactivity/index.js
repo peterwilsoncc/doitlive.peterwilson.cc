@@ -68,7 +68,7 @@ var deepsignal_module_a=new WeakMap,deepsignal_module_o=new WeakMap,deepsignal_m
  * Internal dependencies
  */
 
-const isObject = item => item && typeof item === 'object' && item.constructor === Object;
+const isObject = item => Boolean(item && typeof item === 'object' && item.constructor === Object);
 const deepMerge = (target, source) => {
   if (isObject(target) && isObject(source)) {
     for (const key in source) {
@@ -78,7 +78,9 @@ const deepMerge = (target, source) => {
           get: getter
         });
       } else if (isObject(source[key])) {
-        if (!target[key]) target[key] = {};
+        if (!target[key]) {
+          target[key] = {};
+        }
         deepMerge(target[key], source[key]);
       } else {
         try {
@@ -171,7 +173,9 @@ const handlers = {
             resetScope();
             resetNamespace();
           }
-          if (it.done) break;
+          if (it.done) {
+            break;
+          }
         }
         return value;
       };
@@ -192,7 +196,9 @@ const handlers = {
     }
 
     // Check if the property is an object. If it is, proxyify it.
-    if (isObject(result)) return proxify(result, ns);
+    if (isObject(result)) {
+      return proxify(result, ns);
+    }
     return result;
   },
   // Prevents passing the current proxy as the receiver to the deepSignal.
@@ -331,8 +337,17 @@ const populateInitialData = data => {
 // Parse and populate the initial state and config.
 const data = parseInitialData();
 populateInitialData(data);
+;// CONCATENATED MODULE: ./packages/interactivity/build-module/utils/warn.js
+const logged = new Set();
+const warn = message => {
+  // @ts-expect-error
+  if (false) {}
+};
 ;// CONCATENATED MODULE: ./packages/interactivity/build-module/hooks.js
 /* @jsx createElement */
+
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable react-hooks/exhaustive-deps */
 
 /**
  * External dependencies
@@ -342,6 +357,7 @@ populateInitialData(data);
 /**
  * Internal dependencies
  */
+
 
 // Main context.
 const context = F({});
@@ -360,7 +376,9 @@ const immutableHandlers = {
   deleteProperty: immutableError
 };
 const deepImmutable = target => {
-  if (!immutableMap.has(target)) immutableMap.set(target, new Proxy(target, immutableHandlers));
+  if (!immutableMap.has(target)) {
+    immutableMap.set(target, new Proxy(target, immutableHandlers));
+  }
   return immutableMap.get(target);
 };
 
@@ -500,18 +518,24 @@ const directive = (name, callback, {
 
 // Resolve the path to some property of the store object.
 const resolve = (path, namespace) => {
+  if (!namespace) {
+    warn(`The "namespace" cannot be "{}", "null" or an empty string. Path: ${path}`);
+    return;
+  }
   let resolvedStore = stores.get(namespace);
   if (typeof resolvedStore === 'undefined') {
     resolvedStore = store(namespace, undefined, {
       lock: universalUnlock
     });
   }
-  let current = {
+  const current = {
     ...resolvedStore,
     context: getScope().context[namespace]
   };
-  path.split('.').forEach(p => current = current[p]);
-  return current;
+  try {
+    // TODO: Support lazy/dynamically initialized stores
+    return path.split('.').reduce((acc, key) => acc[key], current);
+  } catch (e) {}
 };
 
 // Generate the evaluate function.
@@ -596,7 +620,9 @@ const Directives = ({
   setScope(scope);
   for (const directiveName of currentPriorityLevel) {
     const wrapper = directiveCallbacks[directiveName]?.(directiveArgs);
-    if (wrapper !== undefined) props.children = wrapper;
+    if (wrapper !== undefined) {
+      props.children = wrapper;
+    }
   }
   resetScope();
   return props.children;
@@ -608,9 +634,11 @@ l.vnode = vnode => {
   if (vnode.props.__directives) {
     const props = vnode.props;
     const directives = props.__directives;
-    if (directives.key) vnode.key = directives.key.find(({
-      suffix
-    }) => suffix === 'default').value;
+    if (directives.key) {
+      vnode.key = directives.key.find(({
+        suffix
+      }) => suffix === 'default').value;
+    }
     delete props.__directives;
     const priorityLevels = getPriorityLevels(directives);
     if (priorityLevels.length > 0) {
@@ -625,7 +653,9 @@ l.vnode = vnode => {
       vnode.type = Directives;
     }
   }
-  if (old) old(vnode);
+  if (old) {
+    old(vnode);
+  }
 };
 ;// CONCATENATED MODULE: ./packages/interactivity/build-module/utils.js
 /**
@@ -638,6 +668,12 @@ l.vnode = vnode => {
  * Internal dependencies
  */
 
+/**
+ * Executes a callback function after the next frame is rendered.
+ *
+ * @param callback The callback function to be executed.
+ * @return A promise that resolves after the callback function is executed.
+ */
 const afterNextFrame = callback => {
   return new Promise(resolve => {
     const done = () => {
@@ -653,12 +689,20 @@ const afterNextFrame = callback => {
   });
 };
 
-// Using the mangled properties:
-// this.c: this._callback
-// this.x: this._compute
-// https://github.com/preactjs/signals/blob/main/mangle.json
+/**
+ * Creates a Flusher object that can be used to flush computed values and notify listeners.
+ *
+ * Using the mangled properties:
+ * this.c: this._callback
+ * this.x: this._compute
+ * https://github.com/preactjs/signals/blob/main/mangle.json
+ *
+ * @param compute The function that computes the value to be flushed.
+ * @param notify  The function that notifies listeners when the value is flushed.
+ * @return The Flusher object with `flush` and `dispose` properties.
+ */
 function createFlusher(compute, notify) {
-  let flush;
+  let flush = () => undefined;
   const dispose = signals_core_module_E(function () {
     flush = this.c.bind(this);
     this.x = compute;
@@ -671,9 +715,14 @@ function createFlusher(compute, notify) {
   };
 }
 
-// Version of `useSignalEffect` with a `useEffect`-like execution. This hook
-// implementation comes from this PR, but we added short-cirtuiting to avoid
-// infinite loops: https://github.com/preactjs/signals/pull/290
+/**
+ * Custom hook that executes a callback function whenever a signal is triggered.
+ * Version of `useSignalEffect` with a `useEffect`-like execution. This hook
+ * implementation comes from this PR, but we added short-cirtuiting to avoid
+ * infinite loops: https://github.com/preactjs/signals/pull/290
+ *
+ * @param callback The callback function to be executed.
+ */
 function utils_useSignalEffect(callback) {
   hooks_module_p(() => {
     let eff = null;
@@ -695,10 +744,14 @@ function utils_useSignalEffect(callback) {
  * accessible whenever the function runs. This is primarily to make the scope
  * available inside hook callbacks.
  *
- * @param {Function} func The passed function.
- * @return {Function} The wrapped function.
+ * Asyncronous functions should use generators that yield promises instead of awaiting them.
+ * See the documentation for details: https://developer.wordpress.org/block-editor/reference-guides/packages/packages-interactivity/packages-interactivity-api-reference/#the-store
+ *
+ * @param func The passed function.
+ * @return The wrapped function.
  */
-const withScope = func => {
+
+function withScope(func) {
   const scope = getScope();
   const ns = getNamespace();
   if (func?.constructor?.name === 'GeneratorFunction') {
@@ -720,7 +773,9 @@ const withScope = func => {
         } catch (e) {
           gen.throw(e);
         }
-        if (it.done) break;
+        if (it.done) {
+          break;
+        }
       }
       return value;
     };
@@ -735,7 +790,7 @@ const withScope = func => {
       resetScope();
     }
   };
-};
+}
 
 /**
  * Accepts a function that contains imperative code which runs whenever any of
@@ -745,7 +800,7 @@ const withScope = func => {
  * This hook makes the element's scope available so functions like
  * `getElement()` and `getContext()` can be used inside the passed callback.
  *
- * @param {Function} callback The hook callback.
+ * @param callback The hook callback.
  */
 function useWatch(callback) {
   utils_useSignalEffect(withScope(callback));
@@ -758,7 +813,7 @@ function useWatch(callback) {
  * This hook makes the element's scope available so functions like
  * `getElement()` and `getContext()` can be used inside the passed callback.
  *
- * @param {Function} callback The hook callback.
+ * @param callback The hook callback.
  */
 function useInit(callback) {
   hooks_module_p(withScope(callback), []);
@@ -772,10 +827,10 @@ function useInit(callback) {
  * available so functions like `getElement()` and `getContext()` can be used
  * inside the passed callback.
  *
- * @param {Function} callback Imperative function that can return a cleanup
- *                            function.
- * @param {any[]}    inputs   If present, effect will only activate if the
- *                            values in the list change (using `===`).
+ * @param callback Imperative function that can return a cleanup
+ *                 function.
+ * @param inputs   If present, effect will only activate if the
+ *                 values in the list change (using `===`).
  */
 function useEffect(callback, inputs) {
   hooks_module_p(withScope(callback), inputs);
@@ -789,10 +844,10 @@ function useEffect(callback, inputs) {
  * scope available so functions like `getElement()` and `getContext()` can be
  * used inside the passed callback.
  *
- * @param {Function} callback Imperative function that can return a cleanup
- *                            function.
- * @param {any[]}    inputs   If present, effect will only activate if the
- *                            values in the list change (using `===`).
+ * @param callback Imperative function that can return a cleanup
+ *                 function.
+ * @param inputs   If present, effect will only activate if the
+ *                 values in the list change (using `===`).
  */
 function useLayoutEffect(callback, inputs) {
   hooks_module_y(withScope(callback), inputs);
@@ -806,13 +861,14 @@ function useLayoutEffect(callback, inputs) {
  * scope available so functions like `getElement()` and `getContext()` can be
  * used inside the passed callback.
  *
- * @param {Function} callback Imperative function that can return a cleanup
- *                            function.
- * @param {any[]}    inputs   If present, effect will only activate if the
- *                            values in the list change (using `===`).
+ * @param callback Callback function.
+ * @param inputs   If present, the callback will only be updated if the
+ *                 values in the list change (using `===`).
+ *
+ * @return The callback function.
  */
 function useCallback(callback, inputs) {
-  hooks_module_T(withScope(callback), inputs);
+  return hooks_module_T(withScope(callback), inputs);
 }
 
 /**
@@ -823,22 +879,30 @@ function useCallback(callback, inputs) {
  * available so functions like `getElement()` and `getContext()` can be used
  * inside the passed factory function.
  *
- * @param {Function} factory Imperative function that can return a cleanup
- *                           function.
- * @param {any[]}    inputs  If present, effect will only activate if the
- *                           values in the list change (using `===`).
+ * @param factory Factory function that returns that value for memoization.
+ * @param inputs  If present, the factory will only be run to recompute if
+ *                the values in the list change (using `===`).
+ *
+ * @return The memoized value.
  */
 function useMemo(factory, inputs) {
-  hooks_module_F(withScope(factory), inputs);
+  return hooks_module_F(withScope(factory), inputs);
 }
 
-// For wrapperless hydration.
-// See https://gist.github.com/developit/f4c67a2ede71dc2fab7f357f39cff28c
+/**
+ * Creates a root fragment by replacing a node or an array of nodes in a parent element.
+ * For wrapperless hydration.
+ * See https://gist.github.com/developit/f4c67a2ede71dc2fab7f357f39cff28c
+ *
+ * @param parent      The parent element where the nodes will be replaced.
+ * @param replaceNode The node or array of nodes to replace in the parent element.
+ * @return The created root fragment.
+ */
 const createRootFragment = (parent, replaceNode) => {
   replaceNode = [].concat(replaceNode);
-  const s = replaceNode[replaceNode.length - 1].nextSibling;
-  function insert(c, r) {
-    parent.insertBefore(c, r || s);
+  const sibling = replaceNode[replaceNode.length - 1].nextSibling;
+  function insert(child, root) {
+    parent.insertBefore(child, root || sibling);
   }
   return parent.__k = {
     nodeType: 1,
@@ -856,15 +920,18 @@ const createRootFragment = (parent, replaceNode) => {
 /**
  * Transforms a kebab-case string to camelCase.
  *
- * @param {string} str The kebab-case string to transform to camelCase.
- * @return {string} The transformed camelCase string.
+ * @param str The kebab-case string to transform to camelCase.
+ * @return The transformed camelCase string.
  */
 function kebabToCamelCase(str) {
-  return str.replace(/^-+|-+$/g, '').toLowerCase().replace(/-([a-z])/g, function (match, group1) {
+  return str.replace(/^-+|-+$/g, '').toLowerCase().replace(/-([a-z])/g, function (_match, group1) {
     return group1.toUpperCase();
   });
 }
 ;// CONCATENATED MODULE: ./packages/interactivity/build-module/directives.js
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable react-hooks/exhaustive-deps */
+
 /* @jsx createElement */
 
 /**
@@ -881,6 +948,7 @@ function kebabToCamelCase(str) {
 
 
 
+
 // Assigned objects should be ignore during proxification.
 const contextAssignedObjects = new WeakMap();
 
@@ -888,7 +956,7 @@ const contextAssignedObjects = new WeakMap();
 const contextObjectToProxy = new WeakMap();
 const contextProxyToObject = new WeakMap();
 const contextObjectToFallback = new WeakMap();
-const isPlainObject = item => item && typeof item === 'object' && item.constructor === Object;
+const isPlainObject = item => Boolean(item && typeof item === 'object' && item.constructor === Object);
 const descriptor = Reflect.getOwnPropertyDescriptor;
 
 /**
@@ -900,10 +968,10 @@ const descriptor = Reflect.getOwnPropertyDescriptor;
  * By default, all plain objects inside the context are wrapped, unless it is
  * listed in the `ignore` option.
  *
- * @param {Object} current   Current context.
- * @param {Object} inherited Inherited context, used as fallback.
+ * @param current   Current context.
+ * @param inherited Inherited context, used as fallback.
  *
- * @return {Object} The wrapped context object.
+ * @return The wrapped context object.
  */
 const proxifyContext = (current, inherited = {}) => {
   // Update the fallback object reference when it changes.
@@ -977,8 +1045,8 @@ const proxifyContext = (current, inherited = {}) => {
 /**
  * Recursively update values within a deepSignal object.
  *
- * @param {Object} target A deepSignal instance.
- * @param {Object} source Object with properties to update in `target`
+ * @param target A deepSignal instance.
+ * @param source Object with properties to update in `target`.
  */
 const updateSignals = (target, source) => {
   for (const k in source) {
@@ -993,10 +1061,10 @@ const updateSignals = (target, source) => {
 /**
  * Recursively clone the passed object.
  *
- * @param {Object} source Source object.
- * @return {Object} Cloned object.
+ * @param source Source object.
+ * @return Cloned object.
  */
-const deepClone = source => {
+function deepClone(source) {
   if (isPlainObject(source)) {
     return Object.fromEntries(Object.entries(source).map(([key, value]) => [key, deepClone(value)]));
   }
@@ -1004,7 +1072,7 @@ const deepClone = source => {
     return source.map(i => deepClone(i));
   }
   return source;
-};
+}
 const newRule = /(?:([\u0080-\uFFFF\w-%@]+) *:? *([^{;]+?);|([^;}{]*?) *{)|(}\s*)/g;
 const ruleClean = /\/\*[^]*?\*\/|  +/g;
 const ruleNewline = /\n+/g;
@@ -1016,8 +1084,8 @@ const empty = ' ';
  * Made by Cristian Bote (@cristianbote) for Goober.
  * https://unpkg.com/browse/goober@2.1.13/src/core/astish.js
  *
- * @param {string} val CSS string.
- * @return {Object} CSS object.
+ * @param val CSS string.
+ * @return CSS object.
  */
 const cssStringToObject = val => {
   const tree = [{}];
@@ -1039,23 +1107,25 @@ const cssStringToObject = val => {
  * Creates a directive that adds an event listener to the global window or
  * document object.
  *
- * @param {string} type 'window' or 'document'
- * @return {void}
+ * @param type 'window' or 'document'
  */
-const getGlobalEventDirective = type => ({
-  directives,
-  evaluate
-}) => {
-  directives[`on-${type}`].filter(({
-    suffix
-  }) => suffix !== 'default').forEach(entry => {
-    useInit(() => {
-      const cb = event => evaluate(entry, event);
-      const globalVar = type === 'window' ? window : document;
-      globalVar.addEventListener(entry.suffix, cb);
-      return () => globalVar.removeEventListener(entry.suffix, cb);
-    }, []);
-  });
+const getGlobalEventDirective = type => {
+  return ({
+    directives,
+    evaluate
+  }) => {
+    directives[`on-${type}`].filter(({
+      suffix
+    }) => suffix !== 'default').forEach(entry => {
+      const eventName = entry.suffix.split('--', 1)[0];
+      useInit(() => {
+        const cb = event => evaluate(entry, event);
+        const globalVar = type === 'window' ? window : document;
+        globalVar.addEventListener(eventName, cb);
+        return () => globalVar.removeEventListener(eventName, cb);
+      });
+    });
+  };
 };
 /* harmony default export */ const directives = (() => {
   // data-wp-context
@@ -1084,6 +1154,10 @@ const getGlobalEventDirective = type => ({
           namespace,
           value
         } = defaultEntry;
+        // Check that the value is a JSON object. Send a console warning if not.
+        if (!isPlainObject(value)) {
+          warn(`The value of data-wp-context in "${namespace}" store must be a valid stringified JSON object.`);
+        }
         updateSignals(currentValue.current, {
           [namespace]: deepClone(value)
         });
@@ -1130,11 +1204,21 @@ const getGlobalEventDirective = type => ({
     element,
     evaluate
   }) => {
+    const events = new Map();
     on.filter(({
       suffix
     }) => suffix !== 'default').forEach(entry => {
-      element.props[`on${entry.suffix}`] = event => {
-        evaluate(entry, event);
+      const event = entry.suffix.split('--')[0];
+      if (!events.has(event)) {
+        events.set(event, new Set());
+      }
+      events.get(event).add(entry);
+    });
+    events.forEach((entries, eventType) => {
+      element.props[`on${eventType}`] = event => {
+        entries.forEach(entry => {
+          evaluate(entry, event);
+        });
       };
     });
   });
@@ -1159,7 +1243,11 @@ const getGlobalEventDirective = type => ({
       const result = evaluate(entry);
       const currentClass = element.props.class || '';
       const classFinder = new RegExp(`(^|\\s)${className}(\\s|$)`, 'g');
-      if (!result) element.props.class = currentClass.replace(classFinder, ' ').trim();else if (!classFinder.test(currentClass)) element.props.class = currentClass ? `${currentClass} ${className}` : className;
+      if (!result) {
+        element.props.class = currentClass.replace(classFinder, ' ').trim();
+      } else if (!classFinder.test(currentClass)) {
+        element.props.class = currentClass ? `${currentClass} ${className}` : className;
+      }
       useInit(() => {
         /*
          * This seems necessary because Preact doesn't change the class
@@ -1189,8 +1277,14 @@ const getGlobalEventDirective = type => ({
       const styleProp = entry.suffix;
       const result = evaluate(entry);
       element.props.style = element.props.style || {};
-      if (typeof element.props.style === 'string') element.props.style = cssStringToObject(element.props.style);
-      if (!result) delete element.props.style[styleProp];else element.props.style[styleProp] = result;
+      if (typeof element.props.style === 'string') {
+        element.props.style = cssStringToObject(element.props.style);
+      }
+      if (!result) {
+        delete element.props.style[styleProp];
+      } else {
+        element.props.style[styleProp] = result;
+      }
       useInit(() => {
         /*
          * This seems necessary because Preact doesn't change the styles on
@@ -1235,7 +1329,9 @@ const getGlobalEventDirective = type => ({
          * logic: https://github.com/preactjs/preact/blob/ea49f7a0f9d1ff2c98c0bdd66aa0cbc583055246/src/diff/props.js#L110-L129
          */
         if (attribute === 'style') {
-          if (typeof result === 'string') el.style.cssText = result;
+          if (typeof result === 'string') {
+            el.style.cssText = result;
+          }
           return;
         } else if (attribute !== 'width' && attribute !== 'height' && attribute !== 'href' && attribute !== 'list' && attribute !== 'form' &&
         /*
@@ -1301,6 +1397,10 @@ const getGlobalEventDirective = type => ({
     const entry = text.find(({
       suffix
     }) => suffix === 'default');
+    if (!entry) {
+      element.props.children = null;
+      return;
+    }
     try {
       const result = evaluate(entry);
       element.props.children = typeof result === 'object' ? null : result.toString();
@@ -1329,7 +1429,9 @@ const getGlobalEventDirective = type => ({
     element,
     evaluate
   }) => {
-    if (element.type !== 'template') return;
+    if (element.type !== 'template') {
+      return;
+    }
     const {
       Provider
     } = inheritedContext;
@@ -1377,6 +1479,7 @@ const directivePrefix = 'wp';
  * Internal dependencies
  */
 
+
 const ignoreAttr = `data-${directivePrefix}-ignore`;
 const islandAttr = `data-${directivePrefix}-interactive`;
 const fullPrefix = `data-${directivePrefix}-`;
@@ -1403,76 +1506,102 @@ const directiveParser = new RegExp(`^data-${directivePrefix}-` +
 // the reference, separated by `::`, like `some-namespace::state.somePath`.
 // Namespaces can contain any alphanumeric characters, hyphens, underscores or
 // forward slashes. References don't have any restrictions.
-const nsPathRegExp = /^([\w-_\/]+)::(.+)$/;
+const nsPathRegExp = /^(?<namespace>[\w_\/-]+)::(?<value>.+)$/;
 const hydratedIslands = new WeakSet();
 
 /**
  * Recursive function that transforms a DOM tree into vDOM.
  *
- * @param {Node} root The root element or node to start traversing on.
- * @return {import('preact').VNode[]} The resulting vDOM tree.
+ * @param root The root element or node to start traversing on.
+ * @return The resulting vDOM tree.
  */
 function toVdom(root) {
-  const treeWalker = document.createTreeWalker(root, 205 // ELEMENT + TEXT + COMMENT + CDATA_SECTION + PROCESSING_INSTRUCTION
+  const treeWalker = document.createTreeWalker(root, 205 // TEXT + CDATA_SECTION + COMMENT + PROCESSING_INSTRUCTION + ELEMENT
   );
   function walk(node) {
     const {
-      attributes,
-      nodeType,
-      localName
+      nodeType
     } = node;
-    if (nodeType === 3) return [node.data];
+
+    // TEXT_NODE (3)
+    if (nodeType === 3) {
+      return [node.data];
+    }
+
+    // CDATA_SECTION_NODE (4)
     if (nodeType === 4) {
+      var _nodeValue;
       const next = treeWalker.nextSibling();
-      node.replaceWith(new window.Text(node.nodeValue));
+      node.replaceWith(new window.Text((_nodeValue = node.nodeValue) !== null && _nodeValue !== void 0 ? _nodeValue : ''));
       return [node.nodeValue, next];
     }
+
+    // COMMENT_NODE (8) || PROCESSING_INSTRUCTION_NODE (7)
     if (nodeType === 8 || nodeType === 7) {
       const next = treeWalker.nextSibling();
       node.remove();
       return [null, next];
     }
+    const elementNode = node;
+    const {
+      attributes
+    } = elementNode;
+    const localName = elementNode.localName;
     const props = {};
     const children = [];
     const directives = [];
     let ignore = false;
     let island = false;
     for (let i = 0; i < attributes.length; i++) {
-      const n = attributes[i].name;
-      if (n[fullPrefix.length] && n.slice(0, fullPrefix.length) === fullPrefix) {
-        if (n === ignoreAttr) {
+      const attributeName = attributes[i].name;
+      if (attributeName[fullPrefix.length] && attributeName.slice(0, fullPrefix.length) === fullPrefix) {
+        if (attributeName === ignoreAttr) {
           ignore = true;
         } else {
-          var _nsPathRegExp$exec$sl;
-          let [ns, value] = (_nsPathRegExp$exec$sl = nsPathRegExp.exec(attributes[i].value)?.slice(1)) !== null && _nsPathRegExp$exec$sl !== void 0 ? _nsPathRegExp$exec$sl : [null, attributes[i].value];
+          var _regexCaptureGroups$n, _regexCaptureGroups$v;
+          const regexCaptureGroups = nsPathRegExp.exec(attributes[i].value)?.groups;
+          const namespace = (_regexCaptureGroups$n = regexCaptureGroups?.namespace) !== null && _regexCaptureGroups$n !== void 0 ? _regexCaptureGroups$n : null;
+          let value = (_regexCaptureGroups$v = regexCaptureGroups?.value) !== null && _regexCaptureGroups$v !== void 0 ? _regexCaptureGroups$v : attributes[i].value;
           try {
-            value = JSON.parse(value);
+            value = value && JSON.parse(value);
           } catch (e) {}
-          if (n === islandAttr) {
-            var _value$namespace;
+          if (attributeName === islandAttr) {
             island = true;
-            namespaces.push(typeof value === 'string' ? value : (_value$namespace = value?.namespace) !== null && _value$namespace !== void 0 ? _value$namespace : null);
+            const islandNamespace =
+            // eslint-disable-next-line no-nested-ternary
+            typeof value === 'string' ? value : typeof value?.namespace === 'string' ? value.namespace : null;
+            namespaces.push(islandNamespace);
           } else {
-            directives.push([n, ns, value]);
+            directives.push([attributeName, namespace, value]);
           }
         }
-      } else if (n === 'ref') {
+      } else if (attributeName === 'ref') {
         continue;
       }
-      props[n] = attributes[i].value;
+      props[attributeName] = attributes[i].value;
     }
-    if (ignore && !island) return [y(localName, {
-      ...props,
-      innerHTML: node.innerHTML,
-      __directives: {
-        ignore: true
-      }
-    })];
-    if (island) hydratedIslands.add(node);
+    if (ignore && !island) {
+      return [y(localName, {
+        ...props,
+        innerHTML: elementNode.innerHTML,
+        __directives: {
+          ignore: true
+        }
+      })];
+    }
+    if (island) {
+      hydratedIslands.add(elementNode);
+    }
     if (directives.length) {
       props.__directives = directives.reduce((obj, [name, ns, value]) => {
-        const [, prefix, suffix = 'default'] = directiveParser.exec(name);
-        if (!obj[prefix]) obj[prefix] = [];
+        const directiveMatch = directiveParser.exec(name);
+        if (directiveMatch === null) {
+          warn(`Invalid directive: ${name}.`);
+          return obj;
+        }
+        const prefix = directiveMatch[1] || '';
+        const suffix = directiveMatch[2] || 'default';
+        obj[prefix] = obj[prefix] || [];
         obj[prefix].push({
           namespace: ns !== null && ns !== void 0 ? ns : currentNamespace(),
           value,
@@ -1481,14 +1610,18 @@ function toVdom(root) {
         return obj;
       }, {});
     }
+
+    // @ts-expect-error Fixed in upcoming preact release https://github.com/preactjs/preact/pull/4334
     if (localName === 'template') {
-      props.content = [...node.content.childNodes].map(childNode => toVdom(childNode));
+      props.content = [...elementNode.content.childNodes].map(childNode => toVdom(childNode));
     } else {
       let child = treeWalker.firstChild();
       if (child) {
         while (child) {
           const [vnode, nextChild] = walk(child);
-          if (vnode) children.push(vnode);
+          if (vnode) {
+            children.push(vnode);
+          }
           child = nextChild || treeWalker.nextSibling();
         }
         treeWalker.parentNode();
@@ -1496,7 +1629,9 @@ function toVdom(root) {
     }
 
     // Restore previous namespace.
-    if (island) namespaces.pop();
+    if (island) {
+      namespaces.pop();
+    }
     return [y(localName, props, children)];
   }
   return walk(treeWalker.currentNode);
