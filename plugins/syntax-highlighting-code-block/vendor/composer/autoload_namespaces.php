@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'TOGoS_GitIgnore_' => array($vendorDir . '/togos/gitignore/src/main/php'),
-    'Highlight\\' => array($vendorDir . '/scrivo/highlight-php'),
-    'HighlightUtilities\\' => array($vendorDir . '/scrivo/highlight-php'),
+    'Highlight\\' => array($vendorDir . '/scrivo/highlight.php'),
+    'HighlightUtilities\\' => array($vendorDir . '/scrivo/highlight.php'),
 );

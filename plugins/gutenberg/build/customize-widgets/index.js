@@ -1,74 +1,10 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
-
-/***/ 4403:
-/***/ ((module, exports) => {
-
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-  Copyright (c) 2018 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
-*/
-/* global define */
-
-(function () {
-	'use strict';
-
-	var hasOwn = {}.hasOwnProperty;
-
-	function classNames() {
-		var classes = [];
-
-		for (var i = 0; i < arguments.length; i++) {
-			var arg = arguments[i];
-			if (!arg) continue;
-
-			var argType = typeof arg;
-
-			if (argType === 'string' || argType === 'number') {
-				classes.push(arg);
-			} else if (Array.isArray(arg)) {
-				if (arg.length) {
-					var inner = classNames.apply(null, arg);
-					if (inner) {
-						classes.push(inner);
-					}
-				}
-			} else if (argType === 'object') {
-				if (arg.toString === Object.prototype.toString) {
-					for (var key in arg) {
-						if (hasOwn.call(arg, key) && arg[key]) {
-							classes.push(key);
-						}
-					}
-				} else {
-					classes.push(arg.toString());
-				}
-			}
-		}
-
-		return classes.join(' ');
-	}
-
-	if ( true && module.exports) {
-		classNames.default = classNames;
-		module.exports = classNames;
-	} else if (true) {
-		// register as 'classnames', consistent with npm package name
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
-			return classNames;
-		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {}
-}());
-
-
-/***/ }),
 
 /***/ 5619:
 /***/ ((module) => {
 
-"use strict";
 
 
 // do not edit .js files directly - edit src/index.jst
@@ -214,9 +150,8 @@ module.exports = function equal(a, b) {
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-"use strict";
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
@@ -351,9 +286,8 @@ function BlockInspectorButton({
 }
 /* harmony default export */ const block_inspector_button = (BlockInspectorButton);
 
-// EXTERNAL MODULE: ./node_modules/classnames/index.js
-var classnames = __webpack_require__(4403);
-var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
+;// CONCATENATED MODULE: ./node_modules/clsx/dist/clsx.mjs
+function r(e){var t,f,n="";if("string"==typeof e||"number"==typeof e)n+=e;else if("object"==typeof e)if(Array.isArray(e)){var o=e.length;for(t=0;t<o;t++)e[t]&&(f=r(e[t]))&&(n&&(n+=" "),n+=f)}else for(f in e)e[f]&&(n&&(n+=" "),n+=f);return n}function clsx(){for(var e,t,f=0,n="",o=arguments.length;f<o;f++)(e=arguments[f])&&(t=r(e))&&(n&&(n+=" "),n+=t);return n}/* harmony default export */ const dist_clsx = (clsx);
 ;// CONCATENATED MODULE: external ["wp","keycodes"]
 const external_wp_keycodes_namespaceObject = window["wp"]["keycodes"];
 ;// CONCATENATED MODULE: external ["wp","primitives"]
@@ -706,6 +640,10 @@ const textFormattingShortcuts = [{
     modifier: 'access',
     character: '0'
   },
+  aliases: [{
+    modifier: 'access',
+    character: '7'
+  }],
   description: (0,external_wp_i18n_namespaceObject.__)('Convert the current heading to a paragraph.')
 }, {
   keyCombination: {
@@ -858,7 +796,7 @@ const ShortcutSection = ({
   shortcuts,
   className
 }) => (0,external_React_namespaceObject.createElement)("section", {
-  className: classnames_default()('customize-widgets-keyboard-shortcut-help-modal__section', className)
+  className: dist_clsx('customize-widgets-keyboard-shortcut-help-modal__section', className)
 }, !!title && (0,external_React_namespaceObject.createElement)("h2", {
   className: "customize-widgets-keyboard-shortcut-help-modal__section-title"
 }, title), (0,external_React_namespaceObject.createElement)(ShortcutList, {
@@ -1040,7 +978,7 @@ function Header({
     });
   }, [sidebar]);
   return (0,external_React_namespaceObject.createElement)(external_React_namespaceObject.Fragment, null, (0,external_React_namespaceObject.createElement)("div", {
-    className: classnames_default()('customize-widgets-header', {
+    className: dist_clsx('customize-widgets-header', {
       'is-fixed-toolbar-active': isFixedToolbarActive
     })
   }, (0,external_React_namespaceObject.createElement)(external_wp_blockEditor_namespaceObject.NavigableToolbar, {
@@ -1554,43 +1492,11 @@ function WelcomeGuide({
 
 
 
-
-
 function KeyboardShortcuts({
   undo,
   redo,
   save
 }) {
-  const {
-    replaceBlocks
-  } = (0,external_wp_data_namespaceObject.useDispatch)(external_wp_blockEditor_namespaceObject.store);
-  const {
-    getBlockName,
-    getSelectedBlockClientId,
-    getBlockAttributes
-  } = (0,external_wp_data_namespaceObject.useSelect)(external_wp_blockEditor_namespaceObject.store);
-  const handleTextLevelShortcut = (event, level) => {
-    event.preventDefault();
-    const destinationBlockName = level === 0 ? 'core/paragraph' : 'core/heading';
-    const currentClientId = getSelectedBlockClientId();
-    if (currentClientId === null) {
-      return;
-    }
-    const blockName = getBlockName(currentClientId);
-    if (blockName !== 'core/paragraph' && blockName !== 'core/heading') {
-      return;
-    }
-    const attributes = getBlockAttributes(currentClientId);
-    const textAlign = blockName === 'core/paragraph' ? 'align' : 'textAlign';
-    const destinationTextAlign = destinationBlockName === 'core/paragraph' ? 'align' : 'textAlign';
-    replaceBlocks(currentClientId, (0,external_wp_blocks_namespaceObject.createBlock)(destinationBlockName, {
-      level,
-      content: attributes.content,
-      ...{
-        [destinationTextAlign]: attributes[textAlign]
-      }
-    }));
-  };
   (0,external_wp_keyboardShortcuts_namespaceObject.useShortcut)('core/customize-widgets/undo', event => {
     undo();
     event.preventDefault();
@@ -1602,13 +1508,6 @@ function KeyboardShortcuts({
   (0,external_wp_keyboardShortcuts_namespaceObject.useShortcut)('core/customize-widgets/save', event => {
     event.preventDefault();
     save();
-  });
-  (0,external_wp_keyboardShortcuts_namespaceObject.useShortcut)('core/customize-widgets/transform-heading-to-paragraph', event => handleTextLevelShortcut(event, 0));
-  [1, 2, 3, 4, 5, 6].forEach(level => {
-    //the loop is based off on a constant therefore
-    //the hook will execute the same way every time
-    //eslint-disable-next-line react-hooks/rules-of-hooks
-    (0,external_wp_keyboardShortcuts_namespaceObject.useShortcut)(`core/customize-widgets/transform-paragraph-to-heading-${level}`, event => handleTextLevelShortcut(event, level));
   });
   return null;
 }
@@ -1652,26 +1551,6 @@ function KeyboardShortcutsRegister() {
         modifier: 'primary',
         character: 's'
       }
-    });
-    registerShortcut({
-      name: 'core/customize-widgets/transform-heading-to-paragraph',
-      category: 'block-library',
-      description: (0,external_wp_i18n_namespaceObject.__)('Transform heading to paragraph.'),
-      keyCombination: {
-        modifier: 'access',
-        character: `0`
-      }
-    });
-    [1, 2, 3, 4, 5, 6].forEach(level => {
-      registerShortcut({
-        name: `core/customize-widgets/transform-paragraph-to-heading-${level}`,
-        category: 'block-library',
-        description: (0,external_wp_i18n_namespaceObject.__)('Transform paragraph to heading.'),
-        keyCombination: {
-          modifier: 'access',
-          character: `${level}`
-        }
-      });
     });
     return () => {
       unregisterShortcut('core/customize-widgets/undo');
@@ -1727,6 +1606,7 @@ function BlockAppender(props) {
 
 
 
+
 /**
  * Internal dependencies
  */
@@ -1741,6 +1621,9 @@ function BlockAppender(props) {
 const {
   ExperimentalBlockCanvas: BlockCanvas
 } = unlock(external_wp_blockEditor_namespaceObject.privateApis);
+const {
+  BlockKeyboardShortcuts
+} = unlock(external_wp_blockLibrary_namespaceObject.privateApis);
 function SidebarBlockEditor({
   blockEditorSettings,
   sidebar,
@@ -1796,7 +1679,7 @@ function SidebarBlockEditor({
       sidebar: sidebar
     });
   }
-  return (0,external_React_namespaceObject.createElement)(external_React_namespaceObject.Fragment, null, (0,external_React_namespaceObject.createElement)(keyboard_shortcuts.Register, null), (0,external_React_namespaceObject.createElement)(SidebarEditorProvider, {
+  return (0,external_React_namespaceObject.createElement)(external_React_namespaceObject.Fragment, null, (0,external_React_namespaceObject.createElement)(keyboard_shortcuts.Register, null), (0,external_React_namespaceObject.createElement)(BlockKeyboardShortcuts, null), (0,external_React_namespaceObject.createElement)(SidebarEditorProvider, {
     sidebar: sidebar,
     settings: settings
   }, (0,external_React_namespaceObject.createElement)(keyboard_shortcuts, {
