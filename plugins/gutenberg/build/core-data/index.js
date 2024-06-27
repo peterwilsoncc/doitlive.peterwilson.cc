@@ -498,7 +498,7 @@ __webpack_require__.r(__webpack_exports__);
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
   EntityProvider: () => (/* reexport */ EntityProvider),
-  __experimentalFetchLinkSuggestions: () => (/* reexport */ _experimental_fetch_link_suggestions),
+  __experimentalFetchLinkSuggestions: () => (/* reexport */ fetchLinkSuggestions),
   __experimentalFetchUrlData: () => (/* reexport */ _experimental_fetch_url_data),
   __experimentalUseEntityRecord: () => (/* reexport */ __experimentalUseEntityRecord),
   __experimentalUseEntityRecords: () => (/* reexport */ __experimentalUseEntityRecords),
@@ -19186,7 +19186,11 @@ const saveEntityRecord = (kind, name, record, {
           }
           return acc;
         }, {
-          status: data.status === 'auto-draft' ? 'draft' : data.status
+          // Do not update the `status` if we have edited it when auto saving.
+          // It's very important to let the user explicitly save this change,
+          // because it can lead to unexpected results. An example would be to
+          // have a draft post and change the status to publish.
+          status: data.status === 'auto-draft' ? 'draft' : undefined
         });
         updatedRecord = await __unstableFetch({
           path: `${path}/autosaves`,
@@ -20255,7 +20259,7 @@ function items(state = {}, action) {
           [context]: {
             ...state[context],
             ...action.items.reduce((accumulator, value) => {
-              const itemId = value[key];
+              const itemId = value?.[key];
               accumulator[itemId] = conservativeMapItem(state?.[context]?.[itemId], value);
               return accumulator;
             }, {})
@@ -20303,7 +20307,7 @@ function itemIsComplete(state = {}, action) {
           [context]: {
             ...state[context],
             ...action.items.reduce((result, item) => {
-              const itemId = item[key];
+              const itemId = item?.[key];
 
               // Defer to completeness if already assigned. Technically the
               // data may be outdated if receiving items for a field subset.
@@ -20358,7 +20362,7 @@ on_sub_key('stableKey')])((state = {}, action) => {
     return state;
   }
   return {
-    itemIds: getMergedItemIds(state?.itemIds || [], action.items.map(item => item[key]), page, perPage),
+    itemIds: getMergedItemIds(state?.itemIds || [], action.items.map(item => item?.[key]).filter(Boolean), page, perPage),
     meta: action.meta
   };
 });
@@ -20637,7 +20641,7 @@ function entity(entityConfig) {
             ...state
           };
           for (const record of action.items) {
-            const recordId = record[action.key];
+            const recordId = record?.[action.key];
             const edits = nextState[recordId];
             if (!edits) {
               continue;
@@ -22265,63 +22269,15 @@ const forwardResolver = resolverName => (...args) => async ({
 
 
 
-
 /**
- * Filters the search by type
+ * Fetches link suggestions from the WordPress API.
  *
- * @typedef { 'attachment' | 'post' | 'term' | 'post-format' } WPLinkSearchType
- */
-
-/**
- * A link with an id may be of kind post-type or taxonomy
+ * WordPress does not support searching multiple tables at once, e.g. posts and terms, so we
+ * perform multiple queries at the same time and then merge the results together.
  *
- * @typedef { 'post-type' | 'taxonomy' } WPKind
- */
-
-/**
- * @typedef WPLinkSearchOptions
- *
- * @property {boolean}          [isInitialSuggestions] Displays initial search suggestions, when true.
- * @property {WPLinkSearchType} [type]                 Filters by search type.
- * @property {string}           [subtype]              Slug of the post-type or taxonomy.
- * @property {number}           [page]                 Which page of results to return.
- * @property {number}           [perPage]              Search results per page.
- */
-
-/**
- * @typedef WPLinkSearchResult
- *
- * @property {number} id     Post or term id.
- * @property {string} url    Link url.
- * @property {string} title  Title of the link.
- * @property {string} type   The taxonomy or post type slug or type URL.
- * @property {WPKind} [kind] Link kind of post-type or taxonomy
- */
-
-/**
- * @typedef WPLinkSearchResultAugments
- *
- * @property {{kind: WPKind}} [meta]    Contains kind information.
- * @property {WPKind}         [subtype] Optional subtype if it exists.
- */
-
-/**
- * @typedef {WPLinkSearchResult & WPLinkSearchResultAugments} WPLinkSearchResultAugmented
- */
-
-/**
- * @typedef WPEditorSettings
- *
- * @property {boolean} [ disablePostFormats ] Disables post formats, when true.
- */
-
-/**
- * Fetches link suggestions from the API.
- *
- * @async
- * @param {string}              search
- * @param {WPLinkSearchOptions} [searchOptions]
- * @param {WPEditorSettings}    [settings]
+ * @param search
+ * @param searchOptions
+ * @param editorSettings
  *
  * @example
  * ```js
@@ -22336,31 +22292,22 @@ const forwardResolver = resolverName => (...args) => async ({
  *     searchOptions
  * ) => fetchLinkSuggestions( search, searchOptions, settings );
  * ```
- * @return {Promise< WPLinkSearchResult[] >} List of search suggestions
  */
-const fetchLinkSuggestions = async (search, searchOptions = {}, settings = {}) => {
+async function fetchLinkSuggestions(search, searchOptions = {}, editorSettings = {}) {
+  const searchOptionsToUse = searchOptions.isInitialSuggestions && searchOptions.initialSuggestionsSearchOptions ? {
+    ...searchOptions,
+    ...searchOptions.initialSuggestionsSearchOptions
+  } : searchOptions;
   const {
-    isInitialSuggestions = false,
-    initialSuggestionsSearchOptions = undefined
-  } = searchOptions;
+    type,
+    subtype,
+    page,
+    perPage = searchOptions.isInitialSuggestions ? 3 : 20
+  } = searchOptionsToUse;
   const {
     disablePostFormats = false
-  } = settings;
-  let {
-    type = undefined,
-    subtype = undefined,
-    page = undefined,
-    perPage = isInitialSuggestions ? 3 : 20
-  } = searchOptions;
-
-  /** @type {Promise<WPLinkSearchResult>[]} */
+  } = editorSettings;
   const queries = [];
-  if (isInitialSuggestions && initialSuggestionsSearchOptions) {
-    type = initialSuggestionsSearchOptions.type || type;
-    subtype = initialSuggestionsSearchOptions.subtype || subtype;
-    page = initialSuggestionsSearchOptions.page || page;
-    perPage = initialSuggestionsSearchOptions.perPage || perPage;
-  }
   if (!type || type === 'post') {
     queries.push(external_wp_apiFetch_default()({
       path: (0,external_wp_url_namespaceObject.addQueryArgs)('/wp/v2/search', {
@@ -22373,11 +22320,11 @@ const fetchLinkSuggestions = async (search, searchOptions = {}, settings = {}) =
     }).then(results => {
       return results.map(result => {
         return {
-          ...result,
-          meta: {
-            kind: 'post-type',
-            subtype
-          }
+          id: result.id,
+          url: result.url,
+          title: (0,external_wp_htmlEntities_namespaceObject.decodeEntities)(result.title || '') || (0,external_wp_i18n_namespaceObject.__)('(no title)'),
+          type: result.subtype || result.type,
+          kind: 'post-type'
         };
       });
     }).catch(() => []) // Fail by returning no results.
@@ -22395,11 +22342,11 @@ const fetchLinkSuggestions = async (search, searchOptions = {}, settings = {}) =
     }).then(results => {
       return results.map(result => {
         return {
-          ...result,
-          meta: {
-            kind: 'taxonomy',
-            subtype
-          }
+          id: result.id,
+          url: result.url,
+          title: (0,external_wp_htmlEntities_namespaceObject.decodeEntities)(result.title || '') || (0,external_wp_i18n_namespaceObject.__)('(no title)'),
+          type: result.subtype || result.type,
+          kind: 'taxonomy'
         };
       });
     }).catch(() => []) // Fail by returning no results.
@@ -22417,11 +22364,11 @@ const fetchLinkSuggestions = async (search, searchOptions = {}, settings = {}) =
     }).then(results => {
       return results.map(result => {
         return {
-          ...result,
-          meta: {
-            kind: 'taxonomy',
-            subtype
-          }
+          id: result.id,
+          url: result.url,
+          title: (0,external_wp_htmlEntities_namespaceObject.decodeEntities)(result.title || '') || (0,external_wp_i18n_namespaceObject.__)('(no title)'),
+          type: result.subtype || result.type,
+          kind: 'taxonomy'
         };
       });
     }).catch(() => []) // Fail by returning no results.
@@ -22437,40 +22384,65 @@ const fetchLinkSuggestions = async (search, searchOptions = {}, settings = {}) =
     }).then(results => {
       return results.map(result => {
         return {
-          ...result,
-          meta: {
-            kind: 'media'
-          }
+          id: result.id,
+          url: result.source_url,
+          title: (0,external_wp_htmlEntities_namespaceObject.decodeEntities)(result.title.rendered || '') || (0,external_wp_i18n_namespaceObject.__)('(no title)'),
+          type: result.type,
+          kind: 'media'
         };
       });
     }).catch(() => []) // Fail by returning no results.
     );
   }
-  return Promise.all(queries).then(results => {
-    return results.reduce(( /** @type {WPLinkSearchResult[]} */accumulator, current) => accumulator.concat(current),
-    // Flatten list.
-    []).filter(
-    /**
-     * @param {{ id: number }} result
-     */
-    result => {
-      return !!result.id;
-    }).slice(0, perPage).map(( /** @type {WPLinkSearchResultAugmented} */result) => {
-      const isMedia = result.type === 'attachment';
-      return {
-        id: result.id,
-        // @ts-ignore fix when we make this a TS file
-        url: isMedia ? result.source_url : result.url,
-        title: (0,external_wp_htmlEntities_namespaceObject.decodeEntities)(isMedia ?
-        // @ts-ignore fix when we make this a TS file
-        result.title.rendered : result.title || '') || (0,external_wp_i18n_namespaceObject.__)('(no title)'),
-        type: result.subtype || result.type,
-        kind: result?.meta?.kind
-      };
-    });
-  });
-};
-/* harmony default export */ const _experimental_fetch_link_suggestions = (fetchLinkSuggestions);
+  const responses = await Promise.all(queries);
+  let results = responses.flat();
+  results = results.filter(result => !!result.id);
+  results = sortResults(results, search);
+  results = results.slice(0, perPage);
+  return results;
+}
+
+/**
+ * Sort search results by relevance to the given query.
+ *
+ * Sorting is necessary as we're querying multiple endpoints and merging the results. For example
+ * a taxonomy title might be more relevant than a post title, but by default taxonomy results will
+ * be ordered after all the (potentially irrelevant) post results.
+ *
+ * We sort by scoring each result, where the score is the number of tokens in the title that are
+ * also in the search query, divided by the total number of tokens in the title. This gives us a
+ * score between 0 and 1, where 1 is a perfect match.
+ *
+ * @param results
+ * @param search
+ */
+function sortResults(results, search) {
+  const searchTokens = new Set(tokenize(search));
+  const scores = {};
+  for (const result of results) {
+    if (result.title) {
+      const titleTokens = tokenize(result.title);
+      const matchingTokens = titleTokens.filter(token => searchTokens.has(token));
+      scores[result.id] = matchingTokens.length / titleTokens.length;
+    } else {
+      scores[result.id] = 0;
+    }
+  }
+  return results.sort((a, b) => scores[b.id] - scores[a.id]);
+}
+
+/**
+ * Turns text into an array of tokens, with whitespace and punctuation removed.
+ *
+ * For example, `"I'm having a ball."` becomes `[ "im", "having", "a", "ball" ]`.
+ *
+ * @param text
+ */
+function tokenize(text) {
+  // \p{L} matches any kind of letter from any language.
+  // \p{N} matches any kind of numeric character.
+  return text.toLowerCase().match(/[\p{L}\p{N}]+/gu) || [];
+}
 
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/fetch/__experimental-fetch-url-data.js
 /**
@@ -22789,7 +22761,7 @@ const resolvers_getEntityRecords = (kind, name, query = {}) => async ({
       // See https://github.com/WordPress/gutenberg/pull/26575
       if (!query?._fields && !query.context) {
         const key = entityConfig.key || DEFAULT_ENTITY_KEY;
-        const resolutionsArgs = records.filter(record => record[key]).map(record => [kind, name, record[key]]);
+        const resolutionsArgs = records.filter(record => record?.[key]).map(record => [kind, name, record[key]]);
         dispatch({
           type: 'START_RESOLUTIONS',
           selectorName: 'getEntityRecord',
@@ -23536,8 +23508,6 @@ const {
   unlock
 } = (0,external_wp_privateApis_namespaceObject.__dangerousOptInToUnstableAPIsOnlyForCoreModules)('I know using unstable features means my theme or plugin will inevitably break in the next version of WordPress.', '@wordpress/core-data');
 
-;// CONCATENATED MODULE: external "React"
-const external_React_namespaceObject = window["React"];
 ;// CONCATENATED MODULE: external ["wp","element"]
 const external_wp_element_namespaceObject = window["wp"]["element"];
 ;// CONCATENATED MODULE: external ["wp","blocks"]
@@ -23722,8 +23692,9 @@ function updateFootnotesFromMeta(blocks, meta) {
   };
 }
 
+;// CONCATENATED MODULE: external "ReactJSXRuntime"
+const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
 ;// CONCATENATED MODULE: ./packages/core-data/build-module/entity-provider.js
-
 /**
  * WordPress dependencies
  */
@@ -23740,37 +23711,7 @@ function updateFootnotesFromMeta(blocks, meta) {
 /** @typedef {import('@wordpress/blocks').WPBlock} WPBlock */
 
 const EMPTY_ARRAY = [];
-
-/**
- * Internal dependencies
- */
-
-const entityContexts = {
-  ...rootEntitiesConfig.reduce((acc, loader) => {
-    if (!acc[loader.kind]) {
-      acc[loader.kind] = {};
-    }
-    acc[loader.kind][loader.name] = {
-      context: (0,external_wp_element_namespaceObject.createContext)(undefined)
-    };
-    return acc;
-  }, {}),
-  ...additionalEntityConfigLoaders.reduce((acc, loader) => {
-    acc[loader.kind] = {};
-    return acc;
-  }, {})
-};
-const getEntityContext = (kind, name) => {
-  if (!entityContexts[kind]) {
-    throw new Error(`Missing entity config for kind: ${kind}.`);
-  }
-  if (!entityContexts[kind][name]) {
-    entityContexts[kind][name] = {
-      context: (0,external_wp_element_namespaceObject.createContext)(undefined)
-    };
-  }
-  return entityContexts[kind][name].context;
-};
+const EntityContext = (0,external_wp_element_namespaceObject.createContext)({});
 
 /**
  * Context provider component for providing
@@ -23791,10 +23732,18 @@ function EntityProvider({
   id,
   children
 }) {
-  const Provider = getEntityContext(kind, name).Provider;
-  return (0,external_React_namespaceObject.createElement)(Provider, {
-    value: id
-  }, children);
+  const parent = (0,external_wp_element_namespaceObject.useContext)(EntityContext);
+  const childContext = (0,external_wp_element_namespaceObject.useMemo)(() => ({
+    ...parent,
+    [kind]: {
+      ...parent?.[kind],
+      [name]: id
+    }
+  }), [parent, kind, name, id]);
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(EntityContext.Provider, {
+    value: childContext,
+    children: children
+  });
 }
 
 /**
@@ -23805,7 +23754,8 @@ function EntityProvider({
  * @param {string} name The entity name.
  */
 function useEntityId(kind, name) {
-  return (0,external_wp_element_namespaceObject.useContext)(getEntityContext(kind, name));
+  const context = (0,external_wp_element_namespaceObject.useContext)(EntityContext);
+  return context?.[kind]?.[name];
 }
 
 /**
