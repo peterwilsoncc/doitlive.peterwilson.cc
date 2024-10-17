@@ -1768,11 +1768,15 @@ __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
+  AlignmentMatrixControl: () => (/* reexport */ alignment_matrix_control),
   AnglePickerControl: () => (/* reexport */ angle_picker_control),
   Animate: () => (/* reexport */ animate),
   Autocomplete: () => (/* reexport */ Autocomplete),
   BaseControl: () => (/* reexport */ base_control),
   BlockQuotation: () => (/* reexport */ external_wp_primitives_namespaceObject.BlockQuotation),
+  BorderBoxControl: () => (/* reexport */ border_box_control_component),
+  BorderControl: () => (/* reexport */ border_control_component),
+  BoxControl: () => (/* reexport */ box_control),
   Button: () => (/* reexport */ build_module_button),
   ButtonGroup: () => (/* reexport */ button_group),
   Card: () => (/* reexport */ card_component),
@@ -1788,6 +1792,7 @@ __webpack_require__.d(__webpack_exports__, {
   ColorPalette: () => (/* reexport */ color_palette),
   ColorPicker: () => (/* reexport */ LegacyAdapter),
   ComboboxControl: () => (/* reexport */ combobox_control),
+  Composite: () => (/* reexport */ Composite),
   CustomGradientPicker: () => (/* reexport */ custom_gradient_picker),
   CustomSelectControl: () => (/* reexport */ custom_select_control),
   Dashicon: () => (/* reexport */ dashicon),
@@ -1828,6 +1833,7 @@ __webpack_require__.d(__webpack_exports__, {
   MenuItemsChoice: () => (/* reexport */ menu_items_choice),
   Modal: () => (/* reexport */ modal),
   NavigableMenu: () => (/* reexport */ navigable_container_menu),
+  Navigator: () => (/* reexport */ navigator_Navigator),
   Notice: () => (/* reexport */ build_module_notice),
   NoticeList: () => (/* reexport */ list),
   Panel: () => (/* reexport */ panel),
@@ -1897,11 +1903,11 @@ __webpack_require__.d(__webpack_exports__, {
   __experimentalNavigationGroup: () => (/* reexport */ group),
   __experimentalNavigationItem: () => (/* reexport */ navigation_item),
   __experimentalNavigationMenu: () => (/* reexport */ navigation_menu),
-  __experimentalNavigatorBackButton: () => (/* reexport */ navigator_back_button_component),
-  __experimentalNavigatorButton: () => (/* reexport */ navigator_button_component),
-  __experimentalNavigatorProvider: () => (/* reexport */ navigator_provider_component),
-  __experimentalNavigatorScreen: () => (/* reexport */ navigator_screen_component),
-  __experimentalNavigatorToParentButton: () => (/* reexport */ navigator_to_parent_button_component),
+  __experimentalNavigatorBackButton: () => (/* reexport */ legacy_NavigatorBackButton),
+  __experimentalNavigatorButton: () => (/* reexport */ legacy_NavigatorButton),
+  __experimentalNavigatorProvider: () => (/* reexport */ NavigatorProvider),
+  __experimentalNavigatorScreen: () => (/* reexport */ legacy_NavigatorScreen),
+  __experimentalNavigatorToParentButton: () => (/* reexport */ legacy_NavigatorToParentButton),
   __experimentalNumberControl: () => (/* reexport */ number_control),
   __experimentalPaletteEdit: () => (/* reexport */ palette_edit),
   __experimentalParseQuantityAndUnitFromRawValue: () => (/* reexport */ parseQuantityAndUnitFromRawValue),
@@ -1926,7 +1932,7 @@ __webpack_require__.d(__webpack_exports__, {
   __experimentalTruncate: () => (/* reexport */ truncate_component),
   __experimentalUnitControl: () => (/* reexport */ unit_control),
   __experimentalUseCustomUnits: () => (/* reexport */ useCustomUnits),
-  __experimentalUseNavigator: () => (/* reexport */ use_navigator),
+  __experimentalUseNavigator: () => (/* reexport */ useNavigator),
   __experimentalUseSlot: () => (/* reexport */ useSlot),
   __experimentalUseSlotFills: () => (/* reexport */ useSlotFills),
   __experimentalVStack: () => (/* reexport */ v_stack_component),
@@ -1934,8 +1940,8 @@ __webpack_require__.d(__webpack_exports__, {
   __experimentalZStack: () => (/* reexport */ z_stack_component),
   __unstableAnimatePresence: () => (/* reexport */ AnimatePresence),
   __unstableComposite: () => (/* reexport */ legacy_Composite),
-  __unstableCompositeGroup: () => (/* reexport */ CompositeGroup),
-  __unstableCompositeItem: () => (/* reexport */ CompositeItem),
+  __unstableCompositeGroup: () => (/* reexport */ legacy_CompositeGroup),
+  __unstableCompositeItem: () => (/* reexport */ legacy_CompositeItem),
   __unstableDisclosureContent: () => (/* reexport */ disclosure_DisclosureContent),
   __unstableGetAnimateClassName: () => (/* reexport */ getAnimateClassName),
   __unstableMotion: () => (/* reexport */ motion),
@@ -1947,6 +1953,7 @@ __webpack_require__.d(__webpack_exports__, {
   navigateRegions: () => (/* reexport */ navigate_regions),
   privateApis: () => (/* reexport */ privateApis),
   useBaseControlProps: () => (/* reexport */ useBaseControlProps),
+  useNavigator: () => (/* reexport */ useNavigator),
   withConstrainedTabbing: () => (/* reexport */ with_constrained_tabbing),
   withFallbackStyles: () => (/* reexport */ with_fallback_styles),
   withFilters: () => (/* reexport */ withFilters),
@@ -1975,15 +1982,20 @@ __webpack_require__.r(toggle_group_control_option_base_styles_namespaceObject);
 __webpack_require__.d(toggle_group_control_option_base_styles_namespaceObject, {
   ButtonContentView: () => (ButtonContentView),
   LabelView: () => (LabelView),
-  Uz: () => (backdropView),
-  Ji: () => (buttonView),
-  IA: () => (labelBlock)
+  J: () => (buttonView),
+  I: () => (labelBlock)
 });
 
 ;// CONCATENATED MODULE: external ["wp","primitives"]
 const external_wp_primitives_namespaceObject = window["wp"]["primitives"];
 ;// CONCATENATED MODULE: ./node_modules/clsx/dist/clsx.mjs
 function r(e){var t,f,n="";if("string"==typeof e||"number"==typeof e)n+=e;else if("object"==typeof e)if(Array.isArray(e)){var o=e.length;for(t=0;t<o;t++)e[t]&&(f=r(e[t]))&&(n&&(n+=" "),n+=f)}else for(f in e)e[f]&&(n&&(n+=" "),n+=f);return n}function clsx(){for(var e,t,f=0,n="",o=arguments.length;f<o;f++)(e=arguments[f])&&(t=r(e))&&(n&&(n+=" "),n+=t);return n}/* harmony default export */ const dist_clsx = (clsx);
+;// CONCATENATED MODULE: external ["wp","i18n"]
+const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
+;// CONCATENATED MODULE: external ["wp","compose"]
+const external_wp_compose_namespaceObject = window["wp"]["compose"];
+;// CONCATENATED MODULE: external ["wp","element"]
+const external_wp_element_namespaceObject = window["wp"]["element"];
 ;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/3YLGPPWQ.js
 "use client";
 var __defProp = Object.defineProperty;
@@ -3088,10 +3100,6 @@ function _2GXGCHW6_useStore(createStore, props) {
 
 
 
-;// CONCATENATED MODULE: external ["wp","i18n"]
-const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
-;// CONCATENATED MODULE: external ["wp","compose"]
-const external_wp_compose_namespaceObject = window["wp"]["compose"];
 ;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/TCAGH6BH.js
 "use client";
 
@@ -3632,12 +3640,79 @@ function useCompositeStore(props = {}) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/7HVFURXT.js
+;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/5VQZOHHZ.js
 "use client";
 
-// src/group/group-label-context.tsx
+// src/composite/utils.ts
 
-var GroupLabelContext = (0,external_React_.createContext)(void 0);
+var _5VQZOHHZ_NULL_ITEM = { id: null };
+function _5VQZOHHZ_flipItems(items, activeId, shouldInsertNullItem = false) {
+  const index = items.findIndex((item) => item.id === activeId);
+  return [
+    ...items.slice(index + 1),
+    ...shouldInsertNullItem ? [_5VQZOHHZ_NULL_ITEM] : [],
+    ...items.slice(0, index)
+  ];
+}
+function _5VQZOHHZ_findFirstEnabledItem(items, excludeId) {
+  return items.find((item) => {
+    if (excludeId) {
+      return !item.disabled && item.id !== excludeId;
+    }
+    return !item.disabled;
+  });
+}
+function getEnabledItem(store, id) {
+  if (!id) return null;
+  return store.item(id) || null;
+}
+function _5VQZOHHZ_groupItemsByRows(items) {
+  const rows = [];
+  for (const item of items) {
+    const row = rows.find((currentRow) => {
+      var _a;
+      return ((_a = currentRow[0]) == null ? void 0 : _a.rowId) === item.rowId;
+    });
+    if (row) {
+      row.push(item);
+    } else {
+      rows.push([item]);
+    }
+  }
+  return rows;
+}
+function selectTextField(element, collapseToEnd = false) {
+  if (isTextField(element)) {
+    element.setSelectionRange(
+      collapseToEnd ? element.value.length : 0,
+      element.value.length
+    );
+  } else if (element.isContentEditable) {
+    const selection = getDocument(element).getSelection();
+    selection == null ? void 0 : selection.selectAllChildren(element);
+    if (collapseToEnd) {
+      selection == null ? void 0 : selection.collapseToEnd();
+    }
+  }
+}
+var FOCUS_SILENTLY = Symbol("FOCUS_SILENTLY");
+function focusSilently(element) {
+  element[FOCUS_SILENTLY] = true;
+  element.focus({ preventScroll: true });
+}
+function silentlyFocused(element) {
+  const isSilentlyFocused = element[FOCUS_SILENTLY];
+  delete element[FOCUS_SILENTLY];
+  return isSilentlyFocused;
+}
+function isItem(store, element, exclude) {
+  if (!element) return false;
+  if (element === exclude) return false;
+  const item = store.item(element.id);
+  if (!item) return false;
+  if (exclude && item.element === exclude) return false;
+  return true;
+}
 
 
 
@@ -3725,115 +3800,6 @@ function createStoreContext(providers = [], scopedProviders = []) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/ZPO4YZYE.js
-"use client";
-
-
-
-
-
-// src/group/group.tsx
-
-
-
-var TagName = "div";
-var useGroup = createHook(
-  function useGroup2(props) {
-    const [labelId, setLabelId] = (0,external_React_.useState)();
-    props = useWrapElement(
-      props,
-      (element) => /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(GroupLabelContext.Provider, { value: setLabelId, children: element }),
-      []
-    );
-    props = _3YLGPPWQ_spreadValues({
-      role: "group",
-      "aria-labelledby": labelId
-    }, props);
-    return removeUndefinedValues(props);
-  }
-);
-var Group = forwardRef2(function Group2(props) {
-  const htmlProps = useGroup(props);
-  return HKOOKEDE_createElement(TagName, htmlProps);
-});
-
-
-
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/IEKMDIUY.js
-"use client";
-
-
-
-
-// src/composite/composite-group.tsx
-var IEKMDIUY_TagName = "div";
-var useCompositeGroup = createHook(
-  function useCompositeGroup2(_a) {
-    var _b = _a, { store } = _b, props = __objRest(_b, ["store"]);
-    props = useGroup(props);
-    return props;
-  }
-);
-var IEKMDIUY_CompositeGroup = forwardRef2(function CompositeGroup2(props) {
-  const htmlProps = useCompositeGroup(props);
-  return HKOOKEDE_createElement(IEKMDIUY_TagName, htmlProps);
-});
-
-
-
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/IGFP5YPG.js
-"use client";
-
-
-
-
-
-// src/group/group-label.tsx
-
-
-var IGFP5YPG_TagName = "div";
-var useGroupLabel = createHook(
-  function useGroupLabel2(props) {
-    const setLabelId = (0,external_React_.useContext)(GroupLabelContext);
-    const id = useId(props.id);
-    useSafeLayoutEffect(() => {
-      setLabelId == null ? void 0 : setLabelId(id);
-      return () => setLabelId == null ? void 0 : setLabelId(void 0);
-    }, [setLabelId, id]);
-    props = _3YLGPPWQ_spreadValues({
-      id,
-      "aria-hidden": true
-    }, props);
-    return removeUndefinedValues(props);
-  }
-);
-var GroupLabel = forwardRef2(function GroupLabel2(props) {
-  const htmlProps = useGroupLabel(props);
-  return HKOOKEDE_createElement(IGFP5YPG_TagName, htmlProps);
-});
-
-
-
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/Y2MAXF6C.js
-"use client";
-
-
-
-
-// src/composite/composite-group-label.tsx
-var Y2MAXF6C_TagName = "div";
-var useCompositeGroupLabel = createHook(function useCompositeGroupLabel2(_a) {
-  var _b = _a, { store } = _b, props = __objRest(_b, ["store"]);
-  props = useGroupLabel(props);
-  return props;
-});
-var Y2MAXF6C_CompositeGroupLabel = forwardRef2(function CompositeGroupLabel2(props) {
-  const htmlProps = useCompositeGroupLabel(props);
-  return HKOOKEDE_createElement(Y2MAXF6C_TagName, htmlProps);
-});
-
-
-
 ;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/FMYQNSCK.js
 "use client";
 
@@ -3848,53 +3814,28 @@ var CollectionScopedContextProvider = ctx.ScopedContextProvider;
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/PLQDTVXM.js
+;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/WENSINUV.js
 "use client";
 
 
 
+// src/composite/composite-context.tsx
 
-
-// src/collection/collection-item.tsx
-
-
-var PLQDTVXM_TagName = "div";
-var useCollectionItem = createHook(
-  function useCollectionItem2(_a) {
-    var _b = _a, {
-      store,
-      shouldRegisterItem = true,
-      getItem = identity,
-      element: element
-    } = _b, props = __objRest(_b, [
-      "store",
-      "shouldRegisterItem",
-      "getItem",
-      // @ts-expect-error This prop may come from a collection renderer.
-      "element"
-    ]);
-    const context = useCollectionContext();
-    store = store || context;
-    const id = useId(props.id);
-    const ref = (0,external_React_.useRef)(element);
-    (0,external_React_.useEffect)(() => {
-      const element2 = ref.current;
-      if (!id) return;
-      if (!element2) return;
-      if (!shouldRegisterItem) return;
-      const item = getItem({ id, element: element2 });
-      return store == null ? void 0 : store.renderItem(item);
-    }, [id, shouldRegisterItem, getItem, store]);
-    props = _3YLGPPWQ_spreadProps(_3YLGPPWQ_spreadValues({}, props), {
-      ref: useMergeRefs(ref, props.ref)
-    });
-    return removeUndefinedValues(props);
-  }
+var WENSINUV_ctx = createStoreContext(
+  [CollectionContextProvider],
+  [CollectionScopedContextProvider]
 );
-var CollectionItem = forwardRef2(function CollectionItem2(props) {
-  const htmlProps = useCollectionItem(props);
-  return HKOOKEDE_createElement(PLQDTVXM_TagName, htmlProps);
-});
+var useCompositeContext = WENSINUV_ctx.useContext;
+var useCompositeScopedContext = WENSINUV_ctx.useScopedContext;
+var useCompositeProviderContext = WENSINUV_ctx.useProviderContext;
+var CompositeContextProvider = WENSINUV_ctx.ContextProvider;
+var CompositeScopedContextProvider = WENSINUV_ctx.ScopedContextProvider;
+var CompositeItemContext = (0,external_React_.createContext)(
+  void 0
+);
+var CompositeRowContext = (0,external_React_.createContext)(
+  void 0
+);
 
 
 
@@ -4130,7 +4071,7 @@ function focusIntoView(element, options) {
 
 
 
-var HGZKAGPL_TagName = "div";
+var TagName = "div";
 var isSafariBrowser = isSafari();
 var alwaysFocusVisibleInputTypes = [
   "text",
@@ -4415,7 +4356,578 @@ var useFocusable = createHook(
 );
 var Focusable = forwardRef2(function Focusable2(props) {
   const htmlProps = useFocusable(props);
-  return HKOOKEDE_createElement(HGZKAGPL_TagName, htmlProps);
+  return HKOOKEDE_createElement(TagName, htmlProps);
+});
+
+
+
+;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/TW35PKTK.js
+"use client";
+
+
+
+
+
+
+
+// src/composite/composite.tsx
+
+
+
+
+
+
+
+var TW35PKTK_TagName = "div";
+function isGrid(items) {
+  return items.some((item) => !!item.rowId);
+}
+function isPrintableKey(event) {
+  const target = event.target;
+  if (target && !isTextField(target)) return false;
+  return event.key.length === 1 && !event.ctrlKey && !event.metaKey;
+}
+function isModifierKey(event) {
+  return event.key === "Shift" || event.key === "Control" || event.key === "Alt" || event.key === "Meta";
+}
+function useKeyboardEventProxy(store, onKeyboardEvent, previousElementRef) {
+  return useEvent((event) => {
+    var _a;
+    onKeyboardEvent == null ? void 0 : onKeyboardEvent(event);
+    if (event.defaultPrevented) return;
+    if (event.isPropagationStopped()) return;
+    if (!isSelfTarget(event)) return;
+    if (isModifierKey(event)) return;
+    if (isPrintableKey(event)) return;
+    const state = store.getState();
+    const activeElement = (_a = getEnabledItem(store, state.activeId)) == null ? void 0 : _a.element;
+    if (!activeElement) return;
+    const _b = event, { view } = _b, eventInit = __objRest(_b, ["view"]);
+    const previousElement = previousElementRef == null ? void 0 : previousElementRef.current;
+    if (activeElement !== previousElement) {
+      activeElement.focus();
+    }
+    if (!fireKeyboardEvent(activeElement, event.type, eventInit)) {
+      event.preventDefault();
+    }
+    if (event.currentTarget.contains(activeElement)) {
+      event.stopPropagation();
+    }
+  });
+}
+function findFirstEnabledItemInTheLastRow(items) {
+  return _5VQZOHHZ_findFirstEnabledItem(
+    flatten2DArray(reverseArray(_5VQZOHHZ_groupItemsByRows(items)))
+  );
+}
+function useScheduleFocus(store) {
+  const [scheduled, setScheduled] = (0,external_React_.useState)(false);
+  const schedule = (0,external_React_.useCallback)(() => setScheduled(true), []);
+  const activeItem = store.useState(
+    (state) => getEnabledItem(store, state.activeId)
+  );
+  (0,external_React_.useEffect)(() => {
+    const activeElement = activeItem == null ? void 0 : activeItem.element;
+    if (!scheduled) return;
+    if (!activeElement) return;
+    setScheduled(false);
+    activeElement.focus({ preventScroll: true });
+  }, [activeItem, scheduled]);
+  return schedule;
+}
+var useComposite = createHook(
+  function useComposite2(_a) {
+    var _b = _a, {
+      store,
+      composite = true,
+      focusOnMove = composite,
+      moveOnKeyPress = true
+    } = _b, props = __objRest(_b, [
+      "store",
+      "composite",
+      "focusOnMove",
+      "moveOnKeyPress"
+    ]);
+    const context = useCompositeProviderContext();
+    store = store || context;
+    invariant(
+      store,
+       false && 0
+    );
+    const ref = (0,external_React_.useRef)(null);
+    const previousElementRef = (0,external_React_.useRef)(null);
+    const scheduleFocus = useScheduleFocus(store);
+    const moves = store.useState("moves");
+    const [, setBaseElement] = useTransactionState(
+      composite ? store.setBaseElement : null
+    );
+    (0,external_React_.useEffect)(() => {
+      var _a2;
+      if (!store) return;
+      if (!moves) return;
+      if (!composite) return;
+      if (!focusOnMove) return;
+      const { activeId: activeId2 } = store.getState();
+      const itemElement = (_a2 = getEnabledItem(store, activeId2)) == null ? void 0 : _a2.element;
+      if (!itemElement) return;
+      focusIntoView(itemElement);
+    }, [store, moves, composite, focusOnMove]);
+    useSafeLayoutEffect(() => {
+      if (!store) return;
+      if (!moves) return;
+      if (!composite) return;
+      const { baseElement, activeId: activeId2 } = store.getState();
+      const isSelfAcive = activeId2 === null;
+      if (!isSelfAcive) return;
+      if (!baseElement) return;
+      const previousElement = previousElementRef.current;
+      previousElementRef.current = null;
+      if (previousElement) {
+        fireBlurEvent(previousElement, { relatedTarget: baseElement });
+      }
+      if (!hasFocus(baseElement)) {
+        baseElement.focus();
+      }
+    }, [store, moves, composite]);
+    const activeId = store.useState("activeId");
+    const virtualFocus = store.useState("virtualFocus");
+    useSafeLayoutEffect(() => {
+      var _a2;
+      if (!store) return;
+      if (!composite) return;
+      if (!virtualFocus) return;
+      const previousElement = previousElementRef.current;
+      previousElementRef.current = null;
+      if (!previousElement) return;
+      const activeElement = (_a2 = getEnabledItem(store, activeId)) == null ? void 0 : _a2.element;
+      const relatedTarget = activeElement || getActiveElement(previousElement);
+      if (relatedTarget === previousElement) return;
+      fireBlurEvent(previousElement, { relatedTarget });
+    }, [store, activeId, virtualFocus, composite]);
+    const onKeyDownCapture = useKeyboardEventProxy(
+      store,
+      props.onKeyDownCapture,
+      previousElementRef
+    );
+    const onKeyUpCapture = useKeyboardEventProxy(
+      store,
+      props.onKeyUpCapture,
+      previousElementRef
+    );
+    const onFocusCaptureProp = props.onFocusCapture;
+    const onFocusCapture = useEvent((event) => {
+      onFocusCaptureProp == null ? void 0 : onFocusCaptureProp(event);
+      if (event.defaultPrevented) return;
+      if (!store) return;
+      const { virtualFocus: virtualFocus2 } = store.getState();
+      if (!virtualFocus2) return;
+      const previousActiveElement = event.relatedTarget;
+      const isSilentlyFocused = silentlyFocused(event.currentTarget);
+      if (isSelfTarget(event) && isSilentlyFocused) {
+        event.stopPropagation();
+        previousElementRef.current = previousActiveElement;
+      }
+    });
+    const onFocusProp = props.onFocus;
+    const onFocus = useEvent((event) => {
+      onFocusProp == null ? void 0 : onFocusProp(event);
+      if (event.defaultPrevented) return;
+      if (!composite) return;
+      if (!store) return;
+      const { relatedTarget } = event;
+      const { virtualFocus: virtualFocus2 } = store.getState();
+      if (virtualFocus2) {
+        if (isSelfTarget(event) && !isItem(store, relatedTarget)) {
+          queueMicrotask(scheduleFocus);
+        }
+      } else if (isSelfTarget(event)) {
+        store.setActiveId(null);
+      }
+    });
+    const onBlurCaptureProp = props.onBlurCapture;
+    const onBlurCapture = useEvent((event) => {
+      var _a2;
+      onBlurCaptureProp == null ? void 0 : onBlurCaptureProp(event);
+      if (event.defaultPrevented) return;
+      if (!store) return;
+      const { virtualFocus: virtualFocus2, activeId: activeId2 } = store.getState();
+      if (!virtualFocus2) return;
+      const activeElement = (_a2 = getEnabledItem(store, activeId2)) == null ? void 0 : _a2.element;
+      const nextActiveElement = event.relatedTarget;
+      const nextActiveElementIsItem = isItem(store, nextActiveElement);
+      const previousElement = previousElementRef.current;
+      previousElementRef.current = null;
+      if (isSelfTarget(event) && nextActiveElementIsItem) {
+        if (nextActiveElement === activeElement) {
+          if (previousElement && previousElement !== nextActiveElement) {
+            fireBlurEvent(previousElement, event);
+          }
+        } else if (activeElement) {
+          fireBlurEvent(activeElement, event);
+        } else if (previousElement) {
+          fireBlurEvent(previousElement, event);
+        }
+        event.stopPropagation();
+      } else {
+        const targetIsItem = isItem(store, event.target);
+        if (!targetIsItem && activeElement) {
+          fireBlurEvent(activeElement, event);
+        }
+      }
+    });
+    const onKeyDownProp = props.onKeyDown;
+    const moveOnKeyPressProp = useBooleanEvent(moveOnKeyPress);
+    const onKeyDown = useEvent((event) => {
+      var _a2;
+      onKeyDownProp == null ? void 0 : onKeyDownProp(event);
+      if (event.defaultPrevented) return;
+      if (!store) return;
+      if (!isSelfTarget(event)) return;
+      const { orientation, items, renderedItems, activeId: activeId2 } = store.getState();
+      const activeItem = getEnabledItem(store, activeId2);
+      if ((_a2 = activeItem == null ? void 0 : activeItem.element) == null ? void 0 : _a2.isConnected) return;
+      const isVertical = orientation !== "horizontal";
+      const isHorizontal = orientation !== "vertical";
+      const grid = isGrid(renderedItems);
+      const isHorizontalKey = event.key === "ArrowLeft" || event.key === "ArrowRight" || event.key === "Home" || event.key === "End";
+      if (isHorizontalKey && isTextField(event.currentTarget)) return;
+      const up = () => {
+        if (grid) {
+          const item = items && findFirstEnabledItemInTheLastRow(items);
+          return item == null ? void 0 : item.id;
+        }
+        return store == null ? void 0 : store.last();
+      };
+      const keyMap = {
+        ArrowUp: (grid || isVertical) && up,
+        ArrowRight: (grid || isHorizontal) && store.first,
+        ArrowDown: (grid || isVertical) && store.first,
+        ArrowLeft: (grid || isHorizontal) && store.last,
+        Home: store.first,
+        End: store.last,
+        PageUp: store.first,
+        PageDown: store.last
+      };
+      const action = keyMap[event.key];
+      if (action) {
+        const id = action();
+        if (id !== void 0) {
+          if (!moveOnKeyPressProp(event)) return;
+          event.preventDefault();
+          store.move(id);
+        }
+      }
+    });
+    props = useWrapElement(
+      props,
+      (element) => /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(CompositeContextProvider, { value: store, children: element }),
+      [store]
+    );
+    const activeDescendant = store.useState((state) => {
+      var _a2;
+      if (!store) return;
+      if (!composite) return;
+      if (!state.virtualFocus) return;
+      return (_a2 = getEnabledItem(store, state.activeId)) == null ? void 0 : _a2.id;
+    });
+    props = _3YLGPPWQ_spreadProps(_3YLGPPWQ_spreadValues({
+      "aria-activedescendant": activeDescendant
+    }, props), {
+      ref: useMergeRefs(ref, setBaseElement, props.ref),
+      onKeyDownCapture,
+      onKeyUpCapture,
+      onFocusCapture,
+      onFocus,
+      onBlurCapture,
+      onKeyDown
+    });
+    const focusable = store.useState(
+      (state) => composite && (state.virtualFocus || state.activeId === null)
+    );
+    props = useFocusable(_3YLGPPWQ_spreadValues({ focusable }, props));
+    return props;
+  }
+);
+var TW35PKTK_Composite = forwardRef2(function Composite2(props) {
+  const htmlProps = useComposite(props);
+  return HKOOKEDE_createElement(TW35PKTK_TagName, htmlProps);
+});
+
+
+
+;// CONCATENATED MODULE: ./packages/components/build-module/composite/context.js
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+const CompositeContext = (0,external_wp_element_namespaceObject.createContext)({});
+const context_useCompositeContext = () => (0,external_wp_element_namespaceObject.useContext)(CompositeContext);
+
+;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/7HVFURXT.js
+"use client";
+
+// src/group/group-label-context.tsx
+
+var GroupLabelContext = (0,external_React_.createContext)(void 0);
+
+
+
+;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/ZPO4YZYE.js
+"use client";
+
+
+
+
+
+// src/group/group.tsx
+
+
+
+var ZPO4YZYE_TagName = "div";
+var useGroup = createHook(
+  function useGroup2(props) {
+    const [labelId, setLabelId] = (0,external_React_.useState)();
+    props = useWrapElement(
+      props,
+      (element) => /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(GroupLabelContext.Provider, { value: setLabelId, children: element }),
+      []
+    );
+    props = _3YLGPPWQ_spreadValues({
+      role: "group",
+      "aria-labelledby": labelId
+    }, props);
+    return removeUndefinedValues(props);
+  }
+);
+var Group = forwardRef2(function Group2(props) {
+  const htmlProps = useGroup(props);
+  return HKOOKEDE_createElement(ZPO4YZYE_TagName, htmlProps);
+});
+
+
+
+;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/IEKMDIUY.js
+"use client";
+
+
+
+
+// src/composite/composite-group.tsx
+var IEKMDIUY_TagName = "div";
+var useCompositeGroup = createHook(
+  function useCompositeGroup2(_a) {
+    var _b = _a, { store } = _b, props = __objRest(_b, ["store"]);
+    props = useGroup(props);
+    return props;
+  }
+);
+var IEKMDIUY_CompositeGroup = forwardRef2(function CompositeGroup2(props) {
+  const htmlProps = useCompositeGroup(props);
+  return HKOOKEDE_createElement(IEKMDIUY_TagName, htmlProps);
+});
+
+
+
+;// CONCATENATED MODULE: ./packages/components/build-module/composite/group.js
+/**
+ * External dependencies
+ */
+
+
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+const CompositeGroup = (0,external_wp_element_namespaceObject.forwardRef)(function CompositeGroup(props, ref) {
+  var _props$store;
+  const context = context_useCompositeContext();
+
+  // @ts-expect-error The store prop is undocumented and only used by the
+  // legacy compat layer. The `store` prop is documented, but its type is
+  // obfuscated to discourage its use outside of the component's internals.
+  const store = (_props$store = props.store) !== null && _props$store !== void 0 ? _props$store : context.store;
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(IEKMDIUY_CompositeGroup, {
+    store: store,
+    ...props,
+    ref: ref
+  });
+});
+
+;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/IGFP5YPG.js
+"use client";
+
+
+
+
+
+// src/group/group-label.tsx
+
+
+var IGFP5YPG_TagName = "div";
+var useGroupLabel = createHook(
+  function useGroupLabel2(props) {
+    const setLabelId = (0,external_React_.useContext)(GroupLabelContext);
+    const id = useId(props.id);
+    useSafeLayoutEffect(() => {
+      setLabelId == null ? void 0 : setLabelId(id);
+      return () => setLabelId == null ? void 0 : setLabelId(void 0);
+    }, [setLabelId, id]);
+    props = _3YLGPPWQ_spreadValues({
+      id,
+      "aria-hidden": true
+    }, props);
+    return removeUndefinedValues(props);
+  }
+);
+var GroupLabel = forwardRef2(function GroupLabel2(props) {
+  const htmlProps = useGroupLabel(props);
+  return HKOOKEDE_createElement(IGFP5YPG_TagName, htmlProps);
+});
+
+
+
+;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/Y2MAXF6C.js
+"use client";
+
+
+
+
+// src/composite/composite-group-label.tsx
+var Y2MAXF6C_TagName = "div";
+var useCompositeGroupLabel = createHook(function useCompositeGroupLabel2(_a) {
+  var _b = _a, { store } = _b, props = __objRest(_b, ["store"]);
+  props = useGroupLabel(props);
+  return props;
+});
+var Y2MAXF6C_CompositeGroupLabel = forwardRef2(function CompositeGroupLabel2(props) {
+  const htmlProps = useCompositeGroupLabel(props);
+  return HKOOKEDE_createElement(Y2MAXF6C_TagName, htmlProps);
+});
+
+
+
+;// CONCATENATED MODULE: ./packages/components/build-module/composite/group-label.js
+/**
+ * External dependencies
+ */
+
+
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+const CompositeGroupLabel = (0,external_wp_element_namespaceObject.forwardRef)(function CompositeGroupLabel(props, ref) {
+  var _props$store;
+  const context = context_useCompositeContext();
+
+  // @ts-expect-error The store prop is undocumented and only used by the
+  // legacy compat layer. The `store` prop is documented, but its type is
+  // obfuscated to discourage its use outside of the component's internals.
+  const store = (_props$store = props.store) !== null && _props$store !== void 0 ? _props$store : context.store;
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(Y2MAXF6C_CompositeGroupLabel, {
+    store: store,
+    ...props,
+    ref: ref
+  });
+});
+
+;// CONCATENATED MODULE: ./packages/components/build-module/composite/hover.js
+/**
+ * External dependencies
+ */
+
+
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+const CompositeHover = (0,external_wp_element_namespaceObject.forwardRef)(function CompositeHover(props, ref) {
+  var _props$store;
+  const context = context_useCompositeContext();
+
+  // @ts-expect-error The store prop is undocumented and only used by the
+  // legacy compat layer. The `store` prop is documented, but its type is
+  // obfuscated to discourage its use outside of the component's internals.
+  const store = (_props$store = props.store) !== null && _props$store !== void 0 ? _props$store : context.store;
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(IEKMDIUY_CompositeGroup, {
+    store: store,
+    ...props,
+    ref: ref
+  });
+});
+
+;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/PLQDTVXM.js
+"use client";
+
+
+
+
+
+// src/collection/collection-item.tsx
+
+
+var PLQDTVXM_TagName = "div";
+var useCollectionItem = createHook(
+  function useCollectionItem2(_a) {
+    var _b = _a, {
+      store,
+      shouldRegisterItem = true,
+      getItem = identity,
+      element: element
+    } = _b, props = __objRest(_b, [
+      "store",
+      "shouldRegisterItem",
+      "getItem",
+      // @ts-expect-error This prop may come from a collection renderer.
+      "element"
+    ]);
+    const context = useCollectionContext();
+    store = store || context;
+    const id = useId(props.id);
+    const ref = (0,external_React_.useRef)(element);
+    (0,external_React_.useEffect)(() => {
+      const element2 = ref.current;
+      if (!id) return;
+      if (!element2) return;
+      if (!shouldRegisterItem) return;
+      const item = getItem({ id, element: element2 });
+      return store == null ? void 0 : store.renderItem(item);
+    }, [id, shouldRegisterItem, getItem, store]);
+    props = _3YLGPPWQ_spreadProps(_3YLGPPWQ_spreadValues({}, props), {
+      ref: useMergeRefs(ref, props.ref)
+    });
+    return removeUndefinedValues(props);
+  }
+);
+var CollectionItem = forwardRef2(function CollectionItem2(props) {
+  const htmlProps = useCollectionItem(props);
+  return HKOOKEDE_createElement(PLQDTVXM_TagName, htmlProps);
 });
 
 
@@ -4538,107 +5050,6 @@ var Command = forwardRef2(function Command2(props) {
   const htmlProps = useCommand(props);
   return HKOOKEDE_createElement(NAXN2XAB_TagName, htmlProps);
 });
-
-
-
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/5VQZOHHZ.js
-"use client";
-
-// src/composite/utils.ts
-
-var _5VQZOHHZ_NULL_ITEM = { id: null };
-function _5VQZOHHZ_flipItems(items, activeId, shouldInsertNullItem = false) {
-  const index = items.findIndex((item) => item.id === activeId);
-  return [
-    ...items.slice(index + 1),
-    ...shouldInsertNullItem ? [_5VQZOHHZ_NULL_ITEM] : [],
-    ...items.slice(0, index)
-  ];
-}
-function _5VQZOHHZ_findFirstEnabledItem(items, excludeId) {
-  return items.find((item) => {
-    if (excludeId) {
-      return !item.disabled && item.id !== excludeId;
-    }
-    return !item.disabled;
-  });
-}
-function getEnabledItem(store, id) {
-  if (!id) return null;
-  return store.item(id) || null;
-}
-function _5VQZOHHZ_groupItemsByRows(items) {
-  const rows = [];
-  for (const item of items) {
-    const row = rows.find((currentRow) => {
-      var _a;
-      return ((_a = currentRow[0]) == null ? void 0 : _a.rowId) === item.rowId;
-    });
-    if (row) {
-      row.push(item);
-    } else {
-      rows.push([item]);
-    }
-  }
-  return rows;
-}
-function selectTextField(element, collapseToEnd = false) {
-  if (isTextField(element)) {
-    element.setSelectionRange(
-      collapseToEnd ? element.value.length : 0,
-      element.value.length
-    );
-  } else if (element.isContentEditable) {
-    const selection = getDocument(element).getSelection();
-    selection == null ? void 0 : selection.selectAllChildren(element);
-    if (collapseToEnd) {
-      selection == null ? void 0 : selection.collapseToEnd();
-    }
-  }
-}
-var FOCUS_SILENTLY = Symbol("FOCUS_SILENTLY");
-function focusSilently(element) {
-  element[FOCUS_SILENTLY] = true;
-  element.focus({ preventScroll: true });
-}
-function silentlyFocused(element) {
-  const isSilentlyFocused = element[FOCUS_SILENTLY];
-  delete element[FOCUS_SILENTLY];
-  return isSilentlyFocused;
-}
-function isItem(store, element, exclude) {
-  if (!element) return false;
-  if (element === exclude) return false;
-  const item = store.item(element.id);
-  if (!item) return false;
-  if (exclude && item.element === exclude) return false;
-  return true;
-}
-
-
-
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/WENSINUV.js
-"use client";
-
-
-
-// src/composite/composite-context.tsx
-
-var WENSINUV_ctx = createStoreContext(
-  [CollectionContextProvider],
-  [CollectionScopedContextProvider]
-);
-var useCompositeContext = WENSINUV_ctx.useContext;
-var useCompositeScopedContext = WENSINUV_ctx.useScopedContext;
-var useCompositeProviderContext = WENSINUV_ctx.useProviderContext;
-var CompositeContextProvider = WENSINUV_ctx.ContextProvider;
-var CompositeScopedContextProvider = WENSINUV_ctx.ScopedContextProvider;
-var CompositeItemContext = (0,external_React_.createContext)(
-  void 0
-);
-var CompositeRowContext = (0,external_React_.createContext)(
-  void 0
-);
 
 
 
@@ -4948,6 +5359,47 @@ var _3CCTMYB6_CompositeItem = memo2(
 
 
 
+;// CONCATENATED MODULE: ./packages/components/build-module/composite/item.js
+/**
+ * External dependencies
+ */
+
+
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+const CompositeItem = (0,external_wp_element_namespaceObject.forwardRef)(function CompositeItem(props, ref) {
+  var _props$store;
+  const context = context_useCompositeContext();
+
+  // @ts-expect-error The store prop is undocumented and only used by the
+  // legacy compat layer. The `store` prop is documented, but its type is
+  // obfuscated to discourage its use outside of the component's internals.
+  const store = (_props$store = props.store) !== null && _props$store !== void 0 ? _props$store : context.store;
+
+  // If the active item is not connected, Composite may end up in a state
+  // where none of the items are tabbable. In this case, we force all items to
+  // be tabbable, so that as soon as an item received focus, it becomes active
+  // and Composite goes back to working as expected.
+  const tabbable = useStoreState(store, state => {
+    return state?.activeId !== null && !store?.item(state?.activeId)?.element?.isConnected;
+  });
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(_3CCTMYB6_CompositeItem, {
+    store: store,
+    tabbable: tabbable,
+    ...props,
+    ref: ref
+  });
+});
+
 ;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/6BE7QOX5.js
 "use client";
 
@@ -5001,510 +5453,12 @@ var _6BE7QOX5_CompositeRow = forwardRef2(function CompositeRow2(props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/OBZMLI6J.js
-"use client";
+;// CONCATENATED MODULE: ./packages/components/build-module/composite/row.js
+/**
+ * External dependencies
+ */
 
 
-
-
-
-// src/composite/composite-hover.tsx
-
-
-
-
-var OBZMLI6J_TagName = "div";
-function getMouseDestination(event) {
-  const relatedTarget = event.relatedTarget;
-  if ((relatedTarget == null ? void 0 : relatedTarget.nodeType) === Node.ELEMENT_NODE) {
-    return relatedTarget;
-  }
-  return null;
-}
-function hoveringInside(event) {
-  const nextElement = getMouseDestination(event);
-  if (!nextElement) return false;
-  return contains(event.currentTarget, nextElement);
-}
-var OBZMLI6J_symbol = Symbol("composite-hover");
-function movingToAnotherItem(event) {
-  let dest = getMouseDestination(event);
-  if (!dest) return false;
-  do {
-    if (PBFD2E7P_hasOwnProperty(dest, OBZMLI6J_symbol) && dest[OBZMLI6J_symbol]) return true;
-    dest = dest.parentElement;
-  } while (dest);
-  return false;
-}
-var useCompositeHover = createHook(
-  function useCompositeHover2(_a) {
-    var _b = _a, {
-      store,
-      focusOnHover = true,
-      blurOnHoverEnd = !!focusOnHover
-    } = _b, props = __objRest(_b, [
-      "store",
-      "focusOnHover",
-      "blurOnHoverEnd"
-    ]);
-    const context = useCompositeContext();
-    store = store || context;
-    invariant(
-      store,
-       false && 0
-    );
-    const isMouseMoving = useIsMouseMoving();
-    const onMouseMoveProp = props.onMouseMove;
-    const focusOnHoverProp = useBooleanEvent(focusOnHover);
-    const onMouseMove = useEvent((event) => {
-      onMouseMoveProp == null ? void 0 : onMouseMoveProp(event);
-      if (event.defaultPrevented) return;
-      if (!isMouseMoving()) return;
-      if (!focusOnHoverProp(event)) return;
-      if (!hasFocusWithin(event.currentTarget)) {
-        const baseElement = store == null ? void 0 : store.getState().baseElement;
-        if (baseElement && !hasFocus(baseElement)) {
-          baseElement.focus();
-        }
-      }
-      store == null ? void 0 : store.setActiveId(event.currentTarget.id);
-    });
-    const onMouseLeaveProp = props.onMouseLeave;
-    const blurOnHoverEndProp = useBooleanEvent(blurOnHoverEnd);
-    const onMouseLeave = useEvent((event) => {
-      var _a2;
-      onMouseLeaveProp == null ? void 0 : onMouseLeaveProp(event);
-      if (event.defaultPrevented) return;
-      if (!isMouseMoving()) return;
-      if (hoveringInside(event)) return;
-      if (movingToAnotherItem(event)) return;
-      if (!focusOnHoverProp(event)) return;
-      if (!blurOnHoverEndProp(event)) return;
-      store == null ? void 0 : store.setActiveId(null);
-      (_a2 = store == null ? void 0 : store.getState().baseElement) == null ? void 0 : _a2.focus();
-    });
-    const ref = (0,external_React_.useCallback)((element) => {
-      if (!element) return;
-      element[OBZMLI6J_symbol] = true;
-    }, []);
-    props = _3YLGPPWQ_spreadProps(_3YLGPPWQ_spreadValues({}, props), {
-      ref: useMergeRefs(ref, props.ref),
-      onMouseMove,
-      onMouseLeave
-    });
-    return removeUndefinedValues(props);
-  }
-);
-var OBZMLI6J_CompositeHover = memo2(
-  forwardRef2(function CompositeHover2(props) {
-    const htmlProps = useCompositeHover(props);
-    return HKOOKEDE_createElement(OBZMLI6J_TagName, htmlProps);
-  })
-);
-
-
-
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/DS36B3MQ.js
-"use client";
-
-
-
-
-
-
-// src/composite/composite-typeahead.tsx
-
-
-
-
-var DS36B3MQ_TagName = "div";
-var chars = "";
-function clearChars() {
-  chars = "";
-}
-function isValidTypeaheadEvent(event) {
-  const target = event.target;
-  if (target && isTextField(target)) return false;
-  if (event.key === " " && chars.length) return true;
-  return event.key.length === 1 && !event.ctrlKey && !event.altKey && !event.metaKey && /^[\p{Letter}\p{Number}]$/u.test(event.key);
-}
-function isSelfTargetOrItem(event, items) {
-  if (isSelfTarget(event)) return true;
-  const target = event.target;
-  if (!target) return false;
-  const isItem = items.some((item) => item.element === target);
-  return isItem;
-}
-function DS36B3MQ_getEnabledItems(items) {
-  return items.filter((item) => !item.disabled);
-}
-function itemTextStartsWith(item, text) {
-  var _a;
-  const itemText = ((_a = item.element) == null ? void 0 : _a.textContent) || item.children || // The composite item object itself doesn't include a value property, but
-  // other components like Select do. Since CompositeTypeahead is a generic
-  // component that can be used with those as well, we also consider the value
-  // property as a fallback for the typeahead text content.
-  "value" in item && item.value;
-  if (!itemText) return false;
-  return normalizeString(itemText).trim().toLowerCase().startsWith(text.toLowerCase());
-}
-function getSameInitialItems(items, char, activeId) {
-  if (!activeId) return items;
-  const activeItem = items.find((item) => item.id === activeId);
-  if (!activeItem) return items;
-  if (!itemTextStartsWith(activeItem, char)) return items;
-  if (chars !== char && itemTextStartsWith(activeItem, chars)) return items;
-  chars = char;
-  return _5VQZOHHZ_flipItems(
-    items.filter((item) => itemTextStartsWith(item, chars)),
-    activeId
-  ).filter((item) => item.id !== activeId);
-}
-var useCompositeTypeahead = createHook(function useCompositeTypeahead2(_a) {
-  var _b = _a, { store, typeahead = true } = _b, props = __objRest(_b, ["store", "typeahead"]);
-  const context = useCompositeContext();
-  store = store || context;
-  invariant(
-    store,
-     false && 0
-  );
-  const onKeyDownCaptureProp = props.onKeyDownCapture;
-  const cleanupTimeoutRef = (0,external_React_.useRef)(0);
-  const onKeyDownCapture = useEvent((event) => {
-    onKeyDownCaptureProp == null ? void 0 : onKeyDownCaptureProp(event);
-    if (event.defaultPrevented) return;
-    if (!typeahead) return;
-    if (!store) return;
-    const { renderedItems, items, activeId } = store.getState();
-    if (!isValidTypeaheadEvent(event)) return clearChars();
-    let enabledItems = DS36B3MQ_getEnabledItems(
-      renderedItems.length ? renderedItems : items
-    );
-    if (!isSelfTargetOrItem(event, enabledItems)) return clearChars();
-    event.preventDefault();
-    window.clearTimeout(cleanupTimeoutRef.current);
-    cleanupTimeoutRef.current = window.setTimeout(() => {
-      chars = "";
-    }, 500);
-    const char = event.key.toLowerCase();
-    chars += char;
-    enabledItems = getSameInitialItems(enabledItems, char, activeId);
-    const item = enabledItems.find((item2) => itemTextStartsWith(item2, chars));
-    if (item) {
-      store.move(item.id);
-    } else {
-      clearChars();
-    }
-  });
-  props = _3YLGPPWQ_spreadProps(_3YLGPPWQ_spreadValues({}, props), {
-    onKeyDownCapture
-  });
-  return removeUndefinedValues(props);
-});
-var DS36B3MQ_CompositeTypeahead = forwardRef2(function CompositeTypeahead2(props) {
-  const htmlProps = useCompositeTypeahead(props);
-  return HKOOKEDE_createElement(DS36B3MQ_TagName, htmlProps);
-});
-
-
-
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/TW35PKTK.js
-"use client";
-
-
-
-
-
-
-
-// src/composite/composite.tsx
-
-
-
-
-
-
-
-var TW35PKTK_TagName = "div";
-function isGrid(items) {
-  return items.some((item) => !!item.rowId);
-}
-function isPrintableKey(event) {
-  const target = event.target;
-  if (target && !isTextField(target)) return false;
-  return event.key.length === 1 && !event.ctrlKey && !event.metaKey;
-}
-function isModifierKey(event) {
-  return event.key === "Shift" || event.key === "Control" || event.key === "Alt" || event.key === "Meta";
-}
-function useKeyboardEventProxy(store, onKeyboardEvent, previousElementRef) {
-  return useEvent((event) => {
-    var _a;
-    onKeyboardEvent == null ? void 0 : onKeyboardEvent(event);
-    if (event.defaultPrevented) return;
-    if (event.isPropagationStopped()) return;
-    if (!isSelfTarget(event)) return;
-    if (isModifierKey(event)) return;
-    if (isPrintableKey(event)) return;
-    const state = store.getState();
-    const activeElement = (_a = getEnabledItem(store, state.activeId)) == null ? void 0 : _a.element;
-    if (!activeElement) return;
-    const _b = event, { view } = _b, eventInit = __objRest(_b, ["view"]);
-    const previousElement = previousElementRef == null ? void 0 : previousElementRef.current;
-    if (activeElement !== previousElement) {
-      activeElement.focus();
-    }
-    if (!fireKeyboardEvent(activeElement, event.type, eventInit)) {
-      event.preventDefault();
-    }
-    if (event.currentTarget.contains(activeElement)) {
-      event.stopPropagation();
-    }
-  });
-}
-function findFirstEnabledItemInTheLastRow(items) {
-  return _5VQZOHHZ_findFirstEnabledItem(
-    flatten2DArray(reverseArray(_5VQZOHHZ_groupItemsByRows(items)))
-  );
-}
-function useScheduleFocus(store) {
-  const [scheduled, setScheduled] = (0,external_React_.useState)(false);
-  const schedule = (0,external_React_.useCallback)(() => setScheduled(true), []);
-  const activeItem = store.useState(
-    (state) => getEnabledItem(store, state.activeId)
-  );
-  (0,external_React_.useEffect)(() => {
-    const activeElement = activeItem == null ? void 0 : activeItem.element;
-    if (!scheduled) return;
-    if (!activeElement) return;
-    setScheduled(false);
-    activeElement.focus({ preventScroll: true });
-  }, [activeItem, scheduled]);
-  return schedule;
-}
-var useComposite = createHook(
-  function useComposite2(_a) {
-    var _b = _a, {
-      store,
-      composite = true,
-      focusOnMove = composite,
-      moveOnKeyPress = true
-    } = _b, props = __objRest(_b, [
-      "store",
-      "composite",
-      "focusOnMove",
-      "moveOnKeyPress"
-    ]);
-    const context = useCompositeProviderContext();
-    store = store || context;
-    invariant(
-      store,
-       false && 0
-    );
-    const ref = (0,external_React_.useRef)(null);
-    const previousElementRef = (0,external_React_.useRef)(null);
-    const scheduleFocus = useScheduleFocus(store);
-    const moves = store.useState("moves");
-    const [, setBaseElement] = useTransactionState(
-      composite ? store.setBaseElement : null
-    );
-    (0,external_React_.useEffect)(() => {
-      var _a2;
-      if (!store) return;
-      if (!moves) return;
-      if (!composite) return;
-      if (!focusOnMove) return;
-      const { activeId: activeId2 } = store.getState();
-      const itemElement = (_a2 = getEnabledItem(store, activeId2)) == null ? void 0 : _a2.element;
-      if (!itemElement) return;
-      focusIntoView(itemElement);
-    }, [store, moves, composite, focusOnMove]);
-    useSafeLayoutEffect(() => {
-      if (!store) return;
-      if (!moves) return;
-      if (!composite) return;
-      const { baseElement, activeId: activeId2 } = store.getState();
-      const isSelfAcive = activeId2 === null;
-      if (!isSelfAcive) return;
-      if (!baseElement) return;
-      const previousElement = previousElementRef.current;
-      previousElementRef.current = null;
-      if (previousElement) {
-        fireBlurEvent(previousElement, { relatedTarget: baseElement });
-      }
-      if (!hasFocus(baseElement)) {
-        baseElement.focus();
-      }
-    }, [store, moves, composite]);
-    const activeId = store.useState("activeId");
-    const virtualFocus = store.useState("virtualFocus");
-    useSafeLayoutEffect(() => {
-      var _a2;
-      if (!store) return;
-      if (!composite) return;
-      if (!virtualFocus) return;
-      const previousElement = previousElementRef.current;
-      previousElementRef.current = null;
-      if (!previousElement) return;
-      const activeElement = (_a2 = getEnabledItem(store, activeId)) == null ? void 0 : _a2.element;
-      const relatedTarget = activeElement || getActiveElement(previousElement);
-      if (relatedTarget === previousElement) return;
-      fireBlurEvent(previousElement, { relatedTarget });
-    }, [store, activeId, virtualFocus, composite]);
-    const onKeyDownCapture = useKeyboardEventProxy(
-      store,
-      props.onKeyDownCapture,
-      previousElementRef
-    );
-    const onKeyUpCapture = useKeyboardEventProxy(
-      store,
-      props.onKeyUpCapture,
-      previousElementRef
-    );
-    const onFocusCaptureProp = props.onFocusCapture;
-    const onFocusCapture = useEvent((event) => {
-      onFocusCaptureProp == null ? void 0 : onFocusCaptureProp(event);
-      if (event.defaultPrevented) return;
-      if (!store) return;
-      const { virtualFocus: virtualFocus2 } = store.getState();
-      if (!virtualFocus2) return;
-      const previousActiveElement = event.relatedTarget;
-      const isSilentlyFocused = silentlyFocused(event.currentTarget);
-      if (isSelfTarget(event) && isSilentlyFocused) {
-        event.stopPropagation();
-        previousElementRef.current = previousActiveElement;
-      }
-    });
-    const onFocusProp = props.onFocus;
-    const onFocus = useEvent((event) => {
-      onFocusProp == null ? void 0 : onFocusProp(event);
-      if (event.defaultPrevented) return;
-      if (!composite) return;
-      if (!store) return;
-      const { relatedTarget } = event;
-      const { virtualFocus: virtualFocus2 } = store.getState();
-      if (virtualFocus2) {
-        if (isSelfTarget(event) && !isItem(store, relatedTarget)) {
-          queueMicrotask(scheduleFocus);
-        }
-      } else if (isSelfTarget(event)) {
-        store.setActiveId(null);
-      }
-    });
-    const onBlurCaptureProp = props.onBlurCapture;
-    const onBlurCapture = useEvent((event) => {
-      var _a2;
-      onBlurCaptureProp == null ? void 0 : onBlurCaptureProp(event);
-      if (event.defaultPrevented) return;
-      if (!store) return;
-      const { virtualFocus: virtualFocus2, activeId: activeId2 } = store.getState();
-      if (!virtualFocus2) return;
-      const activeElement = (_a2 = getEnabledItem(store, activeId2)) == null ? void 0 : _a2.element;
-      const nextActiveElement = event.relatedTarget;
-      const nextActiveElementIsItem = isItem(store, nextActiveElement);
-      const previousElement = previousElementRef.current;
-      previousElementRef.current = null;
-      if (isSelfTarget(event) && nextActiveElementIsItem) {
-        if (nextActiveElement === activeElement) {
-          if (previousElement && previousElement !== nextActiveElement) {
-            fireBlurEvent(previousElement, event);
-          }
-        } else if (activeElement) {
-          fireBlurEvent(activeElement, event);
-        } else if (previousElement) {
-          fireBlurEvent(previousElement, event);
-        }
-        event.stopPropagation();
-      } else {
-        const targetIsItem = isItem(store, event.target);
-        if (!targetIsItem && activeElement) {
-          fireBlurEvent(activeElement, event);
-        }
-      }
-    });
-    const onKeyDownProp = props.onKeyDown;
-    const moveOnKeyPressProp = useBooleanEvent(moveOnKeyPress);
-    const onKeyDown = useEvent((event) => {
-      var _a2;
-      onKeyDownProp == null ? void 0 : onKeyDownProp(event);
-      if (event.defaultPrevented) return;
-      if (!store) return;
-      if (!isSelfTarget(event)) return;
-      const { orientation, items, renderedItems, activeId: activeId2 } = store.getState();
-      const activeItem = getEnabledItem(store, activeId2);
-      if ((_a2 = activeItem == null ? void 0 : activeItem.element) == null ? void 0 : _a2.isConnected) return;
-      const isVertical = orientation !== "horizontal";
-      const isHorizontal = orientation !== "vertical";
-      const grid = isGrid(renderedItems);
-      const isHorizontalKey = event.key === "ArrowLeft" || event.key === "ArrowRight" || event.key === "Home" || event.key === "End";
-      if (isHorizontalKey && isTextField(event.currentTarget)) return;
-      const up = () => {
-        if (grid) {
-          const item = items && findFirstEnabledItemInTheLastRow(items);
-          return item == null ? void 0 : item.id;
-        }
-        return store == null ? void 0 : store.last();
-      };
-      const keyMap = {
-        ArrowUp: (grid || isVertical) && up,
-        ArrowRight: (grid || isHorizontal) && store.first,
-        ArrowDown: (grid || isVertical) && store.first,
-        ArrowLeft: (grid || isHorizontal) && store.last,
-        Home: store.first,
-        End: store.last,
-        PageUp: store.first,
-        PageDown: store.last
-      };
-      const action = keyMap[event.key];
-      if (action) {
-        const id = action();
-        if (id !== void 0) {
-          if (!moveOnKeyPressProp(event)) return;
-          event.preventDefault();
-          store.move(id);
-        }
-      }
-    });
-    props = useWrapElement(
-      props,
-      (element) => /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(CompositeContextProvider, { value: store, children: element }),
-      [store]
-    );
-    const activeDescendant = store.useState((state) => {
-      var _a2;
-      if (!store) return;
-      if (!composite) return;
-      if (!state.virtualFocus) return;
-      return (_a2 = getEnabledItem(store, state.activeId)) == null ? void 0 : _a2.id;
-    });
-    props = _3YLGPPWQ_spreadProps(_3YLGPPWQ_spreadValues({
-      "aria-activedescendant": activeDescendant
-    }, props), {
-      ref: useMergeRefs(ref, setBaseElement, props.ref),
-      onKeyDownCapture,
-      onKeyUpCapture,
-      onFocusCapture,
-      onFocus,
-      onBlurCapture,
-      onKeyDown
-    });
-    const focusable = store.useState(
-      (state) => composite && (state.virtualFocus || state.activeId === null)
-    );
-    props = useFocusable(_3YLGPPWQ_spreadValues({ focusable }, props));
-    return props;
-  }
-);
-var TW35PKTK_Composite = forwardRef2(function Composite2(props) {
-  const htmlProps = useComposite(props);
-  return HKOOKEDE_createElement(TW35PKTK_TagName, htmlProps);
-});
-
-
-
-;// CONCATENATED MODULE: external ["wp","element"]
-const external_wp_element_namespaceObject = window["wp"]["element"];
-;// CONCATENATED MODULE: ./packages/components/build-module/composite/context.js
 /**
  * WordPress dependencies
  */
@@ -5514,8 +5468,54 @@ const external_wp_element_namespaceObject = window["wp"]["element"];
  * Internal dependencies
  */
 
-const CompositeContext = (0,external_wp_element_namespaceObject.createContext)(undefined);
-const context_useCompositeContext = () => (0,external_wp_element_namespaceObject.useContext)(CompositeContext);
+
+
+const CompositeRow = (0,external_wp_element_namespaceObject.forwardRef)(function CompositeRow(props, ref) {
+  var _props$store;
+  const context = context_useCompositeContext();
+
+  // @ts-expect-error The store prop is undocumented and only used by the
+  // legacy compat layer. The `store` prop is documented, but its type is
+  // obfuscated to discourage its use outside of the component's internals.
+  const store = (_props$store = props.store) !== null && _props$store !== void 0 ? _props$store : context.store;
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(_6BE7QOX5_CompositeRow, {
+    store: store,
+    ...props,
+    ref: ref
+  });
+});
+
+;// CONCATENATED MODULE: ./packages/components/build-module/composite/typeahead.js
+/**
+ * External dependencies
+ */
+
+
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+const CompositeTypeahead = (0,external_wp_element_namespaceObject.forwardRef)(function CompositeTypeahead(props, ref) {
+  var _props$store;
+  const context = context_useCompositeContext();
+
+  // @ts-expect-error The store prop is undocumented and only used by the
+  // legacy compat layer. The `store` prop is documented, but its type is
+  // obfuscated to discourage its use outside of the component's internals.
+  const store = (_props$store = props.store) !== null && _props$store !== void 0 ? _props$store : context.store;
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(_6BE7QOX5_CompositeRow, {
+    store: store,
+    ...props,
+    ref: ref
+  });
+});
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/composite/index.js
 /**
@@ -5538,100 +5538,18 @@ const context_useCompositeContext = () => (0,external_wp_element_namespaceObject
  */
 
 
+
 /**
  * Internal dependencies
  */
 
 
 
-/**
- * Creates a composite store.
- *
- * @example
- * ```jsx
- * import { Composite, useCompositeStore } from '@wordpress/components';
- *
- * const store = useCompositeStore();
- * <Composite store={store}>
- *   <Composite.Item>Item</Composite.Item>
- *   <Composite.Item>Item</Composite.Item>
- *   <Composite.Item>Item</Composite.Item>
- * </Composite>
- * ```
- */
-function composite_useCompositeStore({
-  focusLoop = false,
-  focusWrap = false,
-  focusShift = false,
-  virtualFocus = false,
-  orientation = 'both',
-  rtl = false,
-  ...props
-} = {}) {
-  return useCompositeStore({
-    focusLoop,
-    focusWrap,
-    focusShift,
-    virtualFocus,
-    orientation,
-    rtl,
-    ...props
-  });
-}
-const composite_Group = (0,external_wp_element_namespaceObject.forwardRef)(function CompositeGroup(props, ref) {
-  const context = context_useCompositeContext();
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(IEKMDIUY_CompositeGroup, {
-    store: context?.store,
-    ...props,
-    ref: ref
-  });
-});
-composite_Group.displayName = 'Composite.Group';
-const composite_GroupLabel = (0,external_wp_element_namespaceObject.forwardRef)(function CompositeGroupLabel(props, ref) {
-  const context = context_useCompositeContext();
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(Y2MAXF6C_CompositeGroupLabel, {
-    store: context?.store,
-    ...props,
-    ref: ref
-  });
-});
-composite_GroupLabel.displayName = 'Composite.GroupLabel';
-const Item = (0,external_wp_element_namespaceObject.forwardRef)(function CompositeItem(props, ref) {
-  const context = context_useCompositeContext();
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(_3CCTMYB6_CompositeItem, {
-    store: context?.store,
-    ...props,
-    ref: ref
-  });
-});
-Item.displayName = 'Composite.Item';
-const Row = (0,external_wp_element_namespaceObject.forwardRef)(function CompositeRow(props, ref) {
-  const context = context_useCompositeContext();
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(_6BE7QOX5_CompositeRow, {
-    store: context?.store,
-    ...props,
-    ref: ref
-  });
-});
-Row.displayName = 'Composite.Row';
-const Hover = (0,external_wp_element_namespaceObject.forwardRef)(function CompositeHover(props, ref) {
-  const context = context_useCompositeContext();
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(OBZMLI6J_CompositeHover, {
-    store: context?.store,
-    ...props,
-    ref: ref
-  });
-});
-Hover.displayName = 'Composite.Hover';
-const Typeahead = (0,external_wp_element_namespaceObject.forwardRef)(function CompositeTypeahead(props, ref) {
-  const context = context_useCompositeContext();
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(DS36B3MQ_CompositeTypeahead, {
-    store: context?.store,
-    ...props,
-    ref: ref
-  });
-});
-Typeahead.displayName = 'Composite.Typeahead';
+
+
+
+
+
 
 /**
  * Renders a widget based on the WAI-ARIA [`composite`](https://w3c.github.io/aria/#composite)
@@ -5640,21 +5558,46 @@ Typeahead.displayName = 'Composite.Typeahead';
  *
  * @example
  * ```jsx
- * import { Composite, useCompositeStore } from '@wordpress/components';
+ * import { Composite } from '@wordpress/components';
  *
- * const store = useCompositeStore();
- * <Composite store={store}>
+ * <Composite>
  *   <Composite.Item>Item 1</Composite.Item>
  *   <Composite.Item>Item 2</Composite.Item>
  * </Composite>
  * ```
  */
 const Composite = Object.assign((0,external_wp_element_namespaceObject.forwardRef)(function Composite({
+  // Composite store props
+  activeId,
+  defaultActiveId,
+  setActiveId,
+  focusLoop = false,
+  focusWrap = false,
+  focusShift = false,
+  virtualFocus = false,
+  orientation = 'both',
+  rtl = (0,external_wp_i18n_namespaceObject.isRTL)(),
+  // Composite component props
   children,
-  store,
   disabled = false,
+  // Rest props
   ...props
 }, ref) {
+  // @ts-expect-error The store prop is undocumented and only used by the
+  // legacy compat layer.
+  const storeProp = props.store;
+  const internalStore = useCompositeStore({
+    activeId,
+    defaultActiveId,
+    setActiveId,
+    focusLoop,
+    focusWrap,
+    focusShift,
+    virtualFocus,
+    orientation,
+    rtl
+  });
+  const store = storeProp !== null && storeProp !== void 0 ? storeProp : internalStore;
   const contextValue = (0,external_wp_element_namespaceObject.useMemo)(() => ({
     store
   }), [store]);
@@ -5669,16 +5612,14 @@ const Composite = Object.assign((0,external_wp_element_namespaceObject.forwardRe
     })
   });
 }), {
-  displayName: 'Composite',
   /**
    * Renders a group element for composite items.
    *
    * @example
    * ```jsx
-   * import { Composite, useCompositeStore } from '@wordpress/components';
+   * import { Composite } from '@wordpress/components';
    *
-   * const store = useCompositeStore();
-   * <Composite store={store}>
+   * <Composite>
    *   <Composite.Group>
    *     <Composite.GroupLabel>Label</Composite.GroupLabel>
    *     <Composite.Item>Item 1</Composite.Item>
@@ -5687,7 +5628,9 @@ const Composite = Object.assign((0,external_wp_element_namespaceObject.forwardRe
    * </Composite>
    * ```
    */
-  Group: composite_Group,
+  Group: Object.assign(CompositeGroup, {
+    displayName: 'Composite.Group'
+  }),
   /**
    * Renders a label in a composite group. This component must be wrapped with
    * `Composite.Group` so the `aria-labelledby` prop is properly set on the
@@ -5695,10 +5638,9 @@ const Composite = Object.assign((0,external_wp_element_namespaceObject.forwardRe
    *
    * @example
    * ```jsx
-   * import { Composite, useCompositeStore } from '@wordpress/components';
+   * import { Composite } from '@wordpress/components';
    *
-   * const store = useCompositeStore();
-   * <Composite store={store}>
+   * <Composite>
    *   <Composite.Group>
    *     <Composite.GroupLabel>Label</Composite.GroupLabel>
    *     <Composite.Item>Item 1</Composite.Item>
@@ -5707,23 +5649,26 @@ const Composite = Object.assign((0,external_wp_element_namespaceObject.forwardRe
    * </Composite>
    * ```
    */
-  GroupLabel: composite_GroupLabel,
+  GroupLabel: Object.assign(CompositeGroupLabel, {
+    displayName: 'Composite.GroupLabel'
+  }),
   /**
    * Renders a composite item.
    *
    * @example
    * ```jsx
-   * import { Composite, useCompositeStore } from '@wordpress/components';
+   * import { Composite } from '@wordpress/components';
    *
-   * const store = useCompositeStore();
-   * <Composite store={store}>
+   * <Composite>
    *   <Composite.Item>Item 1</Composite.Item>
    *   <Composite.Item>Item 2</Composite.Item>
    *   <Composite.Item>Item 3</Composite.Item>
    * </Composite>
    * ```
    */
-  Item,
+  Item: Object.assign(CompositeItem, {
+    displayName: 'Composite.Item'
+  }),
   /**
    * Renders a composite row. Wrapping `Composite.Item` elements within
    * `Composite.Row` will create a two-dimensional composite widget, such as a
@@ -5731,10 +5676,9 @@ const Composite = Object.assign((0,external_wp_element_namespaceObject.forwardRe
    *
    * @example
    * ```jsx
-   * import { Composite, useCompositeStore } from '@wordpress/components';
+   * import { Composite } from '@wordpress/components';
    *
-   * const store = useCompositeStore();
-   * <Composite store={store}>
+   * <Composite>
    *   <Composite.Row>
    *     <Composite.Item>Item 1.1</Composite.Item>
    *     <Composite.Item>Item 1.2</Composite.Item>
@@ -5748,7 +5692,9 @@ const Composite = Object.assign((0,external_wp_element_namespaceObject.forwardRe
    * </Composite>
    * ```
    */
-  Row,
+  Row: Object.assign(CompositeRow, {
+    displayName: 'Composite.Row'
+  }),
   /**
    * Renders an element in a composite widget that receives focus on mouse move
    * and loses focus to the composite base element on mouse leave. This should
@@ -5756,10 +5702,9 @@ const Composite = Object.assign((0,external_wp_element_namespaceObject.forwardRe
    *
    * @example
    * ```jsx
-   * import { Composite, useCompositeStore } from '@wordpress/components';
+   * import { Composite } from '@wordpress/components';
    *
-   * const store = useCompositeStore();
-   * <Composite store={store}>
+   * <Composite>
    *   <Composite.Hover render={ <Composite.Item /> }>
    *     Item 1
    *   </Composite.Hover>
@@ -5769,7 +5714,9 @@ const Composite = Object.assign((0,external_wp_element_namespaceObject.forwardRe
    * </Composite>
    * ```
    */
-  Hover,
+  Hover: Object.assign(CompositeHover, {
+    displayName: 'Composite.Hover'
+  }),
   /**
    * Renders a component that adds typeahead functionality to composite
    * components. Hitting printable character keys will move focus to the next
@@ -5777,16 +5724,17 @@ const Composite = Object.assign((0,external_wp_element_namespaceObject.forwardRe
    *
    * @example
    * ```jsx
-   * import { Composite, useCompositeStore } from '@wordpress/components';
+   * import { Composite } from '@wordpress/components';
    *
-   * const store = useCompositeStore();
-   * <Composite store={store} render={ <CompositeTypeahead /> }>
+   * <Composite render={ <CompositeTypeahead /> }>
    *   <Composite.Item>Item 1</Composite.Item>
    *   <Composite.Item>Item 2</Composite.Item>
    * </Composite>
    * ```
    */
-  Typeahead,
+  Typeahead: Object.assign(CompositeTypeahead, {
+    displayName: 'Composite.Typeahead'
+  }),
   /**
    * The React context used by the composite components. It can be used by
    * to access the composite store, and to forward the context when composite
@@ -5801,7 +5749,9 @@ const Composite = Object.assign((0,external_wp_element_namespaceObject.forwardRe
    * const compositeContext = useContext( Composite.Context );
    * ```
    */
-  Context: CompositeContext
+  Context: Object.assign(CompositeContext, {
+    displayName: 'Composite.Context'
+  })
 });
 
 ;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/__chunks/6E4KKOSB.js
@@ -11512,12 +11462,12 @@ function isPlainObject(o) {
  * @param {import('react').DependencyList} deps
  */
 function use_update_effect_useUpdateEffect(effect, deps) {
-  const mounted = (0,external_wp_element_namespaceObject.useRef)(false);
+  const mountedRef = (0,external_wp_element_namespaceObject.useRef)(false);
   (0,external_wp_element_namespaceObject.useEffect)(() => {
-    if (mounted.current) {
+    if (mountedRef.current) {
       return effect();
     }
-    mounted.current = true;
+    mountedRef.current = true;
     return undefined;
     // Disable reasons:
     // 1. This hook needs to pass a dep list that isn't an array literal
@@ -11526,7 +11476,7 @@ function use_update_effect_useUpdateEffect(effect, deps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
   (0,external_wp_element_namespaceObject.useEffect)(() => () => {
-    mounted.current = false;
+    mountedRef.current = false;
   }, []);
 }
 /* harmony default export */ const use_update_effect = (use_update_effect_useUpdateEffect);
@@ -15522,34 +15472,25 @@ const COLORS = Object.freeze({
 
 
 const CONTROL_HEIGHT = '36px';
-const CONTROL_PADDING_X = '12px';
 const CONTROL_PROPS = {
-  controlSurfaceColor: COLORS.white,
-  controlTextActiveColor: COLORS.theme.accent,
-  controlPaddingX: CONTROL_PADDING_X,
-  controlPaddingXLarge: `calc(${CONTROL_PADDING_X} * 1.3334)`,
-  controlPaddingXSmall: `calc(${CONTROL_PADDING_X} / 1.3334)`,
+  // These values should be shared with TextControl.
+  controlPaddingX: 12,
+  controlPaddingXSmall: 8,
+  controlPaddingXLarge: 12 * 1.3334,
+  // TODO: Deprecate
+
   controlBackgroundColor: COLORS.white,
-  controlBoxShadow: 'transparent',
   controlBoxShadowFocus: `0 0 0 0.5px ${COLORS.theme.accent}`,
-  controlDestructiveBorderColor: COLORS.alert.red,
   controlHeight: CONTROL_HEIGHT,
   controlHeightXSmall: `calc( ${CONTROL_HEIGHT} * 0.6 )`,
   controlHeightSmall: `calc( ${CONTROL_HEIGHT} * 0.8 )`,
   controlHeightLarge: `calc( ${CONTROL_HEIGHT} * 1.2 )`,
   controlHeightXLarge: `calc( ${CONTROL_HEIGHT} * 1.4 )`
 };
-const TOGGLE_GROUP_CONTROL_PROPS = {
-  toggleGroupControlBackgroundColor: CONTROL_PROPS.controlBackgroundColor,
-  toggleGroupControlBorderColor: COLORS.ui.border,
-  toggleGroupControlBackdropBackgroundColor: CONTROL_PROPS.controlSurfaceColor,
-  toggleGroupControlBackdropBorderColor: COLORS.ui.border,
-  toggleGroupControlButtonColorActive: CONTROL_PROPS.controlBackgroundColor
-};
 
 // Using Object.assign to avoid creating circular references when emitting
 // TypeScript type declarations.
-/* harmony default export */ const config_values = (Object.assign({}, CONTROL_PROPS, TOGGLE_GROUP_CONTROL_PROPS, {
+/* harmony default export */ const config_values = (Object.assign({}, CONTROL_PROPS, {
   colorDivider: 'rgba(0, 0, 0, 0.1)',
   colorScrollbarThumb: 'rgba(0, 0, 0, 0.2)',
   colorScrollbarThumbHover: 'rgba(0, 0, 0, 0.5)',
@@ -15580,15 +15521,14 @@ const TOGGLE_GROUP_CONTROL_PROPS = {
   fontWeight: 'normal',
   fontWeightHeading: '600',
   gridBase: '4px',
-  cardBorderRadius: '2px',
   cardPaddingXSmall: `${space(2)}`,
   cardPaddingSmall: `${space(4)}`,
   cardPaddingMedium: `${space(4)} ${space(6)}`,
   cardPaddingLarge: `${space(6)} ${space(8)}`,
-  elevationXSmall: `0 0.7px 1px rgba(0, 0, 0, 0.1), 0 1.2px 1.7px -0.2px rgba(0, 0, 0, 0.1), 0 2.3px 3.3px -0.5px rgba(0, 0, 0, 0.1)`,
-  elevationSmall: `0 0.7px 1px 0 rgba(0, 0, 0, 0.12), 0 2.2px 3.7px -0.2px rgba(0, 0, 0, 0.12), 0 5.3px 7.3px -0.5px rgba(0, 0, 0, 0.12)`,
-  elevationMedium: `0 0.7px 1px 0 rgba(0, 0, 0, 0.14), 0 4.2px 5.7px -0.2px rgba(0, 0, 0, 0.14), 0 7.3px 9.3px -0.5px rgba(0, 0, 0, 0.14)`,
-  elevationLarge: `0 0.7px 1px rgba(0, 0, 0, 0.15), 0 2.7px 3.8px -0.2px rgba(0, 0, 0, 0.15), 0 5.5px 7.8px -0.3px rgba(0, 0, 0, 0.15), 0.1px 11.5px 16.4px -0.5px rgba(0, 0, 0, 0.15)`,
+  elevationXSmall: `0 1px 1px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02), 0 3px 3px rgba(0, 0, 0, 0.02), 0 4px 4px rgba(0, 0, 0, 0.01)`,
+  elevationSmall: `0 1px 2px rgba(0, 0, 0, 0.05), 0 2px 3px rgba(0, 0, 0, 0.04), 0 6px 6px rgba(0, 0, 0, 0.03), 0 8px 8px rgba(0, 0, 0, 0.02)`,
+  elevationMedium: `0 2px 3px rgba(0, 0, 0, 0.05), 0 4px 5px rgba(0, 0, 0, 0.04), 0 12px 12px rgba(0, 0, 0, 0.03), 0 16px 16px rgba(0, 0, 0, 0.02)`,
+  elevationLarge: `0 5px 15px rgba(0, 0, 0, 0.08), 0 15px 27px rgba(0, 0, 0, 0.07), 0 30px 36px rgba(0, 0, 0, 0.04), 0 50px 43px rgba(0, 0, 0, 0.02)`,
   surfaceBackgroundColor: COLORS.white,
   surfaceBackgroundSubtleColor: '#F3F3F3',
   surfaceBackgroundTintColor: '#F5F5F5',
@@ -15605,7 +15545,7 @@ const TOGGLE_GROUP_CONTROL_PROPS = {
   transitionTimingFunctionControl: 'cubic-bezier(0.12, 0.8, 0.32, 1)'
 }));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/alignment-matrix-control/styles/alignment-matrix-control-styles.js
+;// CONCATENATED MODULE: ./packages/components/build-module/alignment-matrix-control/styles.js
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -15618,43 +15558,36 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringif
  * Internal dependencies
  */
 
-const rootBase = () => {
-  return /*#__PURE__*/emotion_react_browser_esm_css("border-radius:", config_values.radiusMedium, ";box-sizing:border-box;direction:ltr;display:grid;grid-template-columns:repeat( 3, 1fr );outline:none;" + ( true ? "" : 0),  true ? "" : 0);
-};
-const rootSize = ({
+// Grid structure
+
+const rootBase = ({
   size = 92
-}) => {
-  return /*#__PURE__*/emotion_react_browser_esm_css("grid-template-rows:repeat( 3, calc( ", size, "px / 3 ) );width:", size, "px;" + ( true ? "" : 0),  true ? "" : 0);
-};
-const Root = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
-  target: "ecapk1j3"
-} : 0)(rootBase, ";border:1px solid transparent;cursor:pointer;grid-template-columns:auto;", rootSize, ";" + ( true ? "" : 0));
-const alignment_matrix_control_styles_Row = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
-  target: "ecapk1j2"
+}) => /*#__PURE__*/emotion_react_browser_esm_css("direction:ltr;display:grid;grid-template-columns:repeat( 3, 1fr );grid-template-rows:repeat( 3, 1fr );box-sizing:border-box;width:", size, "px;aspect-ratio:1;border-radius:", config_values.radiusMedium, ";outline:none;" + ( true ? "" : 0),  true ? "" : 0);
+var _ref =  true ? {
+  name: "e0dnmk",
+  styles: "cursor:pointer"
+} : 0;
+const GridContainer = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
+  target: "e1r95csn3"
+} : 0)(rootBase, " border:1px solid transparent;", props => props.disablePointerEvents ? /*#__PURE__*/emotion_react_browser_esm_css( true ? "" : 0,  true ? "" : 0) : _ref, ";" + ( true ? "" : 0));
+const GridRow = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
+  target: "e1r95csn2"
 } : 0)( true ? {
-  name: "1x5gbbj",
-  styles: "box-sizing:border-box;display:grid;grid-template-columns:repeat( 3, 1fr )"
+  name: "1fbxn64",
+  styles: "grid-column:1/-1;box-sizing:border-box;display:grid;grid-template-columns:repeat( 3, 1fr )"
 } : 0);
-const pointActive = ({
-  isActive
-}) => {
-  const boxShadow = isActive ? `0 0 0 2px ${COLORS.gray[900]}` : null;
-  const pointColor = isActive ? COLORS.gray[900] : COLORS.gray[400];
-  const pointColorHover = isActive ? COLORS.gray[900] : COLORS.theme.accent;
-  return /*#__PURE__*/emotion_react_browser_esm_css("box-shadow:", boxShadow, ";color:", pointColor, ";*:hover>&{color:", pointColorHover, ";}" + ( true ? "" : 0),  true ? "" : 0);
-};
-const pointBase = props => {
-  return /*#__PURE__*/emotion_react_browser_esm_css("background:currentColor;box-sizing:border-box;display:grid;margin:auto;@media not ( prefers-reduced-motion ){transition:all 120ms linear;}", pointActive(props), ";" + ( true ? "" : 0),  true ? "" : 0);
-};
-const Point = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? {
-  target: "ecapk1j1"
-} : 0)("height:6px;width:6px;", pointBase, ";" + ( true ? "" : 0));
+
+// Cell
 const Cell = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? {
-  target: "ecapk1j0"
+  target: "e1r95csn1"
 } : 0)( true ? {
-  name: "rjf3ub",
-  styles: "appearance:none;border:none;box-sizing:border-box;margin:0;display:flex;position:relative;outline:none;align-items:center;justify-content:center;padding:0"
+  name: "e2kws5",
+  styles: "position:relative;display:flex;align-items:center;justify-content:center;box-sizing:border-box;margin:0;padding:0;appearance:none;border:none;outline:none"
 } : 0);
+const POINT_SIZE = 6;
+const Point = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? {
+  target: "e1r95csn0"
+} : 0)("display:block;contain:strict;box-sizing:border-box;width:", POINT_SIZE, "px;aspect-ratio:1;margin:auto;color:", COLORS.theme.gray[400], ";border:", POINT_SIZE / 2, "px solid currentColor;", Cell, "[data-active-item] &{color:", COLORS.gray[900], ";transform:scale( calc( 5 / 3 ) );}", Cell, ":not([data-active-item]):hover &{color:", COLORS.theme.accent, ";}", Cell, "[data-focus-visible] &{outline:1px solid ", COLORS.theme.accent, ";outline-offset:1px;}@media not ( prefers-reduced-motion ){transition-property:color,transform;transition-duration:120ms;transition-timing-function:linear;}" + ( true ? "" : 0));
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/alignment-matrix-control/cell.js
 /**
@@ -15673,13 +15606,11 @@ const Cell = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? {
 
 function cell_Cell({
   id,
-  isActive = false,
   value,
   ...props
 }) {
-  const tooltipText = ALIGNMENT_LABEL[value];
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(tooltip, {
-    text: tooltipText,
+    text: ALIGNMENT_LABEL[value],
     children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(Composite.Item, {
       id: id,
       render: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(Cell, {
@@ -15689,62 +15620,11 @@ function cell_Cell({
       children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(visually_hidden_component, {
         children: value
       }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(Point, {
-        isActive: isActive,
         role: "presentation"
       })]
     })
   });
 }
-
-;// CONCATENATED MODULE: ./packages/components/build-module/alignment-matrix-control/styles/alignment-matrix-control-icon-styles.js
-
-function alignment_matrix_control_icon_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
-/**
- * External dependencies
- */
-
-
-
-/**
- * Internal dependencies
- */
-
-const alignment_matrix_control_icon_styles_rootSize = () => {
-  const padding = 1.5;
-  const size = 24;
-  return /*#__PURE__*/emotion_react_browser_esm_css({
-    gridTemplateRows: `repeat( 3, calc( ${size - padding * 2}px / 3))`,
-    padding,
-    maxHeight: size,
-    maxWidth: size
-  },  true ? "" : 0,  true ? "" : 0);
-};
-const rootPointerEvents = ({
-  disablePointerEvents
-}) => {
-  return /*#__PURE__*/emotion_react_browser_esm_css({
-    pointerEvents: disablePointerEvents ? 'none' : undefined
-  },  true ? "" : 0,  true ? "" : 0);
-};
-const Wrapper = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
-  target: "erowt52"
-} : 0)( true ? {
-  name: "ogl07i",
-  styles: "box-sizing:border-box;padding:2px"
-} : 0);
-const alignment_matrix_control_icon_styles_Root = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
-  target: "erowt51"
-} : 0)("transform-origin:top left;height:100%;width:100%;", rootBase, ";", alignment_matrix_control_icon_styles_rootSize, ";", rootPointerEvents, ";" + ( true ? "" : 0));
-const alignment_matrix_control_icon_styles_pointActive = ({
-  isActive
-}) => {
-  const boxShadow = isActive ? `0 0 0 1px currentColor` : null;
-  return /*#__PURE__*/emotion_react_browser_esm_css("box-shadow:", boxShadow, ";color:currentColor;*:hover>&{color:currentColor;}" + ( true ? "" : 0),  true ? "" : 0);
-};
-const alignment_matrix_control_icon_styles_Point = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? {
-  target: "erowt50"
-} : 0)("height:2px;width:2px;", pointBase, ";", alignment_matrix_control_icon_styles_pointActive, ";" + ( true ? "" : 0));
-const alignment_matrix_control_icon_styles_Cell = Cell;
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/alignment-matrix-control/icon.js
 /**
@@ -15753,39 +15633,51 @@ const alignment_matrix_control_icon_styles_Cell = Cell;
 
 
 /**
+ * WordPress dependencies
+ */
+
+
+/**
  * Internal dependencies
  */
 
 
-
 const BASE_SIZE = 24;
+const GRID_CELL_SIZE = 7;
+const GRID_PADDING = (BASE_SIZE - 3 * GRID_CELL_SIZE) / 2;
+const DOT_SIZE = 2;
+const DOT_SIZE_SELECTED = 4;
 function AlignmentMatrixControlIcon({
   className,
   disablePointerEvents = true,
-  size = BASE_SIZE,
+  size,
+  width,
+  height,
   style = {},
   value = 'center',
   ...props
 }) {
-  const alignIndex = getAlignmentIndex(value);
-  const scale = (size / BASE_SIZE).toFixed(2);
-  const classes = dist_clsx('component-alignment-matrix-control-icon', className);
-  const styles = {
-    ...style,
-    transform: `scale(${scale})`
-  };
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(alignment_matrix_control_icon_styles_Root, {
-    ...props,
-    className: classes,
-    disablePointerEvents: disablePointerEvents,
+  var _ref, _ref2;
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.SVG, {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: `0 0 ${BASE_SIZE} ${BASE_SIZE}`,
+    width: (_ref = size !== null && size !== void 0 ? size : width) !== null && _ref !== void 0 ? _ref : BASE_SIZE,
+    height: (_ref2 = size !== null && size !== void 0 ? size : height) !== null && _ref2 !== void 0 ? _ref2 : BASE_SIZE,
     role: "presentation",
-    style: styles,
+    className: dist_clsx('component-alignment-matrix-control-icon', className),
+    style: {
+      pointerEvents: disablePointerEvents ? 'none' : undefined,
+      ...style
+    },
+    ...props,
     children: ALIGNMENTS.map((align, index) => {
-      const isActive = alignIndex === index;
-      return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(alignment_matrix_control_icon_styles_Cell, {
-        children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(alignment_matrix_control_icon_styles_Point, {
-          isActive: isActive
-        })
+      const dotSize = getAlignmentIndex(value) === index ? DOT_SIZE_SELECTED : DOT_SIZE;
+      return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.Rect, {
+        x: GRID_PADDING + index % 3 * GRID_CELL_SIZE + (GRID_CELL_SIZE - dotSize) / 2,
+        y: GRID_PADDING + Math.floor(index / 3) * GRID_CELL_SIZE + (GRID_CELL_SIZE - dotSize) / 2,
+        width: dotSize,
+        height: dotSize,
+        fill: "currentColor"
       }, align);
     })
   });
@@ -15798,10 +15690,10 @@ function AlignmentMatrixControlIcon({
  */
 
 
-
 /**
  * WordPress dependencies
  */
+
 
 
 
@@ -15814,12 +15706,54 @@ function AlignmentMatrixControlIcon({
 
 
 
+function UnforwardedAlignmentMatrixControl({
+  className,
+  id,
+  label = (0,external_wp_i18n_namespaceObject.__)('Alignment Matrix Control'),
+  defaultValue = 'center center',
+  value,
+  onChange,
+  width = 92,
+  ...props
+}) {
+  const baseId = (0,external_wp_compose_namespaceObject.useInstanceId)(UnforwardedAlignmentMatrixControl, 'alignment-matrix-control', id);
+  const setActiveId = (0,external_wp_element_namespaceObject.useCallback)(nextActiveId => {
+    const nextValue = getItemValue(baseId, nextActiveId);
+    if (nextValue) {
+      onChange?.(nextValue);
+    }
+  }, [baseId, onChange]);
+  const classes = dist_clsx('component-alignment-matrix-control', className);
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(Composite, {
+    defaultActiveId: getItemId(baseId, defaultValue),
+    activeId: getItemId(baseId, value),
+    setActiveId: setActiveId,
+    rtl: (0,external_wp_i18n_namespaceObject.isRTL)(),
+    render: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(GridContainer, {
+      ...props,
+      "aria-label": label,
+      className: classes,
+      id: baseId,
+      role: "grid",
+      size: width
+    }),
+    children: GRID.map((cells, index) => /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(Composite.Row, {
+      render: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(GridRow, {
+        role: "row"
+      }),
+      children: cells.map(cell => /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(cell_Cell, {
+        id: getItemId(baseId, cell),
+        value: cell
+      }, cell))
+    }, index))
+  });
+}
+
 /**
- *
  * AlignmentMatrixControl components enable adjustments to horizontal and vertical alignments for UI.
  *
  * ```jsx
- * import { __experimentalAlignmentMatrixControl as AlignmentMatrixControl } from '@wordpress/components';
+ * import { AlignmentMatrixControl } from '@wordpress/components';
  * import { useState } from '@wordpress/element';
  *
  * const Example = () => {
@@ -15834,57 +15768,20 @@ function AlignmentMatrixControlIcon({
  * };
  * ```
  */
-function AlignmentMatrixControl({
-  className,
-  id,
-  label = (0,external_wp_i18n_namespaceObject.__)('Alignment Matrix Control'),
-  defaultValue = 'center center',
-  value,
-  onChange,
-  width = 92,
-  ...props
-}) {
-  const baseId = (0,external_wp_compose_namespaceObject.useInstanceId)(AlignmentMatrixControl, 'alignment-matrix-control', id);
-  const compositeStore = composite_useCompositeStore({
-    defaultActiveId: getItemId(baseId, defaultValue),
-    activeId: getItemId(baseId, value),
-    setActiveId: nextActiveId => {
-      const nextValue = getItemValue(baseId, nextActiveId);
-      if (nextValue) {
-        onChange?.(nextValue);
-      }
-    },
-    rtl: (0,external_wp_i18n_namespaceObject.isRTL)()
-  });
-  const activeId = useStoreState(compositeStore, 'activeId');
-  const classes = dist_clsx('component-alignment-matrix-control', className);
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(Composite, {
-    store: compositeStore,
-    render: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(Root, {
-      ...props,
-      "aria-label": label,
-      className: classes,
-      id: baseId,
-      role: "grid",
-      size: width
-    }),
-    children: GRID.map((cells, index) => /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(Composite.Row, {
-      render: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(alignment_matrix_control_styles_Row, {
-        role: "row"
-      }),
-      children: cells.map(cell => {
-        const cellId = getItemId(baseId, cell);
-        const isActive = cellId === activeId;
-        return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(cell_Cell, {
-          id: cellId,
-          isActive: isActive,
-          value: cell
-        }, cell);
-      })
-    }, index))
-  });
-}
-AlignmentMatrixControl.Icon = icon;
+const AlignmentMatrixControl = Object.assign(UnforwardedAlignmentMatrixControl, {
+  /**
+   * Render an alignment matrix as an icon.
+   *
+   * ```jsx
+   * import { AlignmentMatrixControl } from '@wordpress/components';
+   *
+   * <Icon icon={<AlignmentMatrixControl.Icon value="top left" />} />
+   * ```
+   */
+  Icon: Object.assign(icon, {
+    displayName: 'AlignmentMatrixControl.Icon'
+  })
+});
 /* harmony default export */ const alignment_matrix_control = (AlignmentMatrixControl);
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/animate/index.js
@@ -27025,7 +26922,7 @@ const Flex =  true ? {
   name: "zjik7",
   styles: "display:flex"
 } : 0;
-const styles_Item =  true ? {
+const Item =  true ? {
   name: "qgaee5",
   styles: "display:block;max-height:100%;max-width:100%;min-height:0;min-width:0"
 } : 0;
@@ -27225,7 +27122,7 @@ function useFlexItem(props) {
     display: displayProp || contextDisplay
   },  true ? "" : 0,  true ? "" : 0);
   const cx = useCx();
-  const classes = cx(styles_Item, sx.Base, isBlock && block, className);
+  const classes = cx(Item, sx.Base, isBlock && block, className);
   return {
     ...otherProps,
     className: classes
@@ -28146,7 +28043,7 @@ function hook_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to strin
 
 
 
-var _ref =  true ? {
+var hook_ref =  true ? {
   name: "50zrmy",
   styles: "text-transform:uppercase"
 } : 0;
@@ -28206,7 +28103,7 @@ function useText(props) {
       letterSpacing,
       textAlign: align
     },  true ? "" : 0,  true ? "" : 0);
-    sx.upperCase = _ref;
+    sx.upperCase = hook_ref;
     sx.optimalTextColor = null;
     if (optimizeReadabilityFor) {
       const isOptimalTextColorDark = getOptimalTextShade(optimizeReadabilityFor) === 'dark';
@@ -28327,15 +28224,14 @@ function input_control_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You hav
 
 
 
-
 const Prefix = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? {
-  target: "em5sgkm7"
+  target: "em5sgkm8"
 } : 0)( true ? {
   name: "pvvbxf",
   styles: "box-sizing:border-box;display:block"
 } : 0);
 const Suffix = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? {
-  target: "em5sgkm6"
+  target: "em5sgkm7"
 } : 0)( true ? {
   name: "jgf79h",
   styles: "align-items:center;align-self:stretch;box-sizing:border-box;display:flex"
@@ -28353,13 +28249,13 @@ const backdropBorderColor = ({
   return COLORS.ui.border;
 };
 const BackdropUI = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
-  target: "em5sgkm5"
+  target: "em5sgkm6"
 } : 0)("&&&{box-sizing:border-box;border-color:", backdropBorderColor, ";border-radius:inherit;border-style:solid;border-width:1px;bottom:0;left:0;margin:0;padding:0;pointer-events:none;position:absolute;right:0;top:0;", rtl({
   paddingLeft: 2
 }), ";}" + ( true ? "" : 0));
-const input_control_styles_Root = /*#__PURE__*/emotion_styled_base_browser_esm(flex_component,  true ? {
-  target: "em5sgkm4"
-} : 0)("box-sizing:border-box;position:relative;border-radius:2px;padding-top:0;&:focus-within:not( :has( :is( ", Prefix, ", ", Suffix, " ):focus-within ) ){", BackdropUI, "{border-color:", COLORS.ui.borderFocus, ";box-shadow:", config_values.controlBoxShadowFocus, ";outline:2px solid transparent;outline-offset:-2px;}}" + ( true ? "" : 0));
+const Root = /*#__PURE__*/emotion_styled_base_browser_esm(flex_component,  true ? {
+  target: "em5sgkm5"
+} : 0)("box-sizing:border-box;position:relative;border-radius:", config_values.radiusSmall, ";padding-top:0;&:focus-within:not( :has( :is( ", Prefix, ", ", Suffix, " ):focus-within ) ){", BackdropUI, "{border-color:", COLORS.ui.borderFocus, ";box-shadow:", config_values.controlBoxShadowFocus, ";outline:2px solid transparent;outline-offset:-2px;}}" + ( true ? "" : 0));
 const containerDisabledStyles = ({
   disabled
 }) => {
@@ -28392,7 +28288,7 @@ const containerWidthStyles = ({
   },  true ? "" : 0,  true ? "" : 0);
 };
 const Container = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
-  target: "em5sgkm3"
+  target: "em5sgkm4"
 } : 0)("align-items:center;box-sizing:border-box;border-radius:inherit;display:flex;flex:1;position:relative;", containerDisabledStyles, " ", containerWidthStyles, ";" + ( true ? "" : 0));
 const disabledStyles = ({
   disabled
@@ -28430,29 +28326,29 @@ const getSizeConfig = ({
       height: 40,
       lineHeight: 1,
       minHeight: 40,
-      paddingLeft: space(4),
-      paddingRight: space(4)
+      paddingLeft: config_values.controlPaddingX,
+      paddingRight: config_values.controlPaddingX
     },
     small: {
       height: 24,
       lineHeight: 1,
       minHeight: 24,
-      paddingLeft: space(2),
-      paddingRight: space(2)
+      paddingLeft: config_values.controlPaddingXSmall,
+      paddingRight: config_values.controlPaddingXSmall
     },
     compact: {
       height: 32,
       lineHeight: 1,
       minHeight: 32,
-      paddingLeft: space(2),
-      paddingRight: space(2)
+      paddingLeft: config_values.controlPaddingXSmall,
+      paddingRight: config_values.controlPaddingXSmall
     },
     '__unstable-large': {
       height: 40,
       lineHeight: 1,
       minHeight: 40,
-      paddingLeft: space(4),
-      paddingRight: space(4)
+      paddingLeft: config_values.controlPaddingX,
+      paddingRight: config_values.controlPaddingX
     }
   };
   if (!__next40pxDefaultSize) {
@@ -28491,21 +28387,49 @@ const dragStyles = ({
 // https://github.com/WordPress/gutenberg/issues/18483
 
 const Input = /*#__PURE__*/emotion_styled_base_browser_esm("input",  true ? {
-  target: "em5sgkm2"
+  target: "em5sgkm3"
 } : 0)("&&&{background-color:transparent;box-sizing:border-box;border:none;box-shadow:none!important;color:", COLORS.theme.foreground, ";display:block;font-family:inherit;margin:0;outline:none;width:100%;", dragStyles, " ", disabledStyles, " ", fontSizeStyles, " ", sizeStyles, " ", customPaddings, " &::-webkit-input-placeholder{line-height:normal;}}" + ( true ? "" : 0));
 const BaseLabel = /*#__PURE__*/emotion_styled_base_browser_esm(text_component,  true ? {
-  target: "em5sgkm1"
+  target: "em5sgkm2"
 } : 0)("&&&{", baseLabelTypography, ";box-sizing:border-box;display:block;padding-top:0;padding-bottom:0;max-width:100%;z-index:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}" + ( true ? "" : 0));
 const Label = props => /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(BaseLabel, {
   ...props,
   as: "label"
 });
 const LabelWrapper = /*#__PURE__*/emotion_styled_base_browser_esm(flex_item_component,  true ? {
-  target: "em5sgkm0"
+  target: "em5sgkm1"
 } : 0)( true ? {
   name: "1b6uupn",
   styles: "max-width:calc( 100% - 10px )"
 } : 0);
+const prefixSuffixWrapperStyles = ({
+  variant = 'default',
+  size,
+  __next40pxDefaultSize,
+  isPrefix
+}) => {
+  const {
+    paddingLeft: padding
+  } = getSizeConfig({
+    inputSize: size,
+    __next40pxDefaultSize
+  });
+  const paddingProperty = isPrefix ? 'paddingInlineStart' : 'paddingInlineEnd';
+  if (variant === 'default') {
+    return /*#__PURE__*/emotion_react_browser_esm_css({
+      [paddingProperty]: padding
+    },  true ? "" : 0,  true ? "" : 0);
+  }
+
+  // If variant is 'icon' or 'control'
+  return /*#__PURE__*/emotion_react_browser_esm_css({
+    display: 'flex',
+    [paddingProperty]: padding - 4
+  },  true ? "" : 0,  true ? "" : 0);
+};
+const PrefixSuffixWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
+  target: "em5sgkm0"
+} : 0)(prefixSuffixWrapperStyles, ";" + ( true ? "" : 0));
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/input-control/backdrop.js
 /**
@@ -28642,27 +28566,22 @@ function InputBase(props, ref) {
   } = useDeprecated36pxDefaultSizeProp(useContextSystem(props, 'InputBase'));
   const id = useUniqueId(idProp);
   const hideLabel = hideLabelFromVision || !label;
-  const {
-    paddingLeft,
-    paddingRight
-  } = getSizeConfig({
-    inputSize: size,
-    __next40pxDefaultSize
-  });
   const prefixSuffixContextValue = (0,external_wp_element_namespaceObject.useMemo)(() => {
     return {
       InputControlPrefixWrapper: {
-        paddingLeft
+        __next40pxDefaultSize,
+        size
       },
       InputControlSuffixWrapper: {
-        paddingRight
+        __next40pxDefaultSize,
+        size
       }
     };
-  }, [paddingLeft, paddingRight]);
+  }, [__next40pxDefaultSize, size]);
   return (
     /*#__PURE__*/
     // @ts-expect-error The `direction` prop from Flex (FlexDirection) conflicts with legacy SVGAttributes `direction` (string) that come from React intrinsic prop definitions.
-    (0,external_ReactJSXRuntime_namespaceObject.jsxs)(input_control_styles_Root, {
+    (0,external_ReactJSXRuntime_namespaceObject.jsxs)(Root, {
       ...restProps,
       ...getUIFlexProps(labelPosition),
       className: className,
@@ -30605,7 +30524,7 @@ function useDragCursor(isDragging, dragDirection) {
   return dragCursor;
 }
 function useDraft(props) {
-  const refPreviousValue = (0,external_wp_element_namespaceObject.useRef)(props.value);
+  const previousValueRef = (0,external_wp_element_namespaceObject.useRef)(props.value);
   const [draft, setDraft] = (0,external_wp_element_namespaceObject.useState)({});
   const value = draft.value !== undefined ? draft.value : props.value;
 
@@ -30615,8 +30534,8 @@ function useDraft(props) {
   (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
     const {
       current: previousValue
-    } = refPreviousValue;
-    refPreviousValue.current = props.value;
+    } = previousValueRef;
+    previousValueRef.current = props.value;
     if (draft.value !== undefined && !draft.isStale) {
       setDraft({
         ...draft,
@@ -30863,8 +30782,8 @@ function useInputControlStateReducer(stateReducer = initialStateReducer, initial
   const pressUp = createKeyEvent(PRESS_UP);
   const pressDown = createKeyEvent(PRESS_DOWN);
   const pressEnter = createKeyEvent(PRESS_ENTER);
-  const currentState = (0,external_wp_element_namespaceObject.useRef)(state);
-  const refProps = (0,external_wp_element_namespaceObject.useRef)({
+  const currentStateRef = (0,external_wp_element_namespaceObject.useRef)(state);
+  const refPropsRef = (0,external_wp_element_namespaceObject.useRef)({
     value: initialState.value,
     onChangeHandler
   });
@@ -30872,8 +30791,8 @@ function useInputControlStateReducer(stateReducer = initialStateReducer, initial
   // Freshens refs to props and state so that subsequent effects have access
   // to their latest values without their changes causing effect runs.
   (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
-    currentState.current = state;
-    refProps.current = {
+    currentStateRef.current = state;
+    refPropsRef.current = {
       value: initialState.value,
       onChangeHandler
     };
@@ -30881,17 +30800,17 @@ function useInputControlStateReducer(stateReducer = initialStateReducer, initial
 
   // Propagates the latest state through onChange.
   (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
-    if (currentState.current._event !== undefined && state.value !== refProps.current.value && !state.isDirty) {
+    if (currentStateRef.current._event !== undefined && state.value !== refPropsRef.current.value && !state.isDirty) {
       var _state$value;
-      refProps.current.onChangeHandler((_state$value = state.value) !== null && _state$value !== void 0 ? _state$value : '', {
-        event: currentState.current._event
+      refPropsRef.current.onChangeHandler((_state$value = state.value) !== null && _state$value !== void 0 ? _state$value : '', {
+        event: currentStateRef.current._event
       });
     }
   }, [state.value, state.isDirty]);
 
   // Updates the state from props.
   (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
-    if (initialState.value !== currentState.current.value && !currentState.current.isDirty) {
+    if (initialState.value !== currentStateRef.current.value && !currentStateRef.current.isDirty) {
       var _initialState$value;
       dispatch({
         type: CONTROL,
@@ -31196,7 +31115,7 @@ function base_control_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have
  */
 
 
-const base_control_styles_Wrapper = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
+const Wrapper = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
   target: "ej5x27r4"
 } : 0)("font-family:", font('default.fontFamily'), ";font-size:", font('default.fontSize'), ";", boxSizingReset, ";" + ( true ? "" : 0));
 const deprecatedMarginField = ({
@@ -31265,7 +31184,7 @@ const UnconnectedBaseControl = props => {
       hint: 'Set the `__nextHasNoMarginBottom` prop to true to start opting into the new styles, which will become the default in a future version.'
     });
   }
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(base_control_styles_Wrapper, {
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(Wrapper, {
     className: className,
     children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(StyledField, {
       className: "components-base-control__field"
@@ -31447,8 +31366,8 @@ function UnforwardedInputControl(props, ref) {
         isPressEnterToChange: isPressEnterToChange,
         onKeyDown: onKeyDown,
         onValidate: onValidate,
-        paddingInlineStart: prefix ? space(2) : undefined,
-        paddingInlineEnd: suffix ? space(2) : undefined,
+        paddingInlineStart: prefix ? space(1) : undefined,
+        paddingInlineEnd: suffix ? space(1) : undefined,
         ref: ref,
         size: size,
         stateReducer: stateReducer,
@@ -32458,14 +32377,14 @@ function AngleCircle({
   ...props
 }) {
   const angleCircleRef = (0,external_wp_element_namespaceObject.useRef)(null);
-  const angleCircleCenter = (0,external_wp_element_namespaceObject.useRef)();
-  const previousCursorValue = (0,external_wp_element_namespaceObject.useRef)();
+  const angleCircleCenterRef = (0,external_wp_element_namespaceObject.useRef)();
+  const previousCursorValueRef = (0,external_wp_element_namespaceObject.useRef)();
   const setAngleCircleCenter = () => {
     if (angleCircleRef.current === null) {
       return;
     }
     const rect = angleCircleRef.current.getBoundingClientRect();
-    angleCircleCenter.current = {
+    angleCircleCenterRef.current = {
       x: rect.x + rect.width / 2,
       y: rect.y + rect.height / 2
     };
@@ -32480,11 +32399,11 @@ function AngleCircle({
     event.preventDefault();
     // Input control needs to lose focus and by preventDefault above, it doesn't.
     event.target?.focus();
-    if (angleCircleCenter.current !== undefined && onChange !== undefined) {
+    if (angleCircleCenterRef.current !== undefined && onChange !== undefined) {
       const {
         x: centerX,
         y: centerY
-      } = angleCircleCenter.current;
+      } = angleCircleCenterRef.current;
       onChange(getAngle(centerX, centerY, event.clientX, event.clientY));
     }
   };
@@ -32501,13 +32420,13 @@ function AngleCircle({
   });
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     if (isDragging) {
-      if (previousCursorValue.current === undefined) {
-        previousCursorValue.current = document.body.style.cursor;
+      if (previousCursorValueRef.current === undefined) {
+        previousCursorValueRef.current = document.body.style.cursor;
       }
       document.body.style.cursor = 'grabbing';
     } else {
-      document.body.style.cursor = previousCursorValue.current || '';
-      previousCursorValue.current = undefined;
+      document.body.style.cursor = previousCursorValueRef.current || '';
+      previousCursorValueRef.current = undefined;
     }
   }, [isDragging]);
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(CircleRoot, {
@@ -33576,15 +33495,15 @@ function StyleProvider(props) {
 
 function fill_useForceUpdate() {
   const [, setState] = (0,external_wp_element_namespaceObject.useState)({});
-  const mounted = (0,external_wp_element_namespaceObject.useRef)(true);
+  const mountedRef = (0,external_wp_element_namespaceObject.useRef)(true);
   (0,external_wp_element_namespaceObject.useEffect)(() => {
-    mounted.current = true;
+    mountedRef.current = true;
     return () => {
-      mounted.current = false;
+      mountedRef.current = false;
     };
   }, []);
   return () => {
-    if (mounted.current) {
+    if (mountedRef.current) {
       setState({});
     }
   };
@@ -33933,6 +33852,7 @@ function Provider({
     })
   });
 }
+Provider.displayName = 'SlotFillProvider';
 function createSlotFill(key) {
   const baseName = typeof key === 'symbol' ? key.description : key;
   const FillComponent = props => /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(slot_fill_Fill, {
@@ -34590,6 +34510,9 @@ const getNodeText = node => {
   return '';
 };
 const EMPTY_FILTERED_OPTIONS = [];
+
+// Used for generating the instance ID
+const AUTOCOMPLETE_HOOK_REFERENCE = {};
 function useAutocomplete({
   record,
   onChange,
@@ -34597,7 +34520,7 @@ function useAutocomplete({
   completers,
   contentRef
 }) {
-  const instanceId = (0,external_wp_compose_namespaceObject.useInstanceId)(useAutocomplete);
+  const instanceId = (0,external_wp_compose_namespaceObject.useInstanceId)(AUTOCOMPLETE_HOOK_REFERENCE);
   const [selectedIndex, setSelectedIndex] = (0,external_wp_element_namespaceObject.useState)(0);
   const [filteredOptions, setFilteredOptions] = (0,external_wp_element_namespaceObject.useState)(EMPTY_FILTERED_OPTIONS);
   const [filterValue, setFilterValue] = (0,external_wp_element_namespaceObject.useState)('');
@@ -35153,21 +35076,6 @@ const BorderBoxControlVisualizer = (props, forwardedRef) => {
 const ConnectedBorderBoxControlVisualizer = contextConnect(BorderBoxControlVisualizer, 'BorderBoxControlVisualizer');
 /* harmony default export */ const border_box_control_visualizer_component = (ConnectedBorderBoxControlVisualizer);
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/close-small.js
-/**
- * WordPress dependencies
- */
-
-
-const closeSmall = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.SVG, {
-  xmlns: "http://www.w3.org/2000/svg",
-  viewBox: "0 0 24 24",
-  children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.Path, {
-    d: "M12 13.06l3.712 3.713 1.061-1.06L13.061 12l3.712-3.712-1.06-1.06L12 10.938 8.288 7.227l-1.061 1.06L10.939 12l-3.712 3.712 1.06 1.061L12 13.061z"
-  })
-});
-/* harmony default export */ const close_small = (closeSmall);
-
 ;// CONCATENATED MODULE: ./packages/icons/build-module/library/line-solid.js
 /**
  * WordPress dependencies
@@ -35217,77 +35125,6 @@ const lineDotted = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)
 });
 /* harmony default export */ const line_dotted = (lineDotted);
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/DeprecatedLayoutGroupContext.mjs
-
-
-/**
- * Note: Still used by components generated by old versions of Framer
- *
- * @deprecated
- */
-const DeprecatedLayoutGroupContext = (0,external_React_.createContext)(null);
-
-
-
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/node/group.mjs
-const notify = (node) => !node.isLayoutDirty && node.willUpdate(false);
-function nodeGroup() {
-    const nodes = new Set();
-    const subscriptions = new WeakMap();
-    const dirtyAll = () => nodes.forEach(notify);
-    return {
-        add: (node) => {
-            nodes.add(node);
-            subscriptions.set(node, node.addEventListener("willUpdate", dirtyAll));
-        },
-        remove: (node) => {
-            nodes.delete(node);
-            const unsubscribe = subscriptions.get(node);
-            if (unsubscribe) {
-                unsubscribe();
-                subscriptions.delete(node);
-            }
-            dirtyAll();
-        },
-        dirty: dirtyAll,
-    };
-}
-
-
-
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/components/LayoutGroup/index.mjs
-
-
-
-
-
-
-
-const shouldInheritGroup = (inherit) => inherit === true;
-const shouldInheritId = (inherit) => shouldInheritGroup(inherit === true) || inherit === "id";
-const LayoutGroup = ({ children, id, inherit = true }) => {
-    const layoutGroupContext = (0,external_React_.useContext)(LayoutGroupContext);
-    const deprecatedLayoutGroupContext = (0,external_React_.useContext)(DeprecatedLayoutGroupContext);
-    const [forceRender, key] = use_force_update_useForceUpdate();
-    const context = (0,external_React_.useRef)(null);
-    const upstreamId = layoutGroupContext.id || deprecatedLayoutGroupContext;
-    if (context.current === null) {
-        if (shouldInheritId(inherit) && upstreamId) {
-            id = id ? upstreamId + "-" + id : upstreamId;
-        }
-        context.current = {
-            id,
-            group: shouldInheritGroup(inherit)
-                ? layoutGroupContext.group || nodeGroup()
-                : nodeGroup(),
-        };
-    }
-    const memoizedContext = (0,external_React_.useMemo)(() => ({ ...context.current, forceRender }), [key]);
-    return ((0,external_ReactJSXRuntime_namespaceObject.jsx)(LayoutGroupContext.Provider, { value: memoizedContext, children: children }));
-};
-
-
-
 ;// CONCATENATED MODULE: ./packages/components/build-module/toggle-group-control/toggle-group-control/styles.js
 
 function toggle_group_control_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
@@ -35303,7 +35140,7 @@ const toggleGroupControl = ({
   isBlock,
   isDeselectable,
   size
-}) => /*#__PURE__*/emotion_react_browser_esm_css("background:", COLORS.ui.background, ";border:1px solid transparent;border-radius:", config_values.radiusSmall, ";display:inline-flex;min-width:0;position:relative;", toggleGroupControlSize(size), " ", !isDeselectable && enclosingBorders(isBlock), ";" + ( true ? "" : 0),  true ? "" : 0);
+}) => /*#__PURE__*/emotion_react_browser_esm_css("background:", COLORS.ui.background, ";border:1px solid transparent;border-radius:", config_values.radiusSmall, ";display:inline-flex;min-width:0;position:relative;", toggleGroupControlSize(size), " ", !isDeselectable && enclosingBorders(isBlock), "@media not ( prefers-reduced-motion ){&[data-indicator-animated]::before{transition-property:transform,border-radius;transition-duration:0.2s;transition-timing-function:ease-out;}}&::before{content:'';position:absolute;pointer-events:none;background:", COLORS.gray[900], ";outline:2px solid transparent;outline-offset:-3px;--antialiasing-factor:100;border-radius:calc(\n\t\t\t\t", config_values.radiusXSmall, " /\n\t\t\t\t\t(\n\t\t\t\t\t\tvar( --selected-width, 0 ) /\n\t\t\t\t\t\t\tvar( --antialiasing-factor )\n\t\t\t\t\t)\n\t\t\t)/", config_values.radiusXSmall, ";left:-1px;width:calc( var( --antialiasing-factor ) * 1px );height:calc( var( --selected-height, 0 ) * 1px );transform-origin:left top;transform:translateX( calc( var( --selected-left, 0 ) * 1px ) ) scaleX(\n\t\t\t\tcalc(\n\t\t\t\t\tvar( --selected-width, 0 ) / var( --antialiasing-factor )\n\t\t\t\t)\n\t\t\t);}" + ( true ? "" : 0),  true ? "" : 0);
 const enclosingBorders = isBlock => {
   const enclosingBorder = /*#__PURE__*/emotion_react_browser_esm_css("border-color:", COLORS.ui.border, ";" + ( true ? "" : 0),  true ? "" : 0);
   return /*#__PURE__*/emotion_react_browser_esm_css(isBlock && enclosingBorder, " &:hover{border-color:", COLORS.ui.borderHover, ";}&:focus-within{border-color:", COLORS.ui.borderFocus, ";box-shadow:", config_values.controlBoxShadowFocus, ";z-index:1;outline:2px solid transparent;outline-offset:-2px;}" + ( true ? "" : 0),  true ? "" : 0);
@@ -35482,20 +35319,20 @@ const useToggleGroupControlContext = () => (0,external_wp_element_namespaceObjec
  * @param valueProp The received `value`
  */
 function useComputeControlledOrUncontrolledValue(valueProp) {
-  const isInitialRender = (0,external_wp_element_namespaceObject.useRef)(true);
+  const isInitialRenderRef = (0,external_wp_element_namespaceObject.useRef)(true);
   const prevValueProp = (0,external_wp_compose_namespaceObject.usePrevious)(valueProp);
-  const prevIsControlled = (0,external_wp_element_namespaceObject.useRef)(false);
+  const prevIsControlledRef = (0,external_wp_element_namespaceObject.useRef)(false);
   (0,external_wp_element_namespaceObject.useEffect)(() => {
-    if (isInitialRender.current) {
-      isInitialRender.current = false;
+    if (isInitialRenderRef.current) {
+      isInitialRenderRef.current = false;
     }
   }, []);
 
   // Assume the component is being used in controlled mode on the first re-render
   // that has a different `valueProp` from the previous render.
-  const isControlled = prevIsControlled.current || !isInitialRender.current && prevValueProp !== valueProp;
+  const isControlled = prevIsControlledRef.current || !isInitialRenderRef.current && prevValueProp !== valueProp;
   (0,external_wp_element_namespaceObject.useEffect)(() => {
-    prevIsControlled.current = isControlled;
+    prevIsControlledRef.current = isControlled;
   }, [isControlled]);
   if (isControlled) {
     // When in controlled mode, use `''` instead of `undefined`
@@ -35526,6 +35363,7 @@ function useComputeControlledOrUncontrolledValue(valueProp) {
 
 
 
+
 /**
  * Internal dependencies
  */
@@ -35541,6 +35379,7 @@ function UnforwardedToggleGroupControlAsRadioGroup({
   size,
   value: valueProp,
   id: idProp,
+  setSelectedElement,
   ...otherProps
 }, forwardedRef) {
   const generatedId = (0,external_wp_compose_namespaceObject.useInstanceId)(ToggleGroupControlAsRadioGroup, 'toggle-group-control-as-radio-group');
@@ -35563,7 +35402,8 @@ function UnforwardedToggleGroupControlAsRadioGroup({
   const radio = useRadioStore({
     defaultValue,
     value,
-    setValue: wrappedOnChangeProp
+    setValue: wrappedOnChangeProp,
+    rtl: (0,external_wp_i18n_namespaceObject.isRTL)()
   });
   const selectedValue = useStoreState(radio, 'value');
   const setValue = radio.setValue;
@@ -35571,9 +35411,12 @@ function UnforwardedToggleGroupControlAsRadioGroup({
     baseId,
     isBlock: !isAdaptiveWidth,
     size,
+    // @ts-expect-error - This is wrong and we should fix it.
     value: selectedValue,
-    setValue
-  }), [baseId, isAdaptiveWidth, size, selectedValue, setValue]);
+    // @ts-expect-error - This is wrong and we should fix it.
+    setValue,
+    setSelectedElement
+  }), [baseId, isAdaptiveWidth, selectedValue, setSelectedElement, setValue, size]);
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(toggle_group_control_context.Provider, {
     value: groupContextValue,
     children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(RadioGroup, {
@@ -35649,6 +35492,7 @@ function UnforwardedToggleGroupControlAsButtonGroup({
   size,
   value: valueProp,
   id: idProp,
+  setSelectedElement,
   ...otherProps
 }, forwardedRef) {
   const generatedId = (0,external_wp_compose_namespaceObject.useInstanceId)(ToggleGroupControlAsButtonGroup, 'toggle-group-control-as-button-group');
@@ -35673,8 +35517,9 @@ function UnforwardedToggleGroupControlAsButtonGroup({
     setValue: setSelectedValue,
     isBlock: !isAdaptiveWidth,
     isDeselectable: true,
-    size
-  }), [baseId, selectedValue, setSelectedValue, isAdaptiveWidth, size]);
+    size,
+    setSelectedElement
+  }), [baseId, selectedValue, setSelectedValue, isAdaptiveWidth, size, setSelectedElement]);
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(toggle_group_control_context.Provider, {
     value: groupContextValue,
     children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(component, {
@@ -35688,13 +35533,8 @@ function UnforwardedToggleGroupControlAsButtonGroup({
 }
 const ToggleGroupControlAsButtonGroup = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedToggleGroupControlAsButtonGroup);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/toggle-group-control/toggle-group-control/component.js
-/**
- * External dependencies
- */
-
-
-
+;// CONCATENATED MODULE: ./packages/components/build-module/utils/element-rect.js
+/* eslint-disable jsdoc/require-param */
 /**
  * WordPress dependencies
  */
@@ -35702,8 +35542,252 @@ const ToggleGroupControlAsButtonGroup = (0,external_wp_element_namespaceObject.f
 
 
 /**
+ * The position and dimensions of an element, relative to its offset parent.
+ */
+
+/**
+ * An `ElementOffsetRect` object with all values set to zero.
+ */
+const NULL_ELEMENT_OFFSET_RECT = {
+  element: undefined,
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0,
+  width: 0,
+  height: 0
+};
+
+/**
+ * Returns the position and dimensions of an element, relative to its offset
+ * parent, with subpixel precision. Values reflect the real measures before any
+ * potential scaling distortions along the X and Y axes.
+ *
+ * Useful in contexts where plain `getBoundingClientRect` calls or `ResizeObserver`
+ * entries are not suitable, such as when the element is transformed, and when
+ * `element.offset<Top|Left|Width|Height>` methods are not precise enough.
+ *
+ * **Note:** in some contexts, like when the scale is 0, this method will fail
+ * because it's impossible to calculate a scaling ratio. When that happens, it
+ * will return `undefined`.
+ */
+function getElementOffsetRect(element) {
+  var _offsetParent$getBoun, _offsetParent$scrollL, _offsetParent$scrollT;
+  // Position and dimension values computed with `getBoundingClientRect` have
+  // subpixel precision, but are affected by distortions since they represent
+  // the "real" measures, or in other words, the actual final values as rendered
+  // by the browser.
+  const rect = element.getBoundingClientRect();
+  if (rect.width === 0 || rect.height === 0) {
+    return;
+  }
+  const offsetParent = element.offsetParent;
+  const offsetParentRect = (_offsetParent$getBoun = offsetParent?.getBoundingClientRect()) !== null && _offsetParent$getBoun !== void 0 ? _offsetParent$getBoun : NULL_ELEMENT_OFFSET_RECT;
+  const offsetParentScrollX = (_offsetParent$scrollL = offsetParent?.scrollLeft) !== null && _offsetParent$scrollL !== void 0 ? _offsetParent$scrollL : 0;
+  const offsetParentScrollY = (_offsetParent$scrollT = offsetParent?.scrollTop) !== null && _offsetParent$scrollT !== void 0 ? _offsetParent$scrollT : 0;
+
+  // Computed widths and heights have subpixel precision, and are not affected
+  // by distortions.
+  const computedWidth = parseFloat(getComputedStyle(element).width);
+  const computedHeight = parseFloat(getComputedStyle(element).height);
+
+  // We can obtain the current scale factor for the element by comparing "computed"
+  // dimensions with the "real" ones.
+  const scaleX = computedWidth / rect.width;
+  const scaleY = computedHeight / rect.height;
+  return {
+    element,
+    // To obtain the adjusted values for the position:
+    // 1. Compute the element's position relative to the offset parent.
+    // 2. Correct for the scale factor.
+    // 3. Adjust for the scroll position of the offset parent.
+    top: (rect.top - offsetParentRect?.top) * scaleY + offsetParentScrollY,
+    right: (offsetParentRect?.right - rect.right) * scaleX - offsetParentScrollX,
+    bottom: (offsetParentRect?.bottom - rect.bottom) * scaleY - offsetParentScrollY,
+    left: (rect.left - offsetParentRect?.left) * scaleX + offsetParentScrollX,
+    // Computed dimensions don't need any adjustments.
+    width: computedWidth,
+    height: computedHeight
+  };
+}
+const POLL_RATE = 100;
+
+/**
+ * Tracks the position and dimensions of an element, relative to its offset
+ * parent. The element can be changed dynamically.
+ *
+ * When no element is provided (`null` or `undefined`), the hook will return
+ * a "null" rect, in which all values are `0` and `element` is `undefined`.
+ *
+ * **Note:** sometimes, the measurement will fail (see `getElementOffsetRect`'s
+ * documentation for more details). When that happens, this hook will attempt
+ * to measure again after a frame, and if that fails, it will poll every 100
+ * milliseconds until it succeeds.
+ */
+function useTrackElementOffsetRect(targetElement) {
+  const [indicatorPosition, setIndicatorPosition] = (0,external_wp_element_namespaceObject.useState)(NULL_ELEMENT_OFFSET_RECT);
+  const intervalRef = (0,external_wp_element_namespaceObject.useRef)();
+  const measure = (0,external_wp_compose_namespaceObject.useEvent)(() => {
+    if (targetElement) {
+      const elementOffsetRect = getElementOffsetRect(targetElement);
+      if (elementOffsetRect) {
+        setIndicatorPosition(elementOffsetRect);
+        clearInterval(intervalRef.current);
+        return true;
+      }
+    } else {
+      clearInterval(intervalRef.current);
+    }
+    return false;
+  });
+  const setElement = (0,external_wp_compose_namespaceObject.useResizeObserver)(() => {
+    if (!measure()) {
+      requestAnimationFrame(() => {
+        if (!measure()) {
+          intervalRef.current = setInterval(measure, POLL_RATE);
+        }
+      });
+    }
+  });
+  (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
+    setElement(targetElement);
+    if (!targetElement) {
+      setIndicatorPosition(NULL_ELEMENT_OFFSET_RECT);
+    }
+  }, [setElement, targetElement]);
+  return indicatorPosition;
+}
+
+/* eslint-enable jsdoc/require-param */
+
+;// CONCATENATED MODULE: ./packages/components/build-module/utils/hooks/use-on-value-update.js
+/* eslint-disable jsdoc/require-param */
+/**
+ * WordPress dependencies
+ */
+
+
+
+/**
+ * Context object for the `onUpdate` callback of `useOnValueUpdate`.
+ */
+
+/**
+ * Calls the `onUpdate` callback when the `value` changes.
+ */
+function useOnValueUpdate(
+/**
+ * The value to watch for changes.
+ */
+value,
+/**
+ * Callback to fire when the value changes.
+ */
+onUpdate) {
+  const previousValueRef = (0,external_wp_element_namespaceObject.useRef)(value);
+  const updateCallbackEvent = (0,external_wp_compose_namespaceObject.useEvent)(onUpdate);
+  (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
+    if (previousValueRef.current !== value) {
+      updateCallbackEvent({
+        previousValue: previousValueRef.current
+      });
+      previousValueRef.current = value;
+    }
+  }, [updateCallbackEvent, value]);
+}
+/* eslint-enable jsdoc/require-param */
+
+;// CONCATENATED MODULE: ./packages/components/build-module/utils/hooks/use-animated-offset-rect.js
+/* eslint-disable jsdoc/require-param */
+
+/**
+ * WordPress dependencies
+ */
+
+
+/**
  * Internal dependencies
  */
+
+
+
+/**
+ * A utility used to animate something in a container component based on the "offset
+ * rect" (position relative to the container and size) of a subelement. For example,
+ * this is useful to render an indicator for the selected option of a component, and
+ * to animate it when the selected option changes.
+ *
+ * Takes in a container element and the up-to-date "offset rect" of the target
+ * subelement, obtained with `useTrackElementOffsetRect`. Then it does the following:
+ *
+ * - Adds CSS variables with rect information to the container, so that the indicator
+ *   can be rendered and animated with them. These are kept up-to-date, enabling CSS
+ *   transitions on change.
+ * - Sets an attribute (`data-subelement-animated` by default) when the tracked
+ *   element changes, so that the target (e.g. the indicator) can be animated to its
+ *   new size and position.
+ * - Removes the attribute when the animation is done.
+ *
+ * The need for the attribute is due to the fact that the rect might update in
+ * situations other than when the tracked element changes, e.g. the tracked element
+ * might be resized. In such cases, there is no need to animate the indicator, and
+ * the change in size or position of the indicator needs to be reflected immediately.
+ */
+function useAnimatedOffsetRect(
+/**
+ * The container element.
+ */
+container,
+/**
+ * The rect of the tracked element.
+ */
+rect, {
+  prefix = 'subelement',
+  dataAttribute = `${prefix}-animated`,
+  transitionEndFilter = () => true
+} = {}) {
+  const setProperties = (0,external_wp_compose_namespaceObject.useEvent)(() => {
+    Object.keys(rect).forEach(property => property !== 'element' && container?.style.setProperty(`--${prefix}-${property}`, String(rect[property])));
+  });
+  (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
+    setProperties();
+  }, [rect, setProperties]);
+  useOnValueUpdate(rect.element, ({
+    previousValue
+  }) => {
+    // Only enable the animation when moving from one element to another.
+    if (rect.element && previousValue) {
+      container?.setAttribute(`data-${dataAttribute}`, '');
+    }
+  });
+  (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
+    function onTransitionEnd(event) {
+      if (transitionEndFilter(event)) {
+        container?.removeAttribute(`data-${dataAttribute}`);
+      }
+    }
+    container?.addEventListener('transitionend', onTransitionEnd);
+    return () => container?.removeEventListener('transitionend', onTransitionEnd);
+  }, [dataAttribute, container, transitionEndFilter]);
+}
+/* eslint-enable jsdoc/require-param */
+
+;// CONCATENATED MODULE: ./packages/components/build-module/toggle-group-control/toggle-group-control/component.js
+/**
+ * External dependencies
+ */
+
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
 
 
 
@@ -35731,8 +35815,16 @@ function UnconnectedToggleGroupControl(props, forwardedRef) {
     children,
     ...otherProps
   } = useContextSystem(props, 'ToggleGroupControl');
-  const baseId = (0,external_wp_compose_namespaceObject.useInstanceId)(ToggleGroupControl, 'toggle-group-control');
   const normalizedSize = __next40pxDefaultSize && size === 'default' ? '__unstable-large' : size;
+  const [selectedElement, setSelectedElement] = (0,external_wp_element_namespaceObject.useState)();
+  const [controlElement, setControlElement] = (0,external_wp_element_namespaceObject.useState)();
+  const refs = (0,external_wp_compose_namespaceObject.useMergeRefs)([setControlElement, forwardedRef]);
+  const selectedRect = useTrackElementOffsetRect(value ? selectedElement : undefined);
+  useAnimatedOffsetRect(controlElement, selectedRect, {
+    prefix: 'selected',
+    dataAttribute: 'indicator-animated',
+    transitionEndFilter: event => event.pseudoElement === '::before'
+  });
   const cx = useCx();
   const classes = (0,external_wp_element_namespaceObject.useMemo)(() => cx(toggleGroupControl({
     isBlock,
@@ -35750,17 +35842,15 @@ function UnconnectedToggleGroupControl(props, forwardedRef) {
       })
     }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(MainControl, {
       ...otherProps,
+      setSelectedElement: setSelectedElement,
       className: classes,
       isAdaptiveWidth: isAdaptiveWidth,
       label: label,
       onChange: onChange,
-      ref: forwardedRef,
+      ref: refs,
       size: normalizedSize,
       value: value,
-      children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(LayoutGroup, {
-        id: baseId,
-        children: children
-      })
+      children: children
     })]
   });
 }
@@ -35959,7 +36049,7 @@ const buttonView = ({
   isIcon,
   isPressed,
   size
-}) => /*#__PURE__*/emotion_react_browser_esm_css("align-items:center;appearance:none;background:transparent;border:none;border-radius:", config_values.radiusXSmall, ";color:", COLORS.gray[700], ";fill:currentColor;cursor:pointer;display:flex;font-family:inherit;height:100%;justify-content:center;line-height:100%;outline:none;padding:0 12px;position:relative;text-align:center;@media not ( prefers-reduced-motion ){transition:background ", config_values.transitionDurationFast, " linear,color ", config_values.transitionDurationFast, " linear,font-weight 60ms linear;}user-select:none;width:100%;z-index:2;&::-moz-focus-inner{border:0;}&[disabled]{opacity:0.4;cursor:default;}&:active{background:", config_values.toggleGroupControlBackgroundColor, ";}", isDeselectable && deselectable, " ", isIcon && isIconStyles({
+}) => /*#__PURE__*/emotion_react_browser_esm_css("align-items:center;appearance:none;background:transparent;border:none;border-radius:", config_values.radiusXSmall, ";color:", COLORS.gray[700], ";fill:currentColor;cursor:pointer;display:flex;font-family:inherit;height:100%;justify-content:center;line-height:100%;outline:none;padding:0 12px;position:relative;text-align:center;@media not ( prefers-reduced-motion ){transition:background ", config_values.transitionDurationFast, " linear,color ", config_values.transitionDurationFast, " linear,font-weight 60ms linear;}user-select:none;width:100%;z-index:2;&::-moz-focus-inner{border:0;}&[disabled]{opacity:0.4;cursor:default;}&:active{background:", config_values.controlBackgroundColor, ";}", isDeselectable && deselectable, " ", isIcon && isIconStyles({
   size
 }), " ", isPressed && pressed, ";" + ( true ? "" : 0),  true ? "" : 0);
 const pressed = /*#__PURE__*/emotion_react_browser_esm_css("color:", COLORS.white, ";&:active{background:transparent;}" + ( true ? "" : 0),  true ? "" : 0);
@@ -35976,13 +36066,11 @@ const isIconStyles = ({
   };
   return /*#__PURE__*/emotion_react_browser_esm_css("color:", COLORS.gray[900], ";height:", iconButtonSizes[size], ";aspect-ratio:1;padding-left:0;padding-right:0;" + ( true ? "" : 0),  true ? "" : 0);
 };
-const backdropView = /*#__PURE__*/emotion_react_browser_esm_css("background:", COLORS.gray[900], ";border-radius:", config_values.radiusXSmall, ";position:absolute;inset:0;z-index:1;outline:2px solid transparent;outline-offset:-3px;" + ( true ? "" : 0),  true ? "" : 0);
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/toggle-group-control/toggle-group-control-option-base/component.js
 /**
  * External dependencies
  */
-
 
 
 
@@ -36003,15 +36091,10 @@ const backdropView = /*#__PURE__*/emotion_react_browser_esm_css("background:", C
 
 
 
-
 const {
   ButtonContentView: component_ButtonContentView,
   LabelView: component_LabelView
 } = toggle_group_control_option_base_styles_namespaceObject;
-const REDUCED_MOTION_TRANSITION_CONFIG = {
-  duration: 0
-};
-const LAYOUT_ID = 'toggle-group-backdrop-shared-layout-id';
 const WithToolTip = ({
   showTooltip,
   text,
@@ -36029,7 +36112,6 @@ const WithToolTip = ({
   });
 };
 function ToggleGroupControlOptionBase(props, forwardedRef) {
-  const shouldReduceMotion = (0,external_wp_compose_namespaceObject.useReducedMotion)();
   const toggleGroupControlContext = useToggleGroupControlContext();
   const id = (0,external_wp_compose_namespaceObject.useInstanceId)(ToggleGroupControlOptionBase, toggleGroupControlContext.baseId || 'toggle-group-control-option-base');
   const buttonProps = useContextSystem({
@@ -36060,7 +36142,6 @@ function ToggleGroupControlOptionBase(props, forwardedRef) {
     isPressed,
     size
   }), className), [cx, isDeselectable, isIcon, isPressed, size, className]);
-  const backdropClasses = (0,external_wp_element_namespaceObject.useMemo)(() => cx(backdropView), [cx]);
   const buttonOnClick = () => {
     if (isDeselectable && isPressed) {
       toggleGroupControlContext.setValue(undefined);
@@ -36074,9 +36155,16 @@ function ToggleGroupControlOptionBase(props, forwardedRef) {
     'data-value': value,
     ref: forwardedRef
   };
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(component_LabelView, {
+  const labelRef = (0,external_wp_element_namespaceObject.useRef)(null);
+  (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
+    if (isPressed && labelRef.current) {
+      toggleGroupControlContext.setSelectedElement(labelRef.current);
+    }
+  }, [isPressed, toggleGroupControlContext]);
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(component_LabelView, {
+    ref: labelRef,
     className: labelViewClasses,
-    children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(WithToolTip, {
+    children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(WithToolTip, {
       showTooltip: showTooltip,
       text: otherButtonProps['aria-label'],
       children: isDeselectable ? /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)("button", {
@@ -36107,16 +36195,7 @@ function ToggleGroupControlOptionBase(props, forwardedRef) {
           children: children
         })
       })
-    }), isPressed ? /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(motion.div, {
-      layout: true,
-      layoutRoot: true,
-      children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(motion.div, {
-        className: backdropClasses,
-        transition: shouldReduceMotion ? REDUCED_MOTION_TRANSITION_CONFIG : undefined,
-        role: "presentation",
-        layoutId: LAYOUT_ID
-      })
-    }) : null]
+    })
   });
 }
 
@@ -36465,10 +36544,10 @@ const Dropdown = contextConnect(UnconnectedDropdown, 'Dropdown');
 
 
 
+
 function UnconnectedInputControlSuffixWrapper(props, forwardedRef) {
   const derivedProps = useContextSystem(props, 'InputControlSuffixWrapper');
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(spacer_component, {
-    marginBottom: 0,
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(PrefixSuffixWrapper, {
     ...derivedProps,
     ref: forwardedRef
   });
@@ -36579,10 +36658,10 @@ const sizePaddings = ({
   selectSize = 'default'
 }) => {
   const padding = {
-    default: 16,
-    small: 8,
-    compact: 8,
-    '__unstable-large': 16
+    default: config_values.controlPaddingX,
+    small: config_values.controlPaddingXSmall,
+    compact: config_values.controlPaddingXSmall,
+    '__unstable-large': config_values.controlPaddingX
   };
   if (!__next40pxDefaultSize) {
     padding.default = padding.compact;
@@ -37074,7 +37153,7 @@ const railBackgroundColor = ({
 };
 const Rail = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? {
   target: "e1epgpqk10"
-} : 0)("background-color:", COLORS.gray[300], ";left:0;pointer-events:none;right:0;display:block;height:", railHeight, "px;position:absolute;margin-top:", (rangeHeightValue - railHeight) / 2, "px;top:0;border-radius:", railHeight, "px;", railBackgroundColor, ";" + ( true ? "" : 0));
+} : 0)("background-color:", COLORS.gray[300], ";left:0;pointer-events:none;right:0;display:block;height:", railHeight, "px;position:absolute;margin-top:", (rangeHeightValue - railHeight) / 2, "px;top:0;border-radius:", config_values.radiusFull, ";", railBackgroundColor, ";" + ( true ? "" : 0));
 const trackBackgroundColor = ({
   disabled,
   trackColor
@@ -37089,7 +37168,7 @@ const trackBackgroundColor = ({
 };
 const Track = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? {
   target: "e1epgpqk9"
-} : 0)("background-color:currentColor;border-radius:", railHeight, "px;height:", railHeight, "px;pointer-events:none;display:block;position:absolute;margin-top:", (rangeHeightValue - railHeight) / 2, "px;top:0;", trackBackgroundColor, ";" + ( true ? "" : 0));
+} : 0)("background-color:currentColor;border-radius:", config_values.radiusFull, ";height:", railHeight, "px;pointer-events:none;display:block;position:absolute;margin-top:", (rangeHeightValue - railHeight) / 2, "px;top:0;", trackBackgroundColor, ";" + ( true ? "" : 0));
 const MarksWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? {
   target: "e1epgpqk8"
 } : 0)( true ? {
@@ -37132,7 +37211,7 @@ const thumbColor = ({
 }) => disabled ? /*#__PURE__*/emotion_react_browser_esm_css("background-color:", COLORS.gray[400], ";" + ( true ? "" : 0),  true ? "" : 0) : /*#__PURE__*/emotion_react_browser_esm_css("background-color:", COLORS.theme.accent, ";" + ( true ? "" : 0),  true ? "" : 0);
 const ThumbWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? {
   target: "e1epgpqk5"
-} : 0)("align-items:center;display:flex;height:", thumbSize, "px;justify-content:center;margin-top:", (rangeHeightValue - thumbSize) / 2, "px;outline:0;pointer-events:none;position:absolute;top:0;user-select:none;width:", thumbSize, "px;border-radius:50%;", thumbColor, ";", rtl({
+} : 0)("align-items:center;display:flex;height:", thumbSize, "px;justify-content:center;margin-top:", (rangeHeightValue - thumbSize) / 2, "px;outline:0;pointer-events:none;position:absolute;top:0;user-select:none;width:", thumbSize, "px;border-radius:", config_values.radiusRound, ";", thumbColor, ";", rtl({
   marginLeft: -10
 }), ";", rtl({
   transform: 'translateX( 4.5px )'
@@ -37142,11 +37221,11 @@ const ThumbWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true 
 const thumbFocus = ({
   isFocused
 }) => {
-  return isFocused ? /*#__PURE__*/emotion_react_browser_esm_css("&::before{content:' ';position:absolute;background-color:", COLORS.theme.accent, ";opacity:0.4;border-radius:50%;height:", thumbSize + 8, "px;width:", thumbSize + 8, "px;top:-4px;left:-4px;}" + ( true ? "" : 0),  true ? "" : 0) : '';
+  return isFocused ? /*#__PURE__*/emotion_react_browser_esm_css("&::before{content:' ';position:absolute;background-color:", COLORS.theme.accent, ";opacity:0.4;border-radius:", config_values.radiusRound, ";height:", thumbSize + 8, "px;width:", thumbSize + 8, "px;top:-4px;left:-4px;}" + ( true ? "" : 0),  true ? "" : 0) : '';
 };
 const Thumb = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? {
   target: "e1epgpqk4"
-} : 0)("align-items:center;border-radius:50%;height:100%;outline:0;position:absolute;user-select:none;width:100%;", thumbColor, ";", thumbFocus, ";" + ( true ? "" : 0));
+} : 0)("align-items:center;border-radius:", config_values.radiusRound, ";height:100%;outline:0;position:absolute;user-select:none;width:100%;box-shadow:", config_values.elevationXSmall, ";", thumbColor, ";", thumbFocus, ";" + ( true ? "" : 0));
 const InputRange = /*#__PURE__*/emotion_styled_base_browser_esm("input",  true ? {
   target: "e1epgpqk3"
 } : 0)("box-sizing:border-box;cursor:pointer;display:block;height:100%;left:0;margin:0 -", thumbSize / 2, "px;opacity:0;outline:none;position:absolute;right:0;top:0;width:calc( 100% + ", thumbSize, "px );" + ( true ? "" : 0));
@@ -37176,7 +37255,7 @@ const tooltipPosition = ({
 };
 const range_control_styles_Tooltip = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? {
   target: "e1epgpqk2"
-} : 0)("background:rgba( 0, 0, 0, 0.8 );border-radius:2px;color:white;display:inline-block;font-size:12px;min-width:32px;opacity:0;padding:4px 8px;pointer-events:none;position:absolute;text-align:center;user-select:none;line-height:1.4;@media not ( prefers-reduced-motion ){transition:opacity 120ms ease;}", tooltipShow, ";", tooltipPosition, ";", rtl({
+} : 0)("background:rgba( 0, 0, 0, 0.8 );border-radius:", config_values.radiusSmall, ";color:white;display:inline-block;font-size:12px;min-width:32px;opacity:0;padding:4px 8px;pointer-events:none;position:absolute;text-align:center;user-select:none;line-height:1.4;@media not ( prefers-reduced-motion ){transition:opacity 120ms ease;}", tooltipShow, ";", tooltipPosition, ";", rtl({
   transform: 'translateX(-50%)'
 }, {
   transform: 'translateX(50%)'
@@ -37811,7 +37890,7 @@ const ColorInputWrapper = /*#__PURE__*/emotion_styled_base_browser_esm(flex_comp
 } : 0)("padding-top:", space(4), ";padding-left:", space(4), ";padding-right:", space(3), ";padding-bottom:", space(5), ";" + ( true ? "" : 0));
 const ColorfulWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
   target: "ez9hsf41"
-} : 0)(boxSizingReset, ";width:216px;.react-colorful{display:flex;flex-direction:column;align-items:center;width:216px;height:auto;}.react-colorful__saturation{width:100%;border-radius:0;height:216px;margin-bottom:", space(4), ";border-bottom:none;}.react-colorful__hue,.react-colorful__alpha{width:184px;height:16px;border-radius:16px;margin-bottom:", space(2), ";}.react-colorful__pointer{height:16px;width:16px;border:none;box-shadow:0 0 2px 0 rgba( 0, 0, 0, 0.25 );outline:2px solid transparent;}.react-colorful__pointer-fill{box-shadow:inset 0 0 0 ", config_values.borderWidthFocus, " #fff;}", interactiveHueStyles, ";" + ( true ? "" : 0));
+} : 0)(boxSizingReset, ";width:216px;.react-colorful{display:flex;flex-direction:column;align-items:center;width:216px;height:auto;}.react-colorful__saturation{width:100%;border-radius:0;height:216px;margin-bottom:", space(4), ";border-bottom:none;}.react-colorful__hue,.react-colorful__alpha{width:184px;height:16px;border-radius:", config_values.radiusFull, ";margin-bottom:", space(2), ";}.react-colorful__pointer{height:16px;width:16px;border:none;box-shadow:0 0 2px 0 rgba( 0, 0, 0, 0.25 );outline:2px solid transparent;}.react-colorful__pointer-fill{box-shadow:inset 0 0 0 ", config_values.borderWidthFocus, " #fff;}", interactiveHueStyles, ";" + ( true ? "" : 0));
 const CopyButton = /*#__PURE__*/emotion_styled_base_browser_esm(build_module_button,  true ? {
   target: "ez9hsf40"
 } : 0)("&&&&&{min-width:", space(6), ";padding:0;>svg{margin-right:0;}}" + ( true ? "" : 0));
@@ -37854,7 +37933,7 @@ const ColorCopyButton = props => {
     colorType
   } = props;
   const [copiedColor, setCopiedColor] = (0,external_wp_element_namespaceObject.useState)(null);
-  const copyTimer = (0,external_wp_element_namespaceObject.useRef)();
+  const copyTimerRef = (0,external_wp_element_namespaceObject.useRef)();
   const copyRef = (0,external_wp_compose_namespaceObject.useCopyToClipboard)(() => {
     switch (colorType) {
       case 'hsl':
@@ -37872,20 +37951,20 @@ const ColorCopyButton = props => {
         }
     }
   }, () => {
-    if (copyTimer.current) {
-      clearTimeout(copyTimer.current);
+    if (copyTimerRef.current) {
+      clearTimeout(copyTimerRef.current);
     }
     setCopiedColor(color.toHex());
-    copyTimer.current = setTimeout(() => {
+    copyTimerRef.current = setTimeout(() => {
       setCopiedColor(null);
-      copyTimer.current = undefined;
+      copyTimerRef.current = undefined;
     }, 3000);
   });
   (0,external_wp_element_namespaceObject.useEffect)(() => {
-    // Clear copyTimer on component unmount.
+    // Clear copyTimerRef on component unmount.
     return () => {
-      if (copyTimer.current) {
-        clearTimeout(copyTimer.current);
+      if (copyTimerRef.current) {
+        clearTimeout(copyTimerRef.current);
       }
     };
   }, []);
@@ -37902,11 +37981,49 @@ const ColorCopyButton = props => {
   });
 };
 
-;// CONCATENATED MODULE: ./packages/components/build-module/color-picker/input-with-slider.js
+;// CONCATENATED MODULE: ./packages/components/build-module/input-control/input-prefix-wrapper.js
+/**
+ * External dependencies
+ */
+
 /**
  * Internal dependencies
  */
 
+
+
+
+function UnconnectedInputControlPrefixWrapper(props, forwardedRef) {
+  const derivedProps = useContextSystem(props, 'InputControlPrefixWrapper');
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(PrefixSuffixWrapper, {
+    ...derivedProps,
+    isPrefix: true,
+    ref: forwardedRef
+  });
+}
+
+/**
+ * A convenience wrapper for the `prefix` when you want to apply
+ * standard padding in accordance with the size variant.
+ *
+ * ```jsx
+ * import {
+ *   __experimentalInputControl as InputControl,
+ *   __experimentalInputControlPrefixWrapper as InputControlPrefixWrapper,
+ * } from '@wordpress/components';
+ *
+ * <InputControl
+ *   prefix={<InputControlPrefixWrapper>@</InputControlPrefixWrapper>}
+ * />
+ * ```
+ */
+const InputControlPrefixWrapper = contextConnect(UnconnectedInputControlPrefixWrapper, 'InputControlPrefixWrapper');
+/* harmony default export */ const input_prefix_wrapper = (InputControlPrefixWrapper);
+
+;// CONCATENATED MODULE: ./packages/components/build-module/color-picker/input-with-slider.js
+/**
+ * Internal dependencies
+ */
 
 
 
@@ -37942,12 +38059,12 @@ const InputWithSlider = ({
       hideLabelFromVision: true,
       value: value,
       onChange: onNumberControlChange,
-      prefix: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(spacer_component, {
-        as: text_component,
-        paddingLeft: space(4),
-        color: COLORS.theme.accent,
-        lineHeight: 1,
-        children: abbreviation
+      prefix: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(input_prefix_wrapper, {
+        children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(text_component, {
+          color: COLORS.theme.accent,
+          lineHeight: 1,
+          children: abbreviation
+        })
       }),
       spinControls: "none",
       size: "__unstable-large"
@@ -38171,7 +38288,6 @@ const HslInput = ({
 
 
 
-
 const HexInput = ({
   color,
   onChange,
@@ -38198,12 +38314,12 @@ const HexInput = ({
     };
   };
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(InputControl, {
-    prefix: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(spacer_component, {
-      as: text_component,
-      marginLeft: space(4),
-      color: COLORS.theme.accent,
-      lineHeight: 1,
-      children: "#"
+    prefix: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(input_prefix_wrapper, {
+      children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(text_component, {
+        color: COLORS.theme.accent,
+        lineHeight: 1,
+        children: "#"
+      })
     }),
     value: color.toHex().slice(1).toUpperCase(),
     onChange: handleChange,
@@ -38514,7 +38630,6 @@ const check = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(exte
  * External dependencies
  */
 
-
 /**
  * WordPress dependencies
  */
@@ -38547,13 +38662,20 @@ function UnforwardedOptionAsOption(props, forwardedRef) {
   const {
     id,
     isSelected,
-    compositeStore,
     ...additionalProps
   } = props;
-  const activeId = useStoreState(compositeStore, 'activeId');
-  if (isSelected && !activeId) {
-    compositeStore.setActiveId(id);
-  }
+  const {
+    setActiveId,
+    activeId
+  } = (0,external_wp_element_namespaceObject.useContext)(CircularOptionPickerContext);
+  (0,external_wp_element_namespaceObject.useEffect)(() => {
+    if (isSelected && !activeId) {
+      // The setTimeout call is necessary to make sure that this update
+      // doesn't get overridden by `Composite`'s internal logic, which picks
+      // an initial active item if one is not specifically set.
+      window.setTimeout(() => setActiveId?.(id), 0);
+    }
+  }, [isSelected, setActiveId, activeId, id]);
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(Composite.Item, {
     render: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(build_module_button, {
       ...additionalProps,
@@ -38574,7 +38696,7 @@ function Option({
 }) {
   const {
     baseId,
-    compositeStore
+    setActiveId
   } = (0,external_wp_element_namespaceObject.useContext)(CircularOptionPickerContext);
   const id = (0,external_wp_compose_namespaceObject.useInstanceId)(Option, baseId || 'components-circular-option-picker__option');
   const commonProps = {
@@ -38582,9 +38704,9 @@ function Option({
     className: 'components-circular-option-picker__option',
     ...additionalProps
   };
-  const optionControl = compositeStore ? /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(OptionAsOption, {
+  const isListbox = setActiveId !== undefined;
+  const optionControl = isListbox ? /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(OptionAsOption, {
     ...commonProps,
-    compositeStore: compositeStore,
     isSelected: isSelected
   }) : /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(OptionAsButton, {
     ...commonProps,
@@ -38685,6 +38807,7 @@ function ButtonAction({
 
 
 
+
 /**
  * Internal dependencies
  */
@@ -38751,23 +38874,24 @@ function ListboxCircularOptionPicker(props) {
     children,
     ...additionalProps
   } = props;
-  const compositeStore = composite_useCompositeStore({
-    focusLoop: loop,
-    rtl: (0,external_wp_i18n_namespaceObject.isRTL)()
-  });
-  const compositeContext = {
+  const [activeId, setActiveId] = (0,external_wp_element_namespaceObject.useState)(undefined);
+  const contextValue = (0,external_wp_element_namespaceObject.useMemo)(() => ({
     baseId,
-    compositeStore
-  };
+    activeId,
+    setActiveId
+  }), [baseId, activeId, setActiveId]);
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)("div", {
     className: className,
     children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(CircularOptionPickerContext.Provider, {
-      value: compositeContext,
+      value: contextValue,
       children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(Composite, {
         ...additionalProps,
         id: baseId,
-        store: compositeStore,
+        focusLoop: loop,
+        rtl: (0,external_wp_i18n_namespaceObject.isRTL)(),
         role: "listbox",
+        activeId: activeId,
+        setActiveId: setActiveId,
         children: options
       }), children, actions]
     })
@@ -38781,13 +38905,14 @@ function ButtonsCircularOptionPicker(props) {
     baseId,
     ...additionalProps
   } = props;
+  const contextValue = (0,external_wp_element_namespaceObject.useMemo)(() => ({
+    baseId
+  }), [baseId]);
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)("div", {
     ...additionalProps,
     id: baseId,
     children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(CircularOptionPickerContext.Provider, {
-      value: {
-        baseId
-      },
+      value: contextValue,
       children: [options, children, actions]
     })
   });
@@ -39189,8 +39314,7 @@ const isMultiplePaletteArray = arr => {
  * @return The background color value computed from a element.
  */
 const normalizeColorValue = (value, element) => {
-  const valueIsSimpleColor = value ? isSimpleCSSColor(value) : false;
-  if (valueIsSimpleColor || element === null) {
+  if (!value || !element || isSimpleCSSColor(value)) {
     return value;
   }
   const {
@@ -39526,7 +39650,7 @@ const baseUnitLabelStyles = ({
 }) => {
   const sizes = {
     small: /*#__PURE__*/emotion_react_browser_esm_css("box-sizing:border-box;padding:2px 1px;width:20px;font-size:8px;line-height:1;letter-spacing:-0.5px;text-transform:uppercase;text-align-last:center;&:not( :disabled ){color:", COLORS.gray[800], ";}" + ( true ? "" : 0),  true ? "" : 0),
-    default: /*#__PURE__*/emotion_react_browser_esm_css("box-sizing:border-box;min-width:24px;max-width:48px;height:24px;margin-inline-end:", space(2), ";padding:", space(1), ";font-size:13px;line-height:1;text-align-last:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;&:not( :disabled ){color:", COLORS.theme.accent, ";}" + ( true ? "" : 0),  true ? "" : 0)
+    default: /*#__PURE__*/emotion_react_browser_esm_css("box-sizing:border-box;min-width:24px;max-width:48px;height:24px;margin-inline-end:", space(2), ";padding:", space(1), ";font-size:13px;line-height:1;text-align-last:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;field-sizing:content;&:not( :disabled ){color:", COLORS.theme.accent, ";}" + ( true ? "" : 0),  true ? "" : 0)
   };
   return sizes[selectSize];
 };
@@ -39541,7 +39665,7 @@ const unitSelectSizes = ({
       borderTopLeftRadius: 0,
       borderBottomLeftRadius: 0
     })(), " &:not(:disabled):hover{background-color:", COLORS.gray[100], ";}&:focus{border:1px solid ", COLORS.ui.borderFocus, ";box-shadow:inset 0 0 0 ", config_values.borderWidth + ' ' + COLORS.ui.borderFocus, ";outline-offset:0;outline:2px solid transparent;z-index:1;}" + ( true ? "" : 0),  true ? "" : 0),
-    default: /*#__PURE__*/emotion_react_browser_esm_css("display:flex;justify-content:center;align-items:center;&:where( :not( :disabled ) ):hover{box-shadow:inset 0 0 0 ", config_values.borderWidth + ' ' + COLORS.ui.borderFocus, ";outline:", config_values.borderWidth, " solid transparent;}&:focus{box-shadow:0 0 0 ", config_values.borderWidthFocus + ' ' + COLORS.ui.borderFocus, ";outline:", config_values.borderWidthFocus, " solid transparent;}" + ( true ? "" : 0),  true ? "" : 0)
+    default: /*#__PURE__*/emotion_react_browser_esm_css("display:flex;justify-content:center;align-items:center;&:where( :not( :disabled ) ):hover{box-shadow:0 0 0 ", config_values.borderWidth + ' ' + COLORS.ui.borderFocus, ";outline:", config_values.borderWidth, " solid transparent;}&:focus{box-shadow:0 0 0 ", config_values.borderWidthFocus + ' ' + COLORS.ui.borderFocus, ";outline:", config_values.borderWidthFocus, " solid transparent;}" + ( true ? "" : 0),  true ? "" : 0)
   };
   return sizes[selectSize];
 };
@@ -39602,7 +39726,7 @@ const swatchGap = 12;
 const borderControlPopoverControls = /*#__PURE__*/emotion_react_browser_esm_css("width:", swatchSize * 6 + swatchGap * 5, "px;>div:first-of-type>", StyledLabel, "{margin-bottom:0;}&& ", StyledLabel, "+button:not( .has-text ){min-width:24px;padding:0;}" + ( true ? "" : 0),  true ? "" : 0);
 const borderControlPopoverContent = /*#__PURE__*/emotion_react_browser_esm_css( true ? "" : 0,  true ? "" : 0);
 const borderColorIndicator = /*#__PURE__*/emotion_react_browser_esm_css( true ? "" : 0,  true ? "" : 0);
-const resetButton = /*#__PURE__*/emotion_react_browser_esm_css("justify-content:center;width:100%;&&{border-top:", config_values.borderWidth, " solid ", COLORS.gray[400], ";border-top-left-radius:0;border-top-right-radius:0;height:40px;}" + ( true ? "" : 0),  true ? "" : 0);
+const resetButton = /*#__PURE__*/emotion_react_browser_esm_css("justify-content:center;width:100%;&&{border-top:", config_values.borderWidth, " solid ", COLORS.gray[400], ";border-top-left-radius:0;border-top-right-radius:0;}" + ( true ? "" : 0),  true ? "" : 0);
 const borderSlider = () => /*#__PURE__*/emotion_react_browser_esm_css("flex:1 1 60%;", rtl({
   marginRight: space(3)
 })(), ";" + ( true ? "" : 0),  true ? "" : 0);
@@ -40107,12 +40231,9 @@ function useBorderControlDropdown(props) {
  */
 
 
-
 /**
  * Internal dependencies
  */
-
-
 
 
 
@@ -40199,7 +40320,6 @@ const BorderControlDropdown = (props, forwardedRef) => {
     popoverContentClassName,
     popoverControlsClassName,
     resetButtonClassName,
-    showDropdownHeader,
     size,
     __unstablePopoverProps,
     ...otherProps
@@ -40238,16 +40358,7 @@ const BorderControlDropdown = (props, forwardedRef) => {
       children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(v_stack_component, {
         className: popoverControlsClassName,
         spacing: 6,
-        children: [showDropdownHeader ? /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(h_stack_component, {
-          children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(StyledLabel, {
-            children: (0,external_wp_i18n_namespaceObject.__)('Border color')
-          }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(build_module_button, {
-            size: "small",
-            label: (0,external_wp_i18n_namespaceObject.__)('Close border color'),
-            icon: close_small,
-            onClick: onClose
-          })]
-        }) : undefined, /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(color_palette, {
+        children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(color_palette, {
           className: popoverContentClassName,
           value: color,
           onChange: onColorChange,
@@ -40271,6 +40382,7 @@ const BorderControlDropdown = (props, forwardedRef) => {
           onReset();
           onClose();
         },
+        __next40pxDefaultSize: true,
         children: (0,external_wp_i18n_namespaceObject.__)('Reset')
       })
     })]
@@ -40687,6 +40799,7 @@ function useBorderControl(props) {
 
 
 
+
 const BorderLabel = props => {
   const {
     label,
@@ -40743,19 +40856,22 @@ const UnconnectedBorderControl = (props, forwardedRef) => {
       spacing: 4,
       className: innerWrapperClassName,
       children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(unit_control, {
-        prefix: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(border_control_dropdown_component, {
-          border: border,
-          colors: colors,
-          __unstablePopoverProps: __unstablePopoverProps,
-          disableCustomColors: disableCustomColors,
-          enableAlpha: enableAlpha,
-          enableStyle: enableStyle,
-          isStyleSettable: isStyleSettable,
-          onChange: onBorderChange,
-          previousStyleSelection: previousStyleSelection,
-          showDropdownHeader: showDropdownHeader,
-          __experimentalIsRenderedInSidebar: __experimentalIsRenderedInSidebar,
-          size: size
+        prefix: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(spacer_component, {
+          marginRight: 1,
+          marginBottom: 0,
+          children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(border_control_dropdown_component, {
+            border: border,
+            colors: colors,
+            __unstablePopoverProps: __unstablePopoverProps,
+            disableCustomColors: disableCustomColors,
+            enableAlpha: enableAlpha,
+            enableStyle: enableStyle,
+            isStyleSettable: isStyleSettable,
+            onChange: onBorderChange,
+            previousStyleSelection: previousStyleSelection,
+            __experimentalIsRenderedInSidebar: __experimentalIsRenderedInSidebar,
+            size: size
+          })
         }),
         label: (0,external_wp_i18n_namespaceObject.__)('Border width'),
         hideLabelFromVision: true,
@@ -40795,7 +40911,7 @@ const UnconnectedBorderControl = (props, forwardedRef) => {
  * a "shape" abstraction.
  *
  * ```jsx
- * import { __experimentalBorderControl as BorderControl } from '@wordpress/components';
+ * import { BorderControl } from '@wordpress/components';
  * import { __ } from '@wordpress/i18n';
  *
  * const colors = [
@@ -41553,22 +41669,11 @@ const UnconnectedBorderBoxControl = (props, forwardedRef) => {
 };
 
 /**
- * The `BorderBoxControl` effectively has two view states. The first, a "linked"
- * view, allows configuration of a flat border via a single `BorderControl`.
- * The second, a "split" view, contains a `BorderControl` for each side
- * as well as a visualizer for the currently selected borders. Each view also
- * contains a button to toggle between the two.
- *
- * When switching from the "split" view to "linked", if the individual side
- * borders are not consistent, the "linked" view will display any border
- * properties selections that are consistent while showing a mixed state for
- * those that aren't. For example, if all borders had the same color and style
- * but different widths, then the border dropdown in the "linked" view's
- * `BorderControl` would show that consistent color and style but the "linked"
- * view's width input would show "Mixed" placeholder text.
+ * An input control for the color, style, and width of the border of a box. The
+ * border can be customized as a whole, or individually for each side of the box.
  *
  * ```jsx
- * import { __experimentalBorderBoxControl as BorderBoxControl } from '@wordpress/components';
+ * import { BorderBoxControl } from '@wordpress/components';
  * import { __ } from '@wordpress/i18n';
  *
  * const colors = [
@@ -41999,7 +42104,7 @@ function isValuesMixed(values = {}, selectedUnits, sides = ALL_SIDES) {
  * @return  Whether values are mixed.
  */
 function isValuesDefined(values) {
-  return values !== undefined && Object.values(values).filter(
+  return values && Object.values(values).filter(
   // Switching units when input is empty causes values only
   // containing units. This gives false positive on mixed values
   // unless filtered.
@@ -42133,7 +42238,7 @@ function AllInputControl({
     const newUnits = applyValueToSides(selectedUnits, unit, sides);
     setSelectedUnits(newUnits);
   };
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(h_stack_component, {
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(external_ReactJSXRuntime_namespaceObject.Fragment, {
     children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(StyledUnitControl, {
       ...props,
       __next40pxDefaultSize: __next40pxDefaultSize,
@@ -42470,14 +42575,14 @@ function box_control_useUniqueId(idProp) {
 }
 
 /**
- * BoxControl components let users set values for Top, Right, Bottom, and Left.
- * This can be used as an input control for values like `padding` or `margin`.
+ * A control that lets users set values for top, right, bottom, and left. Can be
+ * used as an input control for values like `padding` or `margin`.
  *
  * ```jsx
- * import { __experimentalBoxControl as BoxControl } from '@wordpress/components';
+ * import { BoxControl } from '@wordpress/components';
  * import { useState } from '@wordpress/element';
  *
- * const Example = () => {
+ * function Example() {
  * 	const [ values, setValues ] = useState( {
  * 		top: '50px',
  * 		left: '10%',
@@ -42798,7 +42903,7 @@ function card_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried t
 // (as opposed to the `border` property), the value of the border radius needs
 // to be adjusted by removing 1px (this is because the `box-shadow` renders
 // as an "outer radius").
-const adjustedBorderRadius = `calc(${config_values.cardBorderRadius} - 1px)`;
+const adjustedBorderRadius = `calc(${config_values.radiusLarge} - 1px)`;
 const Card = /*#__PURE__*/emotion_react_browser_esm_css("box-shadow:0 0 0 1px ", config_values.surfaceBorderColor, ";outline:none;" + ( true ? "" : 0),  true ? "" : 0);
 const Header =  true ? {
   name: "1showjb",
@@ -43051,7 +43156,7 @@ function UnconnectedCard(props, forwardedRef) {
     size,
     ...otherProps
   } = useCard(props);
-  const elevationBorderRadius = isRounded ? config_values.cardBorderRadius : 0;
+  const elevationBorderRadius = isRounded ? config_values.radiusLarge : 0;
   const cx = useCx();
   const elevationClassName = (0,external_wp_element_namespaceObject.useMemo)(() => cx( /*#__PURE__*/emotion_react_browser_esm_css({
     borderRadius: elevationBorderRadius
@@ -43865,19 +43970,19 @@ function ClipboardButton({
     since: '5.8',
     alternative: 'wp.compose.useCopyToClipboard'
   });
-  const timeoutId = (0,external_wp_element_namespaceObject.useRef)();
+  const timeoutIdRef = (0,external_wp_element_namespaceObject.useRef)();
   const ref = (0,external_wp_compose_namespaceObject.useCopyToClipboard)(text, () => {
     onCopy();
-    if (timeoutId.current) {
-      clearTimeout(timeoutId.current);
+    if (timeoutIdRef.current) {
+      clearTimeout(timeoutIdRef.current);
     }
     if (onFinishCopy) {
-      timeoutId.current = setTimeout(() => onFinishCopy(), TIMEOUT);
+      timeoutIdRef.current = setTimeout(() => onFinishCopy(), TIMEOUT);
     }
   });
   (0,external_wp_element_namespaceObject.useEffect)(() => {
-    if (timeoutId.current) {
-      clearTimeout(timeoutId.current);
+    if (timeoutIdRef.current) {
+      clearTimeout(timeoutIdRef.current);
     }
   }, []);
   const classes = dist_clsx('components-clipboard-button', className);
@@ -43955,9 +44060,9 @@ const paddingY = `calc((${config_values.controlHeight} - ${baseFontHeight} - 2px
 const paddingYSmall = `calc((${config_values.controlHeightSmall} - ${baseFontHeight} - 2px) / 2)`;
 const paddingYLarge = `calc((${config_values.controlHeightLarge} - ${baseFontHeight} - 2px) / 2)`;
 const itemSizes = {
-  small: /*#__PURE__*/emotion_react_browser_esm_css("padding:", paddingYSmall, " ", config_values.controlPaddingXSmall, ";" + ( true ? "" : 0),  true ? "" : 0),
-  medium: /*#__PURE__*/emotion_react_browser_esm_css("padding:", paddingY, " ", config_values.controlPaddingX, ";" + ( true ? "" : 0),  true ? "" : 0),
-  large: /*#__PURE__*/emotion_react_browser_esm_css("padding:", paddingYLarge, " ", config_values.controlPaddingXLarge, ";" + ( true ? "" : 0),  true ? "" : 0)
+  small: /*#__PURE__*/emotion_react_browser_esm_css("padding:", paddingYSmall, " ", config_values.controlPaddingXSmall, "px;" + ( true ? "" : 0),  true ? "" : 0),
+  medium: /*#__PURE__*/emotion_react_browser_esm_css("padding:", paddingY, " ", config_values.controlPaddingX, "px;" + ( true ? "" : 0),  true ? "" : 0),
+  large: /*#__PURE__*/emotion_react_browser_esm_css("padding:", paddingYLarge, " ", config_values.controlPaddingXLarge, "px;" + ( true ? "" : 0),  true ? "" : 0)
 };
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/item-group/item-group/hook.js
@@ -44323,9 +44428,9 @@ function ControlPoints({
   onStopControlPointChange,
   __experimentalIsRenderedInSidebar
 }) {
-  const controlPointMoveState = (0,external_wp_element_namespaceObject.useRef)();
+  const controlPointMoveStateRef = (0,external_wp_element_namespaceObject.useRef)();
   const onMouseMove = event => {
-    if (controlPointMoveState.current === undefined || gradientPickerDomRef.current === null) {
+    if (controlPointMoveStateRef.current === undefined || gradientPickerDomRef.current === null) {
       return;
     }
     const relativePosition = getHorizontalRelativeGradientPosition(event.clientX, gradientPickerDomRef.current);
@@ -44333,18 +44438,18 @@ function ControlPoints({
       initialPosition,
       index,
       significantMoveHappened
-    } = controlPointMoveState.current;
+    } = controlPointMoveStateRef.current;
     if (!significantMoveHappened && Math.abs(initialPosition - relativePosition) >= MINIMUM_SIGNIFICANT_MOVE) {
-      controlPointMoveState.current.significantMoveHappened = true;
+      controlPointMoveStateRef.current.significantMoveHappened = true;
     }
     onChange(updateControlPointPosition(controlPoints, index, relativePosition));
   };
   const cleanEventListeners = () => {
-    if (window && window.removeEventListener && controlPointMoveState.current && controlPointMoveState.current.listenersActivated) {
+    if (window && window.removeEventListener && controlPointMoveStateRef.current && controlPointMoveStateRef.current.listenersActivated) {
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mouseup', cleanEventListeners);
       onStopControlPointChange();
-      controlPointMoveState.current.listenersActivated = false;
+      controlPointMoveStateRef.current.listenersActivated = false;
     }
   };
 
@@ -44369,7 +44474,7 @@ function ControlPoints({
           onToggle
         }) => /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ControlPointButton, {
           onClick: () => {
-            if (controlPointMoveState.current && controlPointMoveState.current.significantMoveHappened) {
+            if (controlPointMoveStateRef.current && controlPointMoveStateRef.current.significantMoveHappened) {
               return;
             }
             if (isOpen) {
@@ -44381,7 +44486,7 @@ function ControlPoints({
           },
           onMouseDown: () => {
             if (window && window.addEventListener) {
-              controlPointMoveState.current = {
+              controlPointMoveStateRef.current = {
                 initialPosition,
                 index,
                 significantMoveHappened: false,
@@ -46055,9 +46160,9 @@ function PaletteEditListView({
   addColorRef
 }) {
   // When unmounting the component if there are empty elements (the user did not complete the insertion) clean them.
-  const elementsReference = (0,external_wp_element_namespaceObject.useRef)();
+  const elementsReferenceRef = (0,external_wp_element_namespaceObject.useRef)();
   (0,external_wp_element_namespaceObject.useEffect)(() => {
-    elementsReference.current = elements;
+    elementsReferenceRef.current = elements;
   }, [elements]);
   const debounceOnChange = (0,external_wp_compose_namespaceObject.useDebounce)(onChange, 100);
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(v_stack_component, {
@@ -46270,6 +46375,21 @@ function PaletteEdit({
   });
 }
 /* harmony default export */ const palette_edit = (PaletteEdit);
+
+;// CONCATENATED MODULE: ./packages/icons/build-module/library/close-small.js
+/**
+ * WordPress dependencies
+ */
+
+
+const closeSmall = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.SVG, {
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 24 24",
+  children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.Path, {
+    d: "M12 13.06l3.712 3.713 1.061-1.06L13.061 12l3.712-3.712-1.06-1.06L12 10.938 8.288 7.227l-1.061 1.06L10.939 12l-3.712 3.712 1.06 1.061L12 13.061z"
+  })
+});
+/* harmony default export */ const close_small = (closeSmall);
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/combobox-control/styles.js
 
@@ -46608,7 +46728,8 @@ function ComboboxControl(props) {
       selected: (0,external_wp_i18n_namespaceObject.__)('Item selected.')
     },
     __experimentalRenderItem,
-    expandOnFocus = true
+    expandOnFocus = true,
+    placeholder
   } = useDeprecated36pxDefaultSizeProp(props);
   const [value, setValue] = useControlledValue({
     value: valueProp,
@@ -46774,6 +46895,7 @@ function ComboboxControl(props) {
               className: "components-combobox-control__input",
               instanceId: instanceId,
               ref: inputContainer,
+              placeholder: placeholder,
               value: isExpanded ? inputValue : currentLabel,
               onFocus: onFocus,
               onBlur: onBlur,
@@ -46837,14 +46959,20 @@ function ComboboxControl(props) {
  */
 
 /**
+ * External dependencies
+ */
+
+
+/**
  * WordPress dependencies
  */
+
+
 
 
 /**
  * Internal dependencies
  */
-
 
 
 // Legacy composite components can either provide state through a
@@ -46872,9 +47000,20 @@ function mapLegacyStatePropsToComponentProps(legacyProps) {
   }
   return legacyProps;
 }
+const LEGACY_TO_NEW_DISPLAY_NAME = {
+  __unstableComposite: 'Composite',
+  __unstableCompositeGroup: 'Composite.Group or Composite.Row',
+  __unstableCompositeItem: 'Composite.Item',
+  __unstableUseCompositeState: 'Composite'
+};
 function proxyComposite(ProxiedComponent, propMap = {}) {
-  const displayName = ProxiedComponent.displayName;
+  var _ProxiedComponent$dis;
+  const displayName = (_ProxiedComponent$dis = ProxiedComponent.displayName) !== null && _ProxiedComponent$dis !== void 0 ? _ProxiedComponent$dis : '';
   const Component = legacyProps => {
+    external_wp_deprecated_default()(`wp.components.${displayName}`, {
+      since: '6.7',
+      alternative: LEGACY_TO_NEW_DISPLAY_NAME.hasOwnProperty(displayName) ? LEGACY_TO_NEW_DISPLAY_NAME[displayName] : undefined
+    });
     const {
       store,
       ...rest
@@ -46903,7 +47042,7 @@ function proxyComposite(ProxiedComponent, propMap = {}) {
 // `CompositeRow`, but this has been split into two different
 // components. We handle that difference by checking on the
 // provided role, and returning the appropriate component.
-const unproxiedCompositeGroup = (0,external_wp_element_namespaceObject.forwardRef)(({
+const UnproxiedCompositeGroup = (0,external_wp_element_namespaceObject.forwardRef)(({
   role,
   ...props
 }, ref) => {
@@ -46914,14 +47053,46 @@ const unproxiedCompositeGroup = (0,external_wp_element_namespaceObject.forwardRe
     ...props
   });
 });
-const legacy_Composite = proxyComposite(Composite, {
+
+/**
+ * _Note: please use the `Composite` component instead._
+ *
+ * @deprecated
+ */
+const legacy_Composite = proxyComposite(Object.assign(Composite, {
+  displayName: '__unstableComposite'
+}), {
   baseId: 'id'
 });
-const CompositeGroup = proxyComposite(unproxiedCompositeGroup);
-const CompositeItem = proxyComposite(Composite.Item, {
+/**
+ * _Note: please use the `Composite.Row` or `Composite.Group` components instead._
+ *
+ * @deprecated
+ */
+const legacy_CompositeGroup = proxyComposite(Object.assign(UnproxiedCompositeGroup, {
+  displayName: '__unstableCompositeGroup'
+}));
+/**
+ * _Note: please use the `Composite.Item` component instead._
+ *
+ * @deprecated
+ */
+const legacy_CompositeItem = proxyComposite(Object.assign(Composite.Item, {
+  displayName: '__unstableCompositeItem'
+}), {
   focusable: 'accessibleWhenDisabled'
 });
+
+/**
+ * _Note: please use the `Composite` component instead._
+ *
+ * @deprecated
+ */
 function useCompositeState(legacyStateOptions = {}) {
+  external_wp_deprecated_default()(`wp.components.__unstableUseCompositeState`, {
+    since: '6.7',
+    alternative: LEGACY_TO_NEW_DISPLAY_NAME.__unstableUseCompositeState
+  });
   const {
     baseId,
     currentId: defaultActiveId,
@@ -46935,7 +47106,7 @@ function useCompositeState(legacyStateOptions = {}) {
   } = legacyStateOptions;
   return {
     baseId: (0,external_wp_compose_namespaceObject.useInstanceId)(legacy_Composite, 'composite', baseId),
-    store: composite_useCompositeStore({
+    store: useCompositeStore({
       defaultActiveId,
       rtl,
       orientation,
@@ -47003,10 +47174,80 @@ function unmodalize() {
   }
 }
 
+;// CONCATENATED MODULE: ./packages/components/build-module/modal/use-modal-exit-animation.js
+/**
+ * WordPress dependencies
+ */
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+// Animation duration (ms) extracted to JS in order to be used on a setTimeout.
+const FRAME_ANIMATION_DURATION = config_values.transitionDuration;
+const FRAME_ANIMATION_DURATION_NUMBER = Number.parseInt(config_values.transitionDuration);
+const EXIT_ANIMATION_NAME = 'components-modal__disappear-animation';
+function useModalExitAnimation() {
+  const frameRef = (0,external_wp_element_namespaceObject.useRef)();
+  const [isAnimatingOut, setIsAnimatingOut] = (0,external_wp_element_namespaceObject.useState)(false);
+  const isReducedMotion = (0,external_wp_compose_namespaceObject.useReducedMotion)();
+  const closeModal = (0,external_wp_element_namespaceObject.useCallback)(() => new Promise(closeModalResolve => {
+    // Grab a "stable" reference of the frame element, since
+    // the value held by the react ref might change at runtime.
+    const frameEl = frameRef.current;
+    if (isReducedMotion) {
+      closeModalResolve();
+      return;
+    }
+    if (!frameEl) {
+       false ? 0 : void 0;
+      closeModalResolve();
+      return;
+    }
+    let handleAnimationEnd;
+    const startAnimation = () => new Promise(animationResolve => {
+      handleAnimationEnd = e => {
+        if (e.animationName === EXIT_ANIMATION_NAME) {
+          animationResolve();
+        }
+      };
+      frameEl.addEventListener('animationend', handleAnimationEnd);
+      setIsAnimatingOut(true);
+    });
+    const animationTimeout = () => new Promise(timeoutResolve => {
+      setTimeout(() => timeoutResolve(),
+      // Allow an extra 20% of the animation duration for the
+      // animationend event to fire, in case the animation frame is
+      // slightly delayes by some other events in the event loop.
+      FRAME_ANIMATION_DURATION_NUMBER * 1.2);
+    });
+    Promise.race([startAnimation(), animationTimeout()]).then(() => {
+      if (handleAnimationEnd) {
+        frameEl.removeEventListener('animationend', handleAnimationEnd);
+      }
+      setIsAnimatingOut(false);
+      closeModalResolve();
+    });
+  }), [isReducedMotion]);
+  return {
+    overlayClassname: isAnimatingOut ? 'is-animating-out' : undefined,
+    frameRef,
+    frameStyle: {
+      '--modal-frame-animation-duration': `${FRAME_ANIMATION_DURATION}`
+    },
+    closeModal
+  };
+}
+
 ;// CONCATENATED MODULE: ./packages/components/build-module/modal/index.js
 /**
  * External dependencies
  */
+
 
 /**
  * WordPress dependencies
@@ -47025,7 +47266,10 @@ function unmodalize() {
 
 
 
+
+
 // Used to track and dismiss the prior modal when another opens unless nested.
+
 
 
 const ModalContext = (0,external_wp_element_namespaceObject.createContext)(new Set());
@@ -47051,7 +47295,7 @@ function UnforwardedModal(props, forwardedRef) {
     closeButtonLabel,
     children,
     style,
-    overlayClassName,
+    overlayClassName: overlayClassnameProp,
     className,
     contentLabel,
     onKeyDown,
@@ -47106,9 +47350,9 @@ function UnforwardedModal(props, forwardedRef) {
   }, []);
 
   // Keeps a fresh ref for the subsequent effect.
-  const refOnRequestClose = (0,external_wp_element_namespaceObject.useRef)();
+  const onRequestCloseRef = (0,external_wp_element_namespaceObject.useRef)();
   (0,external_wp_element_namespaceObject.useEffect)(() => {
-    refOnRequestClose.current = onRequestClose;
+    onRequestCloseRef.current = onRequestClose;
   }, [onRequestClose]);
 
   // The list of `onRequestClose` callbacks of open (non-nested) Modals. Only
@@ -47121,10 +47365,10 @@ function UnforwardedModal(props, forwardedRef) {
   // onRequestClose for any prior and/or nested modals as applicable.
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     // add this modal instance to the dismissers set
-    dismissers.add(refOnRequestClose);
+    dismissers.add(onRequestCloseRef);
     // request that all the other modals close themselves
     for (const dismisser of dismissers) {
-      if (dismisser !== refOnRequestClose) {
+      if (dismisser !== onRequestCloseRef) {
         dismisser.current?.();
       }
     }
@@ -47134,7 +47378,7 @@ function UnforwardedModal(props, forwardedRef) {
         dismisser.current?.();
       }
       // remove this modal instance from the dismissers set
-      dismissers.delete(refOnRequestClose);
+      dismissers.delete(onRequestCloseRef);
     };
   }, [dismissers, nestedDismissers]);
 
@@ -47155,6 +47399,12 @@ function UnforwardedModal(props, forwardedRef) {
       }
     };
   }, [bodyOpenClassName]);
+  const {
+    closeModal,
+    frameRef,
+    frameStyle,
+    overlayClassname
+  } = useModalExitAnimation();
 
   // Calls the isContentScrollable callback when the Modal children container resizes.
   (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
@@ -47171,9 +47421,7 @@ function UnforwardedModal(props, forwardedRef) {
   function handleEscapeKeyDown(event) {
     if (shouldCloseOnEsc && (event.code === 'Escape' || event.key === 'Escape') && !event.defaultPrevented) {
       event.preventDefault();
-      if (onRequestClose) {
-        onRequestClose(event);
-      }
+      closeModal().then(() => onRequestClose(event));
     }
   }
   const onContentContainerScroll = (0,external_wp_element_namespaceObject.useCallback)(e => {
@@ -47207,7 +47455,7 @@ function UnforwardedModal(props, forwardedRef) {
       const isSameTarget = target === pressTarget;
       pressTarget = null;
       if (button === 0 && isSameTarget) {
-        onRequestClose();
+        closeModal().then(() => onRequestClose());
       }
     }
   };
@@ -47216,15 +47464,18 @@ function UnforwardedModal(props, forwardedRef) {
   // eslint-disable-next-line jsx-a11y/no-static-element-interactions
   (0,external_ReactJSXRuntime_namespaceObject.jsx)("div", {
     ref: (0,external_wp_compose_namespaceObject.useMergeRefs)([ref, forwardedRef]),
-    className: dist_clsx('components-modal__screen-overlay', overlayClassName),
+    className: dist_clsx('components-modal__screen-overlay', overlayClassname, overlayClassnameProp),
     onKeyDown: withIgnoreIMEEvents(handleEscapeKeyDown),
     ...(shouldCloseOnClickOutside ? overlayPressHandlers : {}),
     children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(style_provider, {
       document: document,
       children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)("div", {
         className: dist_clsx('components-modal__frame', sizeClass, className),
-        style: style,
-        ref: (0,external_wp_compose_namespaceObject.useMergeRefs)([constrainedTabbingRef, focusReturnRef, focusOnMount !== 'firstContentElement' ? focusOnMountRef : null]),
+        style: {
+          ...frameStyle,
+          ...style
+        },
+        ref: (0,external_wp_compose_namespaceObject.useMergeRefs)([frameRef, constrainedTabbingRef, focusReturnRef, focusOnMount !== 'firstContentElement' ? focusOnMountRef : null]),
         role: role,
         "aria-label": contentLabel,
         "aria-labelledby": contentLabel ? undefined : headingId,
@@ -47255,10 +47506,16 @@ function UnforwardedModal(props, forwardedRef) {
                 className: "components-modal__header-heading",
                 children: title
               })]
-            }), headerActions, isDismissible && /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(build_module_button, {
-              onClick: onRequestClose,
-              icon: library_close,
-              label: closeButtonLabel || (0,external_wp_i18n_namespaceObject.__)('Close')
+            }), headerActions, isDismissible && /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(external_ReactJSXRuntime_namespaceObject.Fragment, {
+              children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(spacer_component, {
+                marginBottom: 0,
+                marginLeft: 3
+              }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(build_module_button, {
+                size: "small",
+                onClick: event => closeModal().then(() => onRequestClose(event)),
+                icon: library_close,
+                label: closeButtonLabel || (0,external_wp_i18n_namespaceObject.__)('Close')
+              })]
             })]
           }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)("div", {
             ref: (0,external_wp_compose_namespaceObject.useMergeRefs)([childrenContainerRef, focusOnMount === 'firstContentElement' ? focusOnMountRef : null]),
@@ -48079,6 +48336,110 @@ var SelectArrow = forwardRef2(function SelectArrow2(props) {
 
 
 
+;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/DS36B3MQ.js
+"use client";
+
+
+
+
+
+
+// src/composite/composite-typeahead.tsx
+
+
+
+
+var DS36B3MQ_TagName = "div";
+var chars = "";
+function clearChars() {
+  chars = "";
+}
+function isValidTypeaheadEvent(event) {
+  const target = event.target;
+  if (target && isTextField(target)) return false;
+  if (event.key === " " && chars.length) return true;
+  return event.key.length === 1 && !event.ctrlKey && !event.altKey && !event.metaKey && /^[\p{Letter}\p{Number}]$/u.test(event.key);
+}
+function isSelfTargetOrItem(event, items) {
+  if (isSelfTarget(event)) return true;
+  const target = event.target;
+  if (!target) return false;
+  const isItem = items.some((item) => item.element === target);
+  return isItem;
+}
+function DS36B3MQ_getEnabledItems(items) {
+  return items.filter((item) => !item.disabled);
+}
+function itemTextStartsWith(item, text) {
+  var _a;
+  const itemText = ((_a = item.element) == null ? void 0 : _a.textContent) || item.children || // The composite item object itself doesn't include a value property, but
+  // other components like Select do. Since CompositeTypeahead is a generic
+  // component that can be used with those as well, we also consider the value
+  // property as a fallback for the typeahead text content.
+  "value" in item && item.value;
+  if (!itemText) return false;
+  return normalizeString(itemText).trim().toLowerCase().startsWith(text.toLowerCase());
+}
+function getSameInitialItems(items, char, activeId) {
+  if (!activeId) return items;
+  const activeItem = items.find((item) => item.id === activeId);
+  if (!activeItem) return items;
+  if (!itemTextStartsWith(activeItem, char)) return items;
+  if (chars !== char && itemTextStartsWith(activeItem, chars)) return items;
+  chars = char;
+  return _5VQZOHHZ_flipItems(
+    items.filter((item) => itemTextStartsWith(item, chars)),
+    activeId
+  ).filter((item) => item.id !== activeId);
+}
+var useCompositeTypeahead = createHook(function useCompositeTypeahead2(_a) {
+  var _b = _a, { store, typeahead = true } = _b, props = __objRest(_b, ["store", "typeahead"]);
+  const context = useCompositeContext();
+  store = store || context;
+  invariant(
+    store,
+     false && 0
+  );
+  const onKeyDownCaptureProp = props.onKeyDownCapture;
+  const cleanupTimeoutRef = (0,external_React_.useRef)(0);
+  const onKeyDownCapture = useEvent((event) => {
+    onKeyDownCaptureProp == null ? void 0 : onKeyDownCaptureProp(event);
+    if (event.defaultPrevented) return;
+    if (!typeahead) return;
+    if (!store) return;
+    const { renderedItems, items, activeId } = store.getState();
+    if (!isValidTypeaheadEvent(event)) return clearChars();
+    let enabledItems = DS36B3MQ_getEnabledItems(
+      renderedItems.length ? renderedItems : items
+    );
+    if (!isSelfTargetOrItem(event, enabledItems)) return clearChars();
+    event.preventDefault();
+    window.clearTimeout(cleanupTimeoutRef.current);
+    cleanupTimeoutRef.current = window.setTimeout(() => {
+      chars = "";
+    }, 500);
+    const char = event.key.toLowerCase();
+    chars += char;
+    enabledItems = getSameInitialItems(enabledItems, char, activeId);
+    const item = enabledItems.find((item2) => itemTextStartsWith(item2, chars));
+    if (item) {
+      store.move(item.id);
+    } else {
+      clearChars();
+    }
+  });
+  props = _3YLGPPWQ_spreadProps(_3YLGPPWQ_spreadValues({}, props), {
+    onKeyDownCapture
+  });
+  return removeUndefinedValues(props);
+});
+var DS36B3MQ_CompositeTypeahead = forwardRef2(function CompositeTypeahead2(props) {
+  const htmlProps = useCompositeTypeahead(props);
+  return HKOOKEDE_createElement(DS36B3MQ_TagName, htmlProps);
+});
+
+
+
 ;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/select/select.js
 "use client";
 
@@ -48513,6 +48874,109 @@ var SelectPopover = createDialogComponent(
 );
 
 
+;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/OBZMLI6J.js
+"use client";
+
+
+
+
+
+// src/composite/composite-hover.tsx
+
+
+
+
+var OBZMLI6J_TagName = "div";
+function getMouseDestination(event) {
+  const relatedTarget = event.relatedTarget;
+  if ((relatedTarget == null ? void 0 : relatedTarget.nodeType) === Node.ELEMENT_NODE) {
+    return relatedTarget;
+  }
+  return null;
+}
+function hoveringInside(event) {
+  const nextElement = getMouseDestination(event);
+  if (!nextElement) return false;
+  return contains(event.currentTarget, nextElement);
+}
+var OBZMLI6J_symbol = Symbol("composite-hover");
+function movingToAnotherItem(event) {
+  let dest = getMouseDestination(event);
+  if (!dest) return false;
+  do {
+    if (PBFD2E7P_hasOwnProperty(dest, OBZMLI6J_symbol) && dest[OBZMLI6J_symbol]) return true;
+    dest = dest.parentElement;
+  } while (dest);
+  return false;
+}
+var useCompositeHover = createHook(
+  function useCompositeHover2(_a) {
+    var _b = _a, {
+      store,
+      focusOnHover = true,
+      blurOnHoverEnd = !!focusOnHover
+    } = _b, props = __objRest(_b, [
+      "store",
+      "focusOnHover",
+      "blurOnHoverEnd"
+    ]);
+    const context = useCompositeContext();
+    store = store || context;
+    invariant(
+      store,
+       false && 0
+    );
+    const isMouseMoving = useIsMouseMoving();
+    const onMouseMoveProp = props.onMouseMove;
+    const focusOnHoverProp = useBooleanEvent(focusOnHover);
+    const onMouseMove = useEvent((event) => {
+      onMouseMoveProp == null ? void 0 : onMouseMoveProp(event);
+      if (event.defaultPrevented) return;
+      if (!isMouseMoving()) return;
+      if (!focusOnHoverProp(event)) return;
+      if (!hasFocusWithin(event.currentTarget)) {
+        const baseElement = store == null ? void 0 : store.getState().baseElement;
+        if (baseElement && !hasFocus(baseElement)) {
+          baseElement.focus();
+        }
+      }
+      store == null ? void 0 : store.setActiveId(event.currentTarget.id);
+    });
+    const onMouseLeaveProp = props.onMouseLeave;
+    const blurOnHoverEndProp = useBooleanEvent(blurOnHoverEnd);
+    const onMouseLeave = useEvent((event) => {
+      var _a2;
+      onMouseLeaveProp == null ? void 0 : onMouseLeaveProp(event);
+      if (event.defaultPrevented) return;
+      if (!isMouseMoving()) return;
+      if (hoveringInside(event)) return;
+      if (movingToAnotherItem(event)) return;
+      if (!focusOnHoverProp(event)) return;
+      if (!blurOnHoverEndProp(event)) return;
+      store == null ? void 0 : store.setActiveId(null);
+      (_a2 = store == null ? void 0 : store.getState().baseElement) == null ? void 0 : _a2.focus();
+    });
+    const ref = (0,external_React_.useCallback)((element) => {
+      if (!element) return;
+      element[OBZMLI6J_symbol] = true;
+    }, []);
+    props = _3YLGPPWQ_spreadProps(_3YLGPPWQ_spreadValues({}, props), {
+      ref: useMergeRefs(ref, props.ref),
+      onMouseMove,
+      onMouseLeave
+    });
+    return removeUndefinedValues(props);
+  }
+);
+var OBZMLI6J_CompositeHover = memo2(
+  forwardRef2(function CompositeHover2(props) {
+    const htmlProps = useCompositeHover(props);
+    return HKOOKEDE_createElement(OBZMLI6J_TagName, htmlProps);
+  })
+);
+
+
+
 ;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/select/select-item.js
 "use client";
 
@@ -48794,11 +49258,9 @@ const ANIMATION_PARAMS = {
   EASING: 'cubic-bezier( 0.16, 1, 0.3, 1 )'
 };
 const INLINE_PADDING = {
-  compact: 8,
-  // space(2)
-  small: 8,
-  // space(2)
-  default: 16 // space(4)
+  compact: config_values.controlPaddingXSmall,
+  small: config_values.controlPaddingXSmall,
+  default: config_values.controlPaddingX
 };
 const getSelectSize = (size, heightProperty) => {
   const sizes = {
@@ -48861,7 +49323,7 @@ const slideDownAndFade = emotion_react_browser_esm_keyframes({
 });
 const styles_SelectPopover = /*#__PURE__*/emotion_styled_base_browser_esm(SelectPopover,  true ? {
   target: "e1p3eej76"
-} : 0)("display:flex;flex-direction:column;background-color:", COLORS.theme.background, ";border-radius:2px;border:1px solid ", COLORS.theme.foreground, ";z-index:1000000;max-height:min( var( --popover-available-height, 400px ), 400px );overflow:auto;overscroll-behavior:contain;min-width:min-content;&[data-open]{@media not ( prefers-reduced-motion ){animation-duration:", ANIMATION_PARAMS.DURATION, ";animation-timing-function:", ANIMATION_PARAMS.EASING, ";animation-name:", slideDownAndFade, ";will-change:transform,opacity;}}&[data-focus-visible]{outline:none;}" + ( true ? "" : 0));
+} : 0)("display:flex;flex-direction:column;background-color:", COLORS.theme.background, ";border-radius:", config_values.radiusSmall, ";border:1px solid ", COLORS.theme.foreground, ";box-shadow:", config_values.elevationMedium, ";z-index:1000000;max-height:min( var( --popover-available-height, 400px ), 400px );overflow:auto;overscroll-behavior:contain;min-width:min-content;&[data-open]{@media not ( prefers-reduced-motion ){animation-duration:", ANIMATION_PARAMS.DURATION, ";animation-timing-function:", ANIMATION_PARAMS.EASING, ";animation-name:", slideDownAndFade, ";will-change:transform,opacity;}}&[data-focus-visible]{outline:none;}" + ( true ? "" : 0));
 const styles_SelectItem = /*#__PURE__*/emotion_styled_base_browser_esm(SelectItem,  true ? {
   target: "e1p3eej75"
 } : 0)(({
@@ -49212,9 +49674,7 @@ function CustomSelectControl(props) {
 }
 /* harmony default export */ const custom_select_control = (CustomSelectControl);
 
-;// CONCATENATED MODULE: ./node_modules/use-lilius/build/index.es.js
-
-
+;// CONCATENATED MODULE: ./node_modules/date-fns/toDate.mjs
 /**
  * @name toDate
  * @category Common Helpers
@@ -49271,6 +49731,42 @@ function toDate(argument) {
   }
 }
 
+// Fallback for modularized imports:
+/* harmony default export */ const date_fns_toDate = ((/* unused pure expression or super */ null && (toDate)));
+
+;// CONCATENATED MODULE: ./node_modules/date-fns/startOfDay.mjs
+
+
+/**
+ * @name startOfDay
+ * @category Day Helpers
+ * @summary Return the start of a day for the given date.
+ *
+ * @description
+ * Return the start of a day for the given date.
+ * The result will be in the local timezone.
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param date - The original date
+ *
+ * @returns The start of a day
+ *
+ * @example
+ * // The start of a day for 2 September 2014 11:55:00:
+ * const result = startOfDay(new Date(2014, 8, 2, 11, 55, 0))
+ * //=> Tue Sep 02 2014 00:00:00
+ */
+function startOfDay(date) {
+  const _date = toDate(date);
+  _date.setHours(0, 0, 0, 0);
+  return _date;
+}
+
+// Fallback for modularized imports:
+/* harmony default export */ const date_fns_startOfDay = ((/* unused pure expression or super */ null && (startOfDay)));
+
+;// CONCATENATED MODULE: ./node_modules/date-fns/constructFrom.mjs
 /**
  * @name constructFrom
  * @category Generic Helpers
@@ -49309,36 +49805,12 @@ function constructFrom(date, value) {
   }
 }
 
-/**
- * @name addDays
- * @category Day Helpers
- * @summary Add the specified number of days to the given date.
- *
- * @description
- * Add the specified number of days to the given date.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param date - The date to be changed
- * @param amount - The amount of days to be added.
- *
- * @returns The new date with the days added
- *
- * @example
- * // Add 10 days to 1 September 2014:
- * const result = addDays(new Date(2014, 8, 1), 10)
- * //=> Thu Sep 11 2014 00:00:00
- */
-function addDays(date, amount) {
-  const _date = toDate(date);
-  if (isNaN(amount)) return constructFrom(date, NaN);
-  if (!amount) {
-    // If 0 days, no-op to avoid changing times in the hour before end of DST
-    return _date;
-  }
-  _date.setDate(_date.getDate() + amount);
-  return _date;
-}
+// Fallback for modularized imports:
+/* harmony default export */ const date_fns_constructFrom = ((/* unused pure expression or super */ null && (constructFrom)));
+
+;// CONCATENATED MODULE: ./node_modules/date-fns/addMonths.mjs
+
+
 
 /**
  * @name addMonths
@@ -49405,701 +49877,11 @@ function addMonths(date, amount) {
   }
 }
 
-let index_es_defaultOptions = {};
+// Fallback for modularized imports:
+/* harmony default export */ const date_fns_addMonths = ((/* unused pure expression or super */ null && (addMonths)));
 
-function getDefaultOptions() {
-  return index_es_defaultOptions;
-}
+;// CONCATENATED MODULE: ./node_modules/date-fns/subMonths.mjs
 
-/**
- * The {@link startOfWeek} function options.
- */
-
-/**
- * @name startOfWeek
- * @category Week Helpers
- * @summary Return the start of a week for the given date.
- *
- * @description
- * Return the start of a week for the given date.
- * The result will be in the local timezone.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param date - The original date
- * @param options - An object with options
- *
- * @returns The start of a week
- *
- * @example
- * // The start of a week for 2 September 2014 11:55:00:
- * const result = startOfWeek(new Date(2014, 8, 2, 11, 55, 0))
- * //=> Sun Aug 31 2014 00:00:00
- *
- * @example
- * // If the week starts on Monday, the start of the week for 2 September 2014 11:55:00:
- * const result = startOfWeek(new Date(2014, 8, 2, 11, 55, 0), { weekStartsOn: 1 })
- * //=> Mon Sep 01 2014 00:00:00
- */
-function startOfWeek(date, options) {
-  const defaultOptions = getDefaultOptions();
-  const weekStartsOn =
-    options?.weekStartsOn ??
-    options?.locale?.options?.weekStartsOn ??
-    defaultOptions.weekStartsOn ??
-    defaultOptions.locale?.options?.weekStartsOn ??
-    0;
-
-  const _date = toDate(date);
-  const day = _date.getDay();
-  const diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn;
-
-  _date.setDate(_date.getDate() - diff);
-  _date.setHours(0, 0, 0, 0);
-  return _date;
-}
-
-/**
- * @name startOfDay
- * @category Day Helpers
- * @summary Return the start of a day for the given date.
- *
- * @description
- * Return the start of a day for the given date.
- * The result will be in the local timezone.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param date - The original date
- *
- * @returns The start of a day
- *
- * @example
- * // The start of a day for 2 September 2014 11:55:00:
- * const result = startOfDay(new Date(2014, 8, 2, 11, 55, 0))
- * //=> Tue Sep 02 2014 00:00:00
- */
-function startOfDay(date) {
-  const _date = toDate(date);
-  _date.setHours(0, 0, 0, 0);
-  return _date;
-}
-
-/**
- * @name addWeeks
- * @category Week Helpers
- * @summary Add the specified number of weeks to the given date.
- *
- * @description
- * Add the specified number of week to the given date.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param date - The date to be changed
- * @param amount - The amount of weeks to be added.
- *
- * @returns The new date with the weeks added
- *
- * @example
- * // Add 4 weeks to 1 September 2014:
- * const result = addWeeks(new Date(2014, 8, 1), 4)
- * //=> Mon Sep 29 2014 00:00:00
- */
-function addWeeks(date, amount) {
-  const days = amount * 7;
-  return addDays(date, days);
-}
-
-/**
- * @name addYears
- * @category Year Helpers
- * @summary Add the specified number of years to the given date.
- *
- * @description
- * Add the specified number of years to the given date.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param date - The date to be changed
- * @param amount - The amount of years to be added.
- *
- * @returns The new date with the years added
- *
- * @example
- * // Add 5 years to 1 September 2014:
- * const result = addYears(new Date(2014, 8, 1), 5)
- * //=> Sun Sep 01 2019 00:00:00
- */
-function addYears(date, amount) {
-  return addMonths(date, amount * 12);
-}
-
-/**
- * @name endOfMonth
- * @category Month Helpers
- * @summary Return the end of a month for the given date.
- *
- * @description
- * Return the end of a month for the given date.
- * The result will be in the local timezone.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param date - The original date
- *
- * @returns The end of a month
- *
- * @example
- * // The end of a month for 2 September 2014 11:55:00:
- * const result = endOfMonth(new Date(2014, 8, 2, 11, 55, 0))
- * //=> Tue Sep 30 2014 23:59:59.999
- */
-function endOfMonth(date) {
-  const _date = toDate(date);
-  const month = _date.getMonth();
-  _date.setFullYear(_date.getFullYear(), month + 1, 0);
-  _date.setHours(23, 59, 59, 999);
-  return _date;
-}
-
-/**
- * The {@link eachDayOfInterval} function options.
- */
-
-/**
- * @name eachDayOfInterval
- * @category Interval Helpers
- * @summary Return the array of dates within the specified time interval.
- *
- * @description
- * Return the array of dates within the specified time interval.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param interval - The interval.
- * @param options - An object with options.
- *
- * @returns The array with starts of days from the day of the interval start to the day of the interval end
- *
- * @example
- * // Each day between 6 October 2014 and 10 October 2014:
- * const result = eachDayOfInterval({
- *   start: new Date(2014, 9, 6),
- *   end: new Date(2014, 9, 10)
- * })
- * //=> [
- * //   Mon Oct 06 2014 00:00:00,
- * //   Tue Oct 07 2014 00:00:00,
- * //   Wed Oct 08 2014 00:00:00,
- * //   Thu Oct 09 2014 00:00:00,
- * //   Fri Oct 10 2014 00:00:00
- * // ]
- */
-function eachDayOfInterval(interval, options) {
-  const startDate = toDate(interval.start);
-  const endDate = toDate(interval.end);
-
-  let reversed = +startDate > +endDate;
-  const endTime = reversed ? +startDate : +endDate;
-  const currentDate = reversed ? endDate : startDate;
-  currentDate.setHours(0, 0, 0, 0);
-
-  let step = options?.step ?? 1;
-  if (!step) return [];
-  if (step < 0) {
-    step = -step;
-    reversed = !reversed;
-  }
-
-  const dates = [];
-
-  while (+currentDate <= endTime) {
-    dates.push(toDate(currentDate));
-    currentDate.setDate(currentDate.getDate() + step);
-    currentDate.setHours(0, 0, 0, 0);
-  }
-
-  return reversed ? dates.reverse() : dates;
-}
-
-/**
- * The {@link eachMonthOfInterval} function options.
- */
-
-/**
- * @name eachMonthOfInterval
- * @category Interval Helpers
- * @summary Return the array of months within the specified time interval.
- *
- * @description
- * Return the array of months within the specified time interval.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param interval - The interval
- *
- * @returns The array with starts of months from the month of the interval start to the month of the interval end
- *
- * @example
- * // Each month between 6 February 2014 and 10 August 2014:
- * const result = eachMonthOfInterval({
- *   start: new Date(2014, 1, 6),
- *   end: new Date(2014, 7, 10)
- * })
- * //=> [
- * //   Sat Feb 01 2014 00:00:00,
- * //   Sat Mar 01 2014 00:00:00,
- * //   Tue Apr 01 2014 00:00:00,
- * //   Thu May 01 2014 00:00:00,
- * //   Sun Jun 01 2014 00:00:00,
- * //   Tue Jul 01 2014 00:00:00,
- * //   Fri Aug 01 2014 00:00:00
- * // ]
- */
-function eachMonthOfInterval(interval, options) {
-  const startDate = toDate(interval.start);
-  const endDate = toDate(interval.end);
-
-  let reversed = +startDate > +endDate;
-  const endTime = reversed ? +startDate : +endDate;
-  const currentDate = reversed ? endDate : startDate;
-  currentDate.setHours(0, 0, 0, 0);
-  currentDate.setDate(1);
-
-  let step = options?.step ?? 1;
-  if (!step) return [];
-  if (step < 0) {
-    step = -step;
-    reversed = !reversed;
-  }
-
-  const dates = [];
-
-  while (+currentDate <= endTime) {
-    dates.push(toDate(currentDate));
-    currentDate.setMonth(currentDate.getMonth() + step);
-  }
-
-  return reversed ? dates.reverse() : dates;
-}
-
-/**
- * The {@link eachWeekOfInterval} function options.
- */
-
-/**
- * @name eachWeekOfInterval
- * @category Interval Helpers
- * @summary Return the array of weeks within the specified time interval.
- *
- * @description
- * Return the array of weeks within the specified time interval.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param interval - The interval.
- * @param options - An object with options.
- *
- * @returns The array with starts of weeks from the week of the interval start to the week of the interval end
- *
- * @example
- * // Each week within interval 6 October 2014 - 23 November 2014:
- * const result = eachWeekOfInterval({
- *   start: new Date(2014, 9, 6),
- *   end: new Date(2014, 10, 23)
- * })
- * //=> [
- * //   Sun Oct 05 2014 00:00:00,
- * //   Sun Oct 12 2014 00:00:00,
- * //   Sun Oct 19 2014 00:00:00,
- * //   Sun Oct 26 2014 00:00:00,
- * //   Sun Nov 02 2014 00:00:00,
- * //   Sun Nov 09 2014 00:00:00,
- * //   Sun Nov 16 2014 00:00:00,
- * //   Sun Nov 23 2014 00:00:00
- * // ]
- */
-function eachWeekOfInterval(interval, options) {
-  const startDate = toDate(interval.start);
-  const endDate = toDate(interval.end);
-
-  let reversed = +startDate > +endDate;
-  const startDateWeek = reversed
-    ? startOfWeek(endDate, options)
-    : startOfWeek(startDate, options);
-  const endDateWeek = reversed
-    ? startOfWeek(startDate, options)
-    : startOfWeek(endDate, options);
-
-  // Some timezones switch DST at midnight, making start of day unreliable in these timezones, 3pm is a safe bet
-  startDateWeek.setHours(15);
-  endDateWeek.setHours(15);
-
-  const endTime = +endDateWeek.getTime();
-  let currentDate = startDateWeek;
-
-  let step = options?.step ?? 1;
-  if (!step) return [];
-  if (step < 0) {
-    step = -step;
-    reversed = !reversed;
-  }
-
-  const dates = [];
-
-  while (+currentDate <= endTime) {
-    currentDate.setHours(0);
-    dates.push(toDate(currentDate));
-    currentDate = addWeeks(currentDate, step);
-    currentDate.setHours(15);
-  }
-
-  return reversed ? dates.reverse() : dates;
-}
-
-/**
- * @name startOfMonth
- * @category Month Helpers
- * @summary Return the start of a month for the given date.
- *
- * @description
- * Return the start of a month for the given date.
- * The result will be in the local timezone.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param date - The original date
- *
- * @returns The start of a month
- *
- * @example
- * // The start of a month for 2 September 2014 11:55:00:
- * const result = startOfMonth(new Date(2014, 8, 2, 11, 55, 0))
- * //=> Mon Sep 01 2014 00:00:00
- */
-function startOfMonth(date) {
-  const _date = toDate(date);
-  _date.setDate(1);
-  _date.setHours(0, 0, 0, 0);
-  return _date;
-}
-
-/**
- * The {@link endOfWeek} function options.
- */
-
-/**
- * @name endOfWeek
- * @category Week Helpers
- * @summary Return the end of a week for the given date.
- *
- * @description
- * Return the end of a week for the given date.
- * The result will be in the local timezone.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param date - The original date
- * @param options - An object with options
- *
- * @returns The end of a week
- *
- * @example
- * // The end of a week for 2 September 2014 11:55:00:
- * const result = endOfWeek(new Date(2014, 8, 2, 11, 55, 0))
- * //=> Sat Sep 06 2014 23:59:59.999
- *
- * @example
- * // If the week starts on Monday, the end of the week for 2 September 2014 11:55:00:
- * const result = endOfWeek(new Date(2014, 8, 2, 11, 55, 0), { weekStartsOn: 1 })
- * //=> Sun Sep 07 2014 23:59:59.999
- */
-function endOfWeek(date, options) {
-  const defaultOptions = getDefaultOptions();
-  const weekStartsOn =
-    options?.weekStartsOn ??
-    options?.locale?.options?.weekStartsOn ??
-    defaultOptions.weekStartsOn ??
-    defaultOptions.locale?.options?.weekStartsOn ??
-    0;
-
-  const _date = toDate(date);
-  const day = _date.getDay();
-  const diff = (day < weekStartsOn ? -7 : 0) + 6 - (day - weekStartsOn);
-
-  _date.setDate(_date.getDate() + diff);
-  _date.setHours(23, 59, 59, 999);
-  return _date;
-}
-
-/**
- * @name getDaysInMonth
- * @category Month Helpers
- * @summary Get the number of days in a month of the given date.
- *
- * @description
- * Get the number of days in a month of the given date.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param date - The given date
- *
- * @returns The number of days in a month
- *
- * @example
- * // How many days are in February 2000?
- * const result = getDaysInMonth(new Date(2000, 1))
- * //=> 29
- */
-function getDaysInMonth(date) {
-  const _date = toDate(date);
-  const year = _date.getFullYear();
-  const monthIndex = _date.getMonth();
-  const lastDayOfMonth = constructFrom(date, 0);
-  lastDayOfMonth.setFullYear(year, monthIndex + 1, 0);
-  lastDayOfMonth.setHours(0, 0, 0, 0);
-  return lastDayOfMonth.getDate();
-}
-
-/**
- * @name isAfter
- * @category Common Helpers
- * @summary Is the first date after the second one?
- *
- * @description
- * Is the first date after the second one?
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param date - The date that should be after the other one to return true
- * @param dateToCompare - The date to compare with
- *
- * @returns The first date is after the second date
- *
- * @example
- * // Is 10 July 1989 after 11 February 1987?
- * const result = isAfter(new Date(1989, 6, 10), new Date(1987, 1, 11))
- * //=> true
- */
-function isAfter(date, dateToCompare) {
-  const _date = toDate(date);
-  const _dateToCompare = toDate(dateToCompare);
-  return _date.getTime() > _dateToCompare.getTime();
-}
-
-/**
- * @name isBefore
- * @category Common Helpers
- * @summary Is the first date before the second one?
- *
- * @description
- * Is the first date before the second one?
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param date - The date that should be before the other one to return true
- * @param dateToCompare - The date to compare with
- *
- * @returns The first date is before the second date
- *
- * @example
- * // Is 10 July 1989 before 11 February 1987?
- * const result = isBefore(new Date(1989, 6, 10), new Date(1987, 1, 11))
- * //=> false
- */
-function isBefore(date, dateToCompare) {
-  const _date = toDate(date);
-  const _dateToCompare = toDate(dateToCompare);
-  return +_date < +_dateToCompare;
-}
-
-/**
- * @name isEqual
- * @category Common Helpers
- * @summary Are the given dates equal?
- *
- * @description
- * Are the given dates equal?
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param dateLeft - The first date to compare
- * @param dateRight - The second date to compare
- *
- * @returns The dates are equal
- *
- * @example
- * // Are 2 July 2014 06:30:45.000 and 2 July 2014 06:30:45.500 equal?
- * const result = isEqual(
- *   new Date(2014, 6, 2, 6, 30, 45, 0),
- *   new Date(2014, 6, 2, 6, 30, 45, 500)
- * )
- * //=> false
- */
-function isEqual(leftDate, rightDate) {
-  const _dateLeft = toDate(leftDate);
-  const _dateRight = toDate(rightDate);
-  return +_dateLeft === +_dateRight;
-}
-
-/**
- * @name setMonth
- * @category Month Helpers
- * @summary Set the month to the given date.
- *
- * @description
- * Set the month to the given date.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param date - The date to be changed
- * @param month - The month index to set (0-11)
- *
- * @returns The new date with the month set
- *
- * @example
- * // Set February to 1 September 2014:
- * const result = setMonth(new Date(2014, 8, 1), 1)
- * //=> Sat Feb 01 2014 00:00:00
- */
-function setMonth(date, month) {
-  const _date = toDate(date);
-  const year = _date.getFullYear();
-  const day = _date.getDate();
-
-  const dateWithDesiredMonth = constructFrom(date, 0);
-  dateWithDesiredMonth.setFullYear(year, month, 15);
-  dateWithDesiredMonth.setHours(0, 0, 0, 0);
-  const daysInMonth = getDaysInMonth(dateWithDesiredMonth);
-  // Set the last day of the new month
-  // if the original date was the last day of the longer month
-  _date.setMonth(month, Math.min(day, daysInMonth));
-  return _date;
-}
-
-/**
- * @name set
- * @category Common Helpers
- * @summary Set date values to a given date.
- *
- * @description
- * Set date values to a given date.
- *
- * Sets time values to date from object `values`.
- * A value is not set if it is undefined or null or doesn't exist in `values`.
- *
- * Note about bundle size: `set` does not internally use `setX` functions from date-fns but instead opts
- * to use native `Date#setX` methods. If you use this function, you may not want to include the
- * other `setX` functions that date-fns provides if you are concerned about the bundle size.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param date - The date to be changed
- * @param values - The date values to be set
- *
- * @returns The new date with options set
- *
- * @example
- * // Transform 1 September 2014 into 20 October 2015 in a single line:
- * const result = set(new Date(2014, 8, 20), { year: 2015, month: 9, date: 20 })
- * //=> Tue Oct 20 2015 00:00:00
- *
- * @example
- * // Set 12 PM to 1 September 2014 01:23:45 to 1 September 2014 12:00:00:
- * const result = set(new Date(2014, 8, 1, 1, 23, 45), { hours: 12 })
- * //=> Mon Sep 01 2014 12:23:45
- */
-
-function set(date, values) {
-  let _date = toDate(date);
-
-  // Check if date is Invalid Date because Date.prototype.setFullYear ignores the value of Invalid Date
-  if (isNaN(+_date)) {
-    return constructFrom(date, NaN);
-  }
-
-  if (values.year != null) {
-    _date.setFullYear(values.year);
-  }
-
-  if (values.month != null) {
-    _date = setMonth(_date, values.month);
-  }
-
-  if (values.date != null) {
-    _date.setDate(values.date);
-  }
-
-  if (values.hours != null) {
-    _date.setHours(values.hours);
-  }
-
-  if (values.minutes != null) {
-    _date.setMinutes(values.minutes);
-  }
-
-  if (values.seconds != null) {
-    _date.setSeconds(values.seconds);
-  }
-
-  if (values.milliseconds != null) {
-    _date.setMilliseconds(values.milliseconds);
-  }
-
-  return _date;
-}
-
-/**
- * @name setYear
- * @category Year Helpers
- * @summary Set the year to the given date.
- *
- * @description
- * Set the year to the given date.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param date - The date to be changed
- * @param year - The year of the new date
- *
- * @returns The new date with the year set
- *
- * @example
- * // Set year 2013 to 1 September 2014:
- * const result = setYear(new Date(2014, 8, 1), 2013)
- * //=> Sun Sep 01 2013 00:00:00
- */
-function setYear(date, year) {
-  const _date = toDate(date);
-
-  // Check if date is Invalid Date because Date.prototype.setFullYear ignores the value of Invalid Date
-  if (isNaN(+_date)) {
-    return constructFrom(date, NaN);
-  }
-
-  _date.setFullYear(year);
-  return _date;
-}
-
-/**
- * @name startOfToday
- * @category Day Helpers
- * @summary Return the start of today.
- * @pure false
- *
- * @description
- * Return the start of today.
- *
- * @returns The start of today
- *
- * @example
- * // If today is 6 October 2014:
- * const result = startOfToday()
- * //=> Mon Oct 6 2014 00:00:00
- */
-function startOfToday() {
-  return startOfDay(Date.now());
-}
 
 /**
  * @name subMonths
@@ -50125,383 +49907,8 @@ function subMonths(date, amount) {
   return addMonths(date, -amount);
 }
 
-/**
- * @name subYears
- * @category Year Helpers
- * @summary Subtract the specified number of years from the given date.
- *
- * @description
- * Subtract the specified number of years from the given date.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param date - The date to be changed
- * @param amount - The amount of years to be subtracted.
- *
- * @returns The new date with the years subtracted
- *
- * @example
- * // Subtract 5 years from 1 September 2014:
- * const result = subYears(new Date(2014, 8, 1), 5)
- * //=> Tue Sep 01 2009 00:00:00
- */
-function subYears(date, amount) {
-  return addYears(date, -amount);
-}
-
-var Month;
-(function (Month) {
-    Month[Month["JANUARY"] = 0] = "JANUARY";
-    Month[Month["FEBRUARY"] = 1] = "FEBRUARY";
-    Month[Month["MARCH"] = 2] = "MARCH";
-    Month[Month["APRIL"] = 3] = "APRIL";
-    Month[Month["MAY"] = 4] = "MAY";
-    Month[Month["JUNE"] = 5] = "JUNE";
-    Month[Month["JULY"] = 6] = "JULY";
-    Month[Month["AUGUST"] = 7] = "AUGUST";
-    Month[Month["SEPTEMBER"] = 8] = "SEPTEMBER";
-    Month[Month["OCTOBER"] = 9] = "OCTOBER";
-    Month[Month["NOVEMBER"] = 10] = "NOVEMBER";
-    Month[Month["DECEMBER"] = 11] = "DECEMBER";
-})(Month || (Month = {}));
-var Day;
-(function (Day) {
-    Day[Day["SUNDAY"] = 0] = "SUNDAY";
-    Day[Day["MONDAY"] = 1] = "MONDAY";
-    Day[Day["TUESDAY"] = 2] = "TUESDAY";
-    Day[Day["WEDNESDAY"] = 3] = "WEDNESDAY";
-    Day[Day["THURSDAY"] = 4] = "THURSDAY";
-    Day[Day["FRIDAY"] = 5] = "FRIDAY";
-    Day[Day["SATURDAY"] = 6] = "SATURDAY";
-})(Day || (Day = {}));
-var inRange = function (date, min, max) {
-    return (isEqual(date, min) || isAfter(date, min)) && (isEqual(date, max) || isBefore(date, max));
-};
-var index_es_clearTime = function (date) { return set(date, { hours: 0, minutes: 0, seconds: 0, milliseconds: 0 }); };
-var useLilius = function (_a) {
-    var _b = _a === void 0 ? {} : _a, _c = _b.weekStartsOn, weekStartsOn = _c === void 0 ? Day.SUNDAY : _c, _d = _b.viewing, initialViewing = _d === void 0 ? new Date() : _d, _e = _b.selected, initialSelected = _e === void 0 ? [] : _e, _f = _b.numberOfMonths, numberOfMonths = _f === void 0 ? 1 : _f;
-    var _g = (0,external_React_.useState)(initialViewing), viewing = _g[0], setViewing = _g[1];
-    var viewToday = (0,external_React_.useCallback)(function () { return setViewing(startOfToday()); }, [setViewing]);
-    var viewMonth = (0,external_React_.useCallback)(function (month) { return setViewing(function (v) { return setMonth(v, month); }); }, []);
-    var viewPreviousMonth = (0,external_React_.useCallback)(function () { return setViewing(function (v) { return subMonths(v, 1); }); }, []);
-    var viewNextMonth = (0,external_React_.useCallback)(function () { return setViewing(function (v) { return addMonths(v, 1); }); }, []);
-    var viewYear = (0,external_React_.useCallback)(function (year) { return setViewing(function (v) { return setYear(v, year); }); }, []);
-    var viewPreviousYear = (0,external_React_.useCallback)(function () { return setViewing(function (v) { return subYears(v, 1); }); }, []);
-    var viewNextYear = (0,external_React_.useCallback)(function () { return setViewing(function (v) { return addYears(v, 1); }); }, []);
-    var _h = (0,external_React_.useState)(initialSelected.map(index_es_clearTime)), selected = _h[0], setSelected = _h[1];
-    var clearSelected = function () { return setSelected([]); };
-    var isSelected = (0,external_React_.useCallback)(function (date) { return selected.findIndex(function (s) { return isEqual(s, date); }) > -1; }, [selected]);
-    var select = (0,external_React_.useCallback)(function (date, replaceExisting) {
-        if (replaceExisting) {
-            setSelected(Array.isArray(date) ? date : [date]);
-        }
-        else {
-            setSelected(function (selectedItems) { return selectedItems.concat(Array.isArray(date) ? date : [date]); });
-        }
-    }, []);
-    var deselect = (0,external_React_.useCallback)(function (date) {
-        return setSelected(function (selectedItems) {
-            return Array.isArray(date)
-                ? selectedItems.filter(function (s) { return !date.map(function (d) { return d.getTime(); }).includes(s.getTime()); })
-                : selectedItems.filter(function (s) { return !isEqual(s, date); });
-        });
-    }, []);
-    var toggle = (0,external_React_.useCallback)(function (date, replaceExisting) { return (isSelected(date) ? deselect(date) : select(date, replaceExisting)); }, [deselect, isSelected, select]);
-    var selectRange = (0,external_React_.useCallback)(function (start, end, replaceExisting) {
-        if (replaceExisting) {
-            setSelected(eachDayOfInterval({ start: start, end: end }));
-        }
-        else {
-            setSelected(function (selectedItems) { return selectedItems.concat(eachDayOfInterval({ start: start, end: end })); });
-        }
-    }, []);
-    var deselectRange = (0,external_React_.useCallback)(function (start, end) {
-        setSelected(function (selectedItems) {
-            return selectedItems.filter(function (s) {
-                return !eachDayOfInterval({ start: start, end: end })
-                    .map(function (d) { return d.getTime(); })
-                    .includes(s.getTime());
-            });
-        });
-    }, []);
-    var calendar = (0,external_React_.useMemo)(function () {
-        return eachMonthOfInterval({
-            start: startOfMonth(viewing),
-            end: endOfMonth(addMonths(viewing, numberOfMonths - 1)),
-        }).map(function (month) {
-            return eachWeekOfInterval({
-                start: startOfMonth(month),
-                end: endOfMonth(month),
-            }, { weekStartsOn: weekStartsOn }).map(function (week) {
-                return eachDayOfInterval({
-                    start: startOfWeek(week, { weekStartsOn: weekStartsOn }),
-                    end: endOfWeek(week, { weekStartsOn: weekStartsOn }),
-                });
-            });
-        });
-    }, [viewing, weekStartsOn, numberOfMonths]);
-    return {
-        clearTime: index_es_clearTime,
-        inRange: inRange,
-        viewing: viewing,
-        setViewing: setViewing,
-        viewToday: viewToday,
-        viewMonth: viewMonth,
-        viewPreviousMonth: viewPreviousMonth,
-        viewNextMonth: viewNextMonth,
-        viewYear: viewYear,
-        viewPreviousYear: viewPreviousYear,
-        viewNextYear: viewNextYear,
-        selected: selected,
-        setSelected: setSelected,
-        clearSelected: clearSelected,
-        isSelected: isSelected,
-        select: select,
-        deselect: deselect,
-        toggle: toggle,
-        selectRange: selectRange,
-        deselectRange: deselectRange,
-        calendar: calendar,
-    };
-};
-
-
-
-;// CONCATENATED MODULE: ./node_modules/date-fns/toDate.mjs
-/**
- * @name toDate
- * @category Common Helpers
- * @summary Convert the given argument to an instance of Date.
- *
- * @description
- * Convert the given argument to an instance of Date.
- *
- * If the argument is an instance of Date, the function returns its clone.
- *
- * If the argument is a number, it is treated as a timestamp.
- *
- * If the argument is none of the above, the function returns Invalid Date.
- *
- * **Note**: *all* Date arguments passed to any *date-fns* function is processed by `toDate`.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param argument - The value to convert
- *
- * @returns The parsed date in the local time zone
- *
- * @example
- * // Clone the date:
- * const result = toDate(new Date(2014, 1, 11, 11, 30, 30))
- * //=> Tue Feb 11 2014 11:30:30
- *
- * @example
- * // Convert the timestamp to date:
- * const result = toDate(1392098430000)
- * //=> Tue Feb 11 2014 11:30:30
- */
-function toDate_toDate(argument) {
-  const argStr = Object.prototype.toString.call(argument);
-
-  // Clone the date
-  if (
-    argument instanceof Date ||
-    (typeof argument === "object" && argStr === "[object Date]")
-  ) {
-    // Prevent the date to lose the milliseconds when passed to new Date() in IE10
-    return new argument.constructor(+argument);
-  } else if (
-    typeof argument === "number" ||
-    argStr === "[object Number]" ||
-    typeof argument === "string" ||
-    argStr === "[object String]"
-  ) {
-    // TODO: Can we get rid of as?
-    return new Date(argument);
-  } else {
-    // TODO: Can we get rid of as?
-    return new Date(NaN);
-  }
-}
-
 // Fallback for modularized imports:
-/* harmony default export */ const date_fns_toDate = ((/* unused pure expression or super */ null && (toDate_toDate)));
-
-;// CONCATENATED MODULE: ./node_modules/date-fns/startOfDay.mjs
-
-
-/**
- * @name startOfDay
- * @category Day Helpers
- * @summary Return the start of a day for the given date.
- *
- * @description
- * Return the start of a day for the given date.
- * The result will be in the local timezone.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param date - The original date
- *
- * @returns The start of a day
- *
- * @example
- * // The start of a day for 2 September 2014 11:55:00:
- * const result = startOfDay(new Date(2014, 8, 2, 11, 55, 0))
- * //=> Tue Sep 02 2014 00:00:00
- */
-function startOfDay_startOfDay(date) {
-  const _date = toDate_toDate(date);
-  _date.setHours(0, 0, 0, 0);
-  return _date;
-}
-
-// Fallback for modularized imports:
-/* harmony default export */ const date_fns_startOfDay = ((/* unused pure expression or super */ null && (startOfDay_startOfDay)));
-
-;// CONCATENATED MODULE: ./node_modules/date-fns/constructFrom.mjs
-/**
- * @name constructFrom
- * @category Generic Helpers
- * @summary Constructs a date using the reference date and the value
- *
- * @description
- * The function constructs a new date using the constructor from the reference
- * date and the given value. It helps to build generic functions that accept
- * date extensions.
- *
- * It defaults to `Date` if the passed reference date is a number or a string.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param date - The reference date to take constructor from
- * @param value - The value to create the date
- *
- * @returns Date initialized using the given date and value
- *
- * @example
- * import { constructFrom } from 'date-fns'
- *
- * // A function that clones a date preserving the original type
- * function cloneDate<DateType extends Date(date: DateType): DateType {
- *   return constructFrom(
- *     date, // Use contrustor from the given date
- *     date.getTime() // Use the date value to create a new date
- *   )
- * }
- */
-function constructFrom_constructFrom(date, value) {
-  if (date instanceof Date) {
-    return new date.constructor(value);
-  } else {
-    return new Date(value);
-  }
-}
-
-// Fallback for modularized imports:
-/* harmony default export */ const date_fns_constructFrom = ((/* unused pure expression or super */ null && (constructFrom_constructFrom)));
-
-;// CONCATENATED MODULE: ./node_modules/date-fns/addMonths.mjs
-
-
-
-/**
- * @name addMonths
- * @category Month Helpers
- * @summary Add the specified number of months to the given date.
- *
- * @description
- * Add the specified number of months to the given date.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param date - The date to be changed
- * @param amount - The amount of months to be added.
- *
- * @returns The new date with the months added
- *
- * @example
- * // Add 5 months to 1 September 2014:
- * const result = addMonths(new Date(2014, 8, 1), 5)
- * //=> Sun Feb 01 2015 00:00:00
- *
- * // Add one month to 30 January 2023:
- * const result = addMonths(new Date(2023, 0, 30), 1)
- * //=> Tue Feb 28 2023 00:00:00
- */
-function addMonths_addMonths(date, amount) {
-  const _date = toDate_toDate(date);
-  if (isNaN(amount)) return constructFrom_constructFrom(date, NaN);
-  if (!amount) {
-    // If 0 months, no-op to avoid changing times in the hour before end of DST
-    return _date;
-  }
-  const dayOfMonth = _date.getDate();
-
-  // The JS Date object supports date math by accepting out-of-bounds values for
-  // month, day, etc. For example, new Date(2020, 0, 0) returns 31 Dec 2019 and
-  // new Date(2020, 13, 1) returns 1 Feb 2021.  This is *almost* the behavior we
-  // want except that dates will wrap around the end of a month, meaning that
-  // new Date(2020, 13, 31) will return 3 Mar 2021 not 28 Feb 2021 as desired. So
-  // we'll default to the end of the desired month by adding 1 to the desired
-  // month and using a date of 0 to back up one day to the end of the desired
-  // month.
-  const endOfDesiredMonth = constructFrom_constructFrom(date, _date.getTime());
-  endOfDesiredMonth.setMonth(_date.getMonth() + amount + 1, 0);
-  const daysInMonth = endOfDesiredMonth.getDate();
-  if (dayOfMonth >= daysInMonth) {
-    // If we're already at the end of the month, then this is the correct date
-    // and we're done.
-    return endOfDesiredMonth;
-  } else {
-    // Otherwise, we now know that setting the original day-of-month value won't
-    // cause an overflow, so set the desired day-of-month. Note that we can't
-    // just set the date of `endOfDesiredMonth` because that object may have had
-    // its time changed in the unusual case where where a DST transition was on
-    // the last day of the month and its local time was in the hour skipped or
-    // repeated next to a DST transition.  So we use `date` instead which is
-    // guaranteed to still have the original time.
-    _date.setFullYear(
-      endOfDesiredMonth.getFullYear(),
-      endOfDesiredMonth.getMonth(),
-      dayOfMonth,
-    );
-    return _date;
-  }
-}
-
-// Fallback for modularized imports:
-/* harmony default export */ const date_fns_addMonths = ((/* unused pure expression or super */ null && (addMonths_addMonths)));
-
-;// CONCATENATED MODULE: ./node_modules/date-fns/subMonths.mjs
-
-
-/**
- * @name subMonths
- * @category Month Helpers
- * @summary Subtract the specified number of months from the given date.
- *
- * @description
- * Subtract the specified number of months from the given date.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param date - The date to be changed
- * @param amount - The amount of months to be subtracted.
- *
- * @returns The new date with the months subtracted
- *
- * @example
- * // Subtract 5 months from 1 February 2015:
- * const result = subMonths(new Date(2015, 1, 1), 5)
- * //=> Mon Sep 01 2014 00:00:00
- */
-function subMonths_subMonths(date, amount) {
-  return addMonths_addMonths(date, -amount);
-}
-
-// Fallback for modularized imports:
-/* harmony default export */ const date_fns_subMonths = ((/* unused pure expression or super */ null && (subMonths_subMonths)));
+/* harmony default export */ const date_fns_subMonths = ((/* unused pure expression or super */ null && (subMonths)));
 
 ;// CONCATENATED MODULE: ./node_modules/date-fns/locale/en-US/_lib/formatDistance.mjs
 const formatDistanceLocale = {
@@ -51174,7 +50581,7 @@ const enUS = {
 ;// CONCATENATED MODULE: ./node_modules/date-fns/_lib/defaultOptions.mjs
 let defaultOptions_defaultOptions = {};
 
-function defaultOptions_getDefaultOptions() {
+function getDefaultOptions() {
   return defaultOptions_defaultOptions;
 }
 
@@ -51402,7 +50809,7 @@ const secondsInQuarter = secondsInMonth * 3;
  * This function returns the timezone offset in milliseconds that takes seconds in account.
  */
 function getTimezoneOffsetInMilliseconds(date) {
-  const _date = toDate_toDate(date);
+  const _date = toDate(date);
   const utcDate = new Date(
     Date.UTC(
       _date.getFullYear(),
@@ -51456,8 +50863,8 @@ function getTimezoneOffsetInMilliseconds(date) {
  * //=> 1
  */
 function differenceInCalendarDays(dateLeft, dateRight) {
-  const startOfDayLeft = startOfDay_startOfDay(dateLeft);
-  const startOfDayRight = startOfDay_startOfDay(dateRight);
+  const startOfDayLeft = startOfDay(dateLeft);
+  const startOfDayRight = startOfDay(dateRight);
 
   const timestampLeft =
     +startOfDayLeft - getTimezoneOffsetInMilliseconds(startOfDayLeft);
@@ -51498,8 +50905,8 @@ function differenceInCalendarDays(dateLeft, dateRight) {
  * //=> Wed Jan 01 2014 00:00:00
  */
 function startOfYear(date) {
-  const cleanDate = toDate_toDate(date);
-  const _date = constructFrom_constructFrom(date, 0);
+  const cleanDate = toDate(date);
+  const _date = constructFrom(date, 0);
   _date.setFullYear(cleanDate.getFullYear(), 0, 1);
   _date.setHours(0, 0, 0, 0);
   return _date;
@@ -51533,7 +50940,7 @@ function startOfYear(date) {
  * //=> 183
  */
 function getDayOfYear(date) {
-  const _date = toDate_toDate(date);
+  const _date = toDate(date);
   const diff = differenceInCalendarDays(_date, startOfYear(_date));
   const dayOfYear = diff + 1;
   return dayOfYear;
@@ -51576,8 +50983,8 @@ function getDayOfYear(date) {
  * const result = startOfWeek(new Date(2014, 8, 2, 11, 55, 0), { weekStartsOn: 1 })
  * //=> Mon Sep 01 2014 00:00:00
  */
-function startOfWeek_startOfWeek(date, options) {
-  const defaultOptions = defaultOptions_getDefaultOptions();
+function startOfWeek(date, options) {
+  const defaultOptions = getDefaultOptions();
   const weekStartsOn =
     options?.weekStartsOn ??
     options?.locale?.options?.weekStartsOn ??
@@ -51585,7 +50992,7 @@ function startOfWeek_startOfWeek(date, options) {
     defaultOptions.locale?.options?.weekStartsOn ??
     0;
 
-  const _date = toDate_toDate(date);
+  const _date = toDate(date);
   const day = _date.getDay();
   const diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn;
 
@@ -51595,7 +51002,7 @@ function startOfWeek_startOfWeek(date, options) {
 }
 
 // Fallback for modularized imports:
-/* harmony default export */ const date_fns_startOfWeek = ((/* unused pure expression or super */ null && (startOfWeek_startOfWeek)));
+/* harmony default export */ const date_fns_startOfWeek = ((/* unused pure expression or super */ null && (startOfWeek)));
 
 ;// CONCATENATED MODULE: ./node_modules/date-fns/startOfISOWeek.mjs
 
@@ -51623,7 +51030,7 @@ function startOfWeek_startOfWeek(date, options) {
  * //=> Mon Sep 01 2014 00:00:00
  */
 function startOfISOWeek(date) {
-  return startOfWeek_startOfWeek(date, { weekStartsOn: 1 });
+  return startOfWeek(date, { weekStartsOn: 1 });
 }
 
 // Fallback for modularized imports:
@@ -51657,15 +51064,15 @@ function startOfISOWeek(date) {
  * //=> 2004
  */
 function getISOWeekYear(date) {
-  const _date = toDate_toDate(date);
+  const _date = toDate(date);
   const year = _date.getFullYear();
 
-  const fourthOfJanuaryOfNextYear = constructFrom_constructFrom(date, 0);
+  const fourthOfJanuaryOfNextYear = constructFrom(date, 0);
   fourthOfJanuaryOfNextYear.setFullYear(year + 1, 0, 4);
   fourthOfJanuaryOfNextYear.setHours(0, 0, 0, 0);
   const startOfNextYear = startOfISOWeek(fourthOfJanuaryOfNextYear);
 
-  const fourthOfJanuaryOfThisYear = constructFrom_constructFrom(date, 0);
+  const fourthOfJanuaryOfThisYear = constructFrom(date, 0);
   fourthOfJanuaryOfThisYear.setFullYear(year, 0, 4);
   fourthOfJanuaryOfThisYear.setHours(0, 0, 0, 0);
   const startOfThisYear = startOfISOWeek(fourthOfJanuaryOfThisYear);
@@ -51712,7 +51119,7 @@ function getISOWeekYear(date) {
  */
 function startOfISOWeekYear(date) {
   const year = getISOWeekYear(date);
-  const fourthOfJanuary = constructFrom_constructFrom(date, 0);
+  const fourthOfJanuary = constructFrom(date, 0);
   fourthOfJanuary.setFullYear(year, 0, 4);
   fourthOfJanuary.setHours(0, 0, 0, 0);
   return startOfISOWeek(fourthOfJanuary);
@@ -51749,7 +51156,7 @@ function startOfISOWeekYear(date) {
  * //=> 53
  */
 function getISOWeek(date) {
-  const _date = toDate_toDate(date);
+  const _date = toDate(date);
   const diff = +startOfISOWeek(_date) - +startOfISOWeekYear(_date);
 
   // Round the number of weeks to the nearest integer because the number of
@@ -51808,10 +51215,10 @@ function getISOWeek(date) {
  * //=> 2004
  */
 function getWeekYear(date, options) {
-  const _date = toDate_toDate(date);
+  const _date = toDate(date);
   const year = _date.getFullYear();
 
-  const defaultOptions = defaultOptions_getDefaultOptions();
+  const defaultOptions = getDefaultOptions();
   const firstWeekContainsDate =
     options?.firstWeekContainsDate ??
     options?.locale?.options?.firstWeekContainsDate ??
@@ -51819,15 +51226,15 @@ function getWeekYear(date, options) {
     defaultOptions.locale?.options?.firstWeekContainsDate ??
     1;
 
-  const firstWeekOfNextYear = constructFrom_constructFrom(date, 0);
+  const firstWeekOfNextYear = constructFrom(date, 0);
   firstWeekOfNextYear.setFullYear(year + 1, 0, firstWeekContainsDate);
   firstWeekOfNextYear.setHours(0, 0, 0, 0);
-  const startOfNextYear = startOfWeek_startOfWeek(firstWeekOfNextYear, options);
+  const startOfNextYear = startOfWeek(firstWeekOfNextYear, options);
 
-  const firstWeekOfThisYear = constructFrom_constructFrom(date, 0);
+  const firstWeekOfThisYear = constructFrom(date, 0);
   firstWeekOfThisYear.setFullYear(year, 0, firstWeekContainsDate);
   firstWeekOfThisYear.setHours(0, 0, 0, 0);
-  const startOfThisYear = startOfWeek_startOfWeek(firstWeekOfThisYear, options);
+  const startOfThisYear = startOfWeek(firstWeekOfThisYear, options);
 
   if (_date.getTime() >= startOfNextYear.getTime()) {
     return year + 1;
@@ -51888,7 +51295,7 @@ function getWeekYear(date, options) {
  * //=> Mon Jan 03 2005 00:00:00
  */
 function startOfWeekYear(date, options) {
-  const defaultOptions = defaultOptions_getDefaultOptions();
+  const defaultOptions = getDefaultOptions();
   const firstWeekContainsDate =
     options?.firstWeekContainsDate ??
     options?.locale?.options?.firstWeekContainsDate ??
@@ -51897,10 +51304,10 @@ function startOfWeekYear(date, options) {
     1;
 
   const year = getWeekYear(date, options);
-  const firstWeek = constructFrom_constructFrom(date, 0);
+  const firstWeek = constructFrom(date, 0);
   firstWeek.setFullYear(year, 0, firstWeekContainsDate);
   firstWeek.setHours(0, 0, 0, 0);
-  const _date = startOfWeek_startOfWeek(firstWeek, options);
+  const _date = startOfWeek(firstWeek, options);
   return _date;
 }
 
@@ -51955,8 +51362,8 @@ function startOfWeekYear(date, options) {
  */
 
 function getWeek(date, options) {
-  const _date = toDate_toDate(date);
-  const diff = +startOfWeek_startOfWeek(_date, options) - +startOfWeekYear(_date, options);
+  const _date = toDate(date);
+  const diff = +startOfWeek(_date, options) - +startOfWeekYear(_date, options);
 
   // Round the number of weeks to the nearest integer because the number of
   // milliseconds in a week is not constant (e.g. it's different in the week of
@@ -53022,7 +52429,7 @@ function isValid(date) {
   if (!isDate(date) && typeof date !== "number") {
     return false;
   }
-  const _date = toDate_toDate(date);
+  const _date = toDate(date);
   return !isNaN(Number(_date));
 }
 
@@ -53357,7 +52764,7 @@ const unescapedLatinCharacterRegExp = /[a-zA-Z]/;
  * //=> "3 o'clock"
  */
 function format(date, formatStr, options) {
-  const defaultOptions = defaultOptions_getDefaultOptions();
+  const defaultOptions = getDefaultOptions();
   const locale = options?.locale ?? defaultOptions.locale ?? enUS;
 
   const firstWeekContainsDate =
@@ -53374,7 +52781,7 @@ function format(date, formatStr, options) {
     defaultOptions.locale?.options?.weekStartsOn ??
     0;
 
-  const originalDate = toDate_toDate(date);
+  const originalDate = toDate(date);
 
   if (!isValid(originalDate)) {
     throw new RangeError("Invalid time value");
@@ -53492,8 +52899,8 @@ function cleanEscapedString(input) {
  * //=> false
  */
 function isSameMonth(dateLeft, dateRight) {
-  const _dateLeft = toDate_toDate(dateLeft);
-  const _dateRight = toDate_toDate(dateRight);
+  const _dateLeft = toDate(dateLeft);
+  const _dateRight = toDate(dateRight);
   return (
     _dateLeft.getFullYear() === _dateRight.getFullYear() &&
     _dateLeft.getMonth() === _dateRight.getMonth()
@@ -53529,14 +52936,14 @@ function isSameMonth(dateLeft, dateRight) {
  * )
  * //=> false
  */
-function isEqual_isEqual(leftDate, rightDate) {
-  const _dateLeft = toDate_toDate(leftDate);
-  const _dateRight = toDate_toDate(rightDate);
+function isEqual(leftDate, rightDate) {
+  const _dateLeft = toDate(leftDate);
+  const _dateRight = toDate(rightDate);
   return +_dateLeft === +_dateRight;
 }
 
 // Fallback for modularized imports:
-/* harmony default export */ const date_fns_isEqual = ((/* unused pure expression or super */ null && (isEqual_isEqual)));
+/* harmony default export */ const date_fns_isEqual = ((/* unused pure expression or super */ null && (isEqual)));
 
 ;// CONCATENATED MODULE: ./node_modules/date-fns/isSameDay.mjs
 
@@ -53572,8 +52979,8 @@ function isEqual_isEqual(leftDate, rightDate) {
  * //=> false
  */
 function isSameDay(dateLeft, dateRight) {
-  const dateLeftStartOfDay = startOfDay_startOfDay(dateLeft);
-  const dateRightStartOfDay = startOfDay_startOfDay(dateRight);
+  const dateLeftStartOfDay = startOfDay(dateLeft);
+  const dateRightStartOfDay = startOfDay(dateRight);
 
   return +dateLeftStartOfDay === +dateRightStartOfDay;
 }
@@ -53605,9 +53012,9 @@ function isSameDay(dateLeft, dateRight) {
  * const result = addDays(new Date(2014, 8, 1), 10)
  * //=> Thu Sep 11 2014 00:00:00
  */
-function addDays_addDays(date, amount) {
-  const _date = toDate_toDate(date);
-  if (isNaN(amount)) return constructFrom_constructFrom(date, NaN);
+function addDays(date, amount) {
+  const _date = toDate(date);
+  if (isNaN(amount)) return constructFrom(date, NaN);
   if (!amount) {
     // If 0 days, no-op to avoid changing times in the hour before end of DST
     return _date;
@@ -53617,7 +53024,7 @@ function addDays_addDays(date, amount) {
 }
 
 // Fallback for modularized imports:
-/* harmony default export */ const date_fns_addDays = ((/* unused pure expression or super */ null && (addDays_addDays)));
+/* harmony default export */ const date_fns_addDays = ((/* unused pure expression or super */ null && (addDays)));
 
 ;// CONCATENATED MODULE: ./node_modules/date-fns/addWeeks.mjs
 
@@ -53642,13 +53049,13 @@ function addDays_addDays(date, amount) {
  * const result = addWeeks(new Date(2014, 8, 1), 4)
  * //=> Mon Sep 29 2014 00:00:00
  */
-function addWeeks_addWeeks(date, amount) {
+function addWeeks(date, amount) {
   const days = amount * 7;
-  return addDays_addDays(date, days);
+  return addDays(date, days);
 }
 
 // Fallback for modularized imports:
-/* harmony default export */ const date_fns_addWeeks = ((/* unused pure expression or super */ null && (addWeeks_addWeeks)));
+/* harmony default export */ const date_fns_addWeeks = ((/* unused pure expression or super */ null && (addWeeks)));
 
 ;// CONCATENATED MODULE: ./node_modules/date-fns/subWeeks.mjs
 
@@ -53674,7 +53081,7 @@ function addWeeks_addWeeks(date, amount) {
  * //=> Mon Aug 04 2014 00:00:00
  */
 function subWeeks(date, amount) {
-  return addWeeks_addWeeks(date, -amount);
+  return addWeeks(date, -amount);
 }
 
 // Fallback for modularized imports:
@@ -53714,8 +53121,8 @@ function subWeeks(date, amount) {
  * const result = endOfWeek(new Date(2014, 8, 2, 11, 55, 0), { weekStartsOn: 1 })
  * //=> Sun Sep 07 2014 23:59:59.999
  */
-function endOfWeek_endOfWeek(date, options) {
-  const defaultOptions = defaultOptions_getDefaultOptions();
+function endOfWeek(date, options) {
+  const defaultOptions = getDefaultOptions();
   const weekStartsOn =
     options?.weekStartsOn ??
     options?.locale?.options?.weekStartsOn ??
@@ -53723,7 +53130,7 @@ function endOfWeek_endOfWeek(date, options) {
     defaultOptions.locale?.options?.weekStartsOn ??
     0;
 
-  const _date = toDate_toDate(date);
+  const _date = toDate(date);
   const day = _date.getDay();
   const diff = (day < weekStartsOn ? -7 : 0) + 6 - (day - weekStartsOn);
 
@@ -53733,7 +53140,7 @@ function endOfWeek_endOfWeek(date, options) {
 }
 
 // Fallback for modularized imports:
-/* harmony default export */ const date_fns_endOfWeek = ((/* unused pure expression or super */ null && (endOfWeek_endOfWeek)));
+/* harmony default export */ const date_fns_endOfWeek = ((/* unused pure expression or super */ null && (endOfWeek)));
 
 ;// CONCATENATED MODULE: ./packages/icons/build-module/library/arrow-right.js
 /**
@@ -53767,9 +53174,797 @@ const arrowLeft = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(
 
 ;// CONCATENATED MODULE: external ["wp","date"]
 const external_wp_date_namespaceObject = window["wp"]["date"];
+;// CONCATENATED MODULE: ./node_modules/date-fns/isAfter.mjs
+
+
+/**
+ * @name isAfter
+ * @category Common Helpers
+ * @summary Is the first date after the second one?
+ *
+ * @description
+ * Is the first date after the second one?
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param date - The date that should be after the other one to return true
+ * @param dateToCompare - The date to compare with
+ *
+ * @returns The first date is after the second date
+ *
+ * @example
+ * // Is 10 July 1989 after 11 February 1987?
+ * const result = isAfter(new Date(1989, 6, 10), new Date(1987, 1, 11))
+ * //=> true
+ */
+function isAfter(date, dateToCompare) {
+  const _date = toDate(date);
+  const _dateToCompare = toDate(dateToCompare);
+  return _date.getTime() > _dateToCompare.getTime();
+}
+
+// Fallback for modularized imports:
+/* harmony default export */ const date_fns_isAfter = ((/* unused pure expression or super */ null && (isAfter)));
+
+;// CONCATENATED MODULE: ./node_modules/date-fns/isBefore.mjs
+
+
+/**
+ * @name isBefore
+ * @category Common Helpers
+ * @summary Is the first date before the second one?
+ *
+ * @description
+ * Is the first date before the second one?
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param date - The date that should be before the other one to return true
+ * @param dateToCompare - The date to compare with
+ *
+ * @returns The first date is before the second date
+ *
+ * @example
+ * // Is 10 July 1989 before 11 February 1987?
+ * const result = isBefore(new Date(1989, 6, 10), new Date(1987, 1, 11))
+ * //=> false
+ */
+function isBefore(date, dateToCompare) {
+  const _date = toDate(date);
+  const _dateToCompare = toDate(dateToCompare);
+  return +_date < +_dateToCompare;
+}
+
+// Fallback for modularized imports:
+/* harmony default export */ const date_fns_isBefore = ((/* unused pure expression or super */ null && (isBefore)));
+
+;// CONCATENATED MODULE: ./node_modules/date-fns/getDaysInMonth.mjs
+
+
+
+/**
+ * @name getDaysInMonth
+ * @category Month Helpers
+ * @summary Get the number of days in a month of the given date.
+ *
+ * @description
+ * Get the number of days in a month of the given date.
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param date - The given date
+ *
+ * @returns The number of days in a month
+ *
+ * @example
+ * // How many days are in February 2000?
+ * const result = getDaysInMonth(new Date(2000, 1))
+ * //=> 29
+ */
+function getDaysInMonth(date) {
+  const _date = toDate(date);
+  const year = _date.getFullYear();
+  const monthIndex = _date.getMonth();
+  const lastDayOfMonth = constructFrom(date, 0);
+  lastDayOfMonth.setFullYear(year, monthIndex + 1, 0);
+  lastDayOfMonth.setHours(0, 0, 0, 0);
+  return lastDayOfMonth.getDate();
+}
+
+// Fallback for modularized imports:
+/* harmony default export */ const date_fns_getDaysInMonth = ((/* unused pure expression or super */ null && (getDaysInMonth)));
+
+;// CONCATENATED MODULE: ./node_modules/date-fns/setMonth.mjs
+
+
+
+
+/**
+ * @name setMonth
+ * @category Month Helpers
+ * @summary Set the month to the given date.
+ *
+ * @description
+ * Set the month to the given date.
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param date - The date to be changed
+ * @param month - The month index to set (0-11)
+ *
+ * @returns The new date with the month set
+ *
+ * @example
+ * // Set February to 1 September 2014:
+ * const result = setMonth(new Date(2014, 8, 1), 1)
+ * //=> Sat Feb 01 2014 00:00:00
+ */
+function setMonth(date, month) {
+  const _date = toDate(date);
+  const year = _date.getFullYear();
+  const day = _date.getDate();
+
+  const dateWithDesiredMonth = constructFrom(date, 0);
+  dateWithDesiredMonth.setFullYear(year, month, 15);
+  dateWithDesiredMonth.setHours(0, 0, 0, 0);
+  const daysInMonth = getDaysInMonth(dateWithDesiredMonth);
+  // Set the last day of the new month
+  // if the original date was the last day of the longer month
+  _date.setMonth(month, Math.min(day, daysInMonth));
+  return _date;
+}
+
+// Fallback for modularized imports:
+/* harmony default export */ const date_fns_setMonth = ((/* unused pure expression or super */ null && (setMonth)));
+
+;// CONCATENATED MODULE: ./node_modules/date-fns/set.mjs
+
+
+
+
+/**
+ * @name set
+ * @category Common Helpers
+ * @summary Set date values to a given date.
+ *
+ * @description
+ * Set date values to a given date.
+ *
+ * Sets time values to date from object `values`.
+ * A value is not set if it is undefined or null or doesn't exist in `values`.
+ *
+ * Note about bundle size: `set` does not internally use `setX` functions from date-fns but instead opts
+ * to use native `Date#setX` methods. If you use this function, you may not want to include the
+ * other `setX` functions that date-fns provides if you are concerned about the bundle size.
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param date - The date to be changed
+ * @param values - The date values to be set
+ *
+ * @returns The new date with options set
+ *
+ * @example
+ * // Transform 1 September 2014 into 20 October 2015 in a single line:
+ * const result = set(new Date(2014, 8, 20), { year: 2015, month: 9, date: 20 })
+ * //=> Tue Oct 20 2015 00:00:00
+ *
+ * @example
+ * // Set 12 PM to 1 September 2014 01:23:45 to 1 September 2014 12:00:00:
+ * const result = set(new Date(2014, 8, 1, 1, 23, 45), { hours: 12 })
+ * //=> Mon Sep 01 2014 12:23:45
+ */
+
+function set(date, values) {
+  let _date = toDate(date);
+
+  // Check if date is Invalid Date because Date.prototype.setFullYear ignores the value of Invalid Date
+  if (isNaN(+_date)) {
+    return constructFrom(date, NaN);
+  }
+
+  if (values.year != null) {
+    _date.setFullYear(values.year);
+  }
+
+  if (values.month != null) {
+    _date = setMonth(_date, values.month);
+  }
+
+  if (values.date != null) {
+    _date.setDate(values.date);
+  }
+
+  if (values.hours != null) {
+    _date.setHours(values.hours);
+  }
+
+  if (values.minutes != null) {
+    _date.setMinutes(values.minutes);
+  }
+
+  if (values.seconds != null) {
+    _date.setSeconds(values.seconds);
+  }
+
+  if (values.milliseconds != null) {
+    _date.setMilliseconds(values.milliseconds);
+  }
+
+  return _date;
+}
+
+// Fallback for modularized imports:
+/* harmony default export */ const date_fns_set = ((/* unused pure expression or super */ null && (set)));
+
+;// CONCATENATED MODULE: ./node_modules/date-fns/startOfToday.mjs
+
+
+/**
+ * @name startOfToday
+ * @category Day Helpers
+ * @summary Return the start of today.
+ * @pure false
+ *
+ * @description
+ * Return the start of today.
+ *
+ * @returns The start of today
+ *
+ * @example
+ * // If today is 6 October 2014:
+ * const result = startOfToday()
+ * //=> Mon Oct 6 2014 00:00:00
+ */
+function startOfToday() {
+  return startOfDay(Date.now());
+}
+
+// Fallback for modularized imports:
+/* harmony default export */ const date_fns_startOfToday = ((/* unused pure expression or super */ null && (startOfToday)));
+
+;// CONCATENATED MODULE: ./node_modules/date-fns/setYear.mjs
+
+
+
+/**
+ * @name setYear
+ * @category Year Helpers
+ * @summary Set the year to the given date.
+ *
+ * @description
+ * Set the year to the given date.
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param date - The date to be changed
+ * @param year - The year of the new date
+ *
+ * @returns The new date with the year set
+ *
+ * @example
+ * // Set year 2013 to 1 September 2014:
+ * const result = setYear(new Date(2014, 8, 1), 2013)
+ * //=> Sun Sep 01 2013 00:00:00
+ */
+function setYear(date, year) {
+  const _date = toDate(date);
+
+  // Check if date is Invalid Date because Date.prototype.setFullYear ignores the value of Invalid Date
+  if (isNaN(+_date)) {
+    return constructFrom(date, NaN);
+  }
+
+  _date.setFullYear(year);
+  return _date;
+}
+
+// Fallback for modularized imports:
+/* harmony default export */ const date_fns_setYear = ((/* unused pure expression or super */ null && (setYear)));
+
+;// CONCATENATED MODULE: ./node_modules/date-fns/addYears.mjs
+
+
+/**
+ * @name addYears
+ * @category Year Helpers
+ * @summary Add the specified number of years to the given date.
+ *
+ * @description
+ * Add the specified number of years to the given date.
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param date - The date to be changed
+ * @param amount - The amount of years to be added.
+ *
+ * @returns The new date with the years added
+ *
+ * @example
+ * // Add 5 years to 1 September 2014:
+ * const result = addYears(new Date(2014, 8, 1), 5)
+ * //=> Sun Sep 01 2019 00:00:00
+ */
+function addYears(date, amount) {
+  return addMonths(date, amount * 12);
+}
+
+// Fallback for modularized imports:
+/* harmony default export */ const date_fns_addYears = ((/* unused pure expression or super */ null && (addYears)));
+
+;// CONCATENATED MODULE: ./node_modules/date-fns/subYears.mjs
+
+
+/**
+ * @name subYears
+ * @category Year Helpers
+ * @summary Subtract the specified number of years from the given date.
+ *
+ * @description
+ * Subtract the specified number of years from the given date.
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param date - The date to be changed
+ * @param amount - The amount of years to be subtracted.
+ *
+ * @returns The new date with the years subtracted
+ *
+ * @example
+ * // Subtract 5 years from 1 September 2014:
+ * const result = subYears(new Date(2014, 8, 1), 5)
+ * //=> Tue Sep 01 2009 00:00:00
+ */
+function subYears(date, amount) {
+  return addYears(date, -amount);
+}
+
+// Fallback for modularized imports:
+/* harmony default export */ const date_fns_subYears = ((/* unused pure expression or super */ null && (subYears)));
+
+;// CONCATENATED MODULE: ./node_modules/date-fns/eachDayOfInterval.mjs
+
+
+/**
+ * The {@link eachDayOfInterval} function options.
+ */
+
+/**
+ * @name eachDayOfInterval
+ * @category Interval Helpers
+ * @summary Return the array of dates within the specified time interval.
+ *
+ * @description
+ * Return the array of dates within the specified time interval.
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param interval - The interval.
+ * @param options - An object with options.
+ *
+ * @returns The array with starts of days from the day of the interval start to the day of the interval end
+ *
+ * @example
+ * // Each day between 6 October 2014 and 10 October 2014:
+ * const result = eachDayOfInterval({
+ *   start: new Date(2014, 9, 6),
+ *   end: new Date(2014, 9, 10)
+ * })
+ * //=> [
+ * //   Mon Oct 06 2014 00:00:00,
+ * //   Tue Oct 07 2014 00:00:00,
+ * //   Wed Oct 08 2014 00:00:00,
+ * //   Thu Oct 09 2014 00:00:00,
+ * //   Fri Oct 10 2014 00:00:00
+ * // ]
+ */
+function eachDayOfInterval(interval, options) {
+  const startDate = toDate(interval.start);
+  const endDate = toDate(interval.end);
+
+  let reversed = +startDate > +endDate;
+  const endTime = reversed ? +startDate : +endDate;
+  const currentDate = reversed ? endDate : startDate;
+  currentDate.setHours(0, 0, 0, 0);
+
+  let step = options?.step ?? 1;
+  if (!step) return [];
+  if (step < 0) {
+    step = -step;
+    reversed = !reversed;
+  }
+
+  const dates = [];
+
+  while (+currentDate <= endTime) {
+    dates.push(toDate(currentDate));
+    currentDate.setDate(currentDate.getDate() + step);
+    currentDate.setHours(0, 0, 0, 0);
+  }
+
+  return reversed ? dates.reverse() : dates;
+}
+
+// Fallback for modularized imports:
+/* harmony default export */ const date_fns_eachDayOfInterval = ((/* unused pure expression or super */ null && (eachDayOfInterval)));
+
+;// CONCATENATED MODULE: ./node_modules/date-fns/eachMonthOfInterval.mjs
+
+
+/**
+ * The {@link eachMonthOfInterval} function options.
+ */
+
+/**
+ * @name eachMonthOfInterval
+ * @category Interval Helpers
+ * @summary Return the array of months within the specified time interval.
+ *
+ * @description
+ * Return the array of months within the specified time interval.
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param interval - The interval
+ *
+ * @returns The array with starts of months from the month of the interval start to the month of the interval end
+ *
+ * @example
+ * // Each month between 6 February 2014 and 10 August 2014:
+ * const result = eachMonthOfInterval({
+ *   start: new Date(2014, 1, 6),
+ *   end: new Date(2014, 7, 10)
+ * })
+ * //=> [
+ * //   Sat Feb 01 2014 00:00:00,
+ * //   Sat Mar 01 2014 00:00:00,
+ * //   Tue Apr 01 2014 00:00:00,
+ * //   Thu May 01 2014 00:00:00,
+ * //   Sun Jun 01 2014 00:00:00,
+ * //   Tue Jul 01 2014 00:00:00,
+ * //   Fri Aug 01 2014 00:00:00
+ * // ]
+ */
+function eachMonthOfInterval(interval, options) {
+  const startDate = toDate(interval.start);
+  const endDate = toDate(interval.end);
+
+  let reversed = +startDate > +endDate;
+  const endTime = reversed ? +startDate : +endDate;
+  const currentDate = reversed ? endDate : startDate;
+  currentDate.setHours(0, 0, 0, 0);
+  currentDate.setDate(1);
+
+  let step = options?.step ?? 1;
+  if (!step) return [];
+  if (step < 0) {
+    step = -step;
+    reversed = !reversed;
+  }
+
+  const dates = [];
+
+  while (+currentDate <= endTime) {
+    dates.push(toDate(currentDate));
+    currentDate.setMonth(currentDate.getMonth() + step);
+  }
+
+  return reversed ? dates.reverse() : dates;
+}
+
+// Fallback for modularized imports:
+/* harmony default export */ const date_fns_eachMonthOfInterval = ((/* unused pure expression or super */ null && (eachMonthOfInterval)));
+
+;// CONCATENATED MODULE: ./node_modules/date-fns/startOfMonth.mjs
+
+
+/**
+ * @name startOfMonth
+ * @category Month Helpers
+ * @summary Return the start of a month for the given date.
+ *
+ * @description
+ * Return the start of a month for the given date.
+ * The result will be in the local timezone.
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param date - The original date
+ *
+ * @returns The start of a month
+ *
+ * @example
+ * // The start of a month for 2 September 2014 11:55:00:
+ * const result = startOfMonth(new Date(2014, 8, 2, 11, 55, 0))
+ * //=> Mon Sep 01 2014 00:00:00
+ */
+function startOfMonth(date) {
+  const _date = toDate(date);
+  _date.setDate(1);
+  _date.setHours(0, 0, 0, 0);
+  return _date;
+}
+
+// Fallback for modularized imports:
+/* harmony default export */ const date_fns_startOfMonth = ((/* unused pure expression or super */ null && (startOfMonth)));
+
+;// CONCATENATED MODULE: ./node_modules/date-fns/endOfMonth.mjs
+
+
+/**
+ * @name endOfMonth
+ * @category Month Helpers
+ * @summary Return the end of a month for the given date.
+ *
+ * @description
+ * Return the end of a month for the given date.
+ * The result will be in the local timezone.
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param date - The original date
+ *
+ * @returns The end of a month
+ *
+ * @example
+ * // The end of a month for 2 September 2014 11:55:00:
+ * const result = endOfMonth(new Date(2014, 8, 2, 11, 55, 0))
+ * //=> Tue Sep 30 2014 23:59:59.999
+ */
+function endOfMonth(date) {
+  const _date = toDate(date);
+  const month = _date.getMonth();
+  _date.setFullYear(_date.getFullYear(), month + 1, 0);
+  _date.setHours(23, 59, 59, 999);
+  return _date;
+}
+
+// Fallback for modularized imports:
+/* harmony default export */ const date_fns_endOfMonth = ((/* unused pure expression or super */ null && (endOfMonth)));
+
+;// CONCATENATED MODULE: ./node_modules/date-fns/eachWeekOfInterval.mjs
+
+
+
+
+/**
+ * The {@link eachWeekOfInterval} function options.
+ */
+
+/**
+ * @name eachWeekOfInterval
+ * @category Interval Helpers
+ * @summary Return the array of weeks within the specified time interval.
+ *
+ * @description
+ * Return the array of weeks within the specified time interval.
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param interval - The interval.
+ * @param options - An object with options.
+ *
+ * @returns The array with starts of weeks from the week of the interval start to the week of the interval end
+ *
+ * @example
+ * // Each week within interval 6 October 2014 - 23 November 2014:
+ * const result = eachWeekOfInterval({
+ *   start: new Date(2014, 9, 6),
+ *   end: new Date(2014, 10, 23)
+ * })
+ * //=> [
+ * //   Sun Oct 05 2014 00:00:00,
+ * //   Sun Oct 12 2014 00:00:00,
+ * //   Sun Oct 19 2014 00:00:00,
+ * //   Sun Oct 26 2014 00:00:00,
+ * //   Sun Nov 02 2014 00:00:00,
+ * //   Sun Nov 09 2014 00:00:00,
+ * //   Sun Nov 16 2014 00:00:00,
+ * //   Sun Nov 23 2014 00:00:00
+ * // ]
+ */
+function eachWeekOfInterval(interval, options) {
+  const startDate = toDate(interval.start);
+  const endDate = toDate(interval.end);
+
+  let reversed = +startDate > +endDate;
+  const startDateWeek = reversed
+    ? startOfWeek(endDate, options)
+    : startOfWeek(startDate, options);
+  const endDateWeek = reversed
+    ? startOfWeek(startDate, options)
+    : startOfWeek(endDate, options);
+
+  // Some timezones switch DST at midnight, making start of day unreliable in these timezones, 3pm is a safe bet
+  startDateWeek.setHours(15);
+  endDateWeek.setHours(15);
+
+  const endTime = +endDateWeek.getTime();
+  let currentDate = startDateWeek;
+
+  let step = options?.step ?? 1;
+  if (!step) return [];
+  if (step < 0) {
+    step = -step;
+    reversed = !reversed;
+  }
+
+  const dates = [];
+
+  while (+currentDate <= endTime) {
+    currentDate.setHours(0);
+    dates.push(toDate(currentDate));
+    currentDate = addWeeks(currentDate, step);
+    currentDate.setHours(15);
+  }
+
+  return reversed ? dates.reverse() : dates;
+}
+
+// Fallback for modularized imports:
+/* harmony default export */ const date_fns_eachWeekOfInterval = ((/* unused pure expression or super */ null && (eachWeekOfInterval)));
+
+;// CONCATENATED MODULE: ./packages/components/build-module/date-time/date/use-lilius/index.js
+/**
+ * This source is a local copy of the use-lilius library, since the original
+ * library is not actively maintained.
+ * @see https://github.com/WordPress/gutenberg/discussions/64968
+ *
+ * use-lilius@2.0.5
+ * https://github.com/Avarios/use-lilius
+ *
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2021-Present Danny Tatom
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+/**
+ * External dependencies
+ */
+
+
+/**
+ * WordPress dependencies
+ */
+
+let Month = /*#__PURE__*/function (Month) {
+  Month[Month["JANUARY"] = 0] = "JANUARY";
+  Month[Month["FEBRUARY"] = 1] = "FEBRUARY";
+  Month[Month["MARCH"] = 2] = "MARCH";
+  Month[Month["APRIL"] = 3] = "APRIL";
+  Month[Month["MAY"] = 4] = "MAY";
+  Month[Month["JUNE"] = 5] = "JUNE";
+  Month[Month["JULY"] = 6] = "JULY";
+  Month[Month["AUGUST"] = 7] = "AUGUST";
+  Month[Month["SEPTEMBER"] = 8] = "SEPTEMBER";
+  Month[Month["OCTOBER"] = 9] = "OCTOBER";
+  Month[Month["NOVEMBER"] = 10] = "NOVEMBER";
+  Month[Month["DECEMBER"] = 11] = "DECEMBER";
+  return Month;
+}({});
+let Day = /*#__PURE__*/function (Day) {
+  Day[Day["SUNDAY"] = 0] = "SUNDAY";
+  Day[Day["MONDAY"] = 1] = "MONDAY";
+  Day[Day["TUESDAY"] = 2] = "TUESDAY";
+  Day[Day["WEDNESDAY"] = 3] = "WEDNESDAY";
+  Day[Day["THURSDAY"] = 4] = "THURSDAY";
+  Day[Day["FRIDAY"] = 5] = "FRIDAY";
+  Day[Day["SATURDAY"] = 6] = "SATURDAY";
+  return Day;
+}({});
+const inRange = (date, min, max) => (isEqual(date, min) || isAfter(date, min)) && (isEqual(date, max) || isBefore(date, max));
+const use_lilius_clearTime = date => set(date, {
+  hours: 0,
+  minutes: 0,
+  seconds: 0,
+  milliseconds: 0
+});
+const useLilius = ({
+  weekStartsOn = Day.SUNDAY,
+  viewing: initialViewing = new Date(),
+  selected: initialSelected = [],
+  numberOfMonths = 1
+} = {}) => {
+  const [viewing, setViewing] = (0,external_wp_element_namespaceObject.useState)(initialViewing);
+  const viewToday = (0,external_wp_element_namespaceObject.useCallback)(() => setViewing(startOfToday()), [setViewing]);
+  const viewMonth = (0,external_wp_element_namespaceObject.useCallback)(month => setViewing(v => setMonth(v, month)), []);
+  const viewPreviousMonth = (0,external_wp_element_namespaceObject.useCallback)(() => setViewing(v => subMonths(v, 1)), []);
+  const viewNextMonth = (0,external_wp_element_namespaceObject.useCallback)(() => setViewing(v => addMonths(v, 1)), []);
+  const viewYear = (0,external_wp_element_namespaceObject.useCallback)(year => setViewing(v => setYear(v, year)), []);
+  const viewPreviousYear = (0,external_wp_element_namespaceObject.useCallback)(() => setViewing(v => subYears(v, 1)), []);
+  const viewNextYear = (0,external_wp_element_namespaceObject.useCallback)(() => setViewing(v => addYears(v, 1)), []);
+  const [selected, setSelected] = (0,external_wp_element_namespaceObject.useState)(initialSelected.map(use_lilius_clearTime));
+  const clearSelected = () => setSelected([]);
+  const isSelected = (0,external_wp_element_namespaceObject.useCallback)(date => selected.findIndex(s => isEqual(s, date)) > -1, [selected]);
+  const select = (0,external_wp_element_namespaceObject.useCallback)((date, replaceExisting) => {
+    if (replaceExisting) {
+      setSelected(Array.isArray(date) ? date : [date]);
+    } else {
+      setSelected(selectedItems => selectedItems.concat(Array.isArray(date) ? date : [date]));
+    }
+  }, []);
+  const deselect = (0,external_wp_element_namespaceObject.useCallback)(date => setSelected(selectedItems => Array.isArray(date) ? selectedItems.filter(s => !date.map(d => d.getTime()).includes(s.getTime())) : selectedItems.filter(s => !isEqual(s, date))), []);
+  const toggle = (0,external_wp_element_namespaceObject.useCallback)((date, replaceExisting) => isSelected(date) ? deselect(date) : select(date, replaceExisting), [deselect, isSelected, select]);
+  const selectRange = (0,external_wp_element_namespaceObject.useCallback)((start, end, replaceExisting) => {
+    if (replaceExisting) {
+      setSelected(eachDayOfInterval({
+        start,
+        end
+      }));
+    } else {
+      setSelected(selectedItems => selectedItems.concat(eachDayOfInterval({
+        start,
+        end
+      })));
+    }
+  }, []);
+  const deselectRange = (0,external_wp_element_namespaceObject.useCallback)((start, end) => {
+    setSelected(selectedItems => selectedItems.filter(s => !eachDayOfInterval({
+      start,
+      end
+    }).map(d => d.getTime()).includes(s.getTime())));
+  }, []);
+  const calendar = (0,external_wp_element_namespaceObject.useMemo)(() => eachMonthOfInterval({
+    start: startOfMonth(viewing),
+    end: endOfMonth(addMonths(viewing, numberOfMonths - 1))
+  }).map(month => eachWeekOfInterval({
+    start: startOfMonth(month),
+    end: endOfMonth(month)
+  }, {
+    weekStartsOn
+  }).map(week => eachDayOfInterval({
+    start: startOfWeek(week, {
+      weekStartsOn
+    }),
+    end: endOfWeek(week, {
+      weekStartsOn
+    })
+  }))), [viewing, weekStartsOn, numberOfMonths]);
+  return {
+    clearTime: use_lilius_clearTime,
+    inRange,
+    viewing,
+    setViewing,
+    viewToday,
+    viewMonth,
+    viewPreviousMonth,
+    viewNextMonth,
+    viewYear,
+    viewPreviousYear,
+    viewNextYear,
+    selected,
+    setSelected,
+    clearSelected,
+    isSelected,
+    select,
+    deselect,
+    toggle,
+    selectRange,
+    deselectRange,
+    calendar
+  };
+};
+
 ;// CONCATENATED MODULE: ./packages/components/build-module/date-time/date/styles.js
 
-function date_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
  * External dependencies
  */
@@ -53784,10 +53979,7 @@ function date_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried t
 
 const styles_Wrapper = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
   target: "e105ri6r5"
-} : 0)( true ? {
-  name: "1khn195",
-  styles: "box-sizing:border-box"
-} : 0);
+} : 0)(boxSizingReset, ";" + ( true ? "" : 0));
 const Navigator = /*#__PURE__*/emotion_styled_base_browser_esm(h_stack_component,  true ? {
   target: "e105ri6r4"
 } : 0)("margin-bottom:", space(4), ";" + ( true ? "" : 0));
@@ -53799,7 +53991,7 @@ const Calendar = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
 } : 0)("column-gap:", space(2), ";display:grid;grid-template-columns:0.5fr repeat( 5, 1fr ) 0.5fr;justify-items:center;row-gap:", space(2), ";" + ( true ? "" : 0));
 const DayOfWeek = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
   target: "e105ri6r1"
-} : 0)("color:", COLORS.gray[700], ";font-size:", config_values.fontSize, ";line-height:", config_values.fontLineHeightBase, ";&:nth-of-type( 1 ){justify-self:start;}&:nth-of-type( 7 ){justify-self:end;}" + ( true ? "" : 0));
+} : 0)("color:", COLORS.theme.gray[700], ";font-size:", config_values.fontSize, ";line-height:", config_values.fontLineHeightBase, ";&:nth-of-type( 1 ){justify-self:start;}&:nth-of-type( 7 ){justify-self:end;}" + ( true ? "" : 0));
 const DayButton = /*#__PURE__*/emotion_styled_base_browser_esm(build_module_button,  true ? {
   shouldForwardProp: prop => !['column', 'isSelected', 'isToday', 'hasEvents'].includes(prop),
   target: "e105ri6r0"
@@ -53809,22 +54001,38 @@ const DayButton = /*#__PURE__*/emotion_styled_base_browser_esm(build_module_butt
 		justify-self: end;
 		`, " ", props => props.disabled && `
 		pointer-events: none;
-		`, " &&&{border-radius:100%;height:", space(7), ";width:", space(7), ";", props => props.isSelected && `
-			background: ${COLORS.theme.accent};
-			color: ${COLORS.white};
+		`, " &&&{border-radius:", config_values.radiusRound, ";height:", space(7), ";width:", space(7), ";", props => props.isSelected && `
+				background: ${COLORS.theme.accent};
+
+				&,
+				&:hover:not(:disabled, [aria-disabled=true]) {
+					color: ${COLORS.theme.accentInverted};
+				}
+
+				&:focus:not(:disabled),
+				&:focus:not(:disabled) {
+					border: ${config_values.borderWidthFocus} solid currentColor;
+				}
+
+				/* Highlight the selected day for high-contrast mode */
+				&::after {
+					content: '';
+					position: absolute;
+					pointer-events: none;
+					inset: 0;
+					border-radius: inherit;
+					border: 1px solid transparent;
+				}
 			`, " ", props => !props.isSelected && props.isToday && `
-			background: ${COLORS.gray[200]};
+			background: ${COLORS.theme.gray[200]};
 			`, ";}", props => props.hasEvents && `
 		::before {
-			background: ${props.isSelected ? COLORS.white : COLORS.theme.accent};
-			border-radius: 2px;
-			bottom: 2px;
+			border: 2px solid ${props.isSelected ? COLORS.theme.accentInverted : COLORS.theme.accent};
+			border-radius: ${config_values.radiusRound};
 			content: " ";
-			height: 4px;
 			left: 50%;
-			margin-left: -2px;
 			position: absolute;
-			width: 4px;
+			transform: translate(-50%, 9px);
 		}
 		`, ";" + ( true ? "" : 0));
 
@@ -53850,7 +54058,7 @@ function inputToDate(input) {
   if (typeof input === 'string') {
     return new Date(input);
   }
-  return toDate_toDate(input);
+  return toDate(input);
 }
 
 /**
@@ -53916,7 +54124,6 @@ const TIMEZONELESS_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
  * External dependencies
  */
 
-
 /**
  * WordPress dependencies
  */
@@ -53973,14 +54180,14 @@ function DatePicker({
     viewPreviousMonth,
     viewNextMonth
   } = useLilius({
-    selected: [startOfDay_startOfDay(date)],
-    viewing: startOfDay_startOfDay(date),
+    selected: [startOfDay(date)],
+    viewing: startOfDay(date),
     weekStartsOn
   });
 
   // Used to implement a roving tab index. Tracks the day that receives focus
   // when the user tabs into the calendar.
-  const [focusable, setFocusable] = (0,external_wp_element_namespaceObject.useState)(startOfDay_startOfDay(date));
+  const [focusable, setFocusable] = (0,external_wp_element_namespaceObject.useState)(startOfDay(date));
 
   // Allows us to only programmatically focus() a day when focus was already
   // within the calendar. This stops us stealing focus from e.g. a TimePicker
@@ -53991,9 +54198,9 @@ function DatePicker({
   const [prevCurrentDate, setPrevCurrentDate] = (0,external_wp_element_namespaceObject.useState)(currentDate);
   if (currentDate !== prevCurrentDate) {
     setPrevCurrentDate(currentDate);
-    setSelected([startOfDay_startOfDay(date)]);
-    setViewing(startOfDay_startOfDay(date));
-    setFocusable(startOfDay_startOfDay(date));
+    setSelected([startOfDay(date)]);
+    setViewing(startOfDay(date));
+    setFocusable(startOfDay(date));
   }
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(styles_Wrapper, {
     className: "components-datetime__date",
@@ -54006,9 +54213,10 @@ function DatePicker({
         "aria-label": (0,external_wp_i18n_namespaceObject.__)('View previous month'),
         onClick: () => {
           viewPreviousMonth();
-          setFocusable(subMonths_subMonths(focusable, 1));
-          onMonthPreviewed?.(format(subMonths_subMonths(viewing, 1), TIMEZONELESS_FORMAT));
-        }
+          setFocusable(subMonths(focusable, 1));
+          onMonthPreviewed?.(format(subMonths(viewing, 1), TIMEZONELESS_FORMAT));
+        },
+        size: "compact"
       }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(NavigatorHeading, {
         level: 3,
         children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)("strong", {
@@ -54020,9 +54228,10 @@ function DatePicker({
         "aria-label": (0,external_wp_i18n_namespaceObject.__)('View next month'),
         onClick: () => {
           viewNextMonth();
-          setFocusable(addMonths_addMonths(focusable, 1));
-          onMonthPreviewed?.(format(addMonths_addMonths(viewing, 1), TIMEZONELESS_FORMAT));
-        }
+          setFocusable(addMonths(focusable, 1));
+          onMonthPreviewed?.(format(addMonths(viewing, 1), TIMEZONELESS_FORMAT));
+        },
+        size: "compact"
       })]
     }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(Calendar, {
       onFocus: () => setIsFocusWithinCalendar(true),
@@ -54037,7 +54246,7 @@ function DatePicker({
           day: day,
           column: index + 1,
           isSelected: isSelected(day),
-          isFocusable: isEqual_isEqual(day, focusable),
+          isFocusable: isEqual(day, focusable),
           isFocusAllowed: isFocusWithinCalendar,
           isToday: isSameDay(day, new Date()),
           isInvalid: isInvalidDate ? isInvalidDate(day) : false,
@@ -54052,28 +54261,28 @@ function DatePicker({
           onKeyDown: event => {
             let nextFocusable;
             if (event.key === 'ArrowLeft') {
-              nextFocusable = addDays_addDays(day, (0,external_wp_i18n_namespaceObject.isRTL)() ? 1 : -1);
+              nextFocusable = addDays(day, (0,external_wp_i18n_namespaceObject.isRTL)() ? 1 : -1);
             }
             if (event.key === 'ArrowRight') {
-              nextFocusable = addDays_addDays(day, (0,external_wp_i18n_namespaceObject.isRTL)() ? -1 : 1);
+              nextFocusable = addDays(day, (0,external_wp_i18n_namespaceObject.isRTL)() ? -1 : 1);
             }
             if (event.key === 'ArrowUp') {
               nextFocusable = subWeeks(day, 1);
             }
             if (event.key === 'ArrowDown') {
-              nextFocusable = addWeeks_addWeeks(day, 1);
+              nextFocusable = addWeeks(day, 1);
             }
             if (event.key === 'PageUp') {
-              nextFocusable = subMonths_subMonths(day, 1);
+              nextFocusable = subMonths(day, 1);
             }
             if (event.key === 'PageDown') {
-              nextFocusable = addMonths_addMonths(day, 1);
+              nextFocusable = addMonths(day, 1);
             }
             if (event.key === 'Home') {
-              nextFocusable = startOfWeek_startOfWeek(day);
+              nextFocusable = startOfWeek(day);
             }
             if (event.key === 'End') {
-              nextFocusable = startOfDay_startOfDay(endOfWeek_endOfWeek(day));
+              nextFocusable = startOfDay(endOfWeek(day));
             }
             if (nextFocusable) {
               event.preventDefault();
@@ -54176,172 +54385,13 @@ function getDayLabel(date, isSelected, numEvents) {
  * //=> Mon Dec 01 2014 22:15:00
  */
 function startOfMinute(date) {
-  const _date = toDate_toDate(date);
+  const _date = toDate(date);
   _date.setSeconds(0, 0);
   return _date;
 }
 
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_startOfMinute = ((/* unused pure expression or super */ null && (startOfMinute)));
-
-;// CONCATENATED MODULE: ./node_modules/date-fns/getDaysInMonth.mjs
-
-
-
-/**
- * @name getDaysInMonth
- * @category Month Helpers
- * @summary Get the number of days in a month of the given date.
- *
- * @description
- * Get the number of days in a month of the given date.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param date - The given date
- *
- * @returns The number of days in a month
- *
- * @example
- * // How many days are in February 2000?
- * const result = getDaysInMonth(new Date(2000, 1))
- * //=> 29
- */
-function getDaysInMonth_getDaysInMonth(date) {
-  const _date = toDate_toDate(date);
-  const year = _date.getFullYear();
-  const monthIndex = _date.getMonth();
-  const lastDayOfMonth = constructFrom_constructFrom(date, 0);
-  lastDayOfMonth.setFullYear(year, monthIndex + 1, 0);
-  lastDayOfMonth.setHours(0, 0, 0, 0);
-  return lastDayOfMonth.getDate();
-}
-
-// Fallback for modularized imports:
-/* harmony default export */ const date_fns_getDaysInMonth = ((/* unused pure expression or super */ null && (getDaysInMonth_getDaysInMonth)));
-
-;// CONCATENATED MODULE: ./node_modules/date-fns/setMonth.mjs
-
-
-
-
-/**
- * @name setMonth
- * @category Month Helpers
- * @summary Set the month to the given date.
- *
- * @description
- * Set the month to the given date.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param date - The date to be changed
- * @param month - The month index to set (0-11)
- *
- * @returns The new date with the month set
- *
- * @example
- * // Set February to 1 September 2014:
- * const result = setMonth(new Date(2014, 8, 1), 1)
- * //=> Sat Feb 01 2014 00:00:00
- */
-function setMonth_setMonth(date, month) {
-  const _date = toDate_toDate(date);
-  const year = _date.getFullYear();
-  const day = _date.getDate();
-
-  const dateWithDesiredMonth = constructFrom_constructFrom(date, 0);
-  dateWithDesiredMonth.setFullYear(year, month, 15);
-  dateWithDesiredMonth.setHours(0, 0, 0, 0);
-  const daysInMonth = getDaysInMonth_getDaysInMonth(dateWithDesiredMonth);
-  // Set the last day of the new month
-  // if the original date was the last day of the longer month
-  _date.setMonth(month, Math.min(day, daysInMonth));
-  return _date;
-}
-
-// Fallback for modularized imports:
-/* harmony default export */ const date_fns_setMonth = ((/* unused pure expression or super */ null && (setMonth_setMonth)));
-
-;// CONCATENATED MODULE: ./node_modules/date-fns/set.mjs
-
-
-
-
-/**
- * @name set
- * @category Common Helpers
- * @summary Set date values to a given date.
- *
- * @description
- * Set date values to a given date.
- *
- * Sets time values to date from object `values`.
- * A value is not set if it is undefined or null or doesn't exist in `values`.
- *
- * Note about bundle size: `set` does not internally use `setX` functions from date-fns but instead opts
- * to use native `Date#setX` methods. If you use this function, you may not want to include the
- * other `setX` functions that date-fns provides if you are concerned about the bundle size.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param date - The date to be changed
- * @param values - The date values to be set
- *
- * @returns The new date with options set
- *
- * @example
- * // Transform 1 September 2014 into 20 October 2015 in a single line:
- * const result = set(new Date(2014, 8, 20), { year: 2015, month: 9, date: 20 })
- * //=> Tue Oct 20 2015 00:00:00
- *
- * @example
- * // Set 12 PM to 1 September 2014 01:23:45 to 1 September 2014 12:00:00:
- * const result = set(new Date(2014, 8, 1, 1, 23, 45), { hours: 12 })
- * //=> Mon Sep 01 2014 12:23:45
- */
-
-function set_set(date, values) {
-  let _date = toDate_toDate(date);
-
-  // Check if date is Invalid Date because Date.prototype.setFullYear ignores the value of Invalid Date
-  if (isNaN(+_date)) {
-    return constructFrom_constructFrom(date, NaN);
-  }
-
-  if (values.year != null) {
-    _date.setFullYear(values.year);
-  }
-
-  if (values.month != null) {
-    _date = setMonth_setMonth(_date, values.month);
-  }
-
-  if (values.date != null) {
-    _date.setDate(values.date);
-  }
-
-  if (values.hours != null) {
-    _date.setHours(values.hours);
-  }
-
-  if (values.minutes != null) {
-    _date.setMinutes(values.minutes);
-  }
-
-  if (values.seconds != null) {
-    _date.setSeconds(values.seconds);
-  }
-
-  if (values.milliseconds != null) {
-    _date.setMilliseconds(values.milliseconds);
-  }
-
-  return _date;
-}
-
-// Fallback for modularized imports:
-/* harmony default export */ const date_fns_set = ((/* unused pure expression or super */ null && (set_set)));
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/date-time/time/styles.js
 
@@ -54458,6 +54508,64 @@ const timezone_TimeZone = () => {
 };
 /* harmony default export */ const timezone = (timezone_TimeZone);
 
+;// CONCATENATED MODULE: ./packages/components/build-module/toggle-group-control/toggle-group-control-option/component.js
+/**
+ * External dependencies
+ */
+
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+function UnforwardedToggleGroupControlOption(props, ref) {
+  const {
+    label,
+    ...restProps
+  } = props;
+  const optionLabel = restProps['aria-label'] || label;
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(toggle_group_control_option_base_component, {
+    ...restProps,
+    "aria-label": optionLabel,
+    ref: ref,
+    children: label
+  });
+}
+
+/**
+ * `ToggleGroupControlOption` is a form component and is meant to be used as a
+ * child of `ToggleGroupControl`.
+ *
+ * ```jsx
+ * import {
+ *   __experimentalToggleGroupControl as ToggleGroupControl,
+ *   __experimentalToggleGroupControlOption as ToggleGroupControlOption,
+ * } from '@wordpress/components';
+ *
+ * function Example() {
+ *   return (
+ *     <ToggleGroupControl
+ *       label="my label"
+ *       value="vertical"
+ *       isBlock
+ *       __nextHasNoMarginBottom
+ *     >
+ *       <ToggleGroupControlOption value="horizontal" label="Horizontal" />
+ *       <ToggleGroupControlOption value="vertical" label="Vertical" />
+ *     </ToggleGroupControl>
+ *   );
+ * }
+ * ```
+ */
+const ToggleGroupControlOption = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedToggleGroupControlOption);
+/* harmony default export */ const toggle_group_control_option_component = (ToggleGroupControlOption);
+
 ;// CONCATENATED MODULE: ./packages/components/build-module/date-time/time/time-input/index.js
 /**
  * External dependencies
@@ -54473,7 +54581,6 @@ const timezone_TimeZone = () => {
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -54586,23 +54693,22 @@ function TimeInput({
           __unstableStateReducer: buildPadInputStateReducer(2),
           ...minutesProps
         })]
-      }), is12Hour && /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(button_group, {
-        className: "components-datetime__time-field components-datetime__time-field-am-pm" // Unused, for backwards compatibility.
-        ,
-        children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(build_module_button, {
-          className: "components-datetime__time-am-button" // Unused, for backwards compatibility.
-          ,
-          variant: dayPeriod === 'AM' ? 'primary' : 'secondary',
-          __next40pxDefaultSize: true,
-          onClick: buildAmPmChangeCallback('AM'),
-          children: (0,external_wp_i18n_namespaceObject.__)('AM')
-        }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(build_module_button, {
-          className: "components-datetime__time-pm-button" // Unused, for backwards compatibility.
-          ,
-          variant: dayPeriod === 'PM' ? 'primary' : 'secondary',
-          __next40pxDefaultSize: true,
-          onClick: buildAmPmChangeCallback('PM'),
-          children: (0,external_wp_i18n_namespaceObject.__)('PM')
+      }), is12Hour && /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(toggle_group_control_component, {
+        __next40pxDefaultSize: true,
+        __nextHasNoMarginBottom: true,
+        isBlock: true,
+        label: (0,external_wp_i18n_namespaceObject.__)('Select AM or PM'),
+        hideLabelFromVision: true,
+        value: dayPeriod,
+        onChange: newValue => {
+          buildAmPmChangeCallback(newValue)();
+        },
+        children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(toggle_group_control_option_component, {
+          value: "AM",
+          label: (0,external_wp_i18n_namespaceObject.__)('AM')
+        }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(toggle_group_control_option_component, {
+          value: "PM",
+          label: (0,external_wp_i18n_namespaceObject.__)('PM')
         })]
       })]
     })]
@@ -54736,7 +54842,7 @@ function TimePicker({
 
       // We can safely assume value is a number if target is valid.
       const numberValue = Number(value);
-      const newDate = set_set(date, {
+      const newDate = set(date, {
         [method]: numberValue
       });
       setDate(newDate);
@@ -54748,7 +54854,7 @@ function TimePicker({
     hours: newHours,
     minutes: newMinutes
   }) => {
-    const newDate = set_set(date, {
+    const newDate = set(date, {
       hours: newHours,
       minutes: newMinutes
     });
@@ -54783,7 +54889,7 @@ function TimePicker({
       value: month,
       options: monthOptions,
       onChange: value => {
-        const newDate = setMonth_setMonth(date, Number(value) - 1);
+        const newDate = setMonth(date, Number(value) - 1);
         setDate(newDate);
         onChange?.(format(newDate, TIMEZONELESS_FORMAT));
       }
@@ -55062,6 +55168,7 @@ const findSizeBySlug = (sizes, slug) => sizes.find(size => slug === size.slug);
 
 
 
+
 const dimension_control_CONTEXT_VALUE = {
   BaseControl: {
     // Temporary during deprecation grace period: Overrides the underlying `__associatedWPComponentName`
@@ -55075,7 +55182,7 @@ const dimension_control_CONTEXT_VALUE = {
 /**
  * `DimensionControl` is a component designed to provide a UI to control spacing and/or dimensions.
  *
- * This feature is still experimental. “Experimental” means this is an early implementation subject to drastic and breaking changes.
+ * @deprecated
  *
  * ```jsx
  * import { __experimentalDimensionControl as DimensionControl } from '@wordpress/components';
@@ -55107,6 +55214,10 @@ function DimensionControl(props) {
     onChange,
     className = ''
   } = props;
+  external_wp_deprecated_default()('wp.components.DimensionControl', {
+    since: '6.7',
+    version: '7.0'
+  });
   const onChangeSpacingSize = val => {
     const theSize = findSizeBySlug(sizes, val);
     if (!theSize || value === theSize.slug) {
@@ -55348,7 +55459,7 @@ function Draggable({
   __experimentalDragComponent: dragComponent
 }) {
   const dragComponentRef = (0,external_wp_element_namespaceObject.useRef)(null);
-  const cleanup = (0,external_wp_element_namespaceObject.useRef)(() => {});
+  const cleanupRef = (0,external_wp_element_namespaceObject.useRef)(() => {});
 
   /**
    * Removes the element clone, resets cursor, and removes drag listener.
@@ -55357,7 +55468,7 @@ function Draggable({
    */
   function end(event) {
     event.preventDefault();
-    cleanup.current();
+    cleanupRef.current();
     if (onDragEnd) {
       onDragEnd(event);
     }
@@ -55471,7 +55582,7 @@ function Draggable({
     if (onDragStart) {
       onDragStart(event);
     }
-    cleanup.current = () => {
+    cleanupRef.current = () => {
       // Remove drag clone.
       if (cloneWrapper && cloneWrapper.parentNode) {
         cloneWrapper.parentNode.removeChild(cloneWrapper);
@@ -55486,7 +55597,7 @@ function Draggable({
     };
   }
   (0,external_wp_element_namespaceObject.useEffect)(() => () => {
-    cleanup.current();
+    cleanupRef.current();
   }, []);
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(external_ReactJSXRuntime_namespaceObject.Fragment, {
     children: [children({
@@ -56373,9 +56484,13 @@ function FocalPointUnitControl(props) {
  * External dependencies
  */
 
+/**
+ * Internal dependencies
+ */
+
 const PointerCircle = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
   target: "e19snlhg0"
-} : 0)("background-color:transparent;cursor:grab;height:40px;margin:-20px 0 0 -20px;position:absolute;user-select:none;width:40px;will-change:transform;z-index:10000;background:rgba( 255, 255, 255, 0.4 );border:1px solid rgba( 255, 255, 255, 0.4 );border-radius:50%;backdrop-filter:blur( 16px ) saturate( 180% );box-shadow:rgb( 0 0 0 / 10% ) 0px 0px 8px;@media not ( prefers-reduced-motion ){transition:transform 100ms linear;}", ({
+} : 0)("background-color:transparent;cursor:grab;height:40px;margin:-20px 0 0 -20px;position:absolute;user-select:none;width:40px;will-change:transform;z-index:10000;background:rgba( 255, 255, 255, 0.4 );border:1px solid rgba( 255, 255, 255, 0.4 );border-radius:", config_values.radiusRound, ";backdrop-filter:blur( 16px ) saturate( 180% );box-shadow:rgb( 0 0 0 / 10% ) 0px 0px 8px;@media not ( prefers-reduced-motion ){transition:transform 100ms linear;}", ({
   isDragging
 }) => isDragging && `
 			box-shadow: rgb( 0 0 0 / 12% ) 0px 0px 10px;
@@ -56979,64 +57094,6 @@ const FontSizePickerSelect = props => {
   });
 };
 /* harmony default export */ const font_size_picker_select = (FontSizePickerSelect);
-
-;// CONCATENATED MODULE: ./packages/components/build-module/toggle-group-control/toggle-group-control-option/component.js
-/**
- * External dependencies
- */
-
-/**
- * WordPress dependencies
- */
-
-
-/**
- * Internal dependencies
- */
-
-
-
-function UnforwardedToggleGroupControlOption(props, ref) {
-  const {
-    label,
-    ...restProps
-  } = props;
-  const optionLabel = restProps['aria-label'] || label;
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(toggle_group_control_option_base_component, {
-    ...restProps,
-    "aria-label": optionLabel,
-    ref: ref,
-    children: label
-  });
-}
-
-/**
- * `ToggleGroupControlOption` is a form component and is meant to be used as a
- * child of `ToggleGroupControl`.
- *
- * ```jsx
- * import {
- *   __experimentalToggleGroupControl as ToggleGroupControl,
- *   __experimentalToggleGroupControlOption as ToggleGroupControlOption,
- * } from '@wordpress/components';
- *
- * function Example() {
- *   return (
- *     <ToggleGroupControl
- *       label="my label"
- *       value="vertical"
- *       isBlock
- *       __nextHasNoMarginBottom
- *     >
- *       <ToggleGroupControlOption value="horizontal" label="Horizontal" />
- *       <ToggleGroupControlOption value="vertical" label="Vertical" />
- *     </ToggleGroupControl>
- *   );
- * }
- * ```
- */
-const ToggleGroupControlOption = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedToggleGroupControlOption);
-/* harmony default export */ const toggle_group_control_option_component = (ToggleGroupControlOption);
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/font-size-picker/constants.js
 /**
@@ -58310,6 +58367,7 @@ function Guide({
           className: "components-guide__finish-button",
           variant: "primary",
           onClick: onFinish,
+          __next40pxDefaultSize: true,
           children: finishButtonText
         })]
       })]
@@ -58474,44 +58532,6 @@ function UnconnectedItem(props, forwardedRef) {
  */
 const component_Item = contextConnect(UnconnectedItem, 'Item');
 /* harmony default export */ const item_component = (component_Item);
-
-;// CONCATENATED MODULE: ./packages/components/build-module/input-control/input-prefix-wrapper.js
-/**
- * External dependencies
- */
-
-/**
- * Internal dependencies
- */
-
-
-
-function UnconnectedInputControlPrefixWrapper(props, forwardedRef) {
-  const derivedProps = useContextSystem(props, 'InputControlPrefixWrapper');
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(spacer_component, {
-    marginBottom: 0,
-    ...derivedProps,
-    ref: forwardedRef
-  });
-}
-
-/**
- * A convenience wrapper for the `prefix` when you want to apply
- * standard padding in accordance with the size variant.
- *
- * ```jsx
- * import {
- *   __experimentalInputControl as InputControl,
- *   __experimentalInputControlPrefixWrapper as InputControlPrefixWrapper,
- * } from '@wordpress/components';
- *
- * <InputControl
- *   prefix={<InputControlPrefixWrapper>@</InputControlPrefixWrapper>}
- * />
- * ```
- */
-const InputControlPrefixWrapper = contextConnect(UnconnectedInputControlPrefixWrapper, 'InputControlPrefixWrapper');
-/* harmony default export */ const input_prefix_wrapper = (InputControlPrefixWrapper);
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/keyboard-shortcuts/index.js
 /**
@@ -59022,7 +59042,7 @@ const GroupTitleUI = /*#__PURE__*/emotion_styled_base_browser_esm(heading_compon
 } : 0)("min-height:", space(12), ";align-items:center;color:inherit;display:flex;justify-content:space-between;margin-bottom:", space(2), ";padding:", () => (0,external_wp_i18n_namespaceObject.isRTL)() ? `${space(1)} ${space(4)} ${space(1)} ${space(2)}` : `${space(1)} ${space(2)} ${space(1)} ${space(4)}`, ";" + ( true ? "" : 0));
 const ItemBaseUI = /*#__PURE__*/emotion_styled_base_browser_esm("li",  true ? {
   target: "eeiismy4"
-} : 0)("border-radius:2px;color:inherit;margin-bottom:0;>button,>a.components-button,>a{width:100%;color:inherit;opacity:0.7;padding:", space(2), " ", space(4), ";", rtl({
+} : 0)("border-radius:", config_values.radiusSmall, ";color:inherit;margin-bottom:0;>button,>a.components-button,>a{width:100%;color:inherit;opacity:0.7;padding:", space(2), " ", space(4), ";", rtl({
   textAlign: 'left'
 }, {
   textAlign: 'right'
@@ -59035,7 +59055,7 @@ const ItemIconUI = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? 
 } : 0)("display:flex;margin-right:", space(2), ";" + ( true ? "" : 0));
 const ItemBadgeUI = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? {
   target: "eeiismy1"
-} : 0)("margin-left:", () => (0,external_wp_i18n_namespaceObject.isRTL)() ? '0' : space(2), ";margin-right:", () => (0,external_wp_i18n_namespaceObject.isRTL)() ? space(2) : '0', ";display:inline-flex;padding:", space(1), " ", space(3), ";border-radius:2px;@keyframes fade-in{from{opacity:0;}to{opacity:1;}}@media not ( prefers-reduced-motion ){animation:fade-in 250ms ease-out;}" + ( true ? "" : 0));
+} : 0)("margin-left:", () => (0,external_wp_i18n_namespaceObject.isRTL)() ? '0' : space(2), ";margin-right:", () => (0,external_wp_i18n_namespaceObject.isRTL)() ? space(2) : '0', ";display:inline-flex;padding:", space(1), " ", space(3), ";border-radius:", config_values.radiusSmall, ";@keyframes fade-in{from{opacity:0;}to{opacity:1;}}@media not ( prefers-reduced-motion ){animation:fade-in 250ms ease-out;}" + ( true ? "" : 0));
 const ItemTitleUI = /*#__PURE__*/emotion_styled_base_browser_esm(text_component,  true ? {
   target: "eeiismy0"
 } : 0)(() => (0,external_wp_i18n_namespaceObject.isRTL)() ? 'margin-left: auto;' : 'margin-right: auto;', " font-size:14px;line-height:20px;color:inherit;" + ( true ? "" : 0));
@@ -59252,10 +59272,10 @@ function Navigation({
   };
 
   // Used to prevent the sliding animation on mount
-  const isMounted = (0,external_wp_element_namespaceObject.useRef)(false);
+  const isMountedRef = (0,external_wp_element_namespaceObject.useRef)(false);
   (0,external_wp_element_namespaceObject.useEffect)(() => {
-    if (!isMounted.current) {
-      isMounted.current = true;
+    if (!isMountedRef.current) {
+      isMountedRef.current = true;
     }
   }, []);
   (0,external_wp_element_namespaceObject.useEffect)(() => {
@@ -59281,7 +59301,7 @@ function Navigation({
     className: classes,
     children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)("div", {
       className: animateClassName ? dist_clsx({
-        [animateClassName]: isMounted.current && slideOrigin
+        [animateClassName]: isMountedRef.current && slideOrigin
       }) : undefined,
       children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(NavigationContext.Provider, {
         value: context,
@@ -59855,7 +59875,10 @@ function UnforwardedSearchControl({
 }, forwardedRef) {
   // @ts-expect-error The `disabled` prop is not yet supported in the SearchControl component.
   // Work with the design team (@WordPress/gutenberg-design) if you need this feature.
-  delete restProps.disabled;
+  const {
+    disabled,
+    ...filteredRestProps
+  } = restProps;
   const searchRef = (0,external_wp_element_namespaceObject.useRef)(null);
   const instanceId = (0,external_wp_compose_namespaceObject.useInstanceId)(SearchControl, 'components-search-control');
   const contextValue = (0,external_wp_element_namespaceObject.useMemo)(() => ({
@@ -59897,7 +59920,7 @@ function UnforwardedSearchControl({
           onClose: onClose
         })
       }),
-      ...restProps
+      ...filteredRestProps
     })
   });
 }
@@ -60689,44 +60712,83 @@ function navigator_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tr
  * External dependencies
  */
 
-const navigatorProviderWrapper =  true ? {
-  name: "xpkswc",
-  styles: "overflow-x:hidden;contain:content"
+const navigatorWrapper =  true ? {
+  name: "1br0vvk",
+  styles: "position:relative;overflow-x:clip;contain:layout;display:grid;grid-template-columns:1fr;grid-template-rows:1fr;align-items:start"
 } : 0;
-const fadeInFromRight = emotion_react_browser_esm_keyframes({
-  '0%': {
-    opacity: 0,
-    transform: `translateX( 50px )`
-  },
-  '100%': {
-    opacity: 1,
-    transform: 'none'
+const fadeIn = emotion_react_browser_esm_keyframes({
+  from: {
+    opacity: 0
   }
 });
-const fadeInFromLeft = emotion_react_browser_esm_keyframes({
-  '0%': {
-    opacity: 0,
-    transform: `translateX( -50px )`
-  },
-  '100%': {
-    opacity: 1,
-    transform: 'none'
+const fadeOut = emotion_react_browser_esm_keyframes({
+  to: {
+    opacity: 0
   }
 });
-const navigatorScreenAnimation = ({
-  isInitial,
-  isBack,
-  isRTL
-}) => {
-  if (isInitial && !isBack) {
-    return;
+const slideFromRight = emotion_react_browser_esm_keyframes({
+  from: {
+    transform: 'translateX(100px)'
   }
-  const animationName = isRTL && isBack || !isRTL && !isBack ? fadeInFromRight : fadeInFromLeft;
-  return /*#__PURE__*/emotion_react_browser_esm_css("animation-duration:0.14s;animation-timing-function:ease-in-out;will-change:transform,opacity;animation-name:", animationName, ";@media ( prefers-reduced-motion ){animation-duration:0s;}" + ( true ? "" : 0),  true ? "" : 0);
+});
+const slideToLeft = emotion_react_browser_esm_keyframes({
+  to: {
+    transform: 'translateX(-80px)'
+  }
+});
+const slideFromLeft = emotion_react_browser_esm_keyframes({
+  from: {
+    transform: 'translateX(-100px)'
+  }
+});
+const slideToRight = emotion_react_browser_esm_keyframes({
+  to: {
+    transform: 'translateX(80px)'
+  }
+});
+const FADE = {
+  DURATION: 70,
+  EASING: 'linear',
+  DELAY: {
+    IN: 70,
+    OUT: 40
+  }
 };
-const navigatorScreen = props => /*#__PURE__*/emotion_react_browser_esm_css("overflow-x:auto;max-height:100%;", navigatorScreenAnimation(props), ";" + ( true ? "" : 0),  true ? "" : 0);
+const SLIDE = {
+  DURATION: 300,
+  EASING: 'cubic-bezier(0.33, 0, 0, 1)'
+};
+const TOTAL_ANIMATION_DURATION = {
+  IN: Math.max(FADE.DURATION + FADE.DELAY.IN, SLIDE.DURATION),
+  OUT: Math.max(FADE.DURATION + FADE.DELAY.OUT, SLIDE.DURATION)
+};
+const ANIMATION_END_NAMES = {
+  end: {
+    in: slideFromRight.name,
+    out: slideToLeft.name
+  },
+  start: {
+    in: slideFromLeft.name,
+    out: slideToRight.name
+  }
+};
+const ANIMATION = {
+  end: {
+    in: /*#__PURE__*/emotion_react_browser_esm_css(FADE.DURATION, "ms ", FADE.EASING, " ", FADE.DELAY.IN, "ms both ", fadeIn, ",", SLIDE.DURATION, "ms ", SLIDE.EASING, " both ", slideFromRight, ";" + ( true ? "" : 0),  true ? "" : 0),
+    out: /*#__PURE__*/emotion_react_browser_esm_css(FADE.DURATION, "ms ", FADE.EASING, " ", FADE.DELAY.OUT, "ms both ", fadeOut, ",", SLIDE.DURATION, "ms ", SLIDE.EASING, " both ", slideToLeft, ";" + ( true ? "" : 0),  true ? "" : 0)
+  },
+  start: {
+    in: /*#__PURE__*/emotion_react_browser_esm_css(FADE.DURATION, "ms ", FADE.EASING, " ", FADE.DELAY.IN, "ms both ", fadeIn, ",", SLIDE.DURATION, "ms ", SLIDE.EASING, " both ", slideFromLeft, ";" + ( true ? "" : 0),  true ? "" : 0),
+    out: /*#__PURE__*/emotion_react_browser_esm_css(FADE.DURATION, "ms ", FADE.EASING, " ", FADE.DELAY.OUT, "ms both ", fadeOut, ",", SLIDE.DURATION, "ms ", SLIDE.EASING, " both ", slideToRight, ";" + ( true ? "" : 0),  true ? "" : 0)
+  }
+};
+const navigatorScreenAnimation = /*#__PURE__*/emotion_react_browser_esm_css("z-index:1;&[data-animation-type='out']{z-index:0;}@media not ( prefers-reduced-motion ){&:not( [data-skip-animation] ){", ['start', 'end'].map(direction => ['in', 'out'].map(type => /*#__PURE__*/emotion_react_browser_esm_css("&[data-animation-direction='", direction, "'][data-animation-type='", type, "']{animation:", ANIMATION[direction][type], ";}" + ( true ? "" : 0),  true ? "" : 0))), ";}}" + ( true ? "" : 0),  true ? "" : 0);
+const navigatorScreen =  true ? {
+  name: "14di7zd",
+  styles: "overflow-x:auto;max-height:100%;box-sizing:border-box;position:relative;grid-column:1/-1;grid-row:1/-1"
+} : 0;
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigator/navigator-provider/component.js
+;// CONCATENATED MODULE: ./packages/components/build-module/navigator/navigator/component.js
 /**
  * External dependencies
  */
@@ -60734,6 +60796,7 @@ const navigatorScreen = props => /*#__PURE__*/emotion_react_browser_esm_css("ove
 /**
  * WordPress dependencies
  */
+
 
 
 
@@ -60749,10 +60812,13 @@ const navigatorScreen = props => /*#__PURE__*/emotion_react_browser_esm_css("ove
 
 
 
-const MAX_HISTORY_LENGTH = 50;
 function addScreen({
   screens
 }, screen) {
+  if (screens.some(s => s.path === screen.path)) {
+     false ? 0 : void 0;
+    return screens;
+  }
   return [...screens, screen];
 }
 function removeScreen({
@@ -60760,72 +60826,88 @@ function removeScreen({
 }, screen) {
   return screens.filter(s => s.id !== screen.id);
 }
-function goBack({
-  locationHistory
-}) {
-  if (locationHistory.length <= 1) {
-    return locationHistory;
-  }
-  return [...locationHistory.slice(0, -2), {
-    ...locationHistory[locationHistory.length - 2],
-    isBack: true,
-    hasRestoredFocus: false
-  }];
-}
 function goTo(state, path, options = {}) {
+  var _focusSelectorsCopy2;
   const {
-    locationHistory
+    focusSelectors
   } = state;
+  const currentLocation = {
+    ...state.currentLocation
+  };
   const {
-    focusTargetSelector,
+    // Default assignments
     isBack = false,
     skipFocus = false,
-    replace = false,
+    // Extract to avoid forwarding
+    replace,
+    focusTargetSelector,
+    // Rest
     ...restOptions
   } = options;
-  const isNavigatingToSamePath = locationHistory.length > 0 && locationHistory[locationHistory.length - 1].path === path;
-  if (isNavigatingToSamePath) {
-    return locationHistory;
+  if (currentLocation.path === path) {
+    return {
+      currentLocation,
+      focusSelectors
+    };
   }
-  const isNavigatingToPreviousPath = isBack && locationHistory.length > 1 && locationHistory[locationHistory.length - 2].path === path;
-  if (isNavigatingToPreviousPath) {
-    return goBack(state);
+  let focusSelectorsCopy;
+  function getFocusSelectorsCopy() {
+    var _focusSelectorsCopy;
+    focusSelectorsCopy = (_focusSelectorsCopy = focusSelectorsCopy) !== null && _focusSelectorsCopy !== void 0 ? _focusSelectorsCopy : new Map(state.focusSelectors);
+    return focusSelectorsCopy;
   }
-  const newLocation = {
-    ...restOptions,
-    path,
-    isBack,
-    hasRestoredFocus: false,
-    skipFocus
+
+  // Set a focus selector that will be used when navigating
+  // back to the current location.
+  if (focusTargetSelector && currentLocation.path) {
+    getFocusSelectorsCopy().set(currentLocation.path, focusTargetSelector);
+  }
+
+  // Get the focus selector for the new location.
+  let currentFocusSelector;
+  if (focusSelectors.get(path)) {
+    if (isBack) {
+      // Use the found focus selector only when navigating back.
+      currentFocusSelector = focusSelectors.get(path);
+    }
+    // Make a copy of the focusSelectors map to remove the focus selector
+    // only if necessary (ie. a focus selector was found).
+    getFocusSelectorsCopy().delete(path);
+  }
+  return {
+    currentLocation: {
+      ...restOptions,
+      isInitial: false,
+      path,
+      isBack,
+      hasRestoredFocus: false,
+      focusTargetSelector: currentFocusSelector,
+      skipFocus
+    },
+    focusSelectors: (_focusSelectorsCopy2 = focusSelectorsCopy) !== null && _focusSelectorsCopy2 !== void 0 ? _focusSelectorsCopy2 : focusSelectors
   };
-  if (locationHistory.length === 0) {
-    return replace ? [] : [newLocation];
-  }
-  const newLocationHistory = locationHistory.slice(locationHistory.length > MAX_HISTORY_LENGTH - 1 ? 1 : 0, -1);
-  if (!replace) {
-    newLocationHistory.push(
-    // Assign `focusTargetSelector` to the previous location in history
-    // (the one we just navigated from).
-    {
-      ...locationHistory[locationHistory.length - 1],
-      focusTargetSelector
-    });
-  }
-  newLocationHistory.push(newLocation);
-  return newLocationHistory;
 }
 function goToParent(state, options = {}) {
   const {
-    locationHistory,
-    screens
+    screens,
+    focusSelectors
   } = state;
-  const currentPath = locationHistory[locationHistory.length - 1].path;
+  const currentLocation = {
+    ...state.currentLocation
+  };
+  const currentPath = currentLocation.path;
   if (currentPath === undefined) {
-    return locationHistory;
+    return {
+      currentLocation,
+      focusSelectors
+    };
   }
   const parentPath = findParent(currentPath, screens);
   if (parentPath === undefined) {
-    return locationHistory;
+    return {
+      currentLocation,
+      focusSelectors
+    };
   }
   return goTo(state, parentPath, {
     ...options,
@@ -60835,8 +60917,10 @@ function goToParent(state, options = {}) {
 function routerReducer(state, action) {
   let {
     screens,
-    locationHistory,
-    matchedPath
+    currentLocation,
+    matchedPath,
+    focusSelectors,
+    ...restState
   } = state;
   switch (action.type) {
     case 'add':
@@ -60846,20 +60930,26 @@ function routerReducer(state, action) {
       screens = removeScreen(state, action.screen);
       break;
     case 'goto':
-      locationHistory = goTo(state, action.path, action.options);
+      ({
+        currentLocation,
+        focusSelectors
+      } = goTo(state, action.path, action.options));
       break;
     case 'gotoparent':
-      locationHistory = goToParent(state, action.options);
+      ({
+        currentLocation,
+        focusSelectors
+      } = goToParent(state, action.options));
       break;
   }
 
   // Return early in case there is no change
-  if (screens === state.screens && locationHistory === state.locationHistory) {
+  if (screens === state.screens && currentLocation === state.currentLocation) {
     return state;
   }
 
   // Compute the matchedPath
-  const currentPath = locationHistory.length > 0 ? locationHistory[locationHistory.length - 1].path : undefined;
+  const currentPath = currentLocation.path;
   matchedPath = currentPath !== undefined ? patternMatch(currentPath, screens) : undefined;
 
   // If the new match is the same as the previous match,
@@ -60868,24 +60958,29 @@ function routerReducer(state, action) {
     matchedPath = state.matchedPath;
   }
   return {
+    ...restState,
     screens,
-    locationHistory,
-    matchedPath
+    currentLocation,
+    matchedPath,
+    focusSelectors
   };
 }
-function UnconnectedNavigatorProvider(props, forwardedRef) {
+function UnconnectedNavigator(props, forwardedRef) {
   const {
-    initialPath,
+    initialPath: initialPathProp,
     children,
     className,
     ...otherProps
-  } = useContextSystem(props, 'NavigatorProvider');
-  const [routerState, dispatch] = (0,external_wp_element_namespaceObject.useReducer)(routerReducer, initialPath, path => ({
+  } = useContextSystem(props, 'Navigator');
+  const [routerState, dispatch] = (0,external_wp_element_namespaceObject.useReducer)(routerReducer, initialPathProp, path => ({
     screens: [],
-    locationHistory: [{
-      path
-    }],
-    matchedPath: undefined
+    currentLocation: {
+      path,
+      isInitial: true
+    },
+    matchedPath: undefined,
+    focusSelectors: new Map(),
+    initialPath: initialPathProp
   }));
 
   // The methods are constant forever, create stable references to them.
@@ -60922,23 +61017,20 @@ function UnconnectedNavigatorProvider(props, forwardedRef) {
     })
   }), []);
   const {
-    locationHistory,
+    currentLocation,
     matchedPath
   } = routerState;
   const navigatorContextValue = (0,external_wp_element_namespaceObject.useMemo)(() => {
     var _matchedPath$params;
     return {
-      location: {
-        ...locationHistory[locationHistory.length - 1],
-        isInitial: locationHistory.length === 1
-      },
+      location: currentLocation,
       params: (_matchedPath$params = matchedPath?.params) !== null && _matchedPath$params !== void 0 ? _matchedPath$params : {},
       match: matchedPath?.id,
       ...methods
     };
-  }, [locationHistory, matchedPath, methods]);
+  }, [currentLocation, matchedPath, methods]);
   const cx = useCx();
-  const classes = (0,external_wp_element_namespaceObject.useMemo)(() => cx(navigatorProviderWrapper, className), [className, cx]);
+  const classes = (0,external_wp_element_namespaceObject.useMemo)(() => cx(navigatorWrapper, className), [className, cx]);
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(component, {
     ref: forwardedRef,
     className: classes,
@@ -60949,45 +61041,117 @@ function UnconnectedNavigatorProvider(props, forwardedRef) {
     })
   });
 }
-
-/**
- * The `NavigatorProvider` component allows rendering nested views/panels/menus
- * (via the `NavigatorScreen` component and navigate between these different
- * view (via the `NavigatorButton` and `NavigatorBackButton` components or the
- * `useNavigator` hook).
- *
- * ```jsx
- * import {
- *   __experimentalNavigatorProvider as NavigatorProvider,
- *   __experimentalNavigatorScreen as NavigatorScreen,
- *   __experimentalNavigatorButton as NavigatorButton,
- *   __experimentalNavigatorBackButton as NavigatorBackButton,
- * } from '@wordpress/components';
- *
- * const MyNavigation = () => (
- *   <NavigatorProvider initialPath="/">
- *     <NavigatorScreen path="/">
- *       <p>This is the home screen.</p>
- *        <NavigatorButton path="/child">
- *          Navigate to child screen.
- *       </NavigatorButton>
- *     </NavigatorScreen>
- *
- *     <NavigatorScreen path="/child">
- *       <p>This is the child screen.</p>
- *       <NavigatorBackButton>
- *         Go back
- *       </NavigatorBackButton>
- *     </NavigatorScreen>
- *   </NavigatorProvider>
- * );
- * ```
- */
-const NavigatorProvider = contextConnect(UnconnectedNavigatorProvider, 'NavigatorProvider');
-/* harmony default export */ const navigator_provider_component = (NavigatorProvider);
+const component_Navigator = contextConnect(UnconnectedNavigator, 'Navigator');
 
 ;// CONCATENATED MODULE: external ["wp","escapeHtml"]
 const external_wp_escapeHtml_namespaceObject = window["wp"]["escapeHtml"];
+;// CONCATENATED MODULE: ./packages/components/build-module/navigator/navigator-screen/use-screen-animate-presence.js
+/**
+ * WordPress dependencies
+ */
+
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+// Possible values:
+// - 'INITIAL': the initial state
+// - 'ANIMATING_IN': start enter animation
+// - 'IN': enter animation has ended
+// - 'ANIMATING_OUT': start exit animation
+// - 'OUT': the exit animation has ended
+
+// Allow an extra 20% of the total animation duration to account for potential
+// event loop delays.
+const ANIMATION_TIMEOUT_MARGIN = 1.2;
+const isEnterAnimation = (animationDirection, animationStatus, animationName) => animationStatus === 'ANIMATING_IN' && animationName === ANIMATION_END_NAMES[animationDirection].in;
+const isExitAnimation = (animationDirection, animationStatus, animationName) => animationStatus === 'ANIMATING_OUT' && animationName === ANIMATION_END_NAMES[animationDirection].out;
+function useScreenAnimatePresence({
+  isMatch,
+  skipAnimation,
+  isBack,
+  onAnimationEnd
+}) {
+  const isRTL = (0,external_wp_i18n_namespaceObject.isRTL)();
+  const prefersReducedMotion = (0,external_wp_compose_namespaceObject.useReducedMotion)();
+  const [animationStatus, setAnimationStatus] = (0,external_wp_element_namespaceObject.useState)('INITIAL');
+
+  // Start enter and exit animations when the screen is selected or deselected.
+  // The animation status is set to `IN` or `OUT` immediately if the animation
+  // should be skipped.
+  const becameSelected = animationStatus !== 'ANIMATING_IN' && animationStatus !== 'IN' && isMatch;
+  const becameUnselected = animationStatus !== 'ANIMATING_OUT' && animationStatus !== 'OUT' && !isMatch;
+  (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
+    if (becameSelected) {
+      setAnimationStatus(skipAnimation || prefersReducedMotion ? 'IN' : 'ANIMATING_IN');
+    } else if (becameUnselected) {
+      setAnimationStatus(skipAnimation || prefersReducedMotion ? 'OUT' : 'ANIMATING_OUT');
+    }
+  }, [becameSelected, becameUnselected, skipAnimation, prefersReducedMotion]);
+
+  // Animation attributes (derived state).
+  const animationDirection = isRTL && isBack || !isRTL && !isBack ? 'end' : 'start';
+  const isAnimatingIn = animationStatus === 'ANIMATING_IN';
+  const isAnimatingOut = animationStatus === 'ANIMATING_OUT';
+  let animationType;
+  if (isAnimatingIn) {
+    animationType = 'in';
+  } else if (isAnimatingOut) {
+    animationType = 'out';
+  }
+  const onScreenAnimationEnd = (0,external_wp_element_namespaceObject.useCallback)(e => {
+    onAnimationEnd?.(e);
+    if (isExitAnimation(animationDirection, animationStatus, e.animationName)) {
+      // When the exit animation ends on an unselected screen, set the
+      // status to 'OUT' to remove the screen contents from the DOM.
+      setAnimationStatus('OUT');
+    } else if (isEnterAnimation(animationDirection, animationStatus, e.animationName)) {
+      // When the enter animation ends on a selected screen, set the
+      // status to 'IN' to ensure the screen is rendered in the DOM.
+      setAnimationStatus('IN');
+    }
+  }, [onAnimationEnd, animationStatus, animationDirection]);
+
+  // Fallback timeout to ensure that the logic is applied even if the
+  // `animationend` event is not triggered.
+  (0,external_wp_element_namespaceObject.useEffect)(() => {
+    let animationTimeout;
+    if (isAnimatingOut) {
+      animationTimeout = window.setTimeout(() => {
+        setAnimationStatus('OUT');
+        animationTimeout = undefined;
+      }, TOTAL_ANIMATION_DURATION.OUT * ANIMATION_TIMEOUT_MARGIN);
+    } else if (isAnimatingIn) {
+      animationTimeout = window.setTimeout(() => {
+        setAnimationStatus('IN');
+        animationTimeout = undefined;
+      }, TOTAL_ANIMATION_DURATION.IN * ANIMATION_TIMEOUT_MARGIN);
+    }
+    return () => {
+      if (animationTimeout) {
+        window.clearTimeout(animationTimeout);
+        animationTimeout = undefined;
+      }
+    };
+  }, [isAnimatingOut, isAnimatingIn]);
+  return {
+    animationStyles: navigatorScreenAnimation,
+    // Render the screen's contents in the DOM not only when the screen is
+    // selected, but also while it is animating out.
+    shouldRenderScreen: isMatch || animationStatus === 'IN' || animationStatus === 'ANIMATING_OUT',
+    screenProps: {
+      onAnimationEnd: onScreenAnimationEnd,
+      'data-animation-direction': animationDirection,
+      'data-animation-type': animationType,
+      'data-skip-animation': skipAnimation || undefined
+    }
+  };
+}
+
 ;// CONCATENATED MODULE: ./packages/components/build-module/navigator/navigator-screen/component.js
 /**
  * External dependencies
@@ -61012,22 +61176,36 @@ const external_wp_escapeHtml_namespaceObject = window["wp"]["escapeHtml"];
 
 
 
+
 function UnconnectedNavigatorScreen(props, forwardedRef) {
+  if (!/^\//.test(props.path)) {
+     false ? 0 : void 0;
+  }
   const screenId = (0,external_wp_element_namespaceObject.useId)();
   const {
     children,
     className,
     path,
+    onAnimationEnd: onAnimationEndProp,
     ...otherProps
-  } = useContextSystem(props, 'NavigatorScreen');
+  } = useContextSystem(props, 'Navigator.Screen');
   const {
     location,
     match,
     addScreen,
     removeScreen
   } = (0,external_wp_element_namespaceObject.useContext)(NavigatorContext);
+  const {
+    isInitial,
+    isBack,
+    focusTargetSelector,
+    skipFocus
+  } = location;
   const isMatch = match === screenId;
   const wrapperRef = (0,external_wp_element_namespaceObject.useRef)(null);
+  const skipAnimationAndFocusRestoration = !!isInitial && !isBack;
+
+  // Register / unregister screen with the navigator context.
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     const screen = {
       id: screenId,
@@ -61036,103 +61214,71 @@ function UnconnectedNavigatorScreen(props, forwardedRef) {
     addScreen(screen);
     return () => removeScreen(screen);
   }, [screenId, path, addScreen, removeScreen]);
-  const isRTL = (0,external_wp_i18n_namespaceObject.isRTL)();
+
+  // Animation.
   const {
-    isInitial,
-    isBack
-  } = location;
-  const cx = useCx();
-  const classes = (0,external_wp_element_namespaceObject.useMemo)(() => cx(navigatorScreen({
-    isInitial,
+    animationStyles,
+    shouldRenderScreen,
+    screenProps
+  } = useScreenAnimatePresence({
+    isMatch,
     isBack,
-    isRTL
-  }), className), [className, cx, isInitial, isBack, isRTL]);
+    onAnimationEnd: onAnimationEndProp,
+    skipAnimation: skipAnimationAndFocusRestoration
+  });
+  const cx = useCx();
+  const classes = (0,external_wp_element_namespaceObject.useMemo)(() => cx(navigatorScreen, animationStyles, className), [className, cx, animationStyles]);
+
+  // Focus restoration
   const locationRef = (0,external_wp_element_namespaceObject.useRef)(location);
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     locationRef.current = location;
   }, [location]);
-
-  // Focus restoration
-  const isInitialLocation = location.isInitial && !location.isBack;
   (0,external_wp_element_namespaceObject.useEffect)(() => {
+    const wrapperEl = wrapperRef.current;
     // Only attempt to restore focus:
     // - if the current location is not the initial one (to avoid moving focus on page load)
     // - when the screen becomes visible
     // - if the wrapper ref has been assigned
     // - if focus hasn't already been restored for the current location
     // - if the `skipFocus` option is not set to `true`. This is useful when we trigger the navigation outside of NavigatorScreen.
-    if (isInitialLocation || !isMatch || !wrapperRef.current || locationRef.current.hasRestoredFocus || location.skipFocus) {
+    if (skipAnimationAndFocusRestoration || !isMatch || !wrapperEl || locationRef.current.hasRestoredFocus || skipFocus) {
       return;
     }
-    const activeElement = wrapperRef.current.ownerDocument.activeElement;
+    const activeElement = wrapperEl.ownerDocument.activeElement;
 
     // If an element is already focused within the wrapper do not focus the
     // element. This prevents inputs or buttons from losing focus unnecessarily.
-    if (wrapperRef.current.contains(activeElement)) {
+    if (wrapperEl.contains(activeElement)) {
       return;
     }
     let elementToFocus = null;
 
     // When navigating back, if a selector is provided, use it to look for the
     // target element (assumed to be a node inside the current NavigatorScreen)
-    if (location.isBack && location.focusTargetSelector) {
-      elementToFocus = wrapperRef.current.querySelector(location.focusTargetSelector);
+    if (isBack && focusTargetSelector) {
+      elementToFocus = wrapperEl.querySelector(focusTargetSelector);
     }
 
     // If the previous query didn't run or find any element to focus, fallback
     // to the first tabbable element in the screen (or the screen itself).
     if (!elementToFocus) {
-      const [firstTabbable] = external_wp_dom_namespaceObject.focus.tabbable.find(wrapperRef.current);
-      elementToFocus = firstTabbable !== null && firstTabbable !== void 0 ? firstTabbable : wrapperRef.current;
+      const [firstTabbable] = external_wp_dom_namespaceObject.focus.tabbable.find(wrapperEl);
+      elementToFocus = firstTabbable !== null && firstTabbable !== void 0 ? firstTabbable : wrapperEl;
     }
     locationRef.current.hasRestoredFocus = true;
     elementToFocus.focus();
-  }, [isInitialLocation, isMatch, location.isBack, location.focusTargetSelector, location.skipFocus]);
+  }, [skipAnimationAndFocusRestoration, isMatch, isBack, focusTargetSelector, skipFocus]);
   const mergedWrapperRef = (0,external_wp_compose_namespaceObject.useMergeRefs)([forwardedRef, wrapperRef]);
-  return isMatch ? /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(component, {
+  return shouldRenderScreen ? /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(component, {
     ref: mergedWrapperRef,
     className: classes,
+    ...screenProps,
     ...otherProps,
     children: children
   }) : null;
 }
-
-/**
- * The `NavigatorScreen` component represents a single view/screen/panel and
- * should be used in combination with the `NavigatorProvider`, the
- * `NavigatorButton` and the `NavigatorBackButton` components (or the `useNavigator`
- * hook).
- *
- * @example
- * ```jsx
- * import {
- *   __experimentalNavigatorProvider as NavigatorProvider,
- *   __experimentalNavigatorScreen as NavigatorScreen,
- *   __experimentalNavigatorButton as NavigatorButton,
- *   __experimentalNavigatorBackButton as NavigatorBackButton,
- * } from '@wordpress/components';
- *
- * const MyNavigation = () => (
- *   <NavigatorProvider initialPath="/">
- *     <NavigatorScreen path="/">
- *       <p>This is the home screen.</p>
- *        <NavigatorButton path="/child">
- *          Navigate to child screen.
- *       </NavigatorButton>
- *     </NavigatorScreen>
- *
- *     <NavigatorScreen path="/child">
- *       <p>This is the child screen.</p>
- *       <NavigatorBackButton>
- *         Go back
- *       </NavigatorBackButton>
- *     </NavigatorScreen>
- *   </NavigatorProvider>
- * );
- * ```
- */
-const NavigatorScreen = contextConnect(UnconnectedNavigatorScreen, 'NavigatorScreen');
-/* harmony default export */ const navigator_screen_component = (NavigatorScreen);
+const NavigatorScreen = contextConnect(UnconnectedNavigatorScreen, 'Navigator.Screen');
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/navigator/use-navigator.js
 /**
@@ -61145,7 +61291,10 @@ const NavigatorScreen = contextConnect(UnconnectedNavigatorScreen, 'NavigatorScr
  */
 
 /**
- * Retrieves a `navigator` instance.
+ * Retrieves a `navigator` instance. This hook provides advanced functionality,
+ * such as imperatively navigating to a new location (with options like
+ * navigating back or skipping focus restoration) and accessing the current
+ * location and path parameters.
  */
 function useNavigator() {
   const {
@@ -61163,7 +61312,6 @@ function useNavigator() {
     params
   };
 }
-/* harmony default export */ const use_navigator = (useNavigator);
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/navigator/navigator-button/hook.js
 /**
@@ -61187,11 +61335,11 @@ function useNavigatorButton(props) {
     as = build_module_button,
     attributeName = 'id',
     ...otherProps
-  } = useContextSystem(props, 'NavigatorButton');
+  } = useContextSystem(props, 'Navigator.Button');
   const escapedPath = (0,external_wp_escapeHtml_namespaceObject.escapeAttribute)(path);
   const {
     goTo
-  } = use_navigator();
+  } = useNavigator();
   const handleClick = (0,external_wp_element_namespaceObject.useCallback)(e => {
     e.preventDefault();
     goTo(escapedPath, {
@@ -61227,42 +61375,7 @@ function UnconnectedNavigatorButton(props, forwardedRef) {
     ...navigatorButtonProps
   });
 }
-
-/**
- * The `NavigatorButton` component can be used to navigate to a screen and should
- * be used in combination with the `NavigatorProvider`, the `NavigatorScreen`
- * and the `NavigatorBackButton` components (or the `useNavigator` hook).
- *
- * @example
- * ```jsx
- * import {
- *   __experimentalNavigatorProvider as NavigatorProvider,
- *   __experimentalNavigatorScreen as NavigatorScreen,
- *   __experimentalNavigatorButton as NavigatorButton,
- *   __experimentalNavigatorBackButton as NavigatorBackButton,
- * } from '@wordpress/components';
- *
- * const MyNavigation = () => (
- *   <NavigatorProvider initialPath="/">
- *     <NavigatorScreen path="/">
- *       <p>This is the home screen.</p>
- *        <NavigatorButton path="/child">
- *          Navigate to child screen.
- *       </NavigatorButton>
- *     </NavigatorScreen>
- *
- *     <NavigatorScreen path="/child">
- *       <p>This is the child screen.</p>
- *       <NavigatorBackButton>
- *         Go back
- *       </NavigatorBackButton>
- *     </NavigatorScreen>
- *   </NavigatorProvider>
- * );
- * ```
- */
-const NavigatorButton = contextConnect(UnconnectedNavigatorButton, 'NavigatorButton');
-/* harmony default export */ const navigator_button_component = (NavigatorButton);
+const NavigatorButton = contextConnect(UnconnectedNavigatorButton, 'Navigator.Button');
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/navigator/navigator-back-button/hook.js
 /**
@@ -61282,10 +61395,10 @@ function useNavigatorBackButton(props) {
     onClick,
     as = build_module_button,
     ...otherProps
-  } = useContextSystem(props, 'NavigatorBackButton');
+  } = useContextSystem(props, 'Navigator.BackButton');
   const {
     goBack
-  } = use_navigator();
+  } = useNavigator();
   const handleClick = (0,external_wp_element_namespaceObject.useCallback)(e => {
     e.preventDefault();
     goBack();
@@ -61318,12 +61431,161 @@ function UnconnectedNavigatorBackButton(props, forwardedRef) {
     ...navigatorBackButtonProps
   });
 }
+const NavigatorBackButton = contextConnect(UnconnectedNavigatorBackButton, 'Navigator.BackButton');
+
+;// CONCATENATED MODULE: ./packages/components/build-module/navigator/navigator-to-parent-button/component.js
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+function UnconnectedNavigatorToParentButton(props, forwardedRef) {
+  external_wp_deprecated_default()('wp.components.NavigatorToParentButton', {
+    since: '6.7',
+    alternative: 'wp.components.Navigator.BackButton'
+  });
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(NavigatorBackButton, {
+    ref: forwardedRef,
+    ...props
+  });
+}
+
+/**
+ * @deprecated
+ */
+const NavigatorToParentButton = contextConnect(UnconnectedNavigatorToParentButton, 'Navigator.ToParentButton');
+
+;// CONCATENATED MODULE: ./packages/components/build-module/navigator/legacy.js
+/**
+ * Internal dependencies
+ */
+
+
+
+
+
+
+
+/**
+ * The `NavigatorProvider` component allows rendering nested views/panels/menus
+ * (via the `NavigatorScreen` component and navigate between them
+ * (via the `NavigatorButton` and `NavigatorBackButton` components).
+ *
+ * ```jsx
+ * import {
+ *   __experimentalNavigatorProvider as NavigatorProvider,
+ *   __experimentalNavigatorScreen as NavigatorScreen,
+ *   __experimentalNavigatorButton as NavigatorButton,
+ *   __experimentalNavigatorBackButton as NavigatorBackButton,
+ * } from '@wordpress/components';
+ *
+ * const MyNavigation = () => (
+ *   <NavigatorProvider initialPath="/">
+ *     <NavigatorScreen path="/">
+ *       <p>This is the home screen.</p>
+ *        <NavigatorButton path="/child">
+ *          Navigate to child screen.
+ *       </NavigatorButton>
+ *     </NavigatorScreen>
+ *
+ *     <NavigatorScreen path="/child">
+ *       <p>This is the child screen.</p>
+ *       <NavigatorBackButton>
+ *         Go back
+ *       </NavigatorBackButton>
+ *     </NavigatorScreen>
+ *   </NavigatorProvider>
+ * );
+ * ```
+ */
+const NavigatorProvider = Object.assign(component_Navigator, {
+  displayName: 'NavigatorProvider'
+});
+
+/**
+ * The `NavigatorScreen` component represents a single view/screen/panel and
+ * should be used in combination with the `NavigatorProvider`, the
+ * `NavigatorButton` and the `NavigatorBackButton` components.
+ *
+ * @example
+ * ```jsx
+ * import {
+ *   __experimentalNavigatorProvider as NavigatorProvider,
+ *   __experimentalNavigatorScreen as NavigatorScreen,
+ *   __experimentalNavigatorButton as NavigatorButton,
+ *   __experimentalNavigatorBackButton as NavigatorBackButton,
+ * } from '@wordpress/components';
+ *
+ * const MyNavigation = () => (
+ *   <NavigatorProvider initialPath="/">
+ *     <NavigatorScreen path="/">
+ *       <p>This is the home screen.</p>
+ *        <NavigatorButton path="/child">
+ *          Navigate to child screen.
+ *       </NavigatorButton>
+ *     </NavigatorScreen>
+ *
+ *     <NavigatorScreen path="/child">
+ *       <p>This is the child screen.</p>
+ *       <NavigatorBackButton>
+ *         Go back
+ *       </NavigatorBackButton>
+ *     </NavigatorScreen>
+ *   </NavigatorProvider>
+ * );
+ * ```
+ */
+const legacy_NavigatorScreen = Object.assign(NavigatorScreen, {
+  displayName: 'NavigatorScreen'
+});
+
+/**
+ * The `NavigatorButton` component can be used to navigate to a screen and should
+ * be used in combination with the `NavigatorProvider`, the `NavigatorScreen`
+ * and the `NavigatorBackButton` components.
+ *
+ * @example
+ * ```jsx
+ * import {
+ *   __experimentalNavigatorProvider as NavigatorProvider,
+ *   __experimentalNavigatorScreen as NavigatorScreen,
+ *   __experimentalNavigatorButton as NavigatorButton,
+ *   __experimentalNavigatorBackButton as NavigatorBackButton,
+ * } from '@wordpress/components';
+ *
+ * const MyNavigation = () => (
+ *   <NavigatorProvider initialPath="/">
+ *     <NavigatorScreen path="/">
+ *       <p>This is the home screen.</p>
+ *        <NavigatorButton path="/child">
+ *          Navigate to child screen.
+ *       </NavigatorButton>
+ *     </NavigatorScreen>
+ *
+ *     <NavigatorScreen path="/child">
+ *       <p>This is the child screen.</p>
+ *       <NavigatorBackButton>
+ *         Go back
+ *       </NavigatorBackButton>
+ *     </NavigatorScreen>
+ *   </NavigatorProvider>
+ * );
+ * ```
+ */
+const legacy_NavigatorButton = Object.assign(NavigatorButton, {
+  displayName: 'NavigatorButton'
+});
 
 /**
  * The `NavigatorBackButton` component can be used to navigate to a screen and
  * should be used in combination with the `NavigatorProvider`, the
- * `NavigatorScreen` and the `NavigatorButton` components (or the `useNavigator`
- * hook).
+ * `NavigatorScreen` and the `NavigatorButton` components.
  *
  * @example
  * ```jsx
@@ -61353,31 +61615,9 @@ function UnconnectedNavigatorBackButton(props, forwardedRef) {
  * );
  * ```
  */
-const NavigatorBackButton = contextConnect(UnconnectedNavigatorBackButton, 'NavigatorBackButton');
-/* harmony default export */ const navigator_back_button_component = (NavigatorBackButton);
-
-;// CONCATENATED MODULE: ./packages/components/build-module/navigator/navigator-to-parent-button/component.js
-/**
- * WordPress dependencies
- */
-
-
-/**
- * Internal dependencies
- */
-
-
-
-function UnconnectedNavigatorToParentButton(props, forwardedRef) {
-  external_wp_deprecated_default()('wp.components.NavigatorToParentButton', {
-    since: '6.7',
-    alternative: 'wp.components.NavigatorBackButton'
-  });
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(navigator_back_button_component, {
-    ref: forwardedRef,
-    ...props
-  });
-}
+const legacy_NavigatorBackButton = Object.assign(NavigatorBackButton, {
+  displayName: 'NavigatorBackButton'
+});
 
 /**
  * _Note: this component is deprecated. Please use the `NavigatorBackButton`
@@ -61385,8 +61625,142 @@ function UnconnectedNavigatorToParentButton(props, forwardedRef) {
  *
  * @deprecated
  */
-const NavigatorToParentButton = contextConnect(UnconnectedNavigatorToParentButton, 'NavigatorToParentButton');
-/* harmony default export */ const navigator_to_parent_button_component = (NavigatorToParentButton);
+const legacy_NavigatorToParentButton = Object.assign(NavigatorToParentButton, {
+  displayName: 'NavigatorToParentButton'
+});
+
+;// CONCATENATED MODULE: ./packages/components/build-module/navigator/index.js
+/**
+ * Internal dependencies
+ */
+
+
+
+
+
+
+/**
+ * The `Navigator` component allows rendering nested views/panels/menus
+ * (via the `Navigator.Screen` component) and navigate between them
+ * (via the `Navigator.Button` and `Navigator.BackButton` components).
+ *
+ * ```jsx
+ * import { Navigator } from '@wordpress/components';
+ *
+ * const MyNavigation = () => (
+ *   <Navigator initialPath="/">
+ *     <Navigator.Screen path="/">
+ *       <p>This is the home screen.</p>
+ *        <Navigator.Button path="/child">
+ *          Navigate to child screen.
+ *       </Navigator.Button>
+ *     </Navigator.Screen>
+ *
+ *     <Navigator.Screen path="/child">
+ *       <p>This is the child screen.</p>
+ *       <Navigator.BackButton>
+ *         Go back
+ *       </Navigator.BackButton>
+ *     </Navigator.Screen>
+ *   </Navigator>
+ * );
+ * ```
+ */
+const navigator_Navigator = Object.assign(component_Navigator, {
+  /**
+   * The `Navigator.Screen` component represents a single view/screen/panel and
+   * should be used in combination with the `Navigator`, the `Navigator.Button`
+   * and the `Navigator.BackButton` components.
+   *
+   * @example
+   * ```jsx
+   * import { Navigator } from '@wordpress/components';
+   *
+   * const MyNavigation = () => (
+   *   <Navigator initialPath="/">
+   *     <Navigator.Screen path="/">
+   *       <p>This is the home screen.</p>
+   *        <Navigator.Button path="/child">
+   *          Navigate to child screen.
+   *       </Navigator.Button>
+   *     </Navigator.Screen>
+   *
+   *     <Navigator.Screen path="/child">
+   *       <p>This is the child screen.</p>
+   *       <Navigator.BackButton>
+   *         Go back
+   *       </Navigator.BackButton>
+   *     </Navigator.Screen>
+   *   </Navigator>
+   * );
+   * ```
+   */
+  Screen: Object.assign(NavigatorScreen, {
+    displayName: 'Navigator.Screen'
+  }),
+  /**
+   * The `Navigator.Button` component can be used to navigate to a screen and
+   * should be used in combination with the `Navigator`, the `Navigator.Screen`
+   * and the `Navigator.BackButton` components.
+   *
+   * @example
+   * ```jsx
+   * import { Navigator } from '@wordpress/components';
+   *
+   * const MyNavigation = () => (
+   *   <Navigator initialPath="/">
+   *     <Navigator.Screen path="/">
+   *       <p>This is the home screen.</p>
+   *        <Navigator.Button path="/child">
+   *          Navigate to child screen.
+   *       </Navigator.Button>
+   *     </Navigator.Screen>
+   *
+   *     <Navigator.Screen path="/child">
+   *       <p>This is the child screen.</p>
+   *       <Navigator.BackButton>
+   *         Go back
+   *       </Navigator.BackButton>
+   *     </Navigator.Screen>
+   *   </Navigator>
+   * );
+   * ```
+   */
+  Button: Object.assign(NavigatorButton, {
+    displayName: 'Navigator.Button'
+  }),
+  /**
+   * The `Navigator.BackButton` component can be used to navigate to a screen and
+   * should be used in combination with the `Navigator`, the `Navigator.Screen`
+   * and the `Navigator.Button` components.
+   *
+   * @example
+   * ```jsx
+   * import { Navigator } from '@wordpress/components';
+   *
+   * const MyNavigation = () => (
+   *   <Navigator initialPath="/">
+   *     <Navigator.Screen path="/">
+   *       <p>This is the home screen.</p>
+   *        <Navigator.Button path="/child">
+   *          Navigate to child screen.
+   *       </Navigator.Button>
+   *     </Navigator.Screen>
+   *
+   *     <Navigator.Screen path="/child">
+   *       <p>This is the child screen.</p>
+   *       <Navigator.BackButton>
+   *         Go back
+   *       </Navigator.BackButton>
+   *     </Navigator.Screen>
+   *   </Navigator>
+   * );
+   * ```
+   */
+  BackButton: Object.assign(NavigatorBackButton, {
+    displayName: 'Navigator.BackButton'
+  })
+});
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/notice/index.js
 /**
@@ -63767,7 +64141,7 @@ const TooltipWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true
 } : 0);
 const resize_tooltip_styles_Tooltip = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
   target: "e1wq7y4k1"
-} : 0)("background:", COLORS.theme.foreground, ";border-radius:2px;box-sizing:border-box;font-family:", font('default.fontFamily'), ";font-size:12px;color:", COLORS.theme.foregroundInverted, ";padding:4px 8px;position:relative;" + ( true ? "" : 0));
+} : 0)("background:", COLORS.theme.foreground, ";border-radius:", config_values.radiusSmall, ";box-sizing:border-box;font-family:", font('default.fontFamily'), ";font-size:12px;color:", COLORS.theme.foregroundInverted, ";padding:4px 8px;position:relative;" + ( true ? "" : 0));
 
 // TODO: Resolve need to use &&& to increase specificity
 // https://github.com/WordPress/gutenberg/issues/18483
@@ -64366,12 +64740,12 @@ function UnforwardedSnackbar({
 
   // The `onDismiss/onRemove` can have unstable references,
   // trigger side-effect cleanup, and reset timers.
-  const callbackRefs = (0,external_wp_element_namespaceObject.useRef)({
+  const callbacksRef = (0,external_wp_element_namespaceObject.useRef)({
     onDismiss,
     onRemove
   });
   (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
-    callbackRefs.current = {
+    callbacksRef.current = {
       onDismiss,
       onRemove
     };
@@ -64380,8 +64754,8 @@ function UnforwardedSnackbar({
     // Only set up the timeout dismiss if we're not explicitly dismissing.
     const timeoutHandle = setTimeout(() => {
       if (!explicitDismiss) {
-        callbackRefs.current.onDismiss?.();
-        callbackRefs.current.onRemove?.();
+        callbacksRef.current.onDismiss?.();
+        callbacksRef.current.onRemove?.();
       }
     }, NOTICE_TIMEOUT);
     return () => clearTimeout(timeoutHandle);
@@ -66520,7 +66894,7 @@ const ToolsPanelHeading =  true ? {
   name: "1pmxm02",
   styles: "font-size:inherit;font-weight:500;line-height:normal;&&{margin:0;}"
 } : 0;
-const ToolsPanelItem = /*#__PURE__*/emotion_react_browser_esm_css(toolsPanelGrid.item.fullWidth, "&>div,&>fieldset{padding-bottom:0;margin-bottom:0;max-width:100%;}&& ", base_control_styles_Wrapper, "{margin-bottom:0;", StyledField, ":last-child{margin-bottom:0;}}", StyledHelp, "{margin-bottom:0;}&& ", LabelWrapper, "{label{line-height:1.4em;}}" + ( true ? "" : 0),  true ? "" : 0);
+const ToolsPanelItem = /*#__PURE__*/emotion_react_browser_esm_css(toolsPanelGrid.item.fullWidth, "&>div,&>fieldset{padding-bottom:0;margin-bottom:0;max-width:100%;}&& ", Wrapper, "{margin-bottom:0;", StyledField, ":last-child{margin-bottom:0;}}", StyledHelp, "{margin-bottom:0;}&& ", LabelWrapper, "{label{line-height:1.4em;}}" + ( true ? "" : 0),  true ? "" : 0);
 const ToolsPanelItemPlaceholder =  true ? {
   name: "eivff4",
   styles: "display:none"
@@ -66810,20 +67184,27 @@ const ConnectedToolsPanelHeader = contextConnect(component_ToolsPanelHeader, 'To
 
 
 const DEFAULT_COLUMNS = 2;
+function emptyMenuItems() {
+  return {
+    default: {},
+    optional: {}
+  };
+}
+function emptyState() {
+  return {
+    panelItems: [],
+    menuItemOrder: [],
+    menuItems: emptyMenuItems()
+  };
+}
 const generateMenuItems = ({
   panelItems,
   shouldReset,
   currentMenuItems,
   menuItemOrder
 }) => {
-  const newMenuItems = {
-    default: {},
-    optional: {}
-  };
-  const menuItems = {
-    default: {},
-    optional: {}
-  };
+  const newMenuItems = emptyMenuItems();
+  const menuItems = emptyMenuItems();
   panelItems.forEach(({
     hasValue,
     isShownByDefault,
@@ -66862,7 +67243,128 @@ const generateMenuItems = ({
   });
   return menuItems;
 };
-const isMenuItemTypeEmpty = obj => obj && Object.keys(obj).length === 0;
+function panelItemsReducer(panelItems, action) {
+  switch (action.type) {
+    case 'REGISTER_PANEL':
+      {
+        const newItems = [...panelItems];
+        // If an item with this label has already been registered, remove it
+        // first. This can happen when an item is moved between the default
+        // and optional groups.
+        const existingIndex = newItems.findIndex(oldItem => oldItem.label === action.item.label);
+        if (existingIndex !== -1) {
+          newItems.splice(existingIndex, 1);
+        }
+        newItems.push(action.item);
+        return newItems;
+      }
+    case 'UNREGISTER_PANEL':
+      {
+        const index = panelItems.findIndex(item => item.label === action.label);
+        if (index !== -1) {
+          const newItems = [...panelItems];
+          newItems.splice(index, 1);
+          return newItems;
+        }
+        return panelItems;
+      }
+    default:
+      return panelItems;
+  }
+}
+function menuItemOrderReducer(menuItemOrder, action) {
+  switch (action.type) {
+    case 'REGISTER_PANEL':
+      {
+        // Track the initial order of item registration. This is used for
+        // maintaining menu item order later.
+        if (menuItemOrder.includes(action.item.label)) {
+          return menuItemOrder;
+        }
+        return [...menuItemOrder, action.item.label];
+      }
+    default:
+      return menuItemOrder;
+  }
+}
+function menuItemsReducer(state, action) {
+  switch (action.type) {
+    case 'REGISTER_PANEL':
+    case 'UNREGISTER_PANEL':
+      // generate new menu items from original `menuItems` and updated `panelItems` and `menuItemOrder`
+      return generateMenuItems({
+        currentMenuItems: state.menuItems,
+        panelItems: state.panelItems,
+        menuItemOrder: state.menuItemOrder,
+        shouldReset: false
+      });
+    case 'RESET_ALL':
+      return generateMenuItems({
+        panelItems: state.panelItems,
+        menuItemOrder: state.menuItemOrder,
+        shouldReset: true
+      });
+    case 'UPDATE_VALUE':
+      {
+        const oldValue = state.menuItems[action.group][action.label];
+        if (action.value === oldValue) {
+          return state.menuItems;
+        }
+        return {
+          ...state.menuItems,
+          [action.group]: {
+            ...state.menuItems[action.group],
+            [action.label]: action.value
+          }
+        };
+      }
+    case 'TOGGLE_VALUE':
+      {
+        const currentItem = state.panelItems.find(item => item.label === action.label);
+        if (!currentItem) {
+          return state.menuItems;
+        }
+        const menuGroup = currentItem.isShownByDefault ? 'default' : 'optional';
+        const newMenuItems = {
+          ...state.menuItems,
+          [menuGroup]: {
+            ...state.menuItems[menuGroup],
+            [action.label]: !state.menuItems[menuGroup][action.label]
+          }
+        };
+        return newMenuItems;
+      }
+    default:
+      return state.menuItems;
+  }
+}
+function panelReducer(state, action) {
+  const panelItems = panelItemsReducer(state.panelItems, action);
+  const menuItemOrder = menuItemOrderReducer(state.menuItemOrder, action);
+  // `menuItemsReducer` is a bit unusual because it generates new state from original `menuItems`
+  // and the updated `panelItems` and `menuItemOrder`.
+  const menuItems = menuItemsReducer({
+    panelItems,
+    menuItemOrder,
+    menuItems: state.menuItems
+  }, action);
+  return {
+    panelItems,
+    menuItemOrder,
+    menuItems
+  };
+}
+function resetAllFiltersReducer(filters, action) {
+  switch (action.type) {
+    case 'REGISTER':
+      return [...filters, action.filter];
+    case 'UNREGISTER':
+      return filters.filter(f => f !== action.filter);
+    default:
+      return filters;
+  }
+}
+const isMenuItemTypeEmpty = obj => Object.keys(obj).length === 0;
 function useToolsPanel(props) {
   const {
     className,
@@ -66875,46 +67377,32 @@ function useToolsPanel(props) {
     __experimentalLastVisibleItemClass,
     ...otherProps
   } = useContextSystem(props, 'ToolsPanel');
-  const isResetting = (0,external_wp_element_namespaceObject.useRef)(false);
-  const wasResetting = isResetting.current;
+  const isResettingRef = (0,external_wp_element_namespaceObject.useRef)(false);
+  const wasResetting = isResettingRef.current;
 
-  // `isResetting` is cleared via this hook to effectively batch together
+  // `isResettingRef` is cleared via this hook to effectively batch together
   // the resetAll task. Without this, the flag is cleared after the first
   // control updates and forces a rerender with subsequent controls then
   // believing they need to reset, unfortunately using stale data.
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     if (wasResetting) {
-      isResetting.current = false;
+      isResettingRef.current = false;
     }
   }, [wasResetting]);
 
   // Allow panel items to register themselves.
-  const [panelItems, setPanelItems] = (0,external_wp_element_namespaceObject.useState)([]);
-  const [menuItemOrder, setMenuItemOrder] = (0,external_wp_element_namespaceObject.useState)([]);
-  const [resetAllFilters, setResetAllFilters] = (0,external_wp_element_namespaceObject.useState)([]);
+  const [{
+    panelItems,
+    menuItems
+  }, panelDispatch] = (0,external_wp_element_namespaceObject.useReducer)(panelReducer, undefined, emptyState);
+  const [resetAllFilters, dispatchResetAllFilters] = (0,external_wp_element_namespaceObject.useReducer)(resetAllFiltersReducer, []);
   const registerPanelItem = (0,external_wp_element_namespaceObject.useCallback)(item => {
     // Add item to panel items.
-    setPanelItems(items => {
-      const newItems = [...items];
-      // If an item with this label has already been registered, remove it
-      // first. This can happen when an item is moved between the default
-      // and optional groups.
-      const existingIndex = newItems.findIndex(oldItem => oldItem.label === item.label);
-      if (existingIndex !== -1) {
-        newItems.splice(existingIndex, 1);
-      }
-      return [...newItems, item];
+    panelDispatch({
+      type: 'REGISTER_PANEL',
+      item
     });
-
-    // Track the initial order of item registration. This is used for
-    // maintaining menu item order later.
-    setMenuItemOrder(items => {
-      if (items.includes(item.label)) {
-        return items;
-      }
-      return [...items, item.label];
-    });
-  }, [setPanelItems, setMenuItemOrder]);
+  }, []);
 
   // Panels need to deregister on unmount to avoid orphans in menu state.
   // This is an issue when panel items are being injected via SlotFills.
@@ -66923,130 +67411,90 @@ function useToolsPanel(props) {
     // controls, e.g. both panels have a "padding" control, the
     // deregistration of the first panel doesn't occur until after the
     // registration of the next.
-    setPanelItems(items => {
-      const newItems = [...items];
-      const index = newItems.findIndex(item => item.label === label);
-      if (index !== -1) {
-        newItems.splice(index, 1);
-      }
-      return newItems;
+    panelDispatch({
+      type: 'UNREGISTER_PANEL',
+      label
     });
-  }, [setPanelItems]);
-  const registerResetAllFilter = (0,external_wp_element_namespaceObject.useCallback)(newFilter => {
-    setResetAllFilters(filters => {
-      return [...filters, newFilter];
+  }, []);
+  const registerResetAllFilter = (0,external_wp_element_namespaceObject.useCallback)(filter => {
+    dispatchResetAllFilters({
+      type: 'REGISTER',
+      filter
     });
-  }, [setResetAllFilters]);
-  const deregisterResetAllFilter = (0,external_wp_element_namespaceObject.useCallback)(filterToRemove => {
-    setResetAllFilters(filters => {
-      return filters.filter(filter => filter !== filterToRemove);
+  }, []);
+  const deregisterResetAllFilter = (0,external_wp_element_namespaceObject.useCallback)(filter => {
+    dispatchResetAllFilters({
+      type: 'UNREGISTER',
+      filter
     });
-  }, [setResetAllFilters]);
-
-  // Manage and share display state of menu items representing child controls.
-  const [menuItems, setMenuItems] = (0,external_wp_element_namespaceObject.useState)({
-    default: {},
-    optional: {}
-  });
-
-  // Setup menuItems state as panel items register themselves.
-  (0,external_wp_element_namespaceObject.useEffect)(() => {
-    setMenuItems(prevState => {
-      const items = generateMenuItems({
-        panelItems,
-        shouldReset: false,
-        currentMenuItems: prevState,
-        menuItemOrder
-      });
-      return items;
-    });
-  }, [panelItems, setMenuItems, menuItemOrder]);
+  }, []);
 
   // Updates the status of the panel’s menu items. For default items the
   // value represents whether it differs from the default and for optional
   // items whether the item is shown.
   const flagItemCustomization = (0,external_wp_element_namespaceObject.useCallback)((value, label, group = 'default') => {
-    setMenuItems(items => {
-      const newState = {
-        ...items,
-        [group]: {
-          ...items[group],
-          [label]: value
-        }
-      };
-      return newState;
+    panelDispatch({
+      type: 'UPDATE_VALUE',
+      group,
+      label,
+      value
     });
-  }, [setMenuItems]);
+  }, []);
 
   // Whether all optional menu items are hidden or not must be tracked
   // in order to later determine if the panel display is empty and handle
   // conditional display of a plus icon to indicate the presence of further
   // menu items.
-  const [areAllOptionalControlsHidden, setAreAllOptionalControlsHidden] = (0,external_wp_element_namespaceObject.useState)(false);
-  (0,external_wp_element_namespaceObject.useEffect)(() => {
-    if (isMenuItemTypeEmpty(menuItems?.default) && !isMenuItemTypeEmpty(menuItems?.optional)) {
-      const allControlsHidden = !Object.entries(menuItems.optional).some(([, isSelected]) => isSelected);
-      setAreAllOptionalControlsHidden(allControlsHidden);
-    }
-  }, [menuItems, setAreAllOptionalControlsHidden]);
+  const areAllOptionalControlsHidden = (0,external_wp_element_namespaceObject.useMemo)(() => {
+    return isMenuItemTypeEmpty(menuItems.default) && !isMenuItemTypeEmpty(menuItems.optional) && Object.values(menuItems.optional).every(isSelected => !isSelected);
+  }, [menuItems]);
   const cx = useCx();
   const classes = (0,external_wp_element_namespaceObject.useMemo)(() => {
     const wrapperStyle = hasInnerWrapper && ToolsPanelWithInnerWrapper(DEFAULT_COLUMNS);
-    const emptyStyle = isMenuItemTypeEmpty(menuItems?.default) && areAllOptionalControlsHidden && ToolsPanelHiddenInnerWrapper;
+    const emptyStyle = areAllOptionalControlsHidden && ToolsPanelHiddenInnerWrapper;
     return cx(ToolsPanel(DEFAULT_COLUMNS), wrapperStyle, emptyStyle, className);
-  }, [areAllOptionalControlsHidden, className, cx, hasInnerWrapper, menuItems]);
+  }, [areAllOptionalControlsHidden, className, cx, hasInnerWrapper]);
 
   // Toggle the checked state of a menu item which is then used to determine
   // display of the item within the panel.
   const toggleItem = (0,external_wp_element_namespaceObject.useCallback)(label => {
-    const currentItem = panelItems.find(item => item.label === label);
-    if (!currentItem) {
-      return;
-    }
-    const menuGroup = currentItem.isShownByDefault ? 'default' : 'optional';
-    const newMenuItems = {
-      ...menuItems,
-      [menuGroup]: {
-        ...menuItems[menuGroup],
-        [label]: !menuItems[menuGroup][label]
-      }
-    };
-    setMenuItems(newMenuItems);
-  }, [menuItems, panelItems, setMenuItems]);
+    panelDispatch({
+      type: 'TOGGLE_VALUE',
+      label
+    });
+  }, []);
 
   // Resets display of children and executes resetAll callback if available.
   const resetAllItems = (0,external_wp_element_namespaceObject.useCallback)(() => {
     if (typeof resetAll === 'function') {
-      isResetting.current = true;
+      isResettingRef.current = true;
       resetAll(resetAllFilters);
     }
 
     // Turn off display of all non-default items.
-    const resetMenuItems = generateMenuItems({
-      panelItems,
-      menuItemOrder,
-      shouldReset: true
+    panelDispatch({
+      type: 'RESET_ALL'
     });
-    setMenuItems(resetMenuItems);
-  }, [panelItems, resetAllFilters, resetAll, setMenuItems, menuItemOrder]);
+  }, [resetAllFilters, resetAll]);
 
   // Assist ItemGroup styling when there are potentially hidden placeholder
   // items by identifying first & last items that are toggled on for display.
   const getFirstVisibleItemLabel = items => {
     const optionalItems = menuItems.optional || {};
-    const firstItem = items.find(item => item.isShownByDefault || !!optionalItems[item.label]);
+    const firstItem = items.find(item => item.isShownByDefault || optionalItems[item.label]);
     return firstItem?.label;
   };
   const firstDisplayedItem = getFirstVisibleItemLabel(panelItems);
   const lastDisplayedItem = getFirstVisibleItemLabel([...panelItems].reverse());
+  const hasMenuItems = panelItems.length > 0;
   const panelContext = (0,external_wp_element_namespaceObject.useMemo)(() => ({
     areAllOptionalControlsHidden,
     deregisterPanelItem,
     deregisterResetAllFilter,
     firstDisplayedItem,
     flagItemCustomization,
-    hasMenuItems: !!panelItems.length,
-    isResetting: isResetting.current,
+    hasMenuItems,
+    isResetting: isResettingRef.current,
     lastDisplayedItem,
     menuItems,
     panelId,
@@ -67055,7 +67503,7 @@ function useToolsPanel(props) {
     shouldRenderPlaceholderItems,
     __experimentalFirstVisibleItemClass,
     __experimentalLastVisibleItemClass
-  }), [areAllOptionalControlsHidden, deregisterPanelItem, deregisterResetAllFilter, firstDisplayedItem, flagItemCustomization, lastDisplayedItem, menuItems, panelId, panelItems, registerResetAllFilter, registerPanelItem, shouldRenderPlaceholderItems, __experimentalFirstVisibleItemClass, __experimentalLastVisibleItemClass]);
+  }), [areAllOptionalControlsHidden, deregisterPanelItem, deregisterResetAllFilter, firstDisplayedItem, flagItemCustomization, lastDisplayedItem, menuItems, panelId, hasMenuItems, registerResetAllFilter, registerPanelItem, shouldRenderPlaceholderItems, __experimentalFirstVisibleItemClass, __experimentalLastVisibleItemClass]);
   return {
     ...otherProps,
     headingLevel,
@@ -68548,41 +68996,6 @@ var MenuItemCheckedContext = (0,external_React_.createContext)(
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/menu/menu-item-check.js
-"use client";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// src/menu/menu-item-check.tsx
-
-var menu_item_check_TagName = "span";
-var useMenuItemCheck = createHook(
-  function useMenuItemCheck2(_a) {
-    var _b = _a, { store, checked } = _b, props = __objRest(_b, ["store", "checked"]);
-    const context = (0,external_React_.useContext)(MenuItemCheckedContext);
-    checked = checked != null ? checked : context;
-    props = useCheckboxCheck(_3YLGPPWQ_spreadProps(_3YLGPPWQ_spreadValues({}, props), { checked }));
-    return props;
-  }
-);
-var MenuItemCheck = forwardRef2(function MenuItemCheck2(props) {
-  const htmlProps = useMenuItemCheck(props);
-  return HKOOKEDE_createElement(menu_item_check_TagName, htmlProps);
-});
-
-
 ;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/WSQNIDGC.js
 "use client";
 
@@ -68960,21 +69373,6 @@ var MenuButton = forwardRef2(function MenuButton2(props) {
 });
 
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/chevron-right-small.js
-/**
- * WordPress dependencies
- */
-
-
-const chevronRightSmall = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.SVG, {
-  xmlns: "http://www.w3.org/2000/svg",
-  viewBox: "0 0 24 24",
-  children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.Path, {
-    d: "M10.8622 8.04053L14.2805 12.0286L10.8622 16.0167L9.72327 15.0405L12.3049 12.0286L9.72327 9.01672L10.8622 8.04053Z"
-  })
-});
-/* harmony default export */ const chevron_right_small = (chevronRightSmall);
-
 ;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/ULASSYJG.js
 "use client";
 
@@ -69320,6 +69718,21 @@ var Menu = createDialogComponent(
   useMenuProviderContext
 );
 
+
+;// CONCATENATED MODULE: ./packages/icons/build-module/library/chevron-right-small.js
+/**
+ * WordPress dependencies
+ */
+
+
+const chevronRightSmall = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.SVG, {
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 24 24",
+  children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.Path, {
+    d: "M10.8622 8.04053L14.2805 12.0286L10.8622 16.0167L9.72327 15.0405L12.3049 12.0286L9.72327 9.01672L10.8622 8.04053Z"
+  })
+});
+/* harmony default export */ const chevron_right_small = (chevronRightSmall);
 
 ;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/B6XZVSMQ.js
 "use client";
@@ -69914,6 +70327,30 @@ var menu_group_MenuGroup = forwardRef2(function MenuGroup2(props) {
 });
 
 
+;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/menu/menu-group-label.js
+"use client";
+
+
+
+
+
+
+
+
+// src/menu/menu-group-label.tsx
+var menu_group_label_TagName = "div";
+var useMenuGroupLabel = createHook(
+  function useMenuGroupLabel2(props) {
+    props = useCompositeGroupLabel(props);
+    return props;
+  }
+);
+var MenuGroupLabel = forwardRef2(function MenuGroupLabel2(props) {
+  const htmlProps = useMenuGroupLabel(props);
+  return HKOOKEDE_createElement(menu_group_label_TagName, htmlProps);
+});
+
+
 ;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/WEEEI3KU.js
 "use client";
 
@@ -69995,9 +70432,13 @@ function dropdown_menu_v2_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You 
 
 
 const styles_ANIMATION_PARAMS = {
-  SLIDE_AMOUNT: '2px',
-  DURATION: '400ms',
-  EASING: 'cubic-bezier( 0.16, 1, 0.3, 1 )'
+  SCALE_AMOUNT_OUTER: 0.82,
+  SCALE_AMOUNT_CONTENT: 0.9,
+  DURATION: {
+    IN: '400ms',
+    OUT: '200ms'
+  },
+  EASING: 'cubic-bezier(0.33, 0, 0, 1)'
 };
 const CONTENT_WRAPPER_PADDING = space(1);
 const ITEM_PADDING_BLOCK = space(2);
@@ -70012,80 +70453,46 @@ const DIVIDER_COLOR = COLORS.theme.gray[200];
 const LIGHTER_TEXT_COLOR = COLORS.theme.gray[700];
 const LIGHT_BACKGROUND_COLOR = COLORS.theme.gray[100];
 const TOOLBAR_VARIANT_BORDER_COLOR = COLORS.theme.foreground;
-const DEFAULT_BOX_SHADOW = `0 0 0 ${config_values.borderWidth} ${DEFAULT_BORDER_COLOR}, ${config_values.elevationXSmall}`;
+const DEFAULT_BOX_SHADOW = `0 0 0 ${config_values.borderWidth} ${DEFAULT_BORDER_COLOR}, ${config_values.elevationMedium}`;
 const TOOLBAR_VARIANT_BOX_SHADOW = `0 0 0 ${config_values.borderWidth} ${TOOLBAR_VARIANT_BORDER_COLOR}`;
 const GRID_TEMPLATE_COLS = 'minmax( 0, max-content ) 1fr';
-const slideUpAndFade = emotion_react_browser_esm_keyframes({
-  '0%': {
-    opacity: 0,
-    transform: `translateY(${styles_ANIMATION_PARAMS.SLIDE_AMOUNT})`
-  },
-  '100%': {
-    opacity: 1,
-    transform: 'translateY(0)'
-  }
-});
-const slideRightAndFade = emotion_react_browser_esm_keyframes({
-  '0%': {
-    opacity: 0,
-    transform: `translateX(-${styles_ANIMATION_PARAMS.SLIDE_AMOUNT})`
-  },
-  '100%': {
-    opacity: 1,
-    transform: 'translateX(0)'
-  }
-});
-const styles_slideDownAndFade = emotion_react_browser_esm_keyframes({
-  '0%': {
-    opacity: 0,
-    transform: `translateY(-${styles_ANIMATION_PARAMS.SLIDE_AMOUNT})`
-  },
-  '100%': {
-    opacity: 1,
-    transform: 'translateY(0)'
-  }
-});
-const slideLeftAndFade = emotion_react_browser_esm_keyframes({
-  '0%': {
-    opacity: 0,
-    transform: `translateX(${styles_ANIMATION_PARAMS.SLIDE_AMOUNT})`
-  },
-  '100%': {
-    opacity: 1,
-    transform: 'translateX(0)'
-  }
-});
-const dropdown_menu_v2_styles_DropdownMenu = /*#__PURE__*/emotion_styled_base_browser_esm(Menu,  true ? {
-  target: "e1kdzosf12"
-} : 0)("position:relative;z-index:1000000;display:grid;grid-template-columns:", GRID_TEMPLATE_COLS, ";grid-template-rows:auto;box-sizing:border-box;min-width:160px;max-width:320px;max-height:var( --popover-available-height );padding:", CONTENT_WRAPPER_PADDING, ";background-color:", COLORS.ui.background, ";border-radius:", config_values.radiusMedium, ";", props => /*#__PURE__*/emotion_react_browser_esm_css("box-shadow:", props.variant === 'toolbar' ? TOOLBAR_VARIANT_BOX_SHADOW : DEFAULT_BOX_SHADOW, ";" + ( true ? "" : 0),  true ? "" : 0), " overscroll-behavior:contain;overflow:auto;outline:2px solid transparent!important;&[data-open]{@media not ( prefers-reduced-motion ){animation-duration:", styles_ANIMATION_PARAMS.DURATION, ";animation-timing-function:", styles_ANIMATION_PARAMS.EASING, ";will-change:transform,opacity;animation-name:", styles_slideDownAndFade, ";&[data-side='left']{animation-name:", slideLeftAndFade, ";}&[data-side='up']{animation-name:", slideUpAndFade, ";}&[data-side='right']{animation-name:", slideRightAndFade, ";}}}" + ( true ? "" : 0));
-const baseItem = /*#__PURE__*/emotion_react_browser_esm_css("all:unset;position:relative;min-height:", space(10), ";box-sizing:border-box;grid-column:1/-1;display:grid;grid-template-columns:", GRID_TEMPLATE_COLS, ";align-items:center;@supports ( grid-template-columns: subgrid ){grid-template-columns:subgrid;}font-size:", font('default.fontSize'), ";font-family:inherit;font-weight:normal;line-height:20px;color:", COLORS.theme.foreground, ";border-radius:", config_values.radiusSmall, ";padding-block:", ITEM_PADDING_BLOCK, ";padding-inline:", ITEM_PADDING_INLINE, ";scroll-margin:", CONTENT_WRAPPER_PADDING, ";user-select:none;outline:none;&[aria-disabled='true']{color:", COLORS.ui.textDisabled, ";cursor:not-allowed;}&[data-active-item]:not( [data-focus-visible] ):not(\n\t\t\t[aria-disabled='true']\n\t\t){background-color:", COLORS.theme.accent, ";color:", COLORS.white, ";}&[data-focus-visible]{box-shadow:0 0 0 1.5px ", COLORS.theme.accent, ";outline:2px solid transparent;}&:active,&[data-active]{}", dropdown_menu_v2_styles_DropdownMenu, ":not(:focus) &:not(:focus)[aria-expanded=\"true\"]{background-color:", LIGHT_BACKGROUND_COLOR, ";color:", COLORS.theme.foreground, ";}svg{fill:currentColor;}" + ( true ? "" : 0),  true ? "" : 0);
+const MenuPopoverOuterWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
+  target: "e1kdzosf14"
+} : 0)("position:relative;background-color:", COLORS.ui.background, ";border-radius:", config_values.radiusMedium, ";", props => /*#__PURE__*/emotion_react_browser_esm_css("box-shadow:", props.variant === 'toolbar' ? TOOLBAR_VARIANT_BOX_SHADOW : DEFAULT_BOX_SHADOW, ";" + ( true ? "" : 0),  true ? "" : 0), " overflow:hidden;@media not ( prefers-reduced-motion ){transition-property:transform,opacity;transition-timing-function:", styles_ANIMATION_PARAMS.EASING, ";transition-duration:", styles_ANIMATION_PARAMS.DURATION.IN, ";will-change:transform,opacity;opacity:0;&:has( [data-enter] ){opacity:1;}&:has( [data-leave] ){transition-duration:", styles_ANIMATION_PARAMS.DURATION.OUT, ";}&:has( [data-side='bottom'] ),&:has( [data-side='top'] ){transform:scaleY( ", styles_ANIMATION_PARAMS.SCALE_AMOUNT_OUTER, " );}&:has( [data-side='bottom'] ){transform-origin:top;}&:has( [data-side='top'] ){transform-origin:bottom;}&:has( [data-enter][data-side='bottom'] ),&:has( [data-enter][data-side='top'] ),&:has( [data-leave][data-side='bottom'] ),&:has( [data-leave][data-side='top'] ){transform:scaleY( 1 );}}" + ( true ? "" : 0));
+const MenuPopoverInnerWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
+  target: "e1kdzosf13"
+} : 0)("position:relative;z-index:1000000;display:grid;grid-template-columns:", GRID_TEMPLATE_COLS, ";grid-template-rows:auto;box-sizing:border-box;min-width:160px;max-width:320px;max-height:var( --popover-available-height );padding:", CONTENT_WRAPPER_PADDING, ";overscroll-behavior:contain;overflow:auto;outline:2px solid transparent!important;@media not ( prefers-reduced-motion ){transition:inherit;transform-origin:inherit;&[data-side='bottom'],&[data-side='top']{transform:scaleY(\n\t\t\t\tcalc(\n\t\t\t\t\t1 / ", styles_ANIMATION_PARAMS.SCALE_AMOUNT_OUTER, " *\n\t\t\t\t\t\t", styles_ANIMATION_PARAMS.SCALE_AMOUNT_CONTENT, "\n\t\t\t\t)\n\t\t\t);}&[data-enter][data-side='bottom'],&[data-enter][data-side='top'],&[data-leave][data-side='bottom'],&[data-leave][data-side='top']{transform:scaleY( 1 );}}" + ( true ? "" : 0));
+const baseItem = /*#__PURE__*/emotion_react_browser_esm_css("all:unset;position:relative;min-height:", space(10), ";box-sizing:border-box;grid-column:1/-1;display:grid;grid-template-columns:", GRID_TEMPLATE_COLS, ";align-items:center;@supports ( grid-template-columns: subgrid ){grid-template-columns:subgrid;}font-size:", font('default.fontSize'), ";font-family:inherit;font-weight:normal;line-height:20px;color:", COLORS.theme.foreground, ";border-radius:", config_values.radiusSmall, ";padding-block:", ITEM_PADDING_BLOCK, ";padding-inline:", ITEM_PADDING_INLINE, ";scroll-margin:", CONTENT_WRAPPER_PADDING, ";user-select:none;outline:none;&[aria-disabled='true']{color:", COLORS.ui.textDisabled, ";cursor:not-allowed;}&[data-active-item]:not( [data-focus-visible] ):not(\n\t\t\t[aria-disabled='true']\n\t\t){background-color:", COLORS.theme.accent, ";color:", COLORS.white, ";}&[data-focus-visible]{box-shadow:0 0 0 1.5px ", COLORS.theme.accent, ";outline:2px solid transparent;}&:active,&[data-active]{}", MenuPopoverInnerWrapper, ":not(:focus) &:not(:focus)[aria-expanded=\"true\"]{background-color:", LIGHT_BACKGROUND_COLOR, ";color:", COLORS.theme.foreground, ";}svg{fill:currentColor;}" + ( true ? "" : 0),  true ? "" : 0);
 const styles_DropdownMenuItem = /*#__PURE__*/emotion_styled_base_browser_esm(B6XZVSMQ_MenuItem,  true ? {
-  target: "e1kdzosf11"
+  target: "e1kdzosf12"
 } : 0)(baseItem, ";" + ( true ? "" : 0));
 const styles_DropdownMenuCheckboxItem = /*#__PURE__*/emotion_styled_base_browser_esm(MenuItemCheckbox,  true ? {
-  target: "e1kdzosf10"
+  target: "e1kdzosf11"
 } : 0)(baseItem, ";" + ( true ? "" : 0));
 const styles_DropdownMenuRadioItem = /*#__PURE__*/emotion_styled_base_browser_esm(MenuItemRadio,  true ? {
-  target: "e1kdzosf9"
+  target: "e1kdzosf10"
 } : 0)(baseItem, ";" + ( true ? "" : 0));
 const ItemPrefixWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? {
-  target: "e1kdzosf8"
+  target: "e1kdzosf9"
 } : 0)("grid-column:1;", styles_DropdownMenuCheckboxItem, ">&,", styles_DropdownMenuRadioItem, ">&{min-width:", space(6), ";}", styles_DropdownMenuCheckboxItem, ">&,", styles_DropdownMenuRadioItem, ">&,&:not( :empty ){margin-inline-end:", space(2), ";}display:flex;align-items:center;justify-content:center;color:", LIGHTER_TEXT_COLOR, ";[data-active-item]:not( [data-focus-visible] )>&,[aria-disabled='true']>&{color:inherit;}" + ( true ? "" : 0));
 const DropdownMenuItemContentWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
-  target: "e1kdzosf7"
+  target: "e1kdzosf8"
 } : 0)("grid-column:2;display:flex;align-items:center;justify-content:space-between;gap:", space(3), ";pointer-events:none;" + ( true ? "" : 0));
 const DropdownMenuItemChildrenWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
-  target: "e1kdzosf6"
+  target: "e1kdzosf7"
 } : 0)("flex:1;display:inline-flex;flex-direction:column;gap:", space(1), ";" + ( true ? "" : 0));
 const ItemSuffixWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? {
-  target: "e1kdzosf5"
-} : 0)("flex:0 1 fit-content;min-width:0;width:fit-content;display:flex;align-items:center;justify-content:center;gap:", space(3), ";color:", LIGHTER_TEXT_COLOR, ";[data-active-item]:not( [data-focus-visible] ) *:not(", dropdown_menu_v2_styles_DropdownMenu, ") &,[aria-disabled='true'] *:not(", dropdown_menu_v2_styles_DropdownMenu, ") &{color:inherit;}" + ( true ? "" : 0));
+  target: "e1kdzosf6"
+} : 0)("flex:0 1 fit-content;min-width:0;width:fit-content;display:flex;align-items:center;justify-content:center;gap:", space(3), ";color:", LIGHTER_TEXT_COLOR, ";[data-active-item]:not( [data-focus-visible] ) *:not(", MenuPopoverInnerWrapper, ") &,[aria-disabled='true'] *:not(", MenuPopoverInnerWrapper, ") &{color:inherit;}" + ( true ? "" : 0));
 const styles_DropdownMenuGroup = /*#__PURE__*/emotion_styled_base_browser_esm(menu_group_MenuGroup,  true ? {
-  target: "e1kdzosf4"
+  target: "e1kdzosf5"
 } : 0)( true ? {
   name: "49aokf",
   styles: "display:contents"
 } : 0);
+const DropdownMenuGroupLabel = /*#__PURE__*/emotion_styled_base_browser_esm(MenuGroupLabel,  true ? {
+  target: "e1kdzosf4"
+} : 0)("grid-column:1/-1;padding-block-start:", space(3), ";padding-block-end:", space(2), ";padding-inline:", ITEM_PADDING_INLINE, ";" + ( true ? "" : 0));
 const styles_DropdownMenuSeparator = /*#__PURE__*/emotion_styled_base_browser_esm(MenuSeparator,  true ? {
   target: "e1kdzosf3"
 } : 0)("grid-column:1/-1;border:none;height:", config_values.borderWidth, ";background-color:", props => props.variant === 'toolbar' ? TOOLBAR_VARIANT_BORDER_COLOR : DIVIDER_COLOR, ";margin-block:", space(2), ";margin-inline:", ITEM_PADDING_INLINE, ";outline:2px solid transparent;" + ( true ? "" : 0));
@@ -70101,7 +70508,376 @@ const styles_DropdownMenuItemLabel = /*#__PURE__*/emotion_styled_base_browser_es
 } : 0)("font-size:", font('default.fontSize'), ";line-height:20px;color:inherit;" + ( true ? "" : 0));
 const styles_DropdownMenuItemHelpText = /*#__PURE__*/emotion_styled_base_browser_esm(truncate_component,  true ? {
   target: "e1kdzosf0"
-} : 0)("font-size:", font('helpText.fontSize'), ";line-height:16px;color:", LIGHTER_TEXT_COLOR, ";word-break:break-all;[data-active-item]:not( [data-focus-visible] ) *:not( ", dropdown_menu_v2_styles_DropdownMenu, " ) &,[aria-disabled='true'] *:not( ", dropdown_menu_v2_styles_DropdownMenu, " ) &{color:inherit;}" + ( true ? "" : 0));
+} : 0)("font-size:", font('helpText.fontSize'), ";line-height:16px;color:", LIGHTER_TEXT_COLOR, ";word-break:break-all;[data-active-item]:not( [data-focus-visible] ) *:not( ", MenuPopoverInnerWrapper, " ) &,[aria-disabled='true'] *:not( ", MenuPopoverInnerWrapper, " ) &{color:inherit;}" + ( true ? "" : 0));
+
+;// CONCATENATED MODULE: ./packages/components/build-module/dropdown-menu-v2/context.js
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+const DropdownMenuContext = (0,external_wp_element_namespaceObject.createContext)(undefined);
+
+;// CONCATENATED MODULE: ./packages/components/build-module/dropdown-menu-v2/use-temporary-focus-visible-fix.js
+/**
+ * WordPress dependencies
+ */
+
+function useTemporaryFocusVisibleFix({
+  onBlur: onBlurProp
+}) {
+  const [focusVisible, setFocusVisible] = (0,external_wp_element_namespaceObject.useState)(false);
+  return {
+    'data-focus-visible': focusVisible || undefined,
+    onFocusVisible: () => {
+      (0,external_wp_element_namespaceObject.flushSync)(() => setFocusVisible(true));
+    },
+    onBlur: event => {
+      onBlurProp?.(event);
+      setFocusVisible(false);
+    }
+  };
+}
+
+;// CONCATENATED MODULE: ./packages/components/build-module/dropdown-menu-v2/item.js
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+
+
+const DropdownMenuItem = (0,external_wp_element_namespaceObject.forwardRef)(function DropdownMenuItem({
+  prefix,
+  suffix,
+  children,
+  onBlur,
+  hideOnClick = true,
+  ...props
+}, ref) {
+  // TODO: Remove when https://github.com/ariakit/ariakit/issues/4083 is fixed
+  const focusVisibleFixProps = useTemporaryFocusVisibleFix({
+    onBlur
+  });
+  const dropdownMenuContext = (0,external_wp_element_namespaceObject.useContext)(DropdownMenuContext);
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(styles_DropdownMenuItem, {
+    ref: ref,
+    ...props,
+    ...focusVisibleFixProps,
+    accessibleWhenDisabled: true,
+    hideOnClick: hideOnClick,
+    store: dropdownMenuContext?.store,
+    children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ItemPrefixWrapper, {
+      children: prefix
+    }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(DropdownMenuItemContentWrapper, {
+      children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(DropdownMenuItemChildrenWrapper, {
+        children: children
+      }), suffix && /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ItemSuffixWrapper, {
+        children: suffix
+      })]
+    })]
+  });
+});
+
+;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/menu/menu-item-check.js
+"use client";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/menu/menu-item-check.tsx
+
+var menu_item_check_TagName = "span";
+var useMenuItemCheck = createHook(
+  function useMenuItemCheck2(_a) {
+    var _b = _a, { store, checked } = _b, props = __objRest(_b, ["store", "checked"]);
+    const context = (0,external_React_.useContext)(MenuItemCheckedContext);
+    checked = checked != null ? checked : context;
+    props = useCheckboxCheck(_3YLGPPWQ_spreadProps(_3YLGPPWQ_spreadValues({}, props), { checked }));
+    return props;
+  }
+);
+var MenuItemCheck = forwardRef2(function MenuItemCheck2(props) {
+  const htmlProps = useMenuItemCheck(props);
+  return HKOOKEDE_createElement(menu_item_check_TagName, htmlProps);
+});
+
+
+;// CONCATENATED MODULE: ./packages/components/build-module/dropdown-menu-v2/checkbox-item.js
+/**
+ * External dependencies
+ */
+
+
+/**
+ * WordPress dependencies
+ */
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+
+
+const DropdownMenuCheckboxItem = (0,external_wp_element_namespaceObject.forwardRef)(function DropdownMenuCheckboxItem({
+  suffix,
+  children,
+  onBlur,
+  hideOnClick = false,
+  ...props
+}, ref) {
+  // TODO: Remove when https://github.com/ariakit/ariakit/issues/4083 is fixed
+  const focusVisibleFixProps = useTemporaryFocusVisibleFix({
+    onBlur
+  });
+  const dropdownMenuContext = (0,external_wp_element_namespaceObject.useContext)(DropdownMenuContext);
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(styles_DropdownMenuCheckboxItem, {
+    ref: ref,
+    ...props,
+    ...focusVisibleFixProps,
+    accessibleWhenDisabled: true,
+    hideOnClick: hideOnClick,
+    store: dropdownMenuContext?.store,
+    children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(MenuItemCheck, {
+      store: dropdownMenuContext?.store,
+      render: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ItemPrefixWrapper, {})
+      // Override some ariakit inline styles
+      ,
+      style: {
+        width: 'auto',
+        height: 'auto'
+      },
+      children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(icons_build_module_icon, {
+        icon: library_check,
+        size: 24
+      })
+    }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(DropdownMenuItemContentWrapper, {
+      children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(DropdownMenuItemChildrenWrapper, {
+        children: children
+      }), suffix && /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ItemSuffixWrapper, {
+        children: suffix
+      })]
+    })]
+  });
+});
+
+;// CONCATENATED MODULE: ./packages/components/build-module/dropdown-menu-v2/radio-item.js
+/**
+ * External dependencies
+ */
+
+
+/**
+ * WordPress dependencies
+ */
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+
+
+
+const radioCheck = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.SVG, {
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 24 24",
+  children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.Circle, {
+    cx: 12,
+    cy: 12,
+    r: 3
+  })
+});
+const DropdownMenuRadioItem = (0,external_wp_element_namespaceObject.forwardRef)(function DropdownMenuRadioItem({
+  suffix,
+  children,
+  onBlur,
+  hideOnClick = false,
+  ...props
+}, ref) {
+  // TODO: Remove when https://github.com/ariakit/ariakit/issues/4083 is fixed
+  const focusVisibleFixProps = useTemporaryFocusVisibleFix({
+    onBlur
+  });
+  const dropdownMenuContext = (0,external_wp_element_namespaceObject.useContext)(DropdownMenuContext);
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(styles_DropdownMenuRadioItem, {
+    ref: ref,
+    ...props,
+    ...focusVisibleFixProps,
+    accessibleWhenDisabled: true,
+    hideOnClick: hideOnClick,
+    store: dropdownMenuContext?.store,
+    children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(MenuItemCheck, {
+      store: dropdownMenuContext?.store,
+      render: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ItemPrefixWrapper, {})
+      // Override some ariakit inline styles
+      ,
+      style: {
+        width: 'auto',
+        height: 'auto'
+      },
+      children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(icons_build_module_icon, {
+        icon: radioCheck,
+        size: 24
+      })
+    }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(DropdownMenuItemContentWrapper, {
+      children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(DropdownMenuItemChildrenWrapper, {
+        children: children
+      }), suffix && /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ItemSuffixWrapper, {
+        children: suffix
+      })]
+    })]
+  });
+});
+
+;// CONCATENATED MODULE: ./packages/components/build-module/dropdown-menu-v2/group.js
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+const DropdownMenuGroup = (0,external_wp_element_namespaceObject.forwardRef)(function DropdownMenuGroup(props, ref) {
+  const dropdownMenuContext = (0,external_wp_element_namespaceObject.useContext)(DropdownMenuContext);
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(styles_DropdownMenuGroup, {
+    ref: ref,
+    ...props,
+    store: dropdownMenuContext?.store
+  });
+});
+
+;// CONCATENATED MODULE: ./packages/components/build-module/dropdown-menu-v2/group-label.js
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+
+const group_label_DropdownMenuGroupLabel = (0,external_wp_element_namespaceObject.forwardRef)(function DropdownMenuGroup(props, ref) {
+  const dropdownMenuContext = (0,external_wp_element_namespaceObject.useContext)(DropdownMenuContext);
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(DropdownMenuGroupLabel, {
+    ref: ref,
+    render:
+    /*#__PURE__*/
+    // @ts-expect-error The `children` prop is passed
+    (0,external_ReactJSXRuntime_namespaceObject.jsx)(text_component, {
+      upperCase: true,
+      variant: "muted",
+      size: "11px",
+      weight: 500,
+      lineHeight: "16px"
+    }),
+    ...props,
+    store: dropdownMenuContext?.store
+  });
+});
+
+;// CONCATENATED MODULE: ./packages/components/build-module/dropdown-menu-v2/separator.js
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+const DropdownMenuSeparator = (0,external_wp_element_namespaceObject.forwardRef)(function DropdownMenuSeparator(props, ref) {
+  const dropdownMenuContext = (0,external_wp_element_namespaceObject.useContext)(DropdownMenuContext);
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(styles_DropdownMenuSeparator, {
+    ref: ref,
+    ...props,
+    store: dropdownMenuContext?.store,
+    variant: dropdownMenuContext?.variant
+  });
+});
+
+;// CONCATENATED MODULE: ./packages/components/build-module/dropdown-menu-v2/item-label.js
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+const DropdownMenuItemLabel = (0,external_wp_element_namespaceObject.forwardRef)(function DropdownMenuItemLabel(props, ref) {
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(styles_DropdownMenuItemLabel, {
+    numberOfLines: 1,
+    ref: ref,
+    ...props
+  });
+});
+
+;// CONCATENATED MODULE: ./packages/components/build-module/dropdown-menu-v2/item-help-text.js
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+const DropdownMenuItemHelpText = (0,external_wp_element_namespaceObject.forwardRef)(function DropdownMenuItemHelpText(props, ref) {
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(styles_DropdownMenuItemHelpText, {
+    numberOfLines: 2,
+    ref: ref,
+    ...props
+  });
+});
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/dropdown-menu-v2/index.js
 /**
@@ -70117,7 +70893,6 @@ const styles_DropdownMenuItemHelpText = /*#__PURE__*/emotion_styled_base_browser
 
 
 
-
 /**
  * Internal dependencies
  */
@@ -70127,119 +70902,14 @@ const styles_DropdownMenuItemHelpText = /*#__PURE__*/emotion_styled_base_browser
 
 
 
-const DropdownMenuContext = (0,external_wp_element_namespaceObject.createContext)(undefined);
-const DropdownMenuItem = (0,external_wp_element_namespaceObject.forwardRef)(function DropdownMenuItem({
-  prefix,
-  suffix,
-  children,
-  hideOnClick = true,
-  ...props
-}, ref) {
-  const dropdownMenuContext = (0,external_wp_element_namespaceObject.useContext)(DropdownMenuContext);
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(styles_DropdownMenuItem, {
-    ref: ref,
-    ...props,
-    accessibleWhenDisabled: true,
-    hideOnClick: hideOnClick,
-    store: dropdownMenuContext?.store,
-    children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ItemPrefixWrapper, {
-      children: prefix
-    }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(DropdownMenuItemContentWrapper, {
-      children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(DropdownMenuItemChildrenWrapper, {
-        children: children
-      }), suffix && /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ItemSuffixWrapper, {
-        children: suffix
-      })]
-    })]
-  });
-});
-const DropdownMenuCheckboxItem = (0,external_wp_element_namespaceObject.forwardRef)(function DropdownMenuCheckboxItem({
-  suffix,
-  children,
-  hideOnClick = false,
-  ...props
-}, ref) {
-  const dropdownMenuContext = (0,external_wp_element_namespaceObject.useContext)(DropdownMenuContext);
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(styles_DropdownMenuCheckboxItem, {
-    ref: ref,
-    ...props,
-    accessibleWhenDisabled: true,
-    hideOnClick: hideOnClick,
-    store: dropdownMenuContext?.store,
-    children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(MenuItemCheck, {
-      store: dropdownMenuContext?.store,
-      render: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ItemPrefixWrapper, {})
-      // Override some ariakit inline styles
-      ,
-      style: {
-        width: 'auto',
-        height: 'auto'
-      },
-      children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(build_module_icon, {
-        icon: library_check,
-        size: 24
-      })
-    }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(DropdownMenuItemContentWrapper, {
-      children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(DropdownMenuItemChildrenWrapper, {
-        children: children
-      }), suffix && /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ItemSuffixWrapper, {
-        children: suffix
-      })]
-    })]
-  });
-});
-const radioCheck = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.SVG, {
-  xmlns: "http://www.w3.org/2000/svg",
-  viewBox: "0 0 24 24",
-  children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.Circle, {
-    cx: 12,
-    cy: 12,
-    r: 3
-  })
-});
-const DropdownMenuRadioItem = (0,external_wp_element_namespaceObject.forwardRef)(function DropdownMenuRadioItem({
-  suffix,
-  children,
-  hideOnClick = false,
-  ...props
-}, ref) {
-  const dropdownMenuContext = (0,external_wp_element_namespaceObject.useContext)(DropdownMenuContext);
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(styles_DropdownMenuRadioItem, {
-    ref: ref,
-    ...props,
-    accessibleWhenDisabled: true,
-    hideOnClick: hideOnClick,
-    store: dropdownMenuContext?.store,
-    children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(MenuItemCheck, {
-      store: dropdownMenuContext?.store,
-      render: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ItemPrefixWrapper, {})
-      // Override some ariakit inline styles
-      ,
-      style: {
-        width: 'auto',
-        height: 'auto'
-      },
-      children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(build_module_icon, {
-        icon: radioCheck,
-        size: 24
-      })
-    }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(DropdownMenuItemContentWrapper, {
-      children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(DropdownMenuItemChildrenWrapper, {
-        children: children
-      }), suffix && /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ItemSuffixWrapper, {
-        children: suffix
-      })]
-    })]
-  });
-});
-const DropdownMenuGroup = (0,external_wp_element_namespaceObject.forwardRef)(function DropdownMenuGroup(props, ref) {
-  const dropdownMenuContext = (0,external_wp_element_namespaceObject.useContext)(DropdownMenuContext);
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(styles_DropdownMenuGroup, {
-    ref: ref,
-    ...props,
-    store: dropdownMenuContext?.store
-  });
-});
+
+
+
+
+
+
+
+
 const dropdown_menu_v2_UnconnectedDropdownMenu = (props, ref) => {
   var _props$placement;
   const {
@@ -70292,7 +70962,9 @@ const dropdown_menu_v2_UnconnectedDropdownMenu = (props, ref) => {
   }), [dropdownMenuStore, variant]);
 
   // Extract the side from the applied placement — useful for animations.
-  const appliedPlacementSide = useStoreState(dropdownMenuStore, 'placement').split('-')[0];
+  // Using `currentPlacement` instead of `placement` to make sure that we
+  // use the final computed placement (including "flips" etc).
+  const appliedPlacementSide = useStoreState(dropdownMenuStore, 'currentPlacement').split('-')[0];
   if (dropdownMenuStore.parent && !((0,external_wp_element_namespaceObject.isValidElement)(trigger) && DropdownMenuItem === trigger.type)) {
     // eslint-disable-next-line no-console
     console.warn('For nested DropdownMenus, the `trigger` should always be a `DropdownMenuItem`.');
@@ -70325,7 +70997,7 @@ const dropdown_menu_v2_UnconnectedDropdownMenu = (props, ref) => {
           })]
         })
       }) : trigger
-    }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(dropdown_menu_v2_styles_DropdownMenu, {
+    }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(Menu, {
       ...otherProps,
       modal: modal,
       store: dropdownMenuStore
@@ -70339,10 +71011,21 @@ const dropdown_menu_v2_UnconnectedDropdownMenu = (props, ref) => {
       shift: shift !== null && shift !== void 0 ? shift : dropdownMenuStore.parent ? -4 : 0,
       hideOnHoverOutside: false,
       "data-side": appliedPlacementSide,
-      variant: variant,
       wrapperProps: wrapperProps,
       hideOnEscape: hideOnEscape,
       unmountOnHide: true,
+      render: renderProps =>
+      /*#__PURE__*/
+      // Two wrappers are needed for the entry animation, where the menu
+      // container scales with a different factor than its contents.
+      // The {...renderProps} are passed to the inner wrapper, so that the
+      // menu element is the direct parent of the menu item elements.
+      (0,external_ReactJSXRuntime_namespaceObject.jsx)(MenuPopoverOuterWrapper, {
+        variant: variant,
+        children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(MenuPopoverInnerWrapper, {
+          ...renderProps
+        })
+      }),
       children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(DropdownMenuContext.Provider, {
         value: contextValue,
         children: children
@@ -70350,30 +71033,36 @@ const dropdown_menu_v2_UnconnectedDropdownMenu = (props, ref) => {
     })]
   });
 };
-const dropdown_menu_v2_DropdownMenu = contextConnect(dropdown_menu_v2_UnconnectedDropdownMenu, 'DropdownMenu');
-const DropdownMenuSeparator = (0,external_wp_element_namespaceObject.forwardRef)(function DropdownMenuSeparator(props, ref) {
-  const dropdownMenuContext = (0,external_wp_element_namespaceObject.useContext)(DropdownMenuContext);
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(styles_DropdownMenuSeparator, {
-    ref: ref,
-    ...props,
-    store: dropdownMenuContext?.store,
-    variant: dropdownMenuContext?.variant
-  });
+const DropdownMenuV2 = Object.assign(contextConnect(dropdown_menu_v2_UnconnectedDropdownMenu, 'DropdownMenu'), {
+  Context: Object.assign(DropdownMenuContext, {
+    displayName: 'DropdownMenuV2.Context'
+  }),
+  Item: Object.assign(DropdownMenuItem, {
+    displayName: 'DropdownMenuV2.Item'
+  }),
+  RadioItem: Object.assign(DropdownMenuRadioItem, {
+    displayName: 'DropdownMenuV2.RadioItem'
+  }),
+  CheckboxItem: Object.assign(DropdownMenuCheckboxItem, {
+    displayName: 'DropdownMenuV2.CheckboxItem'
+  }),
+  Group: Object.assign(DropdownMenuGroup, {
+    displayName: 'DropdownMenuV2.Group'
+  }),
+  GroupLabel: Object.assign(group_label_DropdownMenuGroupLabel, {
+    displayName: 'DropdownMenuV2.GroupLabel'
+  }),
+  Separator: Object.assign(DropdownMenuSeparator, {
+    displayName: 'DropdownMenuV2.Separator'
+  }),
+  ItemLabel: Object.assign(DropdownMenuItemLabel, {
+    displayName: 'DropdownMenuV2.ItemLabel'
+  }),
+  ItemHelpText: Object.assign(DropdownMenuItemHelpText, {
+    displayName: 'DropdownMenuV2.ItemHelpText'
+  })
 });
-const DropdownMenuItemLabel = (0,external_wp_element_namespaceObject.forwardRef)(function DropdownMenuItemLabel(props, ref) {
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(styles_DropdownMenuItemLabel, {
-    numberOfLines: 1,
-    ref: ref,
-    ...props
-  });
-});
-const DropdownMenuItemHelpText = (0,external_wp_element_namespaceObject.forwardRef)(function DropdownMenuItemHelpText(props, ref) {
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(styles_DropdownMenuItemHelpText, {
-    numberOfLines: 2,
-    ref: ref,
-    ...props
-  });
-});
+/* harmony default export */ const dropdown_menu_v2 = ((/* unused pure expression or super */ null && (DropdownMenuV2)));
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/theme/styles.js
 
@@ -70574,6 +71263,7 @@ const useTabsContext = () => (0,external_wp_element_namespaceObject.useContext)(
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/tabs/styles.js
 
+function tabs_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
  * External dependencies
  */
@@ -70585,15 +71275,25 @@ const useTabsContext = () => (0,external_wp_element_namespaceObject.useContext)(
  */
 
 
+
 const TabListWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
-  target: "enfox0g2"
-} : 0)("position:relative;display:flex;align-items:stretch;flex-direction:row;text-align:center;&[aria-orientation='vertical']{flex-direction:column;text-align:start;}@media not ( prefers-reduced-motion: reduce ){&.is-animation-enabled::after{transition-property:left,top,width,height;transition-duration:0.2s;transition-timing-function:ease-out;}}&::after{content:'';position:absolute;pointer-events:none;outline:2px solid transparent;outline-offset:-1px;}&:not( [aria-orientation='vertical'] )::after{bottom:0;left:var( --indicator-left );width:var( --indicator-width );height:0;border-bottom:var( --wp-admin-border-width-focus ) solid ", COLORS.theme.accent, ";}&[aria-orientation='vertical']::after{z-index:-1;left:0;width:100%;top:var( --indicator-top );height:var( --indicator-height );background-color:", COLORS.theme.gray[100], ";}" + ( true ? "" : 0));
+  target: "enfox0g4"
+} : 0)("display:flex;align-items:stretch;overflow-x:auto;&[aria-orientation='vertical']{flex-direction:column;}:where( [aria-orientation='horizontal'] ){width:fit-content;}--direction-factor:1;--direction-start:left;--direction-end:right;--selected-start:var( --selected-left, 0 );&:dir( rtl ){--direction-factor:-1;--direction-start:right;--direction-end:left;--selected-start:var( --selected-right, 0 );}@media not ( prefers-reduced-motion ){&[data-indicator-animated]::before{transition-property:transform,border-radius,border-block;transition-duration:0.2s;transition-timing-function:ease-out;}}position:relative;&::before{content:'';position:absolute;pointer-events:none;transform-origin:var( --direction-start ) top;outline:2px solid transparent;outline-offset:-1px;}--antialiasing-factor:100;&[aria-orientation='horizontal']{--fade-width:4rem;--fade-gradient-base:transparent 0%,black var( --fade-width );--fade-gradient-composed:var( --fade-gradient-base ),black 60%,transparent 50%;&.is-overflowing-first{mask-image:linear-gradient(\n\t\t\t\tto var( --direction-end ),\n\t\t\t\tvar( --fade-gradient-base )\n\t\t\t);}&.is-overflowing-last{mask-image:linear-gradient(\n\t\t\t\tto var( --direction-start ),\n\t\t\t\tvar( --fade-gradient-base )\n\t\t\t);}&.is-overflowing-first.is-overflowing-last{mask-image:linear-gradient(\n\t\t\t\t\tto right,\n\t\t\t\t\tvar( --fade-gradient-composed )\n\t\t\t\t),linear-gradient( to left, var( --fade-gradient-composed ) );}&::before{bottom:0;height:0;width:calc( var( --antialiasing-factor ) * 1px );transform:translateX(\n\t\t\t\t\tcalc(\n\t\t\t\t\t\tvar( --selected-start ) * var( --direction-factor ) *\n\t\t\t\t\t\t\t1px\n\t\t\t\t\t)\n\t\t\t\t) scaleX(\n\t\t\t\t\tcalc(\n\t\t\t\t\t\tvar( --selected-width, 0 ) /\n\t\t\t\t\t\t\tvar( --antialiasing-factor )\n\t\t\t\t\t)\n\t\t\t\t);border-bottom:var( --wp-admin-border-width-focus ) solid ", COLORS.theme.accent, ";}}&[aria-orientation='vertical']{&::before{border-radius:", config_values.radiusSmall, "/calc(\n\t\t\t\t\t", config_values.radiusSmall, " /\n\t\t\t\t\t\t(\n\t\t\t\t\t\t\tvar( --selected-height, 0 ) /\n\t\t\t\t\t\t\t\tvar( --antialiasing-factor )\n\t\t\t\t\t\t)\n\t\t\t\t);top:0;left:0;width:100%;height:calc( var( --antialiasing-factor ) * 1px );transform:translateY( calc( var( --selected-top, 0 ) * 1px ) ) scaleY(\n\t\t\t\t\tcalc(\n\t\t\t\t\t\tvar( --selected-height, 0 ) /\n\t\t\t\t\t\t\tvar( --antialiasing-factor )\n\t\t\t\t\t)\n\t\t\t\t);background-color:color-mix(\n\t\t\t\tin srgb,\n\t\t\t\t", COLORS.theme.accent, ",\n\t\t\t\ttransparent 96%\n\t\t\t);}&[data-select-on-move='true']:has(\n\t\t\t\t:is( :focus-visible, [data-focus-visible] )\n\t\t\t)::before{box-sizing:border-box;border:var( --wp-admin-border-width-focus ) solid ", COLORS.theme.accent, ";border-block-width:calc(\n\t\t\t\tvar( --wp-admin-border-width-focus, 1px ) /\n\t\t\t\t\t(\n\t\t\t\t\t\tvar( --selected-height, 0 ) /\n\t\t\t\t\t\t\tvar( --antialiasing-factor )\n\t\t\t\t\t)\n\t\t\t);}}" + ( true ? "" : 0));
 const styles_Tab = /*#__PURE__*/emotion_styled_base_browser_esm(Tab,  true ? {
+  target: "enfox0g3"
+} : 0)("&{border-radius:0;background:transparent;border:none;box-shadow:none;flex:1 0 auto;white-space:nowrap;display:flex;align-items:center;cursor:pointer;line-height:1.2;font-weight:400;color:", COLORS.theme.foreground, ";position:relative;&[aria-disabled='true']{cursor:default;color:", COLORS.ui.textDisabled, ";}&:not( [aria-disabled='true'] ):is( :hover, [data-focus-visible] ){color:", COLORS.theme.accent, ";}&:focus:not( :disabled ){box-shadow:none;outline:none;}&::after{position:absolute;pointer-events:none;outline:var( --wp-admin-border-width-focus ) solid ", COLORS.theme.accent, ";border-radius:", config_values.radiusSmall, ";opacity:0;@media not ( prefers-reduced-motion ){transition:opacity 0.15s 0.15s linear;}}&[data-focus-visible]::after{opacity:1;}}[aria-orientation='horizontal'] &{padding-inline:", space(4), ";height:", space(12), ";text-align:center;scroll-margin:24px;&::after{content:'';inset:", space(3), ";}}[aria-orientation='vertical'] &{padding:", space(2), " ", space(3), ";min-height:", space(10), ";text-align:start;&[aria-selected='true']{color:", COLORS.theme.accent, ";fill:currentColor;}}[aria-orientation='vertical'][data-select-on-move='false'] &::after{content:'';inset:var( --wp-admin-border-width-focus );}" + ( true ? "" : 0));
+const TabChildren = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? {
+  target: "enfox0g2"
+} : 0)( true ? {
+  name: "1ff36h2",
+  styles: "flex-grow:1"
+} : 0);
+const TabChevron = /*#__PURE__*/emotion_styled_base_browser_esm(build_module_icon,  true ? {
   target: "enfox0g1"
-} : 0)("&{display:inline-flex;align-items:center;position:relative;border-radius:0;min-height:", space(12), ";height:auto;background:transparent;border:none;box-shadow:none;cursor:pointer;line-height:1.2;padding:", space(4), ";margin-left:0;font-weight:500;text-align:inherit;hyphens:auto;color:", COLORS.theme.foreground, ";&[aria-disabled='true']{cursor:default;color:", COLORS.ui.textDisabled, ";}&:not( [aria-disabled='true'] ):hover{color:", COLORS.theme.accent, ";}&:focus:not( :disabled ){position:relative;box-shadow:none;outline:none;}&::before{content:'';position:absolute;top:", space(3), ";right:", space(3), ";bottom:", space(3), ";left:", space(3), ";pointer-events:none;outline:var( --wp-admin-border-width-focus ) solid ", COLORS.theme.accent, ";border-radius:2px;opacity:0;@media not ( prefers-reduced-motion ){transition:opacity 0.1s linear;}}&:focus-visible::before{opacity:1;}}[aria-orientation='vertical'] &{min-height:", space(10), ";}" + ( true ? "" : 0));
+} : 0)("flex-shrink:0;margin-inline-end:", space(-1), ";[aria-orientation='horizontal'] &{display:none;}opacity:0;[role='tab']:is( [aria-selected='true'], [data-focus-visible], :hover ) &{opacity:1;}@media not ( prefers-reduced-motion ){[data-select-on-move='true'] [role='tab']:is( [aria-selected='true'],  ) &{transition:opacity 0.3s ease-in;}}&:dir( rtl ){rotate:180deg;}" + ( true ? "" : 0));
 const styles_TabPanel = /*#__PURE__*/emotion_styled_base_browser_esm(TabPanel,  true ? {
   target: "enfox0g0"
-} : 0)("&:focus{box-shadow:none;outline:none;}&:focus-visible{border-radius:2px;box-shadow:0 0 0 var( --wp-admin-border-width-focus ) ", COLORS.theme.accent, ";outline:2px solid transparent;outline-offset:0;}" + ( true ? "" : 0));
+} : 0)("&:focus{box-shadow:none;outline:none;}&[data-focus-visible]{box-shadow:0 0 0 var( --wp-admin-border-width-focus ) ", COLORS.theme.accent, ";outline:2px solid transparent;outline-offset:0;}" + ( true ? "" : 0));
 
 ;// CONCATENATED MODULE: ./packages/components/build-module/tabs/tab.js
 /**
@@ -70605,6 +71305,8 @@ const styles_TabPanel = /*#__PURE__*/emotion_styled_base_browser_esm(TabPanel,  
 /**
  * Internal dependencies
  */
+
+
 
 
 
@@ -70627,238 +71329,86 @@ const tab_Tab = (0,external_wp_element_namespaceObject.forwardRef)(function Tab(
     instanceId
   } = context;
   const instancedTabId = `${instanceId}-${tabId}`;
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(styles_Tab, {
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(styles_Tab, {
     ref: ref,
     store: store,
     id: instancedTabId,
     disabled: disabled,
     render: render,
     ...otherProps,
-    children: children
+    children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(TabChildren, {
+      children: children
+    }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(TabChevron, {
+      icon: chevron_right
+    })]
   });
 });
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/hooks/use-event.js
+;// CONCATENATED MODULE: ./packages/components/build-module/tabs/use-track-overflow.js
 /* eslint-disable jsdoc/require-param */
 /**
  * WordPress dependencies
  */
 
 
-/**
- * Any function.
- */
 
 /**
- * Creates a stable callback function that has access to the latest state and
- * can be used within event handlers and effect callbacks. Throws when used in
- * the render phase.
+ * Tracks if an element contains overflow and on which end by tracking the
+ * first and last child elements with an `IntersectionObserver` in relation
+ * to the parent element.
  *
- * @example
- *
- * ```tsx
- * function Component(props) {
- *   const onClick = useEvent(props.onClick);
- *   React.useEffect(() => {}, [onClick]);
- * }
- * ```
+ * Note that the returned value will only indicate whether the first or last
+ * element is currently "going out of bounds" but not whether it happens on
+ * the X or Y axis.
  */
-function use_event_useEvent(callback) {
-  const ref = (0,external_wp_element_namespaceObject.useRef)(() => {
-    throw new Error('Cannot call an event handler while rendering.');
+function useTrackOverflow(parent, children) {
+  const [first, setFirst] = (0,external_wp_element_namespaceObject.useState)(false);
+  const [last, setLast] = (0,external_wp_element_namespaceObject.useState)(false);
+  const [observer, setObserver] = (0,external_wp_element_namespaceObject.useState)();
+  const callback = (0,external_wp_compose_namespaceObject.useEvent)(entries => {
+    for (const entry of entries) {
+      if (entry.target === children.first) {
+        setFirst(!entry.isIntersecting);
+      }
+      if (entry.target === children.last) {
+        setLast(!entry.isIntersecting);
+      }
+    }
   });
-  (0,external_wp_element_namespaceObject.useInsertionEffect)(() => {
-    ref.current = callback;
-  });
-  return (0,external_wp_element_namespaceObject.useCallback)((...args) => ref.current?.(...args), []);
-}
-/* eslint-enable jsdoc/require-param */
-
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/element-rect.js
-/* eslint-disable jsdoc/require-param */
-/**
- * WordPress dependencies
- */
-
-/**
- * Internal dependencies
- */
-
-
-/**
- * `useTrackElementRectUpdates` options.
- */
-
-/**
- * Tracks an element's "rect" (size and position) and fires `onRect` for all
- * of its discrete values. The element can be changed dynamically and **it
- * must not be stored in a ref**. Instead, it should be stored in a React
- * state or equivalent.
- *
- * By default, `onRect` is called initially for the target element (including
- * when the target element changes), not only on size or position updates.
- * This allows consumers of the hook to always be in sync with all rect values
- * of the target element throughout its lifetime. This behavior can be
- * disabled by setting the `fireOnElementInit` option to `false`.
- *
- * Under the hood, it sets up a `ResizeObserver` that tracks the element. The
- * target element can be changed dynamically, and the observer will be
- * updated accordingly.
- *
- * @example
- *
- * ```tsx
- * const [ targetElement, setTargetElement ] = useState< HTMLElement | null >();
- *
- * useTrackElementRectUpdates( targetElement, ( element ) => {
- *   console.log( 'Element resized:', element );
- * } );
- *
- * <div ref={ setTargetElement } />;
- * ```
- */
-function useTrackElementRectUpdates(
-/**
- * The target element to observe. It can be changed dynamically.
- */
-targetElement,
-/**
- * Callback to fire when the element is resized. It will also be
- * called when the observer is set up, unless `fireOnElementInit` is
- * set to `false`.
- */
-onRect, {
-  fireOnElementInit = true
-} = {}) {
-  const onRectEvent = use_event_useEvent(onRect);
-  const observedElementRef = (0,external_wp_element_namespaceObject.useRef)();
-  const resizeObserverRef = (0,external_wp_element_namespaceObject.useRef)();
-
-  // TODO: could this be a layout effect?
   (0,external_wp_element_namespaceObject.useEffect)(() => {
-    if (targetElement === observedElementRef.current) {
+    if (!parent || !window.IntersectionObserver) {
       return;
     }
-    observedElementRef.current = targetElement;
-
-    // Set up a ResizeObserver.
-    if (!resizeObserverRef.current) {
-      resizeObserverRef.current = new ResizeObserver(entries => {
-        if (observedElementRef.current) {
-          onRectEvent(observedElementRef.current, entries);
-        }
-      });
+    const newObserver = new IntersectionObserver(callback, {
+      root: parent,
+      threshold: 0.9
+    });
+    setObserver(newObserver);
+    return () => newObserver.disconnect();
+  }, [callback, parent]);
+  (0,external_wp_element_namespaceObject.useEffect)(() => {
+    if (!observer) {
+      return;
     }
-    const {
-      current: resizeObserver
-    } = resizeObserverRef;
-
-    // Observe new element.
-    if (targetElement) {
-      if (fireOnElementInit) {
-        // TODO: investigate if this can be removed,
-        // see: https://stackoverflow.com/a/60026394
-        onRectEvent(targetElement);
-      }
-      resizeObserver.observe(targetElement);
+    if (children.first) {
+      observer.observe(children.first);
+    }
+    if (children.last) {
+      observer.observe(children.last);
     }
     return () => {
-      // Unobserve previous element.
-      if (observedElementRef.current) {
-        resizeObserver.unobserve(observedElementRef.current);
+      if (children.first) {
+        observer.unobserve(children.first);
+      }
+      if (children.last) {
+        observer.unobserve(children.last);
       }
     };
-  }, [fireOnElementInit, onRectEvent, targetElement]);
-}
-
-/**
- * The position and dimensions of an element, relative to its offset parent.
- */
-
-/**
- * An `ElementOffsetRect` object with all values set to zero.
- */
-const NULL_ELEMENT_OFFSET_RECT = {
-  left: 0,
-  top: 0,
-  width: 0,
-  height: 0
-};
-
-/**
- * Returns the position and dimensions of an element, relative to its offset
- * parent. This is useful in contexts where `getBoundingClientRect` is not
- * suitable, such as when the element is transformed.
- *
- * **Note:** the `left` and `right` values are adjusted due to a limitation
- * in the way the browser calculates the offset position of the element,
- * which can cause unwanted scrollbars to appear. This adjustment makes the
- * values potentially inaccurate within a range of 1 pixel.
- */
-function getElementOffsetRect(element) {
+  }, [children.first, children.last, observer]);
   return {
-    // The adjustments mentioned in the documentation above are necessary
-    // because `offsetLeft` and `offsetTop` are rounded to the nearest pixel,
-    // which can result in a position mismatch that causes unwanted overflow.
-    // For context, see: https://github.com/WordPress/gutenberg/pull/61979
-    left: Math.max(element.offsetLeft - 1, 0),
-    top: Math.max(element.offsetTop - 1, 0),
-    // This is a workaround to obtain these values with a sub-pixel precision,
-    // since `offsetWidth` and `offsetHeight` are rounded to the nearest pixel.
-    width: parseFloat(getComputedStyle(element).width),
-    height: parseFloat(getComputedStyle(element).height)
+    first,
+    last
   };
-}
-
-/**
- * Tracks the position and dimensions of an element, relative to its offset
- * parent. The element can be changed dynamically.
- */
-function useTrackElementOffsetRect(targetElement) {
-  const [indicatorPosition, setIndicatorPosition] = (0,external_wp_element_namespaceObject.useState)(NULL_ELEMENT_OFFSET_RECT);
-  useTrackElementRectUpdates(targetElement, element => setIndicatorPosition(getElementOffsetRect(element)));
-  return indicatorPosition;
-}
-
-/* eslint-enable jsdoc/require-param */
-
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/hooks/use-on-value-update.js
-/* eslint-disable jsdoc/require-param */
-/**
- * WordPress dependencies
- */
-
-/**
- * Internal dependencies
- */
-
-
-/**
- * Context object for the `onUpdate` callback of `useOnValueUpdate`.
- */
-
-/**
- * Calls the `onUpdate` callback when the `value` changes.
- */
-function useOnValueUpdate(
-/**
- * The value to watch for changes.
- */
-value,
-/**
- * Callback to fire when the value changes.
- */
-onUpdate) {
-  const previousValueRef = (0,external_wp_element_namespaceObject.useRef)(value);
-  const updateCallbackEvent = use_event_useEvent(onUpdate);
-  (0,external_wp_element_namespaceObject.useEffect)(() => {
-    if (previousValueRef.current !== value) {
-      updateCallbackEvent({
-        previousValue: previousValueRef.current
-      });
-      previousValueRef.current = value;
-    }
-  }, [updateCallbackEvent, value]);
 }
 /* eslint-enable jsdoc/require-param */
 
@@ -70875,6 +71425,7 @@ onUpdate) {
 
 
 
+
 /**
  * Internal dependencies
  */
@@ -70885,32 +71436,71 @@ onUpdate) {
 
 
 
+
+const DEFAULT_SCROLL_MARGIN = 24;
+
+/**
+ * Scrolls a given parent element so that a given rect is visible.
+ *
+ * The scroll is updated initially and whenever the rect changes.
+ */
+function useScrollRectIntoView(parent, rect, {
+  margin = DEFAULT_SCROLL_MARGIN
+} = {}) {
+  (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
+    if (!parent || !rect) {
+      return;
+    }
+    const {
+      scrollLeft: parentScroll
+    } = parent;
+    const parentWidth = parent.getBoundingClientRect().width;
+    const {
+      left: childLeft,
+      width: childWidth
+    } = rect;
+    const parentRightEdge = parentScroll + parentWidth;
+    const childRightEdge = childLeft + childWidth;
+    const rightOverflow = childRightEdge + margin - parentRightEdge;
+    const leftOverflow = parentScroll - (childLeft - margin);
+    if (leftOverflow > 0) {
+      parent.scrollLeft = parentScroll - leftOverflow;
+    } else if (rightOverflow > 0) {
+      parent.scrollLeft = parentScroll + rightOverflow;
+    }
+  }, [margin, parent, rect]);
+}
 const TabList = (0,external_wp_element_namespaceObject.forwardRef)(function TabList({
   children,
   ...otherProps
 }, ref) {
-  const context = useTabsContext();
-  const tabStoreState = useStoreState(context?.store);
-  const selectedId = tabStoreState?.selectedId;
-  const indicatorPosition = useTrackElementOffsetRect(context?.store.item(selectedId)?.element);
-  const [animationEnabled, setAnimationEnabled] = (0,external_wp_element_namespaceObject.useState)(false);
-  useOnValueUpdate(selectedId, ({
-    previousValue
-  }) => previousValue && setAnimationEnabled(true));
-  if (!context || !tabStoreState) {
-     false ? 0 : void 0;
-    return null;
-  }
+  var _useTabsContext;
   const {
     store
-  } = context;
-  const {
-    activeId,
-    selectOnMove
-  } = tabStoreState;
-  const {
-    setActiveId
-  } = store;
+  } = (_useTabsContext = useTabsContext()) !== null && _useTabsContext !== void 0 ? _useTabsContext : {};
+  const selectedId = useStoreState(store, 'selectedId');
+  const activeId = useStoreState(store, 'activeId');
+  const selectOnMove = useStoreState(store, 'selectOnMove');
+  const items = useStoreState(store, 'items');
+  const [parent, setParent] = (0,external_wp_element_namespaceObject.useState)();
+  const refs = (0,external_wp_compose_namespaceObject.useMergeRefs)([ref, setParent]);
+  const selectedRect = useTrackElementOffsetRect(store?.item(selectedId)?.element);
+
+  // Track overflow to show scroll hints.
+  const overflow = useTrackOverflow(parent, {
+    first: items?.at(0)?.element,
+    last: items?.at(-1)?.element
+  });
+
+  // Size, position, and animate the indicator.
+  useAnimatedOffsetRect(parent, selectedRect, {
+    prefix: 'selected',
+    dataAttribute: 'indicator-animated',
+    transitionEndFilter: event => event.pseudoElement === '::before'
+  });
+
+  // Make sure selected tab is scrolled into view.
+  useScrollRectIntoView(parent, selectedRect);
   const onBlur = () => {
     if (!selectOnMove) {
       return;
@@ -70921,29 +71511,22 @@ const TabList = (0,external_wp_element_namespaceObject.forwardRef)(function TabL
     // that the selected tab will receive keyboard focus when tabbing back into
     // the tablist.
     if (selectedId !== activeId) {
-      setActiveId(selectedId);
+      store?.setActiveId(selectedId);
     }
   };
+  if (!store) {
+     false ? 0 : void 0;
+    return null;
+  }
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(tab_list_TabList, {
-    ref: ref,
+    ref: refs,
     store: store,
-    render: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(TabListWrapper, {
-      onTransitionEnd: event => {
-        if (event.pseudoElement === '::after') {
-          setAnimationEnabled(false);
-        }
-      }
-    }),
+    render: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(TabListWrapper, {}),
     onBlur: onBlur,
+    tabIndex: -1,
+    "data-select-on-move": selectOnMove ? 'true' : 'false',
     ...otherProps,
-    style: {
-      '--indicator-left': `${indicatorPosition.left}px`,
-      '--indicator-top': `${indicatorPosition.top}px`,
-      '--indicator-width': `${indicatorPosition.width}px`,
-      '--indicator-height': `${indicatorPosition.height}px`,
-      ...otherProps.style
-    },
-    className: dist_clsx(animationEnabled ? 'is-animation-enabled' : '', otherProps.className),
+    className: dist_clsx(overflow.first && 'is-overflowing-first', overflow.last && 'is-overflowing-last', otherProps.className),
     children: children
   });
 });
@@ -71054,9 +71637,9 @@ function Tabs({
   // Keep track of whether tabs have been populated. This is used to prevent
   // certain effects from firing too early while tab data and relevant
   // variables are undefined during the initial render.
-  const tabsHavePopulated = (0,external_wp_element_namespaceObject.useRef)(false);
+  const tabsHavePopulatedRef = (0,external_wp_element_namespaceObject.useRef)(false);
   if (items.length > 0) {
-    tabsHavePopulated.current = true;
+    tabsHavePopulatedRef.current = true;
   }
   const selectedTab = items.find(item => item.id === selectedId);
   const firstEnabledTab = items.find(item => {
@@ -71089,7 +71672,7 @@ function Tabs({
       }
       if (firstEnabledTab) {
         setSelectedId(firstEnabledTab.id);
-      } else if (tabsHavePopulated.current) {
+      } else if (tabsHavePopulatedRef.current) {
         setSelectedId(null);
       }
     }
@@ -71128,7 +71711,7 @@ function Tabs({
 
     // Once the tabs have populated, if the `selectedTabId` still can't be
     // found, clear the selection.
-    if (tabsHavePopulated.current && !!selectedTabId && !selectedTab) {
+    if (tabsHavePopulatedRef.current && !!selectedTabId && !selectedTab) {
       setSelectedId(null);
     }
   }, [isControlled, selectedTab, selectedTabId, setSelectedId]);
@@ -71197,27 +71780,14 @@ const {
 
 
 
-
 const privateApis = {};
 lock(privateApis, {
-  CompositeV2: Composite,
-  CompositeGroupV2: Composite.Group,
-  CompositeItemV2: Composite.Item,
-  CompositeRowV2: Composite.Row,
-  useCompositeStoreV2: composite_useCompositeStore,
   __experimentalPopoverLegacyPositionToPlacement: positionToPlacement,
   createPrivateSlotFill: createPrivateSlotFill,
   ComponentsContext: ComponentsContext,
   Tabs: tabs,
   Theme: theme,
-  DropdownMenuV2: dropdown_menu_v2_DropdownMenu,
-  DropdownMenuGroupV2: DropdownMenuGroup,
-  DropdownMenuItemV2: DropdownMenuItem,
-  DropdownMenuCheckboxItemV2: DropdownMenuCheckboxItem,
-  DropdownMenuRadioItemV2: DropdownMenuRadioItem,
-  DropdownMenuSeparatorV2: DropdownMenuSeparator,
-  DropdownMenuItemLabelV2: DropdownMenuItemLabel,
-  DropdownMenuItemHelpTextV2: DropdownMenuItemHelpText,
+  DropdownMenuV2: DropdownMenuV2,
   kebabCase: kebabCase
 });
 
@@ -71226,6 +71796,8 @@ lock(privateApis, {
 
 
 // Components.
+
+
 
 
 

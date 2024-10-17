@@ -123,10 +123,10 @@ const brush = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(exte
 const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
 ;// CONCATENATED MODULE: external ["wp","element"]
 const external_wp_element_namespaceObject = window["wp"]["element"];
-;// CONCATENATED MODULE: external ["wp","data"]
-const external_wp_data_namespaceObject = window["wp"]["data"];
 ;// CONCATENATED MODULE: external ["wp","coreData"]
 const external_wp_coreData_namespaceObject = window["wp"]["coreData"];
+;// CONCATENATED MODULE: external ["wp","data"]
+const external_wp_data_namespaceObject = window["wp"]["data"];
 ;// CONCATENATED MODULE: ./packages/widgets/build-module/blocks/legacy-widget/edit/widget-type-selector.js
 /**
  * WordPress dependencies
@@ -154,12 +154,10 @@ function WidgetTypeSelector({
   if (widgetTypes.length === 0) {
     return (0,external_wp_i18n_namespaceObject.__)('There are no widgets available.');
   }
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.SelectControl
-  // TODO: Switch to `true` (40px size) if possible
-  , {
-    __next40pxDefaultSize: false,
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.SelectControl, {
+    __next40pxDefaultSize: true,
     __nextHasNoMarginBottom: true,
-    label: (0,external_wp_i18n_namespaceObject.__)('Select a legacy widget to display:'),
+    label: (0,external_wp_i18n_namespaceObject.__)('Legacy widget'),
     value: selectedId !== null && selectedId !== void 0 ? selectedId : '',
     options: [{
       value: '',
@@ -210,6 +208,7 @@ const external_wp_compose_namespaceObject = window["wp"]["compose"];
 const external_wp_apiFetch_namespaceObject = window["wp"]["apiFetch"];
 var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_wp_apiFetch_namespaceObject);
 ;// CONCATENATED MODULE: ./packages/widgets/build-module/blocks/legacy-widget/edit/control.js
+/* wp:polyfill */
 /**
  * WordPress dependencies
  */
@@ -915,7 +914,6 @@ function ConvertToBlocksButton({
 
 
 
-
 /**
  * Internal dependencies
  */
@@ -1012,7 +1010,6 @@ function NotEmpty({
     record: widgetType,
     hasResolved: hasResolvedWidgetType
   } = (0,external_wp_coreData_namespaceObject.useEntityRecord)('root', 'widgetType', widgetTypeId);
-  const isNavigationMode = (0,external_wp_data_namespaceObject.useSelect)(select => select(external_wp_blockEditor_namespaceObject.store).isNavigationMode(), []);
   const setInstance = (0,external_wp_element_namespaceObject.useCallback)(nextInstance => {
     setAttributes({
       instance: nextInstance
@@ -1032,7 +1029,7 @@ function NotEmpty({
       children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.Spinner, {})
     });
   }
-  const mode = idBase && (isNavigationMode || !isSelected) ? 'preview' : 'edit';
+  const mode = idBase && !isSelected ? 'preview' : 'edit';
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(external_ReactJSXRuntime_namespaceObject.Fragment, {
     children: [idBase === 'text' && /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_blockEditor_namespaceObject.BlockControls, {
       group: "other",
