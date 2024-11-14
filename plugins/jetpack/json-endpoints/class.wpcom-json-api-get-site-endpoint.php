@@ -204,6 +204,7 @@ class WPCOM_JSON_API_GET_Site_Endpoint extends WPCOM_JSON_API_Endpoint {
 		'videopress_storage_used',
 		'is_difm_lite_in_progress',
 		'site_intent',
+		'site_partner_bundle',
 		'site_goals',
 		'onboarding_segment',
 		'site_vertical_id',
@@ -234,6 +235,7 @@ class WPCOM_JSON_API_GET_Site_Endpoint extends WPCOM_JSON_API_Endpoint {
 		'was_migration_trial',
 		'was_hosting_trial',
 		'was_upgraded_from_trial',
+		'is_a4a_dev_site',
 	);
 
 	/**
@@ -876,6 +878,9 @@ class WPCOM_JSON_API_GET_Site_Endpoint extends WPCOM_JSON_API_Endpoint {
 					break;
 				case 'site_intent':
 					$options[ $key ] = $site->get_site_intent();
+					break;
+				case 'site_partner_bundle':
+					$options[ $key ] = $site->get_site_partner_bundle();
 					break;
 				case 'site_goals':
 					$options[ $key ] = $site->get_site_goals();

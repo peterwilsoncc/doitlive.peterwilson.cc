@@ -99,6 +99,7 @@ interface Window {
 			showFullJetpackStatsCard: boolean;
 			videoPressStats: boolean;
 		};
+		purchaseToken: string;
 		lifecycleStats: {
 			historicallyActiveModules: JetpackModule[];
 			brokenModules: {
@@ -350,6 +351,7 @@ interface Window {
 		recommendedModules: {
 			modules: JetpackModule[] | null;
 			dismissed: boolean;
+			isFirstRun: boolean;
 		};
 		themes: {
 			[ key: string ]: {

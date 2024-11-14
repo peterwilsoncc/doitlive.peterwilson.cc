@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit87173d2e331a00aa3bed6f9c67ba5c3c
+class ComposerStaticInit6b0e2ab7be97be93a5d7f26eea8e67a1
 {
     public static $files = array (
         'b6ec61354e97f32c0ae683041c78392a' => __DIR__ . '/..' . '/scrivo/highlight-php/HighlightUtilities/functions.php',
@@ -42,8 +42,8 @@ class ComposerStaticInit87173d2e331a00aa3bed6f9c67ba5c3c
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixesPsr0 = ComposerStaticInit87173d2e331a00aa3bed6f9c67ba5c3c::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit87173d2e331a00aa3bed6f9c67ba5c3c::$classMap;
+            $loader->prefixesPsr0 = ComposerStaticInit6b0e2ab7be97be93a5d7f26eea8e67a1::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit6b0e2ab7be97be93a5d7f26eea8e67a1::$classMap;
 
         }, null, ClassLoader::class);
     }

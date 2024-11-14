@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 1919:
+/***/ 66:
 /***/ ((module) => {
 
 "use strict";
@@ -142,7 +142,7 @@ module.exports = deepmerge_1;
 
 /***/ }),
 
-/***/ 5619:
+/***/ 7734:
 /***/ ((module) => {
 
 "use strict";
@@ -222,7 +222,7 @@ module.exports = function equal(a, b) {
 
 /***/ }),
 
-/***/ 2920:
+/***/ 8381:
 /***/ ((module) => {
 
 //
@@ -373,7 +373,7 @@ module.exports.strategies = {
 
 /***/ }),
 
-/***/ 7115:
+/***/ 8924:
 /***/ ((__unused_webpack_module, exports) => {
 
 // Copyright (c) 2014 Rafael Caricio. All rights reserved.
@@ -719,7 +719,7 @@ exports.parse = (GradientParser || {}).parse;
 
 /***/ }),
 
-/***/ 3138:
+/***/ 9664:
 /***/ ((module) => {
 
 module.exports =
@@ -981,13 +981,13 @@ module.exports =
 
 /***/ }),
 
-/***/ 1281:
+/***/ 1880:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
-var reactIs = __webpack_require__(338);
+var reactIs = __webpack_require__(8529);
 
 /**
  * Copyright 2015, Yahoo! Inc.
@@ -1092,7 +1092,7 @@ module.exports = hoistNonReactStatics;
 
 /***/ }),
 
-/***/ 4821:
+/***/ 5373:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -1115,20 +1115,20 @@ exports.isValidElementType=function(a){return"string"===typeof a||"function"===t
 
 /***/ }),
 
-/***/ 338:
+/***/ 8529:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
 if (true) {
-  module.exports = __webpack_require__(4821);
+  module.exports = __webpack_require__(5373);
 } else {}
 
 
 /***/ }),
 
-/***/ 4793:
+/***/ 9681:
 /***/ ((module) => {
 
 var characterMap = {
@@ -1616,7 +1616,7 @@ module.exports.remove = removeAccents;
 
 /***/ }),
 
-/***/ 7755:
+/***/ 8477:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -1629,26 +1629,26 @@ module.exports.remove = removeAccents;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-var e=__webpack_require__(9196);function h(a,b){return a===b&&(0!==a||1/a===1/b)||a!==a&&b!==b}var k="function"===typeof Object.is?Object.is:h,l=e.useState,m=e.useEffect,n=e.useLayoutEffect,p=e.useDebugValue;function q(a,b){var d=b(),f=l({inst:{value:d,getSnapshot:b}}),c=f[0].inst,g=f[1];n(function(){c.value=d;c.getSnapshot=b;r(c)&&g({inst:c})},[a,d,b]);m(function(){r(c)&&g({inst:c});return a(function(){r(c)&&g({inst:c})})},[a]);p(d);return d}
+var e=__webpack_require__(1609);function h(a,b){return a===b&&(0!==a||1/a===1/b)||a!==a&&b!==b}var k="function"===typeof Object.is?Object.is:h,l=e.useState,m=e.useEffect,n=e.useLayoutEffect,p=e.useDebugValue;function q(a,b){var d=b(),f=l({inst:{value:d,getSnapshot:b}}),c=f[0].inst,g=f[1];n(function(){c.value=d;c.getSnapshot=b;r(c)&&g({inst:c})},[a,d,b]);m(function(){r(c)&&g({inst:c});return a(function(){r(c)&&g({inst:c})})},[a]);p(d);return d}
 function r(a){var b=a.getSnapshot;a=a.value;try{var d=b();return!k(a,d)}catch(f){return!0}}function t(a,b){return b()}var u="undefined"===typeof window||"undefined"===typeof window.document||"undefined"===typeof window.document.createElement?t:q;exports.useSyncExternalStore=void 0!==e.useSyncExternalStore?e.useSyncExternalStore:u;
 
 
 /***/ }),
 
-/***/ 635:
+/***/ 422:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
 if (true) {
-  module.exports = __webpack_require__(7755);
+  module.exports = __webpack_require__(8477);
 } else {}
 
 
 /***/ }),
 
-/***/ 9196:
+/***/ 1609:
 /***/ ((module) => {
 
 "use strict";
@@ -1980,23 +1980,23 @@ __webpack_require__.d(text_styles_namespaceObject, {
 var toggle_group_control_option_base_styles_namespaceObject = {};
 __webpack_require__.r(toggle_group_control_option_base_styles_namespaceObject);
 __webpack_require__.d(toggle_group_control_option_base_styles_namespaceObject, {
-  ButtonContentView: () => (ButtonContentView),
-  LabelView: () => (LabelView),
-  J: () => (buttonView),
-  I: () => (labelBlock)
+  Rp: () => (ButtonContentView),
+  y0: () => (LabelView),
+  uG: () => (buttonView),
+  eh: () => (labelBlock)
 });
 
-;// CONCATENATED MODULE: external ["wp","primitives"]
+;// external ["wp","primitives"]
 const external_wp_primitives_namespaceObject = window["wp"]["primitives"];
-;// CONCATENATED MODULE: ./node_modules/clsx/dist/clsx.mjs
+;// ./node_modules/clsx/dist/clsx.mjs
 function r(e){var t,f,n="";if("string"==typeof e||"number"==typeof e)n+=e;else if("object"==typeof e)if(Array.isArray(e)){var o=e.length;for(t=0;t<o;t++)e[t]&&(f=r(e[t]))&&(n&&(n+=" "),n+=f)}else for(f in e)e[f]&&(n&&(n+=" "),n+=f);return n}function clsx(){for(var e,t,f=0,n="",o=arguments.length;f<o;f++)(e=arguments[f])&&(t=r(e))&&(n&&(n+=" "),n+=t);return n}/* harmony default export */ const dist_clsx = (clsx);
-;// CONCATENATED MODULE: external ["wp","i18n"]
+;// external ["wp","i18n"]
 const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
-;// CONCATENATED MODULE: external ["wp","compose"]
+;// external ["wp","compose"]
 const external_wp_compose_namespaceObject = window["wp"]["compose"];
-;// CONCATENATED MODULE: external ["wp","element"]
+;// external ["wp","element"]
 const external_wp_element_namespaceObject = window["wp"]["element"];
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/3YLGPPWQ.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/3YLGPPWQ.js
 "use client";
 var __defProp = Object.defineProperty;
 var __defProps = Object.defineProperties;
@@ -2032,7 +2032,7 @@ var __objRest = (source, exclude) => {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/__chunks/3YLGPPWQ.js
+;// ./node_modules/@ariakit/core/esm/__chunks/3YLGPPWQ.js
 "use client";
 var _3YLGPPWQ_defProp = Object.defineProperty;
 var _3YLGPPWQ_defProps = Object.defineProperties;
@@ -2068,7 +2068,7 @@ var _3YLGPPWQ_objRest = (source, exclude) => {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/__chunks/PBFD2E7P.js
+;// ./node_modules/@ariakit/core/esm/__chunks/PBFD2E7P.js
 "use client";
 
 
@@ -2208,10 +2208,10 @@ function defaultValue(...values) {
 
 
 // EXTERNAL MODULE: external "React"
-var external_React_ = __webpack_require__(9196);
+var external_React_ = __webpack_require__(1609);
 var external_React_namespaceObject = /*#__PURE__*/__webpack_require__.t(external_React_, 2);
 var external_React_default = /*#__PURE__*/__webpack_require__.n(external_React_);
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/SK3NAZA3.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/SK3NAZA3.js
 "use client";
 
 
@@ -2269,7 +2269,7 @@ function mergeProps(base, overrides) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/__chunks/HWOIWM4O.js
+;// ./node_modules/@ariakit/core/esm/__chunks/HWOIWM4O.js
 "use client";
 
 // src/utils/dom.ts
@@ -2440,7 +2440,7 @@ function setSelectionRange(element, ...args) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/__chunks/US4USQPI.js
+;// ./node_modules/@ariakit/core/esm/__chunks/US4USQPI.js
 "use client";
 
 
@@ -2464,7 +2464,7 @@ function isMac() {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/utils/events.js
+;// ./node_modules/@ariakit/core/esm/utils/events.js
 "use client";
 
 
@@ -2581,7 +2581,7 @@ function addGlobalEventListener(type, listener, options, scope = window) {
 }
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/Z32BISHQ.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/Z32BISHQ.js
 "use client";
 
 
@@ -2812,7 +2812,7 @@ function resetMouseMoving() {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/__chunks/EQQLU3CG.js
+;// ./node_modules/@ariakit/core/esm/__chunks/EQQLU3CG.js
 "use client";
 
 
@@ -3025,8 +3025,8 @@ If there's a particular need for this, please submit a feature request at https:
 
 
 // EXTERNAL MODULE: ./node_modules/use-sync-external-store/shim/index.js
-var shim = __webpack_require__(635);
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/2GXGCHW6.js
+var shim = __webpack_require__(422);
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/2GXGCHW6.js
 "use client";
 
 
@@ -3100,7 +3100,7 @@ function _2GXGCHW6_useStore(createStore, props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/TCAGH6BH.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/TCAGH6BH.js
 "use client";
 
 
@@ -3119,7 +3119,7 @@ function useCollectionStore(props = {}) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/__chunks/6DHTHWXD.js
+;// ./node_modules/@ariakit/core/esm/__chunks/6DHTHWXD.js
 "use client";
 
 
@@ -3303,7 +3303,7 @@ function createCollectionStore(props = {}) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/__chunks/7PRQYBBV.js
+;// ./node_modules/@ariakit/core/esm/__chunks/7PRQYBBV.js
 "use client";
 
 // src/utils/array.ts
@@ -3332,7 +3332,7 @@ function reverseArray(array) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/__chunks/D7EIQZAU.js
+;// ./node_modules/@ariakit/core/esm/__chunks/D7EIQZAU.js
 "use client";
 
 
@@ -3614,7 +3614,7 @@ function createCompositeStore(props = {}) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/UVQLZ7T5.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/UVQLZ7T5.js
 "use client";
 
 
@@ -3640,7 +3640,7 @@ function useCompositeStore(props = {}) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/5VQZOHHZ.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/5VQZOHHZ.js
 "use client";
 
 // src/composite/utils.ts
@@ -3716,9 +3716,9 @@ function isItem(store, element, exclude) {
 
 
 
-;// CONCATENATED MODULE: external "ReactJSXRuntime"
+;// external "ReactJSXRuntime"
 const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/HKOOKEDE.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/HKOOKEDE.js
 "use client";
 
 
@@ -3800,7 +3800,7 @@ function createStoreContext(providers = [], scopedProviders = []) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/FMYQNSCK.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/FMYQNSCK.js
 "use client";
 
 
@@ -3814,7 +3814,7 @@ var CollectionScopedContextProvider = ctx.ScopedContextProvider;
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/WENSINUV.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/WENSINUV.js
 "use client";
 
 
@@ -3839,7 +3839,7 @@ var CompositeRowContext = (0,external_React_.createContext)(
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/SWN3JYXT.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/SWN3JYXT.js
 "use client";
 
 // src/focusable/focusable-context.tsx
@@ -3848,7 +3848,7 @@ var FocusableContext = (0,external_React_.createContext)(true);
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/utils/focus.js
+;// ./node_modules/@ariakit/core/esm/utils/focus.js
 "use client";
 
 
@@ -4057,7 +4057,7 @@ function focusIntoView(element, options) {
 }
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/HGZKAGPL.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/HGZKAGPL.js
 "use client";
 
 
@@ -4361,7 +4361,7 @@ var Focusable = forwardRef2(function Focusable2(props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/TW35PKTK.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/TW35PKTK.js
 "use client";
 
 
@@ -4655,7 +4655,7 @@ var TW35PKTK_Composite = forwardRef2(function Composite2(props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/build-module/composite/context.js
+;// ./packages/components/build-module/composite/context.js
 /**
  * WordPress dependencies
  */
@@ -4668,7 +4668,7 @@ var TW35PKTK_Composite = forwardRef2(function Composite2(props) {
 const CompositeContext = (0,external_wp_element_namespaceObject.createContext)({});
 const context_useCompositeContext = () => (0,external_wp_element_namespaceObject.useContext)(CompositeContext);
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/7HVFURXT.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/7HVFURXT.js
 "use client";
 
 // src/group/group-label-context.tsx
@@ -4677,7 +4677,7 @@ var GroupLabelContext = (0,external_React_.createContext)(void 0);
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/ZPO4YZYE.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/ZPO4YZYE.js
 "use client";
 
 
@@ -4711,7 +4711,7 @@ var Group = forwardRef2(function Group2(props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/IEKMDIUY.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/IEKMDIUY.js
 "use client";
 
 
@@ -4733,7 +4733,7 @@ var IEKMDIUY_CompositeGroup = forwardRef2(function CompositeGroup2(props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/build-module/composite/group.js
+;// ./packages/components/build-module/composite/group.js
 /**
  * External dependencies
  */
@@ -4765,7 +4765,7 @@ const CompositeGroup = (0,external_wp_element_namespaceObject.forwardRef)(functi
   });
 });
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/IGFP5YPG.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/IGFP5YPG.js
 "use client";
 
 
@@ -4798,7 +4798,7 @@ var GroupLabel = forwardRef2(function GroupLabel2(props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/Y2MAXF6C.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/Y2MAXF6C.js
 "use client";
 
 
@@ -4818,7 +4818,7 @@ var Y2MAXF6C_CompositeGroupLabel = forwardRef2(function CompositeGroupLabel2(pro
 
 
 
-;// CONCATENATED MODULE: ./packages/components/build-module/composite/group-label.js
+;// ./packages/components/build-module/composite/group-label.js
 /**
  * External dependencies
  */
@@ -4850,7 +4850,7 @@ const CompositeGroupLabel = (0,external_wp_element_namespaceObject.forwardRef)(f
   });
 });
 
-;// CONCATENATED MODULE: ./packages/components/build-module/composite/hover.js
+;// ./packages/components/build-module/composite/hover.js
 /**
  * External dependencies
  */
@@ -4882,7 +4882,7 @@ const CompositeHover = (0,external_wp_element_namespaceObject.forwardRef)(functi
   });
 });
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/PLQDTVXM.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/PLQDTVXM.js
 "use client";
 
 
@@ -4932,7 +4932,7 @@ var CollectionItem = forwardRef2(function CollectionItem2(props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/NAXN2XAB.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/NAXN2XAB.js
 "use client";
 
 
@@ -5053,7 +5053,7 @@ var Command = forwardRef2(function Command2(props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/3CCTMYB6.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/3CCTMYB6.js
 "use client";
 
 
@@ -5359,7 +5359,7 @@ var _3CCTMYB6_CompositeItem = memo2(
 
 
 
-;// CONCATENATED MODULE: ./packages/components/build-module/composite/item.js
+;// ./packages/components/build-module/composite/item.js
 /**
  * External dependencies
  */
@@ -5400,7 +5400,7 @@ const CompositeItem = (0,external_wp_element_namespaceObject.forwardRef)(functio
   });
 });
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/6BE7QOX5.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/6BE7QOX5.js
 "use client";
 
 
@@ -5453,7 +5453,7 @@ var _6BE7QOX5_CompositeRow = forwardRef2(function CompositeRow2(props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/build-module/composite/row.js
+;// ./packages/components/build-module/composite/row.js
 /**
  * External dependencies
  */
@@ -5485,7 +5485,7 @@ const CompositeRow = (0,external_wp_element_namespaceObject.forwardRef)(function
   });
 });
 
-;// CONCATENATED MODULE: ./packages/components/build-module/composite/typeahead.js
+;// ./packages/components/build-module/composite/typeahead.js
 /**
  * External dependencies
  */
@@ -5517,7 +5517,7 @@ const CompositeTypeahead = (0,external_wp_element_namespaceObject.forwardRef)(fu
   });
 });
 
-;// CONCATENATED MODULE: ./packages/components/build-module/composite/index.js
+;// ./packages/components/build-module/composite/index.js
 /**
  * Composite is a component that may contain navigable items represented by
  * Composite.Item. It's inspired by the WAI-ARIA Composite Role and implements
@@ -5754,7 +5754,7 @@ const Composite = Object.assign((0,external_wp_element_namespaceObject.forwardRe
   })
 });
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/__chunks/6E4KKOSB.js
+;// ./node_modules/@ariakit/core/esm/__chunks/6E4KKOSB.js
 "use client";
 
 
@@ -5818,7 +5818,7 @@ function createDisclosureStore(props = {}) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/KGK2TTFO.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/KGK2TTFO.js
 "use client";
 
 
@@ -5839,7 +5839,7 @@ function useDisclosureStore(props = {}) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/__chunks/YOHCVXJB.js
+;// ./node_modules/@ariakit/core/esm/__chunks/YOHCVXJB.js
 "use client";
 
 
@@ -5850,7 +5850,7 @@ function createDialogStore(props = {}) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/QYS5FHDY.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/QYS5FHDY.js
 "use client";
 
 
@@ -5867,7 +5867,7 @@ function useDialogStore(props = {}) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/CBC47ZYL.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/CBC47ZYL.js
 "use client";
 
 
@@ -5887,7 +5887,7 @@ function usePopoverStore(props = {}) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/XMDAT5SM.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/XMDAT5SM.js
 "use client";
 
 
@@ -5907,7 +5907,7 @@ function useHovercardStore(props = {}) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/__chunks/3UYWTADI.js
+;// ./node_modules/@ariakit/core/esm/__chunks/3UYWTADI.js
 "use client";
 
 
@@ -5958,7 +5958,7 @@ function createPopoverStore(_a = {}) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/__chunks/EACLTACN.js
+;// ./node_modules/@ariakit/core/esm/__chunks/EACLTACN.js
 "use client";
 
 
@@ -5991,7 +5991,7 @@ function createHovercardStore(props = {}) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/tooltip/tooltip-store.js
+;// ./node_modules/@ariakit/core/esm/tooltip/tooltip-store.js
 "use client";
 
 
@@ -6023,7 +6023,7 @@ function createTooltipStore(props = {}) {
 }
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/2D53SX6Q.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/2D53SX6Q.js
 "use client";
 
 
@@ -6042,7 +6042,7 @@ function useTooltipStore(props = {}) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/AXRBYZQP.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/AXRBYZQP.js
 "use client";
 
 
@@ -6100,7 +6100,7 @@ Object.assign(
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/RGUP62TM.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/RGUP62TM.js
 "use client";
 
 
@@ -6114,7 +6114,7 @@ var DisclosureScopedContextProvider = RGUP62TM_ctx.ScopedContextProvider;
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/DU4D3UCJ.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/DU4D3UCJ.js
 "use client";
 
 
@@ -6135,7 +6135,7 @@ var DialogDescriptionContext = (0,external_React_.createContext)(void 0);
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/54MGSIOI.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/54MGSIOI.js
 "use client";
 
 
@@ -6153,7 +6153,7 @@ var PopoverScopedContextProvider = _54MGSIOI_ctx.ScopedContextProvider;
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/CTQR3VDU.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/CTQR3VDU.js
 "use client";
 
 
@@ -6171,7 +6171,7 @@ var HovercardScopedContextProvider = CTQR3VDU_ctx.ScopedContextProvider;
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/QA27FYGF.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/QA27FYGF.js
 "use client";
 
 
@@ -6270,7 +6270,7 @@ var HovercardAnchor = forwardRef2(function HovercardAnchor2(props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/TWCRTUOB.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/TWCRTUOB.js
 "use client";
 
 
@@ -6288,7 +6288,7 @@ var TooltipScopedContextProvider = TWCRTUOB_ctx.ScopedContextProvider;
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/tooltip/tooltip-anchor.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/tooltip/tooltip-anchor.js
 "use client";
 
 
@@ -6412,7 +6412,7 @@ var TooltipAnchor = forwardRef2(function TooltipAnchor2(props) {
 });
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/X7QOZUD3.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/X7QOZUD3.js
 "use client";
 
 // src/hovercard/utils/polygon.ts
@@ -6497,7 +6497,7 @@ function getElementPolygon(element, enterPoint) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/63XF7ACK.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/63XF7ACK.js
 "use client";
 
 // src/dialog/utils/is-backdrop.ts
@@ -6513,7 +6513,7 @@ function _63XF7ACK_isBackdrop(element, ...ids) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/K2ZF5NU7.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/K2ZF5NU7.js
 "use client";
 
 // src/dialog/utils/orchestrate.ts
@@ -6606,7 +6606,7 @@ function setCSSProperty(element, property, value) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/AOUGVQZ3.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/AOUGVQZ3.js
 "use client";
 
 
@@ -6674,7 +6674,7 @@ function createWalkTreeSnapshot(id, elements) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/2PGBN2Y4.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/2PGBN2Y4.js
 "use client";
 
 
@@ -6733,9 +6733,9 @@ function markTreeOutside(id, elements) {
 
 
 
-;// CONCATENATED MODULE: external "ReactDOM"
+;// external "ReactDOM"
 const external_ReactDOM_namespaceObject = window["ReactDOM"];
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/BSEL4YAF.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/BSEL4YAF.js
 "use client";
 
 
@@ -6908,7 +6908,7 @@ var DisclosureContent = forwardRef2(function DisclosureContent2(_a) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/UQBPM777.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/UQBPM777.js
 "use client";
 
 
@@ -6968,7 +6968,7 @@ function DialogBackdrop({
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/ESSM74HH.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/ESSM74HH.js
 "use client";
 
 
@@ -6995,7 +6995,7 @@ function disableAccessibilityTreeOutside(id, elements) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/677M2CI3.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/677M2CI3.js
 "use client";
 
 // src/dialog/utils/supports-inert.ts
@@ -7005,7 +7005,7 @@ function supportsInert() {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/NSFBIL2Z.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/NSFBIL2Z.js
 "use client";
 
 
@@ -7069,7 +7069,7 @@ function disableTreeOutside(id, elements) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/YJS26JVG.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/YJS26JVG.js
 "use client";
 
 
@@ -7109,7 +7109,7 @@ function useRootDialog({
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/KB6RR6FL.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/KB6RR6FL.js
 "use client";
 
 
@@ -7179,7 +7179,7 @@ function usePreventBodyScroll(contentElement, contentId, enabled) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/T3RMEPVH.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/T3RMEPVH.js
 "use client";
 
 
@@ -7220,7 +7220,7 @@ function useNestedDialogs(store) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/HLTQOHKZ.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/HLTQOHKZ.js
 "use client";
 
 // src/dialog/utils/use-previous-mouse-down-ref.ts
@@ -7243,7 +7243,7 @@ function usePreviousMouseDownRef(enabled) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/43UOHFGG.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/43UOHFGG.js
 "use client";
 
 
@@ -7359,7 +7359,7 @@ function useHideOnInteractOutside(store, hideOnInteractOutside, domReady) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/6GXEOXGT.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/6GXEOXGT.js
 "use client";
 
 // src/dialog/utils/prepend-hidden-dismiss.ts
@@ -7392,7 +7392,7 @@ function prependHiddenDismiss(container, onClick) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/HT3UEUDM.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/HT3UEUDM.js
 "use client";
 
 
@@ -7418,7 +7418,7 @@ var FocusableContainer = forwardRef2(function FocusableContainer2(props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/CZ4GFWYL.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/CZ4GFWYL.js
 "use client";
 
 // src/heading/heading-context.tsx
@@ -7427,7 +7427,7 @@ var HeadingContext = (0,external_React_.createContext)(0);
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/5M6RIVE2.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/5M6RIVE2.js
 "use client";
 
 
@@ -7445,7 +7445,7 @@ function HeadingLevel({ level, children }) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/ILNAUGA4.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/ILNAUGA4.js
 "use client";
 
 
@@ -7477,7 +7477,7 @@ var VisuallyHidden = forwardRef2(function VisuallyHidden2(props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/LWDIJ7XK.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/LWDIJ7XK.js
 "use client";
 
 
@@ -7510,7 +7510,7 @@ var FocusTrap = forwardRef2(function FocusTrap2(props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/AOQQTIBO.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/AOQQTIBO.js
 "use client";
 
 // src/portal/portal-context.tsx
@@ -7519,7 +7519,7 @@ var PortalContext = (0,external_React_.createContext)(null);
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/UNZQGRPO.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/UNZQGRPO.js
 "use client";
 
 
@@ -7765,7 +7765,7 @@ var Portal = forwardRef2(function Portal2(props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/TT2355LN.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/TT2355LN.js
 "use client";
 
 
@@ -8171,7 +8171,7 @@ var Dialog = createDialogComponent(
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@floating-ui/utils/dist/floating-ui.utils.mjs
+;// ./node_modules/@floating-ui/utils/dist/floating-ui.utils.mjs
 const floating_ui_utils_sides = (/* unused pure expression or super */ null && (['top', 'right', 'bottom', 'left']));
 const alignments = (/* unused pure expression or super */ null && (['start', 'end']));
 const floating_ui_utils_placements = /*#__PURE__*/(/* unused pure expression or super */ null && (floating_ui_utils_sides.reduce((acc, side) => acc.concat(side, side + "-" + alignments[0], side + "-" + alignments[1]), [])));
@@ -8297,7 +8297,7 @@ function floating_ui_utils_rectToClientRect(rect) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@floating-ui/core/dist/floating-ui.core.mjs
+;// ./node_modules/@floating-ui/core/dist/floating-ui.core.mjs
 
 
 
@@ -9297,7 +9297,7 @@ const size = function (options) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@floating-ui/dom/node_modules/@floating-ui/utils/dist/floating-ui.utils.mjs
+;// ./node_modules/@floating-ui/dom/node_modules/@floating-ui/utils/dist/floating-ui.utils.mjs
 /**
  * Custom positioning reference element.
  * @see https://floating-ui.com/docs/virtual-elements
@@ -9437,7 +9437,10 @@ function dist_floating_ui_utils_rectToClientRect(rect) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@floating-ui/dom/node_modules/@floating-ui/utils/dist/floating-ui.utils.dom.mjs
+;// ./node_modules/@floating-ui/dom/node_modules/@floating-ui/utils/dist/floating-ui.utils.dom.mjs
+function hasWindow() {
+  return typeof window !== 'undefined';
+}
 function getNodeName(node) {
   if (isNode(node)) {
     return (node.nodeName || '').toLowerCase();
@@ -9456,17 +9459,25 @@ function getDocumentElement(node) {
   return (_ref = (isNode(node) ? node.ownerDocument : node.document) || window.document) == null ? void 0 : _ref.documentElement;
 }
 function isNode(value) {
+  if (!hasWindow()) {
+    return false;
+  }
   return value instanceof Node || value instanceof floating_ui_utils_dom_getWindow(value).Node;
 }
 function isElement(value) {
+  if (!hasWindow()) {
+    return false;
+  }
   return value instanceof Element || value instanceof floating_ui_utils_dom_getWindow(value).Element;
 }
 function isHTMLElement(value) {
+  if (!hasWindow()) {
+    return false;
+  }
   return value instanceof HTMLElement || value instanceof floating_ui_utils_dom_getWindow(value).HTMLElement;
 }
 function isShadowRoot(value) {
-  // Browsers without `ShadowRoot` support.
-  if (typeof ShadowRoot === 'undefined') {
+  if (!hasWindow() || typeof ShadowRoot === 'undefined') {
     return false;
   }
   return value instanceof ShadowRoot || value instanceof floating_ui_utils_dom_getWindow(value).ShadowRoot;
@@ -9492,9 +9503,9 @@ function isTopLayer(element) {
     }
   });
 }
-function isContainingBlock(element) {
+function isContainingBlock(elementOrCss) {
   const webkit = isWebKit();
-  const css = floating_ui_utils_dom_getComputedStyle(element);
+  const css = isElement(elementOrCss) ? floating_ui_utils_dom_getComputedStyle(elementOrCss) : elementOrCss;
 
   // https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#identifying_the_containing_block
   return css.transform !== 'none' || css.perspective !== 'none' || (css.containerType ? css.containerType !== 'normal' : false) || !webkit && (css.backdropFilter ? css.backdropFilter !== 'none' : false) || !webkit && (css.filter ? css.filter !== 'none' : false) || ['transform', 'perspective', 'filter'].some(value => (css.willChange || '').includes(value)) || ['paint', 'layout', 'strict', 'content'].some(value => (css.contain || '').includes(value));
@@ -9502,11 +9513,10 @@ function isContainingBlock(element) {
 function getContainingBlock(element) {
   let currentNode = getParentNode(element);
   while (isHTMLElement(currentNode) && !isLastTraversableNode(currentNode)) {
-    if (isTopLayer(currentNode)) {
-      return null;
-    }
     if (isContainingBlock(currentNode)) {
       return currentNode;
+    } else if (isTopLayer(currentNode)) {
+      return null;
     }
     currentNode = getParentNode(currentNode);
   }
@@ -9571,14 +9581,18 @@ function getOverflowAncestors(node, list, traverseIframes) {
   const isBody = scrollableAncestor === ((_node$ownerDocument2 = node.ownerDocument) == null ? void 0 : _node$ownerDocument2.body);
   const win = floating_ui_utils_dom_getWindow(scrollableAncestor);
   if (isBody) {
-    return list.concat(win, win.visualViewport || [], isOverflowElement(scrollableAncestor) ? scrollableAncestor : [], win.frameElement && traverseIframes ? getOverflowAncestors(win.frameElement) : []);
+    const frameElement = getFrameElement(win);
+    return list.concat(win, win.visualViewport || [], isOverflowElement(scrollableAncestor) ? scrollableAncestor : [], frameElement && traverseIframes ? getOverflowAncestors(frameElement) : []);
   }
   return list.concat(scrollableAncestor, getOverflowAncestors(scrollableAncestor, [], traverseIframes));
+}
+function getFrameElement(win) {
+  return win.parent && Object.getPrototypeOf(win.parent) ? win.frameElement : null;
 }
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@floating-ui/dom/dist/floating-ui.dom.mjs
+;// ./node_modules/@floating-ui/dom/dist/floating-ui.dom.mjs
 
 
 
@@ -10259,7 +10273,7 @@ const floating_ui_dom_computePosition = (reference, floating, options) => {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/JS55N6L7.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/JS55N6L7.js
 "use client";
 
 
@@ -10620,7 +10634,7 @@ var Popover = createDialogComponent(
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/HQFKUKP3.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/HQFKUKP3.js
 "use client";
 
 
@@ -10875,7 +10889,7 @@ var Hovercard = createDialogComponent(
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/tooltip/tooltip.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/tooltip/tooltip.js
 "use client";
 
 
@@ -10988,10 +11002,10 @@ var Tooltip = createDialogComponent(
 );
 
 
-;// CONCATENATED MODULE: external ["wp","deprecated"]
+;// external ["wp","deprecated"]
 const external_wp_deprecated_namespaceObject = window["wp"]["deprecated"];
 var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_namespaceObject);
-;// CONCATENATED MODULE: ./packages/components/build-module/shortcut/index.js
+;// ./packages/components/build-module/shortcut/index.js
 
 /**
  * Internal dependencies
@@ -11035,7 +11049,7 @@ function Shortcut(props) {
 }
 /* harmony default export */ const build_module_shortcut = (Shortcut);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/popover/utils.js
+;// ./packages/components/build-module/popover/utils.js
 /**
  * External dependencies
  */
@@ -11284,7 +11298,7 @@ const getReferenceElement = ({
  */
 const computePopoverPosition = c => c === null || Number.isNaN(c) ? undefined : Math.round(c);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/tooltip/index.js
+;// ./packages/components/build-module/tooltip/index.js
 /**
  * External dependencies
  */
@@ -11302,7 +11316,6 @@ const computePopoverPosition = c => c === null || Number.isNaN(c) ? undefined : 
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -11371,9 +11384,13 @@ function UnforwardedTooltip(props, ref) {
   // TODO: this is a temporary workaround to minimize the effects of the
   // Ariakit upgrade. Ariakit doesn't pass the `aria-describedby` prop to
   // the tooltip anchor anymore since 0.4.0, so we need to add it manually.
+  // The `aria-describedby` attribute is added only if the anchor doesn't have
+  // one already, and if the tooltip text is not the same as the anchor's
+  // `aria-label`
   // See: https://github.com/WordPress/gutenberg/pull/64066
+  // See: https://github.com/WordPress/gutenberg/pull/65989
   function addDescribedById(element) {
-    return describedById && mounted ? (0,external_wp_element_namespaceObject.cloneElement)(element, {
+    return describedById && mounted && element.props['aria-describedby'] === undefined && element.props['aria-label'] !== text ? (0,external_wp_element_namespaceObject.cloneElement)(element, {
       'aria-describedby': describedById
     }) : element;
   }
@@ -11403,15 +11420,15 @@ function UnforwardedTooltip(props, ref) {
 const tooltip_Tooltip = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedTooltip);
 /* harmony default export */ const tooltip = (tooltip_Tooltip);
 
-;// CONCATENATED MODULE: external ["wp","warning"]
+;// external ["wp","warning"]
 const external_wp_warning_namespaceObject = window["wp"]["warning"];
 // EXTERNAL MODULE: ./node_modules/deepmerge/dist/cjs.js
-var cjs = __webpack_require__(1919);
+var cjs = __webpack_require__(66);
 var cjs_default = /*#__PURE__*/__webpack_require__.n(cjs);
 // EXTERNAL MODULE: ./node_modules/fast-deep-equal/es6/index.js
-var es6 = __webpack_require__(5619);
+var es6 = __webpack_require__(7734);
 var es6_default = /*#__PURE__*/__webpack_require__.n(es6);
-;// CONCATENATED MODULE: ./node_modules/is-plain-object/dist/is-plain-object.mjs
+;// ./node_modules/is-plain-object/dist/is-plain-object.mjs
 /*!
  * is-plain-object <https://github.com/jonschlinkert/is-plain-object>
  *
@@ -11447,7 +11464,7 @@ function isPlainObject(o) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/hooks/use-update-effect.js
+;// ./packages/components/build-module/utils/hooks/use-update-effect.js
 /**
  * WordPress dependencies
  */
@@ -11469,11 +11486,9 @@ function use_update_effect_useUpdateEffect(effect, deps) {
     }
     mountedRef.current = true;
     return undefined;
-    // Disable reasons:
     // 1. This hook needs to pass a dep list that isn't an array literal
     // 2. `effect` is missing from the array, and will need to be added carefully to avoid additional warnings
     // see https://github.com/WordPress/gutenberg/pull/41166
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
   (0,external_wp_element_namespaceObject.useEffect)(() => () => {
     mountedRef.current = false;
@@ -11481,7 +11496,7 @@ function use_update_effect_useUpdateEffect(effect, deps) {
 }
 /* harmony default export */ const use_update_effect = (use_update_effect_useUpdateEffect);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/context/context-system-provider.js
+;// ./packages/components/build-module/context/context-system-provider.js
 /**
  * External dependencies
  */
@@ -11500,7 +11515,7 @@ function use_update_effect_useUpdateEffect(effect, deps) {
  */
 
 
-const ComponentsContext = (0,external_wp_element_namespaceObject.createContext)( /** @type {Record<string, any>} */{});
+const ComponentsContext = (0,external_wp_element_namespaceObject.createContext)(/** @type {Record<string, any>} */{});
 const useComponentsContext = () => (0,external_wp_element_namespaceObject.useContext)(ComponentsContext);
 
 /**
@@ -11579,7 +11594,7 @@ const BaseContextSystemProvider = ({
 };
 const ContextSystemProvider = (0,external_wp_element_namespaceObject.memo)(BaseContextSystemProvider);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/context/constants.js
+;// ./packages/components/build-module/context/constants.js
 const COMPONENT_NAMESPACE = 'data-wp-component';
 const CONNECTED_NAMESPACE = 'data-wp-c16t';
 
@@ -11589,7 +11604,7 @@ const CONNECTED_NAMESPACE = 'data-wp-c16t';
  */
 const CONNECT_STATIC_NAMESPACE = '__contextSystemKey__';
 
-;// CONCATENATED MODULE: ./packages/components/build-module/context/utils.js
+;// ./packages/components/build-module/context/utils.js
 /**
  * Internal dependencies
  */
@@ -11630,7 +11645,7 @@ function getConnectedNamespace() {
   };
 }
 
-;// CONCATENATED MODULE: ./node_modules/tslib/tslib.es6.mjs
+;// ./node_modules/tslib/tslib.es6.mjs
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
 
@@ -11645,7 +11660,7 @@ LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
-/* global Reflect, Promise, SuppressedError, Symbol */
+/* global Reflect, Promise, SuppressedError, Symbol, Iterator */
 
 var extendStatics = function(d, b) {
   extendStatics = Object.setPrototypeOf ||
@@ -11756,8 +11771,8 @@ function __awaiter(thisArg, _arguments, P, generator) {
 }
 
 function __generator(thisArg, body) {
-  var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-  return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+  var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+  return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
   function verb(n) { return function (v) { return step([n, v]); }; }
   function step(op) {
       if (f) throw new TypeError("Generator is already executing.");
@@ -11861,7 +11876,7 @@ function __await(v) {
 function __asyncGenerator(thisArg, _arguments, generator) {
   if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
   var g = generator.apply(thisArg, _arguments || []), i, q = [];
-  return i = {}, verb("next"), verb("throw"), verb("return", awaitReturn), i[Symbol.asyncIterator] = function () { return this; }, i;
+  return i = Object.create((typeof AsyncIterator === "function" ? AsyncIterator : Object).prototype), verb("next"), verb("throw"), verb("return", awaitReturn), i[Symbol.asyncIterator] = function () { return this; }, i;
   function awaitReturn(f) { return function (v) { return Promise.resolve(v).then(f, reject); }; }
   function verb(n, f) { if (g[n]) { i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; if (f) i[n] = f(i[n]); } }
   function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
@@ -11959,20 +11974,34 @@ function __disposeResources(env) {
     env.error = env.hasError ? new _SuppressedError(e, env.error, "An error was suppressed during disposal.") : e;
     env.hasError = true;
   }
+  var r, s = 0;
   function next() {
-    while (env.stack.length) {
-      var rec = env.stack.pop();
+    while (r = env.stack.pop()) {
       try {
-        var result = rec.dispose && rec.dispose.call(rec.value);
-        if (rec.async) return Promise.resolve(result).then(next, function(e) { fail(e); return next(); });
+        if (!r.async && s === 1) return s = 0, env.stack.push(r), Promise.resolve().then(next);
+        if (r.dispose) {
+          var result = r.dispose.call(r.value);
+          if (r.async) return s |= 2, Promise.resolve(result).then(next, function(e) { fail(e); return next(); });
+        }
+        else s |= 1;
       }
       catch (e) {
-          fail(e);
+        fail(e);
       }
     }
+    if (s === 1) return env.hasError ? Promise.reject(env.error) : Promise.resolve();
     if (env.hasError) throw env.error;
   }
   return next();
+}
+
+function __rewriteRelativeImportExtension(path, preserveJsx) {
+  if (typeof path === "string" && /^\.\.?\//.test(path)) {
+      return path.replace(/\.(tsx)$|((?:\.d)?)((?:\.[^./]+?)?)\.([cm]?)ts$/i, function (m, tsx, d, ext, cm) {
+          return tsx ? preserveJsx ? ".jsx" : ".js" : d && (!ext || !cm) ? m : (d + ext + "." + cm.toLowerCase() + "js");
+      });
+  }
+  return path;
 }
 
 /* harmony default export */ const tslib_es6 = ({
@@ -11981,6 +12010,10 @@ function __disposeResources(env) {
   __rest,
   __decorate,
   __param,
+  __esDecorate,
+  __runInitializers,
+  __propKey,
+  __setFunctionName,
   __metadata,
   __awaiter,
   __generator,
@@ -12003,9 +12036,10 @@ function __disposeResources(env) {
   __classPrivateFieldIn,
   __addDisposableResource,
   __disposeResources,
+  __rewriteRelativeImportExtension,
 });
 
-;// CONCATENATED MODULE: ./node_modules/lower-case/dist.es2015/index.js
+;// ./node_modules/lower-case/dist.es2015/index.js
 /**
  * Source: ftp://ftp.unicode.org/Public/UCD/latest/ucd/SpecialCasing.txt
  */
@@ -12054,7 +12088,7 @@ function lowerCase(str) {
     return str.toLowerCase();
 }
 
-;// CONCATENATED MODULE: ./node_modules/no-case/dist.es2015/index.js
+;// ./node_modules/no-case/dist.es2015/index.js
 
 // Support camel case ("camelCase" -> "camel Case" and "CAMELCase" -> "CAMEL Case").
 var DEFAULT_SPLIT_REGEXP = [/([a-z0-9])([A-Z])/g, /([A-Z])([A-Z][a-z])/g];
@@ -12086,7 +12120,7 @@ function replace(input, re, value) {
     return re.reduce(function (input, re) { return input.replace(re, value); }, input);
 }
 
-;// CONCATENATED MODULE: ./node_modules/dot-case/dist.es2015/index.js
+;// ./node_modules/dot-case/dist.es2015/index.js
 
 
 function dotCase(input, options) {
@@ -12094,7 +12128,7 @@ function dotCase(input, options) {
     return noCase(input, __assign({ delimiter: "." }, options));
 }
 
-;// CONCATENATED MODULE: ./node_modules/param-case/dist.es2015/index.js
+;// ./node_modules/param-case/dist.es2015/index.js
 
 
 function paramCase(input, options) {
@@ -12102,7 +12136,7 @@ function paramCase(input, options) {
     return dotCase(input, __assign({ delimiter: "-" }, options));
 }
 
-;// CONCATENATED MODULE: ./node_modules/memize/dist/index.js
+;// ./node_modules/memize/dist/index.js
 /**
  * Memize options object.
  *
@@ -12264,7 +12298,7 @@ function memize(fn, options) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/build-module/context/get-styled-class-name-from-key.js
+;// ./packages/components/build-module/context/get-styled-class-name-from-key.js
 /**
  * External dependencies
  */
@@ -12283,7 +12317,7 @@ function getStyledClassName(namespace) {
 }
 const getStyledClassNameFromKey = memize(getStyledClassName);
 
-;// CONCATENATED MODULE: ./node_modules/@emotion/sheet/dist/emotion-sheet.browser.esm.js
+;// ./node_modules/@emotion/sheet/dist/emotion-sheet.browser.esm.js
 /*
 
 Based off glamor's StyleSheet, thanks Sunil ❤️
@@ -12424,7 +12458,7 @@ var emotion_sheet_browser_esm_StyleSheet = /*#__PURE__*/function () {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/stylis/src/Utility.js
+;// ./node_modules/stylis/src/Utility.js
 /**
  * @param {number}
  * @return {number}
@@ -12541,7 +12575,7 @@ function Utility_combine (array, callback) {
 	return array.map(callback).join('')
 }
 
-;// CONCATENATED MODULE: ./node_modules/stylis/src/Tokenizer.js
+;// ./node_modules/stylis/src/Tokenizer.js
 
 
 var line = 1
@@ -12789,7 +12823,7 @@ function identifier (index) {
 	return slice(index, position)
 }
 
-;// CONCATENATED MODULE: ./node_modules/stylis/src/Enum.js
+;// ./node_modules/stylis/src/Enum.js
 var MS = '-ms-'
 var MOZ = '-moz-'
 var WEBKIT = '-webkit-'
@@ -12811,7 +12845,7 @@ var FONT_FACE = '@font-face'
 var COUNTER_STYLE = '@counter-style'
 var FONT_FEATURE_VALUES = '@font-feature-values'
 
-;// CONCATENATED MODULE: ./node_modules/stylis/src/Serializer.js
+;// ./node_modules/stylis/src/Serializer.js
 
 
 
@@ -12848,7 +12882,7 @@ function stringify (element, index, children, callback) {
 	return Utility_strlen(children = serialize(element.children, callback)) ? element.return = element.value + '{' + children + '}' : ''
 }
 
-;// CONCATENATED MODULE: ./node_modules/stylis/src/Prefixer.js
+;// ./node_modules/stylis/src/Prefixer.js
 
 
 
@@ -12969,7 +13003,7 @@ function prefix (value, length) {
 	return value
 }
 
-;// CONCATENATED MODULE: ./node_modules/stylis/src/Middleware.js
+;// ./node_modules/stylis/src/Middleware.js
 
 
 
@@ -13079,7 +13113,7 @@ function namespace (element) {
 	}
 }
 
-;// CONCATENATED MODULE: ./node_modules/stylis/src/Parser.js
+;// ./node_modules/stylis/src/Parser.js
 
 
 
@@ -13272,7 +13306,7 @@ function declaration (value, root, parent, length) {
 	return node(value, root, parent, DECLARATION, Utility_substr(value, 0, length), Utility_substr(value, length + 1, -1), length)
 }
 
-;// CONCATENATED MODULE: ./node_modules/@emotion/cache/dist/emotion-cache.browser.esm.js
+;// ./node_modules/@emotion/cache/dist/emotion-cache.browser.esm.js
 
 
 
@@ -13576,7 +13610,7 @@ var createCache = function createCache(options) {
 
 /* harmony default export */ const emotion_cache_browser_esm = (createCache);
 
-;// CONCATENATED MODULE: ./node_modules/@emotion/hash/dist/emotion-hash.esm.js
+;// ./node_modules/@emotion/hash/dist/emotion-hash.esm.js
 /* eslint-disable */
 // Inspired by https://github.com/garycourt/murmurhash-js
 // Ported from https://github.com/aappleby/smhasher/blob/61a0530f28277f2e850bfc39600ce61d02b518de/src/MurmurHash2.cpp#L37-L86
@@ -13633,7 +13667,7 @@ function murmur2(str) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@emotion/unitless/dist/emotion-unitless.esm.js
+;// ./node_modules/@emotion/unitless/dist/emotion-unitless.esm.js
 var unitlessKeys = {
   animationIterationCount: 1,
   aspectRatio: 1,
@@ -13686,7 +13720,7 @@ var unitlessKeys = {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@emotion/serialize/node_modules/@emotion/memoize/dist/emotion-memoize.esm.js
+;// ./node_modules/@emotion/serialize/node_modules/@emotion/memoize/dist/emotion-memoize.esm.js
 function memoize(fn) {
   var cache = Object.create(null);
   return function (arg) {
@@ -13697,7 +13731,7 @@ function memoize(fn) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@emotion/serialize/dist/emotion-serialize.browser.esm.js
+;// ./node_modules/@emotion/serialize/dist/emotion-serialize.browser.esm.js
 
 
 
@@ -13946,7 +13980,7 @@ var emotion_serialize_browser_esm_serializeStyles = function serializeStyles(arg
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@emotion/react/dist/emotion-element-699e6908.browser.esm.js
+;// ./node_modules/@emotion/react/dist/emotion-element-699e6908.browser.esm.js
 
 
 
@@ -14151,7 +14185,7 @@ if (false) {}
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@emotion/utils/dist/emotion-utils.browser.esm.js
+;// ./node_modules/@emotion/utils/dist/emotion-utils.browser.esm.js
 var isBrowser = "object" !== 'undefined';
 function emotion_utils_browser_esm_getRegisteredStyles(registered, registeredStyles, classNames) {
   var rawClassName = '';
@@ -14197,7 +14231,7 @@ var emotion_utils_browser_esm_insertStyles = function insertStyles(cache, serial
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@emotion/css/create-instance/dist/emotion-css-create-instance.esm.js
+;// ./node_modules/@emotion/css/create-instance/dist/emotion-css-create-instance.esm.js
 
 
 
@@ -14341,7 +14375,7 @@ var classnames = function classnames(args) {
 
 /* harmony default export */ const emotion_css_create_instance_esm = (createEmotion);
 
-;// CONCATENATED MODULE: ./node_modules/@emotion/css/dist/emotion-css.esm.js
+;// ./node_modules/@emotion/css/dist/emotion-css.esm.js
 
 
 
@@ -14363,7 +14397,7 @@ var _createEmotion = emotion_css_create_instance_esm({
 
 
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/hooks/use-cx.js
+;// ./packages/components/build-module/utils/hooks/use-cx.js
 /**
  * External dependencies
  */
@@ -14419,7 +14453,7 @@ const useCx = () => {
   return cx;
 };
 
-;// CONCATENATED MODULE: ./packages/components/build-module/context/use-context-system.js
+;// ./packages/components/build-module/context/use-context-system.js
 /**
  * WordPress dependencies
  */
@@ -14492,7 +14526,8 @@ function useContextSystem(props, namespace) {
   return finalComponentProps;
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/context/context-connect.js
+;// ./packages/components/build-module/context/context-connect.js
+/* wp:polyfill */
 /**
  * External dependencies
  */
@@ -14610,7 +14645,7 @@ function hasConnectNamespace(Component, match) {
   return false;
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/visually-hidden/styles.js
+;// ./packages/components/build-module/visually-hidden/styles.js
 /**
  * External dependencies
  */
@@ -14629,7 +14664,7 @@ const visuallyHidden = {
   wordWrap: 'normal'
 };
 
-;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/extends.js
+;// ./node_modules/@babel/runtime/helpers/esm/extends.js
 function extends_extends() {
   return extends_extends = Object.assign ? Object.assign.bind() : function (n) {
     for (var e = 1; e < arguments.length; e++) {
@@ -14640,7 +14675,7 @@ function extends_extends() {
   }, extends_extends.apply(null, arguments);
 }
 
-;// CONCATENATED MODULE: ./node_modules/@emotion/styled/node_modules/@emotion/memoize/dist/emotion-memoize.esm.js
+;// ./node_modules/@emotion/styled/node_modules/@emotion/memoize/dist/emotion-memoize.esm.js
 function emotion_memoize_esm_memoize(fn) {
   var cache = Object.create(null);
   return function (arg) {
@@ -14651,7 +14686,7 @@ function emotion_memoize_esm_memoize(fn) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@emotion/styled/node_modules/@emotion/is-prop-valid/dist/emotion-is-prop-valid.esm.js
+;// ./node_modules/@emotion/styled/node_modules/@emotion/is-prop-valid/dist/emotion-is-prop-valid.esm.js
 
 
 var reactPropsRegex = /^((children|dangerouslySetInnerHTML|key|ref|autoFocus|defaultValue|defaultChecked|innerHTML|suppressContentEditableWarning|suppressHydrationWarning|valueLink|abbr|accept|acceptCharset|accessKey|action|allow|allowUserMedia|allowPaymentRequest|allowFullScreen|allowTransparency|alt|async|autoComplete|autoPlay|capture|cellPadding|cellSpacing|challenge|charSet|checked|cite|classID|className|cols|colSpan|content|contentEditable|contextMenu|controls|controlsList|coords|crossOrigin|data|dateTime|decoding|default|defer|dir|disabled|disablePictureInPicture|disableRemotePlayback|download|draggable|encType|enterKeyHint|form|formAction|formEncType|formMethod|formNoValidate|formTarget|frameBorder|headers|height|hidden|high|href|hrefLang|htmlFor|httpEquiv|id|inputMode|integrity|is|keyParams|keyType|kind|label|lang|list|loading|loop|low|marginHeight|marginWidth|max|maxLength|media|mediaGroup|method|min|minLength|multiple|muted|name|nonce|noValidate|open|optimum|pattern|placeholder|playsInline|poster|preload|profile|radioGroup|readOnly|referrerPolicy|rel|required|reversed|role|rows|rowSpan|sandbox|scope|scoped|scrolling|seamless|selected|shape|size|sizes|slot|span|spellCheck|src|srcDoc|srcLang|srcSet|start|step|style|summary|tabIndex|target|title|translate|type|useMap|value|width|wmode|wrap|about|datatype|inlist|prefix|property|resource|typeof|vocab|autoCapitalize|autoCorrect|autoSave|color|incremental|fallback|inert|itemProp|itemScope|itemType|itemID|itemRef|on|option|results|security|unselectable|accentHeight|accumulate|additive|alignmentBaseline|allowReorder|alphabetic|amplitude|arabicForm|ascent|attributeName|attributeType|autoReverse|azimuth|baseFrequency|baselineShift|baseProfile|bbox|begin|bias|by|calcMode|capHeight|clip|clipPathUnits|clipPath|clipRule|colorInterpolation|colorInterpolationFilters|colorProfile|colorRendering|contentScriptType|contentStyleType|cursor|cx|cy|d|decelerate|descent|diffuseConstant|direction|display|divisor|dominantBaseline|dur|dx|dy|edgeMode|elevation|enableBackground|end|exponent|externalResourcesRequired|fill|fillOpacity|fillRule|filter|filterRes|filterUnits|floodColor|floodOpacity|focusable|fontFamily|fontSize|fontSizeAdjust|fontStretch|fontStyle|fontVariant|fontWeight|format|from|fr|fx|fy|g1|g2|glyphName|glyphOrientationHorizontal|glyphOrientationVertical|glyphRef|gradientTransform|gradientUnits|hanging|horizAdvX|horizOriginX|ideographic|imageRendering|in|in2|intercept|k|k1|k2|k3|k4|kernelMatrix|kernelUnitLength|kerning|keyPoints|keySplines|keyTimes|lengthAdjust|letterSpacing|lightingColor|limitingConeAngle|local|markerEnd|markerMid|markerStart|markerHeight|markerUnits|markerWidth|mask|maskContentUnits|maskUnits|mathematical|mode|numOctaves|offset|opacity|operator|order|orient|orientation|origin|overflow|overlinePosition|overlineThickness|panose1|paintOrder|pathLength|patternContentUnits|patternTransform|patternUnits|pointerEvents|points|pointsAtX|pointsAtY|pointsAtZ|preserveAlpha|preserveAspectRatio|primitiveUnits|r|radius|refX|refY|renderingIntent|repeatCount|repeatDur|requiredExtensions|requiredFeatures|restart|result|rotate|rx|ry|scale|seed|shapeRendering|slope|spacing|specularConstant|specularExponent|speed|spreadMethod|startOffset|stdDeviation|stemh|stemv|stitchTiles|stopColor|stopOpacity|strikethroughPosition|strikethroughThickness|string|stroke|strokeDasharray|strokeDashoffset|strokeLinecap|strokeLinejoin|strokeMiterlimit|strokeOpacity|strokeWidth|surfaceScale|systemLanguage|tableValues|targetX|targetY|textAnchor|textDecoration|textRendering|textLength|to|transform|u1|u2|underlinePosition|underlineThickness|unicode|unicodeBidi|unicodeRange|unitsPerEm|vAlphabetic|vHanging|vIdeographic|vMathematical|values|vectorEffect|version|vertAdvY|vertOriginX|vertOriginY|viewBox|viewTarget|visibility|widths|wordSpacing|writingMode|x|xHeight|x1|x2|xChannelSelector|xlinkActuate|xlinkArcrole|xlinkHref|xlinkRole|xlinkShow|xlinkTitle|xlinkType|xmlBase|xmlns|xmlnsXlink|xmlLang|xmlSpace|y|y1|y2|yChannelSelector|z|zoomAndPan|for|class|autofocus)|(([Dd][Aa][Tt][Aa]|[Aa][Rr][Ii][Aa]|x)-.*))$/; // https://esbench.com/bench/5bfee68a4cd7e6009ef61d23
@@ -14668,7 +14703,7 @@ var isPropValid = /* #__PURE__ */emotion_memoize_esm_memoize(function (prop) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@emotion/styled/base/dist/emotion-styled-base.browser.esm.js
+;// ./node_modules/@emotion/styled/base/dist/emotion-styled-base.browser.esm.js
 
 
 
@@ -14829,7 +14864,7 @@ var createStyled = function createStyled(tag, options) {
 
 /* harmony default export */ const emotion_styled_base_browser_esm = (createStyled);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/view/component.js
+;// ./packages/components/build-module/view/component.js
 
 /**
  * External dependencies
@@ -14879,7 +14914,7 @@ const View = Object.assign((0,external_wp_element_namespaceObject.forwardRef)(Un
 });
 /* harmony default export */ const component = (View);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/visually-hidden/component.js
+;// ./packages/components/build-module/visually-hidden/component.js
 /**
  * External dependencies
  */
@@ -14926,7 +14961,7 @@ function UnconnectedVisuallyHidden(props, forwardedRef) {
 const component_VisuallyHidden = contextConnect(UnconnectedVisuallyHidden, 'VisuallyHidden');
 /* harmony default export */ const visually_hidden_component = (component_VisuallyHidden);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/alignment-matrix-control/utils.js
+;// ./packages/components/build-module/alignment-matrix-control/utils.js
 /**
  * WordPress dependencies
  */
@@ -15018,8 +15053,8 @@ function getAlignmentIndex(alignment = 'center') {
 }
 
 // EXTERNAL MODULE: ./node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js
-var hoist_non_react_statics_cjs = __webpack_require__(1281);
-;// CONCATENATED MODULE: ./node_modules/@emotion/react/dist/emotion-react.browser.esm.js
+var hoist_non_react_statics_cjs = __webpack_require__(1880);
+;// ./node_modules/@emotion/react/dist/emotion-react.browser.esm.js
 
 
 
@@ -15335,7 +15370,7 @@ if (false) { var globalKey, globalContext, isJest, emotion_react_browser_esm_isB
 
 
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/space.js
+;// ./packages/components/build-module/utils/space.js
 /**
  * The argument value for the `space()` utility function.
  *
@@ -15377,7 +15412,7 @@ function space(value) {
   return `calc(${GRID_BASE} * ${value})`;
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/colors-values.js
+;// ./packages/components/build-module/utils/colors-values.js
 /**
  * Internal dependencies
  */
@@ -15465,7 +15500,7 @@ const COLORS = Object.freeze({
 });
 /* harmony default export */ const colors_values = ((/* unused pure expression or super */ null && (COLORS)));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/config-values.js
+;// ./packages/components/build-module/utils/config-values.js
 /**
  * Internal dependencies
  */
@@ -15545,7 +15580,7 @@ const CONTROL_PROPS = {
   transitionTimingFunctionControl: 'cubic-bezier(0.12, 0.8, 0.32, 1)'
 }));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/alignment-matrix-control/styles.js
+;// ./packages/components/build-module/alignment-matrix-control/styles.js
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -15589,7 +15624,7 @@ const Point = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? {
   target: "e1r95csn0"
 } : 0)("display:block;contain:strict;box-sizing:border-box;width:", POINT_SIZE, "px;aspect-ratio:1;margin:auto;color:", COLORS.theme.gray[400], ";border:", POINT_SIZE / 2, "px solid currentColor;", Cell, "[data-active-item] &{color:", COLORS.gray[900], ";transform:scale( calc( 5 / 3 ) );}", Cell, ":not([data-active-item]):hover &{color:", COLORS.theme.accent, ";}", Cell, "[data-focus-visible] &{outline:1px solid ", COLORS.theme.accent, ";outline-offset:1px;}@media not ( prefers-reduced-motion ){transition-property:color,transform;transition-duration:120ms;transition-timing-function:linear;}" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/alignment-matrix-control/cell.js
+;// ./packages/components/build-module/alignment-matrix-control/cell.js
 /**
  * Internal dependencies
  */
@@ -15600,7 +15635,6 @@ const Point = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? {
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -15626,7 +15660,7 @@ function cell_Cell({
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/alignment-matrix-control/icon.js
+;// ./packages/components/build-module/alignment-matrix-control/icon.js
 /**
  * External dependencies
  */
@@ -15684,7 +15718,7 @@ function AlignmentMatrixControlIcon({
 }
 /* harmony default export */ const icon = (AlignmentMatrixControlIcon);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/alignment-matrix-control/index.js
+;// ./packages/components/build-module/alignment-matrix-control/index.js
 /**
  * External dependencies
  */
@@ -15784,7 +15818,7 @@ const AlignmentMatrixControl = Object.assign(UnforwardedAlignmentMatrixControl, 
 });
 /* harmony default export */ const alignment_matrix_control = (AlignmentMatrixControl);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/animate/index.js
+;// ./packages/components/build-module/animate/index.js
 /**
  * External dependencies
  */
@@ -15859,7 +15893,7 @@ function Animate({
 }
 /* harmony default export */ const animate = (Animate);
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/MotionConfigContext.mjs
+;// ./node_modules/framer-motion/dist/es/context/MotionConfigContext.mjs
 
 
 /**
@@ -15873,14 +15907,14 @@ const MotionConfigContext = (0,external_React_.createContext)({
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/MotionContext/index.mjs
+;// ./node_modules/framer-motion/dist/es/context/MotionContext/index.mjs
 
 
 const MotionContext = (0,external_React_.createContext)({});
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/PresenceContext.mjs
+;// ./node_modules/framer-motion/dist/es/context/PresenceContext.mjs
 
 
 /**
@@ -15890,12 +15924,12 @@ const PresenceContext_PresenceContext = (0,external_React_.createContext)(null);
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/is-browser.mjs
+;// ./node_modules/framer-motion/dist/es/utils/is-browser.mjs
 const is_browser_isBrowser = typeof document !== "undefined";
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/use-isomorphic-effect.mjs
+;// ./node_modules/framer-motion/dist/es/utils/use-isomorphic-effect.mjs
 
 
 
@@ -15903,14 +15937,14 @@ const useIsomorphicLayoutEffect = is_browser_isBrowser ? external_React_.useLayo
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/LazyContext.mjs
+;// ./node_modules/framer-motion/dist/es/context/LazyContext.mjs
 
 
 const LazyContext = (0,external_React_.createContext)({ strict: false });
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/utils/camel-to-dash.mjs
+;// ./node_modules/framer-motion/dist/es/render/dom/utils/camel-to-dash.mjs
 /**
  * Convert camelCase to dash-case properties.
  */
@@ -15918,7 +15952,7 @@ const camelToDash = (str) => str.replace(/([a-z])([A-Z])/gu, "$1-$2").toLowerCas
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/optimized-appear/data-id.mjs
+;// ./node_modules/framer-motion/dist/es/animation/optimized-appear/data-id.mjs
 
 
 const optimizedAppearDataId = "framerAppearId";
@@ -15926,7 +15960,7 @@ const optimizedAppearDataAttribute = "data-" + camelToDash(optimizedAppearDataId
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/GlobalConfig.mjs
+;// ./node_modules/framer-motion/dist/es/utils/GlobalConfig.mjs
 const MotionGlobalConfig = {
     skipAnimations: false,
     useManualTiming: false,
@@ -15934,7 +15968,7 @@ const MotionGlobalConfig = {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/frameloop/render-step.mjs
+;// ./node_modules/framer-motion/dist/es/frameloop/render-step.mjs
 class Queue {
     constructor() {
         this.order = [];
@@ -16040,7 +16074,7 @@ function createRenderStep(runNextFrame) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/frameloop/batcher.mjs
+;// ./node_modules/framer-motion/dist/es/frameloop/batcher.mjs
 
 
 
@@ -16107,14 +16141,14 @@ function createRenderBatcher(scheduleNextBatch, allowKeepAlive) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/frameloop/microtask.mjs
+;// ./node_modules/framer-motion/dist/es/frameloop/microtask.mjs
 
 
 const { schedule: microtask, cancel: cancelMicrotask } = createRenderBatcher(queueMicrotask, false);
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/utils/use-visual-element.mjs
+;// ./node_modules/framer-motion/dist/es/motion/utils/use-visual-element.mjs
 
 
 
@@ -16192,7 +16226,7 @@ function useVisualElement(Component, visualState, props, createVisualElement) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/is-ref-object.mjs
+;// ./node_modules/framer-motion/dist/es/utils/is-ref-object.mjs
 function isRefObject(ref) {
     return (ref &&
         typeof ref === "object" &&
@@ -16201,7 +16235,7 @@ function isRefObject(ref) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/utils/use-motion-ref.mjs
+;// ./node_modules/framer-motion/dist/es/motion/utils/use-motion-ref.mjs
 
 
 
@@ -16236,7 +16270,7 @@ function useMotionRef(visualState, visualElement, externalRef) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/utils/is-variant-label.mjs
+;// ./node_modules/framer-motion/dist/es/render/utils/is-variant-label.mjs
 /**
  * Decides if the supplied variable is variant label
  */
@@ -16246,7 +16280,7 @@ function isVariantLabel(v) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/utils/is-animation-controls.mjs
+;// ./node_modules/framer-motion/dist/es/animation/utils/is-animation-controls.mjs
 function isAnimationControls(v) {
     return (v !== null &&
         typeof v === "object" &&
@@ -16255,7 +16289,7 @@ function isAnimationControls(v) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/utils/variant-props.mjs
+;// ./node_modules/framer-motion/dist/es/render/utils/variant-props.mjs
 const variantPriorityOrder = [
     "animate",
     "whileInView",
@@ -16269,7 +16303,7 @@ const variantProps = ["initial", ...variantPriorityOrder];
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/utils/is-controlling-variants.mjs
+;// ./node_modules/framer-motion/dist/es/render/utils/is-controlling-variants.mjs
 
 
 
@@ -16284,7 +16318,7 @@ function isVariantNode(props) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/MotionContext/utils.mjs
+;// ./node_modules/framer-motion/dist/es/context/MotionContext/utils.mjs
 
 
 
@@ -16303,7 +16337,7 @@ function getCurrentTreeVariants(props, context) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/MotionContext/create.mjs
+;// ./node_modules/framer-motion/dist/es/context/MotionContext/create.mjs
 
 
 
@@ -16318,7 +16352,7 @@ function variantLabelsAsDependency(prop) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/features/definitions.mjs
+;// ./node_modules/framer-motion/dist/es/motion/features/definitions.mjs
 const featureProps = {
     animation: [
         "animate",
@@ -16348,7 +16382,7 @@ for (const key in featureProps) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/features/load-features.mjs
+;// ./node_modules/framer-motion/dist/es/motion/features/load-features.mjs
 
 
 function loadFeatures(features) {
@@ -16362,14 +16396,14 @@ function loadFeatures(features) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/LayoutGroupContext.mjs
+;// ./node_modules/framer-motion/dist/es/context/LayoutGroupContext.mjs
 
 
 const LayoutGroupContext = (0,external_React_.createContext)({});
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/SwitchLayoutGroupContext.mjs
+;// ./node_modules/framer-motion/dist/es/context/SwitchLayoutGroupContext.mjs
 
 
 /**
@@ -16379,12 +16413,12 @@ const SwitchLayoutGroupContext = (0,external_React_.createContext)({});
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/utils/symbol.mjs
+;// ./node_modules/framer-motion/dist/es/motion/utils/symbol.mjs
 const motionComponentSymbol = Symbol.for("motionComponentSymbol");
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/index.mjs
+;// ./node_modules/framer-motion/dist/es/motion/index.mjs
 
 
 
@@ -16463,7 +16497,7 @@ function useLayoutId({ layoutId }) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/motion-proxy.mjs
+;// ./node_modules/framer-motion/dist/es/render/dom/motion-proxy.mjs
 
 
 /**
@@ -16512,7 +16546,7 @@ function createMotionProxy(createConfig) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/svg/lowercase-elements.mjs
+;// ./node_modules/framer-motion/dist/es/render/svg/lowercase-elements.mjs
 /**
  * We keep these listed seperately as we use the lowercase tag names as part
  * of the runtime bundle to detect SVG components
@@ -16547,7 +16581,7 @@ const lowercaseSVGElements = [
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/utils/is-svg-component.mjs
+;// ./node_modules/framer-motion/dist/es/render/dom/utils/is-svg-component.mjs
 
 
 function isSVGComponent(Component) {
@@ -16579,7 +16613,7 @@ function isSVGComponent(Component) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/styles/scale-correction.mjs
+;// ./node_modules/framer-motion/dist/es/projection/styles/scale-correction.mjs
 const scaleCorrectors = {};
 function addScaleCorrector(correctors) {
     Object.assign(scaleCorrectors, correctors);
@@ -16587,7 +16621,7 @@ function addScaleCorrector(correctors) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/html/utils/transform.mjs
+;// ./node_modules/framer-motion/dist/es/render/html/utils/transform.mjs
 /**
  * Generate a list of every possible transform key.
  */
@@ -16617,7 +16651,7 @@ const transformProps = new Set(transformPropOrder);
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/utils/is-forced-motion-value.mjs
+;// ./node_modules/framer-motion/dist/es/motion/utils/is-forced-motion-value.mjs
 
 
 
@@ -16630,12 +16664,12 @@ function isForcedMotionValue(key, { layout, layoutId }) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/utils/is-motion-value.mjs
+;// ./node_modules/framer-motion/dist/es/value/utils/is-motion-value.mjs
 const isMotionValue = (value) => Boolean(value && value.getVelocity);
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/html/utils/build-transform.mjs
+;// ./node_modules/framer-motion/dist/es/render/html/utils/build-transform.mjs
 
 
 const translateAlias = {
@@ -16682,7 +16716,7 @@ function buildTransform(transform, { enableHardwareAcceleration = true, allowTra
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/utils/is-css-variable.mjs
+;// ./node_modules/framer-motion/dist/es/render/dom/utils/is-css-variable.mjs
 const checkStringStartsWith = (token) => (key) => typeof key === "string" && key.startsWith(token);
 const isCSSVariableName = checkStringStartsWith("--");
 const startsAsVariableToken = checkStringStartsWith("var(--");
@@ -16697,7 +16731,7 @@ const singleCssVariableRegex = /var\(--(?:[\w-]+\s*|[\w-]+\s*,(?:\s*[^)(\s]|\s*\
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/value-types/get-as-type.mjs
+;// ./node_modules/framer-motion/dist/es/render/dom/value-types/get-as-type.mjs
 /**
  * Provided a value and a ValueType, returns the value as that value type.
  */
@@ -16709,7 +16743,7 @@ const getValueAsType = (value, type) => {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/clamp.mjs
+;// ./node_modules/framer-motion/dist/es/utils/clamp.mjs
 const clamp_clamp = (min, max, v) => {
     if (v > max)
         return max;
@@ -16720,7 +16754,7 @@ const clamp_clamp = (min, max, v) => {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/types/numbers/index.mjs
+;// ./node_modules/framer-motion/dist/es/value/types/numbers/index.mjs
 
 
 const number = {
@@ -16739,7 +16773,7 @@ const scale = {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/types/utils.mjs
+;// ./node_modules/framer-motion/dist/es/value/types/utils.mjs
 /**
  * TODO: When we move from string as a source of truth to data models
  * everything in this folder should probably be referred to as models vs types
@@ -16756,7 +16790,7 @@ function isString(v) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/types/numbers/units.mjs
+;// ./node_modules/framer-motion/dist/es/value/types/numbers/units.mjs
 
 
 const createUnitType = (unit) => ({
@@ -16777,7 +16811,7 @@ const progressPercentage = {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/value-types/type-int.mjs
+;// ./node_modules/framer-motion/dist/es/render/dom/value-types/type-int.mjs
 
 
 const type_int_int = {
@@ -16787,7 +16821,7 @@ const type_int_int = {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/value-types/number.mjs
+;// ./node_modules/framer-motion/dist/es/render/dom/value-types/number.mjs
 
 
 
@@ -16863,7 +16897,7 @@ const numberValueTypes = {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/html/utils/build-styles.mjs
+;// ./node_modules/framer-motion/dist/es/render/html/utils/build-styles.mjs
 
 
 
@@ -16939,7 +16973,7 @@ function buildHTMLStyles(state, latestValues, options, transformTemplate) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/html/utils/create-render-state.mjs
+;// ./node_modules/framer-motion/dist/es/render/html/utils/create-render-state.mjs
 const createHtmlRenderState = () => ({
     style: {},
     transform: {},
@@ -16949,7 +16983,7 @@ const createHtmlRenderState = () => ({
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/html/use-props.mjs
+;// ./node_modules/framer-motion/dist/es/render/html/use-props.mjs
 
 
 
@@ -17008,7 +17042,7 @@ function useHTMLProps(props, visualState, isStatic) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/utils/valid-prop.mjs
+;// ./node_modules/framer-motion/dist/es/motion/utils/valid-prop.mjs
 /**
  * A list of all valid MotionProps.
  *
@@ -17067,7 +17101,7 @@ function isValidMotionProp(key) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/utils/filter-props.mjs
+;// ./node_modules/framer-motion/dist/es/render/dom/utils/filter-props.mjs
 
 
 let shouldForward = (key) => !isValidMotionProp(key);
@@ -17128,7 +17162,7 @@ function filterProps(props, isDom, forwardMotionProps) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/svg/utils/transform-origin.mjs
+;// ./node_modules/framer-motion/dist/es/render/svg/utils/transform-origin.mjs
 
 
 function calcOrigin(origin, offset, size) {
@@ -17148,7 +17182,7 @@ function calcSVGTransformOrigin(dimensions, originX, originY) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/svg/utils/path.mjs
+;// ./node_modules/framer-motion/dist/es/render/svg/utils/path.mjs
 
 
 const dashKeys = {
@@ -17182,7 +17216,7 @@ function buildSVGPath(attrs, length, spacing = 1, offset = 0, useDashCase = true
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/svg/utils/build-attrs.mjs
+;// ./node_modules/framer-motion/dist/es/render/svg/utils/build-attrs.mjs
 
 
 
@@ -17236,7 +17270,7 @@ function buildSVGAttrs(state, { attrX, attrY, attrScale, originX, originY, pathL
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/svg/utils/create-render-state.mjs
+;// ./node_modules/framer-motion/dist/es/render/svg/utils/create-render-state.mjs
 
 
 const createSvgRenderState = () => ({
@@ -17246,12 +17280,12 @@ const createSvgRenderState = () => ({
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/svg/utils/is-svg-tag.mjs
+;// ./node_modules/framer-motion/dist/es/render/svg/utils/is-svg-tag.mjs
 const isSVGTag = (tag) => typeof tag === "string" && tag.toLowerCase() === "svg";
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/svg/use-props.mjs
+;// ./node_modules/framer-motion/dist/es/render/svg/use-props.mjs
 
 
 
@@ -17277,7 +17311,7 @@ function useSVGProps(props, visualState, _isStatic, Component) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/use-render.mjs
+;// ./node_modules/framer-motion/dist/es/render/dom/use-render.mjs
 
 
 
@@ -17312,7 +17346,7 @@ function createUseRender(forwardMotionProps = false) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/html/utils/render.mjs
+;// ./node_modules/framer-motion/dist/es/render/html/utils/render.mjs
 function renderHTML(element, { style, vars }, styleProp, projection) {
     Object.assign(element.style, style, projection && projection.getProjectionStyles(styleProp));
     // Loop over any CSS variables and assign those.
@@ -17323,7 +17357,7 @@ function renderHTML(element, { style, vars }, styleProp, projection) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/svg/utils/camel-case-attrs.mjs
+;// ./node_modules/framer-motion/dist/es/render/svg/utils/camel-case-attrs.mjs
 /**
  * A set of attribute names that are always read/written as camel case.
  */
@@ -17355,7 +17389,7 @@ const camelCaseAttributes = new Set([
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/svg/utils/render.mjs
+;// ./node_modules/framer-motion/dist/es/render/svg/utils/render.mjs
 
 
 
@@ -17369,7 +17403,7 @@ function renderSVG(element, renderState, _styleProp, projection) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/html/utils/scrape-motion-values.mjs
+;// ./node_modules/framer-motion/dist/es/render/html/utils/scrape-motion-values.mjs
 
 
 
@@ -17391,7 +17425,7 @@ function scrapeMotionValuesFromProps(props, prevProps, visualElement) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/svg/utils/scrape-motion-values.mjs
+;// ./node_modules/framer-motion/dist/es/render/svg/utils/scrape-motion-values.mjs
 
 
 
@@ -17412,7 +17446,7 @@ function scrape_motion_values_scrapeMotionValuesFromProps(props, prevProps, visu
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/utils/resolve-variants.mjs
+;// ./node_modules/framer-motion/dist/es/render/utils/resolve-variants.mjs
 function resolveVariantFromProps(props, definition, custom, currentValues = {}, currentVelocity = {}) {
     /**
      * If the variant definition is a function, resolve.
@@ -17440,7 +17474,7 @@ function resolveVariantFromProps(props, definition, custom, currentValues = {}, 
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/use-constant.mjs
+;// ./node_modules/framer-motion/dist/es/utils/use-constant.mjs
 
 
 /**
@@ -17460,14 +17494,14 @@ function useConstant(init) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/utils/is-keyframes-target.mjs
+;// ./node_modules/framer-motion/dist/es/animation/utils/is-keyframes-target.mjs
 const isKeyframesTarget = (v) => {
     return Array.isArray(v);
 };
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/resolve-value.mjs
+;// ./node_modules/framer-motion/dist/es/utils/resolve-value.mjs
 
 
 const isCustomValue = (v) => {
@@ -17480,7 +17514,7 @@ const resolveFinalValueInKeyframes = (v) => {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/utils/resolve-motion-value.mjs
+;// ./node_modules/framer-motion/dist/es/value/utils/resolve-motion-value.mjs
 
 
 
@@ -17498,7 +17532,7 @@ function resolveMotionValue(value) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/utils/use-visual-state.mjs
+;// ./node_modules/framer-motion/dist/es/motion/utils/use-visual-state.mjs
 
 
 
@@ -17581,12 +17615,12 @@ function makeLatestValues(props, context, presenceContext, scrapeMotionValues) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/noop.mjs
+;// ./node_modules/framer-motion/dist/es/utils/noop.mjs
 const noop_noop = (any) => any;
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/frameloop/frame.mjs
+;// ./node_modules/framer-motion/dist/es/frameloop/frame.mjs
 
 
 
@@ -17594,7 +17628,7 @@ const { schedule: frame_frame, cancel: cancelFrame, state: frameData, steps, } =
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/svg/config-motion.mjs
+;// ./node_modules/framer-motion/dist/es/render/svg/config-motion.mjs
 
 
 
@@ -17636,7 +17670,7 @@ const svgMotionConfig = {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/html/config-motion.mjs
+;// ./node_modules/framer-motion/dist/es/render/html/config-motion.mjs
 
 
 
@@ -17650,7 +17684,7 @@ const htmlMotionConfig = {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/utils/create-config.mjs
+;// ./node_modules/framer-motion/dist/es/render/dom/utils/create-config.mjs
 
 
 
@@ -17671,7 +17705,7 @@ function create_config_createDomMotionConfig(Component, { forwardMotionProps = f
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/events/add-dom-event.mjs
+;// ./node_modules/framer-motion/dist/es/events/add-dom-event.mjs
 function addDomEvent(target, eventName, handler, options = { passive: true }) {
     target.addEventListener(eventName, handler, options);
     return () => target.removeEventListener(eventName, handler);
@@ -17679,7 +17713,7 @@ function addDomEvent(target, eventName, handler, options = { passive: true }) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/events/utils/is-primary-pointer.mjs
+;// ./node_modules/framer-motion/dist/es/events/utils/is-primary-pointer.mjs
 const isPrimaryPointer = (event) => {
     if (event.pointerType === "mouse") {
         return typeof event.button !== "number" || event.button <= 0;
@@ -17699,7 +17733,7 @@ const isPrimaryPointer = (event) => {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/events/event-info.mjs
+;// ./node_modules/framer-motion/dist/es/events/event-info.mjs
 
 
 function extractEventInfo(event, pointType = "page") {
@@ -17716,7 +17750,7 @@ const addPointerInfo = (handler) => {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/events/add-pointer-event.mjs
+;// ./node_modules/framer-motion/dist/es/events/add-pointer-event.mjs
 
 
 
@@ -17726,7 +17760,7 @@ function addPointerEvent(target, eventName, handler, options) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/pipe.mjs
+;// ./node_modules/framer-motion/dist/es/utils/pipe.mjs
 /**
  * Pipe
  * Compose other transformers to run linearily
@@ -17739,7 +17773,7 @@ const pipe = (...transformers) => transformers.reduce(combineFunctions);
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/gestures/drag/utils/lock.mjs
+;// ./node_modules/framer-motion/dist/es/gestures/drag/utils/lock.mjs
 function createLock(name) {
     let lock = null;
     return () => {
@@ -17794,7 +17828,7 @@ function isDragActive() {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/features/Feature.mjs
+;// ./node_modules/framer-motion/dist/es/motion/features/Feature.mjs
 class Feature {
     constructor(node) {
         this.isMounted = false;
@@ -17805,7 +17839,7 @@ class Feature {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/gestures/hover.mjs
+;// ./node_modules/framer-motion/dist/es/gestures/hover.mjs
 
 
 
@@ -17840,7 +17874,7 @@ class HoverGesture extends Feature {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/gestures/focus.mjs
+;// ./node_modules/framer-motion/dist/es/gestures/focus.mjs
 
 
 
@@ -17883,7 +17917,7 @@ class FocusGesture extends Feature {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/gestures/utils/is-node-or-child.mjs
+;// ./node_modules/framer-motion/dist/es/gestures/utils/is-node-or-child.mjs
 /**
  * Recursively traverse up the tree to check whether the provided child node
  * is the parent or a descendant of it.
@@ -17905,7 +17939,7 @@ const isNodeOrChild = (parent, child) => {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/gestures/press.mjs
+;// ./node_modules/framer-motion/dist/es/gestures/press.mjs
 
 
 
@@ -18037,7 +18071,7 @@ class PressGesture extends Feature {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/features/viewport/observers.mjs
+;// ./node_modules/framer-motion/dist/es/motion/features/viewport/observers.mjs
 /**
  * Map an IntersectionHandler callback to an element. We only ever make one handler for one
  * element, so even though these handlers might all be triggered by different
@@ -18088,7 +18122,7 @@ function observeIntersection(element, options, callback) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/features/viewport/index.mjs
+;// ./node_modules/framer-motion/dist/es/motion/features/viewport/index.mjs
 
 
 
@@ -18162,7 +18196,7 @@ function hasViewportOptionChanged({ viewport = {} }, { viewport: prevViewport = 
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/features/gestures.mjs
+;// ./node_modules/framer-motion/dist/es/motion/features/gestures.mjs
 
 
 
@@ -18185,7 +18219,7 @@ const gestureAnimations = {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/shallow-compare.mjs
+;// ./node_modules/framer-motion/dist/es/utils/shallow-compare.mjs
 function shallowCompare(next, prev) {
     if (!Array.isArray(prev))
         return false;
@@ -18201,7 +18235,7 @@ function shallowCompare(next, prev) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/utils/resolve-dynamic-variants.mjs
+;// ./node_modules/framer-motion/dist/es/render/utils/resolve-dynamic-variants.mjs
 
 
 /**
@@ -18227,7 +18261,7 @@ function resolveVariant(visualElement, definition, custom) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/time-conversion.mjs
+;// ./node_modules/framer-motion/dist/es/utils/time-conversion.mjs
 /**
  * Converts seconds to milliseconds
  *
@@ -18239,7 +18273,7 @@ const millisecondsToSeconds = (milliseconds) => milliseconds / 1000;
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/utils/default-transitions.mjs
+;// ./node_modules/framer-motion/dist/es/animation/utils/default-transitions.mjs
 
 
 const underDampedSpring = {
@@ -18281,7 +18315,7 @@ const getDefaultTransition = (valueKey, { keyframes }) => {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/utils/transitions.mjs
+;// ./node_modules/framer-motion/dist/es/animation/utils/transitions.mjs
 /**
  * Decide whether a transition is defined on a given Transition.
  * This filters out orchestration options and returns true
@@ -18298,14 +18332,14 @@ function getValueTransition(transition, key) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/use-instant-transition-state.mjs
+;// ./node_modules/framer-motion/dist/es/utils/use-instant-transition-state.mjs
 const instantAnimationState = {
     current: false,
 };
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/animators/waapi/utils/get-final-keyframe.mjs
+;// ./node_modules/framer-motion/dist/es/animation/animators/waapi/utils/get-final-keyframe.mjs
 const isNotNull = (value) => value !== null;
 function getFinalKeyframe(keyframes, { repeat, repeatType = "loop" }, finalKeyframe) {
     const resolvedKeyframes = keyframes.filter(isNotNull);
@@ -18319,7 +18353,7 @@ function getFinalKeyframe(keyframes, { repeat, repeatType = "loop" }, finalKeyfr
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/frameloop/sync-time.mjs
+;// ./node_modules/framer-motion/dist/es/frameloop/sync-time.mjs
 
 
 
@@ -18352,7 +18386,7 @@ const time = {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/is-zero-value-string.mjs
+;// ./node_modules/framer-motion/dist/es/utils/is-zero-value-string.mjs
 /**
  * Check if the value is a zero value string like "0px" or "0%"
  */
@@ -18360,7 +18394,7 @@ const isZeroValueString = (v) => /^0[^.\s]+$/u.test(v);
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/utils/is-none.mjs
+;// ./node_modules/framer-motion/dist/es/animation/utils/is-none.mjs
 
 
 function isNone(value) {
@@ -18377,7 +18411,7 @@ function isNone(value) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/errors.mjs
+;// ./node_modules/framer-motion/dist/es/utils/errors.mjs
 
 
 let warning = noop_noop;
@@ -18386,7 +18420,7 @@ if (false) {}
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/is-numerical-string.mjs
+;// ./node_modules/framer-motion/dist/es/utils/is-numerical-string.mjs
 /**
  * Check if value is a numerical string, ie a string that is purely a number eg "100" or "-100.1"
  */
@@ -18394,7 +18428,7 @@ const isNumericalString = (v) => /^-?(?:\d+(?:\.\d+)?|\.\d+)$/u.test(v);
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/utils/css-variables-conversion.mjs
+;// ./node_modules/framer-motion/dist/es/render/dom/utils/css-variables-conversion.mjs
 
 
 
@@ -18438,7 +18472,7 @@ function getVariableValue(current, element, depth = 1) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/utils/unit-conversion.mjs
+;// ./node_modules/framer-motion/dist/es/render/dom/utils/unit-conversion.mjs
 
 
 
@@ -18505,7 +18539,7 @@ positionalValues.translateY = positionalValues.y;
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/value-types/test.mjs
+;// ./node_modules/framer-motion/dist/es/render/dom/value-types/test.mjs
 /**
  * Tests a provided value against a ValueType
  */
@@ -18513,7 +18547,7 @@ const testValueType = (v) => (type) => type.test(v);
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/value-types/type-auto.mjs
+;// ./node_modules/framer-motion/dist/es/render/dom/value-types/type-auto.mjs
 /**
  * ValueType for "auto"
  */
@@ -18524,7 +18558,7 @@ const auto = {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/value-types/dimensions.mjs
+;// ./node_modules/framer-motion/dist/es/render/dom/value-types/dimensions.mjs
 
 
 
@@ -18541,7 +18575,7 @@ const findDimensionValueType = (v) => dimensionValueTypes.find(testValueType(v))
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/utils/KeyframesResolver.mjs
+;// ./node_modules/framer-motion/dist/es/render/utils/KeyframesResolver.mjs
 
 
 
@@ -18707,7 +18741,7 @@ class KeyframeResolver {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/types/color/utils.mjs
+;// ./node_modules/framer-motion/dist/es/value/types/color/utils.mjs
 
 
 /**
@@ -18732,7 +18766,7 @@ const splitColor = (aName, bName, cName) => (v) => {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/types/color/rgba.mjs
+;// ./node_modules/framer-motion/dist/es/value/types/color/rgba.mjs
 
 
 
@@ -18759,7 +18793,7 @@ const rgba = {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/types/color/hex.mjs
+;// ./node_modules/framer-motion/dist/es/value/types/color/hex.mjs
 
 
 
@@ -18801,7 +18835,7 @@ const hex = {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/types/color/hsla.mjs
+;// ./node_modules/framer-motion/dist/es/value/types/color/hsla.mjs
 
 
 
@@ -18825,7 +18859,7 @@ const hsla = {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/types/color/index.mjs
+;// ./node_modules/framer-motion/dist/es/value/types/color/index.mjs
 
 
 
@@ -18855,7 +18889,7 @@ const color = {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/types/complex/index.mjs
+;// ./node_modules/framer-motion/dist/es/value/types/complex/index.mjs
 
 
 
@@ -18947,7 +18981,7 @@ const complex = {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/types/complex/filter.mjs
+;// ./node_modules/framer-motion/dist/es/value/types/complex/filter.mjs
 
 
 
@@ -18979,7 +19013,7 @@ const filter = {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/value-types/defaults.mjs
+;// ./node_modules/framer-motion/dist/es/render/dom/value-types/defaults.mjs
 
 
 
@@ -19011,7 +19045,7 @@ const getDefaultValueType = (key) => defaultValueTypes[key];
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/value-types/animatable-none.mjs
+;// ./node_modules/framer-motion/dist/es/render/dom/value-types/animatable-none.mjs
 
 
 
@@ -19028,7 +19062,7 @@ function animatable_none_getAnimatableNone(key, value) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/html/utils/make-none-animatable.mjs
+;// ./node_modules/framer-motion/dist/es/render/html/utils/make-none-animatable.mjs
 
 
 /**
@@ -19057,7 +19091,7 @@ function makeNoneKeyframesAnimatable(unresolvedKeyframes, noneKeyframeIndexes, n
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/DOMKeyframesResolver.mjs
+;// ./node_modules/framer-motion/dist/es/render/dom/DOMKeyframesResolver.mjs
 
 
 
@@ -19186,7 +19220,7 @@ class DOMKeyframesResolver extends KeyframeResolver {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/memo.mjs
+;// ./node_modules/framer-motion/dist/es/utils/memo.mjs
 function memo(callback) {
     let result;
     return () => {
@@ -19198,7 +19232,7 @@ function memo(callback) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/utils/is-animatable.mjs
+;// ./node_modules/framer-motion/dist/es/animation/utils/is-animatable.mjs
 
 
 /**
@@ -19230,7 +19264,7 @@ const isAnimatable = (value, name) => {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/animators/utils/can-animate.mjs
+;// ./node_modules/framer-motion/dist/es/animation/animators/utils/can-animate.mjs
 
 
 
@@ -19265,7 +19299,7 @@ function canAnimate(keyframes, name, type, velocity) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/animators/BaseAnimation.mjs
+;// ./node_modules/framer-motion/dist/es/animation/animators/BaseAnimation.mjs
 
 
 
@@ -19351,7 +19385,7 @@ class BaseAnimation {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/velocity-per-second.mjs
+;// ./node_modules/framer-motion/dist/es/utils/velocity-per-second.mjs
 /*
   Convert velocity into velocity per second
 
@@ -19364,7 +19398,7 @@ function velocityPerSecond(velocity, frameDuration) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/generators/utils/velocity.mjs
+;// ./node_modules/framer-motion/dist/es/animation/generators/utils/velocity.mjs
 
 
 const velocitySampleDuration = 5; // ms
@@ -19375,7 +19409,7 @@ function calcGeneratorVelocity(resolveValue, t, current) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/generators/spring/find.mjs
+;// ./node_modules/framer-motion/dist/es/animation/generators/spring/find.mjs
 
 
 
@@ -19466,7 +19500,7 @@ function calcAngularFreq(undampedFreq, dampingRatio) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/generators/spring/index.mjs
+;// ./node_modules/framer-motion/dist/es/animation/generators/spring/index.mjs
 
 
 
@@ -19599,7 +19633,7 @@ function spring({ keyframes, restDelta, restSpeed, ...options }) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/generators/inertia.mjs
+;// ./node_modules/framer-motion/dist/es/animation/generators/inertia.mjs
 
 
 
@@ -19688,7 +19722,7 @@ function inertia({ keyframes, velocity = 0.0, power = 0.8, timeConstant = 325, b
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/easing/cubic-bezier.mjs
+;// ./node_modules/framer-motion/dist/es/easing/cubic-bezier.mjs
 
 
 /*
@@ -19741,7 +19775,7 @@ function cubicBezier(mX1, mY1, mX2, mY2) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/easing/ease.mjs
+;// ./node_modules/framer-motion/dist/es/easing/ease.mjs
 
 
 const easeIn = cubicBezier(0.42, 0, 1, 1);
@@ -19750,28 +19784,28 @@ const easeInOut = cubicBezier(0.42, 0, 0.58, 1);
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/easing/utils/is-easing-array.mjs
+;// ./node_modules/framer-motion/dist/es/easing/utils/is-easing-array.mjs
 const isEasingArray = (ease) => {
     return Array.isArray(ease) && typeof ease[0] !== "number";
 };
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/easing/modifiers/mirror.mjs
+;// ./node_modules/framer-motion/dist/es/easing/modifiers/mirror.mjs
 // Accepts an easing function and returns a new one that outputs mirrored values for
 // the second half of the animation. Turns easeIn into easeInOut.
 const mirrorEasing = (easing) => (p) => p <= 0.5 ? easing(2 * p) / 2 : (2 - easing(2 * (1 - p))) / 2;
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/easing/modifiers/reverse.mjs
+;// ./node_modules/framer-motion/dist/es/easing/modifiers/reverse.mjs
 // Accepts an easing function and returns a new one that outputs reversed values.
 // Turns easeIn into easeOut.
 const reverseEasing = (easing) => (p) => 1 - easing(1 - p);
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/easing/circ.mjs
+;// ./node_modules/framer-motion/dist/es/easing/circ.mjs
 
 
 
@@ -19781,7 +19815,7 @@ const circInOut = mirrorEasing(circIn);
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/easing/back.mjs
+;// ./node_modules/framer-motion/dist/es/easing/back.mjs
 
 
 
@@ -19792,14 +19826,14 @@ const backInOut = mirrorEasing(backIn);
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/easing/anticipate.mjs
+;// ./node_modules/framer-motion/dist/es/easing/anticipate.mjs
 
 
 const anticipate = (p) => (p *= 2) < 1 ? 0.5 * backIn(p) : 0.5 * (2 - Math.pow(2, -10 * (p - 1)));
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/easing/utils/map.mjs
+;// ./node_modules/framer-motion/dist/es/easing/utils/map.mjs
 
 
 
@@ -19838,7 +19872,7 @@ const easingDefinitionToFunction = (definition) => {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/progress.mjs
+;// ./node_modules/framer-motion/dist/es/utils/progress.mjs
 /*
   Progress within given range
 
@@ -19858,7 +19892,7 @@ const progress = (from, to, value) => {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/mix/number.mjs
+;// ./node_modules/framer-motion/dist/es/utils/mix/number.mjs
 /*
   Value in range from progress
 
@@ -19886,7 +19920,7 @@ const mixNumber = (from, to, progress) => {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/hsla-to-rgba.mjs
+;// ./node_modules/framer-motion/dist/es/utils/hsla-to-rgba.mjs
 // Adapted from https://gist.github.com/mjackson/5311256
 function hueToRgb(p, q, t) {
     if (t < 0)
@@ -19930,7 +19964,7 @@ function hslaToRgba({ hue, saturation, lightness, alpha }) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/mix/color.mjs
+;// ./node_modules/framer-motion/dist/es/utils/mix/color.mjs
 
 
 
@@ -19973,7 +20007,7 @@ const mixColor = (from, to) => {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/mix/complex.mjs
+;// ./node_modules/framer-motion/dist/es/utils/mix/complex.mjs
 
 
 
@@ -20064,7 +20098,7 @@ const mixComplex = (origin, target) => {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/mix/index.mjs
+;// ./node_modules/framer-motion/dist/es/utils/mix/index.mjs
 
 
 
@@ -20080,7 +20114,7 @@ function mix(from, to, p) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/interpolate.mjs
+;// ./node_modules/framer-motion/dist/es/utils/interpolate.mjs
 
 
 
@@ -20157,7 +20191,7 @@ function interpolate(input, output, { clamp: isClamp = true, ease, mixer } = {})
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/offsets/fill.mjs
+;// ./node_modules/framer-motion/dist/es/utils/offsets/fill.mjs
 
 
 
@@ -20171,7 +20205,7 @@ function fillOffset(offset, remaining) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/offsets/default.mjs
+;// ./node_modules/framer-motion/dist/es/utils/offsets/default.mjs
 
 
 function defaultOffset(arr) {
@@ -20182,14 +20216,14 @@ function defaultOffset(arr) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/offsets/time.mjs
+;// ./node_modules/framer-motion/dist/es/utils/offsets/time.mjs
 function convertOffsetToTimes(offset, duration) {
     return offset.map((o) => o * duration);
 }
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/generators/keyframes.mjs
+;// ./node_modules/framer-motion/dist/es/animation/generators/keyframes.mjs
 
 
 
@@ -20242,7 +20276,7 @@ function keyframes_keyframes({ duration = 300, keyframes: keyframeValues, times,
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/generators/utils/calc-duration.mjs
+;// ./node_modules/framer-motion/dist/es/animation/generators/utils/calc-duration.mjs
 /**
  * Implement a practical max duration for keyframe generation
  * to prevent infinite loops
@@ -20261,7 +20295,7 @@ function calcGeneratorDuration(generator) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/animators/drivers/driver-frameloop.mjs
+;// ./node_modules/framer-motion/dist/es/animation/animators/drivers/driver-frameloop.mjs
 
 
 
@@ -20280,7 +20314,7 @@ const frameloopDriver = (update) => {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/animators/MainThreadAnimation.mjs
+;// ./node_modules/framer-motion/dist/es/animation/animators/MainThreadAnimation.mjs
 
 
 
@@ -20662,12 +20696,12 @@ function animateValue(options) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/easing/utils/is-bezier-definition.mjs
+;// ./node_modules/framer-motion/dist/es/easing/utils/is-bezier-definition.mjs
 const isBezierDefinition = (easing) => Array.isArray(easing) && typeof easing[0] === "number";
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/animators/waapi/easing.mjs
+;// ./node_modules/framer-motion/dist/es/animation/animators/waapi/easing.mjs
 
 
 function isWaapiSupportedEasing(easing) {
@@ -20709,7 +20743,7 @@ function mapEasingToNativeEasing(easing) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/animators/waapi/index.mjs
+;// ./node_modules/framer-motion/dist/es/animation/animators/waapi/index.mjs
 
 
 function animateStyle(element, valueName, keyframes, { delay = 0, duration = 300, repeat = 0, repeatType = "loop", ease, times, } = {}) {
@@ -20734,7 +20768,7 @@ function animateStyle(element, valueName, keyframes, { delay = 0, duration = 300
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/animators/AcceleratedAnimation.mjs
+;// ./node_modules/framer-motion/dist/es/animation/animators/AcceleratedAnimation.mjs
 
 
 
@@ -21031,7 +21065,7 @@ class AcceleratedAnimation extends BaseAnimation {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/interfaces/motion-value.mjs
+;// ./node_modules/framer-motion/dist/es/animation/interfaces/motion-value.mjs
 
 
 
@@ -21142,7 +21176,7 @@ const animateMotionValue = (name, value, target, transition = {}, element, isHan
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/use-will-change/is.mjs
+;// ./node_modules/framer-motion/dist/es/value/use-will-change/is.mjs
 
 
 function isWillChangeMotionValue(value) {
@@ -21151,7 +21185,7 @@ function isWillChangeMotionValue(value) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/array.mjs
+;// ./node_modules/framer-motion/dist/es/utils/array.mjs
 function addUniqueItem(arr, item) {
     if (arr.indexOf(item) === -1)
         arr.push(item);
@@ -21174,7 +21208,7 @@ function moveItem([...arr], fromIndex, toIndex) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/subscription-manager.mjs
+;// ./node_modules/framer-motion/dist/es/utils/subscription-manager.mjs
 
 
 class SubscriptionManager {
@@ -21216,7 +21250,7 @@ class SubscriptionManager {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/index.mjs
+;// ./node_modules/framer-motion/dist/es/value/index.mjs
 
 
 
@@ -21533,7 +21567,7 @@ function motionValue(init, options) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/utils/setters.mjs
+;// ./node_modules/framer-motion/dist/es/render/utils/setters.mjs
 
 
 
@@ -21562,7 +21596,7 @@ function setTarget(visualElement, definition) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/interfaces/visual-element-target.mjs
+;// ./node_modules/framer-motion/dist/es/animation/interfaces/visual-element-target.mjs
 
 
 
@@ -21645,7 +21679,7 @@ function animateTarget(visualElement, targetAndTransition, { delay = 0, transiti
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/interfaces/visual-element-variant.mjs
+;// ./node_modules/framer-motion/dist/es/animation/interfaces/visual-element-variant.mjs
 
 
 
@@ -21713,7 +21747,7 @@ function sortByTreeOrder(a, b) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/interfaces/visual-element.mjs
+;// ./node_modules/framer-motion/dist/es/animation/interfaces/visual-element.mjs
 
 
 
@@ -21744,7 +21778,7 @@ function animateVisualElement(visualElement, definition, options = {}) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/utils/animation-state.mjs
+;// ./node_modules/framer-motion/dist/es/render/utils/animation-state.mjs
 
 
 
@@ -22070,7 +22104,7 @@ function createState() {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/features/animation/index.mjs
+;// ./node_modules/framer-motion/dist/es/motion/features/animation/index.mjs
 
 
 
@@ -22110,7 +22144,7 @@ class AnimationFeature extends Feature {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/features/animation/exit.mjs
+;// ./node_modules/framer-motion/dist/es/motion/features/animation/exit.mjs
 
 
 let id = 0;
@@ -22143,7 +22177,7 @@ class ExitAnimationFeature extends Feature {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/features/animations.mjs
+;// ./node_modules/framer-motion/dist/es/motion/features/animations.mjs
 
 
 
@@ -22158,7 +22192,7 @@ const animations = {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/distance.mjs
+;// ./node_modules/framer-motion/dist/es/utils/distance.mjs
 const distance = (a, b) => Math.abs(a - b);
 function distance2D(a, b) {
     // Multi-dimensional
@@ -22169,7 +22203,7 @@ function distance2D(a, b) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/gestures/pan/PanSession.mjs
+;// ./node_modules/framer-motion/dist/es/gestures/pan/PanSession.mjs
 
 
 
@@ -22327,7 +22361,7 @@ function PanSession_getVelocity(history, timeDelta) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/geometry/delta-calc.mjs
+;// ./node_modules/framer-motion/dist/es/projection/geometry/delta-calc.mjs
 
 
 function calcLength(axis) {
@@ -22370,7 +22404,7 @@ function calcRelativePosition(target, layout, parent) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/gestures/drag/utils/constraints.mjs
+;// ./node_modules/framer-motion/dist/es/gestures/drag/utils/constraints.mjs
 
 
 
@@ -22501,7 +22535,7 @@ function resolvePointElastic(dragElastic, label) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/geometry/models.mjs
+;// ./node_modules/framer-motion/dist/es/projection/geometry/models.mjs
 const createAxisDelta = () => ({
     translate: 0,
     scale: 1,
@@ -22520,14 +22554,14 @@ const createBox = () => ({
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/utils/each-axis.mjs
+;// ./node_modules/framer-motion/dist/es/projection/utils/each-axis.mjs
 function eachAxis(callback) {
     return [callback("x"), callback("y")];
 }
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/geometry/conversion.mjs
+;// ./node_modules/framer-motion/dist/es/projection/geometry/conversion.mjs
 /**
  * Bounding boxes tend to be defined as top, left, right, bottom. For various operations
  * it's easier to consider each axis individually. This function returns a bounding box
@@ -22562,7 +22596,7 @@ function transformBoxPoints(point, transformPoint) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/utils/has-transform.mjs
+;// ./node_modules/framer-motion/dist/es/projection/utils/has-transform.mjs
 function isIdentityScale(scale) {
     return scale === undefined || scale === 1;
 }
@@ -22590,7 +22624,7 @@ function is2DTranslate(value) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/geometry/delta-apply.mjs
+;// ./node_modules/framer-motion/dist/es/projection/geometry/delta-apply.mjs
 
 
 
@@ -22714,7 +22748,7 @@ function transformBox(box, transform) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/utils/measure.mjs
+;// ./node_modules/framer-motion/dist/es/projection/utils/measure.mjs
 
 
 
@@ -22733,7 +22767,7 @@ function measurePageBox(element, rootProjectionNode, transformPagePoint) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/get-context-window.mjs
+;// ./node_modules/framer-motion/dist/es/utils/get-context-window.mjs
 // Fixes https://github.com/framer/motion/issues/2270
 const getContextWindow = ({ current }) => {
     return current ? current.ownerDocument.defaultView : null;
@@ -22741,7 +22775,7 @@ const getContextWindow = ({ current }) => {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/gestures/drag/VisualElementDragControls.mjs
+;// ./node_modules/framer-motion/dist/es/gestures/drag/VisualElementDragControls.mjs
 
 
 
@@ -23227,7 +23261,7 @@ function getCurrentDirection(offset, lockThreshold = 10) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/gestures/drag/index.mjs
+;// ./node_modules/framer-motion/dist/es/gestures/drag/index.mjs
 
 
 
@@ -23256,7 +23290,7 @@ class DragGesture extends Feature {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/gestures/pan/index.mjs
+;// ./node_modules/framer-motion/dist/es/gestures/pan/index.mjs
 
 
 
@@ -23308,7 +23342,7 @@ class PanGesture extends Feature {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/components/AnimatePresence/use-presence.mjs
+;// ./node_modules/framer-motion/dist/es/components/AnimatePresence/use-presence.mjs
 
 
 
@@ -23376,7 +23410,7 @@ function isPresent(context) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/node/state.mjs
+;// ./node_modules/framer-motion/dist/es/projection/node/state.mjs
 /**
  * This should only ever be modified on the client otherwise it'll
  * persist through server requests. If we need instanced states we
@@ -23397,7 +23431,7 @@ const globalProjectionState = {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/styles/scale-border-radius.mjs
+;// ./node_modules/framer-motion/dist/es/projection/styles/scale-border-radius.mjs
 
 
 function pixelsToPercent(pixels, axis) {
@@ -23440,7 +23474,7 @@ const correctBorderRadius = {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/styles/scale-box-shadow.mjs
+;// ./node_modules/framer-motion/dist/es/projection/styles/scale-box-shadow.mjs
 
 
 
@@ -23477,7 +23511,7 @@ const correctBoxShadow = {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/features/layout/MeasureLayout.mjs
+;// ./node_modules/framer-motion/dist/es/motion/features/layout/MeasureLayout.mjs
 
 
 
@@ -23612,7 +23646,7 @@ const defaultScaleCorrectors = {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/animation/mix-values.mjs
+;// ./node_modules/framer-motion/dist/es/projection/animation/mix-values.mjs
 
 
 
@@ -23707,7 +23741,7 @@ function compress(min, max, easing) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/geometry/copy.mjs
+;// ./node_modules/framer-motion/dist/es/projection/geometry/copy.mjs
 /**
  * Reset an axis to the provided origin box.
  *
@@ -23729,7 +23763,7 @@ function copyBoxInto(box, originBox) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/geometry/delta-remove.mjs
+;// ./node_modules/framer-motion/dist/es/projection/geometry/delta-remove.mjs
 
 
 
@@ -23785,7 +23819,7 @@ function removeBoxTransforms(box, transforms, originBox, sourceBox) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/geometry/utils.mjs
+;// ./node_modules/framer-motion/dist/es/projection/geometry/utils.mjs
 
 
 function isAxisDeltaZero(delta) {
@@ -23812,7 +23846,7 @@ function aspectRatio(box) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/shared/stack.mjs
+;// ./node_modules/framer-motion/dist/es/projection/shared/stack.mjs
 
 
 class NodeStack {
@@ -23926,7 +23960,7 @@ class NodeStack {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/styles/transform.mjs
+;// ./node_modules/framer-motion/dist/es/projection/styles/transform.mjs
 function buildProjectionTransform(delta, treeScale, latestTransform) {
     let transform = "";
     /**
@@ -23977,12 +24011,12 @@ function buildProjectionTransform(delta, treeScale, latestTransform) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/utils/compare-by-depth.mjs
+;// ./node_modules/framer-motion/dist/es/render/utils/compare-by-depth.mjs
 const compareByDepth = (a, b) => a.depth - b.depth;
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/utils/flat-tree.mjs
+;// ./node_modules/framer-motion/dist/es/render/utils/flat-tree.mjs
 
 
 
@@ -24008,7 +24042,7 @@ class FlatTree {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/delay.mjs
+;// ./node_modules/framer-motion/dist/es/utils/delay.mjs
 
 
 
@@ -24030,7 +24064,7 @@ function delay(callback, timeout) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/debug/record.mjs
+;// ./node_modules/framer-motion/dist/es/debug/record.mjs
 function record(data) {
     if (window.MotionDebug) {
         window.MotionDebug.record(data);
@@ -24039,14 +24073,14 @@ function record(data) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/utils/is-svg-element.mjs
+;// ./node_modules/framer-motion/dist/es/render/dom/utils/is-svg-element.mjs
 function isSVGElement(element) {
     return element instanceof SVGElement && element.tagName !== "svg";
 }
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/interfaces/single-value.mjs
+;// ./node_modules/framer-motion/dist/es/animation/interfaces/single-value.mjs
 
 
 
@@ -24059,7 +24093,7 @@ function animateSingleValue(value, keyframes, options) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/node/create-projection-node.mjs
+;// ./node_modules/framer-motion/dist/es/projection/node/create-projection-node.mjs
 
 
 
@@ -25580,7 +25614,7 @@ function shouldAnimatePositionOnly(animationType, snapshot, layout) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/node/DocumentProjectionNode.mjs
+;// ./node_modules/framer-motion/dist/es/projection/node/DocumentProjectionNode.mjs
 
 
 
@@ -25595,7 +25629,7 @@ const DocumentProjectionNode = createProjectionNode({
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/node/HTMLProjectionNode.mjs
+;// ./node_modules/framer-motion/dist/es/projection/node/HTMLProjectionNode.mjs
 
 
 
@@ -25624,7 +25658,7 @@ const HTMLProjectionNode = createProjectionNode({
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/features/drag.mjs
+;// ./node_modules/framer-motion/dist/es/motion/features/drag.mjs
 
 
 
@@ -25643,14 +25677,14 @@ const drag = {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/reduced-motion/state.mjs
+;// ./node_modules/framer-motion/dist/es/utils/reduced-motion/state.mjs
 // Does this device prefer reduced motion? Returns `null` server-side.
 const prefersReducedMotion = { current: null };
 const hasReducedMotionListener = { current: false };
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/reduced-motion/index.mjs
+;// ./node_modules/framer-motion/dist/es/utils/reduced-motion/index.mjs
 
 
 
@@ -25671,7 +25705,7 @@ function initPrefersReducedMotion() {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/utils/motion-values.mjs
+;// ./node_modules/framer-motion/dist/es/render/utils/motion-values.mjs
 
 
 
@@ -25738,12 +25772,12 @@ function updateMotionValuesFromProps(element, next, prev) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/store.mjs
+;// ./node_modules/framer-motion/dist/es/render/store.mjs
 const visualElementStore = new WeakMap();
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/value-types/find.mjs
+;// ./node_modules/framer-motion/dist/es/render/dom/value-types/find.mjs
 
 
 
@@ -25760,7 +25794,7 @@ const findValueType = (v) => valueTypes.find(testValueType(v));
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/VisualElement.mjs
+;// ./node_modules/framer-motion/dist/es/render/VisualElement.mjs
 
 
 
@@ -26295,7 +26329,7 @@ class VisualElement {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/DOMVisualElement.mjs
+;// ./node_modules/framer-motion/dist/es/render/dom/DOMVisualElement.mjs
 
 
 
@@ -26325,7 +26359,7 @@ class DOMVisualElement extends VisualElement {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/html/HTMLVisualElement.mjs
+;// ./node_modules/framer-motion/dist/es/render/html/HTMLVisualElement.mjs
 
 
 
@@ -26386,7 +26420,7 @@ class HTMLVisualElement extends DOMVisualElement {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/svg/SVGVisualElement.mjs
+;// ./node_modules/framer-motion/dist/es/render/svg/SVGVisualElement.mjs
 
 
 
@@ -26435,7 +26469,7 @@ class SVGVisualElement extends DOMVisualElement {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/create-visual-element.mjs
+;// ./node_modules/framer-motion/dist/es/render/dom/create-visual-element.mjs
 
 
 
@@ -26452,7 +26486,7 @@ const create_visual_element_createDomVisualElement = (Component, options) => {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/features/layout.mjs
+;// ./node_modules/framer-motion/dist/es/motion/features/layout.mjs
 
 
 
@@ -26465,7 +26499,7 @@ const layout = {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/motion.mjs
+;// ./node_modules/framer-motion/dist/es/render/dom/motion.mjs
 
 
 
@@ -26509,7 +26543,7 @@ function createDomMotionComponent(key) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/use-is-mounted.mjs
+;// ./node_modules/framer-motion/dist/es/utils/use-is-mounted.mjs
 
 
 
@@ -26526,7 +26560,7 @@ function useIsMounted() {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/use-force-update.mjs
+;// ./node_modules/framer-motion/dist/es/utils/use-force-update.mjs
 
 
 
@@ -26547,7 +26581,7 @@ function use_force_update_useForceUpdate() {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/components/AnimatePresence/PopChild.mjs
+;// ./node_modules/framer-motion/dist/es/components/AnimatePresence/PopChild.mjs
 
 
 
@@ -26625,7 +26659,7 @@ function PopChild({ children, isPresent }) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/components/AnimatePresence/PresenceChild.mjs
+;// ./node_modules/framer-motion/dist/es/components/AnimatePresence/PresenceChild.mjs
 
 
 
@@ -26684,7 +26718,7 @@ function newChildrenMap() {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/use-unmount-effect.mjs
+;// ./node_modules/framer-motion/dist/es/utils/use-unmount-effect.mjs
 
 
 function useUnmountEffect(callback) {
@@ -26693,7 +26727,7 @@ function useUnmountEffect(callback) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs
+;// ./node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs
 
 
 
@@ -26860,7 +26894,7 @@ const AnimatePresence = ({ children, custom, initial = true, onExitComplete, exi
 
 
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/use-responsive-value.js
+;// ./packages/components/build-module/utils/use-responsive-value.js
 /**
  * WordPress dependencies
  */
@@ -26912,7 +26946,7 @@ function useResponsiveValue(values, options = {}) {
   index >= array.length ? array.length - 1 : index];
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/flex/styles.js
+;// ./packages/components/build-module/flex/styles.js
 function styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
  * External dependencies
@@ -26952,7 +26986,7 @@ const ItemsRow =  true ? {
   styles: ">*{min-width:0;}"
 } : 0;
 
-;// CONCATENATED MODULE: ./packages/components/build-module/flex/flex/hook.js
+;// ./packages/components/build-module/flex/flex/hook.js
 /**
  * External dependencies
  */
@@ -27024,7 +27058,7 @@ function useFlex(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/flex/context.js
+;// ./packages/components/build-module/flex/context.js
 /**
  * WordPress dependencies
  */
@@ -27034,7 +27068,7 @@ const FlexContext = (0,external_wp_element_namespaceObject.createContext)({
 });
 const useFlexContext = () => (0,external_wp_element_namespaceObject.useContext)(FlexContext);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/flex/flex/component.js
+;// ./packages/components/build-module/flex/flex/component.js
 /**
  * External dependencies
  */
@@ -27094,7 +27128,7 @@ function UnconnectedFlex(props, forwardedRef) {
 const component_Flex = contextConnect(UnconnectedFlex, 'Flex');
 /* harmony default export */ const flex_component = (component_Flex);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/flex/flex-item/hook.js
+;// ./packages/components/build-module/flex/flex-item/hook.js
 /**
  * External dependencies
  */
@@ -27129,7 +27163,7 @@ function useFlexItem(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/flex/flex-block/hook.js
+;// ./packages/components/build-module/flex/flex-block/hook.js
 /**
  * Internal dependencies
  */
@@ -27145,7 +27179,7 @@ function useFlexBlock(props) {
   return flexItemProps;
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/flex/flex-block/component.js
+;// ./packages/components/build-module/flex/flex-block/component.js
 /**
  * External dependencies
  */
@@ -27185,7 +27219,7 @@ function UnconnectedFlexBlock(props, forwardedRef) {
 const FlexBlock = contextConnect(UnconnectedFlexBlock, 'FlexBlock');
 /* harmony default export */ const flex_block_component = (FlexBlock);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/rtl.js
+;// ./packages/components/build-module/utils/rtl.js
 /**
  * External dependencies
  */
@@ -27274,7 +27308,7 @@ function rtl(ltrStyles = {}, rtlStyles) {
  */
 rtl.watch = () => (0,external_wp_i18n_namespaceObject.isRTL)();
 
-;// CONCATENATED MODULE: ./packages/components/build-module/spacer/hook.js
+;// ./packages/components/build-module/spacer/hook.js
 /**
  * External dependencies
  */
@@ -27287,7 +27321,9 @@ rtl.watch = () => (0,external_wp_i18n_namespaceObject.isRTL)();
 
 
 
-const isDefined = o => typeof o !== 'undefined' && o !== null;
+function isDefined(o) {
+  return typeof o !== 'undefined' && o !== null;
+}
 function useSpacer(props) {
   const {
     className,
@@ -27323,7 +27359,7 @@ function useSpacer(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/spacer/component.js
+;// ./packages/components/build-module/spacer/component.js
 /**
  * External dependencies
  */
@@ -27371,7 +27407,7 @@ function UnconnectedSpacer(props, forwardedRef) {
 const Spacer = contextConnect(UnconnectedSpacer, 'Spacer');
 /* harmony default export */ const spacer_component = (Spacer);
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/plus.js
+;// ./packages/icons/build-module/library/plus.js
 /**
  * WordPress dependencies
  */
@@ -27386,7 +27422,7 @@ const plus = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(exter
 });
 /* harmony default export */ const library_plus = (plus);
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/reset.js
+;// ./packages/icons/build-module/library/reset.js
 /**
  * WordPress dependencies
  */
@@ -27401,7 +27437,7 @@ const reset_reset = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx
 });
 /* harmony default export */ const library_reset = (reset_reset);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/flex/flex-item/component.js
+;// ./packages/components/build-module/flex/flex-item/component.js
 /**
  * External dependencies
  */
@@ -27441,7 +27477,7 @@ function UnconnectedFlexItem(props, forwardedRef) {
 const FlexItem = contextConnect(UnconnectedFlexItem, 'FlexItem');
 /* harmony default export */ const flex_item_component = (FlexItem);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/truncate/styles.js
+;// ./packages/components/build-module/truncate/styles.js
 function truncate_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
  * External dependencies
@@ -27452,7 +27488,7 @@ const Truncate =  true ? {
   styles: "display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"
 } : 0;
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/values.js
+;// ./packages/components/build-module/utils/values.js
 /* eslint-disable jsdoc/valid-types */
 /**
  * Determines if a value is null or undefined.
@@ -27516,7 +27552,7 @@ const ensureNumber = value => {
   return typeof value === 'string' ? stringToNumber(value) : value;
 };
 
-;// CONCATENATED MODULE: ./packages/components/build-module/truncate/utils.js
+;// ./packages/components/build-module/truncate/utils.js
 /**
  * Internal dependencies
  */
@@ -27589,7 +27625,7 @@ function truncateContent(words = '', props) {
   return truncatedContent;
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/truncate/hook.js
+;// ./packages/components/build-module/truncate/hook.js
 /**
  * External dependencies
  */
@@ -27646,13 +27682,13 @@ function useTruncate(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./node_modules/colord/index.mjs
+;// ./node_modules/colord/index.mjs
 var colord_r={grad:.9,turn:360,rad:360/(2*Math.PI)},t=function(r){return"string"==typeof r?r.length>0:"number"==typeof r},colord_n=function(r,t,n){return void 0===t&&(t=0),void 0===n&&(n=Math.pow(10,t)),Math.round(n*r)/n+0},colord_e=function(r,t,n){return void 0===t&&(t=0),void 0===n&&(n=1),r>n?n:r>t?r:t},u=function(r){return(r=isFinite(r)?r%360:0)>0?r:r+360},colord_a=function(r){return{r:colord_e(r.r,0,255),g:colord_e(r.g,0,255),b:colord_e(r.b,0,255),a:colord_e(r.a)}},colord_o=function(r){return{r:colord_n(r.r),g:colord_n(r.g),b:colord_n(r.b),a:colord_n(r.a,3)}},i=/^#([0-9a-f]{3,8})$/i,s=function(r){var t=r.toString(16);return t.length<2?"0"+t:t},h=function(r){var t=r.r,n=r.g,e=r.b,u=r.a,a=Math.max(t,n,e),o=a-Math.min(t,n,e),i=o?a===t?(n-e)/o:a===n?2+(e-t)/o:4+(t-n)/o:0;return{h:60*(i<0?i+6:i),s:a?o/a*100:0,v:a/255*100,a:u}},b=function(r){var t=r.h,n=r.s,e=r.v,u=r.a;t=t/360*6,n/=100,e/=100;var a=Math.floor(t),o=e*(1-n),i=e*(1-(t-a)*n),s=e*(1-(1-t+a)*n),h=a%6;return{r:255*[e,i,o,o,s,e][h],g:255*[s,e,e,i,o,o][h],b:255*[o,o,s,e,e,i][h],a:u}},g=function(r){return{h:u(r.h),s:colord_e(r.s,0,100),l:colord_e(r.l,0,100),a:colord_e(r.a)}},d=function(r){return{h:colord_n(r.h),s:colord_n(r.s),l:colord_n(r.l),a:colord_n(r.a,3)}},f=function(r){return b((n=(t=r).s,{h:t.h,s:(n*=((e=t.l)<50?e:100-e)/100)>0?2*n/(e+n)*100:0,v:e+n,a:t.a}));var t,n,e},c=function(r){return{h:(t=h(r)).h,s:(u=(200-(n=t.s))*(e=t.v)/100)>0&&u<200?n*e/100/(u<=100?u:200-u)*100:0,l:u/2,a:t.a};var t,n,e,u},l=/^hsla?\(\s*([+-]?\d*\.?\d+)(deg|rad|grad|turn)?\s*,\s*([+-]?\d*\.?\d+)%\s*,\s*([+-]?\d*\.?\d+)%\s*(?:,\s*([+-]?\d*\.?\d+)(%)?\s*)?\)$/i,p=/^hsla?\(\s*([+-]?\d*\.?\d+)(deg|rad|grad|turn)?\s+([+-]?\d*\.?\d+)%\s+([+-]?\d*\.?\d+)%\s*(?:\/\s*([+-]?\d*\.?\d+)(%)?\s*)?\)$/i,v=/^rgba?\(\s*([+-]?\d*\.?\d+)(%)?\s*,\s*([+-]?\d*\.?\d+)(%)?\s*,\s*([+-]?\d*\.?\d+)(%)?\s*(?:,\s*([+-]?\d*\.?\d+)(%)?\s*)?\)$/i,m=/^rgba?\(\s*([+-]?\d*\.?\d+)(%)?\s+([+-]?\d*\.?\d+)(%)?\s+([+-]?\d*\.?\d+)(%)?\s*(?:\/\s*([+-]?\d*\.?\d+)(%)?\s*)?\)$/i,y={string:[[function(r){var t=i.exec(r);return t?(r=t[1]).length<=4?{r:parseInt(r[0]+r[0],16),g:parseInt(r[1]+r[1],16),b:parseInt(r[2]+r[2],16),a:4===r.length?colord_n(parseInt(r[3]+r[3],16)/255,2):1}:6===r.length||8===r.length?{r:parseInt(r.substr(0,2),16),g:parseInt(r.substr(2,2),16),b:parseInt(r.substr(4,2),16),a:8===r.length?colord_n(parseInt(r.substr(6,2),16)/255,2):1}:null:null},"hex"],[function(r){var t=v.exec(r)||m.exec(r);return t?t[2]!==t[4]||t[4]!==t[6]?null:colord_a({r:Number(t[1])/(t[2]?100/255:1),g:Number(t[3])/(t[4]?100/255:1),b:Number(t[5])/(t[6]?100/255:1),a:void 0===t[7]?1:Number(t[7])/(t[8]?100:1)}):null},"rgb"],[function(t){var n=l.exec(t)||p.exec(t);if(!n)return null;var e,u,a=g({h:(e=n[1],u=n[2],void 0===u&&(u="deg"),Number(e)*(colord_r[u]||1)),s:Number(n[3]),l:Number(n[4]),a:void 0===n[5]?1:Number(n[5])/(n[6]?100:1)});return f(a)},"hsl"]],object:[[function(r){var n=r.r,e=r.g,u=r.b,o=r.a,i=void 0===o?1:o;return t(n)&&t(e)&&t(u)?colord_a({r:Number(n),g:Number(e),b:Number(u),a:Number(i)}):null},"rgb"],[function(r){var n=r.h,e=r.s,u=r.l,a=r.a,o=void 0===a?1:a;if(!t(n)||!t(e)||!t(u))return null;var i=g({h:Number(n),s:Number(e),l:Number(u),a:Number(o)});return f(i)},"hsl"],[function(r){var n=r.h,a=r.s,o=r.v,i=r.a,s=void 0===i?1:i;if(!t(n)||!t(a)||!t(o))return null;var h=function(r){return{h:u(r.h),s:colord_e(r.s,0,100),v:colord_e(r.v,0,100),a:colord_e(r.a)}}({h:Number(n),s:Number(a),v:Number(o),a:Number(s)});return b(h)},"hsv"]]},N=function(r,t){for(var n=0;n<t.length;n++){var e=t[n][0](r);if(e)return[e,t[n][1]]}return[null,void 0]},x=function(r){return"string"==typeof r?N(r.trim(),y.string):"object"==typeof r&&null!==r?N(r,y.object):[null,void 0]},I=function(r){return x(r)[1]},M=function(r,t){var n=c(r);return{h:n.h,s:colord_e(n.s+100*t,0,100),l:n.l,a:n.a}},H=function(r){return(299*r.r+587*r.g+114*r.b)/1e3/255},$=function(r,t){var n=c(r);return{h:n.h,s:n.s,l:colord_e(n.l+100*t,0,100),a:n.a}},j=function(){function r(r){this.parsed=x(r)[0],this.rgba=this.parsed||{r:0,g:0,b:0,a:1}}return r.prototype.isValid=function(){return null!==this.parsed},r.prototype.brightness=function(){return colord_n(H(this.rgba),2)},r.prototype.isDark=function(){return H(this.rgba)<.5},r.prototype.isLight=function(){return H(this.rgba)>=.5},r.prototype.toHex=function(){return r=colord_o(this.rgba),t=r.r,e=r.g,u=r.b,i=(a=r.a)<1?s(colord_n(255*a)):"","#"+s(t)+s(e)+s(u)+i;var r,t,e,u,a,i},r.prototype.toRgb=function(){return colord_o(this.rgba)},r.prototype.toRgbString=function(){return r=colord_o(this.rgba),t=r.r,n=r.g,e=r.b,(u=r.a)<1?"rgba("+t+", "+n+", "+e+", "+u+")":"rgb("+t+", "+n+", "+e+")";var r,t,n,e,u},r.prototype.toHsl=function(){return d(c(this.rgba))},r.prototype.toHslString=function(){return r=d(c(this.rgba)),t=r.h,n=r.s,e=r.l,(u=r.a)<1?"hsla("+t+", "+n+"%, "+e+"%, "+u+")":"hsl("+t+", "+n+"%, "+e+"%)";var r,t,n,e,u},r.prototype.toHsv=function(){return r=h(this.rgba),{h:colord_n(r.h),s:colord_n(r.s),v:colord_n(r.v),a:colord_n(r.a,3)};var r},r.prototype.invert=function(){return w({r:255-(r=this.rgba).r,g:255-r.g,b:255-r.b,a:r.a});var r},r.prototype.saturate=function(r){return void 0===r&&(r=.1),w(M(this.rgba,r))},r.prototype.desaturate=function(r){return void 0===r&&(r=.1),w(M(this.rgba,-r))},r.prototype.grayscale=function(){return w(M(this.rgba,-1))},r.prototype.lighten=function(r){return void 0===r&&(r=.1),w($(this.rgba,r))},r.prototype.darken=function(r){return void 0===r&&(r=.1),w($(this.rgba,-r))},r.prototype.rotate=function(r){return void 0===r&&(r=15),this.hue(this.hue()+r)},r.prototype.alpha=function(r){return"number"==typeof r?w({r:(t=this.rgba).r,g:t.g,b:t.b,a:r}):colord_n(this.rgba.a,3);var t},r.prototype.hue=function(r){var t=c(this.rgba);return"number"==typeof r?w({h:r,s:t.s,l:t.l,a:t.a}):colord_n(t.h)},r.prototype.isEqual=function(r){return this.toHex()===w(r).toHex()},r}(),w=function(r){return r instanceof j?r:new j(r)},S=[],k=function(r){r.forEach(function(r){S.indexOf(r)<0&&(r(j,y),S.push(r))})},E=function(){return new j({r:255*Math.random(),g:255*Math.random(),b:255*Math.random()})};
 
-;// CONCATENATED MODULE: ./node_modules/colord/plugins/names.mjs
+;// ./node_modules/colord/plugins/names.mjs
 /* harmony default export */ function names(e,f){var a={white:"#ffffff",bisque:"#ffe4c4",blue:"#0000ff",cadetblue:"#5f9ea0",chartreuse:"#7fff00",chocolate:"#d2691e",coral:"#ff7f50",antiquewhite:"#faebd7",aqua:"#00ffff",azure:"#f0ffff",whitesmoke:"#f5f5f5",papayawhip:"#ffefd5",plum:"#dda0dd",blanchedalmond:"#ffebcd",black:"#000000",gold:"#ffd700",goldenrod:"#daa520",gainsboro:"#dcdcdc",cornsilk:"#fff8dc",cornflowerblue:"#6495ed",burlywood:"#deb887",aquamarine:"#7fffd4",beige:"#f5f5dc",crimson:"#dc143c",cyan:"#00ffff",darkblue:"#00008b",darkcyan:"#008b8b",darkgoldenrod:"#b8860b",darkkhaki:"#bdb76b",darkgray:"#a9a9a9",darkgreen:"#006400",darkgrey:"#a9a9a9",peachpuff:"#ffdab9",darkmagenta:"#8b008b",darkred:"#8b0000",darkorchid:"#9932cc",darkorange:"#ff8c00",darkslateblue:"#483d8b",gray:"#808080",darkslategray:"#2f4f4f",darkslategrey:"#2f4f4f",deeppink:"#ff1493",deepskyblue:"#00bfff",wheat:"#f5deb3",firebrick:"#b22222",floralwhite:"#fffaf0",ghostwhite:"#f8f8ff",darkviolet:"#9400d3",magenta:"#ff00ff",green:"#008000",dodgerblue:"#1e90ff",grey:"#808080",honeydew:"#f0fff0",hotpink:"#ff69b4",blueviolet:"#8a2be2",forestgreen:"#228b22",lawngreen:"#7cfc00",indianred:"#cd5c5c",indigo:"#4b0082",fuchsia:"#ff00ff",brown:"#a52a2a",maroon:"#800000",mediumblue:"#0000cd",lightcoral:"#f08080",darkturquoise:"#00ced1",lightcyan:"#e0ffff",ivory:"#fffff0",lightyellow:"#ffffe0",lightsalmon:"#ffa07a",lightseagreen:"#20b2aa",linen:"#faf0e6",mediumaquamarine:"#66cdaa",lemonchiffon:"#fffacd",lime:"#00ff00",khaki:"#f0e68c",mediumseagreen:"#3cb371",limegreen:"#32cd32",mediumspringgreen:"#00fa9a",lightskyblue:"#87cefa",lightblue:"#add8e6",midnightblue:"#191970",lightpink:"#ffb6c1",mistyrose:"#ffe4e1",moccasin:"#ffe4b5",mintcream:"#f5fffa",lightslategray:"#778899",lightslategrey:"#778899",navajowhite:"#ffdead",navy:"#000080",mediumvioletred:"#c71585",powderblue:"#b0e0e6",palegoldenrod:"#eee8aa",oldlace:"#fdf5e6",paleturquoise:"#afeeee",mediumturquoise:"#48d1cc",mediumorchid:"#ba55d3",rebeccapurple:"#663399",lightsteelblue:"#b0c4de",mediumslateblue:"#7b68ee",thistle:"#d8bfd8",tan:"#d2b48c",orchid:"#da70d6",mediumpurple:"#9370db",purple:"#800080",pink:"#ffc0cb",skyblue:"#87ceeb",springgreen:"#00ff7f",palegreen:"#98fb98",red:"#ff0000",yellow:"#ffff00",slateblue:"#6a5acd",lavenderblush:"#fff0f5",peru:"#cd853f",palevioletred:"#db7093",violet:"#ee82ee",teal:"#008080",slategray:"#708090",slategrey:"#708090",aliceblue:"#f0f8ff",darkseagreen:"#8fbc8f",darkolivegreen:"#556b2f",greenyellow:"#adff2f",seagreen:"#2e8b57",seashell:"#fff5ee",tomato:"#ff6347",silver:"#c0c0c0",sienna:"#a0522d",lavender:"#e6e6fa",lightgreen:"#90ee90",orange:"#ffa500",orangered:"#ff4500",steelblue:"#4682b4",royalblue:"#4169e1",turquoise:"#40e0d0",yellowgreen:"#9acd32",salmon:"#fa8072",saddlebrown:"#8b4513",sandybrown:"#f4a460",rosybrown:"#bc8f8f",darksalmon:"#e9967a",lightgoldenrodyellow:"#fafad2",snow:"#fffafa",lightgrey:"#d3d3d3",lightgray:"#d3d3d3",dimgray:"#696969",dimgrey:"#696969",olivedrab:"#6b8e23",olive:"#808000"},r={};for(var d in a)r[a[d]]=d;var l={};e.prototype.toName=function(f){if(!(this.rgba.a||this.rgba.r||this.rgba.g||this.rgba.b))return"transparent";var d,i,n=r[this.toHex()];if(n)return n;if(null==f?void 0:f.closest){var o=this.toRgb(),t=1/0,b="black";if(!l.length)for(var c in a)l[c]=new e(a[c]).toRgb();for(var g in a){var u=(d=o,i=l[g],Math.pow(d.r-i.r,2)+Math.pow(d.g-i.g,2)+Math.pow(d.b-i.b,2));u<t&&(t=u,b=g)}return b}};f.string.push([function(f){var r=f.toLowerCase(),d="transparent"===r?"#0000":a[r];return d?new e(d).toRgb():null},"name"])}
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/colors.js
+;// ./packages/components/build-module/utils/colors.js
 /**
  * External dependencies
  */
@@ -27770,7 +27806,7 @@ function getOptimalTextShade(backgroundColor) {
   return result === '#000000' ? 'dark' : 'light';
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/text/styles.js
+;// ./packages/components/build-module/text/styles.js
 function text_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
  * External dependencies
@@ -27796,8 +27832,8 @@ const upperCase =  true ? {
 } : 0;
 
 // EXTERNAL MODULE: ./node_modules/highlight-words-core/dist/index.js
-var dist = __webpack_require__(3138);
-;// CONCATENATED MODULE: ./packages/components/build-module/text/utils.js
+var dist = __webpack_require__(9664);
+;// ./packages/components/build-module/text/utils.js
 /**
  * External dependencies
  */
@@ -27941,7 +27977,7 @@ function createHighlighterText({
   return textContent;
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/font-size.js
+;// ./packages/components/build-module/utils/font-size.js
 /**
  * External dependencies
  */
@@ -27982,7 +28018,7 @@ function getHeadingFontSize(size = 3) {
   return config_values[headingSize];
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/text/get-line-height.js
+;// ./packages/components/build-module/text/get-line-height.js
 /**
  * External dependencies
  */
@@ -28017,7 +28053,7 @@ function getLineHeight(adjustLineHeightForInnerControls, lineHeight) {
   return value;
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/text/hook.js
+;// ./packages/components/build-module/text/hook.js
 function hook_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
  * External dependencies
@@ -28153,7 +28189,7 @@ function useText(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/text/component.js
+;// ./packages/components/build-module/text/component.js
 /**
  * Internal dependencies
  */
@@ -28194,7 +28230,7 @@ function UnconnectedText(props, forwardedRef) {
 const component_Text = contextConnect(UnconnectedText, 'Text');
 /* harmony default export */ const text_component = (component_Text);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/base-label.js
+;// ./packages/components/build-module/utils/base-label.js
 function base_label_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
  * External dependencies
@@ -28208,7 +28244,7 @@ const baseLabelTypography =  true ? {
   styles: "font-size:11px;font-weight:500;line-height:1.4;text-transform:uppercase"
 } : 0;
 
-;// CONCATENATED MODULE: ./packages/components/build-module/input-control/styles/input-control-styles.js
+;// ./packages/components/build-module/input-control/styles/input-control-styles.js
 
 function input_control_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -28431,7 +28467,7 @@ const PrefixSuffixWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("div", 
   target: "em5sgkm0"
 } : 0)(prefixSuffixWrapperStyles, ";" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/input-control/backdrop.js
+;// ./packages/components/build-module/input-control/backdrop.js
 /**
  * WordPress dependencies
  */
@@ -28455,7 +28491,7 @@ function Backdrop({
 const MemoizedBackdrop = (0,external_wp_element_namespaceObject.memo)(Backdrop);
 /* harmony default export */ const backdrop = (MemoizedBackdrop);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/input-control/label.js
+;// ./packages/components/build-module/input-control/label.js
 /**
  * Internal dependencies
  */
@@ -28487,7 +28523,7 @@ function label_Label({
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/use-deprecated-props.js
+;// ./packages/components/build-module/utils/use-deprecated-props.js
 function useDeprecated36pxDefaultSizeProp(props) {
   const {
     __next36pxDefaultSize,
@@ -28500,7 +28536,7 @@ function useDeprecated36pxDefaultSizeProp(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/input-control/input-base.js
+;// ./packages/components/build-module/input-control/input-base.js
 /**
  * External dependencies
  */
@@ -28514,7 +28550,6 @@ function useDeprecated36pxDefaultSizeProp(props) {
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -28623,7 +28658,7 @@ function InputBase(props, ref) {
  */
 /* harmony default export */ const input_base = (contextConnect(InputBase, 'InputBase'));
 
-;// CONCATENATED MODULE: ./node_modules/@use-gesture/core/dist/maths-0ab39ae9.esm.js
+;// ./node_modules/@use-gesture/core/dist/maths-0ab39ae9.esm.js
 function maths_0ab39ae9_esm_clamp(v, min, max) {
   return Math.max(min, Math.min(v, max));
 }
@@ -28664,7 +28699,7 @@ function computeRubberband(bounds, [Vx, Vy], [Rx, Ry]) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@use-gesture/core/dist/actions-fe213e88.esm.js
+;// ./node_modules/@use-gesture/core/dist/actions-fe213e88.esm.js
 
 
 function _toPrimitive(input, hint) {
@@ -30064,7 +30099,7 @@ const actions_fe213e88_esm_wheelAction = {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@use-gesture/core/dist/use-gesture-core.esm.js
+;// ./node_modules/@use-gesture/core/dist/use-gesture-core.esm.js
 
 
 
@@ -30385,7 +30420,7 @@ function use_gesture_core_esm_parseMergedHandlers(mergedHandlers, mergedConfig) 
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@use-gesture/react/dist/use-gesture-react.esm.js
+;// ./node_modules/@use-gesture/react/dist/use-gesture-react.esm.js
 
 
 
@@ -30468,7 +30503,7 @@ function useGesture(handlers, config) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/build-module/input-control/utils.js
+;// ./packages/components/build-module/input-control/utils.js
 /**
  * External dependencies
  */
@@ -30564,7 +30599,7 @@ function useDraft(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/input-control/reducer/state.js
+;// ./packages/components/build-module/input-control/reducer/state.js
 /**
  * External dependencies
  */
@@ -30584,7 +30619,7 @@ const initialInputControlState = {
   value: ''
 };
 
-;// CONCATENATED MODULE: ./packages/components/build-module/input-control/reducer/actions.js
+;// ./packages/components/build-module/input-control/reducer/actions.js
 /**
  * External dependencies
  */
@@ -30605,7 +30640,7 @@ const PRESS_ENTER = 'PRESS_ENTER';
 const PRESS_UP = 'PRESS_UP';
 const RESET = 'RESET';
 
-;// CONCATENATED MODULE: ./packages/components/build-module/input-control/reducer/reducer.js
+;// ./packages/components/build-module/input-control/reducer/reducer.js
 /**
  * External dependencies
  */
@@ -30836,7 +30871,7 @@ function useInputControlStateReducer(stateReducer = initialStateReducer, initial
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/with-ignore-ime-events.js
+;// ./packages/components/build-module/utils/with-ignore-ime-events.js
 /**
  * A higher-order function that wraps a keydown event handler to ensure it is not an IME event.
  *
@@ -30865,7 +30900,7 @@ function withIgnoreIMEEvents(keydownHandler) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/input-control/input-field.js
+;// ./packages/components/build-module/input-control/input-field.js
 /**
  * External dependencies
  */
@@ -31066,7 +31101,7 @@ function InputField({
 const ForwardedComponent = (0,external_wp_element_namespaceObject.forwardRef)(InputField);
 /* harmony default export */ const input_field = (ForwardedComponent);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/font-values.js
+;// ./packages/components/build-module/utils/font-values.js
 /* harmony default export */ const font_values = ({
   'default.fontFamily': "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
   'default.fontSize': '13px',
@@ -31074,7 +31109,7 @@ const ForwardedComponent = (0,external_wp_element_namespaceObject.forwardRef)(In
   mobileTextMinFontSize: '16px'
 });
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/font.js
+;// ./packages/components/build-module/utils/font.js
 /**
  * Internal dependencies
  */
@@ -31090,7 +31125,7 @@ function font(value) {
   return (_FONT$value = font_values[value]) !== null && _FONT$value !== void 0 ? _FONT$value : '';
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/box-sizing.js
+;// ./packages/components/build-module/utils/box-sizing.js
 function box_sizing_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
  * External dependencies
@@ -31101,7 +31136,7 @@ const boxSizingReset =  true ? {
   styles: "box-sizing:border-box;*,*::before,*::after{box-sizing:inherit;}"
 } : 0;
 
-;// CONCATENATED MODULE: ./packages/components/build-module/base-control/styles/base-control-styles.js
+;// ./packages/components/build-module/base-control/styles/base-control-styles.js
 
 function base_control_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -31146,7 +31181,7 @@ const StyledVisualLabel = /*#__PURE__*/emotion_styled_base_browser_esm("span",  
   target: "ej5x27r0"
 } : 0)(labelStyles, ";" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/base-control/index.js
+;// ./packages/components/build-module/base-control/index.js
 /**
  * External dependencies
  */
@@ -31160,7 +31195,6 @@ const StyledVisualLabel = /*#__PURE__*/emotion_styled_base_browser_esm("span",  
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -31277,7 +31311,7 @@ const BaseControl = Object.assign(contextConnectWithoutRef(UnconnectedBaseContro
 });
 /* harmony default export */ const base_control = (BaseControl);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/input-control/index.js
+;// ./packages/components/build-module/input-control/index.js
 /**
  * External dependencies
  */
@@ -31400,7 +31434,7 @@ function UnforwardedInputControl(props, ref) {
 const InputControl = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedInputControl);
 /* harmony default export */ const input_control = (InputControl);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/dashicon/index.js
+;// ./packages/components/build-module/dashicon/index.js
 
 /**
  * @typedef OwnProps
@@ -31444,7 +31478,7 @@ function Dashicon({
 }
 /* harmony default export */ const dashicon = (Dashicon);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/icon/index.js
+;// ./packages/components/build-module/icon/index.js
 /**
  * External dependencies
  */
@@ -31505,7 +31539,7 @@ function Icon({
 }
 /* harmony default export */ const build_module_icon = (Icon);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/button/index.js
+;// ./packages/components/build-module/button/index.js
 /**
  * External dependencies
  */
@@ -31520,8 +31554,6 @@ function Icon({
 /**
  * Internal dependencies
  */
-
-
 
 
 
@@ -31755,7 +31787,7 @@ function UnforwardedButton(props, ref) {
 const Button = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedButton);
 /* harmony default export */ const build_module_button = (Button);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/number-control/styles/number-control-styles.js
+;// ./packages/components/build-module/number-control/styles/number-control-styles.js
 
 function number_control_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -31792,7 +31824,7 @@ const styles = {
   smallSpinButtons
 };
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/math.js
+;// ./packages/components/build-module/utils/math.js
 /**
  * Parses and retrieves a number value.
  *
@@ -31813,7 +31845,7 @@ function getNumber(value) {
  * @return {number} The sum of values.
  */
 function add(...args) {
-  return args.reduce( /** @type {(sum:number, arg: number|string) => number} */
+  return args.reduce(/** @type {(sum:number, arg: number|string) => number} */
   (sum, arg) => sum + getNumber(arg), 0);
 }
 
@@ -31825,7 +31857,7 @@ function add(...args) {
  * @return {number} The difference of the values.
  */
 function subtract(...args) {
-  return args.reduce( /** @type {(diff:number, arg: number|string, index:number) => number} */
+  return args.reduce(/** @type {(diff:number, arg: number|string, index:number) => number} */
   (diff, arg, index) => {
     const value = getNumber(arg);
     return index === 0 ? value : diff - value;
@@ -31877,7 +31909,7 @@ function roundClamp(value = 0, min = Infinity, max = Infinity, step = 1) {
   return precision ? getNumber(clampedValue.toFixed(precision)) : clampedValue;
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/h-stack/utils.js
+;// ./packages/components/build-module/h-stack/utils.js
 /**
  * External dependencies
  */
@@ -31989,7 +32021,7 @@ function getAlignmentProps(alignment, direction = 'row') {
   return alignmentProps;
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/get-valid-children.js
+;// ./packages/components/build-module/utils/get-valid-children.js
 /**
  * External dependencies
  */
@@ -32013,7 +32045,7 @@ function getValidChildren(children) {
   return external_wp_element_namespaceObject.Children.toArray(children).filter(child => (0,external_wp_element_namespaceObject.isValidElement)(child));
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/h-stack/hook.js
+;// ./packages/components/build-module/h-stack/hook.js
 /**
  * External dependencies
  */
@@ -32066,7 +32098,7 @@ function useHStack(props) {
   return flexProps;
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/h-stack/component.js
+;// ./packages/components/build-module/h-stack/component.js
 /**
  * Internal dependencies
  */
@@ -32108,7 +32140,7 @@ function UnconnectedHStack(props, forwardedRef) {
 const HStack = contextConnect(UnconnectedHStack, 'HStack');
 /* harmony default export */ const h_stack_component = (HStack);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/number-control/index.js
+;// ./packages/components/build-module/number-control/index.js
 /**
  * External dependencies
  */
@@ -32125,8 +32157,6 @@ const HStack = contextConnect(UnconnectedHStack, 'HStack');
 /**
  * Internal dependencies
  */
-
-
 
 
 
@@ -32327,7 +32357,7 @@ function UnforwardedNumberControl(props, forwardedRef) {
 const NumberControl = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedNumberControl);
 /* harmony default export */ const number_control = (NumberControl);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/angle-picker-control/styles/angle-picker-control-styles.js
+;// ./packages/components/build-module/angle-picker-control/styles/angle-picker-control-styles.js
 
 function angle_picker_control_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -32359,7 +32389,7 @@ const UnitText = /*#__PURE__*/emotion_styled_base_browser_esm(text_component,  t
   target: "eln3bjz0"
 } : 0)("color:", COLORS.theme.accent, ";margin-right:", space(3), ";" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/angle-picker-control/angle-circle.js
+;// ./packages/components/build-module/angle-picker-control/angle-circle.js
 /**
  * WordPress dependencies
  */
@@ -32458,7 +32488,7 @@ function getAngle(centerX, centerY, pointX, pointY) {
 }
 /* harmony default export */ const angle_circle = (AngleCircle);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/angle-picker-control/index.js
+;// ./packages/components/build-module/angle-picker-control/index.js
 /**
  * External dependencies
  */
@@ -32474,7 +32504,6 @@ function getAngle(centerX, centerY, pointX, pointY) {
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -32557,15 +32586,15 @@ const AnglePickerControl = (0,external_wp_element_namespaceObject.forwardRef)(Un
 /* harmony default export */ const angle_picker_control = (AnglePickerControl);
 
 // EXTERNAL MODULE: ./node_modules/remove-accents/index.js
-var remove_accents = __webpack_require__(4793);
+var remove_accents = __webpack_require__(9681);
 var remove_accents_default = /*#__PURE__*/__webpack_require__.n(remove_accents);
-;// CONCATENATED MODULE: external ["wp","richText"]
+;// external ["wp","richText"]
 const external_wp_richText_namespaceObject = window["wp"]["richText"];
-;// CONCATENATED MODULE: external ["wp","a11y"]
+;// external ["wp","a11y"]
 const external_wp_a11y_namespaceObject = window["wp"]["a11y"];
-;// CONCATENATED MODULE: external ["wp","keycodes"]
+;// external ["wp","keycodes"]
 const external_wp_keycodes_namespaceObject = window["wp"]["keycodes"];
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/strings.js
+;// ./packages/components/build-module/utils/strings.js
 /**
  * External dependencies
  */
@@ -32627,7 +32656,7 @@ function escapeRegExp(string) {
   return string.replace(/[\\^$.*+?()[\]{}|]/g, '\\$&');
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/autocomplete/get-default-use-items.js
+;// ./packages/components/build-module/autocomplete/get-default-use-items.js
 /**
  * External dependencies
  */
@@ -32718,7 +32747,7 @@ function getDefaultUseItems(autocompleter) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@floating-ui/react-dom/dist/floating-ui.react-dom.esm.js
+;// ./packages/components/node_modules/@floating-ui/react-dom/dist/floating-ui.react-dom.esm.js
 
 
 
@@ -32986,7 +33015,7 @@ function useFloating(options) {
 
 
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/close.js
+;// ./packages/icons/build-module/library/close.js
 /**
  * WordPress dependencies
  */
@@ -33001,7 +33030,7 @@ const close_close = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx
 });
 /* harmony default export */ const library_close = (close_close);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/scroll-lock/index.js
+;// ./packages/components/build-module/scroll-lock/index.js
 /**
  * WordPress dependencies
  */
@@ -33081,7 +33110,7 @@ function ScrollLock() {
 }
 /* harmony default export */ const scroll_lock = (ScrollLock);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/slot-fill/bubbles-virtually/slot-fill-context.js
+;// ./packages/components/build-module/slot-fill/bubbles-virtually/slot-fill-context.js
 /**
  * WordPress dependencies
  */
@@ -33109,7 +33138,7 @@ const initialContextValue = {
 const SlotFillContext = (0,external_wp_element_namespaceObject.createContext)(initialContextValue);
 /* harmony default export */ const slot_fill_context = (SlotFillContext);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/slot-fill/bubbles-virtually/use-slot.js
+;// ./packages/components/build-module/slot-fill/bubbles-virtually/use-slot.js
 /**
  * WordPress dependencies
  */
@@ -33135,7 +33164,7 @@ function useSlot(name) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/slot-fill/context.js
+;// ./packages/components/build-module/slot-fill/context.js
 /**
  * WordPress dependencies
  */
@@ -33156,7 +33185,7 @@ const initialValue = {
 const context_SlotFillContext = (0,external_wp_element_namespaceObject.createContext)(initialValue);
 /* harmony default export */ const context = (context_SlotFillContext);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/slot-fill/use-slot.js
+;// ./packages/components/build-module/slot-fill/use-slot.js
 /**
  * WordPress dependencies
  */
@@ -33181,7 +33210,7 @@ const use_slot_useSlot = name => {
 };
 /* harmony default export */ const use_slot = (use_slot_useSlot);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/slot-fill/fill.js
+;// ./packages/components/build-module/slot-fill/fill.js
 /**
  * WordPress dependencies
  */
@@ -33209,18 +33238,16 @@ function Fill({
     const refValue = ref.current;
     registerFill(name, refValue);
     return () => unregisterFill(name, refValue);
-    // Ignore reason: the useLayoutEffects here are written to fire at specific times, and introducing new dependencies could cause unexpected changes in behavior.
+    // The useLayoutEffects here are written to fire at specific times, and introducing new dependencies could cause unexpected changes in behavior.
     // We'll leave them as-is until a more detailed investigation/refactor can be performed.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
     ref.current.children = children;
     if (slot) {
       slot.forceUpdate();
     }
-    // Ignore reason: the useLayoutEffects here are written to fire at specific times, and introducing new dependencies could cause unexpected changes in behavior.
+    // The useLayoutEffects here are written to fire at specific times, and introducing new dependencies could cause unexpected changes in behavior.
     // We'll leave them as-is until a more detailed investigation/refactor can be performed.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [children]);
   (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
     if (name === ref.current.name) {
@@ -33230,14 +33257,13 @@ function Fill({
     unregisterFill(ref.current.name, ref.current);
     ref.current.name = name;
     registerFill(name, ref.current);
-    // Ignore reason: the useLayoutEffects here are written to fire at specific times, and introducing new dependencies could cause unexpected changes in behavior.
+    // The useLayoutEffects here are written to fire at specific times, and introducing new dependencies could cause unexpected changes in behavior.
     // We'll leave them as-is until a more detailed investigation/refactor can be performed.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name]);
   return null;
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/slot-fill/slot.js
+;// ./packages/components/build-module/slot-fill/slot.js
 /**
  * External dependencies
  */
@@ -33250,7 +33276,6 @@ function Fill({
 /**
  * Internal dependencies
  */
-
 
 
 /**
@@ -33344,7 +33369,7 @@ const Slot = props => /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.j
 });
 /* harmony default export */ const slot = (Slot);
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/uuid/dist/esm-browser/rng.js
+;// ./packages/components/node_modules/uuid/dist/esm-browser/rng.js
 // Unique ID creation requires a high quality random # generator. In the browser we therefore
 // require the crypto API and do not support built-in fallback to lower quality random number
 // generators (like Math.random()).
@@ -33364,9 +33389,9 @@ function rng() {
 
   return getRandomValues(rnds8);
 }
-;// CONCATENATED MODULE: ./packages/components/node_modules/uuid/dist/esm-browser/regex.js
+;// ./packages/components/node_modules/uuid/dist/esm-browser/regex.js
 /* harmony default export */ const regex = (/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i);
-;// CONCATENATED MODULE: ./packages/components/node_modules/uuid/dist/esm-browser/validate.js
+;// ./packages/components/node_modules/uuid/dist/esm-browser/validate.js
 
 
 function validate(uuid) {
@@ -33374,7 +33399,7 @@ function validate(uuid) {
 }
 
 /* harmony default export */ const esm_browser_validate = (validate);
-;// CONCATENATED MODULE: ./packages/components/node_modules/uuid/dist/esm-browser/stringify.js
+;// ./packages/components/node_modules/uuid/dist/esm-browser/stringify.js
 
 /**
  * Convert array of 16 byte values to UUID string format of the form:
@@ -33405,7 +33430,7 @@ function stringify_stringify(arr) {
 }
 
 /* harmony default export */ const esm_browser_stringify = (stringify_stringify);
-;// CONCATENATED MODULE: ./packages/components/node_modules/uuid/dist/esm-browser/v4.js
+;// ./packages/components/node_modules/uuid/dist/esm-browser/v4.js
 
 
 
@@ -33430,7 +33455,8 @@ function v4(options, buf, offset) {
 }
 
 /* harmony default export */ const esm_browser_v4 = (v4);
-;// CONCATENATED MODULE: ./packages/components/build-module/style-provider/index.js
+;// ./packages/components/build-module/style-provider/index.js
+/* wp:polyfill */
 /**
  * External dependencies
  */
@@ -33481,7 +33507,7 @@ function StyleProvider(props) {
 }
 /* harmony default export */ const style_provider = (StyleProvider);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/slot-fill/bubbles-virtually/fill.js
+;// ./packages/components/build-module/slot-fill/bubbles-virtually/fill.js
 /**
  * WordPress dependencies
  */
@@ -33547,7 +33573,7 @@ function fill_Fill(props) {
   return (0,external_wp_element_namespaceObject.createPortal)(wrappedChildren, slot.ref.current);
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/slot-fill/bubbles-virtually/slot.js
+;// ./packages/components/build-module/slot-fill/bubbles-virtually/slot.js
 /**
  * External dependencies
  */
@@ -33586,11 +33612,10 @@ function slot_Slot(props, forwardedRef) {
     return () => {
       unregisterSlot(name, ref);
     };
-    // Ignore reason: We don't want to unregister and register the slot whenever
+    // We don't want to unregister and register the slot whenever
     // `fillProps` change, which would cause the fill to be re-mounted. Instead,
     // we can just update the slot (see hook below).
     // For more context, see https://github.com/WordPress/gutenberg/pull/44403#discussion_r994415973
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [registerSlot, unregisterSlot, name]);
   // fillProps may be an update that interacts with the layout, so we
   // useLayoutEffect.
@@ -33605,10 +33630,10 @@ function slot_Slot(props, forwardedRef) {
 }
 /* harmony default export */ const bubbles_virtually_slot = ((0,external_wp_element_namespaceObject.forwardRef)(slot_Slot));
 
-;// CONCATENATED MODULE: external ["wp","isShallowEqual"]
+;// external ["wp","isShallowEqual"]
 const external_wp_isShallowEqual_namespaceObject = window["wp"]["isShallowEqual"];
 var external_wp_isShallowEqual_default = /*#__PURE__*/__webpack_require__.n(external_wp_isShallowEqual_namespaceObject);
-;// CONCATENATED MODULE: ./packages/components/build-module/slot-fill/bubbles-virtually/slot-fill-provider.js
+;// ./packages/components/build-module/slot-fill/bubbles-virtually/slot-fill-provider.js
 /**
  * WordPress dependencies
  */
@@ -33684,7 +33709,7 @@ function SlotFillProvider({
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/slot-fill/provider.js
+;// ./packages/components/build-module/slot-fill/provider.js
 /**
  * WordPress dependencies
  */
@@ -33783,7 +33808,7 @@ function provider_SlotFillProvider({
 }
 /* harmony default export */ const provider = (provider_SlotFillProvider);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/slot-fill/index.js
+;// ./packages/components/build-module/slot-fill/index.js
 /**
  * External dependencies
  */
@@ -33796,8 +33821,6 @@ function provider_SlotFillProvider({
 /**
  * Internal dependencies
  */
-
-
 
 
 
@@ -33880,7 +33903,7 @@ const createPrivateSlotFill = name => {
   };
 };
 
-;// CONCATENATED MODULE: ./packages/components/build-module/popover/overlay-middlewares.js
+;// ./packages/components/build-module/popover/overlay-middlewares.js
 /**
  * External dependencies
  */
@@ -33918,7 +33941,7 @@ function overlayMiddlewares() {
   })];
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/popover/index.js
+;// ./packages/components/build-module/popover/index.js
 /**
  * External dependencies
  */
@@ -33952,8 +33975,6 @@ function overlayMiddlewares() {
  *
  * @type {string}
  */
-
-
 
 const SLOT_NAME = 'Popover';
 
@@ -34237,7 +34258,7 @@ const UnforwardedPopover = (props, forwardedRef) => {
       children: content
     });
   } else if (!inline) {
-    content = (0,external_wp_element_namespaceObject.createPortal)( /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(StyleProvider, {
+    content = (0,external_wp_element_namespaceObject.createPortal)(/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(StyleProvider, {
       document: document,
       children: content
     }), getPopoverFallbackContainer());
@@ -34293,7 +34314,7 @@ popover_Popover.Slot = (0,external_wp_element_namespaceObject.forwardRef)(Popove
 popover_Popover.__unstableSlotNameProvider = slotNameContext.Provider;
 /* harmony default export */ const popover = (popover_Popover);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/autocomplete/autocompleter-ui.js
+;// ./packages/components/build-module/autocomplete/autocompleter-ui.js
 /**
  * External dependencies
  */
@@ -34311,8 +34332,6 @@ popover_Popover.__unstableSlotNameProvider = slotNameContext.Provider;
 /**
  * Internal dependencies
  */
-
-
 
 
 
@@ -34388,10 +34407,10 @@ function getAutoCompleterUI(autocompleter) {
       }
       if (!!options.length) {
         if (filterValue) {
-          debouncedSpeak((0,external_wp_i18n_namespaceObject.sprintf)( /* translators: %d: number of results. */
+          debouncedSpeak((0,external_wp_i18n_namespaceObject.sprintf)(/* translators: %d: number of results. */
           (0,external_wp_i18n_namespaceObject._n)('%d result found, use up and down arrow keys to navigate.', '%d results found, use up and down arrow keys to navigate.', options.length), options.length), 'assertive');
         } else {
-          debouncedSpeak((0,external_wp_i18n_namespaceObject.sprintf)( /* translators: %d: number of results. */
+          debouncedSpeak((0,external_wp_i18n_namespaceObject.sprintf)(/* translators: %d: number of results. */
           (0,external_wp_i18n_namespaceObject._n)('Initial %d result loaded. Type to filter all available results. Use up and down arrow keys to navigate.', 'Initial %d results loaded. Type to filter all available results. Use up and down arrow keys to navigate.', options.length), options.length), 'assertive');
         }
       } else {
@@ -34401,9 +34420,8 @@ function getAutoCompleterUI(autocompleter) {
     (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
       onChangeOptions(items);
       announce(items);
-      // Temporarily disabling exhaustive-deps to avoid introducing unexpected side effecst.
+      // We want to avoid introducing unexpected side effects.
       // See https://github.com/WordPress/gutenberg/pull/41820
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [items]);
     if (items.length === 0) {
       return null;
@@ -34424,7 +34442,7 @@ function getAutoCompleterUI(autocompleter) {
           listBoxId: listBoxId,
           className: className
         })
-      }), contentRef.current && needsA11yCompat && (0,external_ReactDOM_namespaceObject.createPortal)( /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ListBox, {
+      }), contentRef.current && needsA11yCompat && (0,external_ReactDOM_namespaceObject.createPortal)(/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ListBox, {
         items: items,
         onSelect: onSelect,
         selectedIndex: selectedIndex,
@@ -34452,13 +34470,11 @@ function useOnClickOutside(ref, handler) {
       document.removeEventListener('mousedown', listener);
       document.removeEventListener('touchstart', listener);
     };
-    // Disable reason: `ref` is a ref object and should not be included in a
-    // hook's dependency list.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [handler]);
+  }, [handler, ref]);
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/autocomplete/index.js
+;// ./packages/components/build-module/autocomplete/index.js
+/* wp:polyfill */
 /**
  * External dependencies
  */
@@ -34476,8 +34492,6 @@ function useOnClickOutside(ref, handler) {
 /**
  * Internal dependencies
  */
-
-
 
 
 
@@ -34526,7 +34540,7 @@ function useAutocomplete({
   const [filterValue, setFilterValue] = (0,external_wp_element_namespaceObject.useState)('');
   const [autocompleter, setAutocompleter] = (0,external_wp_element_namespaceObject.useState)(null);
   const [AutocompleterUI, setAutocompleterUI] = (0,external_wp_element_namespaceObject.useState)(null);
-  const backspacing = (0,external_wp_element_namespaceObject.useRef)(false);
+  const backspacingRef = (0,external_wp_element_namespaceObject.useRef)(false);
   function insertCompletion(replacement) {
     if (autocompleter === null) {
       return;
@@ -34586,7 +34600,7 @@ function useAutocomplete({
     setFilteredOptions(options);
   }
   function handleKeyDown(event) {
-    backspacing.current = event.key === 'Backspace';
+    backspacingRef.current = event.key === 'Backspace';
     if (!autocompleter) {
       return;
     }
@@ -34701,7 +34715,7 @@ function useAutocomplete({
     //
     // Ex: "Some text @marcelo sekkkk" <--- "kkkk" caused a mismatch, but
     // if the user presses backspace here, it will show the completion popup again.
-    const matchingWhileBackspacing = backspacing.current && wordsFromTrigger.length <= 3;
+    const matchingWhileBackspacing = backspacingRef.current && wordsFromTrigger.length <= 3;
     if (mismatch && !(matchingWhileBackspacing || hasOneTriggerWord)) {
       if (autocompleter) {
         reset();
@@ -34734,9 +34748,8 @@ function useAutocomplete({
     setAutocompleter(completer);
     setAutocompleterUI(() => completer !== autocompleter ? getAutoCompleterUI(completer) : AutocompleterUI);
     setFilterValue(query === null ? '' : query);
-    // Temporarily disabling exhaustive-deps to avoid introducing unexpected side effecst.
+    // We want to avoid introducing unexpected side effects.
     // See https://github.com/WordPress/gutenberg/pull/41820
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [textContent]);
   const {
     key: selectedKey = ''
@@ -34832,7 +34845,7 @@ function Autocomplete({
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/base-control/hooks.js
+;// ./packages/components/build-module/base-control/hooks.js
 /**
  * WordPress dependencies
  */
@@ -34871,7 +34884,7 @@ function useBaseControlProps(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/link.js
+;// ./packages/icons/build-module/library/link.js
 /**
  * WordPress dependencies
  */
@@ -34886,7 +34899,7 @@ const link_link = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(
 });
 /* harmony default export */ const library_link = (link_link);
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/link-off.js
+;// ./packages/icons/build-module/library/link-off.js
 /**
  * WordPress dependencies
  */
@@ -34901,7 +34914,7 @@ const linkOff = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ex
 });
 /* harmony default export */ const link_off = (linkOff);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/border-box-control/styles.js
+;// ./packages/components/build-module/border-box-control/styles.js
 function border_box_control_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
  * External dependencies
@@ -34952,7 +34965,7 @@ const rightBorderControl = () => /*#__PURE__*/emotion_react_browser_esm_css(rtl(
   marginLeft: 'auto'
 })(), ";" + ( true ? "" : 0),  true ? "" : 0);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/border-box-control/border-box-control-linked-button/hook.js
+;// ./packages/components/build-module/border-box-control/border-box-control-linked-button/hook.js
 /**
  * WordPress dependencies
  */
@@ -34982,7 +34995,7 @@ function useBorderBoxControlLinkedButton(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/border-box-control/border-box-control-linked-button/component.js
+;// ./packages/components/build-module/border-box-control/border-box-control-linked-button/component.js
 /**
  * WordPress dependencies
  */
@@ -35023,7 +35036,7 @@ const BorderBoxControlLinkedButton = (props, forwardedRef) => {
 const ConnectedBorderBoxControlLinkedButton = contextConnect(BorderBoxControlLinkedButton, 'BorderBoxControlLinkedButton');
 /* harmony default export */ const border_box_control_linked_button_component = (ConnectedBorderBoxControlLinkedButton);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/border-box-control/border-box-control-visualizer/hook.js
+;// ./packages/components/build-module/border-box-control/border-box-control-visualizer/hook.js
 /**
  * WordPress dependencies
  */
@@ -35055,7 +35068,7 @@ function useBorderBoxControlVisualizer(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/border-box-control/border-box-control-visualizer/component.js
+;// ./packages/components/build-module/border-box-control/border-box-control-visualizer/component.js
 /**
  * Internal dependencies
  */
@@ -35076,7 +35089,7 @@ const BorderBoxControlVisualizer = (props, forwardedRef) => {
 const ConnectedBorderBoxControlVisualizer = contextConnect(BorderBoxControlVisualizer, 'BorderBoxControlVisualizer');
 /* harmony default export */ const border_box_control_visualizer_component = (ConnectedBorderBoxControlVisualizer);
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/line-solid.js
+;// ./packages/icons/build-module/library/line-solid.js
 /**
  * WordPress dependencies
  */
@@ -35091,7 +35104,7 @@ const lineSolid = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(
 });
 /* harmony default export */ const line_solid = (lineSolid);
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/line-dashed.js
+;// ./packages/icons/build-module/library/line-dashed.js
 /**
  * WordPress dependencies
  */
@@ -35108,7 +35121,7 @@ const lineDashed = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)
 });
 /* harmony default export */ const line_dashed = (lineDashed);
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/line-dotted.js
+;// ./packages/icons/build-module/library/line-dotted.js
 /**
  * WordPress dependencies
  */
@@ -35125,7 +35138,7 @@ const lineDotted = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)
 });
 /* harmony default export */ const line_dotted = (lineDotted);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/toggle-group-control/toggle-group-control/styles.js
+;// ./packages/components/build-module/toggle-group-control/toggle-group-control/styles.js
 
 function toggle_group_control_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -35171,7 +35184,7 @@ const VisualLabelWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("div",  
   styles: "display:flex"
 } : 0);
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/radio/radio-store.js
+;// ./node_modules/@ariakit/core/esm/radio/radio-store.js
 "use client";
 
 
@@ -35204,7 +35217,7 @@ function createRadioStore(_a = {}) {
 }
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/DYHFBFEH.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/DYHFBFEH.js
 "use client";
 
 
@@ -35223,7 +35236,7 @@ function useRadioStore(props = {}) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/SOKV3TSX.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/SOKV3TSX.js
 "use client";
 
 
@@ -35241,7 +35254,7 @@ var RadioScopedContextProvider = SOKV3TSX_ctx.ScopedContextProvider;
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/radio/radio-group.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/radio/radio-group.js
 "use client";
 
 
@@ -35286,7 +35299,7 @@ var RadioGroup = forwardRef2(function RadioGroup2(props) {
 });
 
 
-;// CONCATENATED MODULE: ./packages/components/build-module/toggle-group-control/context.js
+;// ./packages/components/build-module/toggle-group-control/context.js
 /**
  * WordPress dependencies
  */
@@ -35300,7 +35313,7 @@ const ToggleGroupControlContext = (0,external_wp_element_namespaceObject.createC
 const useToggleGroupControlContext = () => (0,external_wp_element_namespaceObject.useContext)(ToggleGroupControlContext);
 /* harmony default export */ const toggle_group_control_context = (ToggleGroupControlContext);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/toggle-group-control/toggle-group-control/utils.js
+;// ./packages/components/build-module/toggle-group-control/toggle-group-control/utils.js
 /**
  * WordPress dependencies
  */
@@ -35349,7 +35362,7 @@ function useComputeControlledOrUncontrolledValue(valueProp) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/toggle-group-control/toggle-group-control/as-radio-group.js
+;// ./packages/components/build-module/toggle-group-control/toggle-group-control/as-radio-group.js
 /**
  * External dependencies
  */
@@ -35407,7 +35420,15 @@ function UnforwardedToggleGroupControlAsRadioGroup({
   });
   const selectedValue = useStoreState(radio, 'value');
   const setValue = radio.setValue;
+
+  // Ensures that the active id is also reset after the value is "reset" by the consumer.
+  (0,external_wp_element_namespaceObject.useEffect)(() => {
+    if (selectedValue === '') {
+      radio.setActiveId(undefined);
+    }
+  }, [radio, selectedValue]);
   const groupContextValue = (0,external_wp_element_namespaceObject.useMemo)(() => ({
+    activeItemIsNotFirstItem: () => radio.getState().activeId !== radio.first(),
     baseId,
     isBlock: !isAdaptiveWidth,
     size,
@@ -35416,7 +35437,7 @@ function UnforwardedToggleGroupControlAsRadioGroup({
     // @ts-expect-error - This is wrong and we should fix it.
     setValue,
     setSelectedElement
-  }), [baseId, isAdaptiveWidth, selectedValue, setSelectedElement, setValue, size]);
+  }), [baseId, isAdaptiveWidth, radio, selectedValue, setSelectedElement, setValue, size]);
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(toggle_group_control_context.Provider, {
     value: groupContextValue,
     children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(RadioGroup, {
@@ -35432,7 +35453,7 @@ function UnforwardedToggleGroupControlAsRadioGroup({
 }
 const ToggleGroupControlAsRadioGroup = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedToggleGroupControlAsRadioGroup);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/hooks/use-controlled-value.js
+;// ./packages/components/build-module/utils/hooks/use-controlled-value.js
 /**
  * WordPress dependencies
  */
@@ -35469,7 +35490,7 @@ function useControlledValue({
   return [value, setValue];
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/toggle-group-control/toggle-group-control/as-button-group.js
+;// ./packages/components/build-module/toggle-group-control/toggle-group-control/as-button-group.js
 /**
  * WordPress dependencies
  */
@@ -35533,7 +35554,7 @@ function UnforwardedToggleGroupControlAsButtonGroup({
 }
 const ToggleGroupControlAsButtonGroup = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedToggleGroupControlAsButtonGroup);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/element-rect.js
+;// ./packages/components/build-module/utils/element-rect.js
 /* eslint-disable jsdoc/require-param */
 /**
  * WordPress dependencies
@@ -35624,11 +35645,13 @@ const POLL_RATE = 100;
  * to measure again after a frame, and if that fails, it will poll every 100
  * milliseconds until it succeeds.
  */
-function useTrackElementOffsetRect(targetElement) {
+function useTrackElementOffsetRect(targetElement, deps = []) {
   const [indicatorPosition, setIndicatorPosition] = (0,external_wp_element_namespaceObject.useState)(NULL_ELEMENT_OFFSET_RECT);
   const intervalRef = (0,external_wp_element_namespaceObject.useRef)();
   const measure = (0,external_wp_compose_namespaceObject.useEvent)(() => {
-    if (targetElement) {
+    // Check that the targetElement is still attached to the DOM, in case
+    // it was removed since the last `measure` call.
+    if (targetElement && targetElement.isConnected) {
       const elementOffsetRect = getElementOffsetRect(targetElement);
       if (elementOffsetRect) {
         setIndicatorPosition(elementOffsetRect);
@@ -35655,12 +35678,21 @@ function useTrackElementOffsetRect(targetElement) {
       setIndicatorPosition(NULL_ELEMENT_OFFSET_RECT);
     }
   }, [setElement, targetElement]);
+
+  // Escape hatch to force a remeasurement when something else changes rather
+  // than the target elements' ref or size (for example, the target element
+  // can change its position within the tablist).
+  (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
+    measure();
+    // `measure` is a stable function, so it's safe to omit it from the deps array.
+    // deps can't be statically analyzed by ESLint
+  }, deps);
   return indicatorPosition;
 }
 
 /* eslint-enable jsdoc/require-param */
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/hooks/use-on-value-update.js
+;// ./packages/components/build-module/utils/hooks/use-on-value-update.js
 /* eslint-disable jsdoc/require-param */
 /**
  * WordPress dependencies
@@ -35697,7 +35729,7 @@ onUpdate) {
 }
 /* eslint-enable jsdoc/require-param */
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/hooks/use-animated-offset-rect.js
+;// ./packages/components/build-module/utils/hooks/use-animated-offset-rect.js
 /* eslint-disable jsdoc/require-param */
 
 /**
@@ -35744,10 +35776,11 @@ container,
 rect, {
   prefix = 'subelement',
   dataAttribute = `${prefix}-animated`,
-  transitionEndFilter = () => true
+  transitionEndFilter = () => true,
+  roundRect = false
 } = {}) {
   const setProperties = (0,external_wp_compose_namespaceObject.useEvent)(() => {
-    Object.keys(rect).forEach(property => property !== 'element' && container?.style.setProperty(`--${prefix}-${property}`, String(rect[property])));
+    Object.keys(rect).forEach(property => property !== 'element' && container?.style.setProperty(`--${prefix}-${property}`, String(roundRect ? Math.floor(rect[property]) : rect[property])));
   });
   (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
     setProperties();
@@ -35772,7 +35805,7 @@ rect, {
 }
 /* eslint-enable jsdoc/require-param */
 
-;// CONCATENATED MODULE: ./packages/components/build-module/toggle-group-control/toggle-group-control/component.js
+;// ./packages/components/build-module/toggle-group-control/toggle-group-control/component.js
 /**
  * External dependencies
  */
@@ -35785,7 +35818,6 @@ rect, {
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -35823,7 +35855,8 @@ function UnconnectedToggleGroupControl(props, forwardedRef) {
   useAnimatedOffsetRect(controlElement, selectedRect, {
     prefix: 'selected',
     dataAttribute: 'indicator-animated',
-    transitionEndFilter: event => event.pseudoElement === '::before'
+    transitionEndFilter: event => event.pseudoElement === '::before',
+    roundRect: true
   });
   const cx = useCx();
   const classes = (0,external_wp_element_namespaceObject.useMemo)(() => cx(toggleGroupControl({
@@ -35892,7 +35925,7 @@ function UnconnectedToggleGroupControl(props, forwardedRef) {
 const ToggleGroupControl = contextConnect(UnconnectedToggleGroupControl, 'ToggleGroupControl');
 /* harmony default export */ const toggle_group_control_component = (ToggleGroupControl);
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/K7FXVWIT.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/K7FXVWIT.js
 "use client";
 
 
@@ -36023,7 +36056,7 @@ var Radio = memo2(
 
 
 
-;// CONCATENATED MODULE: ./packages/components/build-module/toggle-group-control/toggle-group-control-option-base/styles.js
+;// ./packages/components/build-module/toggle-group-control/toggle-group-control-option-base/styles.js
 
 function toggle_group_control_option_base_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -36067,7 +36100,7 @@ const isIconStyles = ({
   return /*#__PURE__*/emotion_react_browser_esm_css("color:", COLORS.gray[900], ";height:", iconButtonSizes[size], ";aspect-ratio:1;padding-left:0;padding-right:0;" + ( true ? "" : 0),  true ? "" : 0);
 };
 
-;// CONCATENATED MODULE: ./packages/components/build-module/toggle-group-control/toggle-group-control-option-base/component.js
+;// ./packages/components/build-module/toggle-group-control/toggle-group-control-option-base/component.js
 /**
  * External dependencies
  */
@@ -36090,10 +36123,9 @@ const isIconStyles = ({
 
 
 
-
 const {
-  ButtonContentView: component_ButtonContentView,
-  LabelView: component_LabelView
+  /* ButtonContentView */ "Rp": component_ButtonContentView,
+  /* LabelView */ "y0": component_LabelView
 } = toggle_group_control_option_base_styles_namespaceObject;
 const WithToolTip = ({
   showTooltip,
@@ -36129,7 +36161,6 @@ function ToggleGroupControlOptionBase(props, forwardedRef) {
     value,
     children,
     showTooltip = false,
-    onFocus: onFocusProp,
     disabled,
     ...otherButtonProps
   } = buttonProps;
@@ -36170,7 +36201,6 @@ function ToggleGroupControlOptionBase(props, forwardedRef) {
       children: isDeselectable ? /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)("button", {
         ...commonProps,
         disabled: disabled,
-        onFocus: onFocusProp,
         "aria-pressed": isPressed,
         type: "button",
         onClick: buttonOnClick,
@@ -36179,16 +36209,18 @@ function ToggleGroupControlOptionBase(props, forwardedRef) {
         })
       }) : /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(Radio, {
         disabled: disabled,
-        render: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)("button", {
-          type: "button",
-          ...commonProps,
-          onFocus: event => {
-            onFocusProp?.(event);
-            if (event.defaultPrevented) {
-              return;
-            }
+        onFocusVisible: () => {
+          const selectedValueIsEmpty = toggleGroupControlContext.value === null || toggleGroupControlContext.value === '';
+
+          // Conditions ensure that the first visible focus to a radio group
+          // without a selected option will not automatically select the option.
+          if (!selectedValueIsEmpty || toggleGroupControlContext.activeItemIsNotFirstItem?.()) {
             toggleGroupControlContext.setValue(value);
           }
+        },
+        render: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)("button", {
+          type: "button",
+          ...commonProps
         }),
         value: value,
         children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(component_ButtonContentView, {
@@ -36223,7 +36255,7 @@ function ToggleGroupControlOptionBase(props, forwardedRef) {
 const ConnectedToggleGroupControlOptionBase = contextConnect(ToggleGroupControlOptionBase, 'ToggleGroupControlOptionBase');
 /* harmony default export */ const toggle_group_control_option_base_component = (ConnectedToggleGroupControlOptionBase);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/toggle-group-control/toggle-group-control-option-icon/component.js
+;// ./packages/components/build-module/toggle-group-control/toggle-group-control-option-icon/component.js
 /**
  * External dependencies
  */
@@ -36291,7 +36323,7 @@ function UnforwardedToggleGroupControlOptionIcon(props, ref) {
 const ToggleGroupControlOptionIcon = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedToggleGroupControlOptionIcon);
 /* harmony default export */ const toggle_group_control_option_icon_component = (ToggleGroupControlOptionIcon);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/border-control/border-control-style-picker/component.js
+;// ./packages/components/build-module/border-control/border-control-style-picker/component.js
 /**
  * WordPress dependencies
  */
@@ -36340,7 +36372,7 @@ function UnconnectedBorderControlStylePicker({
 const BorderControlStylePicker = contextConnect(UnconnectedBorderControlStylePicker, 'BorderControlStylePicker');
 /* harmony default export */ const border_control_style_picker_component = (BorderControlStylePicker);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/color-indicator/index.js
+;// ./packages/components/build-module/color-indicator/index.js
 /**
  * External dependencies
  */
@@ -36384,10 +36416,10 @@ function UnforwardedColorIndicator(props, forwardedRef) {
 const ColorIndicator = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedColorIndicator);
 /* harmony default export */ const color_indicator = (ColorIndicator);
 
-;// CONCATENATED MODULE: ./node_modules/colord/plugins/a11y.mjs
+;// ./node_modules/colord/plugins/a11y.mjs
 var a11y_o=function(o){var t=o/255;return t<.04045?t/12.92:Math.pow((t+.055)/1.055,2.4)},a11y_t=function(t){return.2126*a11y_o(t.r)+.7152*a11y_o(t.g)+.0722*a11y_o(t.b)};/* harmony default export */ function a11y(o){o.prototype.luminance=function(){return o=a11y_t(this.rgba),void 0===(r=2)&&(r=0),void 0===n&&(n=Math.pow(10,r)),Math.round(n*o)/n+0;var o,r,n},o.prototype.contrast=function(r){void 0===r&&(r="#FFF");var n,a,i,e,v,u,d,c=r instanceof o?r:new o(r);return e=this.rgba,v=c.toRgb(),u=a11y_t(e),d=a11y_t(v),n=u>d?(u+.05)/(d+.05):(d+.05)/(u+.05),void 0===(a=2)&&(a=0),void 0===i&&(i=Math.pow(10,a)),Math.floor(i*n)/i+0},o.prototype.isReadable=function(o,t){return void 0===o&&(o="#FFF"),void 0===t&&(t={}),this.contrast(o)>=(e=void 0===(i=(r=t).size)?"normal":i,"AAA"===(a=void 0===(n=r.level)?"AA":n)&&"normal"===e?7:"AA"===a&&"large"===e?3:4.5);var r,n,a,i,e}}
 
-;// CONCATENATED MODULE: ./packages/components/build-module/dropdown/index.js
+;// ./packages/components/build-module/dropdown/index.js
 /**
  * External dependencies
  */
@@ -36402,7 +36434,6 @@ var a11y_o=function(o){var t=o/255;return t<.04045?t/12.92:Math.pow((t+.055)/1.0
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -36533,7 +36564,7 @@ const UnconnectedDropdown = (props, forwardedRef) => {
 const Dropdown = contextConnect(UnconnectedDropdown, 'Dropdown');
 /* harmony default export */ const dropdown = (Dropdown);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/input-control/input-suffix-wrapper.js
+;// ./packages/components/build-module/input-control/input-suffix-wrapper.js
 /**
  * External dependencies
  */
@@ -36571,7 +36602,7 @@ function UnconnectedInputControlSuffixWrapper(props, forwardedRef) {
 const InputControlSuffixWrapper = contextConnect(UnconnectedInputControlSuffixWrapper, 'InputControlSuffixWrapper');
 /* harmony default export */ const input_suffix_wrapper = (InputControlSuffixWrapper);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/select-control/styles/select-control-styles.js
+;// ./packages/components/build-module/select-control/styles/select-control-styles.js
 
 function select_control_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -36711,7 +36742,7 @@ const InputControlSuffixWrapperWithClickThrough = /*#__PURE__*/emotion_styled_ba
   right: 0
 }), ";" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/icon/index.js
+;// ./packages/icons/build-module/icon/index.js
 /**
  * WordPress dependencies
  */
@@ -36743,7 +36774,7 @@ function icon_Icon({
 }
 /* harmony default export */ const icons_build_module_icon = ((0,external_wp_element_namespaceObject.forwardRef)(icon_Icon));
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/chevron-down.js
+;// ./packages/icons/build-module/library/chevron-down.js
 /**
  * WordPress dependencies
  */
@@ -36758,7 +36789,7 @@ const chevronDown = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx
 });
 /* harmony default export */ const chevron_down = (chevronDown);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/select-control/chevron-down.js
+;// ./packages/components/build-module/select-control/chevron-down.js
 /**
  * WordPress dependencies
  */
@@ -36781,7 +36812,7 @@ const SelectControlChevronDown = () => {
 };
 /* harmony default export */ const select_control_chevron_down = (SelectControlChevronDown);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/select-control/index.js
+;// ./packages/components/build-module/select-control/index.js
 /**
  * External dependencies
  */
@@ -36940,7 +36971,7 @@ function UnforwardedSelectControl(props, ref) {
 const SelectControl = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedSelectControl);
 /* harmony default export */ const select_control = (SelectControl);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/hooks/use-controlled-state.js
+;// ./packages/components/build-module/utils/hooks/use-controlled-state.js
 /**
  * WordPress dependencies
  */
@@ -37025,7 +37056,7 @@ function useControlledState(currentState, options = defaultOptions) {
 }
 /* harmony default export */ const use_controlled_state = (useControlledState);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/range-control/utils.js
+;// ./packages/components/build-module/range-control/utils.js
 /**
  * WordPress dependencies
  */
@@ -37082,7 +37113,7 @@ function useControlledRangeValue(settings) {
   return [state, setState];
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/range-control/styles/range-control-styles.js
+;// ./packages/components/build-module/range-control/styles/range-control-styles.js
 
 function range_control_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -37126,7 +37157,8 @@ const wrapperMargin = ({
   }
   return '';
 };
-const range_control_styles_Wrapper = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
+const range_control_styles_Wrapper = /*#__PURE__*/emotion_styled_base_browser_esm('div',  true ? {
+  shouldForwardProp: prop => !['color', '__nextHasNoMarginBottom', 'marks'].includes(prop),
   target: "e1epgpqk13"
 } : 0)("display:block;flex:1;position:relative;width:100%;", wrapperColor, ";", rangeHeight, ";", wrapperMargin, ";" + ( true ? "" : 0));
 const BeforeIconWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? {
@@ -37232,9 +37264,7 @@ const InputRange = /*#__PURE__*/emotion_styled_base_browser_esm("input",  true ?
 const tooltipShow = ({
   show
 }) => {
-  return /*#__PURE__*/emotion_react_browser_esm_css({
-    opacity: show ? 1 : 0
-  },  true ? "" : 0,  true ? "" : 0);
+  return /*#__PURE__*/emotion_react_browser_esm_css("display:", show ? 'inline-block' : 'none', ";opacity:", show ? 1 : 0, ";@media not ( prefers-reduced-motion ){transition:opacity 120ms ease,display 120ms ease allow-discrete;}@starting-style{opacity:0;}" + ( true ? "" : 0),  true ? "" : 0);
 };
 var range_control_styles_ref =  true ? {
   name: "1cypxip",
@@ -37255,7 +37285,7 @@ const tooltipPosition = ({
 };
 const range_control_styles_Tooltip = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? {
   target: "e1epgpqk2"
-} : 0)("background:rgba( 0, 0, 0, 0.8 );border-radius:", config_values.radiusSmall, ";color:white;display:inline-block;font-size:12px;min-width:32px;opacity:0;padding:4px 8px;pointer-events:none;position:absolute;text-align:center;user-select:none;line-height:1.4;@media not ( prefers-reduced-motion ){transition:opacity 120ms ease;}", tooltipShow, ";", tooltipPosition, ";", rtl({
+} : 0)("background:rgba( 0, 0, 0, 0.8 );border-radius:", config_values.radiusSmall, ";color:white;font-size:12px;min-width:32px;padding:4px 8px;pointer-events:none;position:absolute;text-align:center;user-select:none;line-height:1.4;", tooltipShow, ";", tooltipPosition, ";", rtl({
   transform: 'translateX(-50%)'
 }, {
   transform: 'translateX(50%)'
@@ -37274,7 +37304,7 @@ const ActionRightWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("span", 
   marginLeft: 8
 }), ";" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/range-control/input-range.js
+;// ./packages/components/build-module/range-control/input-range.js
 /**
  * WordPress dependencies
  */
@@ -37306,7 +37336,7 @@ function input_range_InputRange(props, ref) {
 const input_range_ForwardedComponent = (0,external_wp_element_namespaceObject.forwardRef)(input_range_InputRange);
 /* harmony default export */ const input_range = (input_range_ForwardedComponent);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/range-control/mark.js
+;// ./packages/components/build-module/range-control/mark.js
 /**
  * External dependencies
  */
@@ -37315,8 +37345,6 @@ const input_range_ForwardedComponent = (0,external_wp_element_namespaceObject.fo
 /**
  * Internal dependencies
  */
-
-
 
 
 function RangeMark(props) {
@@ -37346,7 +37374,7 @@ function RangeMark(props) {
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/range-control/rail.js
+;// ./packages/components/build-module/range-control/rail.js
 /**
  * WordPress dependencies
  */
@@ -37355,8 +37383,6 @@ function RangeMark(props) {
 /**
  * Internal dependencies
  */
-
-
 
 
 
@@ -37452,7 +37478,7 @@ function useMarks({
   return placedMarks;
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/range-control/tooltip.js
+;// ./packages/components/build-module/range-control/tooltip.js
 /**
  * External dependencies
  */
@@ -37491,7 +37517,7 @@ function SimpleTooltip(props) {
   };
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(range_control_styles_Tooltip, {
     ...restProps,
-    "aria-hidden": show,
+    "aria-hidden": "false",
     className: classes,
     position: position,
     show: show,
@@ -37522,7 +37548,7 @@ function useTooltipPosition({
   return position;
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/range-control/index.js
+;// ./packages/components/build-module/range-control/index.js
 /**
  * External dependencies
  */
@@ -37537,7 +37563,6 @@ function useTooltipPosition({
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -37845,7 +37870,7 @@ function UnforwardedRangeControl(props, forwardedRef) {
 const RangeControl = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedRangeControl);
 /* harmony default export */ const range_control = (RangeControl);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/color-picker/styles.js
+;// ./packages/components/build-module/color-picker/styles.js
 
 /**
  * External dependencies
@@ -37895,7 +37920,7 @@ const CopyButton = /*#__PURE__*/emotion_styled_base_browser_esm(build_module_but
   target: "ez9hsf40"
 } : 0)("&&&&&{min-width:", space(6), ";padding:0;>svg{margin-right:0;}}" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/copy.js
+;// ./packages/icons/build-module/library/copy.js
 /**
  * WordPress dependencies
  */
@@ -37912,7 +37937,7 @@ const copy_copy = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(
 });
 /* harmony default export */ const library_copy = (copy_copy);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/color-picker/color-copy-button.js
+;// ./packages/components/build-module/color-picker/color-copy-button.js
 /**
  * WordPress dependencies
  */
@@ -37981,7 +38006,7 @@ const ColorCopyButton = props => {
   });
 };
 
-;// CONCATENATED MODULE: ./packages/components/build-module/input-control/input-prefix-wrapper.js
+;// ./packages/components/build-module/input-control/input-prefix-wrapper.js
 /**
  * External dependencies
  */
@@ -38020,11 +38045,10 @@ function UnconnectedInputControlPrefixWrapper(props, forwardedRef) {
 const InputControlPrefixWrapper = contextConnect(UnconnectedInputControlPrefixWrapper, 'InputControlPrefixWrapper');
 /* harmony default export */ const input_prefix_wrapper = (InputControlPrefixWrapper);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/color-picker/input-with-slider.js
+;// ./packages/components/build-module/color-picker/input-with-slider.js
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -38085,7 +38109,7 @@ const InputWithSlider = ({
   });
 };
 
-;// CONCATENATED MODULE: ./packages/components/build-module/color-picker/rgb-input.js
+;// ./packages/components/build-module/color-picker/rgb-input.js
 /**
  * External dependencies
  */
@@ -38094,8 +38118,6 @@ const InputWithSlider = ({
 /**
  * Internal dependencies
  */
-
-
 
 
 const RgbInput = ({
@@ -38162,7 +38184,7 @@ const RgbInput = ({
   });
 };
 
-;// CONCATENATED MODULE: ./packages/components/build-module/color-picker/hsl-input.js
+;// ./packages/components/build-module/color-picker/hsl-input.js
 /**
  * External dependencies
  */
@@ -38176,8 +38198,6 @@ const RgbInput = ({
 /**
  * Internal dependencies
  */
-
-
 
 
 const HslInput = ({
@@ -38269,7 +38289,7 @@ const HslInput = ({
   });
 };
 
-;// CONCATENATED MODULE: ./packages/components/build-module/color-picker/hex-input.js
+;// ./packages/components/build-module/color-picker/hex-input.js
 /**
  * External dependencies
  */
@@ -38332,7 +38352,7 @@ const HexInput = ({
   });
 };
 
-;// CONCATENATED MODULE: ./packages/components/build-module/color-picker/color-input.js
+;// ./packages/components/build-module/color-picker/color-input.js
 /**
  * Internal dependencies
  */
@@ -38368,10 +38388,10 @@ const ColorInput = ({
   }
 };
 
-;// CONCATENATED MODULE: ./node_modules/react-colorful/dist/index.module.js
+;// ./node_modules/react-colorful/dist/index.module.js
 function index_module_u(){return(index_module_u=Object.assign||function(e){for(var r=1;r<arguments.length;r++){var t=arguments[r];for(var o in t)Object.prototype.hasOwnProperty.call(t,o)&&(e[o]=t[o])}return e}).apply(this,arguments)}function index_module_c(e,r){if(null==e)return{};var t,o,n={},a=Object.keys(e);for(o=0;o<a.length;o++)r.indexOf(t=a[o])>=0||(n[t]=e[t]);return n}function index_module_s(e){var t=(0,external_React_.useRef)(e),o=(0,external_React_.useRef)(function(e){t.current&&t.current(e)});return t.current=e,o.current}var index_module_i=function(e,r,t){return void 0===r&&(r=0),void 0===t&&(t=1),e>t?t:e<r?r:e},index_module_f=function(e){return"touches"in e},index_module_v=function(e,r){var t=e.getBoundingClientRect(),o=index_module_f(r)?r.touches[0]:r;return{left:index_module_i((o.pageX-(t.left+window.pageXOffset))/t.width),top:index_module_i((o.pageY-(t.top+window.pageYOffset))/t.height)}},index_module_d=function(e){!index_module_f(e)&&e.preventDefault()},index_module_h=external_React_default().memo(function(n){var a=n.onMove,l=n.onKey,i=index_module_c(n,["onMove","onKey"]),h=(0,external_React_.useRef)(null),m=index_module_s(a),g=index_module_s(l),p=(0,external_React_.useRef)(!1),b=(0,external_React_.useMemo)(function(){var e=function(e){index_module_d(e),(index_module_f(e)?e.touches.length>0:e.buttons>0)&&h.current?m(index_module_v(h.current,e)):t(!1)},r=function(){return t(!1)};function t(t){var o=p.current,n=t?self.addEventListener:self.removeEventListener;n(o?"touchmove":"mousemove",e),n(o?"touchend":"mouseup",r)}return[function(e){var r=e.nativeEvent,o=h.current;o&&(index_module_d(r),!function(e,r){return r&&!index_module_f(e)}(r,p.current)&&o&&(p.current=index_module_f(r),o.focus(),m(index_module_v(o,r)),t(!0)))},function(e){var r=e.which||e.keyCode;r<37||r>40||(e.preventDefault(),g({left:39===r?.05:37===r?-.05:0,top:40===r?.05:38===r?-.05:0}))},t]},[g,m]),_=b[0],C=b[1],x=b[2];return (0,external_React_.useEffect)(function(){return x},[x]),external_React_default().createElement("div",index_module_u({},i,{onTouchStart:_,onMouseDown:_,className:"react-colorful__interactive",ref:h,onKeyDown:C,tabIndex:0,role:"slider"}))}),index_module_m=function(e){return e.filter(Boolean).join(" ")},index_module_g=function(r){var t=r.color,o=r.left,n=r.top,a=void 0===n?.5:n,l=index_module_m(["react-colorful__pointer",r.className]);return external_React_default().createElement("div",{className:l,style:{top:100*a+"%",left:100*o+"%"}},external_React_default().createElement("div",{className:"react-colorful__pointer-fill",style:{backgroundColor:t}}))},index_module_p=function(e,r,t){return void 0===r&&(r=0),void 0===t&&(t=Math.pow(10,r)),Math.round(t*e)/t},index_module_b={grad:.9,turn:360,rad:360/(2*Math.PI)},_=function(e){return"#"===e[0]&&(e=e.substr(1)),e.length<6?{r:parseInt(e[0]+e[0],16),g:parseInt(e[1]+e[1],16),b:parseInt(e[2]+e[2],16),a:1}:{r:parseInt(e.substr(0,2),16),g:parseInt(e.substr(2,2),16),b:parseInt(e.substr(4,2),16),a:1}},C=function(e,r){return void 0===r&&(r="deg"),Number(e)*(index_module_b[r]||1)},index_module_x=function(e){var r=/hsla?\(?\s*(-?\d*\.?\d+)(deg|rad|grad|turn)?[,\s]+(-?\d*\.?\d+)%?[,\s]+(-?\d*\.?\d+)%?,?\s*[/\s]*(-?\d*\.?\d+)?(%)?\s*\)?/i.exec(e);return r?index_module_H({h:C(r[1],r[2]),s:Number(r[3]),l:Number(r[4]),a:void 0===r[5]?1:Number(r[5])/(r[6]?100:1)}):{h:0,s:0,v:0,a:1}},index_module_E=index_module_x,index_module_H=function(e){var r=e.s,t=e.l;return{h:e.h,s:(r*=(t<50?t:100-t)/100)>0?2*r/(t+r)*100:0,v:t+r,a:e.a}},index_module_M=function(e){var r=e.s,t=e.v,o=e.a,n=(200-r)*t/100;return{h:index_module_p(e.h),s:index_module_p(n>0&&n<200?r*t/100/(n<=100?n:200-n)*100:0),l:index_module_p(n/2),a:index_module_p(o,2)}},index_module_N=function(e){var r=index_module_M(e);return"hsl("+r.h+", "+r.s+"%, "+r.l+"%)"},index_module_w=function(e){var r=index_module_M(e);return"hsla("+r.h+", "+r.s+"%, "+r.l+"%, "+r.a+")"},index_module_y=function(e){var r=e.h,t=e.s,o=e.v,n=e.a;r=r/360*6,t/=100,o/=100;var a=Math.floor(r),l=o*(1-t),u=o*(1-(r-a)*t),c=o*(1-(1-r+a)*t),s=a%6;return{r:index_module_p(255*[o,u,l,l,c,o][s]),g:index_module_p(255*[c,o,o,u,l,l][s]),b:index_module_p(255*[l,l,c,o,o,u][s]),a:index_module_p(n,2)}},q=function(e){var r=/hsva?\(?\s*(-?\d*\.?\d+)(deg|rad|grad|turn)?[,\s]+(-?\d*\.?\d+)%?[,\s]+(-?\d*\.?\d+)%?,?\s*[/\s]*(-?\d*\.?\d+)?(%)?\s*\)?/i.exec(e);return r?B({h:C(r[1],r[2]),s:Number(r[3]),v:Number(r[4]),a:void 0===r[5]?1:Number(r[5])/(r[6]?100:1)}):{h:0,s:0,v:0,a:1}},index_module_k=q,O=function(e){var r=/rgba?\(?\s*(-?\d*\.?\d+)(%)?[,\s]+(-?\d*\.?\d+)(%)?[,\s]+(-?\d*\.?\d+)(%)?,?\s*[/\s]*(-?\d*\.?\d+)?(%)?\s*\)?/i.exec(e);return r?z({r:Number(r[1])/(r[2]?100/255:1),g:Number(r[3])/(r[4]?100/255:1),b:Number(r[5])/(r[6]?100/255:1),a:void 0===r[7]?1:Number(r[7])/(r[8]?100:1)}):{h:0,s:0,v:0,a:1}},index_module_I=O,index_module_j=function(e){var r=e.toString(16);return r.length<2?"0"+r:r},z=function(e){var r=e.r,t=e.g,o=e.b,n=e.a,a=Math.max(r,t,o),l=a-Math.min(r,t,o),u=l?a===r?(t-o)/l:a===t?2+(o-r)/l:4+(r-t)/l:0;return{h:index_module_p(60*(u<0?u+6:u)),s:index_module_p(a?l/a*100:0),v:index_module_p(a/255*100),a:n}},B=function(e){return{h:index_module_p(e.h),s:index_module_p(e.s),v:index_module_p(e.v),a:index_module_p(e.a,2)}},K=external_React_default().memo(function(r){var t=r.hue,o=r.onChange,n=index_module_m(["react-colorful__hue",r.className]);return external_React_default().createElement("div",{className:n},external_React_default().createElement(index_module_h,{onMove:function(e){o({h:360*e.left})},onKey:function(e){o({h:index_module_i(t+360*e.left,0,360)})},"aria-label":"Hue","aria-valuetext":index_module_p(t)},external_React_default().createElement(index_module_g,{className:"react-colorful__hue-pointer",left:t/360,color:index_module_N({h:t,s:100,v:100,a:1})})))}),A=external_React_default().memo(function(r){var t=r.hsva,o=r.onChange,n={backgroundColor:index_module_N({h:t.h,s:100,v:100,a:1})};return external_React_default().createElement("div",{className:"react-colorful__saturation",style:n},external_React_default().createElement(index_module_h,{onMove:function(e){o({s:100*e.left,v:100-100*e.top})},onKey:function(e){o({s:index_module_i(t.s+100*e.left,0,100),v:index_module_i(t.v-100*e.top,0,100)})},"aria-label":"Color","aria-valuetext":"Saturation "+index_module_p(t.s)+"%, Brightness "+index_module_p(t.v)+"%"},external_React_default().createElement(index_module_g,{className:"react-colorful__saturation-pointer",top:1-t.v/100,left:t.s/100,color:index_module_N(t)})))}),L=function(e,r){if(e===r)return!0;for(var t in e)if(e[t]!==r[t])return!1;return!0},D=function(e,r){return e.replace(/\s/g,"")===r.replace(/\s/g,"")};function F(e,t,l){var u=index_module_s(l),c=(0,external_React_.useState)(function(){return e.toHsva(t)}),i=c[0],f=c[1],v=(0,external_React_.useRef)({color:t,hsva:i});(0,external_React_.useEffect)(function(){if(!e.equal(t,v.current.color)){var r=e.toHsva(t);v.current={hsva:r,color:t},f(r)}},[t,e]),(0,external_React_.useEffect)(function(){var r;L(i,v.current.hsva)||e.equal(r=e.fromHsva(i),v.current.color)||(v.current={hsva:i,color:r},u(r))},[i,e,u]);var d=(0,external_React_.useCallback)(function(e){f(function(r){return Object.assign({},r,e)})},[]);return[i,d]}var index_module_S,P,T="undefined"!=typeof window?external_React_.useLayoutEffect:external_React_.useEffect,X=function(){return index_module_S||( true?__webpack_require__.nc:0)},Y=function(e){index_module_S=e},index_module_$=function(){T(function(){if("undefined"!=typeof document&&!P){(P=document.createElement("style")).innerHTML='.react-colorful{position:relative;display:flex;flex-direction:column;width:200px;height:200px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default}.react-colorful__saturation{position:relative;flex-grow:1;border-color:transparent;border-bottom:12px solid #000;border-radius:8px 8px 0 0;background-image:linear-gradient(0deg,#000,transparent),linear-gradient(90deg,#fff,hsla(0,0%,100%,0))}.react-colorful__alpha-gradient,.react-colorful__pointer-fill{content:"";position:absolute;left:0;top:0;right:0;bottom:0;pointer-events:none;border-radius:inherit}.react-colorful__alpha-gradient,.react-colorful__saturation{box-shadow:inset 0 0 0 1px rgba(0,0,0,.05)}.react-colorful__alpha,.react-colorful__hue{position:relative;height:24px}.react-colorful__hue{background:linear-gradient(90deg,red 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,red)}.react-colorful__last-control{border-radius:0 0 8px 8px}.react-colorful__interactive{position:absolute;left:0;top:0;right:0;bottom:0;border-radius:inherit;outline:none;touch-action:none}.react-colorful__pointer{position:absolute;z-index:1;box-sizing:border-box;width:28px;height:28px;transform:translate(-50%,-50%);background-color:#fff;border:2px solid #fff;border-radius:50%;box-shadow:0 2px 4px rgba(0,0,0,.2)}.react-colorful__interactive:focus .react-colorful__pointer{transform:translate(-50%,-50%) scale(1.1)}.react-colorful__alpha,.react-colorful__alpha-pointer{background-color:#fff;background-image:url(\'data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill-opacity=".05"><path d="M8 0h8v8H8zM0 8h8v8H0z"/></svg>\')}.react-colorful__saturation-pointer{z-index:3}.react-colorful__hue-pointer{z-index:2}';var e=X();e&&P.setAttribute("nonce",e),document.head.appendChild(P)}},[])},R=function(r){var t=r.className,o=r.colorModel,n=r.color,a=void 0===n?o.defaultColor:n,l=r.onChange,s=index_module_c(r,["className","colorModel","color","onChange"]);index_module_$();var i=F(o,a,l),f=i[0],v=i[1],d=index_module_m(["react-colorful",t]);return external_React_default().createElement("div",index_module_u({},s,{className:d}),external_React_default().createElement(A,{hsva:f,onChange:v}),external_React_default().createElement(K,{hue:f.h,onChange:v,className:"react-colorful__last-control"}))},G={defaultColor:"000",toHsva:function(e){return z(_(e))},fromHsva:function(e){return t=(r=index_module_y(e)).g,o=r.b,"#"+index_module_j(r.r)+index_module_j(t)+index_module_j(o);var r,t,o},equal:function(e,r){return e.toLowerCase()===r.toLowerCase()||L(_(e),_(r))}},J=function(r){return e.createElement(R,index_module_u({},r,{colorModel:G}))},Q=function(r){var t=r.className,o=r.hsva,n=r.onChange,a={backgroundImage:"linear-gradient(90deg, "+index_module_w(Object.assign({},o,{a:0}))+", "+index_module_w(Object.assign({},o,{a:1}))+")"},l=index_module_m(["react-colorful__alpha",t]);return external_React_default().createElement("div",{className:l},external_React_default().createElement("div",{className:"react-colorful__alpha-gradient",style:a}),external_React_default().createElement(index_module_h,{onMove:function(e){n({a:e.left})},onKey:function(e){n({a:index_module_i(o.a+e.left)})},"aria-label":"Alpha","aria-valuetext":index_module_p(100*o.a)+"%"},external_React_default().createElement(index_module_g,{className:"react-colorful__alpha-pointer",left:o.a,color:index_module_w(o)})))},U=function(r){var t=r.className,o=r.colorModel,n=r.color,a=void 0===n?o.defaultColor:n,l=r.onChange,s=index_module_c(r,["className","colorModel","color","onChange"]);index_module_$();var i=F(o,a,l),f=i[0],v=i[1],d=index_module_m(["react-colorful",t]);return external_React_default().createElement("div",index_module_u({},s,{className:d}),external_React_default().createElement(A,{hsva:f,onChange:v}),external_React_default().createElement(K,{hue:f.h,onChange:v}),external_React_default().createElement(Q,{hsva:f,onChange:v,className:"react-colorful__last-control"}))},index_module_V={defaultColor:{h:0,s:0,l:0,a:1},toHsva:index_module_H,fromHsva:index_module_M,equal:L},W=function(r){return e.createElement(U,index_module_u({},r,{colorModel:index_module_V}))},Z={defaultColor:"hsla(0, 0%, 0%, 1)",toHsva:index_module_x,fromHsva:index_module_w,equal:D},ee=function(r){return e.createElement(U,index_module_u({},r,{colorModel:Z}))},re={defaultColor:{h:0,s:0,l:0},toHsva:function(e){return index_module_H({h:e.h,s:e.s,l:e.l,a:1})},fromHsva:function(e){return{h:(r=index_module_M(e)).h,s:r.s,l:r.l};var r},equal:L},te=function(r){return e.createElement(R,index_module_u({},r,{colorModel:re}))},oe={defaultColor:"hsl(0, 0%, 0%)",toHsva:index_module_E,fromHsva:index_module_N,equal:D},ne=function(r){return e.createElement(R,index_module_u({},r,{colorModel:oe}))},ae={defaultColor:{h:0,s:0,v:0,a:1},toHsva:function(e){return e},fromHsva:B,equal:L},le=function(r){return e.createElement(U,index_module_u({},r,{colorModel:ae}))},ue={defaultColor:"hsva(0, 0%, 0%, 1)",toHsva:q,fromHsva:function(e){var r=B(e);return"hsva("+r.h+", "+r.s+"%, "+r.v+"%, "+r.a+")"},equal:D},ce=function(r){return e.createElement(U,index_module_u({},r,{colorModel:ue}))},se={defaultColor:{h:0,s:0,v:0},toHsva:function(e){return{h:e.h,s:e.s,v:e.v,a:1}},fromHsva:function(e){var r=B(e);return{h:r.h,s:r.s,v:r.v}},equal:L},ie=function(r){return e.createElement(R,index_module_u({},r,{colorModel:se}))},fe={defaultColor:"hsv(0, 0%, 0%)",toHsva:index_module_k,fromHsva:function(e){var r=B(e);return"hsv("+r.h+", "+r.s+"%, "+r.v+"%)"},equal:D},ve=function(r){return e.createElement(R,index_module_u({},r,{colorModel:fe}))},de={defaultColor:{r:0,g:0,b:0,a:1},toHsva:z,fromHsva:index_module_y,equal:L},he=function(r){return e.createElement(U,index_module_u({},r,{colorModel:de}))},me={defaultColor:"rgba(0, 0, 0, 1)",toHsva:O,fromHsva:function(e){var r=index_module_y(e);return"rgba("+r.r+", "+r.g+", "+r.b+", "+r.a+")"},equal:D},ge=function(r){return external_React_default().createElement(U,index_module_u({},r,{colorModel:me}))},pe={defaultColor:{r:0,g:0,b:0},toHsva:function(e){return z({r:e.r,g:e.g,b:e.b,a:1})},fromHsva:function(e){return{r:(r=index_module_y(e)).r,g:r.g,b:r.b};var r},equal:L},be=function(r){return e.createElement(R,index_module_u({},r,{colorModel:pe}))},_e={defaultColor:"rgb(0, 0, 0)",toHsva:index_module_I,fromHsva:function(e){var r=index_module_y(e);return"rgb("+r.r+", "+r.g+", "+r.b+")"},equal:D},Ce=function(r){return external_React_default().createElement(R,index_module_u({},r,{colorModel:_e}))},xe=/^#?[0-9A-F]{3}$/i,Ee=/^#?[0-9A-F]{6}$/i,He=function(e){return Ee.test(e)||xe.test(e)},Me=function(e){return e.replace(/([^0-9A-F]+)/gi,"").substr(0,6)},Ne=function(r){var t=r.color,l=void 0===t?"":t,i=r.onChange,f=r.onBlur,v=r.prefixed,d=index_module_c(r,["color","onChange","onBlur","prefixed"]),h=n(function(){return Me(l)}),m=h[0],g=h[1],p=index_module_s(i),b=index_module_s(f),_=a(function(e){var r=Me(e.target.value);g(r),He(r)&&p("#"+r)},[p]),C=a(function(e){He(e.target.value)||g(Me(l)),b(e)},[l,b]);return o(function(){g(Me(l))},[l]),e.createElement("input",index_module_u({},d,{value:(v?"#":"")+m,spellCheck:"false",onChange:_,onBlur:C}))};
 
-;// CONCATENATED MODULE: ./packages/components/build-module/color-picker/picker.js
+;// ./packages/components/build-module/color-picker/picker.js
 /**
  * External dependencies
  */
@@ -38418,7 +38438,7 @@ const Picker = ({
   });
 };
 
-;// CONCATENATED MODULE: ./packages/components/build-module/color-picker/component.js
+;// ./packages/components/build-module/color-picker/component.js
 /**
  * External dependencies
  */
@@ -38436,7 +38456,6 @@ const Picker = ({
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -38517,7 +38536,7 @@ const UnconnectedColorPicker = (props, forwardedRef) => {
 const ColorPicker = contextConnect(UnconnectedColorPicker, 'ColorPicker');
 /* harmony default export */ const color_picker_component = (ColorPicker);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/color-picker/use-deprecated-props.js
+;// ./packages/components/build-module/color-picker/use-deprecated-props.js
 /**
  * External dependencies
  */
@@ -38585,7 +38604,7 @@ function use_deprecated_props_useDeprecatedProps(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/color-picker/legacy-adapter.js
+;// ./packages/components/build-module/color-picker/legacy-adapter.js
 /**
  * Internal dependencies
  */
@@ -38598,7 +38617,7 @@ const LegacyAdapter = props => {
   });
 };
 
-;// CONCATENATED MODULE: ./packages/components/build-module/circular-option-picker/circular-option-picker-context.js
+;// ./packages/components/build-module/circular-option-picker/circular-option-picker-context.js
 /**
  * WordPress dependencies
  */
@@ -38610,7 +38629,7 @@ const LegacyAdapter = props => {
 
 const CircularOptionPickerContext = (0,external_wp_element_namespaceObject.createContext)({});
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/check.js
+;// ./packages/icons/build-module/library/check.js
 /**
  * WordPress dependencies
  */
@@ -38625,7 +38644,7 @@ const check = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(exte
 });
 /* harmony default export */ const library_check = (check);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/circular-option-picker/circular-option-picker-option.js
+;// ./packages/components/build-module/circular-option-picker/circular-option-picker-option.js
 /**
  * External dependencies
  */
@@ -38640,7 +38659,6 @@ const check = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(exte
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -38724,7 +38742,7 @@ function Option({
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/circular-option-picker/circular-option-picker-option-group.js
+;// ./packages/components/build-module/circular-option-picker/circular-option-picker-option-group.js
 /**
  * External dependencies
  */
@@ -38748,7 +38766,7 @@ function OptionGroup({
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/circular-option-picker/circular-option-picker-actions.js
+;// ./packages/components/build-module/circular-option-picker/circular-option-picker-actions.js
 /**
  * External dependencies
  */
@@ -38795,7 +38813,7 @@ function ButtonAction({
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/circular-option-picker/circular-option-picker.js
+;// ./packages/components/build-module/circular-option-picker/circular-option-picker.js
 /**
  * External dependencies
  */
@@ -38862,7 +38880,6 @@ function ButtonAction({
  * };
  * ```
  */
-
 
 function ListboxCircularOptionPicker(props) {
   const {
@@ -38951,7 +38968,7 @@ CircularOptionPicker.ButtonAction = ButtonAction;
 CircularOptionPicker.DropdownLinkAction = DropdownLinkAction;
 /* harmony default export */ const circular_option_picker = (CircularOptionPicker);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/circular-option-picker/index.js
+;// ./packages/components/build-module/circular-option-picker/index.js
 /**
  * Internal dependencies
  */
@@ -38961,7 +38978,7 @@ CircularOptionPicker.DropdownLinkAction = DropdownLinkAction;
 
 /* harmony default export */ const build_module_circular_option_picker = (circular_option_picker);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/v-stack/hook.js
+;// ./packages/components/build-module/v-stack/hook.js
 /**
  * Internal dependencies
  */
@@ -38983,7 +39000,7 @@ function useVStack(props) {
   return hStackProps;
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/v-stack/component.js
+;// ./packages/components/build-module/v-stack/component.js
 /**
  * External dependencies
  */
@@ -39030,7 +39047,7 @@ function UnconnectedVStack(props, forwardedRef) {
 const VStack = contextConnect(UnconnectedVStack, 'VStack');
 /* harmony default export */ const v_stack_component = (VStack);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/truncate/component.js
+;// ./packages/components/build-module/truncate/component.js
 /**
  * External dependencies
  */
@@ -39075,7 +39092,7 @@ function UnconnectedTruncate(props, forwardedRef) {
 const component_Truncate = contextConnect(UnconnectedTruncate, 'Truncate');
 /* harmony default export */ const truncate_component = (component_Truncate);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/heading/hook.js
+;// ./packages/components/build-module/heading/hook.js
 /**
  * Internal dependencies
  */
@@ -39114,7 +39131,7 @@ function useHeading(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/heading/component.js
+;// ./packages/components/build-module/heading/component.js
 /**
  * External dependencies
  */
@@ -39149,7 +39166,7 @@ function UnconnectedHeading(props, forwardedRef) {
 const Heading = contextConnect(UnconnectedHeading, 'Heading');
 /* harmony default export */ const heading_component = (Heading);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/color-palette/styles.js
+;// ./packages/components/build-module/color-palette/styles.js
 
 function color_palette_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -39167,7 +39184,7 @@ const ColorHeading = /*#__PURE__*/emotion_styled_base_browser_esm(heading_compon
   styles: "text-transform:uppercase;line-height:24px;font-weight:500;&&&{font-size:11px;margin-bottom:0;}"
 } : 0);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/dropdown/styles.js
+;// ./packages/components/build-module/dropdown/styles.js
 
 /**
  * External dependencies
@@ -39193,7 +39210,7 @@ const DropdownContentWrapperDiv = /*#__PURE__*/emotion_styled_base_browser_esm("
   target: "eovvns30"
 } : 0)("margin-left:", space(-2), ";margin-right:", space(-2), ";&:first-of-type{margin-top:", space(-2), ";}&:last-of-type{margin-bottom:", space(-2), ";}", padding, ";" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/dropdown/dropdown-content-wrapper.js
+;// ./packages/components/build-module/dropdown/dropdown-content-wrapper.js
 /**
  * External dependencies
  */
@@ -39239,7 +39256,7 @@ function UnconnectedDropdownContentWrapper(props, forwardedRef) {
 const DropdownContentWrapper = contextConnect(UnconnectedDropdownContentWrapper, 'DropdownContentWrapper');
 /* harmony default export */ const dropdown_content_wrapper = (DropdownContentWrapper);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/color-palette/utils.js
+;// ./packages/components/build-module/color-palette/utils.js
 /**
  * External dependencies
  */
@@ -39327,7 +39344,7 @@ const normalizeColorValue = (value, element) => {
   return computedBackgroundColor ? w(computedBackgroundColor).toHex() : value;
 };
 
-;// CONCATENATED MODULE: ./packages/components/build-module/color-palette/index.js
+;// ./packages/components/build-module/color-palette/index.js
 /**
  * External dependencies
  */
@@ -39347,7 +39364,6 @@ const normalizeColorValue = (value, element) => {
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -39502,7 +39518,7 @@ function UnforwardedColorPalette(props, forwardedRef) {
   // Leave hex values as-is. Remove the `var()` wrapper from CSS vars.
   const displayValue = value?.replace(/^var\((.+)\)$/, '$1');
   const customColorAccessibleLabel = !!displayValue ? (0,external_wp_i18n_namespaceObject.sprintf)(
-  // translators: %1$s: The name of the color e.g: "vivid red". %2$s: The color's hex code e.g: "#f00".
+  // translators: 1: The name of the color e.g: "vivid red". 2: The color's hex code e.g: "#f00".
   (0,external_wp_i18n_namespaceObject.__)('Custom color picker. The currently selected color is called "%1$s" and has a value of "%2$s".'), buttonLabelName, displayValue) : (0,external_wp_i18n_namespaceObject.__)('Custom color picker.');
   const paletteCommonProps = {
     clearColor,
@@ -39622,7 +39638,7 @@ function UnforwardedColorPalette(props, forwardedRef) {
 const ColorPalette = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedColorPalette);
 /* harmony default export */ const color_palette = (ColorPalette);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/unit-control/styles/unit-control-styles.js
+;// ./packages/components/build-module/unit-control/styles/unit-control-styles.js
 
 /**
  * External dependencies
@@ -39673,7 +39689,7 @@ const UnitSelect = /*#__PURE__*/emotion_styled_base_browser_esm("select",  true 
   target: "e1bagdl30"
 } : 0)("&&&{appearance:none;background:transparent;border-radius:", config_values.radiusXSmall, ";border:none;display:block;outline:none;margin:0;min-height:auto;font-family:inherit;", baseUnitLabelStyles, ";", unitSelectSizes, ";&:not( :disabled ){cursor:pointer;}}" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/border-control/styles.js
+;// ./packages/components/build-module/border-control/styles.js
 /**
  * External dependencies
  */
@@ -39731,7 +39747,7 @@ const borderSlider = () => /*#__PURE__*/emotion_react_browser_esm_css("flex:1 1 
   marginRight: space(3)
 })(), ";" + ( true ? "" : 0),  true ? "" : 0);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/unit-control/utils.js
+;// ./packages/components/build-module/unit-control/utils.js
 /**
  * WordPress dependencies
  */
@@ -40128,7 +40144,7 @@ function getUnitsWithCurrentUnit(rawValue, legacyUnit, units = ALL_CSS_UNITS) {
   return unitsToReturn;
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/border-control/border-control-dropdown/hook.js
+;// ./packages/components/build-module/border-control/border-control-dropdown/hook.js
 /**
  * WordPress dependencies
  */
@@ -40221,7 +40237,7 @@ function useBorderControlDropdown(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/border-control/border-control-dropdown/component.js
+;// ./packages/components/build-module/border-control/border-control-dropdown/component.js
 /**
  * External dependencies
  */
@@ -40234,8 +40250,6 @@ function useBorderControlDropdown(props) {
 /**
  * Internal dependencies
  */
-
-
 
 
 
@@ -40276,30 +40290,30 @@ const getToggleAriaLabel = (colorValue, colorObject, style, isStyleEnabled) => {
     if (colorObject) {
       const ariaLabelValue = getAriaLabelColorValue(colorObject.color);
       return style ? (0,external_wp_i18n_namespaceObject.sprintf)(
-      // translators: %1$s: The name of the color e.g. "vivid red". %2$s: The color's hex code e.g.: "#f00:". %3$s: The current border style selection e.g. "solid".
-      'Border color and style picker. The currently selected color is called "%1$s" and has a value of "%2$s". The currently selected style is "%3$s".', colorObject.name, ariaLabelValue, style) : (0,external_wp_i18n_namespaceObject.sprintf)(
-      // translators: %1$s: The name of the color e.g. "vivid red". %2$s: The color's hex code e.g.: "#f00:".
-      'Border color and style picker. The currently selected color is called "%1$s" and has a value of "%2$s".', colorObject.name, ariaLabelValue);
+      // translators: 1: The name of the color e.g. "vivid red". 2: The color's hex code e.g.: "#f00:". 3: The current border style selection e.g. "solid".
+      (0,external_wp_i18n_namespaceObject.__)('Border color and style picker. The currently selected color is called "%1$s" and has a value of "%2$s". The currently selected style is "%3$s".'), colorObject.name, ariaLabelValue, style) : (0,external_wp_i18n_namespaceObject.sprintf)(
+      // translators: 1: The name of the color e.g. "vivid red". 2: The color's hex code e.g.: "#f00:".
+      (0,external_wp_i18n_namespaceObject.__)('Border color and style picker. The currently selected color is called "%1$s" and has a value of "%2$s".'), colorObject.name, ariaLabelValue);
     }
     if (colorValue) {
       const ariaLabelValue = getAriaLabelColorValue(colorValue);
       return style ? (0,external_wp_i18n_namespaceObject.sprintf)(
-      // translators: %1$s: The color's hex code e.g.: "#f00:". %2$s: The current border style selection e.g. "solid".
-      'Border color and style picker. The currently selected color has a value of "%1$s". The currently selected style is "%2$s".', ariaLabelValue, style) : (0,external_wp_i18n_namespaceObject.sprintf)(
-      // translators: %1$s: The color's hex code e.g: "#f00".
-      'Border color and style picker. The currently selected color has a value of "%1$s".', ariaLabelValue);
+      // translators: 1: The color's hex code e.g.: "#f00:". 2: The current border style selection e.g. "solid".
+      (0,external_wp_i18n_namespaceObject.__)('Border color and style picker. The currently selected color has a value of "%1$s". The currently selected style is "%2$s".'), ariaLabelValue, style) : (0,external_wp_i18n_namespaceObject.sprintf)(
+      // translators: %s: The color's hex code e.g: "#f00".
+      (0,external_wp_i18n_namespaceObject.__)('Border color and style picker. The currently selected color has a value of "%s".'), ariaLabelValue);
     }
     return (0,external_wp_i18n_namespaceObject.__)('Border color and style picker.');
   }
   if (colorObject) {
     return (0,external_wp_i18n_namespaceObject.sprintf)(
-    // translators: %1$s: The name of the color e.g. "vivid red". %2$s: The color's hex code e.g: "#f00".
-    'Border color picker. The currently selected color is called "%1$s" and has a value of "%2$s".', colorObject.name, getAriaLabelColorValue(colorObject.color));
+    // translators: 1: The name of the color e.g. "vivid red". 2: The color's hex code e.g: "#f00".
+    (0,external_wp_i18n_namespaceObject.__)('Border color picker. The currently selected color is called "%1$s" and has a value of "%2$s".'), colorObject.name, getAriaLabelColorValue(colorObject.color));
   }
   if (colorValue) {
     return (0,external_wp_i18n_namespaceObject.sprintf)(
-    // translators: %1$s: The color's hex code e.g: "#f00".
-    'Border color picker. The currently selected color has a value of "%1$s".', getAriaLabelColorValue(colorValue));
+    // translators: %s: The color's hex code e.g: "#f00".
+    (0,external_wp_i18n_namespaceObject.__)('Border color picker. The currently selected color has a value of "%s".'), getAriaLabelColorValue(colorValue));
   }
   return (0,external_wp_i18n_namespaceObject.__)('Border color picker.');
 };
@@ -40400,7 +40414,7 @@ const BorderControlDropdown = (props, forwardedRef) => {
 const ConnectedBorderControlDropdown = contextConnect(BorderControlDropdown, 'BorderControlDropdown');
 /* harmony default export */ const border_control_dropdown_component = (ConnectedBorderControlDropdown);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/unit-control/unit-select-control.js
+;// ./packages/components/build-module/unit-control/unit-select-control.js
 /**
  * External dependencies
  */
@@ -40460,7 +40474,7 @@ function UnitSelectControl({
 }
 /* harmony default export */ const unit_select_control = ((0,external_wp_element_namespaceObject.forwardRef)(UnitSelectControl));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/unit-control/index.js
+;// ./packages/components/build-module/unit-control/index.js
 /**
  * External dependencies
  */
@@ -40647,7 +40661,27 @@ const UnitControl = (0,external_wp_element_namespaceObject.forwardRef)(Unforward
 
 /* harmony default export */ const unit_control = (UnitControl);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/border-control/border-control/hook.js
+;// ./packages/components/build-module/utils/deprecated-36px-size.js
+/**
+ * WordPress dependencies
+ */
+
+function maybeWarnDeprecated36pxSize({
+  componentName,
+  __next40pxDefaultSize,
+  size
+}) {
+  if (__next40pxDefaultSize || size !== 'default') {
+    return;
+  }
+  external_wp_deprecated_default()(`36px default size for wp.components.${componentName}`, {
+    since: '6.8',
+    version: '7.1',
+    hint: 'Set the `__next40pxDefaultSize` prop to true to start opting into the new default size, which will become the default in a future version.'
+  });
+}
+
+;// ./packages/components/build-module/border-control/border-control/hook.js
 /**
  * WordPress dependencies
  */
@@ -40656,6 +40690,8 @@ const UnitControl = (0,external_wp_element_namespaceObject.forwardRef)(Unforward
 /**
  * Internal dependencies
  */
+
+
 
 
 
@@ -40683,6 +40719,11 @@ function useBorderControl(props) {
     __next40pxDefaultSize,
     ...otherProps
   } = useContextSystem(props, 'BorderControl');
+  maybeWarnDeprecated36pxSize({
+    componentName: 'BorderControl',
+    __next40pxDefaultSize,
+    size
+  });
   const computedSize = size === 'default' && __next40pxDefaultSize ? '__unstable-large' : size;
   const [widthValue, originalWidthUnit] = parseQuantityAndUnitFromRawValue(border?.width);
   const widthUnit = originalWidthUnit || 'px';
@@ -40779,7 +40820,7 @@ function useBorderControl(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/border-control/border-control/component.js
+;// ./packages/components/build-module/border-control/border-control/component.js
 /**
  * WordPress dependencies
  */
@@ -40788,7 +40829,6 @@ function useBorderControl(props) {
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -40925,6 +40965,7 @@ const UnconnectedBorderControl = (props, forwardedRef) => {
  *
  * 	return (
  * 		<BorderControl
+ * 			__next40pxDefaultSize
  * 			colors={ colors }
  * 			label={ __( 'Border' ) }
  * 			onChange={ onChange }
@@ -40937,7 +40978,7 @@ const UnconnectedBorderControl = (props, forwardedRef) => {
 const BorderControl = contextConnect(UnconnectedBorderControl, 'BorderControl');
 /* harmony default export */ const border_control_component = (BorderControl);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/grid/utils.js
+;// ./packages/components/build-module/grid/utils.js
 /**
  * External dependencies
  */
@@ -40992,7 +41033,7 @@ function utils_getAlignmentProps(alignment) {
   return alignmentProps;
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/grid/hook.js
+;// ./packages/components/build-module/grid/hook.js
 /**
  * External dependencies
  */
@@ -41057,7 +41098,7 @@ function useGrid(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/grid/component.js
+;// ./packages/components/build-module/grid/component.js
 /**
  * External dependencies
  */
@@ -41101,7 +41142,7 @@ function UnconnectedGrid(props, forwardedRef) {
 const Grid = contextConnect(UnconnectedGrid, 'Grid');
 /* harmony default export */ const grid_component = (Grid);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/border-box-control/border-box-control-split-controls/hook.js
+;// ./packages/components/build-module/border-box-control/border-box-control-split-controls/hook.js
 /**
  * WordPress dependencies
  */
@@ -41148,7 +41189,7 @@ function useBorderBoxControlSplitControls(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/border-box-control/border-box-control-split-controls/component.js
+;// ./packages/components/build-module/border-box-control/border-box-control-split-controls/component.js
 /**
  * WordPress dependencies
  */
@@ -41159,7 +41200,6 @@ function useBorderBoxControlSplitControls(props) {
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -41248,7 +41288,7 @@ const BorderBoxControlSplitControls = (props, forwardedRef) => {
 const ConnectedBorderBoxControlSplitControls = contextConnect(BorderBoxControlSplitControls, 'BorderBoxControlSplitControls');
 /* harmony default export */ const border_box_control_split_controls_component = (ConnectedBorderBoxControlSplitControls);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/unit-values.js
+;// ./packages/components/build-module/utils/unit-values.js
 const UNITED_VALUE_REGEX = /^([\d.\-+]*)\s*(fr|cm|mm|Q|in|pc|pt|px|em|ex|ch|rem|lh|vw|vh|vmin|vmax|%|cap|ic|rlh|vi|vb|deg|grad|rad|turn|s|ms|Hz|kHz|dpi|dpcm|dppx|svw|lvw|dvw|svh|lvh|dvh|svi|lvi|dvi|svb|lvb|dvb|svmin|lvmin|dvmin|svmax|lvmax|dvmax)?$/;
 
 /**
@@ -41282,7 +41322,7 @@ function createCSSUnitValue(value, unit) {
   return `${value}${unit}`;
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/border-box-control/utils.js
+;// ./packages/components/build-module/border-box-control/utils.js
 /**
  * External dependencies
  */
@@ -41431,7 +41471,7 @@ function mode(values) {
   return currentMode;
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/border-box-control/border-box-control/hook.js
+;// ./packages/components/build-module/border-box-control/border-box-control/hook.js
 /**
  * WordPress dependencies
  */
@@ -41440,6 +41480,7 @@ function mode(values) {
 /**
  * Internal dependencies
  */
+
 
 
 
@@ -41457,6 +41498,11 @@ function useBorderBoxControl(props) {
     __next40pxDefaultSize,
     ...otherProps
   } = useContextSystem(props, 'BorderBoxControl');
+  maybeWarnDeprecated36pxSize({
+    componentName: 'BorderBoxControl',
+    __next40pxDefaultSize,
+    size
+  });
   const computedSize = size === 'default' && __next40pxDefaultSize ? '__unstable-large' : size;
   const mixedBorders = hasMixedBorders(value);
   const splitBorders = hasSplitBorders(value);
@@ -41548,7 +41594,7 @@ function useBorderBoxControl(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/border-box-control/border-box-control/component.js
+;// ./packages/components/build-module/border-box-control/border-box-control/component.js
 /**
  * WordPress dependencies
  */
@@ -41559,7 +41605,6 @@ function useBorderBoxControl(props) {
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -41697,6 +41742,7 @@ const UnconnectedBorderBoxControl = (props, forwardedRef) => {
  *
  * 	return (
  * 		<BorderBoxControl
+ * 			__next40pxDefaultSize
  * 			colors={ colors }
  * 			label={ __( 'Borders' ) }
  * 			onChange={ onChange }
@@ -41709,7 +41755,7 @@ const UnconnectedBorderBoxControl = (props, forwardedRef) => {
 const BorderBoxControl = contextConnect(UnconnectedBorderBoxControl, 'BorderBoxControl');
 /* harmony default export */ const border_box_control_component = (BorderBoxControl);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/box-control/styles/box-control-icon-styles.js
+;// ./packages/components/build-module/box-control/styles/box-control-icon-styles.js
 
 function box_control_icon_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -41776,11 +41822,10 @@ const LeftStroke = /*#__PURE__*/emotion_styled_base_browser_esm(VerticalStroke, 
   styles: "left:0"
 } : 0);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/box-control/icon.js
+;// ./packages/components/build-module/box-control/icon.js
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -41824,7 +41869,7 @@ function BoxControlIcon({
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/box-control/styles/box-control-styles.js
+;// ./packages/components/build-module/box-control/styles/box-control-styles.js
 
 function box_control_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -41874,7 +41919,7 @@ const FlexedRangeControl = /*#__PURE__*/emotion_styled_base_browser_esm(range_co
   target: "e1jovhle0"
 } : 0)("width:100%;margin-inline-end:", space(2), ";" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/box-control/utils.js
+;// ./packages/components/build-module/box-control/utils.js
 /**
  * WordPress dependencies
  */
@@ -42184,7 +42229,7 @@ function applyValueToSides(currentValues, newValue, sides) {
   return newValues;
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/box-control/all-input-control.js
+;// ./packages/components/build-module/box-control/all-input-control.js
 /**
  * WordPress dependencies
  */
@@ -42192,8 +42237,6 @@ function applyValueToSides(currentValues, newValue, sides) {
 /**
  * Internal dependencies
  */
-
-
 
 
 
@@ -42269,7 +42312,7 @@ function AllInputControl({
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/box-control/input-controls.js
+;// ./packages/components/build-module/box-control/input-controls.js
 /**
  * WordPress dependencies
  */
@@ -42277,8 +42320,6 @@ function AllInputControl({
 /**
  * Internal dependencies
  */
-
-
 
 
 
@@ -42394,7 +42435,7 @@ function BoxInputControls({
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/box-control/axial-input-controls.js
+;// ./packages/components/build-module/box-control/axial-input-controls.js
 /**
  * WordPress dependencies
  */
@@ -42402,8 +42443,6 @@ function BoxInputControls({
 /**
  * Internal dependencies
  */
-
-
 
 
 
@@ -42511,7 +42550,7 @@ function AxialInputControls({
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/box-control/linked-button.js
+;// ./packages/components/build-module/box-control/linked-button.js
 /**
  * WordPress dependencies
  */
@@ -42542,7 +42581,7 @@ function LinkedButton({
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/box-control/index.js
+;// ./packages/components/build-module/box-control/index.js
 /**
  * WordPress dependencies
  */
@@ -42553,7 +42592,6 @@ function LinkedButton({
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -42707,7 +42745,7 @@ function BoxControl({
 
 /* harmony default export */ const box_control = (BoxControl);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/button-group/index.js
+;// ./packages/components/build-module/button-group/index.js
 /**
  * External dependencies
  */
@@ -42753,7 +42791,7 @@ function UnforwardedButtonGroup(props, ref) {
 const ButtonGroup = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedButtonGroup);
 /* harmony default export */ const button_group = (ButtonGroup);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/elevation/styles.js
+;// ./packages/components/build-module/elevation/styles.js
 function elevation_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
  * External dependencies
@@ -42764,7 +42802,7 @@ const Elevation =  true ? {
   styles: "background:transparent;display:block;margin:0!important;pointer-events:none;position:absolute;will-change:box-shadow"
 } : 0;
 
-;// CONCATENATED MODULE: ./packages/components/build-module/elevation/hook.js
+;// ./packages/components/build-module/elevation/hook.js
 /**
  * External dependencies
  */
@@ -42840,7 +42878,7 @@ function useElevation(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/elevation/component.js
+;// ./packages/components/build-module/elevation/component.js
 /**
  * External dependencies
  */
@@ -42887,7 +42925,7 @@ function UnconnectedElevation(props, forwardedRef) {
 const component_Elevation = contextConnect(UnconnectedElevation, 'Elevation');
 /* harmony default export */ const elevation_component = (component_Elevation);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/card/styles.js
+;// ./packages/components/build-module/card/styles.js
 function card_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
  * External dependencies
@@ -42952,7 +42990,7 @@ const cardPaddings = {
 };
 const shady = /*#__PURE__*/emotion_react_browser_esm_css("background-color:", COLORS.ui.backgroundDisabled, ";" + ( true ? "" : 0),  true ? "" : 0);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/surface/styles.js
+;// ./packages/components/build-module/surface/styles.js
 /**
  * External dependencies
  */
@@ -43017,7 +43055,7 @@ const getVariant = (variant, surfaceBackgroundSize, surfaceBackgroundSizeDotted)
   }
 };
 
-;// CONCATENATED MODULE: ./packages/components/build-module/surface/hook.js
+;// ./packages/components/build-module/surface/hook.js
 /**
  * WordPress dependencies
  */
@@ -43058,7 +43096,7 @@ function useSurface(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/card/card/hook.js
+;// ./packages/components/build-module/card/card/hook.js
 /**
  * WordPress dependencies
  */
@@ -43124,7 +43162,7 @@ function useCard(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/card/card/component.js
+;// ./packages/components/build-module/card/card/component.js
 /**
  * External dependencies
  */
@@ -43146,7 +43184,6 @@ function useCard(props) {
 
 
 
-
 function UnconnectedCard(props, forwardedRef) {
   const {
     children,
@@ -43158,7 +43195,7 @@ function UnconnectedCard(props, forwardedRef) {
   } = useCard(props);
   const elevationBorderRadius = isRounded ? config_values.radiusLarge : 0;
   const cx = useCx();
-  const elevationClassName = (0,external_wp_element_namespaceObject.useMemo)(() => cx( /*#__PURE__*/emotion_react_browser_esm_css({
+  const elevationClassName = (0,external_wp_element_namespaceObject.useMemo)(() => cx(/*#__PURE__*/emotion_react_browser_esm_css({
     borderRadius: elevationBorderRadius
   },  true ? "" : 0,  true ? "" : 0)), [cx, elevationBorderRadius]);
   const contextProviderValue = (0,external_wp_element_namespaceObject.useMemo)(() => {
@@ -43228,7 +43265,7 @@ function UnconnectedCard(props, forwardedRef) {
 const component_Card = contextConnect(UnconnectedCard, 'Card');
 /* harmony default export */ const card_component = (component_Card);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/scrollable/styles.js
+;// ./packages/components/build-module/scrollable/styles.js
 function scrollable_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
  * External dependencies
@@ -43265,7 +43302,7 @@ const scrollAuto =  true ? {
   styles: "overflow-y:auto"
 } : 0;
 
-;// CONCATENATED MODULE: ./packages/components/build-module/scrollable/hook.js
+;// ./packages/components/build-module/scrollable/hook.js
 /**
  * WordPress dependencies
  */
@@ -43293,7 +43330,7 @@ function useScrollable(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/scrollable/component.js
+;// ./packages/components/build-module/scrollable/component.js
 /**
  * External dependencies
  */
@@ -43332,7 +43369,7 @@ function UnconnectedScrollable(props, forwardedRef) {
 const component_Scrollable = contextConnect(UnconnectedScrollable, 'Scrollable');
 /* harmony default export */ const scrollable_component = (component_Scrollable);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/card/card-body/hook.js
+;// ./packages/components/build-module/card/card-body/hook.js
 /**
  * WordPress dependencies
  */
@@ -43364,7 +43401,7 @@ function useCardBody(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/card/card-body/component.js
+;// ./packages/components/build-module/card/card-body/component.js
 /**
  * External dependencies
  */
@@ -43412,7 +43449,7 @@ function UnconnectedCardBody(props, forwardedRef) {
 const CardBody = contextConnect(UnconnectedCardBody, 'CardBody');
 /* harmony default export */ const card_body_component = (CardBody);
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/LOI6GHIP.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/LOI6GHIP.js
 "use client";
 
 
@@ -43436,7 +43473,7 @@ var Separator = forwardRef2(function Separator2(props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/build-module/divider/styles.js
+;// ./packages/components/build-module/divider/styles.js
 
 function divider_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -43499,7 +43536,7 @@ const DividerView = /*#__PURE__*/emotion_styled_base_browser_esm("hr",  true ? {
   target: "e19on6iw0"
 } : 0)("border:0;margin:0;", renderDisplay, " ", renderBorder, " ", renderSize, " ", renderMargin, ";" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/divider/component.js
+;// ./packages/components/build-module/divider/component.js
 /**
  * External dependencies
  */
@@ -43545,7 +43582,7 @@ function UnconnectedDivider(props, forwardedRef) {
 const component_Divider = contextConnect(UnconnectedDivider, 'Divider');
 /* harmony default export */ const divider_component = (component_Divider);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/card/card-divider/hook.js
+;// ./packages/components/build-module/card/card-divider/hook.js
 /**
  * WordPress dependencies
  */
@@ -43573,7 +43610,7 @@ function useCardDivider(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/card/card-divider/component.js
+;// ./packages/components/build-module/card/card-divider/component.js
 /**
  * External dependencies
  */
@@ -43611,7 +43648,7 @@ function UnconnectedCardDivider(props, forwardedRef) {
 const CardDivider = contextConnect(UnconnectedCardDivider, 'CardDivider');
 /* harmony default export */ const card_divider_component = (CardDivider);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/card/card-footer/hook.js
+;// ./packages/components/build-module/card/card-footer/hook.js
 /**
  * WordPress dependencies
  */
@@ -43644,7 +43681,7 @@ function useCardFooter(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/card/card-footer/component.js
+;// ./packages/components/build-module/card/card-footer/component.js
 /**
  * External dependencies
  */
@@ -43680,7 +43717,7 @@ function UnconnectedCardFooter(props, forwardedRef) {
 const CardFooter = contextConnect(UnconnectedCardFooter, 'CardFooter');
 /* harmony default export */ const card_footer_component = (CardFooter);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/card/card-header/hook.js
+;// ./packages/components/build-module/card/card-header/hook.js
 /**
  * WordPress dependencies
  */
@@ -43711,7 +43748,7 @@ function useCardHeader(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/card/card-header/component.js
+;// ./packages/components/build-module/card/card-header/component.js
 /**
  * External dependencies
  */
@@ -43747,7 +43784,7 @@ function UnconnectedCardHeader(props, forwardedRef) {
 const CardHeader = contextConnect(UnconnectedCardHeader, 'CardHeader');
 /* harmony default export */ const card_header_component = (CardHeader);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/card/card-media/hook.js
+;// ./packages/components/build-module/card/card-media/hook.js
 /**
  * WordPress dependencies
  */
@@ -43775,7 +43812,7 @@ function useCardMedia(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/card/card-media/component.js
+;// ./packages/components/build-module/card/card-media/component.js
 /**
  * External dependencies
  */
@@ -43817,7 +43854,7 @@ function UnconnectedCardMedia(props, forwardedRef) {
 const CardMedia = contextConnect(UnconnectedCardMedia, 'CardMedia');
 /* harmony default export */ const card_media_component = (CardMedia);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/checkbox-control/index.js
+;// ./packages/components/build-module/checkbox-control/index.js
 /**
  * External dependencies
  */
@@ -43833,7 +43870,6 @@ const CardMedia = contextConnect(UnconnectedCardMedia, 'CardMedia');
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -43939,7 +43975,7 @@ function CheckboxControl(props) {
 }
 /* harmony default export */ const checkbox_control = (CheckboxControl);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/clipboard-button/index.js
+;// ./packages/components/build-module/clipboard-button/index.js
 /**
  * External dependencies
  */
@@ -44005,7 +44041,7 @@ function ClipboardButton({
   });
 }
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/more-vertical.js
+;// ./packages/icons/build-module/library/more-vertical.js
 /**
  * WordPress dependencies
  */
@@ -44020,7 +44056,7 @@ const moreVertical = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.js
 });
 /* harmony default export */ const more_vertical = (moreVertical);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/item-group/styles.js
+;// ./packages/components/build-module/item-group/styles.js
 function item_group_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
  * External dependencies
@@ -44065,7 +44101,117 @@ const itemSizes = {
   large: /*#__PURE__*/emotion_react_browser_esm_css("padding:", paddingYLarge, " ", config_values.controlPaddingXLarge, "px;" + ( true ? "" : 0),  true ? "" : 0)
 };
 
-;// CONCATENATED MODULE: ./packages/components/build-module/item-group/item-group/hook.js
+;// ./packages/components/build-module/item-group/context.js
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+const ItemGroupContext = (0,external_wp_element_namespaceObject.createContext)({
+  size: 'medium'
+});
+const useItemGroupContext = () => (0,external_wp_element_namespaceObject.useContext)(ItemGroupContext);
+
+;// ./packages/components/build-module/item-group/item/hook.js
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+
+function useItem(props) {
+  const {
+    as: asProp,
+    className,
+    onClick,
+    role = 'listitem',
+    size: sizeProp,
+    ...otherProps
+  } = useContextSystem(props, 'Item');
+  const {
+    spacedAround,
+    size: contextSize
+  } = useItemGroupContext();
+  const size = sizeProp || contextSize;
+  const as = asProp || (typeof onClick !== 'undefined' ? 'button' : 'div');
+  const cx = useCx();
+  const classes = (0,external_wp_element_namespaceObject.useMemo)(() => cx((as === 'button' || as === 'a') && unstyledButton(as), itemSizes[size] || itemSizes.medium, item, spacedAround && styles_spacedAround, className), [as, className, cx, size, spacedAround]);
+  const wrapperClassName = cx(itemWrapper);
+  return {
+    as,
+    className: classes,
+    onClick,
+    wrapperClassName,
+    role,
+    ...otherProps
+  };
+}
+
+;// ./packages/components/build-module/item-group/item/component.js
+/**
+ * External dependencies
+ */
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+
+function UnconnectedItem(props, forwardedRef) {
+  const {
+    role,
+    wrapperClassName,
+    ...otherProps
+  } = useItem(props);
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)("div", {
+    role: role,
+    className: wrapperClassName,
+    children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(component, {
+      ...otherProps,
+      ref: forwardedRef
+    })
+  });
+}
+
+/**
+ * `Item` is used in combination with `ItemGroup` to display a list of items
+ * grouped and styled together.
+ *
+ * ```jsx
+ * import {
+ *   __experimentalItemGroup as ItemGroup,
+ *   __experimentalItem as Item,
+ * } from '@wordpress/components';
+ *
+ * function Example() {
+ *   return (
+ *     <ItemGroup>
+ *       <Item>Code</Item>
+ *       <Item>is</Item>
+ *       <Item>Poetry</Item>
+ *     </ItemGroup>
+ *   );
+ * }
+ * ```
+ */
+const component_Item = contextConnect(UnconnectedItem, 'Item');
+/* harmony default export */ const item_component = (component_Item);
+
+;// ./packages/components/build-module/item-group/item-group/hook.js
 /**
  * Internal dependencies
  */
@@ -44097,22 +44243,7 @@ function useItemGroup(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/item-group/context.js
-/**
- * WordPress dependencies
- */
-
-
-/**
- * Internal dependencies
- */
-
-const ItemGroupContext = (0,external_wp_element_namespaceObject.createContext)({
-  size: 'medium'
-});
-const useItemGroupContext = () => (0,external_wp_element_namespaceObject.useContext)(ItemGroupContext);
-
-;// CONCATENATED MODULE: ./packages/components/build-module/item-group/item-group/component.js
+;// ./packages/components/build-module/item-group/item-group/component.js
 /**
  * External dependencies
  */
@@ -44174,7 +44305,7 @@ function UnconnectedItemGroup(props, forwardedRef) {
 const ItemGroup = contextConnect(UnconnectedItemGroup, 'ItemGroup');
 /* harmony default export */ const item_group_component = (ItemGroup);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/custom-gradient-picker/gradient-bar/constants.js
+;// ./packages/components/build-module/custom-gradient-picker/gradient-bar/constants.js
 const GRADIENT_MARKERS_WIDTH = 16;
 const INSERT_POINT_WIDTH = 16;
 const MINIMUM_DISTANCE_BETWEEN_INSERTER_AND_POINT = 10;
@@ -44183,7 +44314,7 @@ const MINIMUM_SIGNIFICANT_MOVE = 5;
 const KEYBOARD_CONTROL_POINT_VARIATION = MINIMUM_DISTANCE_BETWEEN_INSERTER_AND_POINT;
 const MINIMUM_DISTANCE_BETWEEN_INSERTER_AND_MARKER = (INSERT_POINT_WIDTH + GRADIENT_MARKERS_WIDTH) / 2;
 
-;// CONCATENATED MODULE: ./packages/components/build-module/custom-gradient-picker/gradient-bar/utils.js
+;// ./packages/components/build-module/custom-gradient-picker/gradient-bar/utils.js
 /**
  * Internal dependencies
  */
@@ -44340,7 +44471,7 @@ function getHorizontalRelativeGradientPosition(mouseXCoordinate, containerElemen
   return Math.round(clampPercent(absolutePositionValue * 100 / width));
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/custom-gradient-picker/gradient-bar/control-points.js
+;// ./packages/components/build-module/custom-gradient-picker/gradient-bar/control-points.js
 /**
  * External dependencies
  */
@@ -44367,8 +44498,6 @@ function getHorizontalRelativeGradientPosition(mouseXCoordinate, containerElemen
 
 
 
-
-
 function ControlPointButton({
   isOpen,
   position,
@@ -44380,7 +44509,7 @@ function ControlPointButton({
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(external_ReactJSXRuntime_namespaceObject.Fragment, {
     children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(build_module_button, {
       "aria-label": (0,external_wp_i18n_namespaceObject.sprintf)(
-      // translators: %1$s: gradient position e.g: 70, %2$s: gradient color code e.g: rgb(52,121,151).
+      // translators: 1: gradient position e.g: 70. 2: gradient color code e.g: rgb(52,121,151).
       (0,external_wp_i18n_namespaceObject.__)('Gradient control point at position %1$s%% with color code %2$s.'), position, color),
       "aria-describedby": descriptionId,
       "aria-haspopup": "true",
@@ -44602,7 +44731,7 @@ function InsertPoint({
 ControlPoints.InsertPoint = InsertPoint;
 /* harmony default export */ const control_points = (ControlPoints);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/custom-gradient-picker/gradient-bar/index.js
+;// ./packages/components/build-module/custom-gradient-picker/gradient-bar/index.js
 /**
  * External dependencies
  */
@@ -44616,7 +44745,6 @@ ControlPoints.InsertPoint = InsertPoint;
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -44771,8 +44899,8 @@ function CustomGradientBar({
 }
 
 // EXTERNAL MODULE: ./node_modules/gradient-parser/build/node.js
-var build_node = __webpack_require__(7115);
-;// CONCATENATED MODULE: ./packages/components/build-module/custom-gradient-picker/constants.js
+var build_node = __webpack_require__(8924);
+;// ./packages/components/build-module/custom-gradient-picker/constants.js
 /**
  * WordPress dependencies
  */
@@ -44805,7 +44933,7 @@ const DIRECTIONAL_ORIENTATION_ANGLE_MAP = {
   'left top': 315
 };
 
-;// CONCATENATED MODULE: ./packages/components/build-module/custom-gradient-picker/serializer.js
+;// ./packages/components/build-module/custom-gradient-picker/serializer.js
 /**
  * External dependencies
  */
@@ -44863,7 +44991,7 @@ function serializeGradient({
   return `${type}(${[serializedOrientation, ...serializedColorStops].filter(Boolean).join(',')})`;
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/custom-gradient-picker/utils.js
+;// ./packages/components/build-module/custom-gradient-picker/utils.js
 /**
  * External dependencies
  */
@@ -44964,7 +45092,7 @@ function getStopCssColor(colorStop) {
   }
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/custom-gradient-picker/styles/custom-gradient-picker-styles.js
+;// ./packages/components/build-module/custom-gradient-picker/styles/custom-gradient-picker-styles.js
 
 function custom_gradient_picker_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -44988,7 +45116,7 @@ const AccessoryWrapper = /*#__PURE__*/emotion_styled_base_browser_esm(flex_block
   styles: "flex-grow:5"
 } : 0);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/custom-gradient-picker/index.js
+;// ./packages/components/build-module/custom-gradient-picker/index.js
 /**
  * External dependencies
  */
@@ -45001,7 +45129,6 @@ const AccessoryWrapper = /*#__PURE__*/emotion_styled_base_browser_esm(flex_block
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -45157,7 +45284,7 @@ function CustomGradientPicker({
 }
 /* harmony default export */ const custom_gradient_picker = (CustomGradientPicker);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/gradient-picker/index.js
+;// ./packages/components/build-module/gradient-picker/index.js
 /**
  * WordPress dependencies
  */
@@ -45168,7 +45295,6 @@ function CustomGradientPicker({
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -45378,7 +45504,7 @@ function GradientPicker({
 }
 /* harmony default export */ const gradient_picker = (GradientPicker);
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/menu.js
+;// ./packages/icons/build-module/library/menu.js
 /**
  * WordPress dependencies
  */
@@ -45393,9 +45519,9 @@ const menu = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(exter
 });
 /* harmony default export */ const library_menu = (menu);
 
-;// CONCATENATED MODULE: external ["wp","dom"]
+;// external ["wp","dom"]
 const external_wp_dom_namespaceObject = window["wp"]["dom"];
-;// CONCATENATED MODULE: ./packages/components/build-module/navigable-container/container.js
+;// ./packages/components/build-module/navigable-container/container.js
 /**
  * External dependencies
  */
@@ -45565,7 +45691,7 @@ const forwardedNavigableContainer = (props, ref) => {
 forwardedNavigableContainer.displayName = 'NavigableContainer';
 /* harmony default export */ const container = ((0,external_wp_element_namespaceObject.forwardRef)(forwardedNavigableContainer));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigable-container/menu.js
+;// ./packages/components/build-module/navigable-container/menu.js
 /**
  * External dependencies
  */
@@ -45650,7 +45776,7 @@ function UnforwardedNavigableMenu({
 const NavigableMenu = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedNavigableMenu);
 /* harmony default export */ const navigable_container_menu = (NavigableMenu);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/dropdown-menu/index.js
+;// ./packages/components/build-module/dropdown-menu/index.js
 /**
  * External dependencies
  */
@@ -45664,7 +45790,6 @@ const NavigableMenu = (0,external_wp_element_namespaceObject.forwardRef)(Unforwa
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -45893,14 +46018,12 @@ function UnconnectedDropdownMenu(dropdownMenuProps) {
 const DropdownMenu = contextConnectWithoutRef(UnconnectedDropdownMenu, 'DropdownMenu');
 /* harmony default export */ const dropdown_menu = (DropdownMenu);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/palette-edit/styles.js
+;// ./packages/components/build-module/palette-edit/styles.js
 
 function palette_edit_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
  * External dependencies
  */
-
-
 
 /**
  * Internal dependencies
@@ -45914,22 +46037,11 @@ function palette_edit_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have
 
 
 const IndicatorStyled = /*#__PURE__*/emotion_styled_base_browser_esm(color_indicator,  true ? {
-  target: "e1lpqc909"
+  target: "e1lpqc908"
 } : 0)("&&{flex-shrink:0;width:", space(6), ";height:", space(6), ";}" + ( true ? "" : 0));
 const NameInputControl = /*#__PURE__*/emotion_styled_base_browser_esm(input_control,  true ? {
-  target: "e1lpqc908"
-} : 0)(Container, "{background:", COLORS.gray[100], ";border-radius:", config_values.radiusXSmall, ";", Input, Input, Input, Input, "{height:", space(8), ";}", BackdropUI, BackdropUI, BackdropUI, "{border-color:transparent;box-shadow:none;}}" + ( true ? "" : 0));
-const buttonStyleReset = ({
-  as
-}) => {
-  if (as === 'button') {
-    return /*#__PURE__*/emotion_react_browser_esm_css("display:flex;align-items:center;width:100%;appearance:none;background:transparent;border:none;border-radius:0;padding:0;cursor:pointer;&:hover{color:", COLORS.theme.accent, ";}" + ( true ? "" : 0),  true ? "" : 0);
-  }
-  return null;
-};
-const PaletteItem = /*#__PURE__*/emotion_styled_base_browser_esm(component,  true ? {
   target: "e1lpqc907"
-} : 0)(buttonStyleReset, " padding-block:3px;padding-inline-start:", space(3), ";border:1px solid ", config_values.surfaceBorderColor, ";border-bottom-color:transparent;font-size:", font('default.fontSize'), ";&:focus-visible{border-color:transparent;box-shadow:0 0 0 var( --wp-admin-border-width-focus ) ", COLORS.theme.accent, ";outline:2px solid transparent;outline-offset:0;}border-top-left-radius:", config_values.radiusSmall, ";border-top-right-radius:", config_values.radiusSmall, ";&+&{border-top-left-radius:0;border-top-right-radius:0;}&:last-child{border-bottom-left-radius:", config_values.radiusSmall, ";border-bottom-right-radius:", config_values.radiusSmall, ";border-bottom-color:", config_values.surfaceBorderColor, ";}&.is-selected+&{border-top-color:transparent;}&.is-selected{border-color:", COLORS.theme.accent, ";}" + ( true ? "" : 0));
+} : 0)(Container, "{background:", COLORS.gray[100], ";border-radius:", config_values.radiusXSmall, ";", Input, Input, Input, Input, "{height:", space(8), ";}", BackdropUI, BackdropUI, BackdropUI, "{border-color:transparent;box-shadow:none;}}" + ( true ? "" : 0));
 const NameContainer = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
   target: "e1lpqc906"
 } : 0)("line-height:", space(8), ";margin-left:", space(2), ";margin-right:", space(2), ";white-space:nowrap;overflow:hidden;" + ( true ? "" : 0));
@@ -45955,7 +46067,7 @@ const RemoveButton = /*#__PURE__*/emotion_styled_base_browser_esm(build_module_b
   target: "e1lpqc900"
 } : 0)("&&{margin-top:", space(1), ";}" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/palette-edit/index.js
+;// ./packages/components/build-module/palette-edit/index.js
 /**
  * External dependencies
  */
@@ -45988,8 +46100,6 @@ const RemoveButton = /*#__PURE__*/emotion_styled_base_browser_esm(build_module_b
 
 
 
-
-
 const DEFAULT_COLOR = '#000';
 function NameInput({
   value,
@@ -46001,6 +46111,28 @@ function NameInput({
     hideLabelFromVision: true,
     value: value,
     onChange: onChange
+  });
+}
+
+/*
+ * Deduplicates the slugs of the provided elements.
+ */
+function deduplicateElementSlugs(elements) {
+  const slugCounts = {};
+  return elements.map(element => {
+    var _newSlug;
+    let newSlug;
+    const {
+      slug
+    } = element;
+    slugCounts[slug] = (slugCounts[slug] || 0) + 1;
+    if (slugCounts[slug] > 1) {
+      newSlug = `${slug}-${slugCounts[slug] - 1}`;
+    }
+    return {
+      ...element,
+      slug: (_newSlug = newSlug) !== null && _newSlug !== void 0 ? _newSlug : slug
+    };
   });
 }
 
@@ -46030,7 +46162,7 @@ function getNameAndSlugForPosition(elements, slugPrefix) {
     return previousValue;
   }, 1);
   return {
-    name: (0,external_wp_i18n_namespaceObject.sprintf)( /* translators: %s: is an id for a custom color */
+    name: (0,external_wp_i18n_namespaceObject.sprintf)(/* translators: %s: is an id for a custom color */
     (0,external_wp_i18n_namespaceObject.__)('Color %s'), position),
     slug: `${slugPrefix}color-${position}`
   };
@@ -46100,9 +46232,9 @@ function palette_edit_Option({
     // Use the custom palette color item as the popover anchor.
     anchor: popoverAnchor
   }), [popoverAnchor, receivedPopoverProps]);
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(PaletteItem, {
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(item_component, {
     ref: setPopoverAnchor,
-    as: "div",
+    size: "small",
     children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(h_stack_component, {
       justify: "flex-start",
       children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(build_module_button, {
@@ -46164,11 +46296,13 @@ function PaletteEditListView({
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     elementsReferenceRef.current = elements;
   }, [elements]);
-  const debounceOnChange = (0,external_wp_compose_namespaceObject.useDebounce)(onChange, 100);
+  const debounceOnChange = (0,external_wp_compose_namespaceObject.useDebounce)(updatedElements => onChange(deduplicateElementSlugs(updatedElements)), 100);
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(v_stack_component, {
     spacing: 3,
     children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(item_group_component, {
       isRounded: true,
+      isBordered: true,
+      isSeparated: true,
       children: elements.map((element, index) => /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(palette_edit_Option, {
         isGradient: isGradient,
         canOnlyChangeValues: canOnlyChangeValues,
@@ -46376,7 +46510,7 @@ function PaletteEdit({
 }
 /* harmony default export */ const palette_edit = (PaletteEdit);
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/close-small.js
+;// ./packages/icons/build-module/library/close-small.js
 /**
  * WordPress dependencies
  */
@@ -46391,7 +46525,7 @@ const closeSmall = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)
 });
 /* harmony default export */ const close_small = (closeSmall);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/combobox-control/styles.js
+;// ./packages/components/build-module/combobox-control/styles.js
 
 /**
  * External dependencies
@@ -46411,7 +46545,7 @@ const InputWrapperFlex = /*#__PURE__*/emotion_styled_base_browser_esm(flex_compo
   target: "evuatpg0"
 } : 0)("height:38px;padding-left:", space(2), ";padding-right:", space(2), ";", deprecatedDefaultSize, ";" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/form-token-field/token-input.js
+;// ./packages/components/build-module/form-token-field/token-input.js
 /**
  * External dependencies
  */
@@ -46482,7 +46616,7 @@ function UnForwardedTokenInput(props, ref) {
 const TokenInput = (0,external_wp_element_namespaceObject.forwardRef)(UnForwardedTokenInput);
 /* harmony default export */ const token_input = (TokenInput);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/form-token-field/suggestions-list.js
+;// ./packages/components/build-module/form-token-field/suggestions-list.js
 /**
  * External dependencies
  */
@@ -46492,10 +46626,10 @@ const TokenInput = (0,external_wp_element_namespaceObject.forwardRef)(UnForwarde
  */
 
 
+
 /**
  * Internal dependencies
  */
-
 
 const handleMouseDown = e => {
   // By preventing default here, we will not lose focus of <input> when clicking a suggestion.
@@ -46552,12 +46686,12 @@ function SuggestionsList({
       suggestionAfterMatch: transformedSuggestion.substring(indexOfMatch + matchText.length)
     };
   };
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)("ul", {
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)("ul", {
     ref: listRef,
     className: "components-form-token-field__suggestions-list",
     id: `components-form-token-suggestions-${instanceId}`,
     role: "listbox",
-    children: suggestions.map((suggestion, index) => {
+    children: [suggestions.map((suggestion, index) => {
       const matchText = computeSuggestionMatch(suggestion);
       const isSelected = index === selectedIndex;
       const isDisabled = typeof suggestion === 'object' && suggestion?.disabled;
@@ -46595,12 +46729,15 @@ function SuggestionsList({
         children: output
       }, key);
       /* eslint-enable jsx-a11y/click-events-have-key-events */
-    })
+    }), suggestions.length === 0 && /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)("li", {
+      className: "components-form-token-field__suggestion is-empty",
+      children: (0,external_wp_i18n_namespaceObject.__)('No items found')
+    })]
   });
 }
 /* harmony default export */ const suggestions_list = (SuggestionsList);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/higher-order/with-focus-outside/index.js
+;// ./packages/components/build-module/higher-order/with-focus-outside/index.js
 /**
  * WordPress dependencies
  */
@@ -46619,7 +46756,7 @@ function SuggestionsList({
   });
 }, 'withFocusOutside'));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/combobox-control/index.js
+;// ./packages/components/build-module/combobox-control/index.js
 /**
  * External dependencies
  */
@@ -46637,7 +46774,6 @@ function SuggestionsList({
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -46864,7 +47000,7 @@ function ComboboxControl(props) {
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     const hasMatchingSuggestions = matchingSuggestions.length > 0;
     if (isExpanded) {
-      const message = hasMatchingSuggestions ? (0,external_wp_i18n_namespaceObject.sprintf)( /* translators: %d: number of results. */
+      const message = hasMatchingSuggestions ? (0,external_wp_i18n_namespaceObject.sprintf)(/* translators: %d: number of results. */
       (0,external_wp_i18n_namespaceObject._n)('%d result found, use up and down arrow keys to navigate.', '%d results found, use up and down arrow keys to navigate.', matchingSuggestions.length), matchingSuggestions.length) : (0,external_wp_i18n_namespaceObject.__)('No results.');
       (0,external_wp_a11y_namespaceObject.speak)(message, 'polite');
     }
@@ -46942,7 +47078,7 @@ function ComboboxControl(props) {
 }
 /* harmony default export */ const combobox_control = (ComboboxControl);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/composite/legacy/index.js
+;// ./packages/components/build-module/composite/legacy/index.js
 /**
  * Composite is a component that may contain navigable items represented by
  * CompositeItem. It's inspired by the WAI-ARIA Composite Role and implements
@@ -47018,8 +47154,11 @@ function proxyComposite(ProxiedComponent, propMap = {}) {
       store,
       ...rest
     } = mapLegacyStatePropsToComponentProps(legacyProps);
-    const props = rest;
-    props.id = (0,external_wp_compose_namespaceObject.useInstanceId)(store, props.baseId, props.id);
+    let props = rest;
+    props = {
+      ...props,
+      id: (0,external_wp_compose_namespaceObject.useInstanceId)(store, props.baseId, props.id)
+    };
     Object.entries(propMap).forEach(([from, to]) => {
       if (props.hasOwnProperty(from)) {
         Object.assign(props, {
@@ -47118,7 +47257,8 @@ function useCompositeState(legacyStateOptions = {}) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/modal/aria-helper.js
+;// ./packages/components/build-module/modal/aria-helper.js
+/* wp:polyfill */
 const LIVE_REGION_ARIA_ROLES = new Set(['alert', 'status', 'log', 'marquee', 'timer']);
 const hiddenElementsByDepth = [];
 
@@ -47158,7 +47298,7 @@ function modalize(modalElement) {
  */
 function elementShouldBeHidden(element) {
   const role = element.getAttribute('role');
-  return !(element.tagName === 'SCRIPT' || element.hasAttribute('aria-hidden') || element.hasAttribute('aria-live') || role && LIVE_REGION_ARIA_ROLES.has(role));
+  return !(element.tagName === 'SCRIPT' || element.hasAttribute('hidden') || element.hasAttribute('aria-hidden') || element.hasAttribute('aria-live') || role && LIVE_REGION_ARIA_ROLES.has(role));
 }
 
 /**
@@ -47174,7 +47314,7 @@ function unmodalize() {
   }
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/modal/use-modal-exit-animation.js
+;// ./packages/components/build-module/modal/use-modal-exit-animation.js
 /**
  * WordPress dependencies
  */
@@ -47243,7 +47383,8 @@ function useModalExitAnimation() {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/modal/index.js
+;// ./packages/components/build-module/modal/index.js
+/* wp:polyfill */
 /**
  * External dependencies
  */
@@ -47269,8 +47410,6 @@ function useModalExitAnimation() {
 
 
 // Used to track and dismiss the prior modal when another opens unless nested.
-
-
 
 const ModalContext = (0,external_wp_element_namespaceObject.createContext)(new Set());
 
@@ -47525,7 +47664,7 @@ function UnforwardedModal(props, forwardedRef) {
       })
     })
   });
-  return (0,external_wp_element_namespaceObject.createPortal)( /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ModalContext.Provider, {
+  return (0,external_wp_element_namespaceObject.createPortal)(/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ModalContext.Provider, {
     value: nestedDismissers,
     children: modal
   }), document.body);
@@ -47565,7 +47704,7 @@ function UnforwardedModal(props, forwardedRef) {
 const Modal = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedModal);
 /* harmony default export */ const modal = (Modal);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/confirm-dialog/styles.js
+;// ./packages/components/build-module/confirm-dialog/styles.js
 function confirm_dialog_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
  * External dependencies
@@ -47585,7 +47724,7 @@ const styles_wrapper =  true ? {
   styles: "&&{z-index:1000001;}"
 } : 0;
 
-;// CONCATENATED MODULE: ./packages/components/build-module/confirm-dialog/component.js
+;// ./packages/components/build-module/confirm-dialog/component.js
 /**
  * WordPress dependencies
  */
@@ -47595,8 +47734,6 @@ const styles_wrapper =  true ? {
 /**
  * Internal dependencies
  */
-
-
 
 
 
@@ -47753,7 +47890,7 @@ const UnconnectedConfirmDialog = (props, forwardedRef) => {
 const ConfirmDialog = contextConnect(UnconnectedConfirmDialog, 'ConfirmDialog');
 /* harmony default export */ const confirm_dialog_component = (ConfirmDialog);
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/DWZ7E5TJ.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/DWZ7E5TJ.js
 "use client";
 
 
@@ -47780,7 +47917,7 @@ var ComboboxItemCheckedContext = (0,external_React_.createContext)(false);
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/select/select-store.js
+;// ./node_modules/@ariakit/core/esm/select/select-store.js
 "use client";
 
 
@@ -47923,7 +48060,7 @@ function createSelectStore(_a = {}) {
 }
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/X5LAA6JI.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/X5LAA6JI.js
 "use client";
 
 
@@ -47958,7 +48095,7 @@ function useSelectStore(props = {}) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/KZ2S4ZC5.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/KZ2S4ZC5.js
 "use client";
 
 
@@ -47980,7 +48117,7 @@ var SelectHeadingContext = (0,external_React_.createContext)(null);
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/select/select-label.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/select/select-label.js
 "use client";
 
 
@@ -48035,7 +48172,7 @@ var SelectLabel = memo2(
 );
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/3R3N43YO.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/3R3N43YO.js
 "use client";
 
 
@@ -48073,7 +48210,7 @@ var _3R3N43YO_Button = forwardRef2(function Button2(props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/O3TNZQBF.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/O3TNZQBF.js
 "use client";
 
 
@@ -48137,7 +48274,7 @@ var Disclosure = forwardRef2(function Disclosure2(props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/KCVNYWKF.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/KCVNYWKF.js
 "use client";
 
 
@@ -48172,7 +48309,7 @@ var DialogDisclosure = forwardRef2(function DialogDisclosure2(props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/74NFH3UH.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/74NFH3UH.js
 "use client";
 
 
@@ -48199,7 +48336,7 @@ var PopoverAnchor = forwardRef2(function PopoverAnchor2(props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/IZAFJHVY.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/IZAFJHVY.js
 "use client";
 
 
@@ -48244,7 +48381,7 @@ var PopoverDisclosure = forwardRef2(function PopoverDisclosure2(props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/CAGM4AEJ.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/CAGM4AEJ.js
 "use client";
 
 
@@ -48311,7 +48448,7 @@ var PopoverDisclosureArrow = forwardRef2(
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/2UJDTHC7.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/2UJDTHC7.js
 "use client";
 
 
@@ -48336,7 +48473,7 @@ var SelectArrow = forwardRef2(function SelectArrow2(props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/DS36B3MQ.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/DS36B3MQ.js
 "use client";
 
 
@@ -48440,7 +48577,7 @@ var DS36B3MQ_CompositeTypeahead = forwardRef2(function CompositeTypeahead2(props
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/select/select.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/select/select.js
 "use client";
 
 
@@ -48678,7 +48815,7 @@ var select_Select = forwardRef2(function Select2(props) {
 });
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/KHUR3XXK.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/KHUR3XXK.js
 "use client";
 
 
@@ -48806,7 +48943,7 @@ var SelectList = forwardRef2(function SelectList2(props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/select/select-popover.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/select/select-popover.js
 "use client";
 
 
@@ -48874,7 +49011,7 @@ var SelectPopover = createDialogComponent(
 );
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/OBZMLI6J.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/OBZMLI6J.js
 "use client";
 
 
@@ -48977,7 +49114,7 @@ var OBZMLI6J_CompositeHover = memo2(
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/select/select-item.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/select/select-item.js
 "use client";
 
 
@@ -49133,7 +49270,7 @@ var SelectItem = memo2(
 );
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/EYKMH5G5.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/EYKMH5G5.js
 "use client";
 
 // src/checkbox/checkbox-checked-context.tsx
@@ -49142,7 +49279,7 @@ var CheckboxCheckedContext = (0,external_React_.createContext)(false);
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/RPLYUYNN.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/RPLYUYNN.js
 "use client";
 
 
@@ -49203,7 +49340,7 @@ var CheckboxCheck = forwardRef2(function CheckboxCheck2(props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/select/select-item-check.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/select/select-item-check.js
 "use client";
 
 
@@ -49236,7 +49373,7 @@ var SelectItemCheck = forwardRef2(function SelectItemCheck2(props) {
 });
 
 
-;// CONCATENATED MODULE: ./packages/components/build-module/custom-select-control-v2/styles.js
+;// ./packages/components/build-module/custom-select-control-v2/styles.js
 
 function custom_select_control_v2_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -49349,7 +49486,7 @@ const SelectedItemCheck = /*#__PURE__*/emotion_styled_base_browser_esm(SelectIte
   target: "e1p3eej70"
 } : 0)("display:flex;align-items:center;margin-inline-start:", space(2), ";align-self:start;margin-block-start:2px;font-size:0;", WithHintItemWrapper, "~&,&:not(:empty){font-size:24px;}" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/custom-select-control-v2/custom-select.js
+;// ./packages/components/build-module/custom-select-control-v2/custom-select.js
 /**
  * External dependencies
  */
@@ -49365,7 +49502,6 @@ const SelectedItemCheck = /*#__PURE__*/emotion_styled_base_browser_esm(SelectIte
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -49471,7 +49607,7 @@ function _CustomSelect(props) {
 }
 /* harmony default export */ const custom_select = (_CustomSelect);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/custom-select-control-v2/item.js
+;// ./packages/components/build-module/custom-select-control-v2/item.js
 /**
  * WordPress dependencies
  */
@@ -49480,7 +49616,6 @@ function _CustomSelect(props) {
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -49505,7 +49640,7 @@ function CustomSelectItem({
 CustomSelectItem.displayName = 'CustomSelectControlV2.Item';
 /* harmony default export */ const custom_select_control_v2_item = (CustomSelectItem);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/custom-select-control/index.js
+;// ./packages/components/build-module/custom-select-control/index.js
 /**
  * External dependencies
  */
@@ -49521,8 +49656,6 @@ CustomSelectItem.displayName = 'CustomSelectControlV2.Item';
 /**
  * Internal dependencies
  */
-
-
 
 
 
@@ -49674,7 +49807,7 @@ function CustomSelectControl(props) {
 }
 /* harmony default export */ const custom_select_control = (CustomSelectControl);
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/toDate.mjs
+;// ./node_modules/date-fns/toDate.mjs
 /**
  * @name toDate
  * @category Common Helpers
@@ -49734,7 +49867,7 @@ function toDate(argument) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_toDate = ((/* unused pure expression or super */ null && (toDate)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/startOfDay.mjs
+;// ./node_modules/date-fns/startOfDay.mjs
 
 
 /**
@@ -49766,7 +49899,7 @@ function startOfDay(date) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_startOfDay = ((/* unused pure expression or super */ null && (startOfDay)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/constructFrom.mjs
+;// ./node_modules/date-fns/constructFrom.mjs
 /**
  * @name constructFrom
  * @category Generic Helpers
@@ -49808,7 +49941,7 @@ function constructFrom(date, value) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_constructFrom = ((/* unused pure expression or super */ null && (constructFrom)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/addMonths.mjs
+;// ./node_modules/date-fns/addMonths.mjs
 
 
 
@@ -49880,7 +50013,7 @@ function addMonths(date, amount) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_addMonths = ((/* unused pure expression or super */ null && (addMonths)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/subMonths.mjs
+;// ./node_modules/date-fns/subMonths.mjs
 
 
 /**
@@ -49910,7 +50043,7 @@ function subMonths(date, amount) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_subMonths = ((/* unused pure expression or super */ null && (subMonths)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/locale/en-US/_lib/formatDistance.mjs
+;// ./node_modules/date-fns/locale/en-US/_lib/formatDistance.mjs
 const formatDistanceLocale = {
   lessThanXSeconds: {
     one: "less than a second",
@@ -50013,7 +50146,7 @@ const formatDistance = (token, count, options) => {
   return result;
 };
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/locale/_lib/buildFormatLongFn.mjs
+;// ./node_modules/date-fns/locale/_lib/buildFormatLongFn.mjs
 function buildFormatLongFn(args) {
   return (options = {}) => {
     // TODO: Remove String()
@@ -50023,7 +50156,7 @@ function buildFormatLongFn(args) {
   };
 }
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/locale/en-US/_lib/formatLong.mjs
+;// ./node_modules/date-fns/locale/en-US/_lib/formatLong.mjs
 
 
 const dateFormats = {
@@ -50064,7 +50197,7 @@ const formatLong = {
   }),
 };
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/locale/en-US/_lib/formatRelative.mjs
+;// ./node_modules/date-fns/locale/en-US/_lib/formatRelative.mjs
 const formatRelativeLocale = {
   lastWeek: "'last' eeee 'at' p",
   yesterday: "'yesterday at' p",
@@ -50077,7 +50210,7 @@ const formatRelativeLocale = {
 const formatRelative = (token, _date, _baseDate, _options) =>
   formatRelativeLocale[token];
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/locale/_lib/buildLocalizeFn.mjs
+;// ./node_modules/date-fns/locale/_lib/buildLocalizeFn.mjs
 /* eslint-disable no-unused-vars */
 
 /**
@@ -50143,7 +50276,7 @@ function buildLocalizeFn(args) {
   };
 }
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/locale/en-US/_lib/localize.mjs
+;// ./node_modules/date-fns/locale/en-US/_lib/localize.mjs
 
 
 const eraValues = {
@@ -50332,7 +50465,7 @@ const localize = {
   }),
 };
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/locale/_lib/buildMatchFn.mjs
+;// ./node_modules/date-fns/locale/_lib/buildMatchFn.mjs
 function buildMatchFn(args) {
   return (string, options = {}) => {
     const width = options.width;
@@ -50391,7 +50524,7 @@ function findIndex(array, predicate) {
   return undefined;
 }
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/locale/_lib/buildMatchPatternFn.mjs
+;// ./node_modules/date-fns/locale/_lib/buildMatchPatternFn.mjs
 function buildMatchPatternFn(args) {
   return (string, options = {}) => {
     const matchResult = string.match(args.matchPattern);
@@ -50413,7 +50546,7 @@ function buildMatchPatternFn(args) {
   };
 }
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/locale/en-US/_lib/match.mjs
+;// ./node_modules/date-fns/locale/en-US/_lib/match.mjs
 
 
 
@@ -50547,7 +50680,7 @@ const match_match = {
   }),
 };
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/locale/en-US.mjs
+;// ./node_modules/date-fns/locale/en-US.mjs
 
 
 
@@ -50578,7 +50711,7 @@ const enUS = {
 // Fallback for modularized imports:
 /* harmony default export */ const en_US = ((/* unused pure expression or super */ null && (enUS)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/_lib/defaultOptions.mjs
+;// ./node_modules/date-fns/_lib/defaultOptions.mjs
 let defaultOptions_defaultOptions = {};
 
 function getDefaultOptions() {
@@ -50589,7 +50722,7 @@ function setDefaultOptions(newOptions) {
   defaultOptions_defaultOptions = newOptions;
 }
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/constants.mjs
+;// ./node_modules/date-fns/constants.mjs
 /**
  * @module constants
  * @summary Useful constants
@@ -50794,7 +50927,7 @@ const secondsInMonth = secondsInYear / 12;
  */
 const secondsInQuarter = secondsInMonth * 3;
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/_lib/getTimezoneOffsetInMilliseconds.mjs
+;// ./node_modules/date-fns/_lib/getTimezoneOffsetInMilliseconds.mjs
 
 
 /**
@@ -50825,7 +50958,7 @@ function getTimezoneOffsetInMilliseconds(date) {
   return +date - +utcDate;
 }
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/differenceInCalendarDays.mjs
+;// ./node_modules/date-fns/differenceInCalendarDays.mjs
 
 
 
@@ -50880,7 +51013,7 @@ function differenceInCalendarDays(dateLeft, dateRight) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_differenceInCalendarDays = ((/* unused pure expression or super */ null && (differenceInCalendarDays)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/startOfYear.mjs
+;// ./node_modules/date-fns/startOfYear.mjs
 
 
 
@@ -50915,7 +51048,7 @@ function startOfYear(date) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_startOfYear = ((/* unused pure expression or super */ null && (startOfYear)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/getDayOfYear.mjs
+;// ./node_modules/date-fns/getDayOfYear.mjs
 
 
 
@@ -50949,7 +51082,7 @@ function getDayOfYear(date) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_getDayOfYear = ((/* unused pure expression or super */ null && (getDayOfYear)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/startOfWeek.mjs
+;// ./node_modules/date-fns/startOfWeek.mjs
 
 
 
@@ -51004,7 +51137,7 @@ function startOfWeek(date, options) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_startOfWeek = ((/* unused pure expression or super */ null && (startOfWeek)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/startOfISOWeek.mjs
+;// ./node_modules/date-fns/startOfISOWeek.mjs
 
 
 /**
@@ -51036,7 +51169,7 @@ function startOfISOWeek(date) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_startOfISOWeek = ((/* unused pure expression or super */ null && (startOfISOWeek)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/getISOWeekYear.mjs
+;// ./node_modules/date-fns/getISOWeekYear.mjs
 
 
 
@@ -51089,7 +51222,7 @@ function getISOWeekYear(date) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_getISOWeekYear = ((/* unused pure expression or super */ null && (getISOWeekYear)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/startOfISOWeekYear.mjs
+;// ./node_modules/date-fns/startOfISOWeekYear.mjs
 
 
 
@@ -51128,7 +51261,7 @@ function startOfISOWeekYear(date) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_startOfISOWeekYear = ((/* unused pure expression or super */ null && (startOfISOWeekYear)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/getISOWeek.mjs
+;// ./node_modules/date-fns/getISOWeek.mjs
 
 
 
@@ -51168,7 +51301,7 @@ function getISOWeek(date) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_getISOWeek = ((/* unused pure expression or super */ null && (getISOWeek)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/getWeekYear.mjs
+;// ./node_modules/date-fns/getWeekYear.mjs
 
 
 
@@ -51248,7 +51381,7 @@ function getWeekYear(date, options) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_getWeekYear = ((/* unused pure expression or super */ null && (getWeekYear)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/startOfWeekYear.mjs
+;// ./node_modules/date-fns/startOfWeekYear.mjs
 
 
 
@@ -51314,7 +51447,7 @@ function startOfWeekYear(date, options) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_startOfWeekYear = ((/* unused pure expression or super */ null && (startOfWeekYear)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/getWeek.mjs
+;// ./node_modules/date-fns/getWeek.mjs
 
 
 
@@ -51374,14 +51507,14 @@ function getWeek(date, options) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_getWeek = ((/* unused pure expression or super */ null && (getWeek)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/_lib/addLeadingZeros.mjs
+;// ./node_modules/date-fns/_lib/addLeadingZeros.mjs
 function addLeadingZeros(number, targetLength) {
   const sign = number < 0 ? "-" : "";
   const output = Math.abs(number).toString().padStart(targetLength, "0");
   return sign + output;
 }
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/_lib/format/lightFormatters.mjs
+;// ./node_modules/date-fns/_lib/format/lightFormatters.mjs
 
 
 /*
@@ -51475,7 +51608,7 @@ const lightFormatters = {
   },
 };
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/_lib/format/formatters.mjs
+;// ./node_modules/date-fns/_lib/format/formatters.mjs
 
 
 
@@ -52253,7 +52386,7 @@ function formatTimezone(offset, delimiter = "") {
   return sign + hours + delimiter + minutes;
 }
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/_lib/format/longFormatters.mjs
+;// ./node_modules/date-fns/_lib/format/longFormatters.mjs
 const dateLongFormatter = (pattern, formatLong) => {
   switch (pattern) {
     case "P":
@@ -52319,7 +52452,7 @@ const longFormatters = {
   P: dateTimeLongFormatter,
 };
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/_lib/protectedTokens.mjs
+;// ./node_modules/date-fns/_lib/protectedTokens.mjs
 const dayOfYearTokenRE = /^D+$/;
 const weekYearTokenRE = /^Y+$/;
 
@@ -52344,7 +52477,7 @@ function message(token, format, input) {
   return `Use \`${token.toLowerCase()}\` instead of \`${token}\` (in \`${format}\`) for formatting ${subject} to the input \`${input}\`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md`;
 }
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/isDate.mjs
+;// ./node_modules/date-fns/isDate.mjs
 /**
  * @name isDate
  * @category Common Helpers
@@ -52388,7 +52521,7 @@ function isDate(value) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_isDate = ((/* unused pure expression or super */ null && (isDate)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/isValid.mjs
+;// ./node_modules/date-fns/isValid.mjs
 
 
 
@@ -52436,7 +52569,7 @@ function isValid(date) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_isValid = ((/* unused pure expression or super */ null && (isValid)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/format.mjs
+;// ./node_modules/date-fns/format.mjs
 
 
 
@@ -52870,7 +53003,7 @@ function cleanEscapedString(input) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_format = ((/* unused pure expression or super */ null && (format)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/isSameMonth.mjs
+;// ./node_modules/date-fns/isSameMonth.mjs
 
 
 /**
@@ -52910,7 +53043,7 @@ function isSameMonth(dateLeft, dateRight) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_isSameMonth = ((/* unused pure expression or super */ null && (isSameMonth)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/isEqual.mjs
+;// ./node_modules/date-fns/isEqual.mjs
 
 
 /**
@@ -52945,7 +53078,7 @@ function isEqual(leftDate, rightDate) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_isEqual = ((/* unused pure expression or super */ null && (isEqual)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/isSameDay.mjs
+;// ./node_modules/date-fns/isSameDay.mjs
 
 
 /**
@@ -52988,7 +53121,7 @@ function isSameDay(dateLeft, dateRight) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_isSameDay = ((/* unused pure expression or super */ null && (isSameDay)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/addDays.mjs
+;// ./node_modules/date-fns/addDays.mjs
 
 
 
@@ -53026,7 +53159,7 @@ function addDays(date, amount) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_addDays = ((/* unused pure expression or super */ null && (addDays)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/addWeeks.mjs
+;// ./node_modules/date-fns/addWeeks.mjs
 
 
 /**
@@ -53057,7 +53190,7 @@ function addWeeks(date, amount) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_addWeeks = ((/* unused pure expression or super */ null && (addWeeks)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/subWeeks.mjs
+;// ./node_modules/date-fns/subWeeks.mjs
 
 
 /**
@@ -53087,7 +53220,7 @@ function subWeeks(date, amount) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_subWeeks = ((/* unused pure expression or super */ null && (subWeeks)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/endOfWeek.mjs
+;// ./node_modules/date-fns/endOfWeek.mjs
 
 
 
@@ -53142,7 +53275,7 @@ function endOfWeek(date, options) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_endOfWeek = ((/* unused pure expression or super */ null && (endOfWeek)));
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/arrow-right.js
+;// ./packages/icons/build-module/library/arrow-right.js
 /**
  * WordPress dependencies
  */
@@ -53157,7 +53290,7 @@ const arrowRight = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)
 });
 /* harmony default export */ const arrow_right = (arrowRight);
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/arrow-left.js
+;// ./packages/icons/build-module/library/arrow-left.js
 /**
  * WordPress dependencies
  */
@@ -53172,9 +53305,9 @@ const arrowLeft = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(
 });
 /* harmony default export */ const arrow_left = (arrowLeft);
 
-;// CONCATENATED MODULE: external ["wp","date"]
+;// external ["wp","date"]
 const external_wp_date_namespaceObject = window["wp"]["date"];
-;// CONCATENATED MODULE: ./node_modules/date-fns/isAfter.mjs
+;// ./node_modules/date-fns/isAfter.mjs
 
 
 /**
@@ -53206,7 +53339,7 @@ function isAfter(date, dateToCompare) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_isAfter = ((/* unused pure expression or super */ null && (isAfter)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/isBefore.mjs
+;// ./node_modules/date-fns/isBefore.mjs
 
 
 /**
@@ -53238,7 +53371,7 @@ function isBefore(date, dateToCompare) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_isBefore = ((/* unused pure expression or super */ null && (isBefore)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/getDaysInMonth.mjs
+;// ./node_modules/date-fns/getDaysInMonth.mjs
 
 
 
@@ -53274,7 +53407,7 @@ function getDaysInMonth(date) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_getDaysInMonth = ((/* unused pure expression or super */ null && (getDaysInMonth)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/setMonth.mjs
+;// ./node_modules/date-fns/setMonth.mjs
 
 
 
@@ -53317,7 +53450,7 @@ function setMonth(date, month) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_setMonth = ((/* unused pure expression or super */ null && (setMonth)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/set.mjs
+;// ./node_modules/date-fns/set.mjs
 
 
 
@@ -53397,7 +53530,7 @@ function set(date, values) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_set = ((/* unused pure expression or super */ null && (set)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/startOfToday.mjs
+;// ./node_modules/date-fns/startOfToday.mjs
 
 
 /**
@@ -53423,7 +53556,7 @@ function startOfToday() {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_startOfToday = ((/* unused pure expression or super */ null && (startOfToday)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/setYear.mjs
+;// ./node_modules/date-fns/setYear.mjs
 
 
 
@@ -53462,7 +53595,7 @@ function setYear(date, year) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_setYear = ((/* unused pure expression or super */ null && (setYear)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/addYears.mjs
+;// ./node_modules/date-fns/addYears.mjs
 
 
 /**
@@ -53492,7 +53625,7 @@ function addYears(date, amount) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_addYears = ((/* unused pure expression or super */ null && (addYears)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/subYears.mjs
+;// ./node_modules/date-fns/subYears.mjs
 
 
 /**
@@ -53522,7 +53655,7 @@ function subYears(date, amount) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_subYears = ((/* unused pure expression or super */ null && (subYears)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/eachDayOfInterval.mjs
+;// ./node_modules/date-fns/eachDayOfInterval.mjs
 
 
 /**
@@ -53588,7 +53721,7 @@ function eachDayOfInterval(interval, options) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_eachDayOfInterval = ((/* unused pure expression or super */ null && (eachDayOfInterval)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/eachMonthOfInterval.mjs
+;// ./node_modules/date-fns/eachMonthOfInterval.mjs
 
 
 /**
@@ -53655,7 +53788,7 @@ function eachMonthOfInterval(interval, options) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_eachMonthOfInterval = ((/* unused pure expression or super */ null && (eachMonthOfInterval)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/startOfMonth.mjs
+;// ./node_modules/date-fns/startOfMonth.mjs
 
 
 /**
@@ -53688,7 +53821,7 @@ function startOfMonth(date) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_startOfMonth = ((/* unused pure expression or super */ null && (startOfMonth)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/endOfMonth.mjs
+;// ./node_modules/date-fns/endOfMonth.mjs
 
 
 /**
@@ -53722,7 +53855,7 @@ function endOfMonth(date) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_endOfMonth = ((/* unused pure expression or super */ null && (endOfMonth)));
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/eachWeekOfInterval.mjs
+;// ./node_modules/date-fns/eachWeekOfInterval.mjs
 
 
 
@@ -53804,7 +53937,7 @@ function eachWeekOfInterval(interval, options) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_eachWeekOfInterval = ((/* unused pure expression or super */ null && (eachWeekOfInterval)));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/date-time/date/use-lilius/index.js
+;// ./packages/components/build-module/date-time/date/use-lilius/index.js
 /**
  * This source is a local copy of the use-lilius library, since the original
  * library is not actively maintained.
@@ -53963,7 +54096,7 @@ const useLilius = ({
   };
 };
 
-;// CONCATENATED MODULE: ./packages/components/build-module/date-time/date/styles.js
+;// ./packages/components/build-module/date-time/date/styles.js
 
 /**
  * External dependencies
@@ -54036,7 +54169,7 @@ const DayButton = /*#__PURE__*/emotion_styled_base_browser_esm(build_module_butt
 		}
 		`, ";" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/date-time/utils.js
+;// ./packages/components/build-module/date-time/utils.js
 /**
  * External dependencies
  */
@@ -54116,10 +54249,10 @@ function validateInputElementTarget(event) {
   return event.target.validity.valid;
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/date-time/constants.js
+;// ./packages/components/build-module/date-time/constants.js
 const TIMEZONELESS_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
 
-;// CONCATENATED MODULE: ./packages/components/build-module/date-time/date/index.js
+;// ./packages/components/build-module/date-time/date/index.js
 /**
  * External dependencies
  */
@@ -54160,7 +54293,6 @@ const TIMEZONELESS_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
  * };
  * ```
  */
-
 
 function DatePicker({
   currentDate,
@@ -54321,7 +54453,6 @@ function date_Day({
     }
     // isFocusAllowed is not a dep as there is no point calling focus() on
     // an already focused element.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFocusable]);
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(DayButton, {
     ref: ref,
@@ -54361,7 +54492,7 @@ function getDayLabel(date, isSelected, numEvents) {
 }
 /* harmony default export */ const date = (DatePicker);
 
-;// CONCATENATED MODULE: ./node_modules/date-fns/startOfMinute.mjs
+;// ./node_modules/date-fns/startOfMinute.mjs
 
 
 /**
@@ -54393,7 +54524,7 @@ function startOfMinute(date) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_startOfMinute = ((/* unused pure expression or super */ null && (startOfMinute)));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/date-time/time/styles.js
+;// ./packages/components/build-module/date-time/time/styles.js
 
 function time_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -54453,7 +54584,7 @@ const TimeZone = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
   styles: "text-decoration:underline dotted"
 } : 0);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/date-time/time/timezone.js
+;// ./packages/components/build-module/date-time/time/timezone.js
 /**
  * WordPress dependencies
  */
@@ -54508,7 +54639,7 @@ const timezone_TimeZone = () => {
 };
 /* harmony default export */ const timezone = (timezone_TimeZone);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/toggle-group-control/toggle-group-control-option/component.js
+;// ./packages/components/build-module/toggle-group-control/toggle-group-control-option/component.js
 /**
  * External dependencies
  */
@@ -54566,7 +54697,7 @@ function UnforwardedToggleGroupControlOption(props, ref) {
 const ToggleGroupControlOption = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedToggleGroupControlOption);
 /* harmony default export */ const toggle_group_control_option_component = (ToggleGroupControlOption);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/date-time/time/time-input/index.js
+;// ./packages/components/build-module/date-time/time/time-input/index.js
 /**
  * External dependencies
  */
@@ -54581,7 +54712,6 @@ const ToggleGroupControlOption = (0,external_wp_element_namespaceObject.forwardR
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -54716,7 +54846,7 @@ function TimeInput({
 }
 /* harmony default export */ const time_input = ((/* unused pure expression or super */ null && (TimeInput)));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/date-time/time/index.js
+;// ./packages/components/build-module/date-time/time/index.js
 /**
  * External dependencies
  */
@@ -54731,7 +54861,6 @@ function TimeInput({
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -54997,7 +55126,7 @@ Object.assign(TimePicker.TimeInput, {
 });
 /* harmony default export */ const date_time_time = (TimePicker);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/date-time/date-time/styles.js
+;// ./packages/components/build-module/date-time/date-time/styles.js
 
 function date_time_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -55015,7 +55144,7 @@ const date_time_styles_Wrapper = /*#__PURE__*/emotion_styled_base_browser_esm(v_
   styles: "box-sizing:border-box"
 } : 0);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/date-time/date-time/index.js
+;// ./packages/components/build-module/date-time/date-time/index.js
 /**
  * External dependencies
  */
@@ -55028,8 +55157,6 @@ const date_time_styles_Wrapper = /*#__PURE__*/emotion_styled_base_browser_esm(v_
 /**
  * Internal dependencies
  */
-
-
 
 
 
@@ -55093,7 +55220,7 @@ function UnforwardedDateTimePicker({
 const DateTimePicker = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedDateTimePicker);
 /* harmony default export */ const date_time = (DateTimePicker);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/date-time/index.js
+;// ./packages/components/build-module/date-time/index.js
 /**
  * Internal dependencies
  */
@@ -55103,7 +55230,7 @@ const DateTimePicker = (0,external_wp_element_namespaceObject.forwardRef)(Unforw
 
 /* harmony default export */ const build_module_date_time = (date_time);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/dimension-control/sizes.js
+;// ./packages/components/build-module/dimension-control/sizes.js
 /**
  * Sizes
  *
@@ -55147,7 +55274,7 @@ const findSizeBySlug = (sizes, slug) => sizes.find(size => slug === size.slug);
   slug: 'xlarge'
 }]);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/dimension-control/index.js
+;// ./packages/components/build-module/dimension-control/index.js
 /**
  * External dependencies
  */
@@ -55161,8 +55288,6 @@ const findSizeBySlug = (sizes, slug) => sizes.find(size => slug === size.slug);
 /**
  * Internal dependencies
  */
-
-
 
 
 
@@ -55260,7 +55385,7 @@ function DimensionControl(props) {
 }
 /* harmony default export */ const dimension_control = (DimensionControl);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/disabled/styles/disabled-styles.js
+;// ./packages/components/build-module/disabled/styles/disabled-styles.js
 function disabled_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
  * External dependencies
@@ -55271,7 +55396,7 @@ const disabled_styles_disabledStyles =  true ? {
   styles: "position:relative;pointer-events:none;&::after{content:'';position:absolute;top:0;right:0;bottom:0;left:0;}*{pointer-events:none;}"
 } : 0;
 
-;// CONCATENATED MODULE: ./packages/components/build-module/disabled/index.js
+;// ./packages/components/build-module/disabled/index.js
 /**
  * WordPress dependencies
  */
@@ -55348,7 +55473,7 @@ Disabled.Context = Context;
 Disabled.Consumer = Consumer;
 /* harmony default export */ const disabled = (Disabled);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/disclosure/index.js
+;// ./packages/components/build-module/disclosure/index.js
 /**
  * External dependencies
  */
@@ -55385,7 +55510,7 @@ const UnforwardedDisclosureContent = ({
 const disclosure_DisclosureContent = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedDisclosureContent);
 /* harmony default export */ const disclosure = ((/* unused pure expression or super */ null && (disclosure_DisclosureContent)));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/draggable/index.js
+;// ./packages/components/build-module/draggable/index.js
 /**
  * External dependencies
  */
@@ -55399,8 +55524,6 @@ const disclosure_DisclosureContent = (0,external_wp_element_namespaceObject.forw
 /**
  * Internal dependencies
  */
-
-
 
 const dragImageClass = 'components-draggable__invisible-drag-image';
 const cloneWrapperClass = 'components-draggable__clone';
@@ -55615,7 +55738,7 @@ function Draggable({
 }
 /* harmony default export */ const draggable = (Draggable);
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/upload.js
+;// ./packages/icons/build-module/library/upload.js
 /**
  * WordPress dependencies
  */
@@ -55630,7 +55753,7 @@ const upload = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ext
 });
 /* harmony default export */ const library_upload = (upload);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/drop-zone/index.js
+;// ./packages/components/build-module/drop-zone/index.js
 /**
  * External dependencies
  */
@@ -55648,7 +55771,6 @@ const upload = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ext
 /**
  * Internal dependencies
  */
-
 
 /**
  * `DropZone` is a component creating a drop zone area taking the full size of its parent element. It supports dropping files, HTML content or any other HTML drop event.
@@ -55720,6 +55842,7 @@ function DropZoneComponent({
       setType(_type);
     },
     onDragEnd() {
+      setIsDraggingOverElement(false);
       setIsDraggingOverDocument(false);
       setType(undefined);
     },
@@ -55732,8 +55855,6 @@ function DropZoneComponent({
   });
   const classes = dist_clsx('components-drop-zone', className, {
     'is-active': (isDraggingOverDocument || isDraggingOverElement) && (type === 'file' && onFilesDrop || type === 'html' && onHTMLDrop || type === 'default' && onDrop),
-    'has-dragged-out': !isDraggingOverElement,
-    // Keeping the following classnames for legacy purposes
     'is-dragging-over-document': isDraggingOverDocument,
     'is-dragging-over-element': isDraggingOverElement,
     [`is-dragging-${type}`]: !!type
@@ -55759,7 +55880,7 @@ function DropZoneComponent({
 }
 /* harmony default export */ const drop_zone = (DropZoneComponent);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/drop-zone/provider.js
+;// ./packages/components/build-module/drop-zone/provider.js
 /**
  * WordPress dependencies
  */
@@ -55774,7 +55895,7 @@ function DropZoneProvider({
   return children;
 }
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/swatch.js
+;// ./packages/icons/build-module/library/swatch.js
 /**
  * WordPress dependencies
  */
@@ -55789,7 +55910,7 @@ const swatch = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ext
 });
 /* harmony default export */ const library_swatch = (swatch);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/duotone-picker/utils.js
+;// ./packages/components/build-module/duotone-picker/utils.js
 /**
  * External dependencies
  */
@@ -55882,7 +56003,7 @@ function getColorsFromColorStops(colorStops = []) {
   }) => color);
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/duotone-picker/duotone-swatch.js
+;// ./packages/components/build-module/duotone-picker/duotone-swatch.js
 /**
  * WordPress dependencies
  */
@@ -55906,7 +56027,7 @@ function DuotoneSwatch({
 }
 /* harmony default export */ const duotone_swatch = (DuotoneSwatch);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/duotone-picker/color-list-picker/index.js
+;// ./packages/components/build-module/duotone-picker/color-list-picker/index.js
 /**
  * WordPress dependencies
  */
@@ -55917,8 +56038,6 @@ function DuotoneSwatch({
 /**
  * Internal dependencies
  */
-
-
 
 
 
@@ -56001,7 +56120,7 @@ function ColorListPicker({
 }
 /* harmony default export */ const color_list_picker = (ColorListPicker);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/duotone-picker/custom-duotone-bar.js
+;// ./packages/components/build-module/duotone-picker/custom-duotone-bar.js
 /**
  * Internal dependencies
  */
@@ -56029,7 +56148,7 @@ function CustomDuotoneBar({
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/duotone-picker/duotone-picker.js
+;// ./packages/components/build-module/duotone-picker/duotone-picker.js
 /**
  * External dependencies
  */
@@ -56044,7 +56163,6 @@ function CustomDuotoneBar({
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -56209,7 +56327,8 @@ function DuotonePicker({
 }
 /* harmony default export */ const duotone_picker = (DuotonePicker);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/external-link/index.js
+;// ./packages/components/build-module/external-link/index.js
+/* wp:polyfill */
 /**
  * External dependencies
  */
@@ -56223,7 +56342,6 @@ function DuotonePicker({
 /**
  * Internal dependencies
  */
-
 
 function UnforwardedExternalLink(props, ref) {
   const {
@@ -56247,29 +56365,25 @@ function UnforwardedExternalLink(props, ref) {
       props.onClick(event);
     }
   };
-  return (
-    /*#__PURE__*/
-    /* eslint-disable react/jsx-no-target-blank */
-    (0,external_ReactJSXRuntime_namespaceObject.jsxs)("a", {
-      ...additionalProps,
-      className: classes,
-      href: href,
-      onClick: onClickHandler,
-      target: "_blank",
-      rel: optimizedRel,
-      ref: ref,
-      children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)("span", {
-        className: "components-external-link__contents",
-        children: children
-      }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)("span", {
-        className: "components-external-link__icon",
-        "aria-label": /* translators: accessibility text */
-        (0,external_wp_i18n_namespaceObject.__)('(opens in a new tab)'),
-        children: "\u2197"
-      })]
-    })
-    /* eslint-enable react/jsx-no-target-blank */
-  );
+  return /*#__PURE__*/ /* eslint-disable react/jsx-no-target-blank */(0,external_ReactJSXRuntime_namespaceObject.jsxs)("a", {
+    ...additionalProps,
+    className: classes,
+    href: href,
+    onClick: onClickHandler,
+    target: "_blank",
+    rel: optimizedRel,
+    ref: ref,
+    children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)("span", {
+      className: "components-external-link__contents",
+      children: children
+    }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)("span", {
+      className: "components-external-link__icon",
+      "aria-label": /* translators: accessibility text */
+      (0,external_wp_i18n_namespaceObject.__)('(opens in a new tab)'),
+      children: "\u2197"
+    })]
+  })
+  /* eslint-enable react/jsx-no-target-blank */;
 }
 
 /**
@@ -56286,7 +56400,7 @@ function UnforwardedExternalLink(props, ref) {
 const ExternalLink = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedExternalLink);
 /* harmony default export */ const external_link = (ExternalLink);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/focal-point-picker/utils.js
+;// ./packages/components/build-module/focal-point-picker/utils.js
 const INITIAL_BOUNDS = {
   width: 200,
   height: 170
@@ -56327,7 +56441,7 @@ function fractionToPercentage(fraction) {
   return Math.round(fraction * 100);
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/focal-point-picker/styles/focal-point-picker-style.js
+;// ./packages/components/build-module/focal-point-picker/styles/focal-point-picker-style.js
 
 function focal_point_picker_style_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -56404,7 +56518,7 @@ const GridLineY = /*#__PURE__*/emotion_styled_base_browser_esm(GridLine,  true ?
   styles: "width:1px;top:1px;bottom:1px"
 } : 0);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/focal-point-picker/controls.js
+;// ./packages/components/build-module/focal-point-picker/controls.js
 /**
  * WordPress dependencies
  */
@@ -56413,7 +56527,6 @@ const GridLineY = /*#__PURE__*/emotion_styled_base_browser_esm(GridLine,  true ?
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -56478,7 +56591,7 @@ function FocalPointUnitControl(props) {
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/focal-point-picker/styles/focal-point-style.js
+;// ./packages/components/build-module/focal-point-picker/styles/focal-point-style.js
 
 /**
  * External dependencies
@@ -56498,7 +56611,7 @@ const PointerCircle = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true 
 			cursor: grabbing;
 			`, ";" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/focal-point-picker/focal-point.js
+;// ./packages/components/build-module/focal-point-picker/focal-point.js
 /**
  * Internal dependencies
  */
@@ -56524,11 +56637,10 @@ function FocalPoint({
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/focal-point-picker/grid.js
+;// ./packages/components/build-module/focal-point-picker/grid.js
 /**
  * Internal dependencies
  */
-
 
 
 function FocalPointPickerGrid({
@@ -56562,7 +56674,7 @@ function FocalPointPickerGrid({
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/focal-point-picker/media.js
+;// ./packages/components/build-module/focal-point-picker/media.js
 /**
  * External dependencies
  */
@@ -56611,7 +56723,7 @@ function media_Media({
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/focal-point-picker/index.js
+;// ./packages/components/build-module/focal-point-picker/index.js
 /**
  * External dependencies
  */
@@ -56627,7 +56739,6 @@ function media_Media({
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -56898,7 +57009,7 @@ function FocalPointPicker({
 }
 /* harmony default export */ const focal_point_picker = (FocalPointPicker);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/focusable-iframe/index.js
+;// ./packages/components/build-module/focusable-iframe/index.js
 /**
  * WordPress dependencies
  */
@@ -56927,11 +57038,10 @@ function FocusableIframe({
   });
 }
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/settings.js
+;// ./packages/icons/build-module/library/settings.js
 /**
  * WordPress dependencies
  */
-
 
 
 const settings = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(external_wp_primitives_namespaceObject.SVG, {
@@ -56945,7 +57055,7 @@ const settings = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(
 });
 /* harmony default export */ const library_settings = (settings);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/font-size-picker/utils.js
+;// ./packages/components/build-module/font-size-picker/utils.js
 /**
  * Internal dependencies
  */
@@ -56984,7 +57094,7 @@ function getCommonSizeUnit(fontSizes) {
   return areAllSizesSameUnit ? firstUnit : null;
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/font-size-picker/styles.js
+;// ./packages/components/build-module/font-size-picker/styles.js
 
 function font_size_picker_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -57018,7 +57128,7 @@ const HeaderHint = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? 
   target: "e8tqeku0"
 } : 0)("color:", COLORS.gray[700], ";" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/font-size-picker/font-size-picker-select.js
+;// ./packages/components/build-module/font-size-picker/font-size-picker-select.js
 /**
  * WordPress dependencies
  */
@@ -57095,7 +57205,7 @@ const FontSizePickerSelect = props => {
 };
 /* harmony default export */ const font_size_picker_select = (FontSizePickerSelect);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/font-size-picker/constants.js
+;// ./packages/components/build-module/font-size-picker/constants.js
 /**
  * WordPress dependencies
  */
@@ -57122,7 +57232,7 @@ const T_SHIRT_ABBREVIATIONS = [/* translators: S stands for 'small' and is a siz
  */
 const T_SHIRT_NAMES = [(0,external_wp_i18n_namespaceObject.__)('Small'), (0,external_wp_i18n_namespaceObject.__)('Medium'), (0,external_wp_i18n_namespaceObject.__)('Large'), (0,external_wp_i18n_namespaceObject.__)('Extra Large'), (0,external_wp_i18n_namespaceObject.__)('Extra Extra Large')];
 
-;// CONCATENATED MODULE: ./packages/components/build-module/font-size-picker/font-size-picker-toggle-group.js
+;// ./packages/components/build-module/font-size-picker/font-size-picker-toggle-group.js
 /**
  * WordPress dependencies
  */
@@ -57161,7 +57271,7 @@ const FontSizePickerToggleGroup = props => {
 };
 /* harmony default export */ const font_size_picker_toggle_group = (FontSizePickerToggleGroup);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/font-size-picker/index.js
+;// ./packages/components/build-module/font-size-picker/index.js
 /**
  * External dependencies
  */
@@ -57176,7 +57286,6 @@ const FontSizePickerToggleGroup = props => {
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -57370,7 +57479,7 @@ const UnforwardedFontSizePicker = (props, ref) => {
 const FontSizePicker = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedFontSizePicker);
 /* harmony default export */ const font_size_picker = (FontSizePicker);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/form-file-upload/index.js
+;// ./packages/components/build-module/form-file-upload/index.js
 /**
  * WordPress dependencies
  */
@@ -57379,7 +57488,6 @@ const FontSizePicker = (0,external_wp_element_namespaceObject.forwardRef)(Unforw
 /**
  * Internal dependencies
  */
-
 
 
 /**
@@ -57436,7 +57544,7 @@ function FormFileUpload({
 }
 /* harmony default export */ const form_file_upload = (FormFileUpload);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/form-toggle/index.js
+;// ./packages/components/build-module/form-toggle/index.js
 /**
  * External dependencies
  */
@@ -57449,7 +57557,6 @@ function FormFileUpload({
 /**
  * Internal dependencies
  */
-
 
 const form_toggle_noop = () => {};
 function UnforwardedFormToggle(props, ref) {
@@ -57506,7 +57613,7 @@ function UnforwardedFormToggle(props, ref) {
 const FormToggle = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedFormToggle);
 /* harmony default export */ const form_toggle = (FormToggle);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/form-token-field/token.js
+;// ./packages/components/build-module/form-token-field/token.js
 /**
  * External dependencies
  */
@@ -57522,7 +57629,6 @@ const FormToggle = (0,external_wp_element_namespaceObject.forwardRef)(Unforwarde
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -57553,7 +57659,7 @@ function Token({
     value
   });
   const transformedValue = displayTransform(value);
-  const termPositionAndCount = (0,external_wp_i18n_namespaceObject.sprintf)( /* translators: 1: term name, 2: term position in a set of terms, 3: total term set count. */
+  const termPositionAndCount = (0,external_wp_i18n_namespaceObject.sprintf)(/* translators: 1: term name, 2: term position in a set of terms, 3: total term set count. */
   (0,external_wp_i18n_namespaceObject.__)('%1$s (%2$s of %3$s)'), transformedValue, termPosition, termsCount);
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)("span", {
     className: tokenClasses,
@@ -57584,7 +57690,7 @@ function Token({
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/form-token-field/styles.js
+;// ./packages/components/build-module/form-token-field/styles.js
 
 /**
  * External dependencies
@@ -57606,7 +57712,8 @@ const TokensAndInputWrapperFlex = /*#__PURE__*/emotion_styled_base_browser_esm(f
   target: "ehq8nmi0"
 } : 0)("padding:7px;", boxSizingReset, " ", deprecatedPaddings, ";" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/form-token-field/index.js
+;// ./packages/components/build-module/form-token-field/index.js
+/* wp:polyfill */
 /**
  * External dependencies
  */
@@ -57624,7 +57731,6 @@ const TokensAndInputWrapperFlex = /*#__PURE__*/emotion_styled_base_browser_esm(f
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -57715,15 +57821,12 @@ function FormTokenField(props) {
     }
 
     // TODO: updateSuggestions() should first be refactored so its actual deps are clearer.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [suggestions, prevSuggestions, value, prevValue]);
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     updateSuggestions();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [incompleteTokenValue]);
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     updateSuggestions();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [__experimentalAutoSelectFirstMatch]);
   if (disabled && isActive) {
     setIsActive(false);
@@ -58056,7 +58159,7 @@ function FormTokenField(props) {
       }
     }
     if (inputHasMinimumChars) {
-      const message = hasMatchingSuggestions ? (0,external_wp_i18n_namespaceObject.sprintf)( /* translators: %d: number of results. */
+      const message = hasMatchingSuggestions ? (0,external_wp_i18n_namespaceObject.sprintf)(/* translators: %d: number of results. */
       (0,external_wp_i18n_namespaceObject._n)('%d result found, use up and down arrow keys to navigate.', '%d results found, use up and down arrow keys to navigate.', matchingSuggestions.length), matchingSuggestions.length) : (0,external_wp_i18n_namespaceObject.__)('No results.');
       debouncedSpeak(message, 'assertive');
     }
@@ -58171,7 +58274,7 @@ function FormTokenField(props) {
 }
 /* harmony default export */ const form_token_field = (FormTokenField);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/guide/icons.js
+;// ./packages/components/build-module/guide/icons.js
 /**
  * WordPress dependencies
  */
@@ -58189,7 +58292,7 @@ const PageControlIcon = () => /*#__PURE__*/(0,external_ReactJSXRuntime_namespace
   })
 });
 
-;// CONCATENATED MODULE: ./packages/components/build-module/guide/page-control.js
+;// ./packages/components/build-module/guide/page-control.js
 /**
  * WordPress dependencies
  */
@@ -58216,7 +58319,7 @@ function PageControl({
       "aria-current": page === currentPage ? 'step' : undefined,
       children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(build_module_button, {
         icon: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(PageControlIcon, {}),
-        "aria-label": (0,external_wp_i18n_namespaceObject.sprintf)( /* translators: 1: current page number 2: total number of pages */
+        "aria-label": (0,external_wp_i18n_namespaceObject.sprintf)(/* translators: 1: current page number 2: total number of pages */
         (0,external_wp_i18n_namespaceObject.__)('Page %1$d of %2$d'), page + 1, numberOfPages),
         onClick: () => setCurrentPage(page)
       }, page)
@@ -58224,7 +58327,7 @@ function PageControl({
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/guide/index.js
+;// ./packages/components/build-module/guide/index.js
 /**
  * External dependencies
  */
@@ -58240,7 +58343,6 @@ function PageControl({
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -58376,7 +58478,7 @@ function Guide({
 }
 /* harmony default export */ const guide = (Guide);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/guide/page.js
+;// ./packages/components/build-module/guide/page.js
 /**
  * WordPress dependencies
  */
@@ -58399,7 +58501,7 @@ function GuidePage(props) {
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/button/deprecated.js
+;// ./packages/components/build-module/button/deprecated.js
 /**
  * External dependencies
  */
@@ -58438,102 +58540,7 @@ function UnforwardedIconButton({
 }
 /* harmony default export */ const deprecated = ((0,external_wp_element_namespaceObject.forwardRef)(UnforwardedIconButton));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/item-group/item/hook.js
-/**
- * WordPress dependencies
- */
-
-
-/**
- * Internal dependencies
- */
-
-
-
-
-
-function useItem(props) {
-  const {
-    as: asProp,
-    className,
-    onClick,
-    role = 'listitem',
-    size: sizeProp,
-    ...otherProps
-  } = useContextSystem(props, 'Item');
-  const {
-    spacedAround,
-    size: contextSize
-  } = useItemGroupContext();
-  const size = sizeProp || contextSize;
-  const as = asProp || (typeof onClick !== 'undefined' ? 'button' : 'div');
-  const cx = useCx();
-  const classes = (0,external_wp_element_namespaceObject.useMemo)(() => cx((as === 'button' || as === 'a') && unstyledButton(as), itemSizes[size] || itemSizes.medium, item, spacedAround && styles_spacedAround, className), [as, className, cx, size, spacedAround]);
-  const wrapperClassName = cx(itemWrapper);
-  return {
-    as,
-    className: classes,
-    onClick,
-    wrapperClassName,
-    role,
-    ...otherProps
-  };
-}
-
-;// CONCATENATED MODULE: ./packages/components/build-module/item-group/item/component.js
-/**
- * External dependencies
- */
-
-/**
- * Internal dependencies
- */
-
-
-
-
-
-function UnconnectedItem(props, forwardedRef) {
-  const {
-    role,
-    wrapperClassName,
-    ...otherProps
-  } = useItem(props);
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)("div", {
-    role: role,
-    className: wrapperClassName,
-    children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(component, {
-      ...otherProps,
-      ref: forwardedRef
-    })
-  });
-}
-
-/**
- * `Item` is used in combination with `ItemGroup` to display a list of items
- * grouped and styled together.
- *
- * ```jsx
- * import {
- *   __experimentalItemGroup as ItemGroup,
- *   __experimentalItem as Item,
- * } from '@wordpress/components';
- *
- * function Example() {
- *   return (
- *     <ItemGroup>
- *       <Item>Code</Item>
- *       <Item>is</Item>
- *       <Item>Poetry</Item>
- *     </ItemGroup>
- *   );
- * }
- * ```
- */
-const component_Item = contextConnect(UnconnectedItem, 'Item');
-/* harmony default export */ const item_component = (component_Item);
-
-;// CONCATENATED MODULE: ./packages/components/build-module/keyboard-shortcuts/index.js
+;// ./packages/components/build-module/keyboard-shortcuts/index.js
 /**
  * WordPress dependencies
  */
@@ -58543,8 +58550,6 @@ const component_Item = contextConnect(UnconnectedItem, 'Item');
 /**
  * Internal dependencies
  */
-
-
 
 function KeyboardShortcut({
   target,
@@ -58620,7 +58625,7 @@ function KeyboardShortcuts({
 }
 /* harmony default export */ const keyboard_shortcuts = (KeyboardShortcuts);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/menu-group/index.js
+;// ./packages/components/build-module/menu-group/index.js
 /**
  * External dependencies
  */
@@ -58635,7 +58640,6 @@ function KeyboardShortcuts({
 /**
  * Internal dependencies
  */
-
 
 /**
  * `MenuGroup` wraps a series of related `MenuItem` components into a common
@@ -58683,7 +58687,7 @@ function MenuGroup(props) {
 }
 /* harmony default export */ const menu_group = (MenuGroup);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/menu-item/index.js
+;// ./packages/components/build-module/menu-item/index.js
 /**
  * External dependencies
  */
@@ -58698,7 +58702,6 @@ function MenuGroup(props) {
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -58783,7 +58786,7 @@ function UnforwardedMenuItem(props, ref) {
 const MenuItem = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedMenuItem);
 /* harmony default export */ const menu_item = (MenuItem);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/menu-items-choice/index.js
+;// ./packages/components/build-module/menu-items-choice/index.js
 /**
  * WordPress dependencies
  */
@@ -58792,7 +58795,6 @@ const MenuItem = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedM
 /**
  * Internal dependencies
  */
-
 
 
 const menu_items_choice_noop = () => {};
@@ -58862,7 +58864,7 @@ function MenuItemsChoice({
 }
 /* harmony default export */ const menu_items_choice = (MenuItemsChoice);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigable-container/tabbable.js
+;// ./packages/components/build-module/navigable-container/tabbable.js
 /**
  * External dependencies
  */
@@ -58952,11 +58954,11 @@ function UnforwardedTabbableContainer({
 const TabbableContainer = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedTabbableContainer);
 /* harmony default export */ const tabbable = (TabbableContainer);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigation/constants.js
+;// ./packages/components/build-module/navigation/constants.js
 const ROOT_MENU = 'root';
 const SEARCH_FOCUS_DELAY = 100;
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigation/context.js
+;// ./packages/components/build-module/navigation/context.js
 /**
  * WordPress dependencies
  */
@@ -58989,7 +58991,7 @@ const NavigationContext = (0,external_wp_element_namespaceObject.createContext)(
 });
 const useNavigationContext = () => (0,external_wp_element_namespaceObject.useContext)(NavigationContext);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigation/styles/navigation-styles.js
+;// ./packages/components/build-module/navigation/styles/navigation-styles.js
 
 function navigation_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -59060,7 +59062,7 @@ const ItemTitleUI = /*#__PURE__*/emotion_styled_base_browser_esm(text_component,
   target: "eeiismy0"
 } : 0)(() => (0,external_wp_i18n_namespaceObject.isRTL)() ? 'margin-left: auto;' : 'margin-right: auto;', " font-size:14px;line-height:20px;color:inherit;" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigation/use-navigation-tree-nodes.js
+;// ./packages/components/build-module/navigation/use-navigation-tree-nodes.js
 /**
  * WordPress dependencies
  */
@@ -59095,7 +59097,7 @@ function useNavigationTreeNodes() {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigation/use-create-navigation-tree.js
+;// ./packages/components/build-module/navigation/use-create-navigation-tree.js
 /**
  * WordPress dependencies
  */
@@ -59186,7 +59188,7 @@ const useCreateNavigationTree = () => {
   };
 };
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigation/index.js
+;// ./packages/components/build-module/navigation/index.js
 /**
  * External dependencies
  */
@@ -59282,9 +59284,8 @@ function Navigation({
     if (activeMenu !== menu) {
       setActiveMenu(activeMenu);
     }
-    // Ignore exhaustive-deps here, as it would require either a larger refactor or some questionable workarounds.
+    // Not adding deps for now, as it would require either a larger refactor or some questionable workarounds.
     // See https://github.com/WordPress/gutenberg/pull/41612 for context.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeMenu]);
   const context = {
     activeItem,
@@ -59312,7 +59313,7 @@ function Navigation({
 }
 /* harmony default export */ const navigation = (Navigation);
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/chevron-right.js
+;// ./packages/icons/build-module/library/chevron-right.js
 /**
  * WordPress dependencies
  */
@@ -59327,7 +59328,7 @@ const chevronRight = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.js
 });
 /* harmony default export */ const chevron_right = (chevronRight);
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/chevron-left.js
+;// ./packages/icons/build-module/library/chevron-left.js
 /**
  * WordPress dependencies
  */
@@ -59342,7 +59343,7 @@ const chevronLeft = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx
 });
 /* harmony default export */ const chevron_left = (chevronLeft);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigation/back-button/index.js
+;// ./packages/components/build-module/navigation/back-button/index.js
 /**
  * External dependencies
  */
@@ -59357,7 +59358,6 @@ const chevronLeft = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -59402,7 +59402,7 @@ function UnforwardedNavigationBackButton({
 const NavigationBackButton = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedNavigationBackButton);
 /* harmony default export */ const back_button = (NavigationBackButton);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigation/group/context.js
+;// ./packages/components/build-module/navigation/group/context.js
 /**
  * WordPress dependencies
  */
@@ -59417,7 +59417,7 @@ const NavigationGroupContext = (0,external_wp_element_namespaceObject.createCont
 });
 const useNavigationGroupContext = () => (0,external_wp_element_namespaceObject.useContext)(NavigationGroupContext);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigation/group/index.js
+;// ./packages/components/build-module/navigation/group/index.js
 /**
  * External dependencies
  */
@@ -59431,7 +59431,6 @@ const useNavigationGroupContext = () => (0,external_wp_element_namespaceObject.u
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -59484,12 +59483,10 @@ function NavigationGroup({
 }
 /* harmony default export */ const group = (NavigationGroup);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigation/item/base-content.js
+;// ./packages/components/build-module/navigation/item/base-content.js
 /**
  * Internal dependencies
  */
-
-
 
 
 function NavigationItemBaseContent(props) {
@@ -59509,7 +59506,7 @@ function NavigationItemBaseContent(props) {
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigation/menu/context.js
+;// ./packages/components/build-module/navigation/menu/context.js
 /**
  * WordPress dependencies
  */
@@ -59525,7 +59522,7 @@ const NavigationMenuContext = (0,external_wp_element_namespaceObject.createConte
 });
 const useNavigationMenuContext = () => (0,external_wp_element_namespaceObject.useContext)(NavigationMenuContext);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigation/utils.js
+;// ./packages/components/build-module/navigation/utils.js
 /**
  * External dependencies
  */
@@ -59535,7 +59532,7 @@ const useNavigationMenuContext = () => (0,external_wp_element_namespaceObject.us
 const normalizeInput = input => remove_accents_default()(input).replace(/^\//, '').toLowerCase();
 const normalizedSearch = (title, search) => -1 !== normalizeInput(title).indexOf(normalizeInput(search));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigation/item/use-navigation-tree-item.js
+;// ./packages/components/build-module/navigation/item/use-navigation-tree-item.js
 /**
  * WordPress dependencies
  */
@@ -59575,12 +59572,12 @@ const useNavigationTreeItem = (itemId, props) => {
     return () => {
       removeItem(itemId);
     };
-    // Ignore exhaustive-deps rule for now. See https://github.com/WordPress/gutenberg/pull/41639
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Not adding deps for now, as it would require either a larger refactor.
+    // See https://github.com/WordPress/gutenberg/pull/41639
   }, [activeMenu, search]);
 };
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigation/item/base.js
+;// ./packages/components/build-module/navigation/item/base.js
 /**
  * External dependencies
  */
@@ -59624,7 +59621,7 @@ function NavigationItemBase(props) {
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigation/item/index.js
+;// ./packages/components/build-module/navigation/item/index.js
 /**
  * External dependencies
  */
@@ -59639,7 +59636,6 @@ function NavigationItemBase(props) {
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -59722,7 +59718,7 @@ function NavigationItem(props) {
 }
 /* harmony default export */ const navigation_item = (NavigationItem);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigation/menu/use-navigation-tree-menu.js
+;// ./packages/components/build-module/navigation/menu/use-navigation-tree-menu.js
 /**
  * WordPress dependencies
  */
@@ -59749,12 +59745,12 @@ const useNavigationTreeMenu = props => {
     return () => {
       removeMenu(key);
     };
-    // Ignore exhaustive-deps rule for now. See https://github.com/WordPress/gutenberg/pull/44090
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Not adding deps for now, as it would require either a larger refactor
+    // See https://github.com/WordPress/gutenberg/pull/44090
   }, []);
 };
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/search.js
+;// ./packages/icons/build-module/library/search.js
 /**
  * WordPress dependencies
  */
@@ -59769,7 +59765,7 @@ const search = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ext
 });
 /* harmony default export */ const library_search = (search);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/higher-order/with-spoken-messages/index.js
+;// ./packages/components/build-module/higher-order/with-spoken-messages/index.js
 /**
  * WordPress dependencies
  */
@@ -59794,7 +59790,7 @@ const search = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ext
   debouncedSpeak: (0,external_wp_compose_namespaceObject.useDebounce)(external_wp_a11y_namespaceObject.speak, 500)
 }), 'withSpokenMessages'));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/search-control/styles.js
+;// ./packages/components/build-module/search-control/styles.js
 
 /**
  * External dependencies
@@ -59818,7 +59814,7 @@ const StyledInputControl = /*#__PURE__*/emotion_styled_base_browser_esm(input_co
   target: "effl84m0"
 } : 0)("input[type='search']{&::-webkit-search-decoration,&::-webkit-search-cancel-button,&::-webkit-search-results-button,&::-webkit-search-results-decoration{-webkit-appearance:none;}}&:not( :focus-within ){--wp-components-color-background:", COLORS.theme.gray[100], ";}" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/search-control/index.js
+;// ./packages/components/build-module/search-control/index.js
 /**
  * External dependencies
  */
@@ -59827,6 +59823,7 @@ const StyledInputControl = /*#__PURE__*/emotion_styled_base_browser_esm(input_co
 /**
  * WordPress dependencies
  */
+
 
 
 
@@ -59848,6 +59845,11 @@ function SuffixItem({
   if (!onClose && !value) {
     return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(icons_build_module_icon, {
       icon: library_search
+    });
+  }
+  if (onClose) {
+    external_wp_deprecated_default()('`onClose` prop in wp.components.SearchControl', {
+      since: '6.8'
     });
   }
   const onReset = () => {
@@ -59948,7 +59950,7 @@ function UnforwardedSearchControl({
 const SearchControl = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedSearchControl);
 /* harmony default export */ const search_control = (SearchControl);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigation/menu/menu-title-search.js
+;// ./packages/components/build-module/navigation/menu/menu-title-search.js
 /**
  * WordPress dependencies
  */
@@ -59997,11 +59999,11 @@ function MenuTitleSearch({
       return;
     }
     const count = Object.values(items).filter(item => item._isVisible).length;
-    const resultsFoundMessage = (0,external_wp_i18n_namespaceObject.sprintf)( /* translators: %d: number of results. */
+    const resultsFoundMessage = (0,external_wp_i18n_namespaceObject.sprintf)(/* translators: %d: number of results. */
     (0,external_wp_i18n_namespaceObject._n)('%d result found.', '%d results found.', count), count);
     debouncedSpeak(resultsFoundMessage);
-    // Ignore exhaustive-deps rule for now. See https://github.com/WordPress/gutenberg/pull/44090
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Not adding deps for now, as it would require either a larger refactor.
+    // See https://github.com/WordPress/gutenberg/pull/44090
   }, [items, search]);
   const onClose = () => {
     onSearch?.('');
@@ -60014,7 +60016,7 @@ function MenuTitleSearch({
     }
   };
   const inputId = `components-navigation__menu-title-search-${menu}`;
-  const placeholder = (0,external_wp_i18n_namespaceObject.sprintf)( /* translators: placeholder for menu search box. %s: menu title */
+  const placeholder = (0,external_wp_i18n_namespaceObject.sprintf)(/* translators: placeholder for menu search box. %s: menu title */
   (0,external_wp_i18n_namespaceObject.__)('Search %s'), title?.toLowerCase()).trim();
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(MenuTitleSearchControlWrapper, {
     children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(search_control, {
@@ -60032,7 +60034,7 @@ function MenuTitleSearch({
 }
 /* harmony default export */ const menu_title_search = (with_spoken_messages(MenuTitleSearch));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigation/menu/menu-title.js
+;// ./packages/components/build-module/navigation/menu/menu-title.js
 /**
  * WordPress dependencies
  */
@@ -60043,7 +60045,6 @@ function MenuTitleSearch({
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -60114,7 +60115,7 @@ function NavigationMenuTitle({
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigation/menu/search-no-results-found.js
+;// ./packages/components/build-module/navigation/menu/search-no-results-found.js
 /**
  * WordPress dependencies
  */
@@ -60123,7 +60124,6 @@ function NavigationMenuTitle({
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -60146,7 +60146,7 @@ function NavigationSearchNoResultsFound({
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigation/menu/index.js
+;// ./packages/components/build-module/navigation/menu/index.js
 /**
  * External dependencies
  */
@@ -60160,7 +60160,6 @@ function NavigationSearchNoResultsFound({
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -60238,7 +60237,7 @@ function NavigationMenu(props) {
 }
 /* harmony default export */ const navigation_menu = (NavigationMenu);
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/path-to-regexp/dist.es2015/index.js
+;// ./packages/components/node_modules/path-to-regexp/dist.es2015/index.js
 /**
  * Tokenize input string.
  */
@@ -60334,8 +60333,7 @@ function lexer(str) {
 function dist_es2015_parse(str, options) {
     if (options === void 0) { options = {}; }
     var tokens = lexer(str);
-    var _a = options.prefixes, prefixes = _a === void 0 ? "./" : _a;
-    var defaultPattern = "[^".concat(escapeString(options.delimiter || "/#?"), "]+?");
+    var _a = options.prefixes, prefixes = _a === void 0 ? "./" : _a, _b = options.delimiter, delimiter = _b === void 0 ? "/#?" : _b;
     var result = [];
     var key = 0;
     var i = 0;
@@ -60359,6 +60357,24 @@ function dist_es2015_parse(str, options) {
         }
         return result;
     };
+    var isSafe = function (value) {
+        for (var _i = 0, delimiter_1 = delimiter; _i < delimiter_1.length; _i++) {
+            var char = delimiter_1[_i];
+            if (value.indexOf(char) > -1)
+                return true;
+        }
+        return false;
+    };
+    var safePattern = function (prefix) {
+        var prev = result[result.length - 1];
+        var prevText = prefix || (prev && typeof prev === "string" ? prev : "");
+        if (prev && !prevText) {
+            throw new TypeError("Must have text between two parameters, missing text after \"".concat(prev.name, "\""));
+        }
+        if (!prevText || isSafe(prevText))
+            return "[^".concat(escapeString(delimiter), "]+?");
+        return "(?:(?!".concat(escapeString(prevText), ")[^").concat(escapeString(delimiter), "])+?");
+    };
     while (i < tokens.length) {
         var char = tryConsume("CHAR");
         var name = tryConsume("NAME");
@@ -60377,7 +60393,7 @@ function dist_es2015_parse(str, options) {
                 name: name || key++,
                 prefix: prefix,
                 suffix: "",
-                pattern: pattern || defaultPattern,
+                pattern: pattern || safePattern(prefix),
                 modifier: tryConsume("MODIFIER") || "",
             });
             continue;
@@ -60400,7 +60416,7 @@ function dist_es2015_parse(str, options) {
             mustConsume("CLOSE");
             result.push({
                 name: name_1 || (pattern_1 ? key++ : ""),
-                pattern: name_1 && !pattern_1 ? defaultPattern : pattern_1,
+                pattern: name_1 && !pattern_1 ? safePattern(prefix) : pattern_1,
                 prefix: prefix,
                 suffix: suffix,
                 modifier: tryConsume("MODIFIER") || "",
@@ -60593,11 +60609,9 @@ function tokensToRegexp(tokens, keys, options) {
                 }
                 else {
                     if (token.modifier === "+" || token.modifier === "*") {
-                        route += "((?:".concat(token.pattern, ")").concat(token.modifier, ")");
+                        throw new TypeError("Can not repeat \"".concat(token.name, "\" without a prefix and suffix"));
                     }
-                    else {
-                        route += "(".concat(token.pattern, ")").concat(token.modifier);
-                    }
+                    route += "(".concat(token.pattern, ")").concat(token.modifier);
                 }
             }
             else {
@@ -60639,7 +60653,7 @@ function pathToRegexp(path, keys, options) {
     return stringToRegexp(path, keys, options);
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigator/utils/router.js
+;// ./packages/components/build-module/navigator/utils/router.js
 /**
  * External dependencies
  */
@@ -60685,7 +60699,7 @@ function findParent(path, screens) {
   return parentPath;
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigator/context.js
+;// ./packages/components/build-module/navigator/context.js
 /**
  * WordPress dependencies
  */
@@ -60706,7 +60720,7 @@ const context_initialContextValue = {
 };
 const NavigatorContext = (0,external_wp_element_namespaceObject.createContext)(context_initialContextValue);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigator/styles.js
+;// ./packages/components/build-module/navigator/styles.js
 function navigator_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
  * External dependencies
@@ -60788,7 +60802,7 @@ const navigatorScreen =  true ? {
   styles: "overflow-x:auto;max-height:100%;box-sizing:border-box;position:relative;grid-column:1/-1;grid-row:1/-1"
 } : 0;
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigator/navigator/component.js
+;// ./packages/components/build-module/navigator/navigator/component.js
 /**
  * External dependencies
  */
@@ -61043,9 +61057,9 @@ function UnconnectedNavigator(props, forwardedRef) {
 }
 const component_Navigator = contextConnect(UnconnectedNavigator, 'Navigator');
 
-;// CONCATENATED MODULE: external ["wp","escapeHtml"]
+;// external ["wp","escapeHtml"]
 const external_wp_escapeHtml_namespaceObject = window["wp"]["escapeHtml"];
-;// CONCATENATED MODULE: ./packages/components/build-module/navigator/navigator-screen/use-screen-animate-presence.js
+;// ./packages/components/build-module/navigator/navigator-screen/use-screen-animate-presence.js
 /**
  * WordPress dependencies
  */
@@ -61152,7 +61166,7 @@ function useScreenAnimatePresence({
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigator/navigator-screen/component.js
+;// ./packages/components/build-module/navigator/navigator-screen/component.js
 /**
  * External dependencies
  */
@@ -61280,7 +61294,7 @@ function UnconnectedNavigatorScreen(props, forwardedRef) {
 }
 const NavigatorScreen = contextConnect(UnconnectedNavigatorScreen, 'Navigator.Screen');
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigator/use-navigator.js
+;// ./packages/components/build-module/navigator/use-navigator.js
 /**
  * WordPress dependencies
  */
@@ -61313,7 +61327,7 @@ function useNavigator() {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigator/navigator-button/hook.js
+;// ./packages/components/build-module/navigator/navigator-button/hook.js
 /**
  * WordPress dependencies
  */
@@ -61355,7 +61369,7 @@ function useNavigatorButton(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigator/navigator-button/component.js
+;// ./packages/components/build-module/navigator/navigator-button/component.js
 /**
  * External dependencies
  */
@@ -61377,7 +61391,7 @@ function UnconnectedNavigatorButton(props, forwardedRef) {
 }
 const NavigatorButton = contextConnect(UnconnectedNavigatorButton, 'Navigator.Button');
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigator/navigator-back-button/hook.js
+;// ./packages/components/build-module/navigator/navigator-back-button/hook.js
 /**
  * WordPress dependencies
  */
@@ -61411,7 +61425,7 @@ function useNavigatorBackButton(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigator/navigator-back-button/component.js
+;// ./packages/components/build-module/navigator/navigator-back-button/component.js
 /**
  * External dependencies
  */
@@ -61433,7 +61447,7 @@ function UnconnectedNavigatorBackButton(props, forwardedRef) {
 }
 const NavigatorBackButton = contextConnect(UnconnectedNavigatorBackButton, 'Navigator.BackButton');
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigator/navigator-to-parent-button/component.js
+;// ./packages/components/build-module/navigator/navigator-to-parent-button/component.js
 /**
  * WordPress dependencies
  */
@@ -61461,7 +61475,7 @@ function UnconnectedNavigatorToParentButton(props, forwardedRef) {
  */
 const NavigatorToParentButton = contextConnect(UnconnectedNavigatorToParentButton, 'Navigator.ToParentButton');
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigator/legacy.js
+;// ./packages/components/build-module/navigator/legacy.js
 /**
  * Internal dependencies
  */
@@ -61629,7 +61643,7 @@ const legacy_NavigatorToParentButton = Object.assign(NavigatorToParentButton, {
   displayName: 'NavigatorToParentButton'
 });
 
-;// CONCATENATED MODULE: ./packages/components/build-module/navigator/index.js
+;// ./packages/components/build-module/navigator/index.js
 /**
  * Internal dependencies
  */
@@ -61762,7 +61776,7 @@ const navigator_Navigator = Object.assign(component_Navigator, {
   })
 });
 
-;// CONCATENATED MODULE: ./packages/components/build-module/notice/index.js
+;// ./packages/components/build-module/notice/index.js
 /**
  * External dependencies
  */
@@ -61779,7 +61793,6 @@ const navigator_Navigator = Object.assign(component_Navigator, {
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -61904,7 +61917,7 @@ function Notice({
 }
 /* harmony default export */ const build_module_notice = (Notice);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/notice/list.js
+;// ./packages/components/build-module/notice/list.js
 /**
  * External dependencies
  */
@@ -61969,8 +61982,7 @@ function NoticeList({
 }
 /* harmony default export */ const list = (NoticeList);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/panel/header.js
-
+;// ./packages/components/build-module/panel/header.js
 
 /**
  * Internal dependencies
@@ -61994,7 +62006,7 @@ function PanelHeader({
 }
 /* harmony default export */ const panel_header = (PanelHeader);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/panel/index.js
+;// ./packages/components/build-module/panel/index.js
 /**
  * External dependencies
  */
@@ -62008,7 +62020,6 @@ function PanelHeader({
 /**
  * Internal dependencies
  */
-
 
 
 function UnforwardedPanel({
@@ -62045,7 +62056,7 @@ function UnforwardedPanel({
 const Panel = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedPanel);
 /* harmony default export */ const panel = (Panel);
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/chevron-up.js
+;// ./packages/icons/build-module/library/chevron-up.js
 /**
  * WordPress dependencies
  */
@@ -62060,7 +62071,7 @@ const chevronUp = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(
 });
 /* harmony default export */ const chevron_up = (chevronUp);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/panel/body.js
+;// ./packages/components/build-module/panel/body.js
 /**
  * External dependencies
  */
@@ -62076,7 +62087,6 @@ const chevronUp = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -62179,7 +62189,7 @@ const PanelBodyTitle = (0,external_wp_element_namespaceObject.forwardRef)(({
 const PanelBody = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedPanelBody);
 /* harmony default export */ const body = (PanelBody);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/panel/row.js
+;// ./packages/components/build-module/panel/row.js
 /**
  * External dependencies
  */
@@ -62212,7 +62222,7 @@ function UnforwardedPanelRow({
 const PanelRow = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedPanelRow);
 /* harmony default export */ const row = (PanelRow);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/placeholder/index.js
+;// ./packages/components/build-module/placeholder/index.js
 /**
  * External dependencies
  */
@@ -62229,7 +62239,6 @@ const PanelRow = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedP
 /**
  * Internal dependencies
  */
-
 
 
 const PlaceholderIllustration = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.SVG, {
@@ -62312,7 +62321,7 @@ function Placeholder(props) {
 }
 /* harmony default export */ const placeholder = (Placeholder);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/progress-bar/styles.js
+;// ./packages/components/build-module/progress-bar/styles.js
 
 function progress_bar_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -62369,7 +62378,7 @@ const ProgressElement = /*#__PURE__*/emotion_styled_base_browser_esm("progress",
   styles: "position:absolute;top:0;left:0;opacity:0;width:100%;height:100%"
 } : 0);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/progress-bar/index.js
+;// ./packages/components/build-module/progress-bar/index.js
 /**
  * External dependencies
  */
@@ -62383,7 +62392,6 @@ const ProgressElement = /*#__PURE__*/emotion_styled_base_browser_esm("progress",
 /**
  * Internal dependencies
  */
-
 
 
 function UnforwardedProgressBar(props, ref) {
@@ -62428,7 +62436,7 @@ function UnforwardedProgressBar(props, ref) {
 const ProgressBar = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedProgressBar);
 /* harmony default export */ const progress_bar = (ProgressBar);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/query-controls/terms.js
+;// ./packages/components/build-module/query-controls/terms.js
 /**
  * Internal dependencies
  */
@@ -62480,9 +62488,9 @@ function buildTermsTree(flatTerms) {
   return fillWithChildren(termsByParent['0'] || []);
 }
 
-;// CONCATENATED MODULE: external ["wp","htmlEntities"]
+;// external ["wp","htmlEntities"]
 const external_wp_htmlEntities_namespaceObject = window["wp"]["htmlEntities"];
-;// CONCATENATED MODULE: ./packages/components/build-module/tree-select/index.js
+;// ./packages/components/build-module/tree-select/index.js
 /**
  * WordPress dependencies
  */
@@ -62588,7 +62596,7 @@ function TreeSelect(props) {
 }
 /* harmony default export */ const tree_select = (TreeSelect);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/query-controls/author-select.js
+;// ./packages/components/build-module/query-controls/author-select.js
 /**
  * Internal dependencies
  */
@@ -62618,7 +62626,7 @@ function AuthorSelect({
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/query-controls/category-select.js
+;// ./packages/components/build-module/query-controls/category-select.js
 /**
  * Internal dependencies
  */
@@ -62654,7 +62662,7 @@ function CategorySelect({
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/query-controls/index.js
+;// ./packages/components/build-module/query-controls/index.js
 /**
  * WordPress dependencies
  */
@@ -62799,7 +62807,7 @@ function QueryControls({
 }
 /* harmony default export */ const query_controls = (QueryControls);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/radio-group/context.js
+;// ./packages/components/build-module/radio-group/context.js
 /**
  * External dependencies
  */
@@ -62813,7 +62821,7 @@ const RadioGroupContext = (0,external_wp_element_namespaceObject.createContext)(
   disabled: undefined
 });
 
-;// CONCATENATED MODULE: ./packages/components/build-module/radio-group/radio.js
+;// ./packages/components/build-module/radio-group/radio.js
 /**
  * WordPress dependencies
  */
@@ -62861,7 +62869,7 @@ function UnforwardedRadio({
 const radio_Radio = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedRadio);
 /* harmony default export */ const radio_group_radio = (radio_Radio);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/radio-group/index.js
+;// ./packages/components/build-module/radio-group/index.js
 /**
  * External dependencies
  */
@@ -62870,6 +62878,7 @@ const radio_Radio = (0,external_wp_element_namespaceObject.forwardRef)(Unforward
 /**
  * WordPress dependencies
  */
+
 
 
 /**
@@ -62892,7 +62901,8 @@ function UnforwardedRadioGroup({
     defaultValue: defaultChecked,
     setValue: newValue => {
       onChange?.(newValue !== null && newValue !== void 0 ? newValue : undefined);
-    }
+    },
+    rtl: (0,external_wp_i18n_namespaceObject.isRTL)()
   });
   const contextValue = (0,external_wp_element_namespaceObject.useMemo)(() => ({
     store: radioStore,
@@ -62918,7 +62928,7 @@ function UnforwardedRadioGroup({
 const radio_group_RadioGroup = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedRadioGroup);
 /* harmony default export */ const radio_group = (radio_group_RadioGroup);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/radio-control/index.js
+;// ./packages/components/build-module/radio-control/index.js
 /**
  * External dependencies
  */
@@ -62931,7 +62941,6 @@ const radio_group_RadioGroup = (0,external_wp_element_namespaceObject.forwardRef
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -63037,7 +63046,7 @@ function RadioControl(props) {
 }
 /* harmony default export */ const radio_control = (RadioControl);
 
-;// CONCATENATED MODULE: ./node_modules/re-resizable/lib/resizer.js
+;// ./node_modules/re-resizable/lib/resizer.js
 var resizer_extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -63145,9 +63154,9 @@ var Resizer = /** @class */ (function (_super) {
 
 
 // EXTERNAL MODULE: ./node_modules/fast-memoize/src/index.js
-var src = __webpack_require__(2920);
+var src = __webpack_require__(8381);
 var src_default = /*#__PURE__*/__webpack_require__.n(src);
-;// CONCATENATED MODULE: ./node_modules/re-resizable/lib/index.js
+;// ./node_modules/re-resizable/lib/index.js
 var lib_extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -63909,7 +63918,7 @@ var Resizable = /** @class */ (function (_super) {
 }(external_React_.PureComponent));
 
 
-;// CONCATENATED MODULE: ./packages/components/build-module/resizable-box/resize-tooltip/utils.js
+;// ./packages/components/build-module/resizable-box/resize-tooltip/utils.js
 /**
  * WordPress dependencies
  */
@@ -64115,7 +64124,7 @@ function getSizeLabel({
   return undefined;
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/resizable-box/resize-tooltip/styles/resize-tooltip.styles.js
+;// ./packages/components/build-module/resizable-box/resize-tooltip/styles/resize-tooltip.styles.js
 
 function resize_tooltip_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -64150,7 +64159,7 @@ const LabelText = /*#__PURE__*/emotion_styled_base_browser_esm(text_component,  
   target: "e1wq7y4k0"
 } : 0)("&&&{color:", COLORS.theme.foregroundInverted, ";display:block;font-size:13px;line-height:1.4;white-space:nowrap;}" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/resizable-box/resize-tooltip/label.js
+;// ./packages/components/build-module/resizable-box/resize-tooltip/label.js
 /**
  * External dependencies
  */
@@ -64227,7 +64236,7 @@ function resize_tooltip_label_Label({
 const label_ForwardedComponent = (0,external_wp_element_namespaceObject.forwardRef)(resize_tooltip_label_Label);
 /* harmony default export */ const resize_tooltip_label = (label_ForwardedComponent);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/resizable-box/resize-tooltip/index.js
+;// ./packages/components/build-module/resizable-box/resize-tooltip/index.js
 /**
  * External dependencies
  */
@@ -64240,7 +64249,6 @@ const label_ForwardedComponent = (0,external_wp_element_namespaceObject.forwardR
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -64289,7 +64297,7 @@ function ResizeTooltip({
 const resize_tooltip_ForwardedComponent = (0,external_wp_element_namespaceObject.forwardRef)(ResizeTooltip);
 /* harmony default export */ const resize_tooltip = (resize_tooltip_ForwardedComponent);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/resizable-box/index.js
+;// ./packages/components/build-module/resizable-box/index.js
 /**
  * WordPress dependencies
  */
@@ -64303,7 +64311,6 @@ const resize_tooltip_ForwardedComponent = (0,external_wp_element_namespaceObject
 /**
  * Internal dependencies
  */
-
 
 
 const HANDLE_CLASS_NAME = 'components-resizable-box__handle';
@@ -64361,7 +64368,7 @@ function UnforwardedResizableBox({
 const ResizableBox = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedResizableBox);
 /* harmony default export */ const resizable_box = (ResizableBox);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/responsive-wrapper/index.js
+;// ./packages/components/build-module/responsive-wrapper/index.js
 /**
  * External dependencies
  */
@@ -64421,7 +64428,7 @@ function ResponsiveWrapper({
 }
 /* harmony default export */ const responsive_wrapper = (ResponsiveWrapper);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/sandbox/index.js
+;// ./packages/components/build-module/sandbox/index.js
 /**
  * WordPress dependencies
  */
@@ -64431,7 +64438,6 @@ function ResponsiveWrapper({
 /**
  * Internal dependencies
  */
-
 
 const observeAndResizeJS = function () {
   const {
@@ -64637,21 +64643,18 @@ function SandBox({
       iframe?.removeEventListener('load', tryNoForceSandBox, false);
       defaultView?.removeEventListener('message', checkMessageForResize);
     };
-    // Ignore reason: passing `exhaustive-deps` will likely involve a more detailed refactor.
+    // Passing `exhaustive-deps` will likely involve a more detailed refactor.
     // See https://github.com/WordPress/gutenberg/pull/44378
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     trySandBox();
-    // Ignore reason: passing `exhaustive-deps` will likely involve a more detailed refactor.
+    // Passing `exhaustive-deps` will likely involve a more detailed refactor.
     // See https://github.com/WordPress/gutenberg/pull/44378
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [title, styles, scripts]);
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     trySandBox(true);
-    // Ignore reason: passing `exhaustive-deps` will likely involve a more detailed refactor.
+    // Passing `exhaustive-deps` will likely involve a more detailed refactor.
     // See https://github.com/WordPress/gutenberg/pull/44378
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [html, type]);
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)("iframe", {
     ref: (0,external_wp_compose_namespaceObject.useMergeRefs)([ref, (0,external_wp_compose_namespaceObject.useFocusableIframe)()]),
@@ -64666,7 +64669,7 @@ function SandBox({
 }
 /* harmony default export */ const sandbox = (SandBox);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/snackbar/index.js
+;// ./packages/components/build-module/snackbar/index.js
 /**
  * External dependencies
  */
@@ -64684,7 +64687,6 @@ function SandBox({
 /**
  * Internal dependencies
  */
-
 
 
 const NOTICE_TIMEOUT = 10000;
@@ -64826,7 +64828,7 @@ function UnforwardedSnackbar({
 const Snackbar = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedSnackbar);
 /* harmony default export */ const snackbar = (Snackbar);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/snackbar/list.js
+;// ./packages/components/build-module/snackbar/list.js
 /**
  * External dependencies
  */
@@ -64841,7 +64843,6 @@ const Snackbar = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedS
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -64933,7 +64934,7 @@ function SnackbarList({
 }
 /* harmony default export */ const snackbar_list = (SnackbarList);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/spinner/styles.js
+;// ./packages/components/build-module/spinner/styles.js
 
 function spinner_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -64968,7 +64969,7 @@ const SpinnerIndicator = /*#__PURE__*/emotion_styled_base_browser_esm("path",  t
   target: "ea4tfvq0"
 } : 0)(commonPathProps, ";stroke:currentColor;stroke-linecap:round;transform-origin:50% 50%;animation:1.4s linear infinite both ", spinAnimation, ";" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/spinner/index.js
+;// ./packages/components/build-module/spinner/index.js
 /**
  * External dependencies
  */
@@ -64980,7 +64981,6 @@ const SpinnerIndicator = /*#__PURE__*/emotion_styled_base_browser_esm("path",  t
 /**
  * WordPress dependencies
  */
-
 
 
 function UnforwardedSpinner({
@@ -65022,7 +65022,7 @@ function UnforwardedSpinner({
 const Spinner = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedSpinner);
 /* harmony default export */ const spinner = (Spinner);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/surface/component.js
+;// ./packages/components/build-module/surface/component.js
 /**
  * External dependencies
  */
@@ -65065,7 +65065,7 @@ function UnconnectedSurface(props, forwardedRef) {
 const component_Surface = contextConnect(UnconnectedSurface, 'Surface');
 /* harmony default export */ const surface_component = (component_Surface);
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/tab/tab-store.js
+;// ./node_modules/@ariakit/core/esm/tab/tab-store.js
 "use client";
 
 
@@ -65219,7 +65219,7 @@ function createTabStore(_a = {}) {
 }
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/JZUY7XL6.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/JZUY7XL6.js
 "use client";
 
 
@@ -65256,7 +65256,7 @@ function useTabStore(props = {}) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/TNITL632.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/TNITL632.js
 "use client";
 
 
@@ -65274,7 +65274,7 @@ var TabScopedContextProvider = TNITL632_ctx.ScopedContextProvider;
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/tab/tab-list.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/tab/tab-list.js
 "use client";
 
 
@@ -65322,13 +65322,13 @@ var useTabList = createHook(
     return props;
   }
 );
-var tab_list_TabList = forwardRef2(function TabList2(props) {
+var TabList = forwardRef2(function TabList2(props) {
   const htmlProps = useTabList(props);
   return HKOOKEDE_createElement(tab_list_TagName, htmlProps);
 });
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/tab/tab.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/tab/tab.js
 "use client";
 
 
@@ -65447,7 +65447,7 @@ var Tab = memo2(
 );
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/tab/tab-panel.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/tab/tab-panel.js
 "use client";
 
 
@@ -65572,7 +65572,7 @@ var TabPanel = forwardRef2(function TabPanel2(props) {
 });
 
 
-;// CONCATENATED MODULE: ./packages/components/build-module/tab-panel/index.js
+;// ./packages/components/build-module/tab-panel/index.js
 /**
  * External dependencies
  */
@@ -65585,10 +65585,10 @@ var TabPanel = forwardRef2(function TabPanel2(props) {
 
 
 
+
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -65673,7 +65673,8 @@ const UnforwardedTabPanel = ({
     },
     orientation,
     selectOnMove,
-    defaultSelectedId: prependInstanceId(initialTabName)
+    defaultSelectedId: prependInstanceId(initialTabName),
+    rtl: (0,external_wp_i18n_namespaceObject.isRTL)()
   });
   const selectedTabName = extractTabName(useStoreState(tabStore, 'selectedId'));
   const setTabStoreSelectedId = (0,external_wp_element_namespaceObject.useCallback)(tabName => {
@@ -65733,7 +65734,7 @@ const UnforwardedTabPanel = ({
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)("div", {
     className: className,
     ref: ref,
-    children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(tab_list_TabList, {
+    children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(TabList, {
       store: tabStore,
       className: "components-tab-panel__tabs",
       children: tabs.map(tab => {
@@ -65745,6 +65746,7 @@ const UnforwardedTabPanel = ({
           disabled: tab.disabled,
           "aria-controls": `${prependInstanceId(tab.name)}-view`,
           render: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(build_module_button, {
+            __next40pxDefaultSize: true,
             icon: tab.icon,
             label: tab.icon && tab.title,
             showTooltip: !!tab.icon
@@ -65764,7 +65766,7 @@ const UnforwardedTabPanel = ({
 const tab_panel_TabPanel = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedTabPanel);
 /* harmony default export */ const tab_panel = (tab_panel_TabPanel);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/text-control/index.js
+;// ./packages/components/build-module/text-control/index.js
 /**
  * External dependencies
  */
@@ -65845,7 +65847,7 @@ function UnforwardedTextControl(props, ref) {
 const TextControl = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedTextControl);
 /* harmony default export */ const text_control = (TextControl);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/breakpoint-values.js
+;// ./packages/components/build-module/utils/breakpoint-values.js
 /* harmony default export */ const breakpoint_values = ({
   huge: '1440px',
   wide: '1280px',
@@ -65859,7 +65861,7 @@ const TextControl = (0,external_wp_element_namespaceObject.forwardRef)(Unforward
   'zoomed-in': '280px'
 });
 
-;// CONCATENATED MODULE: ./packages/components/build-module/utils/breakpoint.js
+;// ./packages/components/build-module/utils/breakpoint.js
 /**
  * Internal dependencies
  */
@@ -65871,7 +65873,7 @@ const TextControl = (0,external_wp_element_namespaceObject.forwardRef)(Unforward
  */
 const breakpoint = point => `@media (min-width: ${breakpoint_values[point]})`;
 
-;// CONCATENATED MODULE: ./packages/components/build-module/textarea-control/styles/textarea-control-styles.js
+;// ./packages/components/build-module/textarea-control/styles/textarea-control-styles.js
 
 /**
  * External dependencies
@@ -65892,7 +65894,7 @@ const StyledTextarea = /*#__PURE__*/emotion_styled_base_browser_esm("textarea", 
   target: "e1w5nnrk0"
 } : 0)("width:100%;display:block;font-family:", font('default.fontFamily'), ";line-height:20px;padding:9px 11px;", inputStyleNeutral, ";font-size:", font('mobileTextMinFontSize'), ";", breakpoint('small'), "{font-size:", font('default.fontSize'), ";}&:focus{", inputStyleFocus, ";}&::-webkit-input-placeholder{color:", COLORS.ui.darkGrayPlaceholder, ";}&::-moz-placeholder{opacity:1;color:", COLORS.ui.darkGrayPlaceholder, ";}&:-ms-input-placeholder{color:", COLORS.ui.darkGrayPlaceholder, ";}.is-dark-theme &{&::-webkit-input-placeholder{color:", COLORS.ui.lightGrayPlaceholder, ";}&::-moz-placeholder{opacity:1;color:", COLORS.ui.lightGrayPlaceholder, ";}&:-ms-input-placeholder{color:", COLORS.ui.lightGrayPlaceholder, ";}}" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/textarea-control/index.js
+;// ./packages/components/build-module/textarea-control/index.js
 /**
  * WordPress dependencies
  */
@@ -65968,7 +65970,7 @@ function UnforwardedTextareaControl(props, ref) {
 const TextareaControl = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedTextareaControl);
 /* harmony default export */ const textarea_control = (TextareaControl);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/text-highlight/index.js
+;// ./packages/components/build-module/text-highlight/index.js
 /**
  * WordPress dependencies
  */
@@ -65977,7 +65979,6 @@ const TextareaControl = (0,external_wp_element_namespaceObject.forwardRef)(Unfor
 /**
  * Internal dependencies
  */
-
 
 
 /**
@@ -66013,7 +66014,7 @@ const TextHighlight = props => {
 };
 /* harmony default export */ const text_highlight = (TextHighlight);
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/tip.js
+;// ./packages/icons/build-module/library/tip.js
 /**
  * WordPress dependencies
  */
@@ -66028,7 +66029,7 @@ const tip = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(extern
 });
 /* harmony default export */ const library_tip = (tip);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/tip/index.js
+;// ./packages/components/build-module/tip/index.js
 /**
  * WordPress dependencies
  */
@@ -66037,7 +66038,6 @@ const tip = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(extern
 /**
  * Internal dependencies
  */
-
 
 function Tip(props) {
   const {
@@ -66054,7 +66054,7 @@ function Tip(props) {
 }
 /* harmony default export */ const build_module_tip = (Tip);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/toggle-control/index.js
+;// ./packages/components/build-module/toggle-control/index.js
 /**
  * External dependencies
  */
@@ -66072,7 +66072,6 @@ function Tip(props) {
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -66175,7 +66174,7 @@ function UnforwardedToggleControl({
 const ToggleControl = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedToggleControl);
 /* harmony default export */ const toggle_control = (ToggleControl);
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/IIER4YBF.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/IIER4YBF.js
 "use client";
 
 
@@ -66193,7 +66192,7 @@ var ToolbarScopedContextProvider = IIER4YBF_ctx.ScopedContextProvider;
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/FGSEH62K.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/FGSEH62K.js
 "use client";
 
 
@@ -66220,7 +66219,7 @@ var ToolbarItem = memo2(
 
 
 
-;// CONCATENATED MODULE: ./packages/components/build-module/toolbar/toolbar-context/index.js
+;// ./packages/components/build-module/toolbar/toolbar-context/index.js
 /**
  * External dependencies
  */
@@ -66232,7 +66231,7 @@ var ToolbarItem = memo2(
 const ToolbarContext = (0,external_wp_element_namespaceObject.createContext)(undefined);
 /* harmony default export */ const toolbar_context = (ToolbarContext);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/toolbar/toolbar-item/index.js
+;// ./packages/components/build-module/toolbar/toolbar-item/index.js
 /**
  * External dependencies
  */
@@ -66288,7 +66287,7 @@ function toolbar_item_ToolbarItem({
 }
 /* harmony default export */ const toolbar_item = ((0,external_wp_element_namespaceObject.forwardRef)(toolbar_item_ToolbarItem));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/toolbar/toolbar-button/toolbar-button-container.js
+;// ./packages/components/build-module/toolbar/toolbar-button/toolbar-button-container.js
 
 /**
  * Internal dependencies
@@ -66303,7 +66302,7 @@ const ToolbarButtonContainer = ({
 });
 /* harmony default export */ const toolbar_button_container = (ToolbarButtonContainer);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/toolbar/toolbar-button/index.js
+;// ./packages/components/build-module/toolbar/toolbar-button/index.js
 /**
  * External dependencies
  */
@@ -66409,7 +66408,7 @@ function UnforwardedToolbarButton(props, ref) {
 const ToolbarButton = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedToolbarButton);
 /* harmony default export */ const toolbar_button = (ToolbarButton);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/toolbar/toolbar-group/toolbar-group-container.js
+;// ./packages/components/build-module/toolbar/toolbar-group/toolbar-group-container.js
 
 /**
  * Internal dependencies
@@ -66426,7 +66425,7 @@ const ToolbarGroupContainer = ({
 });
 /* harmony default export */ const toolbar_group_container = (ToolbarGroupContainer);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/toolbar/toolbar-group/toolbar-group-collapsed.js
+;// ./packages/components/build-module/toolbar/toolbar-group/toolbar-group-collapsed.js
 /**
  * WordPress dependencies
  */
@@ -66465,7 +66464,7 @@ function ToolbarGroupCollapsed({
 }
 /* harmony default export */ const toolbar_group_collapsed = (ToolbarGroupCollapsed);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/toolbar/toolbar-group/index.js
+;// ./packages/components/build-module/toolbar/toolbar-group/index.js
 /**
  * External dependencies
  */
@@ -66479,7 +66478,6 @@ function ToolbarGroupCollapsed({
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -66565,7 +66563,7 @@ function ToolbarGroup({
 }
 /* harmony default export */ const toolbar_group = (ToolbarGroup);
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/toolbar/toolbar-store.js
+;// ./node_modules/@ariakit/core/esm/toolbar/toolbar-store.js
 "use client";
 
 
@@ -66590,7 +66588,7 @@ function createToolbarStore(props = {}) {
 }
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/GO2SPXQX.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/GO2SPXQX.js
 "use client";
 
 
@@ -66607,7 +66605,7 @@ function useToolbarStore(props = {}) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/toolbar/toolbar.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/toolbar/toolbar.js
 "use client";
 
 
@@ -66674,7 +66672,7 @@ var Toolbar = forwardRef2(function Toolbar2(props) {
 });
 
 
-;// CONCATENATED MODULE: ./packages/components/build-module/toolbar/toolbar/toolbar-container.js
+;// ./packages/components/build-module/toolbar/toolbar/toolbar-container.js
 /**
  * External dependencies
  */
@@ -66715,7 +66713,7 @@ function UnforwardedToolbarContainer({
 const ToolbarContainer = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedToolbarContainer);
 /* harmony default export */ const toolbar_container = (ToolbarContainer);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/toolbar/toolbar/index.js
+;// ./packages/components/build-module/toolbar/toolbar/index.js
 /**
  * External dependencies
  */
@@ -66749,6 +66747,9 @@ function UnforwardedToolbar({
         variant: 'toolbar'
       },
       Dropdown: {
+        variant: 'toolbar'
+      },
+      Menu: {
         variant: 'toolbar'
       }
     };
@@ -66806,7 +66807,7 @@ function UnforwardedToolbar({
 const toolbar_Toolbar = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedToolbar);
 /* harmony default export */ const toolbar = (toolbar_Toolbar);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/toolbar/toolbar-dropdown-menu/index.js
+;// ./packages/components/build-module/toolbar/toolbar-dropdown-menu/index.js
 /**
  * WordPress dependencies
  */
@@ -66848,7 +66849,7 @@ function ToolbarDropdownMenu(props, ref) {
 }
 /* harmony default export */ const toolbar_dropdown_menu = ((0,external_wp_element_namespaceObject.forwardRef)(ToolbarDropdownMenu));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/tools-panel/styles.js
+;// ./packages/components/build-module/tools-panel/styles.js
 
 function tools_panel_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -66910,7 +66911,7 @@ const ResetLabel = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? 
 }), " text-transform:uppercase;" + ( true ? "" : 0));
 const DefaultControlsItem = /*#__PURE__*/emotion_react_browser_esm_css("color:", COLORS.gray[900], ";&&[aria-disabled='true']{color:", COLORS.gray[700], ";opacity:1;&:hover{color:", COLORS.gray[700], ";}", ResetLabel, "{opacity:0.3;}}" + ( true ? "" : 0),  true ? "" : 0);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/tools-panel/context.js
+;// ./packages/components/build-module/tools-panel/context.js
 /**
  * WordPress dependencies
  */
@@ -66938,7 +66939,7 @@ const ToolsPanelContext = (0,external_wp_element_namespaceObject.createContext)(
 });
 const useToolsPanelContext = () => (0,external_wp_element_namespaceObject.useContext)(ToolsPanelContext);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/tools-panel/tools-panel-header/hook.js
+;// ./packages/components/build-module/tools-panel/tools-panel-header/hook.js
 /**
  * WordPress dependencies
  */
@@ -66988,7 +66989,7 @@ function useToolsPanelHeader(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/tools-panel/tools-panel-header/component.js
+;// ./packages/components/build-module/tools-panel/tools-panel-header/component.js
 /**
  * External dependencies
  */
@@ -67003,8 +67004,6 @@ function useToolsPanelHeader(props) {
 /**
  * Internal dependencies
  */
-
-
 
 
 
@@ -67069,7 +67068,7 @@ const OptionalControlsGroup = ({
       // translators: %s: The name of the control being hidden and reset e.g. "Padding".
       (0,external_wp_i18n_namespaceObject.__)('Hide and reset %s'), label) : (0,external_wp_i18n_namespaceObject.sprintf)(
       // translators: %s: The name of the control to display e.g. "Padding".
-      (0,external_wp_i18n_namespaceObject.__)('Show %s'), label);
+      (0,external_wp_i18n_namespaceObject._x)('Show %s', 'input control'), label);
       return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(menu_item, {
         icon: isSelected ? library_check : null,
         isSelected: isSelected,
@@ -67171,7 +67170,7 @@ const component_ToolsPanelHeader = (props, forwardedRef) => {
 const ConnectedToolsPanelHeader = contextConnect(component_ToolsPanelHeader, 'ToolsPanelHeader');
 /* harmony default export */ const tools_panel_header_component = (ConnectedToolsPanelHeader);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/tools-panel/tools-panel/hook.js
+;// ./packages/components/build-module/tools-panel/tools-panel/hook.js
 /**
  * WordPress dependencies
  */
@@ -67514,7 +67513,7 @@ function useToolsPanel(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/tools-panel/tools-panel/component.js
+;// ./packages/components/build-module/tools-panel/tools-panel/component.js
 /**
  * External dependencies
  */
@@ -67522,7 +67521,6 @@ function useToolsPanel(props) {
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -67611,7 +67609,7 @@ const UnconnectedToolsPanel = (props, forwardedRef) => {
 const component_ToolsPanel = contextConnect(UnconnectedToolsPanel, 'ToolsPanel');
 /* harmony default export */ const tools_panel_component = (component_ToolsPanel);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/tools-panel/tools-panel-item/hook.js
+;// ./packages/components/build-module/tools-panel/tools-panel-item/hook.js
 /**
  * WordPress dependencies
  */
@@ -67656,11 +67654,9 @@ function useToolsPanelItem(props) {
 
   // hasValue is a new function on every render, so do not add it as a
   // dependency to the useCallback hook! If needed, we should use a ref.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const hasValueCallback = (0,external_wp_element_namespaceObject.useCallback)(hasValue, [panelId]);
   // resetAllFilter is a new function on every render, so do not add it as a
   // dependency to the useCallback hook! If needed, we should use a ref.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const resetAllFilterCallback = (0,external_wp_element_namespaceObject.useCallback)(resetAllFilter, [panelId]);
   const previousPanelId = (0,external_wp_compose_namespaceObject.usePrevious)(currentPanelId);
   const hasMatchingPanel = currentPanelId === panelId || currentPanelId === null;
@@ -67749,7 +67745,7 @@ function useToolsPanelItem(props) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/tools-panel/tools-panel-item/component.js
+;// ./packages/components/build-module/tools-panel/tools-panel-item/component.js
 /**
  * External dependencies
  */
@@ -67785,7 +67781,7 @@ const UnconnectedToolsPanelItem = (props, forwardedRef) => {
 const component_ToolsPanelItem = contextConnect(UnconnectedToolsPanelItem, 'ToolsPanelItem');
 /* harmony default export */ const tools_panel_item_component = (component_ToolsPanelItem);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/tree-grid/roving-tab-index-context.js
+;// ./packages/components/build-module/tree-grid/roving-tab-index-context.js
 /**
  * WordPress dependencies
  */
@@ -67794,7 +67790,7 @@ const RovingTabIndexContext = (0,external_wp_element_namespaceObject.createConte
 const useRovingTabIndexContext = () => (0,external_wp_element_namespaceObject.useContext)(RovingTabIndexContext);
 const RovingTabIndexProvider = RovingTabIndexContext.Provider;
 
-;// CONCATENATED MODULE: ./packages/components/build-module/tree-grid/roving-tab-index.js
+;// ./packages/components/build-module/tree-grid/roving-tab-index.js
 /**
  * WordPress dependencies
  */
@@ -67829,7 +67825,7 @@ function RovingTabIndex({
   });
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/tree-grid/index.js
+;// ./packages/components/build-module/tree-grid/index.js
 /**
  * WordPress dependencies
  */
@@ -68149,7 +68145,7 @@ const TreeGrid = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedT
 
 
 
-;// CONCATENATED MODULE: ./packages/components/build-module/tree-grid/row.js
+;// ./packages/components/build-module/tree-grid/row.js
 /**
  * WordPress dependencies
  */
@@ -68189,7 +68185,7 @@ function UnforwardedTreeGridRow({
 const TreeGridRow = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedTreeGridRow);
 /* harmony default export */ const tree_grid_row = (TreeGridRow);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/tree-grid/roving-tab-index-item.js
+;// ./packages/components/build-module/tree-grid/roving-tab-index-item.js
 /**
  * WordPress dependencies
  */
@@ -68241,7 +68237,7 @@ const RovingTabIndexItem = (0,external_wp_element_namespaceObject.forwardRef)(fu
 });
 /* harmony default export */ const roving_tab_index_item = (RovingTabIndexItem);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/tree-grid/item.js
+;// ./packages/components/build-module/tree-grid/item.js
 /**
  * WordPress dependencies
  */
@@ -68273,7 +68269,7 @@ function UnforwardedTreeGridItem({
 const TreeGridItem = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedTreeGridItem);
 /* harmony default export */ const tree_grid_item = (TreeGridItem);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/tree-grid/cell.js
+;// ./packages/components/build-module/tree-grid/cell.js
 /**
  * WordPress dependencies
  */
@@ -68282,7 +68278,6 @@ const TreeGridItem = (0,external_wp_element_namespaceObject.forwardRef)(Unforwar
 /**
  * Internal dependencies
  */
-
 
 
 function UnforwardedTreeGridCell({
@@ -68312,7 +68307,7 @@ function UnforwardedTreeGridCell({
 const TreeGridCell = (0,external_wp_element_namespaceObject.forwardRef)(UnforwardedTreeGridCell);
 /* harmony default export */ const cell = (TreeGridCell);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/isolated-event-container/index.js
+;// ./packages/components/build-module/isolated-event-container/index.js
 /**
  * External dependencies
  */
@@ -68343,7 +68338,7 @@ const IsolatedEventContainer = (0,external_wp_element_namespaceObject.forwardRef
 });
 /* harmony default export */ const isolated_event_container = (IsolatedEventContainer);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/slot-fill/bubbles-virtually/use-slot-fills.js
+;// ./packages/components/build-module/slot-fill/bubbles-virtually/use-slot-fills.js
 /**
  * WordPress dependencies
  */
@@ -68359,7 +68354,7 @@ function useSlotFills(name) {
   return (0,external_wp_compose_namespaceObject.useObservableValue)(registry.fills, name);
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/z-stack/styles.js
+;// ./packages/components/build-module/z-stack/styles.js
 
 function z_stack_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -68388,7 +68383,7 @@ const ZStackView = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
 }) => isLayered ? // When `isLayered` is true, all items overlap in the same grid cell
 z_stack_styles_ref : undefined, ";}" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/z-stack/component.js
+;// ./packages/components/build-module/z-stack/component.js
 /**
  * External dependencies
  */
@@ -68457,7 +68452,7 @@ function UnconnectedZStack(props, forwardedRef) {
 const ZStack = contextConnect(UnconnectedZStack, 'ZStack');
 /* harmony default export */ const z_stack_component = (ZStack);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/higher-order/navigate-regions/index.js
+;// ./packages/components/build-module/higher-order/navigate-regions/index.js
 /**
  * WordPress dependencies
  */
@@ -68574,7 +68569,7 @@ function useNavigateRegions(shortcuts = defaultShortcuts) {
   })
 }), 'navigateRegions'));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/higher-order/with-constrained-tabbing/index.js
+;// ./packages/components/build-module/higher-order/with-constrained-tabbing/index.js
 /**
  * WordPress dependencies
  */
@@ -68601,7 +68596,7 @@ const withConstrainedTabbing = (0,external_wp_compose_namespaceObject.createHigh
 }, 'withConstrainedTabbing');
 /* harmony default export */ const with_constrained_tabbing = (withConstrainedTabbing);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/higher-order/with-fallback-styles/index.js
+;// ./packages/components/build-module/higher-order/with-fallback-styles/index.js
 /**
  * External dependencies
  */
@@ -68610,7 +68605,6 @@ const withConstrainedTabbing = (0,external_wp_compose_namespaceObject.createHigh
 /**
  * WordPress dependencies
  */
-
 
 
 
@@ -68665,9 +68659,9 @@ const withConstrainedTabbing = (0,external_wp_compose_namespaceObject.createHigh
   };
 }, 'withFallbackStyles'));
 
-;// CONCATENATED MODULE: external ["wp","hooks"]
+;// external ["wp","hooks"]
 const external_wp_hooks_namespaceObject = window["wp"]["hooks"];
-;// CONCATENATED MODULE: ./packages/components/build-module/higher-order/with-filters/index.js
+;// ./packages/components/build-module/higher-order/with-filters/index.js
 /**
  * WordPress dependencies
  */
@@ -68797,7 +68791,7 @@ function withFilters(hookName) {
   }, 'withFilters');
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/higher-order/with-focus-return/index.js
+;// ./packages/components/build-module/higher-order/with-focus-return/index.js
 /**
  * WordPress dependencies
  */
@@ -68863,7 +68857,7 @@ const with_focus_return_Provider = ({
   return children;
 };
 
-;// CONCATENATED MODULE: ./packages/components/build-module/higher-order/with-notices/index.js
+;// ./packages/components/build-module/higher-order/with-notices/index.js
 /**
  * External dependencies
  */
@@ -68967,7 +68961,7 @@ const with_focus_return_Provider = ({
   return Component;
 }, 'withNotices'));
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/LG4RFBHV.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/LG4RFBHV.js
 "use client";
 
 
@@ -68996,7 +68990,7 @@ var MenuItemCheckedContext = (0,external_React_.createContext)(
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/WSQNIDGC.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/WSQNIDGC.js
 "use client";
 
 
@@ -69018,7 +69012,7 @@ var WSQNIDGC_MenuItemCheckedContext = (0,external_React_.createContext)(
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/menu/menu-store.js
+;// ./node_modules/@ariakit/core/esm/menu/menu-store.js
 "use client";
 
 
@@ -69132,7 +69126,7 @@ function createMenuStore(_a = {}) {
 }
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/MS4VD4RJ.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/MS4VD4RJ.js
 "use client";
 
 
@@ -69176,7 +69170,7 @@ function useMenuStore(props = {}) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/menu/menu-button.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/menu/menu-button.js
 "use client";
 
 
@@ -69373,7 +69367,7 @@ var MenuButton = forwardRef2(function MenuButton2(props) {
 });
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/ULASSYJG.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/ULASSYJG.js
 "use client";
 
 
@@ -69517,7 +69511,7 @@ var MenuList = forwardRef2(function MenuList2(props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/menu/menu.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/menu/menu.js
 "use client";
 
 
@@ -69719,7 +69713,7 @@ var Menu = createDialogComponent(
 );
 
 
-;// CONCATENATED MODULE: ./packages/icons/build-module/library/chevron-right-small.js
+;// ./packages/icons/build-module/library/chevron-right-small.js
 /**
  * WordPress dependencies
  */
@@ -69734,7 +69728,7 @@ const chevronRightSmall = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObje
 });
 /* harmony default export */ const chevron_right_small = (chevronRightSmall);
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/B6XZVSMQ.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/B6XZVSMQ.js
 "use client";
 
 
@@ -69861,7 +69855,7 @@ var B6XZVSMQ_MenuItem = memo2(
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/AUGWLYYL.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/AUGWLYYL.js
 "use client";
 
 
@@ -69875,7 +69869,7 @@ var CheckboxScopedContextProvider = AUGWLYYL_ctx.ScopedContextProvider;
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/L7GTXQJP.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/L7GTXQJP.js
 "use client";
 
 
@@ -70025,7 +70019,7 @@ var Checkbox = forwardRef2(function Checkbox2(props) {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@ariakit/core/esm/checkbox/checkbox-store.js
+;// ./node_modules/@ariakit/core/esm/checkbox/checkbox-store.js
 "use client";
 
 
@@ -70051,7 +70045,7 @@ function createCheckboxStore(props = {}) {
 }
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/EJOTW52C.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/EJOTW52C.js
 "use client";
 
 
@@ -70070,7 +70064,7 @@ function useCheckboxStore(props = {}) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/menu/menu-item-checkbox.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/menu/menu-item-checkbox.js
 "use client";
 
 
@@ -70198,7 +70192,7 @@ var MenuItemCheckbox = memo2(
 );
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/menu/menu-item-radio.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/menu/menu-item-radio.js
 "use client";
 
 
@@ -70303,7 +70297,7 @@ var MenuItemRadio = memo2(
 );
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/menu/menu-group.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/menu/menu-group.js
 "use client";
 
 
@@ -70327,7 +70321,7 @@ var menu_group_MenuGroup = forwardRef2(function MenuGroup2(props) {
 });
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/menu/menu-group-label.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/menu/menu-group-label.js
 "use client";
 
 
@@ -70351,7 +70345,7 @@ var MenuGroupLabel = forwardRef2(function MenuGroupLabel2(props) {
 });
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/WEEEI3KU.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/__chunks/WEEEI3KU.js
 "use client";
 
 
@@ -70382,7 +70376,7 @@ var CompositeSeparator = forwardRef2(function CompositeSeparator2(props) {
 
 
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/menu/menu-separator.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/menu/menu-separator.js
 "use client";
 
 
@@ -70416,9 +70410,9 @@ var MenuSeparator = forwardRef2(function MenuSeparator2(props) {
 });
 
 
-;// CONCATENATED MODULE: ./packages/components/build-module/dropdown-menu-v2/styles.js
+;// ./packages/components/build-module/menu/styles.js
 
-function dropdown_menu_v2_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
+function menu_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
  * External dependencies
  */
@@ -70457,60 +70451,60 @@ const DEFAULT_BOX_SHADOW = `0 0 0 ${config_values.borderWidth} ${DEFAULT_BORDER_
 const TOOLBAR_VARIANT_BOX_SHADOW = `0 0 0 ${config_values.borderWidth} ${TOOLBAR_VARIANT_BORDER_COLOR}`;
 const GRID_TEMPLATE_COLS = 'minmax( 0, max-content ) 1fr';
 const MenuPopoverOuterWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
-  target: "e1kdzosf14"
+  target: "e1wg7tti14"
 } : 0)("position:relative;background-color:", COLORS.ui.background, ";border-radius:", config_values.radiusMedium, ";", props => /*#__PURE__*/emotion_react_browser_esm_css("box-shadow:", props.variant === 'toolbar' ? TOOLBAR_VARIANT_BOX_SHADOW : DEFAULT_BOX_SHADOW, ";" + ( true ? "" : 0),  true ? "" : 0), " overflow:hidden;@media not ( prefers-reduced-motion ){transition-property:transform,opacity;transition-timing-function:", styles_ANIMATION_PARAMS.EASING, ";transition-duration:", styles_ANIMATION_PARAMS.DURATION.IN, ";will-change:transform,opacity;opacity:0;&:has( [data-enter] ){opacity:1;}&:has( [data-leave] ){transition-duration:", styles_ANIMATION_PARAMS.DURATION.OUT, ";}&:has( [data-side='bottom'] ),&:has( [data-side='top'] ){transform:scaleY( ", styles_ANIMATION_PARAMS.SCALE_AMOUNT_OUTER, " );}&:has( [data-side='bottom'] ){transform-origin:top;}&:has( [data-side='top'] ){transform-origin:bottom;}&:has( [data-enter][data-side='bottom'] ),&:has( [data-enter][data-side='top'] ),&:has( [data-leave][data-side='bottom'] ),&:has( [data-leave][data-side='top'] ){transform:scaleY( 1 );}}" + ( true ? "" : 0));
 const MenuPopoverInnerWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
-  target: "e1kdzosf13"
+  target: "e1wg7tti13"
 } : 0)("position:relative;z-index:1000000;display:grid;grid-template-columns:", GRID_TEMPLATE_COLS, ";grid-template-rows:auto;box-sizing:border-box;min-width:160px;max-width:320px;max-height:var( --popover-available-height );padding:", CONTENT_WRAPPER_PADDING, ";overscroll-behavior:contain;overflow:auto;outline:2px solid transparent!important;@media not ( prefers-reduced-motion ){transition:inherit;transform-origin:inherit;&[data-side='bottom'],&[data-side='top']{transform:scaleY(\n\t\t\t\tcalc(\n\t\t\t\t\t1 / ", styles_ANIMATION_PARAMS.SCALE_AMOUNT_OUTER, " *\n\t\t\t\t\t\t", styles_ANIMATION_PARAMS.SCALE_AMOUNT_CONTENT, "\n\t\t\t\t)\n\t\t\t);}&[data-enter][data-side='bottom'],&[data-enter][data-side='top'],&[data-leave][data-side='bottom'],&[data-leave][data-side='top']{transform:scaleY( 1 );}}" + ( true ? "" : 0));
 const baseItem = /*#__PURE__*/emotion_react_browser_esm_css("all:unset;position:relative;min-height:", space(10), ";box-sizing:border-box;grid-column:1/-1;display:grid;grid-template-columns:", GRID_TEMPLATE_COLS, ";align-items:center;@supports ( grid-template-columns: subgrid ){grid-template-columns:subgrid;}font-size:", font('default.fontSize'), ";font-family:inherit;font-weight:normal;line-height:20px;color:", COLORS.theme.foreground, ";border-radius:", config_values.radiusSmall, ";padding-block:", ITEM_PADDING_BLOCK, ";padding-inline:", ITEM_PADDING_INLINE, ";scroll-margin:", CONTENT_WRAPPER_PADDING, ";user-select:none;outline:none;&[aria-disabled='true']{color:", COLORS.ui.textDisabled, ";cursor:not-allowed;}&[data-active-item]:not( [data-focus-visible] ):not(\n\t\t\t[aria-disabled='true']\n\t\t){background-color:", COLORS.theme.accent, ";color:", COLORS.white, ";}&[data-focus-visible]{box-shadow:0 0 0 1.5px ", COLORS.theme.accent, ";outline:2px solid transparent;}&:active,&[data-active]{}", MenuPopoverInnerWrapper, ":not(:focus) &:not(:focus)[aria-expanded=\"true\"]{background-color:", LIGHT_BACKGROUND_COLOR, ";color:", COLORS.theme.foreground, ";}svg{fill:currentColor;}" + ( true ? "" : 0),  true ? "" : 0);
-const styles_DropdownMenuItem = /*#__PURE__*/emotion_styled_base_browser_esm(B6XZVSMQ_MenuItem,  true ? {
-  target: "e1kdzosf12"
+const styles_MenuItem = /*#__PURE__*/emotion_styled_base_browser_esm(B6XZVSMQ_MenuItem,  true ? {
+  target: "e1wg7tti12"
 } : 0)(baseItem, ";" + ( true ? "" : 0));
-const styles_DropdownMenuCheckboxItem = /*#__PURE__*/emotion_styled_base_browser_esm(MenuItemCheckbox,  true ? {
-  target: "e1kdzosf11"
+const styles_MenuCheckboxItem = /*#__PURE__*/emotion_styled_base_browser_esm(MenuItemCheckbox,  true ? {
+  target: "e1wg7tti11"
 } : 0)(baseItem, ";" + ( true ? "" : 0));
-const styles_DropdownMenuRadioItem = /*#__PURE__*/emotion_styled_base_browser_esm(MenuItemRadio,  true ? {
-  target: "e1kdzosf10"
+const styles_MenuRadioItem = /*#__PURE__*/emotion_styled_base_browser_esm(MenuItemRadio,  true ? {
+  target: "e1wg7tti10"
 } : 0)(baseItem, ";" + ( true ? "" : 0));
 const ItemPrefixWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? {
-  target: "e1kdzosf9"
-} : 0)("grid-column:1;", styles_DropdownMenuCheckboxItem, ">&,", styles_DropdownMenuRadioItem, ">&{min-width:", space(6), ";}", styles_DropdownMenuCheckboxItem, ">&,", styles_DropdownMenuRadioItem, ">&,&:not( :empty ){margin-inline-end:", space(2), ";}display:flex;align-items:center;justify-content:center;color:", LIGHTER_TEXT_COLOR, ";[data-active-item]:not( [data-focus-visible] )>&,[aria-disabled='true']>&{color:inherit;}" + ( true ? "" : 0));
-const DropdownMenuItemContentWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
-  target: "e1kdzosf8"
+  target: "e1wg7tti9"
+} : 0)("grid-column:1;", styles_MenuCheckboxItem, ">&,", styles_MenuRadioItem, ">&{min-width:", space(6), ";}", styles_MenuCheckboxItem, ">&,", styles_MenuRadioItem, ">&,&:not( :empty ){margin-inline-end:", space(2), ";}display:flex;align-items:center;justify-content:center;color:", LIGHTER_TEXT_COLOR, ";[data-active-item]:not( [data-focus-visible] )>&,[aria-disabled='true']>&{color:inherit;}" + ( true ? "" : 0));
+const MenuItemContentWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
+  target: "e1wg7tti8"
 } : 0)("grid-column:2;display:flex;align-items:center;justify-content:space-between;gap:", space(3), ";pointer-events:none;" + ( true ? "" : 0));
-const DropdownMenuItemChildrenWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
-  target: "e1kdzosf7"
+const MenuItemChildrenWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
+  target: "e1wg7tti7"
 } : 0)("flex:1;display:inline-flex;flex-direction:column;gap:", space(1), ";" + ( true ? "" : 0));
 const ItemSuffixWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? {
-  target: "e1kdzosf6"
+  target: "e1wg7tti6"
 } : 0)("flex:0 1 fit-content;min-width:0;width:fit-content;display:flex;align-items:center;justify-content:center;gap:", space(3), ";color:", LIGHTER_TEXT_COLOR, ";[data-active-item]:not( [data-focus-visible] ) *:not(", MenuPopoverInnerWrapper, ") &,[aria-disabled='true'] *:not(", MenuPopoverInnerWrapper, ") &{color:inherit;}" + ( true ? "" : 0));
-const styles_DropdownMenuGroup = /*#__PURE__*/emotion_styled_base_browser_esm(menu_group_MenuGroup,  true ? {
-  target: "e1kdzosf5"
+const styles_MenuGroup = /*#__PURE__*/emotion_styled_base_browser_esm(menu_group_MenuGroup,  true ? {
+  target: "e1wg7tti5"
 } : 0)( true ? {
   name: "49aokf",
   styles: "display:contents"
 } : 0);
-const DropdownMenuGroupLabel = /*#__PURE__*/emotion_styled_base_browser_esm(MenuGroupLabel,  true ? {
-  target: "e1kdzosf4"
+const styles_MenuGroupLabel = /*#__PURE__*/emotion_styled_base_browser_esm(MenuGroupLabel,  true ? {
+  target: "e1wg7tti4"
 } : 0)("grid-column:1/-1;padding-block-start:", space(3), ";padding-block-end:", space(2), ";padding-inline:", ITEM_PADDING_INLINE, ";" + ( true ? "" : 0));
-const styles_DropdownMenuSeparator = /*#__PURE__*/emotion_styled_base_browser_esm(MenuSeparator,  true ? {
-  target: "e1kdzosf3"
+const styles_MenuSeparator = /*#__PURE__*/emotion_styled_base_browser_esm(MenuSeparator,  true ? {
+  target: "e1wg7tti3"
 } : 0)("grid-column:1/-1;border:none;height:", config_values.borderWidth, ";background-color:", props => props.variant === 'toolbar' ? TOOLBAR_VARIANT_BORDER_COLOR : DIVIDER_COLOR, ";margin-block:", space(2), ";margin-inline:", ITEM_PADDING_INLINE, ";outline:2px solid transparent;" + ( true ? "" : 0));
 const SubmenuChevronIcon = /*#__PURE__*/emotion_styled_base_browser_esm(build_module_icon,  true ? {
-  target: "e1kdzosf2"
+  target: "e1wg7tti2"
 } : 0)("width:", space(1.5), ";", rtl({
   transform: `scaleX(1)`
 }, {
   transform: `scaleX(-1)`
 }), ";" + ( true ? "" : 0));
-const styles_DropdownMenuItemLabel = /*#__PURE__*/emotion_styled_base_browser_esm(truncate_component,  true ? {
-  target: "e1kdzosf1"
+const styles_MenuItemLabel = /*#__PURE__*/emotion_styled_base_browser_esm(truncate_component,  true ? {
+  target: "e1wg7tti1"
 } : 0)("font-size:", font('default.fontSize'), ";line-height:20px;color:inherit;" + ( true ? "" : 0));
-const styles_DropdownMenuItemHelpText = /*#__PURE__*/emotion_styled_base_browser_esm(truncate_component,  true ? {
-  target: "e1kdzosf0"
+const styles_MenuItemHelpText = /*#__PURE__*/emotion_styled_base_browser_esm(truncate_component,  true ? {
+  target: "e1wg7tti0"
 } : 0)("font-size:", font('helpText.fontSize'), ";line-height:16px;color:", LIGHTER_TEXT_COLOR, ";word-break:break-all;[data-active-item]:not( [data-focus-visible] ) *:not( ", MenuPopoverInnerWrapper, " ) &,[aria-disabled='true'] *:not( ", MenuPopoverInnerWrapper, " ) &{color:inherit;}" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/dropdown-menu-v2/context.js
+;// ./packages/components/build-module/menu/context.js
 /**
  * WordPress dependencies
  */
@@ -70520,9 +70514,9 @@ const styles_DropdownMenuItemHelpText = /*#__PURE__*/emotion_styled_base_browser
  * Internal dependencies
  */
 
-const DropdownMenuContext = (0,external_wp_element_namespaceObject.createContext)(undefined);
+const MenuContext = (0,external_wp_element_namespaceObject.createContext)(undefined);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/dropdown-menu-v2/use-temporary-focus-visible-fix.js
+;// ./packages/components/build-module/menu/use-temporary-focus-visible-fix.js
 /**
  * WordPress dependencies
  */
@@ -70543,7 +70537,7 @@ function useTemporaryFocusVisibleFix({
   };
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/dropdown-menu-v2/item.js
+;// ./packages/components/build-module/menu/item.js
 /**
  * WordPress dependencies
  */
@@ -70557,8 +70551,7 @@ function useTemporaryFocusVisibleFix({
 
 
 
-
-const DropdownMenuItem = (0,external_wp_element_namespaceObject.forwardRef)(function DropdownMenuItem({
+const item_MenuItem = (0,external_wp_element_namespaceObject.forwardRef)(function MenuItem({
   prefix,
   suffix,
   children,
@@ -70570,18 +70563,18 @@ const DropdownMenuItem = (0,external_wp_element_namespaceObject.forwardRef)(func
   const focusVisibleFixProps = useTemporaryFocusVisibleFix({
     onBlur
   });
-  const dropdownMenuContext = (0,external_wp_element_namespaceObject.useContext)(DropdownMenuContext);
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(styles_DropdownMenuItem, {
+  const menuContext = (0,external_wp_element_namespaceObject.useContext)(MenuContext);
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(styles_MenuItem, {
     ref: ref,
     ...props,
     ...focusVisibleFixProps,
     accessibleWhenDisabled: true,
     hideOnClick: hideOnClick,
-    store: dropdownMenuContext?.store,
+    store: menuContext?.store,
     children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ItemPrefixWrapper, {
       children: prefix
-    }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(DropdownMenuItemContentWrapper, {
-      children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(DropdownMenuItemChildrenWrapper, {
+    }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(MenuItemContentWrapper, {
+      children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(MenuItemChildrenWrapper, {
         children: children
       }), suffix && /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ItemSuffixWrapper, {
         children: suffix
@@ -70590,7 +70583,7 @@ const DropdownMenuItem = (0,external_wp_element_namespaceObject.forwardRef)(func
   });
 });
 
-;// CONCATENATED MODULE: ./packages/components/node_modules/@ariakit/react-core/esm/menu/menu-item-check.js
+;// ./packages/components/node_modules/@ariakit/react-core/esm/menu/menu-item-check.js
 "use client";
 
 
@@ -70625,7 +70618,7 @@ var MenuItemCheck = forwardRef2(function MenuItemCheck2(props) {
 });
 
 
-;// CONCATENATED MODULE: ./packages/components/build-module/dropdown-menu-v2/checkbox-item.js
+;// ./packages/components/build-module/menu/checkbox-item.js
 /**
  * External dependencies
  */
@@ -70645,8 +70638,7 @@ var MenuItemCheck = forwardRef2(function MenuItemCheck2(props) {
 
 
 
-
-const DropdownMenuCheckboxItem = (0,external_wp_element_namespaceObject.forwardRef)(function DropdownMenuCheckboxItem({
+const MenuCheckboxItem = (0,external_wp_element_namespaceObject.forwardRef)(function MenuCheckboxItem({
   suffix,
   children,
   onBlur,
@@ -70657,16 +70649,16 @@ const DropdownMenuCheckboxItem = (0,external_wp_element_namespaceObject.forwardR
   const focusVisibleFixProps = useTemporaryFocusVisibleFix({
     onBlur
   });
-  const dropdownMenuContext = (0,external_wp_element_namespaceObject.useContext)(DropdownMenuContext);
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(styles_DropdownMenuCheckboxItem, {
+  const menuContext = (0,external_wp_element_namespaceObject.useContext)(MenuContext);
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(styles_MenuCheckboxItem, {
     ref: ref,
     ...props,
     ...focusVisibleFixProps,
     accessibleWhenDisabled: true,
     hideOnClick: hideOnClick,
-    store: dropdownMenuContext?.store,
+    store: menuContext?.store,
     children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(MenuItemCheck, {
-      store: dropdownMenuContext?.store,
+      store: menuContext?.store,
       render: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ItemPrefixWrapper, {})
       // Override some ariakit inline styles
       ,
@@ -70678,8 +70670,8 @@ const DropdownMenuCheckboxItem = (0,external_wp_element_namespaceObject.forwardR
         icon: library_check,
         size: 24
       })
-    }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(DropdownMenuItemContentWrapper, {
-      children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(DropdownMenuItemChildrenWrapper, {
+    }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(MenuItemContentWrapper, {
+      children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(MenuItemChildrenWrapper, {
         children: children
       }), suffix && /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ItemSuffixWrapper, {
         children: suffix
@@ -70688,7 +70680,7 @@ const DropdownMenuCheckboxItem = (0,external_wp_element_namespaceObject.forwardR
   });
 });
 
-;// CONCATENATED MODULE: ./packages/components/build-module/dropdown-menu-v2/radio-item.js
+;// ./packages/components/build-module/menu/radio-item.js
 /**
  * External dependencies
  */
@@ -70703,7 +70695,6 @@ const DropdownMenuCheckboxItem = (0,external_wp_element_namespaceObject.forwardR
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -70719,7 +70710,7 @@ const radioCheck = /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)
     r: 3
   })
 });
-const DropdownMenuRadioItem = (0,external_wp_element_namespaceObject.forwardRef)(function DropdownMenuRadioItem({
+const MenuRadioItem = (0,external_wp_element_namespaceObject.forwardRef)(function MenuRadioItem({
   suffix,
   children,
   onBlur,
@@ -70730,16 +70721,16 @@ const DropdownMenuRadioItem = (0,external_wp_element_namespaceObject.forwardRef)
   const focusVisibleFixProps = useTemporaryFocusVisibleFix({
     onBlur
   });
-  const dropdownMenuContext = (0,external_wp_element_namespaceObject.useContext)(DropdownMenuContext);
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(styles_DropdownMenuRadioItem, {
+  const menuContext = (0,external_wp_element_namespaceObject.useContext)(MenuContext);
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(styles_MenuRadioItem, {
     ref: ref,
     ...props,
     ...focusVisibleFixProps,
     accessibleWhenDisabled: true,
     hideOnClick: hideOnClick,
-    store: dropdownMenuContext?.store,
+    store: menuContext?.store,
     children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(MenuItemCheck, {
-      store: dropdownMenuContext?.store,
+      store: menuContext?.store,
       render: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ItemPrefixWrapper, {})
       // Override some ariakit inline styles
       ,
@@ -70751,8 +70742,8 @@ const DropdownMenuRadioItem = (0,external_wp_element_namespaceObject.forwardRef)
         icon: radioCheck,
         size: 24
       })
-    }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(DropdownMenuItemContentWrapper, {
-      children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(DropdownMenuItemChildrenWrapper, {
+    }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(MenuItemContentWrapper, {
+      children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(MenuItemChildrenWrapper, {
         children: children
       }), suffix && /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(ItemSuffixWrapper, {
         children: suffix
@@ -70761,7 +70752,7 @@ const DropdownMenuRadioItem = (0,external_wp_element_namespaceObject.forwardRef)
   });
 });
 
-;// CONCATENATED MODULE: ./packages/components/build-module/dropdown-menu-v2/group.js
+;// ./packages/components/build-module/menu/group.js
 /**
  * WordPress dependencies
  */
@@ -70774,16 +70765,16 @@ const DropdownMenuRadioItem = (0,external_wp_element_namespaceObject.forwardRef)
 
 
 
-const DropdownMenuGroup = (0,external_wp_element_namespaceObject.forwardRef)(function DropdownMenuGroup(props, ref) {
-  const dropdownMenuContext = (0,external_wp_element_namespaceObject.useContext)(DropdownMenuContext);
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(styles_DropdownMenuGroup, {
+const group_MenuGroup = (0,external_wp_element_namespaceObject.forwardRef)(function MenuGroup(props, ref) {
+  const menuContext = (0,external_wp_element_namespaceObject.useContext)(MenuContext);
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(styles_MenuGroup, {
     ref: ref,
     ...props,
-    store: dropdownMenuContext?.store
+    store: menuContext?.store
   });
 });
 
-;// CONCATENATED MODULE: ./packages/components/build-module/dropdown-menu-v2/group-label.js
+;// ./packages/components/build-module/menu/group-label.js
 /**
  * WordPress dependencies
  */
@@ -70797,9 +70788,9 @@ const DropdownMenuGroup = (0,external_wp_element_namespaceObject.forwardRef)(fun
 
 
 
-const group_label_DropdownMenuGroupLabel = (0,external_wp_element_namespaceObject.forwardRef)(function DropdownMenuGroup(props, ref) {
-  const dropdownMenuContext = (0,external_wp_element_namespaceObject.useContext)(DropdownMenuContext);
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(DropdownMenuGroupLabel, {
+const group_label_MenuGroupLabel = (0,external_wp_element_namespaceObject.forwardRef)(function MenuGroup(props, ref) {
+  const menuContext = (0,external_wp_element_namespaceObject.useContext)(MenuContext);
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(styles_MenuGroupLabel, {
     ref: ref,
     render:
     /*#__PURE__*/
@@ -70812,11 +70803,11 @@ const group_label_DropdownMenuGroupLabel = (0,external_wp_element_namespaceObjec
       lineHeight: "16px"
     }),
     ...props,
-    store: dropdownMenuContext?.store
+    store: menuContext?.store
   });
 });
 
-;// CONCATENATED MODULE: ./packages/components/build-module/dropdown-menu-v2/separator.js
+;// ./packages/components/build-module/menu/separator.js
 /**
  * WordPress dependencies
  */
@@ -70829,17 +70820,17 @@ const group_label_DropdownMenuGroupLabel = (0,external_wp_element_namespaceObjec
 
 
 
-const DropdownMenuSeparator = (0,external_wp_element_namespaceObject.forwardRef)(function DropdownMenuSeparator(props, ref) {
-  const dropdownMenuContext = (0,external_wp_element_namespaceObject.useContext)(DropdownMenuContext);
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(styles_DropdownMenuSeparator, {
+const separator_MenuSeparator = (0,external_wp_element_namespaceObject.forwardRef)(function MenuSeparator(props, ref) {
+  const menuContext = (0,external_wp_element_namespaceObject.useContext)(MenuContext);
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(styles_MenuSeparator, {
     ref: ref,
     ...props,
-    store: dropdownMenuContext?.store,
-    variant: dropdownMenuContext?.variant
+    store: menuContext?.store,
+    variant: menuContext?.variant
   });
 });
 
-;// CONCATENATED MODULE: ./packages/components/build-module/dropdown-menu-v2/item-label.js
+;// ./packages/components/build-module/menu/item-label.js
 /**
  * WordPress dependencies
  */
@@ -70851,15 +70842,15 @@ const DropdownMenuSeparator = (0,external_wp_element_namespaceObject.forwardRef)
 
 
 
-const DropdownMenuItemLabel = (0,external_wp_element_namespaceObject.forwardRef)(function DropdownMenuItemLabel(props, ref) {
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(styles_DropdownMenuItemLabel, {
+const MenuItemLabel = (0,external_wp_element_namespaceObject.forwardRef)(function MenuItemLabel(props, ref) {
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(styles_MenuItemLabel, {
     numberOfLines: 1,
     ref: ref,
     ...props
   });
 });
 
-;// CONCATENATED MODULE: ./packages/components/build-module/dropdown-menu-v2/item-help-text.js
+;// ./packages/components/build-module/menu/item-help-text.js
 /**
  * WordPress dependencies
  */
@@ -70871,15 +70862,15 @@ const DropdownMenuItemLabel = (0,external_wp_element_namespaceObject.forwardRef)
 
 
 
-const DropdownMenuItemHelpText = (0,external_wp_element_namespaceObject.forwardRef)(function DropdownMenuItemHelpText(props, ref) {
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(styles_DropdownMenuItemHelpText, {
+const MenuItemHelpText = (0,external_wp_element_namespaceObject.forwardRef)(function MenuItemHelpText(props, ref) {
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(styles_MenuItemHelpText, {
     numberOfLines: 2,
     ref: ref,
     ...props
   });
 });
 
-;// CONCATENATED MODULE: ./packages/components/build-module/dropdown-menu-v2/index.js
+;// ./packages/components/build-module/menu/index.js
 /**
  * External dependencies
  */
@@ -70908,9 +70899,7 @@ const DropdownMenuItemHelpText = (0,external_wp_element_namespaceObject.forwardR
 
 
 
-
-
-const dropdown_menu_v2_UnconnectedDropdownMenu = (props, ref) => {
+const UnconnectedMenu = (props, ref) => {
   var _props$placement;
   const {
     // Store props
@@ -70929,13 +70918,13 @@ const dropdown_menu_v2_UnconnectedDropdownMenu = (props, ref) => {
     variant,
     // Rest
     ...otherProps
-  } = useContextSystem(props, 'DropdownMenu');
-  const parentContext = (0,external_wp_element_namespaceObject.useContext)(DropdownMenuContext);
+  } = useContextSystem(props, 'Menu');
+  const parentContext = (0,external_wp_element_namespaceObject.useContext)(MenuContext);
   const computedDirection = (0,external_wp_i18n_namespaceObject.isRTL)() ? 'rtl' : 'ltr';
 
   // If an explicit value for the `placement` prop is not passed,
-  // apply a default placement of `bottom-start` for the root dropdown,
-  // and of `right-start` for nested dropdowns.
+  // apply a default placement of `bottom-start` for the root menu popover,
+  // and of `right-start` for nested menu popovers.
   let computedPlacement = (_props$placement = props.placement) !== null && _props$placement !== void 0 ? _props$placement : parentContext?.store ? 'right-start' : 'bottom-start';
   // Swap left/right in case of RTL direction
   if (computedDirection === 'rtl') {
@@ -70945,7 +70934,7 @@ const dropdown_menu_v2_UnconnectedDropdownMenu = (props, ref) => {
       computedPlacement = computedPlacement.replace('left', 'right');
     }
   }
-  const dropdownMenuStore = useMenuStore({
+  const menuStore = useMenuStore({
     parent: parentContext?.store,
     open,
     defaultOpen,
@@ -70957,17 +70946,17 @@ const dropdown_menu_v2_UnconnectedDropdownMenu = (props, ref) => {
     rtl: computedDirection === 'rtl'
   });
   const contextValue = (0,external_wp_element_namespaceObject.useMemo)(() => ({
-    store: dropdownMenuStore,
+    store: menuStore,
     variant
-  }), [dropdownMenuStore, variant]);
+  }), [menuStore, variant]);
 
   // Extract the side from the applied placement — useful for animations.
   // Using `currentPlacement` instead of `placement` to make sure that we
   // use the final computed placement (including "flips" etc).
-  const appliedPlacementSide = useStoreState(dropdownMenuStore, 'currentPlacement').split('-')[0];
-  if (dropdownMenuStore.parent && !((0,external_wp_element_namespaceObject.isValidElement)(trigger) && DropdownMenuItem === trigger.type)) {
+  const appliedPlacementSide = useStoreState(menuStore, 'currentPlacement').split('-')[0];
+  if (menuStore.parent && !((0,external_wp_element_namespaceObject.isValidElement)(trigger) && item_MenuItem === trigger.type)) {
     // eslint-disable-next-line no-console
-    console.warn('For nested DropdownMenus, the `trigger` should always be a `DropdownMenuItem`.');
+    console.warn('For nested Menus, the `trigger` should always be a `MenuItem`.');
   }
   const hideOnEscape = (0,external_wp_element_namespaceObject.useCallback)(event => {
     // Pressing Escape can cause unexpected consequences (ie. exiting
@@ -70985,8 +70974,8 @@ const dropdown_menu_v2_UnconnectedDropdownMenu = (props, ref) => {
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(external_ReactJSXRuntime_namespaceObject.Fragment, {
     children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(MenuButton, {
       ref: ref,
-      store: dropdownMenuStore,
-      render: dropdownMenuStore.parent ? (0,external_wp_element_namespaceObject.cloneElement)(trigger, {
+      store: menuStore,
+      render: menuStore.parent ? (0,external_wp_element_namespaceObject.cloneElement)(trigger, {
         // Add submenu arrow, unless a `suffix` is explicitly specified
         suffix: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(external_ReactJSXRuntime_namespaceObject.Fragment, {
           children: [trigger.props.suffix, /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(SubmenuChevronIcon, {
@@ -71000,15 +70989,15 @@ const dropdown_menu_v2_UnconnectedDropdownMenu = (props, ref) => {
     }), /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(Menu, {
       ...otherProps,
       modal: modal,
-      store: dropdownMenuStore
+      store: menuStore
       // Root menu has an 8px distance from its trigger,
       // otherwise 0 (which causes the submenu to slightly overlap)
       ,
-      gutter: gutter !== null && gutter !== void 0 ? gutter : dropdownMenuStore.parent ? 0 : 8
+      gutter: gutter !== null && gutter !== void 0 ? gutter : menuStore.parent ? 0 : 8
       // Align nested menu by the same (but opposite) amount
       // as the menu container's padding.
       ,
-      shift: shift !== null && shift !== void 0 ? shift : dropdownMenuStore.parent ? -4 : 0,
+      shift: shift !== null && shift !== void 0 ? shift : menuStore.parent ? -4 : 0,
       hideOnHoverOutside: false,
       "data-side": appliedPlacementSide,
       wrapperProps: wrapperProps,
@@ -71026,45 +71015,45 @@ const dropdown_menu_v2_UnconnectedDropdownMenu = (props, ref) => {
           ...renderProps
         })
       }),
-      children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(DropdownMenuContext.Provider, {
+      children: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(MenuContext.Provider, {
         value: contextValue,
         children: children
       })
     })]
   });
 };
-const DropdownMenuV2 = Object.assign(contextConnect(dropdown_menu_v2_UnconnectedDropdownMenu, 'DropdownMenu'), {
-  Context: Object.assign(DropdownMenuContext, {
-    displayName: 'DropdownMenuV2.Context'
+const menu_Menu = Object.assign(contextConnect(UnconnectedMenu, 'Menu'), {
+  Context: Object.assign(MenuContext, {
+    displayName: 'Menu.Context'
   }),
-  Item: Object.assign(DropdownMenuItem, {
-    displayName: 'DropdownMenuV2.Item'
+  Item: Object.assign(item_MenuItem, {
+    displayName: 'Menu.Item'
   }),
-  RadioItem: Object.assign(DropdownMenuRadioItem, {
-    displayName: 'DropdownMenuV2.RadioItem'
+  RadioItem: Object.assign(MenuRadioItem, {
+    displayName: 'Menu.RadioItem'
   }),
-  CheckboxItem: Object.assign(DropdownMenuCheckboxItem, {
-    displayName: 'DropdownMenuV2.CheckboxItem'
+  CheckboxItem: Object.assign(MenuCheckboxItem, {
+    displayName: 'Menu.CheckboxItem'
   }),
-  Group: Object.assign(DropdownMenuGroup, {
-    displayName: 'DropdownMenuV2.Group'
+  Group: Object.assign(group_MenuGroup, {
+    displayName: 'Menu.Group'
   }),
-  GroupLabel: Object.assign(group_label_DropdownMenuGroupLabel, {
-    displayName: 'DropdownMenuV2.GroupLabel'
+  GroupLabel: Object.assign(group_label_MenuGroupLabel, {
+    displayName: 'Menu.GroupLabel'
   }),
-  Separator: Object.assign(DropdownMenuSeparator, {
-    displayName: 'DropdownMenuV2.Separator'
+  Separator: Object.assign(separator_MenuSeparator, {
+    displayName: 'Menu.Separator'
   }),
-  ItemLabel: Object.assign(DropdownMenuItemLabel, {
-    displayName: 'DropdownMenuV2.ItemLabel'
+  ItemLabel: Object.assign(MenuItemLabel, {
+    displayName: 'Menu.ItemLabel'
   }),
-  ItemHelpText: Object.assign(DropdownMenuItemHelpText, {
-    displayName: 'DropdownMenuV2.ItemHelpText'
+  ItemHelpText: Object.assign(MenuItemHelpText, {
+    displayName: 'Menu.ItemHelpText'
   })
 });
-/* harmony default export */ const dropdown_menu_v2 = ((/* unused pure expression or super */ null && (DropdownMenuV2)));
+/* harmony default export */ const build_module_menu = ((/* unused pure expression or super */ null && (menu_Menu)));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/theme/styles.js
+;// ./packages/components/build-module/theme/styles.js
 
 function theme_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -71090,7 +71079,7 @@ const theme_styles_Wrapper = /*#__PURE__*/emotion_styled_base_browser_esm("div",
   styles: "color:var( --wp-components-color-foreground, currentColor )"
 } : 0);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/theme/color-algorithms.js
+;// ./packages/components/build-module/theme/color-algorithms.js
 /**
  * External dependencies
  */
@@ -71196,7 +71185,7 @@ function generateShades(background, foreground) {
   return result;
 }
 
-;// CONCATENATED MODULE: ./packages/components/build-module/theme/index.js
+;// ./packages/components/build-module/theme/index.js
 /**
  * WordPress dependencies
  */
@@ -71248,7 +71237,7 @@ function Theme({
 }
 /* harmony default export */ const theme = (Theme);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/tabs/context.js
+;// ./packages/components/build-module/tabs/context.js
 /**
  * WordPress dependencies
  */
@@ -71261,7 +71250,7 @@ function Theme({
 const TabsContext = (0,external_wp_element_namespaceObject.createContext)(undefined);
 const useTabsContext = () => (0,external_wp_element_namespaceObject.useContext)(TabsContext);
 
-;// CONCATENATED MODULE: ./packages/components/build-module/tabs/styles.js
+;// ./packages/components/build-module/tabs/styles.js
 
 function tabs_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 /**
@@ -71276,26 +71265,31 @@ function tabs_styles_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried t
 
 
 
-const TabListWrapper = /*#__PURE__*/emotion_styled_base_browser_esm("div",  true ? {
+const StyledTabList = /*#__PURE__*/emotion_styled_base_browser_esm(TabList,  true ? {
   target: "enfox0g4"
 } : 0)("display:flex;align-items:stretch;overflow-x:auto;&[aria-orientation='vertical']{flex-direction:column;}:where( [aria-orientation='horizontal'] ){width:fit-content;}--direction-factor:1;--direction-start:left;--direction-end:right;--selected-start:var( --selected-left, 0 );&:dir( rtl ){--direction-factor:-1;--direction-start:right;--direction-end:left;--selected-start:var( --selected-right, 0 );}@media not ( prefers-reduced-motion ){&[data-indicator-animated]::before{transition-property:transform,border-radius,border-block;transition-duration:0.2s;transition-timing-function:ease-out;}}position:relative;&::before{content:'';position:absolute;pointer-events:none;transform-origin:var( --direction-start ) top;outline:2px solid transparent;outline-offset:-1px;}--antialiasing-factor:100;&[aria-orientation='horizontal']{--fade-width:4rem;--fade-gradient-base:transparent 0%,black var( --fade-width );--fade-gradient-composed:var( --fade-gradient-base ),black 60%,transparent 50%;&.is-overflowing-first{mask-image:linear-gradient(\n\t\t\t\tto var( --direction-end ),\n\t\t\t\tvar( --fade-gradient-base )\n\t\t\t);}&.is-overflowing-last{mask-image:linear-gradient(\n\t\t\t\tto var( --direction-start ),\n\t\t\t\tvar( --fade-gradient-base )\n\t\t\t);}&.is-overflowing-first.is-overflowing-last{mask-image:linear-gradient(\n\t\t\t\t\tto right,\n\t\t\t\t\tvar( --fade-gradient-composed )\n\t\t\t\t),linear-gradient( to left, var( --fade-gradient-composed ) );}&::before{bottom:0;height:0;width:calc( var( --antialiasing-factor ) * 1px );transform:translateX(\n\t\t\t\t\tcalc(\n\t\t\t\t\t\tvar( --selected-start ) * var( --direction-factor ) *\n\t\t\t\t\t\t\t1px\n\t\t\t\t\t)\n\t\t\t\t) scaleX(\n\t\t\t\t\tcalc(\n\t\t\t\t\t\tvar( --selected-width, 0 ) /\n\t\t\t\t\t\t\tvar( --antialiasing-factor )\n\t\t\t\t\t)\n\t\t\t\t);border-bottom:var( --wp-admin-border-width-focus ) solid ", COLORS.theme.accent, ";}}&[aria-orientation='vertical']{&::before{border-radius:", config_values.radiusSmall, "/calc(\n\t\t\t\t\t", config_values.radiusSmall, " /\n\t\t\t\t\t\t(\n\t\t\t\t\t\t\tvar( --selected-height, 0 ) /\n\t\t\t\t\t\t\t\tvar( --antialiasing-factor )\n\t\t\t\t\t\t)\n\t\t\t\t);top:0;left:0;width:100%;height:calc( var( --antialiasing-factor ) * 1px );transform:translateY( calc( var( --selected-top, 0 ) * 1px ) ) scaleY(\n\t\t\t\t\tcalc(\n\t\t\t\t\t\tvar( --selected-height, 0 ) /\n\t\t\t\t\t\t\tvar( --antialiasing-factor )\n\t\t\t\t\t)\n\t\t\t\t);background-color:color-mix(\n\t\t\t\tin srgb,\n\t\t\t\t", COLORS.theme.accent, ",\n\t\t\t\ttransparent 96%\n\t\t\t);}&[data-select-on-move='true']:has(\n\t\t\t\t:is( :focus-visible, [data-focus-visible] )\n\t\t\t)::before{box-sizing:border-box;border:var( --wp-admin-border-width-focus ) solid ", COLORS.theme.accent, ";border-block-width:calc(\n\t\t\t\tvar( --wp-admin-border-width-focus, 1px ) /\n\t\t\t\t\t(\n\t\t\t\t\t\tvar( --selected-height, 0 ) /\n\t\t\t\t\t\t\tvar( --antialiasing-factor )\n\t\t\t\t\t)\n\t\t\t);}}" + ( true ? "" : 0));
 const styles_Tab = /*#__PURE__*/emotion_styled_base_browser_esm(Tab,  true ? {
   target: "enfox0g3"
-} : 0)("&{border-radius:0;background:transparent;border:none;box-shadow:none;flex:1 0 auto;white-space:nowrap;display:flex;align-items:center;cursor:pointer;line-height:1.2;font-weight:400;color:", COLORS.theme.foreground, ";position:relative;&[aria-disabled='true']{cursor:default;color:", COLORS.ui.textDisabled, ";}&:not( [aria-disabled='true'] ):is( :hover, [data-focus-visible] ){color:", COLORS.theme.accent, ";}&:focus:not( :disabled ){box-shadow:none;outline:none;}&::after{position:absolute;pointer-events:none;outline:var( --wp-admin-border-width-focus ) solid ", COLORS.theme.accent, ";border-radius:", config_values.radiusSmall, ";opacity:0;@media not ( prefers-reduced-motion ){transition:opacity 0.15s 0.15s linear;}}&[data-focus-visible]::after{opacity:1;}}[aria-orientation='horizontal'] &{padding-inline:", space(4), ";height:", space(12), ";text-align:center;scroll-margin:24px;&::after{content:'';inset:", space(3), ";}}[aria-orientation='vertical'] &{padding:", space(2), " ", space(3), ";min-height:", space(10), ";text-align:start;&[aria-selected='true']{color:", COLORS.theme.accent, ";fill:currentColor;}}[aria-orientation='vertical'][data-select-on-move='false'] &::after{content:'';inset:var( --wp-admin-border-width-focus );}" + ( true ? "" : 0));
+} : 0)("&{border-radius:0;background:transparent;border:none;box-shadow:none;flex:1 0 auto;white-space:nowrap;display:flex;align-items:center;cursor:pointer;line-height:1.2;font-weight:400;color:", COLORS.theme.foreground, ";position:relative;&[aria-disabled='true']{cursor:default;color:", COLORS.ui.textDisabled, ";}&:not( [aria-disabled='true'] ):is( :hover, [data-focus-visible] ){color:", COLORS.theme.accent, ";}&:focus:not( :disabled ){box-shadow:none;outline:none;}&::after{position:absolute;pointer-events:none;outline:var( --wp-admin-border-width-focus ) solid ", COLORS.theme.accent, ";border-radius:", config_values.radiusSmall, ";opacity:0;@media not ( prefers-reduced-motion ){transition:opacity 0.1s linear;}}&[data-focus-visible]::after{opacity:1;}}[aria-orientation='horizontal'] &{padding-inline:", space(4), ";height:", space(12), ";scroll-margin:24px;&::after{content:'';inset:", space(3), ";}}[aria-orientation='vertical'] &{padding:", space(2), " ", space(3), ";min-height:", space(10), ";&[aria-selected='true']{color:", COLORS.theme.accent, ";fill:currentColor;}}[aria-orientation='vertical'][data-select-on-move='false'] &::after{content:'';inset:var( --wp-admin-border-width-focus );}" + ( true ? "" : 0));
 const TabChildren = /*#__PURE__*/emotion_styled_base_browser_esm("span",  true ? {
   target: "enfox0g2"
 } : 0)( true ? {
-  name: "1ff36h2",
-  styles: "flex-grow:1"
+  name: "9at4z3",
+  styles: "flex-grow:1;display:flex;align-items:center;[aria-orientation='horizontal'] &{justify-content:center;}[aria-orientation='vertical'] &{justify-content:start;}"
 } : 0);
 const TabChevron = /*#__PURE__*/emotion_styled_base_browser_esm(build_module_icon,  true ? {
   target: "enfox0g1"
-} : 0)("flex-shrink:0;margin-inline-end:", space(-1), ";[aria-orientation='horizontal'] &{display:none;}opacity:0;[role='tab']:is( [aria-selected='true'], [data-focus-visible], :hover ) &{opacity:1;}@media not ( prefers-reduced-motion ){[data-select-on-move='true'] [role='tab']:is( [aria-selected='true'],  ) &{transition:opacity 0.3s ease-in;}}&:dir( rtl ){rotate:180deg;}" + ( true ? "" : 0));
+} : 0)("flex-shrink:0;margin-inline-end:", space(-1), ";[aria-orientation='horizontal'] &{display:none;}opacity:0;[role='tab']:is( [aria-selected='true'], [data-focus-visible], :hover ) &{opacity:1;}@media not ( prefers-reduced-motion ){[data-select-on-move='true'] [role='tab']:is( [aria-selected='true'],  ) &{transition:opacity 0.15s 0.15s linear;}}&:dir( rtl ){rotate:180deg;}" + ( true ? "" : 0));
 const styles_TabPanel = /*#__PURE__*/emotion_styled_base_browser_esm(TabPanel,  true ? {
   target: "enfox0g0"
 } : 0)("&:focus{box-shadow:none;outline:none;}&[data-focus-visible]{box-shadow:0 0 0 var( --wp-admin-border-width-focus ) ", COLORS.theme.accent, ";outline:2px solid transparent;outline-offset:0;}" + ( true ? "" : 0));
 
-;// CONCATENATED MODULE: ./packages/components/build-module/tabs/tab.js
+;// ./packages/components/build-module/tabs/tab.js
+/**
+ * External dependencies
+ */
+
+
 /**
  * WordPress dependencies
  */
@@ -71311,7 +71305,6 @@ const styles_TabPanel = /*#__PURE__*/emotion_styled_base_browser_esm(TabPanel,  
 
 
 
-
 const tab_Tab = (0,external_wp_element_namespaceObject.forwardRef)(function Tab({
   children,
   tabId,
@@ -71319,15 +71312,24 @@ const tab_Tab = (0,external_wp_element_namespaceObject.forwardRef)(function Tab(
   render,
   ...otherProps
 }, ref) {
-  const context = useTabsContext();
-  if (!context) {
-     false ? 0 : void 0;
-    return null;
-  }
+  var _useTabsContext;
   const {
     store,
     instanceId
-  } = context;
+  } = (_useTabsContext = useTabsContext()) !== null && _useTabsContext !== void 0 ? _useTabsContext : {};
+
+  // If the active item is not connected, the tablist may end up in a state
+  // where none of the tabs are tabbable. In this case, we force all tabs to
+  // be tabbable, so that as soon as an item received focus, it becomes active
+  // and Tablist goes back to working as expected.
+  // eslint-disable-next-line @wordpress/no-unused-vars-before-return
+  const tabbable = useStoreState(store, state => {
+    return state?.activeId !== null && !store?.item(state?.activeId)?.element?.isConnected;
+  });
+  if (!store) {
+     false ? 0 : void 0;
+    return null;
+  }
   const instancedTabId = `${instanceId}-${tabId}`;
   return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsxs)(styles_Tab, {
     ref: ref,
@@ -71335,6 +71337,7 @@ const tab_Tab = (0,external_wp_element_namespaceObject.forwardRef)(function Tab(
     id: instancedTabId,
     disabled: disabled,
     render: render,
+    tabbable: tabbable,
     ...otherProps,
     children: [/*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(TabChildren, {
       children: children
@@ -71344,7 +71347,7 @@ const tab_Tab = (0,external_wp_element_namespaceObject.forwardRef)(function Tab(
   });
 });
 
-;// CONCATENATED MODULE: ./packages/components/build-module/tabs/use-track-overflow.js
+;// ./packages/components/build-module/tabs/use-track-overflow.js
 /* eslint-disable jsdoc/require-param */
 /**
  * WordPress dependencies
@@ -71412,7 +71415,7 @@ function useTrackOverflow(parent, children) {
 }
 /* eslint-enable jsdoc/require-param */
 
-;// CONCATENATED MODULE: ./packages/components/build-module/tabs/tablist.js
+;// ./packages/components/build-module/tabs/tablist.js
 /**
  * External dependencies
  */
@@ -71429,7 +71432,6 @@ function useTrackOverflow(parent, children) {
 /**
  * Internal dependencies
  */
-
 
 
 
@@ -71470,7 +71472,7 @@ function useScrollRectIntoView(parent, rect, {
     }
   }, [margin, parent, rect]);
 }
-const TabList = (0,external_wp_element_namespaceObject.forwardRef)(function TabList({
+const tablist_TabList = (0,external_wp_element_namespaceObject.forwardRef)(function TabList({
   children,
   ...otherProps
 }, ref) {
@@ -71484,7 +71486,12 @@ const TabList = (0,external_wp_element_namespaceObject.forwardRef)(function TabL
   const items = useStoreState(store, 'items');
   const [parent, setParent] = (0,external_wp_element_namespaceObject.useState)();
   const refs = (0,external_wp_compose_namespaceObject.useMergeRefs)([ref, setParent]);
-  const selectedRect = useTrackElementOffsetRect(store?.item(selectedId)?.element);
+  const selectedItem = store?.item(selectedId);
+  const renderedItems = useStoreState(store, 'renderedItems');
+  const selectedItemIndex = renderedItems && selectedItem ? renderedItems.indexOf(selectedItem) : -1;
+  // Use selectedItemIndex as a dependency to force recalculation when the
+  // selected item index changes (elements are swapped / added / removed).
+  const selectedRect = useTrackElementOffsetRect(selectedItem?.element, [selectedItemIndex]);
 
   // Track overflow to show scroll hints.
   const overflow = useTrackOverflow(parent, {
@@ -71496,7 +71503,8 @@ const TabList = (0,external_wp_element_namespaceObject.forwardRef)(function TabL
   useAnimatedOffsetRect(parent, selectedRect, {
     prefix: 'selected',
     dataAttribute: 'indicator-animated',
-    transitionEndFilter: event => event.pseudoElement === '::before'
+    transitionEndFilter: event => event.pseudoElement === '::before',
+    roundRect: true
   });
 
   // Make sure selected tab is scrolled into view.
@@ -71518,12 +71526,19 @@ const TabList = (0,external_wp_element_namespaceObject.forwardRef)(function TabL
      false ? 0 : void 0;
     return null;
   }
-  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(tab_list_TabList, {
+  return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(StyledTabList, {
     ref: refs,
     store: store,
-    render: /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)(TabListWrapper, {}),
+    render: props => {
+      var _props$tabIndex;
+      return /*#__PURE__*/(0,external_ReactJSXRuntime_namespaceObject.jsx)("div", {
+        ...props,
+        // Fallback to -1 to prevent browsers from making the tablist
+        // tabbable when it is a scrolling container.
+        tabIndex: (_props$tabIndex = props.tabIndex) !== null && _props$tabIndex !== void 0 ? _props$tabIndex : -1
+      });
+    },
     onBlur: onBlur,
-    tabIndex: -1,
     "data-select-on-move": selectOnMove ? 'true' : 'false',
     ...otherProps,
     className: dist_clsx(overflow.first && 'is-overflowing-first', overflow.last && 'is-overflowing-last', otherProps.className),
@@ -71531,7 +71546,7 @@ const TabList = (0,external_wp_element_namespaceObject.forwardRef)(function TabL
   });
 });
 
-;// CONCATENATED MODULE: ./packages/components/build-module/tabs/tabpanel.js
+;// ./packages/components/build-module/tabs/tabpanel.js
 /**
  * External dependencies
  */
@@ -71582,16 +71597,16 @@ const tabpanel_TabPanel = (0,external_wp_element_namespaceObject.forwardRef)(fun
   });
 });
 
-;// CONCATENATED MODULE: ./packages/components/build-module/tabs/index.js
+;// ./packages/components/build-module/tabs/index.js
 /**
  * External dependencies
  */
 
 
-
 /**
  * WordPress dependencies
  */
+
 
 
 
@@ -71604,128 +71619,55 @@ const tabpanel_TabPanel = (0,external_wp_element_namespaceObject.forwardRef)(fun
 
 
 
-function Tabs({
+function externalToInternalTabId(externalId, instanceId) {
+  return externalId && `${instanceId}-${externalId}`;
+}
+function internalToExternalTabId(internalId, instanceId) {
+  return typeof internalId === 'string' ? internalId.replace(`${instanceId}-`, '') : internalId;
+}
+
+/**
+ * Display one panel of content at a time with a tabbed interface, based on the
+ * WAI-ARIA Tabs Pattern⁠.
+ *
+ * @see https://www.w3.org/WAI/ARIA/apg/patterns/tabs/
+ * ```
+ */
+const Tabs = Object.assign(function Tabs({
   selectOnMove = true,
   defaultTabId,
   orientation = 'horizontal',
   onSelect,
   children,
-  selectedTabId
+  selectedTabId,
+  activeTabId,
+  defaultActiveTabId,
+  onActiveTabIdChange
 }) {
   const instanceId = (0,external_wp_compose_namespaceObject.useInstanceId)(Tabs, 'tabs');
   const store = useTabStore({
     selectOnMove,
     orientation,
-    defaultSelectedId: defaultTabId && `${instanceId}-${defaultTabId}`,
-    setSelectedId: selectedId => {
-      const strippedDownId = typeof selectedId === 'string' ? selectedId.replace(`${instanceId}-`, '') : selectedId;
-      onSelect?.(strippedDownId);
+    defaultSelectedId: externalToInternalTabId(defaultTabId, instanceId),
+    setSelectedId: newSelectedId => {
+      onSelect?.(internalToExternalTabId(newSelectedId, instanceId));
     },
-    selectedId: selectedTabId && `${instanceId}-${selectedTabId}`
+    selectedId: externalToInternalTabId(selectedTabId, instanceId),
+    defaultActiveId: externalToInternalTabId(defaultActiveTabId, instanceId),
+    setActiveId: newActiveId => {
+      onActiveTabIdChange?.(internalToExternalTabId(newActiveId, instanceId));
+    },
+    activeId: externalToInternalTabId(activeTabId, instanceId),
+    rtl: (0,external_wp_i18n_namespaceObject.isRTL)()
   });
-  const isControlled = selectedTabId !== undefined;
   const {
     items,
-    selectedId,
     activeId
   } = useStoreState(store);
   const {
-    setSelectedId,
     setActiveId
   } = store;
-
-  // Keep track of whether tabs have been populated. This is used to prevent
-  // certain effects from firing too early while tab data and relevant
-  // variables are undefined during the initial render.
-  const tabsHavePopulatedRef = (0,external_wp_element_namespaceObject.useRef)(false);
-  if (items.length > 0) {
-    tabsHavePopulatedRef.current = true;
-  }
-  const selectedTab = items.find(item => item.id === selectedId);
-  const firstEnabledTab = items.find(item => {
-    // Ariakit internally refers to disabled tabs as `dimmed`.
-    return !item.dimmed;
-  });
-  const initialTab = items.find(item => item.id === `${instanceId}-${defaultTabId}`);
-
-  // Handle selecting the initial tab.
-  (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
-    if (isControlled) {
-      return;
-    }
-
-    // Wait for the denoted initial tab to be declared before making a
-    // selection. This ensures that if a tab is declared lazily it can
-    // still receive initial selection, as well as ensuring no tab is
-    // selected if an invalid `defaultTabId` is provided.
-    if (defaultTabId && !initialTab) {
-      return;
-    }
-
-    // If the currently selected tab is missing (i.e. removed from the DOM),
-    // fall back to the initial tab or the first enabled tab if there is
-    // one. Otherwise, no tab should be selected.
-    if (!items.find(item => item.id === selectedId)) {
-      if (initialTab && !initialTab.dimmed) {
-        setSelectedId(initialTab?.id);
-        return;
-      }
-      if (firstEnabledTab) {
-        setSelectedId(firstEnabledTab.id);
-      } else if (tabsHavePopulatedRef.current) {
-        setSelectedId(null);
-      }
-    }
-  }, [firstEnabledTab, initialTab, defaultTabId, isControlled, items, selectedId, setSelectedId]);
-
-  // Handle the currently selected tab becoming disabled.
-  (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
-    if (!selectedTab?.dimmed) {
-      return;
-    }
-
-    // In controlled mode, we trust that disabling tabs is done
-    // intentionally, and don't select a new tab automatically.
-    if (isControlled) {
-      setSelectedId(null);
-      return;
-    }
-
-    // If the currently selected tab becomes disabled, fall back to the
-    // `defaultTabId` if possible. Otherwise select the first
-    // enabled tab (if there is one).
-    if (initialTab && !initialTab.dimmed) {
-      setSelectedId(initialTab.id);
-      return;
-    }
-    if (firstEnabledTab) {
-      setSelectedId(firstEnabledTab.id);
-    }
-  }, [firstEnabledTab, initialTab, isControlled, selectedTab?.dimmed, setSelectedId]);
-
-  // Clear `selectedId` if the active tab is removed from the DOM in controlled mode.
-  (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
-    if (!isControlled) {
-      return;
-    }
-
-    // Once the tabs have populated, if the `selectedTabId` still can't be
-    // found, clear the selection.
-    if (tabsHavePopulatedRef.current && !!selectedTabId && !selectedTab) {
-      setSelectedId(null);
-    }
-  }, [isControlled, selectedTab, selectedTabId, setSelectedId]);
   (0,external_wp_element_namespaceObject.useEffect)(() => {
-    // If there is no active tab, fallback to place focus on the first enabled tab
-    // so there is always an active element
-    if (selectedTabId === null && !activeId && firstEnabledTab?.id) {
-      setActiveId(firstEnabledTab.id);
-    }
-  }, [selectedTabId, activeId, firstEnabledTab?.id, setActiveId]);
-  (0,external_wp_element_namespaceObject.useEffect)(() => {
-    if (!isControlled) {
-      return;
-    }
     requestAnimationFrame(() => {
       const focusedElement = items?.[0]?.element?.ownerDocument.activeElement;
       if (!focusedElement || !items.some(item => focusedElement === item.element)) {
@@ -71740,7 +71682,7 @@ function Tabs({
         setActiveId(focusedElement.id);
       }
     });
-  }, [activeId, isControlled, items, setActiveId]);
+  }, [activeId, items, setActiveId]);
   const contextValue = (0,external_wp_element_namespaceObject.useMemo)(() => ({
     store,
     instanceId
@@ -71749,16 +71691,24 @@ function Tabs({
     value: contextValue,
     children: children
   });
-}
-Tabs.TabList = TabList;
-Tabs.Tab = tab_Tab;
-Tabs.TabPanel = tabpanel_TabPanel;
-Tabs.Context = TabsContext;
-/* harmony default export */ const tabs = (Tabs);
+}, {
+  Tab: Object.assign(tab_Tab, {
+    displayName: 'Tabs.Tab'
+  }),
+  TabList: Object.assign(tablist_TabList, {
+    displayName: 'Tabs.TabList'
+  }),
+  TabPanel: Object.assign(tabpanel_TabPanel, {
+    displayName: 'Tabs.TabPanel'
+  }),
+  Context: Object.assign(TabsContext, {
+    displayName: 'Tabs.Context'
+  })
+});
 
-;// CONCATENATED MODULE: external ["wp","privateApis"]
+;// external ["wp","privateApis"]
 const external_wp_privateApis_namespaceObject = window["wp"]["privateApis"];
-;// CONCATENATED MODULE: ./packages/components/build-module/lock-unlock.js
+;// ./packages/components/build-module/lock-unlock.js
 /**
  * WordPress dependencies
  */
@@ -71768,7 +71718,7 @@ const {
   unlock
 } = (0,external_wp_privateApis_namespaceObject.__dangerousOptInToUnstableAPIsOnlyForCoreModules)('I acknowledge private features are not for use in themes or plugins and doing so will break in the next version of WordPress.', '@wordpress/components');
 
-;// CONCATENATED MODULE: ./packages/components/build-module/private-apis.js
+;// ./packages/components/build-module/private-apis.js
 /**
  * Internal dependencies
  */
@@ -71785,13 +71735,13 @@ lock(privateApis, {
   __experimentalPopoverLegacyPositionToPlacement: positionToPlacement,
   createPrivateSlotFill: createPrivateSlotFill,
   ComponentsContext: ComponentsContext,
-  Tabs: tabs,
+  Tabs: Tabs,
   Theme: theme,
-  DropdownMenuV2: DropdownMenuV2,
+  Menu: menu_Menu,
   kebabCase: kebabCase
 });
 
-;// CONCATENATED MODULE: ./packages/components/build-module/index.js
+;// ./packages/components/build-module/index.js
 // Primitives.
 
 

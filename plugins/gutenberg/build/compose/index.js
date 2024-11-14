@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 7973:
+/***/ 1933:
 /***/ ((module, exports, __webpack_require__) => {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
@@ -1067,7 +1067,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
 
 /***/ }),
 
-/***/ 5538:
+/***/ 5760:
 /***/ (() => {
 
 /**
@@ -1120,7 +1120,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
 
 /***/ }),
 
-/***/ 6207:
+/***/ 5359:
 /***/ (function(module) {
 
 /*!
@@ -2132,7 +2132,7 @@ __webpack_require__.d(__webpack_exports__, {
   withState: () => (/* reexport */ withState)
 });
 
-;// CONCATENATED MODULE: ./node_modules/tslib/tslib.es6.mjs
+;// ./node_modules/tslib/tslib.es6.mjs
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
 
@@ -2147,7 +2147,7 @@ LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
-/* global Reflect, Promise, SuppressedError, Symbol */
+/* global Reflect, Promise, SuppressedError, Symbol, Iterator */
 
 var extendStatics = function(d, b) {
   extendStatics = Object.setPrototypeOf ||
@@ -2258,8 +2258,8 @@ function __awaiter(thisArg, _arguments, P, generator) {
 }
 
 function __generator(thisArg, body) {
-  var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-  return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+  var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+  return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
   function verb(n) { return function (v) { return step([n, v]); }; }
   function step(op) {
       if (f) throw new TypeError("Generator is already executing.");
@@ -2363,7 +2363,7 @@ function __await(v) {
 function __asyncGenerator(thisArg, _arguments, generator) {
   if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
   var g = generator.apply(thisArg, _arguments || []), i, q = [];
-  return i = {}, verb("next"), verb("throw"), verb("return", awaitReturn), i[Symbol.asyncIterator] = function () { return this; }, i;
+  return i = Object.create((typeof AsyncIterator === "function" ? AsyncIterator : Object).prototype), verb("next"), verb("throw"), verb("return", awaitReturn), i[Symbol.asyncIterator] = function () { return this; }, i;
   function awaitReturn(f) { return function (v) { return Promise.resolve(v).then(f, reject); }; }
   function verb(n, f) { if (g[n]) { i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; if (f) i[n] = f(i[n]); } }
   function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
@@ -2461,20 +2461,34 @@ function __disposeResources(env) {
     env.error = env.hasError ? new _SuppressedError(e, env.error, "An error was suppressed during disposal.") : e;
     env.hasError = true;
   }
+  var r, s = 0;
   function next() {
-    while (env.stack.length) {
-      var rec = env.stack.pop();
+    while (r = env.stack.pop()) {
       try {
-        var result = rec.dispose && rec.dispose.call(rec.value);
-        if (rec.async) return Promise.resolve(result).then(next, function(e) { fail(e); return next(); });
+        if (!r.async && s === 1) return s = 0, env.stack.push(r), Promise.resolve().then(next);
+        if (r.dispose) {
+          var result = r.dispose.call(r.value);
+          if (r.async) return s |= 2, Promise.resolve(result).then(next, function(e) { fail(e); return next(); });
+        }
+        else s |= 1;
       }
       catch (e) {
-          fail(e);
+        fail(e);
       }
     }
+    if (s === 1) return env.hasError ? Promise.reject(env.error) : Promise.resolve();
     if (env.hasError) throw env.error;
   }
   return next();
+}
+
+function __rewriteRelativeImportExtension(path, preserveJsx) {
+  if (typeof path === "string" && /^\.\.?\//.test(path)) {
+      return path.replace(/\.(tsx)$|((?:\.d)?)((?:\.[^./]+?)?)\.([cm]?)ts$/i, function (m, tsx, d, ext, cm) {
+          return tsx ? preserveJsx ? ".jsx" : ".js" : d && (!ext || !cm) ? m : (d + ext + "." + cm.toLowerCase() + "js");
+      });
+  }
+  return path;
 }
 
 /* harmony default export */ const tslib_es6 = ({
@@ -2483,6 +2497,10 @@ function __disposeResources(env) {
   __rest,
   __decorate,
   __param,
+  __esDecorate,
+  __runInitializers,
+  __propKey,
+  __setFunctionName,
   __metadata,
   __awaiter,
   __generator,
@@ -2505,9 +2523,10 @@ function __disposeResources(env) {
   __classPrivateFieldIn,
   __addDisposableResource,
   __disposeResources,
+  __rewriteRelativeImportExtension,
 });
 
-;// CONCATENATED MODULE: ./node_modules/lower-case/dist.es2015/index.js
+;// ./node_modules/lower-case/dist.es2015/index.js
 /**
  * Source: ftp://ftp.unicode.org/Public/UCD/latest/ucd/SpecialCasing.txt
  */
@@ -2556,7 +2575,7 @@ function lowerCase(str) {
     return str.toLowerCase();
 }
 
-;// CONCATENATED MODULE: ./node_modules/no-case/dist.es2015/index.js
+;// ./node_modules/no-case/dist.es2015/index.js
 
 // Support camel case ("camelCase" -> "camel Case" and "CAMELCase" -> "CAMEL Case").
 var DEFAULT_SPLIT_REGEXP = [/([a-z0-9])([A-Z])/g, /([A-Z])([A-Z][a-z])/g];
@@ -2588,7 +2607,7 @@ function replace(input, re, value) {
     return re.reduce(function (input, re) { return input.replace(re, value); }, input);
 }
 
-;// CONCATENATED MODULE: ./node_modules/pascal-case/dist.es2015/index.js
+;// ./node_modules/pascal-case/dist.es2015/index.js
 
 
 function pascalCaseTransform(input, index) {
@@ -2607,7 +2626,7 @@ function pascalCase(input, options) {
     return noCase(input, __assign({ delimiter: "", transform: pascalCaseTransform }, options));
 }
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/utils/create-higher-order-component/index.js
+;// ./packages/compose/build-module/utils/create-higher-order-component/index.js
 /**
  * External dependencies
  */
@@ -2646,7 +2665,7 @@ const hocName = (name, Inner) => {
   return `${outer}(${inner})`;
 };
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/utils/debounce/index.js
+;// ./packages/compose/build-module/utils/debounce/index.js
 /**
  * Parts of this source were derived and modified from lodash,
  * released under the MIT license.
@@ -2840,7 +2859,7 @@ const debounce = (func, wait, options) => {
   return debounced;
 };
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/utils/throttle/index.js
+;// ./packages/compose/build-module/utils/throttle/index.js
 /**
  * Parts of this source were derived and modified from lodash,
  * released under the MIT license.
@@ -2926,7 +2945,8 @@ const throttle = (func, wait, options) => {
   });
 };
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/utils/observable-map/index.js
+;// ./packages/compose/build-module/utils/observable-map/index.js
+/* wp:polyfill */
 /**
  * A constructor (factory) for `ObservableMap`, a map-like key/value data structure
  * where the individual entries are observable: using the `subscribe` method, you can
@@ -2979,7 +2999,7 @@ function observableMap() {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/higher-order/pipe.js
+;// ./packages/compose/build-module/higher-order/pipe.js
 /**
  * Parts of this source were derived and modified from lodash,
  * released under the MIT license.
@@ -3049,7 +3069,7 @@ const pipe = basePipe();
 
 /* harmony default export */ const higher_order_pipe = (pipe);
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/higher-order/compose.js
+;// ./packages/compose/build-module/higher-order/compose.js
 /**
  * Internal dependencies
  */
@@ -3066,9 +3086,9 @@ const pipe = basePipe();
 const compose = basePipe(true);
 /* harmony default export */ const higher_order_compose = (compose);
 
-;// CONCATENATED MODULE: external "ReactJSXRuntime"
+;// external "ReactJSXRuntime"
 const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
-;// CONCATENATED MODULE: ./packages/compose/build-module/higher-order/if-condition/index.js
+;// ./packages/compose/build-module/higher-order/if-condition/index.js
 /**
  * External dependencies
  */
@@ -3108,12 +3128,12 @@ function ifCondition(predicate) {
 }
 /* harmony default export */ const if_condition = (ifCondition);
 
-;// CONCATENATED MODULE: external ["wp","isShallowEqual"]
+;// external ["wp","isShallowEqual"]
 const external_wp_isShallowEqual_namespaceObject = window["wp"]["isShallowEqual"];
 var external_wp_isShallowEqual_default = /*#__PURE__*/__webpack_require__.n(external_wp_isShallowEqual_namespaceObject);
-;// CONCATENATED MODULE: external ["wp","element"]
+;// external ["wp","element"]
 const external_wp_element_namespaceObject = window["wp"]["element"];
-;// CONCATENATED MODULE: ./packages/compose/build-module/higher-order/pure/index.js
+;// ./packages/compose/build-module/higher-order/pure/index.js
 /**
  * External dependencies
  */
@@ -3157,10 +3177,10 @@ const pure = createHigherOrderComponent(function (WrappedComponent) {
 }, 'pure');
 /* harmony default export */ const higher_order_pure = (pure);
 
-;// CONCATENATED MODULE: external ["wp","deprecated"]
+;// external ["wp","deprecated"]
 const external_wp_deprecated_namespaceObject = window["wp"]["deprecated"];
 var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_namespaceObject);
-;// CONCATENATED MODULE: ./packages/compose/build-module/higher-order/with-global-events/listener.js
+;// ./packages/compose/build-module/higher-order/with-global-events/listener.js
 /**
  * Class responsible for orchestrating event handling on the global window,
  * binding a single event to be shared across all handling instances, and
@@ -3172,7 +3192,7 @@ class Listener {
     this.listeners = {};
     this.handleEvent = this.handleEvent.bind(this);
   }
-  add( /** @type {any} */eventType, /** @type {any} */instance) {
+  add(/** @type {any} */eventType, /** @type {any} */instance) {
     if (!this.listeners[eventType]) {
       // Adding first listener for this type, so bind event.
       window.addEventListener(eventType, this.handleEvent);
@@ -3180,26 +3200,26 @@ class Listener {
     }
     this.listeners[eventType].push(instance);
   }
-  remove( /** @type {any} */eventType, /** @type {any} */instance) {
+  remove(/** @type {any} */eventType, /** @type {any} */instance) {
     if (!this.listeners[eventType]) {
       return;
     }
-    this.listeners[eventType] = this.listeners[eventType].filter(( /** @type {any} */listener) => listener !== instance);
+    this.listeners[eventType] = this.listeners[eventType].filter((/** @type {any} */listener) => listener !== instance);
     if (!this.listeners[eventType].length) {
       // Removing last listener for this type, so unbind event.
       window.removeEventListener(eventType, this.handleEvent);
       delete this.listeners[eventType];
     }
   }
-  handleEvent( /** @type {any} */event) {
-    this.listeners[event.type]?.forEach(( /** @type {any} */instance) => {
+  handleEvent(/** @type {any} */event) {
+    this.listeners[event.type]?.forEach((/** @type {any} */instance) => {
       instance.handleEvent(event);
     });
   }
 }
 /* harmony default export */ const listener = (Listener);
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/higher-order/with-global-events/index.js
+;// ./packages/compose/build-module/higher-order/with-global-events/index.js
 /**
  * WordPress dependencies
  */
@@ -3247,7 +3267,7 @@ function withGlobalEvents(eventTypesToHandlers) {
   // @ts-ignore We don't need to fix the type-related issues because this is deprecated.
   return createHigherOrderComponent(WrappedComponent => {
     class Wrapper extends external_wp_element_namespaceObject.Component {
-      constructor( /** @type {any} */props) {
+      constructor(/** @type {any} */props) {
         super(props);
         this.handleEvent = this.handleEvent.bind(this);
         this.handleRef = this.handleRef.bind(this);
@@ -3262,8 +3282,8 @@ function withGlobalEvents(eventTypesToHandlers) {
           with_global_events_listener.remove(eventType, this);
         });
       }
-      handleEvent( /** @type {any} */event) {
-        const handler = eventTypesToHandlers[( /** @type {keyof GlobalEventHandlersEventMap} */
+      handleEvent(/** @type {any} */event) {
+        const handler = eventTypesToHandlers[(/** @type {keyof GlobalEventHandlersEventMap} */
         event.type
 
         /* eslint-enable jsdoc/no-undefined-types */)];
@@ -3271,7 +3291,7 @@ function withGlobalEvents(eventTypesToHandlers) {
           this.wrappedRef[handler](event);
         }
       }
-      handleRef( /** @type {any} */el) {
+      handleRef(/** @type {any} */el) {
         this.wrappedRef = el;
         // Any component using `withGlobalEvents` that is not setting a `ref`
         // will cause `this.props.forwardedRef` to be `null`, so we need this
@@ -3296,7 +3316,7 @@ function withGlobalEvents(eventTypesToHandlers) {
   }, 'withGlobalEvents');
 }
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-instance-id/index.js
+;// ./packages/compose/build-module/hooks/use-instance-id/index.js
 /**
  * WordPress dependencies
  */
@@ -3347,7 +3367,7 @@ function useInstanceId(object, prefix, preferredId) {
 }
 /* harmony default export */ const use_instance_id = (useInstanceId);
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/higher-order/with-instance-id/index.js
+;// ./packages/compose/build-module/higher-order/with-instance-id/index.js
 /**
  * Internal dependencies
  */
@@ -3370,7 +3390,7 @@ const withInstanceId = createHigherOrderComponent(WrappedComponent => {
 }, 'instanceId');
 /* harmony default export */ const with_instance_id = (withInstanceId);
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/higher-order/with-safe-timeout/index.js
+;// ./packages/compose/build-module/higher-order/with-safe-timeout/index.js
 /**
  * WordPress dependencies
  */
@@ -3433,7 +3453,7 @@ const withSafeTimeout = createHigherOrderComponent(OriginalComponent => {
 }, 'withSafeTimeout');
 /* harmony default export */ const with_safe_timeout = (withSafeTimeout);
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/higher-order/with-state/index.js
+;// ./packages/compose/build-module/higher-order/with-state/index.js
 /**
  * WordPress dependencies
  */
@@ -3463,7 +3483,7 @@ function withState(initialState = {}) {
   });
   return createHigherOrderComponent(OriginalComponent => {
     return class WrappedComponent extends external_wp_element_namespaceObject.Component {
-      constructor( /** @type {any} */props) {
+      constructor(/** @type {any} */props) {
         super(props);
         this.setState = this.setState.bind(this);
         this.state = initialState;
@@ -3479,9 +3499,9 @@ function withState(initialState = {}) {
   }, 'withState');
 }
 
-;// CONCATENATED MODULE: external ["wp","dom"]
+;// external ["wp","dom"]
 const external_wp_dom_namespaceObject = window["wp"]["dom"];
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-ref-effect/index.js
+;// ./packages/compose/build-module/hooks/use-ref-effect/index.js
 /**
  * External dependencies
  */
@@ -3521,7 +3541,7 @@ function useRefEffect(callback, dependencies) {
   }, dependencies);
 }
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-constrained-tabbing/index.js
+;// ./packages/compose/build-module/hooks/use-constrained-tabbing/index.js
 /**
  * WordPress dependencies
  */
@@ -3554,8 +3574,8 @@ function useRefEffect(callback, dependencies) {
  * ```
  */
 function useConstrainedTabbing() {
-  return useRefEffect(( /** @type {HTMLElement} */node) => {
-    function onKeyDown( /** @type {KeyboardEvent} */event) {
+  return useRefEffect((/** @type {HTMLElement} */node) => {
+    function onKeyDown(/** @type {KeyboardEvent} */event) {
       const {
         key,
         shiftKey,
@@ -3565,7 +3585,7 @@ function useConstrainedTabbing() {
         return;
       }
       const action = shiftKey ? 'findPrevious' : 'findNext';
-      const nextElement = external_wp_dom_namespaceObject.focus.tabbable[action]( /** @type {HTMLElement} */target) || null;
+      const nextElement = external_wp_dom_namespaceObject.focus.tabbable[action](/** @type {HTMLElement} */target) || null;
 
       // When the target element contains the element that is about to
       // receive focus, for example when the target is a tabbable
@@ -3573,7 +3593,7 @@ function useConstrainedTabbing() {
       // In this case we can't rely on native browsers behavior. We need
       // to manage focus instead.
       // See https://github.com/WordPress/gutenberg/issues/46041.
-      if ( /** @type {HTMLElement} */target.contains(nextElement)) {
+      if (/** @type {HTMLElement} */target.contains(nextElement)) {
         event.preventDefault();
         nextElement?.focus();
         return;
@@ -3611,9 +3631,9 @@ function useConstrainedTabbing() {
 /* harmony default export */ const use_constrained_tabbing = (useConstrainedTabbing);
 
 // EXTERNAL MODULE: ./packages/compose/node_modules/clipboard/dist/clipboard.js
-var dist_clipboard = __webpack_require__(6207);
+var dist_clipboard = __webpack_require__(5359);
 var clipboard_default = /*#__PURE__*/__webpack_require__.n(dist_clipboard);
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-copy-on-click/index.js
+;// ./packages/compose/build-module/hooks/use-copy-on-click/index.js
 /**
  * External dependencies
  */
@@ -3689,7 +3709,7 @@ function useCopyOnClick(ref, text, timeout = 4000) {
   return hasCopied;
 }
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-copy-to-clipboard/index.js
+;// ./packages/compose/build-module/hooks/use-copy-to-clipboard/index.js
 /**
  * External dependencies
  */
@@ -3712,7 +3732,9 @@ function useCopyOnClick(ref, text, timeout = 4000) {
  */
 function useUpdatedRef(value) {
   const ref = (0,external_wp_element_namespaceObject.useRef)(value);
-  ref.current = value;
+  (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
+    ref.current = value;
+  }, [value]);
   return ref;
 }
 
@@ -3755,9 +3777,9 @@ function useCopyToClipboard(text, onSuccess) {
   }, []);
 }
 
-;// CONCATENATED MODULE: external ["wp","keycodes"]
+;// external ["wp","keycodes"]
 const external_wp_keycodes_namespaceObject = window["wp"]["keycodes"];
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-focus-on-mount/index.js
+;// ./packages/compose/build-module/hooks/use-focus-on-mount/index.js
 /**
  * WordPress dependencies
  */
@@ -3839,7 +3861,7 @@ function useFocusOnMount(focusOnMount = 'firstElement') {
   }, []);
 }
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-focus-return/index.js
+;// ./packages/compose/build-module/hooks/use-focus-return/index.js
 /**
  * WordPress dependencies
  */
@@ -3912,7 +3934,7 @@ function useFocusReturn(onFocusReturn) {
 }
 /* harmony default export */ const use_focus_return = (useFocusReturn);
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-focus-outside/index.js
+;// ./packages/compose/build-module/hooks/use-focus-outside/index.js
 /**
  * WordPress dependencies
  */
@@ -4065,7 +4087,7 @@ function useFocusOutside(onFocusOutside) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-merge-refs/index.js
+;// ./packages/compose/build-module/hooks/use-merge-refs/index.js
 /**
  * WordPress dependencies
  */
@@ -4192,7 +4214,7 @@ function useMergeRefs(refs) {
   }, []);
 }
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-dialog/index.js
+;// ./packages/compose/build-module/hooks/use-dialog/index.js
 /**
  * External dependencies
  */
@@ -4259,7 +4281,7 @@ function useDialog(options) {
 }
 /* harmony default export */ const use_dialog = (useDialog);
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-disabled/index.js
+;// ./packages/compose/build-module/hooks/use-disabled/index.js
 /**
  * Internal dependencies
  */
@@ -4342,7 +4364,7 @@ function useDisabled({
   }, [isDisabledProp]);
 }
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-event/index.js
+;// ./packages/compose/build-module/hooks/use-event/index.js
 /**
  * WordPress dependencies
  */
@@ -4388,7 +4410,7 @@ callback) {
   return (0,external_wp_element_namespaceObject.useCallback)((...args) => ref.current?.(...args), []);
 }
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-isomorphic-layout-effect/index.js
+;// ./packages/compose/build-module/hooks/use-isomorphic-layout-effect/index.js
 /**
  * WordPress dependencies
  */
@@ -4402,7 +4424,7 @@ callback) {
 const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? external_wp_element_namespaceObject.useLayoutEffect : external_wp_element_namespaceObject.useEffect;
 /* harmony default export */ const use_isomorphic_layout_effect = (useIsomorphicLayoutEffect);
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-dragging/index.js
+;// ./packages/compose/build-module/hooks/use-dragging/index.js
 /**
  * WordPress dependencies
  */
@@ -4476,11 +4498,12 @@ function useDragging({
 }
 
 // EXTERNAL MODULE: ./node_modules/mousetrap/mousetrap.js
-var mousetrap_mousetrap = __webpack_require__(7973);
+var mousetrap_mousetrap = __webpack_require__(1933);
 var mousetrap_default = /*#__PURE__*/__webpack_require__.n(mousetrap_mousetrap);
 // EXTERNAL MODULE: ./node_modules/mousetrap/plugins/global-bind/mousetrap-global-bind.js
-var mousetrap_global_bind = __webpack_require__(5538);
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-keyboard-shortcut/index.js
+var mousetrap_global_bind = __webpack_require__(5760);
+;// ./packages/compose/build-module/hooks/use-keyboard-shortcut/index.js
+/* wp:polyfill */
 /**
  * External dependencies
  */
@@ -4514,7 +4537,7 @@ var mousetrap_global_bind = __webpack_require__(5538);
  * @param {(e: import('mousetrap').ExtendedKeyboardEvent, combo: string) => void} callback  Shortcut callback.
  * @param {WPKeyboardShortcutConfig}                                              options   Shortcut options.
  */
-function useKeyboardShortcut( /* eslint-enable jsdoc/valid-types */
+function useKeyboardShortcut(/* eslint-enable jsdoc/valid-types */
 shortcuts, callback, {
   bindGlobal = false,
   eventName = 'keydown',
@@ -4552,7 +4575,7 @@ shortcuts, callback, {
       }
       const bindFn = bindGlobal ? 'bindGlobal' : 'bind';
       // @ts-ignore `bindGlobal` is an undocumented property
-      mousetrap[bindFn](shortcut, ( /* eslint-disable jsdoc/valid-types */
+      mousetrap[bindFn](shortcut, (/* eslint-disable jsdoc/valid-types */
       /** @type {[e: import('mousetrap').ExtendedKeyboardEvent, combo: string]} */...args) => /* eslint-enable jsdoc/valid-types */
       currentCallbackRef.current(...args), eventName);
     });
@@ -4563,7 +4586,7 @@ shortcuts, callback, {
 }
 /* harmony default export */ const use_keyboard_shortcut = (useKeyboardShortcut);
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-media-query/index.js
+;// ./packages/compose/build-module/hooks/use-media-query/index.js
 /**
  * WordPress dependencies
  */
@@ -4623,7 +4646,7 @@ function useMediaQuery(query) {
   return (0,external_wp_element_namespaceObject.useSyncExternalStore)(source.subscribe, source.getValue, () => false);
 }
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-previous/index.js
+;// ./packages/compose/build-module/hooks/use-previous/index.js
 /**
  * WordPress dependencies
  */
@@ -4649,7 +4672,7 @@ function usePrevious(value) {
   return ref.current;
 }
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-reduced-motion/index.js
+;// ./packages/compose/build-module/hooks/use-reduced-motion/index.js
 /**
  * Internal dependencies
  */
@@ -4663,7 +4686,7 @@ function usePrevious(value) {
 const useReducedMotion = () => useMediaQuery('(prefers-reduced-motion: reduce)');
 /* harmony default export */ const use_reduced_motion = (useReducedMotion);
 
-;// CONCATENATED MODULE: ./packages/undo-manager/build-module/index.js
+;// ./packages/undo-manager/build-module/index.js
 /**
  * WordPress dependencies
  */
@@ -4835,7 +4858,7 @@ function createUndoManager() {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-state-with-history/index.js
+;// ./packages/compose/build-module/hooks/use-state-with-history/index.js
 /**
  * WordPress dependencies
  */
@@ -4923,7 +4946,7 @@ function useStateWithHistory(initialValue) {
   };
 }
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-viewport-match/index.js
+;// ./packages/compose/build-module/hooks/use-viewport-match/index.js
 /**
  * WordPress dependencies
  */
@@ -4979,7 +5002,7 @@ const OPERATOR_EVALUATORS = {
   '>=': (breakpointValue, width) => width >= breakpointValue,
   '<': (breakpointValue, width) => width < breakpointValue
 };
-const ViewportMatchWidthContext = (0,external_wp_element_namespaceObject.createContext)( /** @type {null | number} */null);
+const ViewportMatchWidthContext = (0,external_wp_element_namespaceObject.createContext)(/** @type {null | number} */null);
 
 /**
  * Returns true if the viewport matches the given query, or false otherwise.
@@ -5008,7 +5031,7 @@ const useViewportMatch = (breakpoint, operator = '>=') => {
 useViewportMatch.__experimentalWidthProvider = ViewportMatchWidthContext.Provider;
 /* harmony default export */ const use_viewport_match = (useViewportMatch);
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-resize-observer/use-resize-observer.js
+;// ./packages/compose/build-module/hooks/use-resize-observer/use-resize-observer.js
 /**
  * WordPress dependencies
  */
@@ -5052,7 +5075,7 @@ function useResizeObserver(callback, resizeObserverOptions = {}) {
   });
 }
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-resize-observer/legacy/index.js
+;// ./packages/compose/build-module/hooks/use-resize-observer/legacy/index.js
 /**
  * External dependencies
  */
@@ -5183,7 +5206,7 @@ function useLegacyResizeObserver() {
   return [resizeElement, size];
 }
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-resize-observer/index.js
+;// ./packages/compose/build-module/hooks/use-resize-observer/index.js
 /**
  * Internal dependencies
  */
@@ -5247,9 +5270,9 @@ function use_resize_observer_useResizeObserver(callback, options = {}) {
   return callback ? useResizeObserver(callback, options) : useLegacyResizeObserver();
 }
 
-;// CONCATENATED MODULE: external ["wp","priorityQueue"]
+;// external ["wp","priorityQueue"]
 const external_wp_priorityQueue_namespaceObject = window["wp"]["priorityQueue"];
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-async-list/index.js
+;// ./packages/compose/build-module/hooks/use-async-list/index.js
 /**
  * WordPress dependencies
  */
@@ -5311,7 +5334,7 @@ function useAsyncList(list, config = {
 }
 /* harmony default export */ const use_async_list = (useAsyncList);
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-warn-on-change/index.js
+;// ./packages/compose/build-module/hooks/use-warn-on-change/index.js
 /**
  * Internal dependencies
  */
@@ -5341,18 +5364,18 @@ function useAsyncList(list, config = {
 function useWarnOnChange(object, prefix = 'Change detection') {
   const previousValues = usePrevious(object);
   Object.entries(previousValues !== null && previousValues !== void 0 ? previousValues : []).forEach(([key, value]) => {
-    if (value !== object[( /** @type {keyof typeof object} */key)]) {
+    if (value !== object[(/** @type {keyof typeof object} */key)]) {
       // eslint-disable-next-line no-console
-      console.warn(`${prefix}: ${key} key changed:`, value, object[( /** @type {keyof typeof object} */key)]
+      console.warn(`${prefix}: ${key} key changed:`, value, object[(/** @type {keyof typeof object} */key)]
       /* eslint-enable jsdoc/check-types */);
     }
   });
 }
 /* harmony default export */ const use_warn_on_change = (useWarnOnChange);
 
-;// CONCATENATED MODULE: external "React"
+;// external "React"
 const external_React_namespaceObject = window["React"];
-;// CONCATENATED MODULE: ./node_modules/use-memo-one/dist/use-memo-one.esm.js
+;// ./node_modules/use-memo-one/dist/use-memo-one.esm.js
 
 
 function areInputsEqual(newInputs, lastInputs) {
@@ -5397,7 +5420,7 @@ var useCallback = (/* unused pure expression or super */ null && (useCallbackOne
 
 
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-debounce/index.js
+;// ./packages/compose/build-module/hooks/use-debounce/index.js
 /**
  * External dependencies
  */
@@ -5434,7 +5457,7 @@ function useDebounce(fn, wait, options) {
   return debounced;
 }
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-debounced-input/index.js
+;// ./packages/compose/build-module/hooks/use-debounced-input/index.js
 /**
  * WordPress dependencies
  */
@@ -5461,7 +5484,7 @@ function useDebouncedInput(defaultValue = '') {
   return [input, setInput, debouncedInput];
 }
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-throttle/index.js
+;// ./packages/compose/build-module/hooks/use-throttle/index.js
 /**
  * External dependencies
  */
@@ -5498,38 +5521,12 @@ function useThrottle(fn, wait, options) {
   return throttled;
 }
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-drop-zone/index.js
-/**
- * WordPress dependencies
- */
-
-
+;// ./packages/compose/build-module/hooks/use-drop-zone/index.js
 /**
  * Internal dependencies
  */
 
 
-/* eslint-disable jsdoc/valid-types */
-/**
- * @template T
- * @param {T} value
- * @return {import('react').MutableRefObject<T|null>} A ref with the value.
- */
-function useFreshRef(value) {
-  /* eslint-enable jsdoc/valid-types */
-  /* eslint-disable jsdoc/no-undefined-types */
-  /** @type {import('react').MutableRefObject<T>} */
-  /* eslint-enable jsdoc/no-undefined-types */
-  // Disable reason: We're doing something pretty JavaScript-y here where the
-  // ref will always have a current value that is not null or undefined but it
-  // needs to start as undefined. We don't want to change the return type so
-  // it's easier to just ts-ignore this specific line that's complaining about
-  // undefined not being part of T.
-  // @ts-ignore
-  const ref = (0,external_wp_element_namespaceObject.useRef)();
-  ref.current = value;
-  return ref;
-}
 
 /**
  * A hook to facilitate drag and drop handling.
@@ -5556,12 +5553,12 @@ function useDropZone({
   onDragEnd: _onDragEnd,
   onDragOver: _onDragOver
 }) {
-  const onDropRef = useFreshRef(_onDrop);
-  const onDragStartRef = useFreshRef(_onDragStart);
-  const onDragEnterRef = useFreshRef(_onDragEnter);
-  const onDragLeaveRef = useFreshRef(_onDragLeave);
-  const onDragEndRef = useFreshRef(_onDragEnd);
-  const onDragOverRef = useFreshRef(_onDragOver);
+  const onDropEvent = useEvent(_onDrop);
+  const onDragStartEvent = useEvent(_onDragStart);
+  const onDragEnterEvent = useEvent(_onDragEnter);
+  const onDragLeaveEvent = useEvent(_onDragLeave);
+  const onDragEndEvent = useEvent(_onDragEnd);
+  const onDragOverEvent = useEvent(_onDragOver);
   return useRefEffect(elem => {
     if (isDisabled) {
       return;
@@ -5600,7 +5597,7 @@ function useDropZone({
       } while (elementToCheck = elementToCheck.parentElement);
       return false;
     }
-    function maybeDragStart( /** @type {DragEvent} */event) {
+    function maybeDragStart(/** @type {DragEvent} */event) {
       if (isDragging) {
         return;
       }
@@ -5612,35 +5609,35 @@ function useDropZone({
       // node is removed.
       ownerDocument.addEventListener('dragend', maybeDragEnd);
       ownerDocument.addEventListener('mousemove', maybeDragEnd);
-      if (onDragStartRef.current) {
-        onDragStartRef.current(event);
+      if (_onDragStart) {
+        onDragStartEvent(event);
       }
     }
-    function onDragEnter( /** @type {DragEvent} */event) {
+    function onDragEnter(/** @type {DragEvent} */event) {
       event.preventDefault();
 
       // The `dragenter` event will also fire when entering child
       // elements, but we only want to call `onDragEnter` when
       // entering the drop zone, which means the `relatedTarget`
       // (element that has been left) should be outside the drop zone.
-      if (element.contains( /** @type {Node} */event.relatedTarget)) {
+      if (element.contains(/** @type {Node} */event.relatedTarget)) {
         return;
       }
-      if (onDragEnterRef.current) {
-        onDragEnterRef.current(event);
+      if (_onDragEnter) {
+        onDragEnterEvent(event);
       }
     }
-    function onDragOver( /** @type {DragEvent} */event) {
+    function onDragOver(/** @type {DragEvent} */event) {
       // Only call onDragOver for the innermost hovered drop zones.
-      if (!event.defaultPrevented && onDragOverRef.current) {
-        onDragOverRef.current(event);
+      if (!event.defaultPrevented && _onDragOver) {
+        onDragOverEvent(event);
       }
 
       // Prevent the browser default while also signalling to parent
       // drop zones that `onDragOver` is already handled.
       event.preventDefault();
     }
-    function onDragLeave( /** @type {DragEvent} */event) {
+    function onDragLeave(/** @type {DragEvent} */event) {
       // The `dragleave` event will also fire when leaving child
       // elements, but we only want to call `onDragLeave` when
       // leaving the drop zone, which means the `relatedTarget`
@@ -5652,11 +5649,11 @@ function useDropZone({
       if (isElementInZone(event.relatedTarget)) {
         return;
       }
-      if (onDragLeaveRef.current) {
-        onDragLeaveRef.current(event);
+      if (_onDragLeave) {
+        onDragLeaveEvent(event);
       }
     }
-    function onDrop( /** @type {DragEvent} */event) {
+    function onDrop(/** @type {DragEvent} */event) {
       // Don't handle drop if an inner drop zone already handled it.
       if (event.defaultPrevented) {
         return;
@@ -5671,23 +5668,23 @@ function useDropZone({
       // not recognized.
       // eslint-disable-next-line no-unused-expressions
       event.dataTransfer && event.dataTransfer.files.length;
-      if (onDropRef.current) {
-        onDropRef.current(event);
+      if (_onDrop) {
+        onDropEvent(event);
       }
       maybeDragEnd(event);
     }
-    function maybeDragEnd( /** @type {MouseEvent} */event) {
+    function maybeDragEnd(/** @type {MouseEvent} */event) {
       if (!isDragging) {
         return;
       }
       isDragging = false;
       ownerDocument.removeEventListener('dragend', maybeDragEnd);
       ownerDocument.removeEventListener('mousemove', maybeDragEnd);
-      if (onDragEndRef.current) {
-        onDragEndRef.current(event);
+      if (_onDragEnd) {
+        onDragEndEvent(event);
       }
     }
-    element.dataset.isDropZone = 'true';
+    element.setAttribute('data-is-drop-zone', 'true');
     element.addEventListener('drop', onDrop);
     element.addEventListener('dragenter', onDragEnter);
     element.addEventListener('dragover', onDragOver);
@@ -5696,7 +5693,7 @@ function useDropZone({
     // the document.
     ownerDocument.addEventListener('dragenter', maybeDragStart);
     return () => {
-      delete element.dataset.isDropZone;
+      element.removeAttribute('data-is-drop-zone');
       element.removeEventListener('drop', onDrop);
       element.removeEventListener('dragenter', onDragEnter);
       element.removeEventListener('dragover', onDragOver);
@@ -5709,7 +5706,7 @@ function useDropZone({
   );
 }
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-focusable-iframe/index.js
+;// ./packages/compose/build-module/hooks/use-focusable-iframe/index.js
 /**
  * External dependencies
  */
@@ -5756,7 +5753,7 @@ function useFocusableIframe() {
   }, []);
 }
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-fixed-window-list/index.js
+;// ./packages/compose/build-module/hooks/use-fixed-window-list/index.js
 /**
  * WordPress dependencies
  */
@@ -5804,7 +5801,7 @@ function useFixedWindowList(elementRef, itemHeight, totalItems, options) {
     visibleItems: initWindowSize,
     start: 0,
     end: initWindowSize,
-    itemInView: ( /** @type {number} */index) => {
+    itemInView: (/** @type {number} */index) => {
       return index >= 0 && index <= initWindowSize;
     }
   });
@@ -5813,7 +5810,7 @@ function useFixedWindowList(elementRef, itemHeight, totalItems, options) {
       return;
     }
     const scrollContainer = (0,external_wp_dom_namespaceObject.getScrollContainer)(elementRef.current);
-    const measureWindow = ( /** @type {boolean | undefined} */initRender) => {
+    const measureWindow = (/** @type {boolean | undefined} */initRender) => {
       var _options$windowOversc;
       if (!scrollContainer) {
         return;
@@ -5829,7 +5826,7 @@ function useFixedWindowList(elementRef, itemHeight, totalItems, options) {
           visibleItems,
           start,
           end,
-          itemInView: ( /** @type {number} */index) => {
+          itemInView: (/** @type {number} */index) => {
             return start <= index && index <= end;
           }
         };
@@ -5856,7 +5853,7 @@ function useFixedWindowList(elementRef, itemHeight, totalItems, options) {
       return;
     }
     const scrollContainer = (0,external_wp_dom_namespaceObject.getScrollContainer)(elementRef.current);
-    const handleKeyDown = ( /** @type {KeyboardEvent} */event) => {
+    const handleKeyDown = (/** @type {KeyboardEvent} */event) => {
       switch (event.keyCode) {
         case external_wp_keycodes_namespaceObject.HOME:
           {
@@ -5892,7 +5889,7 @@ function useFixedWindowList(elementRef, itemHeight, totalItems, options) {
   return [fixedListWindow, setFixedListWindow];
 }
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-observable-value/index.js
+;// ./packages/compose/build-module/hooks/use-observable-value/index.js
 /**
  * WordPress dependencies
  */
@@ -5919,7 +5916,7 @@ function useObservableValue(map, name) {
   return (0,external_wp_element_namespaceObject.useSyncExternalStore)(subscribe, getValue, getValue);
 }
 
-;// CONCATENATED MODULE: ./packages/compose/build-module/index.js
+;// ./packages/compose/build-module/index.js
 // The `createHigherOrderComponent` helper and helper types.
 
 // The `debounce` helper and its types.
