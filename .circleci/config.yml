@@ -24,6 +24,8 @@ jobs:
       # specify the version you desire here
       - image: cimg/php:8.2-node
       - image: cimg/mariadb:10.3
+        environment:
+          MYSQL_DATABASE: wordpress_test
 
     working_directory: ~/repo
 
