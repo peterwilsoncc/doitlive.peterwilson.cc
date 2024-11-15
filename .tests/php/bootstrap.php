@@ -67,4 +67,6 @@ tests_add_filter( 'upload_dir', function( $dir ) {
 	return $dir;
 } );
 
+tests_add_filter( 'pecl_memcached/warn_on_flush', '__return_false' );
+
 require_once $wp_tests_dir . '/includes/bootstrap.php';
