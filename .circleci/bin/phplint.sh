@@ -86,7 +86,7 @@ function check_file()
         fail "${filename}" "${errors}"
         fail_count=$((fail_count + 1))
     else
-        success "${filename}"
+        # success "${filename}"
         ok_count=$((ok_count + 1))
     fi
 }
