@@ -35,6 +35,10 @@ jobs:
             bash .circleci/bin/universal-environment-vars.sh
             source $BASH_ENV
       - run:
+          name: "Install System Dependencies"
+          command: |
+            sudo apt-get install mysql-admin
+      - run:
           name: "Install memcached"
           command: |
             set +e
