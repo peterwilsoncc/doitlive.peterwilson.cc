@@ -71,12 +71,12 @@ jobs:
           key: v1-dep-composer-{{ checksum "composer.lock" }}
       # Yarn
       - run:
-          name: "Install Project Dependencies (Yarn)"
-          command: yarn install
+          name: "Install Project Dependencies (npm)"
+          command: npm install
       - run:
           name: "Run SCSS Code sniffs"
           command: |
-            yarn lint:scss
+            npm lint:scss
       - run:
           name: "Ensure submodules are up to date"
           command: |
