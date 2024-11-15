@@ -21,7 +21,6 @@ $hm_mu_plugins = [
 	'vendor/rapid-canonical-urls/rapid-canonical-urls.php',
 	'vendor/s3-uploads/s3-uploads.php',
 	'vendor/tachyon/tachyon.php',
-	'vendor/twitteroauth/autoload.php',
 	'vendor/batcache.php',
 	'pwcc-helpers/plugin.php',
 	'pwcc-multi-domain/plugin.php',
