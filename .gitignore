@@ -9,3 +9,4 @@
 
 # Build files
 /themes/pwcc-003/assets/dist/
+/.phpunit.result.cache
