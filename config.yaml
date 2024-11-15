@@ -15,4 +15,4 @@ extensions:
   - Chassis/nodejs
   - Chassis/tachyon
 
-php: 7.4
+php: 8.2

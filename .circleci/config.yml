@@ -22,8 +22,8 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/php:7.3.30-apache-node-browsers
-      - image: circleci/mysql:5.7
+      - image: cimg/php:8.2-node
+      - image: cimg/mariadb:10.3
 
     working_directory: ~/repo
 
@@ -34,13 +34,6 @@ jobs:
           command: |
             bash .circleci/bin/universal-environment-vars.sh
             source $BASH_ENV
-      - run:
-          name: "Install System Dependencies"
-          command: |
-            sudo apt-get update
-            sudo apt-get install nano
-            sudo docker-php-ext-install mysqli
-            sudo apt-get update && sudo apt-get install default-mysql-client
       - run:
           name: "Install memcached"
           command: |
@@ -69,14 +62,6 @@ jobs:
           paths:
             - ./vendor
           key: v1-dep-composer-{{ checksum "composer.lock" }}
-      # Yarn
-      - run:
-          name: "Install Project Dependencies (Yarn)"
-          command: yarn install
-      - run:
-          name: "Run SCSS Code sniffs"
-          command: |
-            yarn lint:scss
       - run:
           name: "Ensure submodules are up to date"
           command: |
@@ -96,7 +81,7 @@ jobs:
   deploy:
     docker:
       # specify the version you desire here
-      - image: circleci/php:7.3.30-apache-node-browsers
+      - image: cimg/php:8.2-node
 
     working_directory: ~/repo
 
@@ -107,9 +92,6 @@ jobs:
           command: |
             bash .circleci/bin/universal-environment-vars.sh
             source $BASH_ENV
-      - run:
-          name: "Install Project Dependencies (Yarn)"
-          command: yarn install
       - run:
           name: "Build"
           command: |
