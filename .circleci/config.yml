@@ -22,8 +22,8 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/php:7.3.30-apache-node-browsers
-      - image: circleci/mysql:5.7
+      - image: cimg/php:8.2
+      - image: cimg/mariadb:10.3
 
     working_directory: ~/repo
 
@@ -96,7 +96,7 @@ jobs:
   deploy:
     docker:
       # specify the version you desire here
-      - image: circleci/php:7.3.30-apache-node-browsers
+      - image: cimg/php:8.2
 
     working_directory: ~/repo
 
