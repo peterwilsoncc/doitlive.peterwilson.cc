@@ -74,8 +74,8 @@ jobs:
             rm advanced-cache.php
             rm object-cache.php
       - run:
-          name: Lint PHP Files
-          command: ./.circleci/bin/phplint.sh --lint $(pwd)
+          name: Syntax check PHP Files
+          command: ./.circleci/bin/php-syntax-check.sh --lint $(pwd)
       - run:
           name: Wait for db
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 240s
