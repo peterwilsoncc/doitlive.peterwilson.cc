@@ -69,14 +69,6 @@ jobs:
           paths:
             - ./vendor
           key: v1-dep-composer-{{ checksum "composer.lock" }}
-      # Yarn
-      - run:
-          name: "Install Project Dependencies (npm)"
-          command: npm install
-      - run:
-          name: "Run SCSS Code sniffs"
-          command: |
-            npm lint:scss
       - run:
           name: "Ensure submodules are up to date"
           command: |
@@ -107,9 +99,6 @@ jobs:
           command: |
             bash .circleci/bin/universal-environment-vars.sh
             source $BASH_ENV
-      - run:
-          name: "Install Project Dependencies (Yarn)"
-          command: npm install
       - run:
           name: "Build"
           command: |
