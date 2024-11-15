@@ -24,7 +24,6 @@ $hm_mu_plugins = [
 	'vendor/batcache.php',
 	'pwcc-helpers/plugin.php',
 	'pwcc-multi-domain/plugin.php',
-	'pwcc-notes/plugin.php',
 ];
 
 foreach ( $hm_mu_plugins as $k => $file ) {
