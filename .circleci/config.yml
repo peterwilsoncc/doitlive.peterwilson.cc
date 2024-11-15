@@ -35,13 +35,6 @@ jobs:
             bash .circleci/bin/universal-environment-vars.sh
             source $BASH_ENV
       - run:
-          name: "Install System Dependencies"
-          command: |
-            sudo apt-get update
-            sudo apt-get install nano
-            sudo docker-php-ext-install mysqli
-            sudo apt-get update && sudo apt-get install default-mysql-client
-      - run:
           name: "Install memcached"
           command: |
             set +e
