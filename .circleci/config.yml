@@ -75,7 +75,7 @@ jobs:
             rm object-cache.php
       - run:
           name: Lint PHP Files
-          command: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/php-lint/master/pipeline.sh)
+          command: ./.circleci/bin/phplint.sh --lint $(pwd)
       - run:
           name: Wait for db
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 240s
