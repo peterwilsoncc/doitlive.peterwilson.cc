@@ -22,7 +22,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: cimg/php:8.2
+      - image: cimg/php:8.2-node
       - image: cimg/mariadb:10.3
 
     working_directory: ~/repo
@@ -96,7 +96,7 @@ jobs:
   deploy:
     docker:
       # specify the version you desire here
-      - image: cimg/php:8.2
+      - image: cimg/php:8.2-node
 
     working_directory: ~/repo
 
@@ -109,7 +109,7 @@ jobs:
             source $BASH_ENV
       - run:
           name: "Install Project Dependencies (Yarn)"
-          command: yarn install
+          command: npm install
       - run:
           name: "Build"
           command: |
