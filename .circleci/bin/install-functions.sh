@@ -48,7 +48,7 @@ install_db() {
 	fi
 
 	# create database
-	mysqladmin create $UNICI_DB_NAME --user="$UNICI_DB_USER" --password="$UNICI_DB_PASS"$EXTRA
+	mysql create $UNICI_DB_NAME --user="$UNICI_DB_USER" --password="$UNICI_DB_PASS"$EXTRA
 }
 
 config_test_suite() {
