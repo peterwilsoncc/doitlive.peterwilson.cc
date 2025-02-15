@@ -24,6 +24,7 @@ $hm_mu_plugins = [
 	'vendor/twitteroauth/autoload.php',
 	'vendor/batcache.php',
 	'pwcc-helpers/plugin.php',
+	'pwcc-code-bin/plugin.php',
 	'pwcc-multi-domain/plugin.php',
 	'pwcc-notes/plugin.php',
 ];
